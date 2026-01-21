@@ -1,0 +1,18 @@
+<div class="cont-usuarios">
+  <div class="enc-usuarios">Administrar usuarios</div>
+  @if (mensaje) {
+    <div>
+      <mat-card class="card-msg-usuarios">
+        <mat-card-content>
+          <div class="msg-usuarios">
+            {{ mensaje }}
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <p></p>
+    </div>
+  }
+  <fs-acciones-usuarios style="width: 100%"></fs-acciones-usuarios>
+  <br />
+  <router-outlet></router-outlet>
+</div>

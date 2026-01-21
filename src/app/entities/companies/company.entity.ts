@@ -1,0 +1,36 @@
+export interface CompanyEntity {
+  userName?: string;
+  name?: string;
+  largeName?: string;
+  nit?: string;
+  business?: string;
+  representative?: string;
+  contact?: string;
+  email?: string;
+  phone?: string;
+  address?: string;
+  headerName?: string;
+  footerName?: string;
+  headerImage?: string;
+  footerImage?: string;
+  dirServidorSMTP?: string;
+  puerto?: string;
+  usaTLS?: string;
+  cuentaServidorSMTP?: string;
+  clave?: string;
+  nombreRemitente?: string;
+  iconName?: string;
+  iconImage?: string;
+  principalName?: string;
+  principalImage?: string;
+  country?: string;
+  codeCountry?: string;
+  departament?: string;
+  city?: string;
+  rutaBD?: string;
+  userBD?: string;
+  claveBD?: string;
+  sigla?: string;
+  tamRotulo?: string;
+  ip?: string;
+}

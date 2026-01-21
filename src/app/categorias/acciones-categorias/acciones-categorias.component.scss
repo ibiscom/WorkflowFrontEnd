@@ -1,0 +1,46 @@
+.botones-categorias {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* BOTON 4 */
+
+.acciones-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; // espacio entre botones
+  margin-top: 15px;
+  background-color: white;
+}
+
+.btn-figma {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 22px;
+  background-color: #494260;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s ease;
+}
+
+.btn-figma:hover {
+  background-color: #5b5574;
+}
+
+.btn-figma .btn-icon img {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) invert(1); // vuelve el ícono blanco
+}
+
+.btn-figma .label {
+  white-space: nowrap; // evita que el texto se corte
+}

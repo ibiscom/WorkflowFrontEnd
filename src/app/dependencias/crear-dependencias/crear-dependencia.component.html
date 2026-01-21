@@ -1,0 +1,74 @@
+<div class="cont-nuevo-dependencia">
+  <form #form="ngForm">
+
+    <!-- TARJETA DATOS DEL DEPENDENCIA -->
+    <div class="card-nuevo-dependencia-general">
+
+      <div class="card-header">
+        <h3>Datos de la dependencia</h3>
+      </div>
+
+      <div class="card-content">
+        <div class="tbl-nuevo-dependencia">
+
+          <!-- NOMBRE -->
+          <div class="campo-texto">
+            <label for="name">Nombre</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Inserte nombre del dependencia"
+              [(ngModel)]="nameN"
+              required
+              #name="ngModel"
+            />
+            @if (name.errors?.['required']) {
+              <div class="error">El nombre del dependencia es obligatorio.</div>
+            }
+          </div>
+
+          <!-- DESCRIPCIÓN -->
+          <div class="campo-texto">
+            <label for="description">Breve descripcion</label>
+            <input
+              id="description"
+              name="description"
+              type="text"
+              placeholder="Inserte descripcion"
+              [(ngModel)]="descriptionN"
+              required
+              #description="ngModel"
+            />
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BOTONES FINALES -->
+    <div class="botones-nuevo-grupo">
+
+      <button class="btn-figma" type="submit" (click)="save()">
+        <span class="btn-icon">
+      <img src="assets/img/save.svg" alt="Guardar" />
+    </span>
+    Guardar</button>
+
+
+      @if (editMode()) {
+        <button class="btn-figma" type="button" (click)="delete()">
+          <span class="btn-icon">
+        <img src="assets/img/trash.svg" alt="Eliminar" />
+      </span>
+      Cancelar</button>
+      }
+
+     <button class="btn-figma" type="button" (click)="cancel()">
+        <span class="btn-icon">
+      <img src="assets/img/cancel.svg" alt="Cancelar" />
+    </span>
+    Cancelar</button>
+    </div>
+  </form>
+</div>

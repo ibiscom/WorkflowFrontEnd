@@ -1,0 +1,43 @@
+<div class="cont-registro-area">
+  <div class="card-registro-area">
+
+    <div class="header-registro-area">
+      <h2>Registro de área</h2>
+    </div>
+
+    <div class="contenido-registro-area">
+      <div class="tbl-registro-area">
+
+        <div class="campo-texto">
+          <label for="areaNameN">Nombre</label>
+          <input
+            id="areaNameN"
+            type="text"
+            placeholder="Nombre"
+            [(ngModel)]="areaNameN"
+            name="areaNameN"
+          />
+        </div>
+
+        <div class="campo-texto">
+          <label for="areaDescriptionN">Descripción</label>
+          <input
+            id="areaDescriptionN"
+            type="text"
+            placeholder="Inserte descripción del área"
+            [(ngModel)]="areaDescriptionN"
+            name="areaDescriptionN"
+          />
+        </div>
+
+      </div>
+    </div>
+
+    <div class="acciones-registro-area">
+      <button class="btn-figma" (keydown.enter)="save()" (click)="save()">
+         Registrar
+      </button>
+    </div>
+
+  </div>
+</div>

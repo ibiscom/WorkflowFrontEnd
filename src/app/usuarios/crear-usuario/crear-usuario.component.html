@@ -1,0 +1,364 @@
+<div class="cont-nuevo-usuario">
+  <form #form="ngForm">
+
+    <div class="card-nuevo-usuario-general">
+      <div class="card-header">
+        <h2>Datos generales</h2>
+      </div>
+
+      <div class="card-body">
+        <div class="tbl-nuevo-usuario">
+
+          <!-- CUENTA USUARIO -->
+          <div class="campo-texto">
+            <label>Cuenta de usuario</label>
+            <input
+              type="text"
+              name="userName"
+              placeholder="Inserte cuenta de usuario"
+              [(ngModel)]="userNameN"
+              required
+              #userName="ngModel"
+            />
+            @if (userName.errors?.['required']) {
+              <span class="error">La cuenta de usuario es obligatoria.</span>
+            }
+          </div>
+
+          <!-- TIPO DOCUMENTO -->
+          <div class="campo-lista">
+            <label>Tipo de identificación</label>
+            <select
+              name="docType"
+              [(ngModel)]="docTypeN"
+              required
+              #docType="ngModel"
+            >
+              <option value="">Seleccione una opción</option>
+              @for (docType of documentTypesList; track docType) {
+                <option [value]="docType.code">
+                  {{ docType.name }}
+                </option>
+              }
+            </select>
+            @if (docType.errors?.['required']) {
+              <span class="error">El tipo de identificación es obligatorio.</span>
+            }
+          </div>
+
+          <!-- NÚMERO DOCUMENTO -->
+          <div class="campo-texto">
+            <label>Número de identificación</label>
+            <input
+              type="text"
+              name="docNumber"
+              placeholder="Inserte número de identificación"
+              [(ngModel)]="docNumberN"
+              required
+              #docNumber="ngModel"
+            />
+            @if (docNumber.errors?.['required']) {
+              <span class="error">
+                El número de identificación es obligatorio.
+              </span>
+            }
+          </div>
+
+          <!-- PRIMER NOMBRE -->
+          <div class="campo-texto">
+            <label>Primer nombre</label>
+            <input
+              type="text"
+              name="firstName"
+              placeholder="Inserte primer nombre"
+              [(ngModel)]="nameN"
+              required
+              #firstName="ngModel"
+            />
+            @if (firstName.errors?.['required']) {
+              <span class="error">El primer nombre es obligatorio.</span>
+            }
+          </div>
+
+          <!-- SEGUNDO NOMBRE -->
+          <div class="campo-texto">
+            <label>Segundo nombre</label>
+            <input
+              type="text"
+              name="secondName"
+              placeholder="Inserte segundo nombre"
+              [(ngModel)]="secondNameN"
+            />
+          </div>
+
+          <!-- PRIMER APELLIDO -->
+          <div class="campo-texto">
+            <label>Primer apellido</label>
+            <input
+              type="text"
+              name="firstLastName"
+              placeholder="Inserte primer apellido"
+              [(ngModel)]="firstLastNameN"
+              required
+              #firstLastName="ngModel"
+            />
+            @if (firstLastName.errors?.['required']) {
+              <span class="error">
+                El primer apellido es obligatorio.
+              </span>
+            }
+          </div>
+
+          <!-- SEGUNDO APELLIDO -->
+          <div class="campo-texto">
+            <label>Segundo apellido</label>
+            <input
+              type="text"
+              name="secondLastName"
+              placeholder="Inserte segundo apellido"
+              [(ngModel)]="secondLastNameN"
+            />
+          </div>
+
+          <!-- CORREO -->
+          <div class="campo-texto">
+            <label>Correo</label>
+            <input
+              type="text"
+              name="email"
+              placeholder="Inserte correo"
+              [(ngModel)]="emailN"
+              required
+              #email="ngModel"
+            />
+            @if (email.errors?.['required']) {
+              <span class="error">El correo es obligatorio.</span>
+            }
+          </div>
+
+          <!-- CONTRASEÑA -->
+          <div class="campo-texto">
+            <label>Contraseña</label>
+            <input
+              type="password"
+              name="password"
+              [(ngModel)]="passwordN"
+              required
+              #password="ngModel"
+            />
+            @if (password.errors?.['required']) {
+              <span class="error">
+                La contraseña es obligatoria.
+              </span>
+            }
+          </div>
+
+          <!-- CONFIRMAR CONTRASEÑA -->
+          <div class="campo-texto">
+            <label>Confirmar contraseña</label>
+            <input
+              type="password"
+              name="passwordConfirmation"
+              [(ngModel)]="passwordConfirmationN"
+              required
+              #passwordConfirmation="ngModel"
+            />
+            @if (passwordConfirmation.errors?.['required']) {
+              <span class="error">
+                La confirmación es obligatoria.
+              </span>
+            }
+          </div>
+
+          <!-- DESCRIPCIÓN -->
+          <div class="campo-texto">
+            <label>Descripción</label>
+            <input
+              type="text"
+              name="description"
+              [(ngModel)]="descriptionN"
+            />
+          </div>
+
+          <!-- PAÍS -->
+          <select
+  name="country"
+  [(ngModel)]="countryObjectN"
+  (ngModelChange)="onCountryChangeEvent($event)"
+  [compareWith]="compareCountries">
+  
+  <option [ngValue]="null">Seleccione una opción</option>
+  @for (country of countriesList; track country) {
+    <option [ngValue]="country">{{ country.name }}</option>
+  }
+</select>
+
+          <!-- DEPARTAMENTO -->
+          <select
+  name="state"
+  [(ngModel)]="stateObjectN"
+  (ngModelChange)="onStateChangeEvent($event)"
+  [compareWith]="compareStates">
+
+  <option [ngValue]="null">Seleccione una opción</option>
+
+  @for (state of statesList; track state) {
+    <option [ngValue]="state">{{ state.name }}</option>
+  }
+</select>
+
+
+          <!-- CIUDAD -->
+          <div class="campo-lista">
+            <label>Ciudad</label>
+           <select
+  name="city"
+  [(ngModel)]="cityObjectN"
+  (ngModelChange)="onCityChangeEvent($event)"
+  [compareWith]="compareCities">
+
+  <option [ngValue]="null">Seleccione una opción</option>
+
+  @for (city of citiesList; track city) {
+    <option [ngValue]="city">
+      {{ city.name }}
+    </option>
+  }
+</select>
+
+          </div>
+
+          <!-- TELÉFONO -->
+          <div class="campo-texto">
+            <label>Teléfono</label>
+            <input
+              type="text"
+              name="phone"
+              [(ngModel)]="phoneN"
+            />
+          </div>
+
+          <!-- DIRECCIÓN -->
+          <div class="campo-texto">
+            <label>Dirección</label>
+            <input
+              type="text"
+              name="address"
+              [(ngModel)]="addressN"
+              required
+              #address="ngModel"
+            />
+            @if (address.errors?.['required']) {
+              <span class="error">
+                La dirección es obligatoria.
+              </span>
+            }
+          </div>
+
+          <!-- OFICINA -->
+          <div class="campo-texto">
+            <label>Oficina</label>
+            <input
+              type="text"
+              name="office"
+              [(ngModel)]="officeN"
+            />
+          </div>
+
+          <!-- CARGO -->
+          <div class="campo-texto">
+            <label>Título / Cargo</label>
+            <input
+              type="text"
+              name="titleName"
+              [(ngModel)]="titleN"
+              required
+              #titleName="ngModel"
+            />
+            @if (titleName.errors?.['required']) {
+              <span class="error">
+                El título/cargo es obligatorio.
+              </span>
+            }
+          </div>
+
+          <!-- EMPRESA -->
+          <div class="campo-lista">
+            <label>Compañía</label>
+            <select name="company" [(ngModel)]="companyN">
+              <option value="">Seleccione una opción</option>
+              @for (company of companiesList; track company) {
+                <option [value]="company.name">
+                  {{ company.largeName }}
+                </option>
+              }
+            </select>
+          </div>
+
+          <!-- ÁREA -->
+          <div class="campo-lista">
+            <label>Área</label>
+            <select name="area" [(ngModel)]="areaN">
+              <option value="">Seleccione una opción</option>
+              @for (area of areasList; track area) {
+                <option [value]="area.name">
+                  {{ area.name }}
+                </option>
+              }
+            </select>
+          </div>
+
+          <!-- ESTADO -->
+          <div class="campo-lista">
+            <label>Estado</label>
+            <select name="nStatus" [(ngModel)]="estadoN">
+              <option value="">Seleccione una opción</option>
+              @for (status of statusesList; track status) {
+                <option [value]="status.name">
+                  {{ status.name }}
+                </option>
+              }
+            </select>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    @if (editMode()) {
+      <!-- parte de permisos luego si quieres la convertimos -->
+    }
+
+    <br />
+
+    <!-- BOTONES -->
+    <div class="botones-nuevo-usuario">
+
+      <button class="btn-figma" type="submit" (click)="save()">
+        <span class="btn-icon">
+          <img src="assets/img/area.svg" />
+        </span>
+        <span class="label">Guardar</span>
+      </button>
+
+      @if (editMode()) {
+        <button class="btn-figma btn-danger" type="button" (click)="delete()">
+          <span class="btn-icon">
+            <img src="assets/img/delete.svg" />
+          </span>
+          <span class="label">Eliminar</span>
+        </button>
+      }
+
+      <button class="btn-figma btn-secondary" type="button" (click)="cancel()">
+        <span class="btn-icon">
+          <img src="assets/img/cancel.svg" />
+        </span>
+        <span class="label">Cancelar</span>
+      </button>
+    </div>
+
+  </form>
+</div>

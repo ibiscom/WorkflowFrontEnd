@@ -1,0 +1,141 @@
+<div class="cont-nuevo-perfil">
+  <form #form="ngForm">
+
+    <!-- CARD DATOS DEL PERFIL -->
+    <div class="card-nuevo-perfil-general">
+      <div class="card-header">
+        <h2>Datos del perfil</h2>
+      </div>
+
+      <div class="card-body">
+        <div class="tbl-nuevo-perfil">
+
+          <!-- NOMBRE PERFIL -->
+          <div class="campo-texto">
+            <label>Nombre</label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Inserte nombre del perfil"
+              [(ngModel)]="nameN"
+              required
+              #name="ngModel"
+            />
+            @if (name.errors?.['required']) {
+              <span class="error">El nombre del perfil es obligatorio.</span>
+            }
+          </div>
+
+          <!-- DESCRIPCIÓN -->
+          <div class="campo-texto">
+            <label>Descripción</label>
+            <input
+              type="text"
+              name="description"
+              placeholder="Inserte descripción del perfil"
+              [(ngModel)]="descriptionN"
+              required
+              #description="ngModel"
+            />
+            @if (description.errors?.['required']) {
+              <span class="error">La descripción es obligatoria.</span>
+            }
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <!-- CARD OPERACIONES (solo en modo edición) -->
+    @if (editMode()) {
+      <div class="card-nuevo-perfil">
+        <div class="card-header">
+          <h2>Administración operaciones</h2>
+        </div>
+
+        <div class="card-body">
+
+          <!-- AGREGAR OPERACIÓN -->
+          <div class="sec-operaciones-perfil">
+
+            <div class="campo-lista">
+              <label>Agregar operación</label>
+              <select
+                name="operation"
+                [(ngModel)]="operationE"
+                (ngModelChange)="addOperationToProfile($event)"
+              >
+                <option value="">Seleccione la operación</option>
+
+                @for (operation of restrictedOperationsList; track operation) {
+                  <option [value]="operation">
+                    {{ operation }}
+                  </option>
+                }
+              </select>
+            </div>
+
+          </div>
+
+          <!-- LISTA DE OPERACIONES -->
+          <div class="tbl-permisos-header">
+            <div>Operaciones de este perfil</div>
+            <br />
+          </div>
+
+          <div class="tbl-permisos">
+            @for (operation of operationsList; track operation) {
+
+              <div>{{ operation }}</div>
+
+              <div>
+                <button
+                  class="btn-figma btn-secondary"
+                  type="button"
+                  (click)="remove(operation)"
+                >
+                  Remover operación
+                </button>
+              </div>
+
+            }
+          </div>
+
+        </div>
+      </div>
+    }
+
+    <br />
+
+    <!-- BOTONES -->
+    <div class="botones-nuevo-usuario">
+
+      <button class="btn-figma" type="submit" (click)="save()">
+        <span class="btn-icon">
+          <img src="assets/img/area.svg" />
+        </span>
+        <span class="label">Guardar</span>
+      </button>
+
+      @if (editMode()) {
+        <button class="btn-figma btn-danger" type="button" (click)="delete()">
+          <span class="btn-icon">
+            <img src="assets/img/delete.svg" />
+          </span>
+          <span class="label">Eliminar</span>
+        </button>
+      }
+
+      <button class="btn-figma btn-secondary" type="button" (click)="cancel()">
+        <span class="btn-icon">
+          <img src="assets/img/cancel.svg" />
+        </span>
+        <span class="label">Cancelar</span>
+      </button>
+
+    </div>
+
+  </form>
+</div>

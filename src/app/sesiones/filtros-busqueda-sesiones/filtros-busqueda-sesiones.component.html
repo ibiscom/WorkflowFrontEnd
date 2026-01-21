@@ -1,0 +1,57 @@
+<div class="cont-filtro">
+  <div class="usuarios-container">
+
+    <!-- FILTROS -->
+    <div class="filtros-container">
+      <div class="filtros-titulo">Filtros de búsqueda</div>
+
+      <!-- FILA 1 -->
+      <div class="fila-filtros">
+
+        <!-- Usuario -->
+        <div class="campo-texto-filtro">
+          <input
+            type="text"
+            [(ngModel)]="userNameF"
+            placeholder="Inserte cuenta de usuario"
+            (keydown.enter)="search()"
+          />
+        </div>
+
+        <!-- Dirección IP -->
+        <div class="campo-texto-filtro">
+          <input
+            type="text"
+            [(ngModel)]="ipF"
+            placeholder="Inserte dirección computador (IP)"
+            (keydown.enter)="search()"
+          />
+        </div>
+
+      </div>
+
+      <!-- FILA 3 -->
+      <div class="fila-filtros-fila3">
+
+        <!-- Buscar -->
+        <button class="btn-figma" (click)="search()">
+          <span class="btn-icon">
+            <img src="assets/img/search.svg" alt="Buscar" />
+          </span>
+          <span class="label">Buscar</span>
+        </button>
+
+        <!-- Limpiar -->
+        <button class="btn-figma" (click)="limpiarFiltros()">
+          <span class="btn-icon">
+            <img src="assets/img/limpiar.svg" alt="Limpiar filtros" />
+          </span>
+          <span class="label">Limpiar filtros</span>
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

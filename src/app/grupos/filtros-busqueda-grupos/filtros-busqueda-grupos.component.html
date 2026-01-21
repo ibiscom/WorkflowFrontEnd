@@ -1,0 +1,75 @@
+<div class="cont-filtro">
+  <div class="usuarios-container">
+    
+    <!-- FILTROS -->
+    <div class="filtros-container">
+
+      <!-- TÍTULO -->
+      <div class="filtros-titulo">Filtros de búsqueda</div>
+
+      <!-- FILA 1 -->
+      <div class="fila-filtros">
+        
+        <!-- Nombre -->
+        <div class="campo-texto-filtro ">
+          <input
+            type="text"
+            [(ngModel)]="groupNameF"
+            placeholder="Inserte nombre del grupo"
+            (keydown.enter)="search()"
+          />
+        </div>
+
+        <!-- Supervisor -->
+        <div class="campo-texto-filtro ">
+          <input
+            type="text"
+            [(ngModel)]="supervisorF"
+            placeholder="Inserte nombre del supervisor"
+            (keydown.enter)="search()"
+          />
+        </div>
+
+      </div>
+
+      <!-- FILA 2 -->
+      <div class="fila-filtros-fila3">
+
+        <!-- Switch 2-->
+        <div class="campo-switch">
+          <label class="campo-switch__label">Generar reporte</label>
+
+          <div class="campo-switch__control">
+            <input
+              type="checkbox"
+              id="switchGenerateReport"
+              [checked]="generateReportF === 'true'"
+              (change)="onGenerateReportChange($event)"
+            />
+            <label
+              for="switchGenerateReport"
+              class="campo-switch__slider"
+            ></label>
+          </div>
+        </div>
+
+        <!-- Buscar -->
+        <button class="btn-figma" (click)="search()">
+          <span class="btn-icon">
+            <img src="assets/img/search.svg" alt="Buscar" />
+          </span>
+          <span class="label">Buscar</span>
+        </button>
+
+        <!-- Limpiar filtros
+        
+        <button class="btn-figma" (click)="limpiarFiltros()">
+          <span class="btn-icon">
+            <img src="assets/img/limpiar.svg" alt="Limpiar filtros" />
+          </span>
+          <span class="label">Limpiar filtros</span>
+        </button>-->
+
+      </div>
+    </div>
+  </div>

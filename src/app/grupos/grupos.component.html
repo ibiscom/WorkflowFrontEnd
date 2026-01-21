@@ -1,0 +1,18 @@
+<div class="cont-grupos">
+  <div class="enc-grupos">Administrar grupos</div>
+  @if (mensaje) {
+    <div>
+      <mat-card class="card-msg-grupos">
+        <mat-card-content>
+          <div class="msg-grupos">
+            {{ mensaje }}
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <p></p>
+    </div>
+  }
+  <fs-acciones-grupos style="width: 100%"></fs-acciones-grupos>
+  <br />
+  <router-outlet></router-outlet>
+</div>

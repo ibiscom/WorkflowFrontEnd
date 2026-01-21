@@ -1,0 +1,141 @@
+@use "../app.component.scss";
+
+.cont-main-page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img-main-page {
+  width: 68.75px;
+  height: 15px;
+  background-image: url(/assets/img/logo-ibiscom.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.toolbar-main-page {
+  width: 99%;
+  display: flex;
+  align-items: center; /* Centra verticalmente los elementos */
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between; /* Separa izquierda y derecha */
+
+  /* Agregamos un fondo, altura y padding para que parezca una toolbar */
+  background-color: #f0f0f0; /* Un gris claro para el fondo de la toolbar */
+  height: 56px; /* Altura estándar de una toolbar de Material Design */
+  padding: 0 16px; /* Relleno horizontal para los extremos */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil debajo de la toolbar */
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Asegura que el botón de menú sea cuadrado y centre el icono */
+.left-section button[mat-icon-button] {
+  width: 40px; /* tamaño estándar del botón de icono de Material */
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* evita desplazamientos por padding */
+  line-height: 1; /* corrige posibles offsets verticales */
+}
+
+.right-section {
+  display: flex; /* Convierte esta sección en un flex container también */
+  align-items: center; /* Centra verticalmente los elementos dentro de esta sección */
+}
+
+.spacer {
+  display: inline-block;
+  width: 10px;
+}
+
+/* Estilos para el texto y el botón dentro de la toolbar (opcional, para mejorar la apariencia) */
+.toolbar-main-page span {
+  font-family: Roboto, sans-serif; /* Usamos la fuente de Material */
+  color: #333; /* Un color de texto oscuro */
+  font-size: 16px;
+  white-space: nowrap; /* Evita que el texto se rompa */
+}
+
+.toolbar-main-page .right-section button {
+  font-family: Roboto, sans-serif;
+  color: #3f51b5; /* Color azul de Material Design para el botón */
+  font-weight: 500;
+  margin-left: 8px; /* Espacio a la izquierda del botón */
+}
+
+/* El botón de menú en la izquierda no debe tener margen extra */
+.toolbar-main-page .left-section button[mat-icon-button] {
+  margin-left: 0;
+}
+
+/* Espaciado para iconos que acompañan texto, pero no para botones de solo icono */
+.toolbar-main-page button:not([mat-icon-button]) mat-icon {
+  vertical-align: middle; /* Alinea el icono con el texto */
+  margin-right: 4px; /* Deja espacio entre icono y texto */
+}
+
+/* En botones de solo icono, el icono debe estar perfectamente centrado */
+.toolbar-main-page button[mat-icon-button] mat-icon {
+  margin: 0; /* Evita descentrado por margen */
+  vertical-align: middle;
+}
+
+.menu-main-page {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.operation-main-page {
+  display: flex;
+  align-items: flex-start;
+  align-content: center;
+  justify-content: center;
+  background-color: rgba(0, 89, 255, 0.055);
+  width: 98%;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 5px solid rgba(0, 89, 255, 0.199);
+  height: auto;
+}
+
+.main-layout {
+  display: flex;
+  flex-direction: row;
+  height: calc(
+    100vh - 64px
+  ); /* Ajusta la altura para la barra de herramientas */
+  align-items: flex-start; /* Alinea los elementos hijos hacia arriba */
+  width: 99%;
+}
+
+.menu-main-page {
+  width: 250px; /* or any width you prefer */
+  padding: 0px 16px 16px 16px;
+  align-self: flex-start; /* Asegura que el menú se alinee en la parte superior */
+  //background-color: #f4f4f4; /* optional styling */
+}
+
+.operation-main-page {
+  flex-grow: 1;
+  padding: 4px;
+  overflow-y: auto;
+  align-self: flex-start; /* Alineación del componente a la parte superior */
+  background-color: rgb(247, 247, 247);
+  border-color: rgb(240, 240, 240);
+  border-radius: 0%;
+}

@@ -1,0 +1,16 @@
+<div class="cont-sesiones">
+  <div class="enc-sesiones">Administrar sesiones</div>
+  @if (mensaje) {
+    <div>
+      <mat-card class="card-msg-sesiones">
+        <mat-card-content>
+          <div class="msg-sesiones">
+            {{ mensaje }}
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <p></p>
+    </div>
+  }
+  <router-outlet></router-outlet>
+</div>

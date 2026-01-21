@@ -1,0 +1,17 @@
+<div class="cont-datos-corporativos">
+  <div class="enc-datos-corporativos">Datos corporativos</div>
+  @if (mensaje) {
+    <div>
+      <mat-card class="card-msg-datos-corporativos">
+        <mat-card-content>
+          <div class="msg-datos-corporativos">
+            {{ mensaje }}
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <p></p>
+    </div>
+  }
+  <br />
+  <router-outlet></router-outlet>
+</div>

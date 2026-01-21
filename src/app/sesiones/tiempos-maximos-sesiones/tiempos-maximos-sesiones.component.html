@@ -1,0 +1,49 @@
+<div class="cont-filtro">
+  <div class="usuarios-container">
+
+    <!-- FILTROS -->
+    <div class="filtros-container">
+      <div class="filtros-titulo">Tiempos máximos</div>
+
+      <!-- FILA 1 -->
+      <div class="fila-filtros">
+
+        <!-- Tiempo máximo de sesión -->
+        <div class="campo-texto-filtro">
+          <input
+            type="text"
+            [(ngModel)]="maxSessionTimeE"
+            placeholder="Inserte tiempo máximo de la sesión (Minutos)"
+            (keydown.enter)="save()"
+          />
+        </div>
+
+        <!-- Tiempo máximo password sin cambiar -->
+        <div class="campo-texto-filtro">
+          <input
+            type="text"
+            [(ngModel)]="maxNoPasswordChangeTimeE"
+            placeholder="Inserte tiempo máximo del password sin cambiar (Días)"
+            (keydown.enter)="save()"
+          />
+        </div>
+
+      </div>
+
+      <!-- FILA 2 (Botones) -->
+      <div class="fila-filtros-fila3">
+
+        <!-- Guardar -->
+        <button class="btn-figma" (click)="save()">
+          <span class="btn-icon">
+            <img src="assets/img/save.svg" alt="Guardar" />
+          </span>
+          <span class="label">Guardar</span>
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

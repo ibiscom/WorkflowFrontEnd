@@ -1,0 +1,81 @@
+<div class="cont-filtro">
+  <div class="usuarios-container">
+    
+    <!-- FILTROS -->
+    <div class="filtros-container">
+
+      <!-- TÍTULO -->
+      <div class="filtros-titulo">Filtros de búsqueda</div>
+
+      <!-- FILA 1 -->
+      <div class="fila-filtros">
+        
+        <!-- Nombre -->
+        <div class="campo-texto-filtro ">
+          <label for="description">Nombre del festivo</label>
+          <input
+            type="text"
+            [(ngModel)]="festivoNameF"
+            placeholder="Inserte nombre del festivo"
+            (keydown.enter)="search()"
+          />
+        </div>
+
+        <!-- NOMBRE LARGO DEL WORKFLOW -->
+        <div class="campo-texto-filtro ">
+           <label for="description">Nombre largo del festivo</label>
+          <input
+            type="text"
+            [(ngModel)]="supervisorF"
+            placeholder="Inserte nombre del supervisor"
+            (keydown.enter)="search()"
+          />
+        </div>
+
+      </div>
+
+      <!-- FILA 2 -->
+      <div class="fila-filtros-fila3">
+
+        <!-- ESTADO -->
+          <div class="campo-lista">
+            <label for="company">Estado</label>
+
+            <select
+              id="company"
+              name="company"
+              [(ngModel)]="companyObjectN"
+              required
+              #company="ngModel"
+              (ngModelChange)="onCompanyChange($event)"
+            >
+              <option value="">Seleccione una opción</option>
+
+              @for (company of companiesList; track company) {
+                <option [ngValue]="company">
+                  {{ company.largeName }}
+                </option>
+              }
+            </select>
+          </div>
+
+        <!-- Buscar -->
+        <button class="btn-figma" (click)="search()">
+          <span class="btn-icon">
+            <img src="assets/img/search.svg" alt="Buscar" />
+          </span>
+          <span class="label">Buscar</span>
+        </button>
+
+        <!-- Limpiar filtros
+        
+        <button class="btn-figma" (click)="limpiarFiltros()">
+          <span class="btn-icon">
+            <img src="assets/img/limpiar.svg" alt="Limpiar filtros" />
+          </span>
+          <span class="label">Limpiar filtros</span>
+        </button>-->
+
+      </div>
+    </div>
+  </div>

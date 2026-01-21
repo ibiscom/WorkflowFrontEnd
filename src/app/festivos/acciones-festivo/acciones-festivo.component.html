@@ -1,0 +1,59 @@
+<button class="btn-figma" (click)="irACrearFestivo()">
+  <span class="btn-icon">
+    <img src="assets/img/adduser.svg" alt="Nuevo workflow" />
+  </span>
+  <span class="label">Nuevo</span>
+</button>
+
+<!-- CALENDARIO 
+<div class="calendario-container">
+
+  <div class="titulo">
+    Por favor Seleccione un Workflow
+  </div>
+
+  <div class="selectores">
+    <select [(ngModel)]="mesSeleccionado" (change)="cambiarMes()">
+      <option *ngFor="let mes of meses; let i = index" [value]="i">
+        {{ mes }}
+      </option>
+    </select>
+
+    <select [(ngModel)]="anioSeleccionado" (change)="cambiarMes()">
+      <option *ngFor="let anio of [2024,2025,2026,2027,2028]">
+        {{ anio }}
+      </option>
+    </select>
+  </div>
+
+  <table class="calendario">
+    <thead>
+      <tr>
+        <th *ngFor="let dia of diasSemana">{{ dia }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let semana of calendario">
+        <td
+          *ngFor="let dia of semana"
+          [class.seleccionado]="dia && esSeleccionado(dia)"
+          (click)="dia && seleccionarDia(dia)"
+        >
+          {{ dia }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="resumen">
+    Días festivos seleccionados para {{ meses[mesSeleccionado] }} {{ anioSeleccionado }}:
+    {{ diasSeleccionados.join(', ') || 'Ninguno' }}
+  </div>
+
+  <div class="botones">
+    <button (click)="guardar()">Guardar</button>
+    <button (click)="consultar()">Consultar</button>
+  </div>
+
+</div>
+-->

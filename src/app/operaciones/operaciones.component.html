@@ -1,0 +1,16 @@
+<div class="cont-operaciones">
+  <div class="enc-operaciones">Administrar operaciones</div>
+  @if (mensaje) {
+    <div>
+      <mat-card class="card-msg-operaciones">
+        <mat-card-content>
+          <div class="msg-operaciones">
+            {{ mensaje }}
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <p></p>
+    </div>
+  }
+  <router-outlet></router-outlet>
+</div>

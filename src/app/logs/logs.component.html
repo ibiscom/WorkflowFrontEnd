@@ -1,0 +1,151 @@
+<div class="cont-logs">
+  <div class="enc-logs">Administrar logs</div>
+
+  <!-- MENSAJE -->
+  @if (mensaje) {
+    <div class="card-msg-logs">
+      <div class="msg-logs">
+        {{ mensaje }}
+      </div>
+    </div>
+  }
+
+  <div class="cont-administrar-logs">
+
+    <form #form="ngForm">
+      <div class="cont-administrar-logs-info-logs">
+
+        <!-- INFORMACIÓN A ALMACENAR EN LOGS -->
+        <div>
+          <div class="card">
+            <div class="card-header">
+              <h3>Información a almacenar en logs</h3>
+            </div>
+
+            <div class="card-body">
+              <div class="tbl-permisos">
+
+                <div><strong>Nombre</strong></div>
+                <div><strong>Se almacena</strong></div>
+
+                @for (info of this.informationList; track info) {
+                  <div>{{ info.name }}</div>
+
+                  <div>
+                    <button
+                      type="button"
+                      class="btn-figma"
+                      (click)="toggleInfoLogSave(info)"
+                    >
+                      <span class="label">
+                        {{ info.saveInLogs ? 'Sí' : 'No' }}
+                      </span>
+                    </button>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+
+          <br />
+
+          <!-- ADMINISTRACIÓN ARCHIVOS DE LOG -->
+          <div class="card">
+            <div class="card-header">
+              <h3>Administración archivos de logs</h3>
+            </div>
+
+            <div class="card-body">
+
+              <div class="tbl-adm-archs-logs">
+
+                <!-- Tamaño máximo -->
+                <div class="campo-texto">
+                  <label>Tamaño máximo de los archivos (KB)</label>
+                  <input
+                    type="text"
+                    placeholder="Inserte tamaño máximo"
+                    name="maxFileSize"
+                    [(ngModel)]="maxFileSizeN"
+                  />
+                </div>
+
+                <!-- Nombre archivo logs -->
+                <div class="campo-texto">
+                  <label>Nombre del archivo de logs</label>
+                  <input
+                    type="text"
+                    placeholder="Inserte nombre"
+                    name="logFileName"
+                    [(ngModel)]="logFileNameN"
+                  />
+                </div>
+
+                <!-- Nombre archivo errores -->
+                <div class="campo-texto">
+                  <label>Nombre del archivo de errores</label>
+                  <input
+                    type="text"
+                    placeholder="Inserte nombre"
+                    name="errorFileName"
+                    [(ngModel)]="errorFileNameN"
+                  />
+                </div>
+
+              </div>
+            </div>
+
+            <div class="card-footer acciones-logs">
+              <button
+                type="button"
+                class="btn-figma"
+                (click)="saveLogSettings()"
+              >
+                <span class="label">Guardar</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- OPERACIONES A ALMACENAR EN LOGS -->
+        <div class="card">
+          <div class="card-header">
+            <h3>Operaciones a almacenar en logs</h3>
+          </div>
+
+          <div class="card-body">
+            <div class="tbl-permisos">
+
+              @for (operation of this.operationsList; track operation) {
+                <div>{{ operation.operationName }}</div>
+
+                <div>
+                  <button
+                    type="button"
+                    class="btn-figma"
+                    (click)="toggleSaveLog(operation)"
+                  >
+                    <span class="label">
+                      {{
+                        operation.saveInLogs
+                          ? 'Genera logs'
+                          : 'No genera logs'
+                      }}
+                    </span>
+                  </button>
+                </div>
+              }
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <br />
+    </form>
+  </div>
+</div>

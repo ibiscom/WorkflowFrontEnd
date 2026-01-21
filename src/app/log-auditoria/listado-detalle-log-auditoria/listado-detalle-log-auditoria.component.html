@@ -1,0 +1,28 @@
+<div>
+  <!-- Componente de sección (lo mantengo tal cual) -->
+  <fs-seccion-ver-detalle-la
+    [uc]="this"
+    style="width: 100%"
+  ></fs-seccion-ver-detalle-la>
+
+  <!-- TABLA BASE -->
+  <table class="tabla-detalle-la">
+    <thead>
+      <tr>
+        <th>Cambio</th>
+        <th>Propiedad</th>
+        <th>Valor anterior</th>
+        <th>Valor nuevo</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let element of logDetails">
+        <td>{{ element.change }}</td>
+        <td>{{ element.propertyName }}</td>
+        <td>{{ element.oldValue }}</td>
+        <td>{{ element.newValue }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

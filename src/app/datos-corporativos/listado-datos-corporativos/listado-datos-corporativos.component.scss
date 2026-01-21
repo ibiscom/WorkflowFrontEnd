@@ -1,0 +1,168 @@
+:host {
+  width: 100%;
+  display: block;
+  font-family: Roboto, sans-serif;
+}
+
+/* =======================================
+   TARJETA PRINCIPAL
+======================================= */
+.tabla-card {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0px 1px 15.4px 6px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* =======================================
+   HEADER SUPERIOR
+======================================= */
+.tabla-header-container {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.tabla-titulo {
+  color: #1b1b1b;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0.5px;
+}
+
+/* =======================================
+   BODY (ÁREA TABLA)
+======================================= */
+.tabla-body {
+  width: 100%;
+  padding: 0 8px;
+  display: flex;
+  overflow-x: auto;
+  background: white;
+}
+
+/* =======================================
+   COLUMNAS
+======================================= */
+.tabla-columna {
+  min-width: 150px;
+  max-width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-left: 0.5px solid #dcdcdc;
+  border-right: 0.5px solid #dcdcdc;
+  border-top: 1px solid #dcdcdc;
+  background: white;
+}
+
+.tabla-columna:last-child {
+  flex: 1;
+}
+
+/* =======================================
+   HEADER DE COLUMNAS
+======================================= */
+.tabla-col-header {
+  width: 100%;
+  background: #fafafa;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  justify-content: flex-start;
+  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
+}
+
+.tabla-col-header div {
+  flex: 1;
+  color: #757575;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+}
+
+/* =======================================
+   CELDAS
+======================================= */
+.tabla-celda {
+  height: 36px;
+  min-height: 36px;
+  max-height: 36px;
+  width: 100%;
+  padding: 4px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
+
+  &:hover {
+    background: #f5f2ff;
+  }
+}
+
+.tabla-celda div {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+/* =======================================
+   FOOTER
+======================================= */
+.tabla-footer {
+  height: 58px;
+  padding: 0 8px;
+  background: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 34px;
+}
+
+.tabla-footer-text {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+/* =======================================
+   BOTONES DE PAGINACIÓN
+======================================= */
+.paginador-boton {
+  width: 32px;
+  height: 32px;
+  border-radius: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.paginador-boton.disabled {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.paginador-boton.active {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.paginador-boton span {
+  font-family: "Material Icons";
+  font-size: 24px;
+  line-height: 24px;
+}

@@ -1,0 +1,203 @@
+<!-- FILTROS -->
+<fs-filtros-busqueda-usuarios [uc]="this.parent" style="width: 100%">
+</fs-filtros-busqueda-usuarios>
+
+<!-- TARJETA TABLA -->
+<div class="tabla-card">
+  <!-- HEADER -->
+  <div class="tabla-header-container">
+    <div class="tabla-titulo">Listado de usuarios</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="tabla-body">
+    <!-- COLUMNA: SELECCIONAR -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Sel.</div>
+      </div>
+
+      @for (element of parent.users; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <input
+              #check
+              type="checkbox"
+              (change)="toggleMassiveActionsList(element.name, check.checked)"
+            />
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: USUARIO -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Usuario</div>
+      </div>
+
+      @for (element of parent.users; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarUsuario(element.name)">
+              {{ element.name }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: NOMBRES -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Nombres</div>
+      </div>
+
+      @for (element of parent.users; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarUsuario(element.name)">
+              {{ element.firstName
+              }}{{ element.secondName ? " " + element.secondName : "" }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: APELLIDOS -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Apellidos</div>
+      </div>
+
+      @for (element of parent.users; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarUsuario(element.name)">
+              {{ element.lastName
+              }}{{ element.secondLastName ? " " + element.secondLastName : "" }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: DOCUMENTO -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Documento</div>
+      </div>
+
+      @for (element of parent.users; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarUsuario(element.name)">
+              {{ element.documentType }} {{ element.documentNumber }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: COMPAÑÍA -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Compañía</div>
+      </div>
+
+      @for (element of parent.users; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div>
+              {{ element.company }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: GRUPO -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Grupo</div>
+      </div>
+
+      @for (element of parent.users; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div>
+              {{ element.organizationalUnit }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: ESTADO -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Estado</div>
+      </div>
+
+      @for (element of parent.users; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div>
+              {{ element.status }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: FECHA ACTIVACIÓN -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Fecha Activación</div>
+      </div>
+
+      @for (element of parent.users; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div>
+              {{ element.activationDate }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: FECHA DESACTIVACIÓN -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Fecha Desactivación</div>
+      </div>
+
+      @for (element of parent.users; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div>
+              {{ element.deactivationDate }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="tabla-footer">
+    <div class="tabla-footer-text">
+      Página {{ currentPage }} de {{ numberOfPages }}
+    </div>
+
+    <div class="paginador-boton">
+      <span>chevron_left</span>
+    </div>
+
+    <div class="paginador-boton active">
+      <span>chevron_right</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,99 @@
+<!-- FILTROS -->
+<ibpm-filtros-busqueda-responsable [uc]="this.parent" style="width: 100%">
+</ibpm-filtros-busqueda-responsable>
+
+<!-- TARJETA TABLA -->
+<div class="tabla-card">
+  <!-- HEADER -->
+  <div class="tabla-header-container">
+    <div class="tabla-titulo">Listado de responsables</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="tabla-body">
+
+    <!-- COLUMNA: USERNAME -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>userName</div>
+      </div>
+
+      @for (element of parent.responsables; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarResponsable(element)">
+              {{ element.nombre }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA:  NOMBRES -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Nombres</div>
+      </div>
+
+      @for (element of parent.responsables; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarResponsable(element)">
+              {{ element.descripcion }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: APELLIDOS -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Apellidos</div>
+      </div>
+
+      @for (element of parent.responsables; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarResponsable(element)">
+              {{ element.supervisor }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: ES RESPONSABLE -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Es responsable</div>
+      </div>
+
+      @for (element of parent.responsables; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div>
+              {{ getCompanyName(element.compania) }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="tabla-footer">
+    <div class="tabla-footer-text">
+      Página {{ currentPage }} de {{ numberOfPages }}
+    </div>
+
+    <div class="paginador-boton" (click)="previousPage()">
+      <span>chevron_left</span>
+    </div>
+
+    <div class="paginador-boton active" (click)="nextPage()">
+      <span>chevron_right</span>
+    </div>
+  </div>
+</div>

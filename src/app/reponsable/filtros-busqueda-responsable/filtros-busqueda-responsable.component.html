@@ -1,0 +1,44 @@
+<div class="cont-filtro">
+  <div class="usuarios-container">
+    
+    <!-- FILTROS -->
+    <div class="filtros-container">
+
+      <!-- TÍTULO -->
+      <div class="filtros-titulo">Filtros de búsqueda</div>
+
+      <!-- FILA 1 -->
+      <div class="fila-filtros">
+        
+        <!-- Nombre -->
+        <div class="campo-texto-filtro ">
+          <label for="description">Nombre del usuario</label>
+          <input
+            type="text"
+            [(ngModel)]="responsableNameF"
+            placeholder="Inserte nombre del nombre"
+            (keydown.enter)="search()"
+          />
+        </div>
+
+
+        <!-- Buscar -->
+        <button class="btn-figma" (click)="search()">
+          <span class="btn-icon">
+            <img src="assets/img/search.svg" alt="Buscar" />
+          </span>
+          <span class="label">Buscar</span>
+        </button>
+
+        <!-- Limpiar filtros
+        
+        <button class="btn-figma" (click)="limpiarFiltros()">
+          <span class="btn-icon">
+            <img src="assets/img/limpiar.svg" alt="Limpiar filtros" />
+          </span>
+          <span class="label">Limpiar filtros</span>
+        </button>-->
+
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,18 @@
+<div class="cont-grupos">
+  <div class="enc-grupos">Responsable</div>
+  @if (mensaje) {
+    <div>
+      <mat-card class="card-msg-grupos">
+        <mat-card-content>
+          <div class="msg-grupos">
+            {{ mensaje }}
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <p></p>
+    </div>
+  }
+  <ibpm-acciones-responsable style="width: 100%"></ibpm-acciones-responsable>
+  <br />
+  <router-outlet></router-outlet>
+</div>

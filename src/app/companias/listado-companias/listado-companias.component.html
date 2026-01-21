@@ -1,0 +1,144 @@
+<!-- TARJETA TABLA -->
+<div class="tabla-card">
+  <!-- HEADER -->
+  <div class="tabla-header-container">
+    <div class="tabla-titulo">Listado de compañias</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="tabla-body">
+    <!-- COLUMNA: NOMBRE -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Nombre</div>
+      </div>
+
+      @for (element of parent.companies; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarCompania(element.name)">
+              {{ element.largeName }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: SIGLA -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Sigla</div>
+      </div>
+
+      @for (element of parent.companies; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarCompania(element.name)">
+              {{ element.sigla }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: NIT -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>NIT</div>
+      </div>
+
+      @for (element of parent.companies; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarCompania(element.name)">
+              {{ element.nit }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: REPRESENTANTE -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Representante</div>
+      </div>
+
+      @for (element of parent.companies; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarCompania(element.name)">
+              {{ element.representative }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: CONTACTO -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Contacto</div>
+      </div>
+
+      @for (element of parent.companies; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarCompania(element.name)">
+              {{ element.contact }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: CORREO ELECTRONICO -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Correo electrónico</div>
+      </div>
+
+      @for (element of parent.companies; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div>
+              {{ element.email }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: TELEFONO -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Teléfono</div>
+      </div>
+
+      @for (element of parent.companies; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div>
+              {{ element.phone }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="tabla-footer">
+    <div class="tabla-footer-text">
+      Página {{ currentPage }} de {{ numberOfPages }}
+    </div>
+
+    <div class="paginador-boton">
+      <span>chevron_left</span>
+    </div>
+
+    <div class="paginador-boton active">
+      <span>chevron_right</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,116 @@
+<!-- FILTROS -->
+<ibpm-filtros-busqueda-eventoinicio [uc]="this.parent" style="width: 100%">
+</ibpm-filtros-busqueda-eventoinicio>
+
+<!-- TARJETA TABLA -->
+<div class="tabla-card">
+  <!-- HEADER -->
+  <div class="tabla-header-container">
+    <div class="tabla-titulo">Listado de procesos</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="tabla-body">
+
+    <!-- COLUMNA: NOMBRE -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Nombre</div>
+      </div>
+
+      @for (element of parent.eventosdeinicio; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarEventoinicio(element)">
+              {{ element.nombre }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA:  NOMBRE LARGO -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Nombre Largo</div>
+      </div>
+
+      @for (element of parent.eventosdeinicio; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarEventoinicio(element)">
+              {{ element.descripcion }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: FECHA CREACIÓN -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Fecha creación</div>
+      </div>
+
+      @for (element of parent.eventosdeinicio; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarEventoinicio(element)">
+              {{ element.supervisor }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: DESCRIPCIÓN -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Descripción</div>
+      </div>
+
+      @for (element of parent.eventosdeinicio; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div>
+              {{ getCompanyName(element.compania) }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: ESTADO -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Estado</div>
+      </div>
+
+      @for (element of parent.eventosdeinicio; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div>
+              {{ getCompanyName(element.compania) }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="tabla-footer">
+    <div class="tabla-footer-text">
+      Página {{ currentPage }} de {{ numberOfPages }}
+    </div>
+
+    <div class="paginador-boton" (click)="previousPage()">
+      <span>chevron_left</span>
+    </div>
+
+    <div class="paginador-boton active" (click)="nextPage()">
+      <span>chevron_right</span>
+    </div>
+  </div>
+</div>

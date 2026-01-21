@@ -1,0 +1,16 @@
+<div class="cont-areas">
+  <div class="enc-areas">Registro de área</div>
+  @if (mensaje) {
+    <div>
+      <mat-card class="card-msg-areas">
+        <mat-card-content>
+          <div class="msg-areas">
+            {{ mensaje }}
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <p></p>
+    </div>
+  }
+  <router-outlet></router-outlet>
+</div>

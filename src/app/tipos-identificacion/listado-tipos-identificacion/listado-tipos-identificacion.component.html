@@ -1,0 +1,64 @@
+<div class="tabla-card">
+
+  <!-- HEADER -->
+  <div class="tabla-header-container">
+    <div class="tabla-titulo">Listado de tipos de identificación</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="tabla-body">
+
+    <!-- COLUMNA: TIPO DE IDENTIFICACIÓN -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Tipo de identificación</div>
+      </div>
+
+      @for (element of parent.identTypes; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarTipoIdentificacion(element)">
+              {{ element.code }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: NOMBRE -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Nombre de tipo de identificación</div>
+      </div>
+
+      @for (element of parent.identTypes; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarTipoIdentificacion(element)">
+              {{ element.name }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="tabla-footer">
+
+    <div class="tabla-footer-text">
+      Página {{ currentPage }} de {{ numberOfPages }}
+    </div>
+
+    <div class="paginador-boton" (click)="prevPage()">
+  <span>chevron_left</span>
+</div>
+
+<div class="paginador-boton active" (click)="nextPage()">
+  <span>chevron_right</span>
+</div>
+
+  </div>
+
+</div>

@@ -1,0 +1,124 @@
+<div class="cont-nuevo-usuario">
+  <form #form="ngForm">
+
+    <div class="card-nuevo-usuario-general card">
+
+      <!-- HEADER -->
+      <div class="card-header">
+        <div class="card-title">Datos generales</div>
+      </div>
+
+      <!-- BODY -->
+      <div class="card-content">
+        <br />
+
+        <div class="tbl-nuevo-usuario">
+
+          <!-- IDENTIFICADOR -->
+          <div class="campo-texto">
+            <label>Identificador</label>
+            <input
+              type="text"
+              name="identifier"
+              [(ngModel)]="identifierE"
+              placeholder="Identificador"
+              required
+              readonly
+              #identifier="ngModel"
+            />
+            @if (identifier.errors?.['required']) {
+              <span class="error">El identificador es obligatorio.</span>
+            }
+          </div>
+
+          <!-- NOMBRE ENCABEZADO -->
+          <div class="campo-carga-archivo">
+            <div class="campo-texto">
+              <label>Nombre encabezado</label>
+              <input
+                type="text"
+                name="headerImagePath"
+                [(ngModel)]="headerImagePathE"
+                readonly
+              />
+            </div>
+
+            <button
+              class="btn-figma"
+              type="button"
+              (click)="headerImagePathFileInput.click()"
+            >
+              <span class="btn-icon">
+                <img src="assets/img/upload.svg" alt="Cargar" />
+              </span>
+              Cargar
+            </button>
+
+            <input
+              #headerImagePathFileInput
+              type="file"
+              accept="image/*"
+              (change)="onHeaderImagePathFileSelected($event)"
+              hidden
+            />
+          </div>
+
+          <!-- NOMBRE TAPIZ -->
+          <div class="campo-carga-archivo">
+            <div class="campo-texto">
+              <label>Nombre tapiz</label>
+              <input
+                type="text"
+                name="wallpaperPath"
+                [(ngModel)]="wallpaperPathE"
+                readonly
+              />
+            </div>
+
+            <button
+              class="btn-figma"
+              type="button"
+              (click)="wallpaperPathFileInput.click()"
+            >
+              <span class="btn-icon">
+                <img src="assets/img/upload.svg" alt="Cargar" />
+              </span>
+              Cargar
+            </button>
+
+            <input
+              #wallpaperPathFileInput
+              type="file"
+              accept="image/*"
+              (change)="onWallpaperPathFileSelected($event)"
+              hidden
+            />
+          </div>
+
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="tabla-footer">
+        <div></div>
+
+        <div class="botones-nuevo-usuario">
+          <button class="btn-figma" type="submit" (click)="save()">
+            <span class="btn-icon">
+              <img src="assets/img/save.svg" alt="Guardar" />
+            </span>
+            Guardar
+          </button>
+
+          <button class="btn-figma" type="button" (click)="cancel()">
+            <span class="btn-icon">
+              <img src="assets/img/cancel.svg" alt="Cancelar" />
+            </span>
+            Cancelar
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>

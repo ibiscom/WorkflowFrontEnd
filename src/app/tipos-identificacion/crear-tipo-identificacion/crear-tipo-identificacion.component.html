@@ -1,0 +1,86 @@
+<div class="cont-nuevo-tipo-identificacion">
+  <form #form="ngForm">
+
+    <!-- CARD DATOS GENERALES -->
+    <div class="card-nuevo-tipo-identificacion-general">
+      <div class="card-header">
+        <h2>Datos generales</h2>
+      </div>
+
+      <div class="card-body">
+        <div class="tbl-nuevo-tipo-identificacion">
+
+          <!-- NOMBRE TIPO DE IDENTIFICACIÓN -->
+          <div class="campo-texto">
+            <label>Nombre de tipo de identificación</label>
+            <input
+              type="text"
+              name="identTypeName"
+              placeholder="Inserte nuevo nombre de tipo de identificación"
+              [(ngModel)]="identTypeNameN"
+              required
+              #identTypeName="ngModel"
+            />
+            @if (identTypeName.errors?.['required']) {
+              <span class="error">
+                El nombre de tipo de identificación es obligatorio.
+              </span>
+            }
+          </div>
+
+          <!-- TIPO DE IDENTIFICACIÓN -->
+          <div class="campo-texto">
+            <label>Tipo de identificación</label>
+            <input
+              type="text"
+              name="identType"
+              placeholder="Inserte tipo de identificación"
+              [(ngModel)]="identTypeN"
+              required
+              #identType="ngModel"
+            />
+            @if (identType.errors?.['required']) {
+              <span class="error">
+                El tipo de identificación es obligatorio.
+              </span>
+            }
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <!-- (No hay segunda tarjeta porque este módulo no administra listas) -->
+
+    <!-- BOTONES -->
+    <div class="botones-nuevo-usuario">
+
+      <button class="btn-figma" type="submit" (click)="save()">
+        <span class="btn-icon">
+          <img src="assets/img/area.svg" />
+        </span>
+        <span class="label">Guardar</span>
+      </button>
+
+      @if (editMode()) {
+        <button class="btn-figma btn-danger" type="button" (click)="delete()">
+          <span class="btn-icon">
+            <img src="assets/img/delete.svg" />
+          </span>
+          <span class="label">Eliminar</span>
+        </button>
+      }
+
+      <button class="btn-figma btn-secondary" type="button" (click)="cancel()">
+        <span class="btn-icon">
+          <img src="assets/img/cancel.svg" />
+        </span>
+        <span class="label">Cancelar</span>
+      </button>
+
+    </div>
+
+  </form>
+</div>

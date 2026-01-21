@@ -1,0 +1,17 @@
+<div class="area-list-container">
+
+  <!-- Componente de registro -->
+  <fs-registro-area [uc]="parent" style="width: 100%"></fs-registro-area>
+
+  <div class="tbl-permisos">
+  @for (area of parent.areas; track area) {
+    <div>{{ area.name }}</div>
+
+    <div>
+      <button class="btn-figma" type="button" (click)="deleteArea(area)">
+  <img class="btn-icon" src="assets/img/trash.svg" alt="Eliminar" />
+  <span class="label">Eliminar</span>
+</button>
+    </div>
+  }
+</div>

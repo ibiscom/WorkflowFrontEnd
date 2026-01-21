@@ -1,0 +1,106 @@
+<div class="cont-filtro">
+  <form #form="ngForm">
+    <div class="tabla-card">
+      <!-- HEADER -->
+      <div class="tabla-header-container">
+        <div class="tabla-titulo">Nueva operación</div>
+      </div>
+
+      <!-- BODY -->
+      <div class="tabla-body-filtros">
+        <!-- NOMBRE -->
+        <div class="campo-texto">
+          <label>Nombre</label>
+          <input
+            type="text"
+            name="nameN"
+            [(ngModel)]="nameN"
+            placeholder="Inserte nombre"
+          />
+        </div>
+
+        <!-- DESCRIPCIÓN -->
+        <div class="campo-texto">
+          <label>Descripción</label>
+          <input
+            type="text"
+            name="descriptionN"
+            [(ngModel)]="descriptionN"
+            placeholder="Inserte descripción"
+          />
+        </div>
+
+        <!-- APLICACIÓN -->
+        <div class="campo-texto">
+          <label>Aplicación a la que pertenece la operación</label>
+          <input
+            type="text"
+            name="applicationN"
+            [(ngModel)]="applicationN"
+            placeholder="Inserte aplicación a la que pertenece la operación"
+          />
+        </div>
+
+        <!-- URL -->
+        <div class="campo-texto">
+          <label>URL de la operación</label>
+          <input
+            type="text"
+            name="urlN"
+            [(ngModel)]="urlN"
+            placeholder="Inserte URL de la operación"
+          />
+        </div>
+
+        <!-- RADIO — VISIBLE -->
+        <div class="campo-radio">
+          <label>Visible</label>
+          <div class="radio-opciones">
+            <label class="radio-item">
+              <input type="radio" name="visibleN" [(ngModel)]="visibleN" value="Yes" />
+              SI
+            </label>
+
+            <label class="radio-item">
+              <input type="radio" name="visibleN" [(ngModel)]="visibleN" value="No" />
+              NO
+            </label>
+          </div>
+        </div>
+
+        <!-- RADIO — TIPO -->
+        <div class="campo-radio">
+          <label>Tipo</label>
+          <div class="radio-opciones">
+            <label class="radio-item">
+              <input type="radio" name="typeN" [(ngModel)]="typeN" value="GENERAL" />
+              GENERAL
+            </label>
+
+            <label class="radio-item">
+              <input type="radio" name="typeN" [(ngModel)]="typeN" value="ESPECIFICA" />
+              ESPECIFICA
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER / BOTONES -->
+      <div class="tabla-footer">
+        <div class="botones-acciones">
+          <button class="btn-figma" type="submit" (click)="save()">
+            <span class="btn-icon">
+      <img src="assets/img/save.svg" alt="Guardar" />
+    </span>
+    Guardar</button>
+
+          <button class="btn-figma" type="button" (click)="cancel()">
+            <span class="btn-icon">
+      <img src="assets/img/cancel.svg" alt="Cancelar" />
+      </span>Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

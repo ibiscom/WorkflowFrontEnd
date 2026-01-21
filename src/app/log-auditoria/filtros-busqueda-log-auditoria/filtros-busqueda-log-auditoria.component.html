@@ -1,0 +1,108 @@
+<div class="cont-filtro">
+  <div class="usuarios-container">
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="filtros-container">
+      <div class="filtros-titulo">Filtros de búsqueda</div>
+
+      <!-- FILA 1 -->
+      <div class="fila-filtros">
+
+        <!-- Cuenta de usuario -->
+        <div class="campo-lista-filtro">
+          <select [(ngModel)]="userF" name="userF">
+            <option value="">Seleccione una opción</option>
+            <option *ngFor="let user of usersList" [value]="user">
+              {{ user }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Dirección IP -->
+        <div class="campo-texto-filtro">
+          <input
+            type="text"
+            [(ngModel)]="ipF"
+            name="ipF"
+            placeholder="Inserte dirección IP"
+            (keydown.enter)="search()"
+          />
+        </div>
+
+        <!-- Operación -->
+        <div class="campo-lista-filtro">
+          <select
+            [(ngModel)]="operationF"
+            name="operationF"
+            (change)="loadActions($event)"
+          >
+            <option value="">Seleccione una opción</option>
+            <option *ngFor="let operation of operationsList" [value]="operation">
+              {{ operation }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Acción -->
+        <div class="campo-lista-filtro">
+          <select [(ngModel)]="actionF" name="actionF">
+            <option value="">Seleccione una opción</option>
+            <option *ngFor="let action of actionsList" [value]="action">
+              {{ action }}
+            </option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- FILA 2 -->
+      <div class="fila-filtros">
+
+        <!-- Fecha inicial -->
+        <div class="campo-texto-filtro">
+          <input
+            type="date"
+            [(ngModel)]="startDateF"
+            name="startDateF"
+          />
+        </div>
+
+        <!-- Fecha final -->
+        <div class="campo-texto-filtro">
+          <input
+            type="date"
+            [(ngModel)]="endDateF"
+            name="endDateF"
+          />
+        </div>
+
+      </div>
+
+      <!-- FILA DE BOTONES -->
+      <div class="fila-filtros-fila3">
+
+        <!-- Buscar -->
+        <button class="btn-figma" (click)="search()">
+          <span class="btn-icon">
+            <img src="assets/img/search.svg" alt="Buscar" />
+          </span>
+          <span class="label">Buscar</span>
+        </button>
+
+        <!-- Descargar (solo si hay filtros) -->
+        <button
+          class="btn-figma"
+          *ngIf="showDownloadButton()"
+          (click)="download()"
+        >
+          <span class="btn-icon">
+            <img src="assets/img/download.svg" alt="Descargar" />
+          </span>
+          <span class="label">Descargar</span>
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+</div>

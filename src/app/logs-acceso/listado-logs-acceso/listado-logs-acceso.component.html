@@ -1,0 +1,126 @@
+<!-- FILTROS -->
+<fs-seleccion-log
+  [uc]="this.parent"
+  style="width: 100%"
+>
+</fs-seleccion-log>
+
+<!-- TARJETA TABLA -->
+<div class="tabla-card">
+
+  <!-- HEADER -->
+  <div class="tabla-header-container">
+    <div class="tabla-titulo">Listado de logs de acceso</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="tabla-body">
+
+    <!-- COLUMNA: FECHA -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Fecha</div>
+      </div>
+
+      @for (element of this.parent.accessLogsList; track element) {
+        <div class="tabla-celda">
+          <div (click)="goToDetalle(element)">
+            {{ element.registryDate }}
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- COLUMNA: NOMBRE ACCIÓN -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Nombre acción</div>
+      </div>
+
+      @for (element of this.parent.accessLogsList; track element) {
+        <div class="tabla-celda">
+          <div (click)="goToDetalle(element)">
+            {{ element.actionName }}
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- COLUMNA: CUENTA DE USUARIO -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Cuenta de usuario</div>
+      </div>
+
+      @for (element of this.parent.accessLogsList; track element) {
+        <div class="tabla-celda">
+          <div (click)="goToDetalle(element)">
+            {{ element.userName }}
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- COLUMNA: DESCRIPCIÓN ACCIÓN -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Descripción acción</div>
+      </div>
+
+      @for (element of this.parent.accessLogsList; track element) {
+        <div class="tabla-celda">
+          <div (click)="goToDetalle(element)">
+            {{ element.description }}
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- COLUMNA: ACCIÓN AUTORIZACIÓN -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Acción de autorización</div>
+      </div>
+
+      @for (element of this.parent.accessLogsList; track element) {
+        <div class="tabla-celda">
+          <div (click)="goToDetalle(element)">
+            {{ element.authorization }}
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- COLUMNA: IP -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Dirección IP de acceso</div>
+      </div>
+
+      @for (element of this.parent.accessLogsList; track element) {
+        <div class="tabla-celda">
+          <div (click)="goToDetalle(element)">
+            {{ element.ip }}
+          </div>
+        </div>
+      }
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="tabla-footer">
+    <div class="tabla-footer-text">
+      Página {{ currentPage }} de {{ numberOfPages }}
+    </div>
+
+    <div class="paginador-boton" (click)="prevPage()">
+      <span>chevron_left</span>
+    </div>
+
+    <div class="paginador-boton active" (click)="nextPage()">
+      <span>chevron_right</span>
+    </div>
+  </div>
+
+</div>

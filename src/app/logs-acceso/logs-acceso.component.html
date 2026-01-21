@@ -1,0 +1,16 @@
+<div class="cont-logs-acceso">
+  <div class="enc-logs-acceso">Ver logs de acceso</div>
+  @if (mensaje) {
+    <div>
+      <mat-card class="card-msg-logs-acceso">
+        <mat-card-content>
+          <div class="msg-logs-acceso">
+            {{ mensaje }}
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <p></p>
+    </div>
+  }
+  <router-outlet></router-outlet>
+</div>

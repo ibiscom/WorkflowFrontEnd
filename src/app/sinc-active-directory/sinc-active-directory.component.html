@@ -1,0 +1,16 @@
+<div class="cont-sinc-active-directory">
+  <div class="enc-sinc-active-directory">Sincronizar con Active Directory</div>
+  @if (mensaje) {
+    <div>
+      <mat-card class="card-msg-sinc-active-directory">
+        <mat-card-content>
+          <div class="msg-sinc-active-directory">
+            {{ mensaje }}
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <p></p>
+    </div>
+  }
+  <router-outlet></router-outlet>
+</div>

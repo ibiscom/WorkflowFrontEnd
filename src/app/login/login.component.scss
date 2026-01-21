@@ -1,0 +1,142 @@
+@import url("../estilos/estilos-figma.scss");
+
+.cont-login {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pre-logo {
+  width: 100%;
+  height: 50px;
+}
+
+.card-msg-login {
+  background-color: lightgoldenrodyellow;
+}
+
+.msg-login {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img-login {
+  width: 280px;
+  height: 85px;
+  background-image: url(/assets/img/logo-ibiscom.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.footer-login {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.titulo {
+  font-size: 22px;
+  font-family: Roboto;
+  font-weight: 400;
+  line-height: 28px;
+  word-wrap: break-word;
+  color: #ffffff;
+}
+
+/* === Centrado de la tarjeta === */
+.login-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--Schemes-Primary, white);
+}
+
+.login-card {
+  width: 400px;
+  padding: 25px;
+  background: #6b4bc7;
+  border-radius: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.campo {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.campo-label {
+  color: white;
+  font-size: 14px;
+  margin-left: 10px;
+  background: #6b4bc7;
+  padding: 0 5px;
+  position: relative;
+  top: 8px;
+}
+
+.campo-contenedor {
+  display: flex;
+  align-items: center;
+  border: 2px solid #c7b6ff;
+  border-radius: 10px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.icono {
+  color: white;
+  margin-right: 10px;
+  font-size: 22px;
+}
+
+input {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: white;
+  font-size: 16px;
+
+  &::placeholder {
+    color: #ddd;
+  }
+}
+
+/* BOTÓN */
+.btn-acceder {
+  width: 100%;
+  padding: 12px;
+  background: #d8c7ff;
+  color: #4a3b8f;
+  font-size: 18px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  &:hover {
+    background: #e8dbff;
+  }
+}
+
+.btn-icon {
+  font-size: 22px;
+}

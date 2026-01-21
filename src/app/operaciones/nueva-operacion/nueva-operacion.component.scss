@@ -1,0 +1,174 @@
+:host {
+  display: block;
+  width: 100%;
+  font-family: Roboto, sans-serif;
+  color: #1a1a1a;
+}
+
+/* =====================================================
+   CAMPOS DE TEXTO (campo-texto)
+   ===================================================== */
+.campo-texto {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;          /* más espacio entre label e input */
+  padding: 8px 20px;  /* tamaño aumentado */
+  background: #ffffff;
+  border-radius: 4px;
+
+  /* Label */
+  label {
+    color: #49454f;
+    font-size: 18px;      /* AUMENTADO */
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  /* Input */
+  input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 18px;      /* AUMENTADO */
+    font-family: Roboto, sans-serif;
+    color: #1c1b1f;
+    padding: 6px 0;       /* AUMENTADO */
+  }
+
+  /* Línea inferior */
+  &::after {
+    content: "";
+    width: 100%;
+    height: 0px;
+    outline: 1px solid #49454f;
+    outline-offset: -0.5px;
+    margin-top: 6px; /* Aumentado */
+  }
+}
+
+/* =====================================================
+   SELECT (campo-lista)
+   ===================================================== */
+.campo-lista {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;         
+  padding: 8px 20px; 
+  background: #ffffff;
+  border-radius: 4px;
+
+  label {
+    color: #49454f;
+    font-size: 18px;     /* AUMENTADO */
+    font-family: Roboto;
+    font-weight: 400;
+    line-height: 26px;
+    padding-left: 16px;
+    margin-bottom: 4px;
+  }
+
+  select {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 18px;      /* AUMENTADO */
+    font-family: Roboto, sans-serif;
+    padding: 10px 0;      /* AUMENTADO */
+    color: #1c1b1f;
+    appearance: none;
+    cursor: pointer;
+
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10L12 15L17 10H7Z' fill='currentColor'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: calc(100% + 32px) 12px;
+  }
+
+  &::after {
+    content: "";
+    width: 100%;
+    height: 0px;
+    outline: 1px solid #49454f;
+    outline-offset: -0.5px;
+    margin-top: 6px;
+  }
+}
+
+/* =====================================================
+   RADIO BUTTONS (campo-radio-filtro)
+   ===================================================== */
+.campo-radio-filtro {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 20px;
+  gap: 10px;
+
+  label {
+    font-size: 18px;    /* AUMENTADO */
+    color: #49454f;
+    font-weight: 400;
+  }
+
+  mat-radio-group {
+    display: flex;
+    gap: 16px;
+
+    mat-radio-button {
+      font-size: 16px; /* tamaño estándar */
+    }
+  }
+}
+
+/* =====================================================
+   BOTONES (btn-figma)
+   ===================================================== */
+.btn-figma {
+  width: 100%;
+  flex: 1;
+  background: #6750a4;
+  border-radius: 100px;
+  padding: 6px 12px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  cursor: pointer;
+
+  .btn-icon {
+    width: 20px;
+    height: 20px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .label {
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 700;
+  }
+}
+
+/* =====================================================
+   BOTONERA INFERIOR
+   ===================================================== */
+.botones-nueva-compania,
+.botones-nuevo-usuario {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}

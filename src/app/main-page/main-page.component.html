@@ -1,0 +1,33 @@
+<div class="cont-main-page">
+  <div class="toolbar-main-page" role="banner">
+    <div class="left-section">
+      <button
+        mat-icon-button
+        (click)="toggleMenu()"
+        aria-label="Mostrar/Ocultar menú"
+      >
+        <mat-icon>{{ showMenu ? "menu_open" : "menu" }}</mat-icon>
+      </button>
+      <div class="img-main-page" alt="Icono de compania"></div>
+    </div>
+    <div class="right-section">
+      <span>{{ title }} - {{ userName }}</span>
+      <div class="spacer"></div>
+      <span>|</span>
+      <button matButton="text" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Salir
+      </button>
+    </div>
+  </div>
+  <div class="main-layout">
+    @if (showMenu) {
+      <div class="menu-main-page" role="main">
+        <fs-menu></fs-menu>
+      </div>
+    }
+    <div class="operation-main-page">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="cont-log-auditoria">
+  <div class="enc-log-auditoria">Ver log de auditoría</div>
+  @if (mensaje) {
+    <div>
+      <mat-card class="card-msg-log-auditoria">
+        <mat-card-content>
+          <div class="msg-log-auditoria">
+            {{ mensaje }}
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <p></p>
+    </div>
+  }
+  <br />
+  <router-outlet></router-outlet>
+</div>

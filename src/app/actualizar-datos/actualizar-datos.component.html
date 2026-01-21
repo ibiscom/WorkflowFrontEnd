@@ -1,0 +1,307 @@
+<div class="cont-nuevo-usuario">
+  <form #form="ngForm">
+    <div class="card-nuevo-usuario-general card">
+
+      <!-- HEADER -->
+      <div class="card-header">
+        <div class="card-title">Datos generales</div>
+      </div>
+
+      <!-- BODY -->
+      <div class="card-content">
+        <br />
+
+        <div class="tbl-nuevo-usuario">
+
+          <!-- CUENTA DE USUARIO -->
+          <div class="campo-texto">
+            <label>Cuenta de usuario</label>
+            <input
+              type="text"
+              name="userName"
+              [(ngModel)]="userNameN"
+              placeholder="Inserte cuenta de usuario"
+              required
+              #userName="ngModel"
+            />
+            @if (userName.errors?.['required']) {
+              <span class="error">La cuenta de usuario es obligatoria.</span>
+            }
+          </div>
+
+          <!-- TIPO IDENTIFICACIÓN -->
+          <div class="campo-lista">
+            <label>Tipo de identificación</label>
+            <select
+              name="docType"
+              [(ngModel)]="docTypeN"
+              required
+              #docType="ngModel"
+            >
+              <option value="">Seleccione una opción</option>
+              @for (docType of this.documentTypesList; track docType) {
+                <option [value]="docType.code">{{ docType.name }}</option>
+              }
+            </select>
+            @if (docType.errors?.['required']) {
+              <span class="error">El tipo de identificación es obligatorio.</span>
+            }
+          </div>
+
+          <!-- NÚMERO IDENTIFICACIÓN -->
+          <div class="campo-texto">
+            <label>Número de identificación</label>
+            <input
+              type="text"
+              name="docNumber"
+              [(ngModel)]="docNumberN"
+              required
+              placeholder="Inserte número de identificación"
+              #docNumber="ngModel"
+            />
+            @if (docNumber.errors?.['required']) {
+              <span class="error">El número de identificación es obligatorio.</span>
+            }
+          </div>
+
+          <!-- PRIMER NOMBRE -->
+          <div class="campo-texto">
+            <label>Primer nombre</label>
+            <input
+              type="text"
+              name="firstName"
+              [(ngModel)]="nameN"
+              required
+              placeholder="Inserte primer nombre"
+              #firstName="ngModel"
+            />
+            @if (firstName.errors?.['required']) {
+              <span class="error">El primer nombre es obligatorio.</span>
+            }
+          </div>
+
+          <!-- SEGUNDO NOMBRE -->
+          <div class="campo-texto">
+            <label>Segundo nombre</label>
+            <input type="text" name="secondName" [(ngModel)]="secondNameN" />
+          </div>
+
+          <!-- PRIMER APELLIDO -->
+          <div class="campo-texto">
+            <label>Primer apellido</label>
+            <input
+              type="text"
+              name="firstLastName"
+              [(ngModel)]="firstLastNameN"
+              required
+              #firstLastName="ngModel"
+            />
+            @if (firstLastName.errors?.['required']) {
+              <span class="error">El primer apellido es obligatorio.</span>
+            }
+          </div>
+
+          <!-- SEGUNDO APELLIDO -->
+          <div class="campo-texto">
+            <label>Segundo apellido</label>
+            <input type="text" name="secondLastName" [(ngModel)]="secondLastNameN" />
+          </div>
+
+          <!-- CORREO -->
+          <div class="campo-texto">
+            <label>Correo</label>
+            <input
+              type="text"
+              name="email"
+              [(ngModel)]="emailN"
+              required
+              #email="ngModel"
+              placeholder="Inserte correo"
+            />
+            @if (email.errors?.['required']) {
+              <span class="error">El correo es obligatorio.</span>
+            }
+          </div>
+
+          <!-- CONTRASEÑA -->
+          <div class="campo-texto">
+            <label>Contraseña</label>
+            <input
+              type="password"
+              name="password"
+              [(ngModel)]="passwordN"
+              required
+              #password="ngModel"
+            />
+            @if (password.errors?.['required']) {
+              <span class="error">La contraseña es obligatoria.</span>
+            }
+          </div>
+
+          <!-- CONFIRMAR CONTRASEÑA -->
+          <div class="campo-texto">
+            <label>Confirmar contraseña</label>
+            <input
+              type="password"
+              name="passwordConfirmation"
+              [(ngModel)]="passwordConfirmationN"
+              required
+              #passwordConfirmation="ngModel"
+            />
+            @if (passwordConfirmation.errors?.['required']) {
+              <span class="error">La confirmación es obligatoria.</span>
+            }
+          </div>
+
+          <!-- DESCRIPCIÓN -->
+          <div class="campo-texto">
+            <label>Descripción</label>
+            <input type="text" name="description" [(ngModel)]="descriptionN" />
+          </div>
+
+          <!-- PAÍS -->
+          <div class="campo-lista">
+            <label>País</label>
+            <select
+              name="country"
+              [(ngModel)]="countryObjectN"
+              (change)="onCountryChangeEvent($event)"
+            >
+              <option value="">Seleccione una opción</option>
+              @for (country of this.countriesList; track country) {
+                <option [ngValue]="country">{{ country.name }}</option>
+              }
+            </select>
+          </div>
+
+          <!-- DEPARTAMENTO -->
+          <div class="campo-lista">
+            <label>Departamento</label>
+            <select
+              name="state"
+              [(ngModel)]="stateObjectN"
+              (change)="onStateChangeEvent($event)"
+            >
+              <option value="">Seleccione una opción</option>
+              @for (state of this.statesList; track state) {
+                <option [ngValue]="state">{{ state.name }}</option>
+              }
+            </select>
+          </div>
+
+          <!-- CIUDAD -->
+          <div class="campo-lista">
+            <label>Ciudad</label>
+            <select
+              name="city"
+              [(ngModel)]="cityObjectN"
+              (change)="onCityChangeEvent($event)"
+            >
+              <option value="">Seleccione una opción</option>
+              @for (city of this.citiesList; track city) {
+                <option [ngValue]="city">{{ city.name }}</option>
+              }
+            </select>
+          </div>
+
+          <!-- TELÉFONO -->
+          <div class="campo-texto">
+            <label>Teléfono</label>
+            <input type="text" name="phone" [(ngModel)]="phoneN" />
+          </div>
+
+          <!-- DIRECCIÓN -->
+          <div class="campo-texto">
+            <label>Dirección</label>
+            <input
+              type="text"
+              name="address"
+              [(ngModel)]="addressN"
+              required
+              #address="ngModel"
+            />
+            @if (address.errors?.['required']) {
+              <span class="error">La dirección es obligatoria.</span>
+            }
+          </div>
+
+          <!-- OFICINA -->
+          <div class="campo-texto">
+            <label>Oficina</label>
+            <input type="text" name="office" [(ngModel)]="officeN" />
+          </div>
+
+          <!-- CARGO -->
+          <div class="campo-texto">
+            <label>Título / Cargo</label>
+            <input
+              type="text"
+              name="titleName"
+              [(ngModel)]="titleN"
+              required
+              #titleName="ngModel"
+            />
+            @if (titleName.errors?.['required']) {
+              <span class="error">El cargo es obligatorio.</span>
+            }
+          </div>
+
+          <!-- COMPAÑÍA -->
+          <div class="campo-lista">
+            <label>Compañía</label>
+            <select name="company" [(ngModel)]="companyN">
+              <option value="">Seleccione una opción</option>
+              @for (company of this.companiesList; track company) {
+                <option [value]="company.name">{{ company.largeName }}</option>
+              }
+            </select>
+          </div>
+
+          <!-- ÁREA -->
+          <div class="campo-lista">
+            <label>Área</label>
+            <select name="area" [(ngModel)]="areaN">
+              <option value="">Seleccione una opción</option>
+              @for (area of this.areasList; track area) {
+                <option [value]="area.name">{{ area.name }}</option>
+              }
+            </select>
+          </div>
+
+          <!-- ESTADO -->
+          <div class="campo-lista">
+            <label>Estado</label>
+            <select name="nStatus" [(ngModel)]="estadoN">
+              <option value="">Seleccione una opción</option>
+              @for (status of this.statusesList; track status) {
+                <option [value]="status.name">{{ status.name }}</option>
+              }
+            </select>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="tabla-footer">
+        <div></div>
+        <div class="botones-nuevo-usuario">
+          <button class="btn-figma" type="submit" (click)="save()">
+            <span class="btn-icon">
+              <img src="assets/img/save.svg" alt="Guardar" />
+            </span>
+            Guardar
+          </button>
+
+          <button class="btn-figma" type="button" (click)="cancel()">
+            <span class="btn-icon">
+              <img src="assets/img/cancel.svg" alt="Cancelar" />
+            </span>
+            Cancelar
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>

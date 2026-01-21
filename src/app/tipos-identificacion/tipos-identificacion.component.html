@@ -1,0 +1,22 @@
+<div class="cont-tipos-identificacion">
+  <div class="enc-tipos-identificacion">
+    Administrar tipos de identificación
+  </div>
+  @if (mensaje) {
+    <div>
+      <mat-card class="card-msg-tipos-identificacion">
+        <mat-card-content>
+          <div class="msg-tipos-identificacion">
+            {{ mensaje }}
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <p></p>
+    </div>
+  }
+  <fs-acciones-tipos-identificacion
+    style="width: 100%"
+  ></fs-acciones-tipos-identificacion>
+  <br />
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,146 @@
+<div class="cont-filtro">
+  <div class="usuarios-container">
+
+    <!-- CONTENEDOR DE FILTROS -->
+    <div class="filtros-container">
+      <div class="filtros-titulo">Selección del log</div>
+
+      <!-- FILA 1 -->
+      <div class="fila-filtros">
+
+        <!-- SELECT LOG -->
+        <div class="campo-lista-filtro">
+          <label>Seleccione el log que desea ver</label>
+          <select
+            name="selectedLog"
+            [(ngModel)]="selectedLogF"
+            required
+            #selectedLog="ngModel"
+          >
+            <option value="">Seleccione una opción</option>
+            @for (availableLog of this.availableLogsList; track availableLog) {
+              <option [value]="availableLog">
+                {{ availableLog }}
+              </option>
+            }
+          </select>
+
+          @if (selectedLog.errors?.['required']) {
+            <div class="error">La selección del log es obligatoria.</div>
+          }
+        </div>
+
+        <!-- FECHA DESDE -->
+        <div class="campo-texto-filtro">
+          <label>Fecha desde</label>
+          <input
+            type="date"
+            [(ngModel)]="fechaDesdeF"
+            (keydown.enter)="search()"
+          />
+        </div>
+
+        <!-- HORA DESDE -->
+        <div class="campo-texto-filtro">
+          <label>Hora desde</label>
+          <input
+            type="time"
+            [(ngModel)]="horaDesdeF"
+            [ngModelOptions]="{ updateOn: 'blur' }"
+          />
+        </div>
+
+      </div>
+
+      <!-- FILA 2 -->
+      <div class="fila-filtros">
+
+        <!-- FECHA HASTA -->
+        <div class="campo-texto-filtro">
+          <label>Fecha hasta</label>
+          <input
+            type="date"
+            [(ngModel)]="fechaHastaF"
+            (keydown.enter)="search()"
+          />
+        </div>
+
+        <!-- HORA HASTA -->
+        <div class="campo-texto-filtro">
+          <label>Hora hasta</label>
+          <input
+            type="time"
+            [(ngModel)]="horaHastaF"
+            [ngModelOptions]="{ updateOn: 'blur' }"
+            (keydown.enter)="search()"
+          />
+        </div>
+
+        <!-- NOMBRE ACCIÓN -->
+        <div class="campo-lista-filtro">
+          <label>Nombre de acción</label>
+          <select name="actionName" [(ngModel)]="actionNameF">
+            <option value="">Seleccione una opción</option>
+            @for (action of this.actionsList; track action) {
+              <option [value]="action">{{ action }}</option>
+            }
+          </select>
+        </div>
+
+      </div>
+
+      <!-- FILA 3 -->
+      <div class="fila-filtros">
+
+        <!-- CUENTA DE USUARIO -->
+        <div class="campo-lista-filtro">
+          <label>Cuenta de usuario</label>
+          <select name="userAccount" [(ngModel)]="userAccountF">
+            <option value="">Seleccione una opción</option>
+            @for (userAccount of this.userAccountsList; track userAccount) {
+              <option [value]="userAccount">{{ userAccount }}</option>
+            }
+          </select>
+        </div>
+
+        <!-- ACCIÓN AUTORIZACIÓN -->
+        <div class="campo-lista-filtro">
+          <label>Acción de autorización</label>
+          <select name="authorizationAction" [(ngModel)]="authorizationActionF">
+            <option value="">Seleccione una opción</option>
+            @for (authorizationAction of this.authorizationActionsList; track authorizationAction) {
+              <option [value]="authorizationAction">
+                {{ authorizationAction.name }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <!-- IP -->
+        <div class="campo-texto-filtro">
+          <label>Dirección IP de acceso</label>
+          <input
+            type="text"
+            placeholder="Inserte dirección IP"
+            [(ngModel)]="ipAddressF"
+            (keydown.enter)="search()"
+          />
+        </div>
+
+      </div>
+
+      <!-- FILA 4 - BOTONES -->
+      <div class="fila-filtros-fila3">
+
+        <!-- BUSCAR -->
+        <button class="btn-figma" (click)="search()">
+          <span class="btn-icon">
+            <img src="assets/img/search.svg" alt="Buscar" />
+          </span>
+          <span class="label">Buscar</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

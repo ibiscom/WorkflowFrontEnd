@@ -1,0 +1,38 @@
+<div class="contenedor-panel">
+  <div class="acciones-container">
+    <button class="btn-figma" (click)="irACrearUsuario()">
+      <span class="btn-icon">
+        <img src="assets/img/adduser.svg" alt="Nuevo usuario" />
+      </span>
+      <span class="label">Nuevo usuario</span>
+    </button>
+
+    <input
+      type="file"
+      #fileInput
+      style="display: none"
+      (change)="cargarUsuariosMasivamente($event)"
+    />
+
+    <button class="btn-figma" (click)="fileInput.click()">
+      <span class="btn-icon">
+        <img src="assets/img/upload.svg" alt="Carga masiva de usuarios" />
+      </span>
+      <span class="label">Carga masiva de usuarios</span>
+    </button>
+
+    <button class="btn-figma" (click)="irARegistroArea()">
+      <span class="btn-icon">
+        <img src="assets/img/area.svg" alt="Registro area" />
+      </span>
+      <span class="label">Registro de área</span>
+    </button>
+
+    <button class="btn-figma" (click)="desactivarUsuarios()">
+      <span class="btn-icon">
+        <img src="assets/img/disableuser.svg" alt="Registro area" />
+      </span>
+      <span class="label">Desactivar usuarios seleccionados</span>
+    </button>
+  </div>
+</div>

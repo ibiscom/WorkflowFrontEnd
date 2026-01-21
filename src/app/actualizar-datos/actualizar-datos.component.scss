@@ -1,0 +1,280 @@
+:host {
+  display: block;
+  width: 100%;
+  font-family: Roboto, sans-serif;
+  color: #1a1a1a;
+}
+
+/* =====================================================
+   CAMPOS
+   ===================================================== */
+
+.campo-texto {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 16px;
+  background: var(--Schemes-Surface-Container-Lowest, #ffffff);
+  border-radius: 4px;
+
+  label {
+    color: var(--Schemes-On-Surface-Variant, #49454f);
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+
+  input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    color: var(--Schemes-On-Surface, #1c1b1f);
+    padding: 4px 0;
+    outline: none;
+  }
+
+  &::after {
+    content: "";
+    width: 100%;
+    height: 0;
+    outline: 1px solid var(--Schemes-On-Surface-Variant, #49454f);
+    outline-offset: -0.5px;
+    margin-top: 4px;
+  }
+}
+
+.campo-lista {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 4px 16px;
+  background: white;
+  border-radius: 4px;
+
+  label {
+    color: var(--Schemes-On-Surface-Variant, #49454f);
+    font-size: 16px;
+    margin-bottom: 4px;
+    padding-left: 16px;
+  }
+
+  select {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    padding: 8px 0;
+    color: #1c1b1f;
+    cursor: pointer;
+    appearance: none;
+
+    /* Flecha */
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10L12 15L17 10H7Z' fill='currentColor'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: calc(100% + 32px) 9px;
+  }
+
+  &::after {
+    content: "";
+    width: 100%;
+    outline: 1px solid var(--Schemes-On-Surface-Variant, #49454f);
+    outline-offset: -0.5px;
+    margin-top: 4px;
+  }
+}
+
+.campo-input {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  input,
+  select {
+    width: 100%;
+    padding: 8px 16px;
+    border: none;
+    outline: none;
+    background: white;
+    font-size: 16px;
+    color: #49454f;
+    border-bottom: 1px solid #49454f;
+  }
+}
+
+.campo-input select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%2349454F' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 18px;
+}
+
+/* Botones estilo figma */
+.botones-nuevo-usuario {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* <-- CENTRA horizontalmente */
+  align-items: center;
+  gap: 16px; /* separación entre botones */
+  margin-top: 16px;
+}
+
+.btn-figma {
+  width: 100%;
+  background: #6750a4;
+  border-radius: 100px;
+  padding: 6px 12px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  cursor: pointer;
+
+  .btn-icon {
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+  }
+
+  .label {
+    font-size: 14px;
+    font-weight: 700;
+  }
+}
+
+/* =====================================================
+   TABLA DE LISTADO
+   ===================================================== */
+
+.tabla-card {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.tabla-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tabla-titulo {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.tabla-body {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.tabla-columna {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #ebebeb;
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+.tabla-col-header {
+  background: #f7f7f7;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-weight: 700;
+  border-bottom: 1px solid #ebebeb;
+  color: #333;
+}
+
+.tabla-celda {
+  padding: 12px 14px;
+  font-size: 15px;
+  color: #333;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+
+  &:hover {
+    background: #f5f2ff;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+/* =====================================================
+   FOOTER / PAGINADOR
+   ===================================================== */
+
+.tabla-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+}
+
+.tabla-footer-text {
+  font-size: 14px;
+  color: #444;
+}
+
+.paginador-boton {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #d3d3d3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-family: "Material Symbols Outlined";
+  font-size: 20px;
+  color: #444;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #ede7f6;
+    border-color: #b5a6e2;
+  }
+
+  &.active {
+    background: #6750a4;
+    color: white;
+    border-color: #6750a4;
+  }
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 720px) {
+  .tabla-body {
+    grid-template-columns: 1fr;
+  }
+
+  .tabla-columna {
+    border-right: none;
+    border-bottom: 1px solid #ebebeb;
+  }
+
+  .tabla-columna:last-child {
+    border-bottom: none;
+  }
+}

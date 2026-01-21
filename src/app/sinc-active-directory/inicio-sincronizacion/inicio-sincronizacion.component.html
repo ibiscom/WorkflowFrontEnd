@@ -1,0 +1,60 @@
+<div class="cont-filtro">
+  <div class="usuarios-container">
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <div class="filtros-container">
+      <div class="filtros-titulo">Inicio de sincronización</div>
+
+      <!-- FILA 1 -->
+      <div class="fila-filtros">
+
+        <!-- CAMPO SWITCH: Importar todos los usuarios -->
+        <div class="campo-switch">
+          <label class="campo-switch__label">
+            ¿Se importan todos los usuarios del dominio?
+          </label>
+
+          <div class="campo-switch__control">
+            <input
+              type="checkbox"
+              id="switchImportAllUsers"
+              [checked]="importAllUsersS === true"
+              (change)="onImportAllUsersChange($event)"
+            />
+            <label for="switchImportAllUsers" class="campo-switch__slider"></label>
+          </div>
+
+          <span class="switch-estado">
+            {{ importAllUsersS ? "Sí" : "No" }}
+          </span>
+        </div>
+
+        <!-- CAMPO TEXTO: Grupo -->
+        <div class="campo-texto-filtro">
+          <label class="campo-texto-label">
+            Grupo (sólo si no se importan todos los usuarios):
+          </label>
+          <input
+            type="text"
+            placeholder="Inserte grupo"
+            [(ngModel)]="groupS"
+            name="groupS"
+          />
+        </div>
+
+      </div>
+
+      <!-- FILA DE BOTÓN -->
+      <div class="fila-filtros">
+        <button class="btn-figma" (click)="synchronize()">
+          <span class="btn-icon">
+            <img src="assets/img/search.svg" alt="Sincronizar" />
+          </span>
+          <span class="label">Buscar</span>
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</div>

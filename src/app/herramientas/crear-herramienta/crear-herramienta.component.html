@@ -1,0 +1,114 @@
+<div class="cont-nuevo-workflow">
+  <form #form="ngForm">
+
+    <!-- TARJETA DATOS DEL WORKFLOW -->
+    <div class="card-nuevo-workflow-general">
+
+      <div class="card-header">
+        <h3>Datos de la herramienta</h3>
+      </div>
+
+      <div class="card-content">
+        <div class="tbl-nuevo-workflow">
+
+          <!-- NOMBRE -->
+          <div class="campo-texto">
+            <label for="name">Nombre de herramienta</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Inserte nombre de la herramienta"
+              [(ngModel)]="nameN"
+              required
+              #name="ngModel"
+            />
+            @if (name.errors?.['required']) {
+              <div class="error">El nombre de la herramienta es obligatorio.</div>
+            }
+          </div>
+
+          <!-- DESCRIPCIÓN -->
+          <div class="campo-texto">
+            <label for="description">Breve descripcion</label>
+            <input
+              id="description"
+              name="description"
+              type="text"
+              placeholder="Inserte descripcion"
+              [(ngModel)]="descriptionN"
+              required
+              #description="ngModel"
+            />
+          </div>
+
+          <!-- FILA 2 -->
+      <div class="fila-filtros-fila3">
+        
+          <!-- TIPO HERRAMIENTA -->
+          <div class="campo-lista">
+            <label for="company">Tipo herramienta</label>
+
+            <select
+              id="company"
+              name="company"
+              [(ngModel)]="herramientasObjectN"
+              required
+              #company="ngModel"
+              (ngModelChange)="onEstadoChange($event)"
+            >
+              <option value="">Seleccione una opción</option>
+
+              @for (estado of herramientasList; track herramienta) {
+                <option [ngValue]="herramienta">
+                  {{ herramienta.nombre }}
+                </option>
+              }
+            </select>
+          </div>
+
+          <!-- URL DEL SERVICIO WEB -->
+          <div class="campo-texto">
+            <label for="description">URL del servicio web</label>
+            <input
+              id="description"
+              name="description"
+              type="text"
+              placeholder="URL del servicio web"
+              [(ngModel)]="descriptionN"
+              required
+              #description="ngModel"
+            />
+          </div>
+        </div>
+      </div>
+      </div>
+
+    </div>
+
+    <!-- BOTONES FINALES -->
+    <div class="botones-nuevo-grupo">
+
+      <button class="btn-figma" type="submit" (click)="save()">
+        <span class="btn-icon">
+      <img src="assets/img/save.svg" alt="Guardar" />
+    </span>
+    Guardar</button>
+
+
+      @if (editMode()) {
+        <button class="btn-figma" type="button" (click)="delete()">
+          <span class="btn-icon">
+        <img src="assets/img/trash.svg" alt="Eliminar" />
+      </span>
+      Cancelar</button>
+      }
+
+     <button class="btn-figma" type="button" (click)="cancel()">
+        <span class="btn-icon">
+      <img src="assets/img/cancel.svg" alt="Cancelar" />
+    </span>
+    Cancelar</button>
+    </div>
+  </form>
+</div>

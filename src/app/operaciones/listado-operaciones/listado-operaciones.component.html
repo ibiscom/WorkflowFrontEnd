@@ -1,0 +1,119 @@
+<fs-nueva-operacion style="width: 100%;">
+
+</fs-nueva-operacion>
+
+<!-- TARJETA TABLA -->
+<div class="tabla-card">
+
+  <!-- HEADER -->
+  <div class="tabla-header-container">
+    <div class="tabla-titulo">Listado de operaciones</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="tabla-body">
+
+    <!-- COLUMNA: NOMBRE -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Nombre</div>
+      </div>
+
+      @for (op of parent.operations; track op) {
+        <div class="tabla-celda">
+          <div>{{ op.name }}</div>
+        </div>
+      }
+    </div>
+
+    <!-- COLUMNA: DESCRIPCIÓN -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Descripción</div>
+      </div>
+
+      @for (op of parent.operations; track op) {
+        <div class="tabla-celda">
+          <div>{{ op.description }}</div>
+        </div>
+      }
+    </div>
+
+    <!-- COLUMNA: APLICACIÓN -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Aplicación</div>
+      </div>
+
+      @for (op of parent.operations; track op) {
+        <div class="tabla-celda">
+          <div>{{ op.aplication }}</div>
+        </div>
+      }
+    </div>
+
+    <!-- COLUMNA: URL -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>URL Aplicación</div>
+      </div>
+
+      @for (op of parent.operations; track op) {
+        <div class="tabla-celda">
+          <div>{{ op.aplication }}</div>
+        </div>
+      }
+    </div>
+
+    <!-- COLUMNA: GENERA LOGS -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Genera logs</div>
+      </div>
+
+      @for (op of parent.operations; track op) {
+        <div class="tabla-celda">
+          <div>{{ op.generateLog }}</div>
+        </div>
+      }
+    </div>
+
+    <!-- COLUMNA: TIPO -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Tipo</div>
+      </div>
+
+      @for (op of parent.operations; track op) {
+        <div class="tabla-celda">
+          <div>{{ op.type }}</div>
+        </div>
+      }
+    </div>
+
+  </div>
+
+  <!-- FOOTER (PAGINACIÓN) -->
+  <div class="tabla-footer">
+    <div class="tabla-footer-text">
+      Página {{ currentPage }} de {{ numberOfPages }}
+    </div>
+
+    <div
+      class="paginador-boton"
+      (click)="prevPage()"
+      [class.disabled]="currentPage === 1"
+    >
+      <span>chevron_left</span>
+    </div>
+
+    <div
+      class="paginador-boton active"
+      (click)="nextPage()"
+      [class.disabled]="currentPage === numberOfPages"
+    >
+      <span>chevron_right</span>
+    </div>
+  </div>
+
+</div>

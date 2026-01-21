@@ -1,0 +1,187 @@
+:host {
+  display: block;
+  width: 100%;
+  font-family: Roboto, sans-serif;
+  color: #1a1a1a;
+}
+
+/* =====================================================
+   CONTENEDORES GENERALES
+   ===================================================== */
+
+.cont-nuevo-usuario {
+  width: 100%;
+}
+
+.card-nuevo-usuario-general {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  padding-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid #e6e6e6;
+
+  .card-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+}
+
+.card-content {
+  padding: 12px 0;
+}
+
+.tbl-nuevo-usuario {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 0;
+}
+
+/* =====================================================
+   CAMPOS: TEXTO
+   ===================================================== */
+
+.campo-texto {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 16px;
+  background: #ffffff;
+  border-radius: 4px;
+
+  label {
+    color: #49454f;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+
+  input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    color: #1c1b1f;
+    padding: 4px 0;
+    outline: none;
+  }
+
+  &::after {
+    content: "";
+    width: 100%;
+    height: 0;
+    outline: 1px solid #49454f;
+    outline-offset: -0.5px;
+    margin-top: 4px;
+  }
+}
+
+/* =====================================================
+   CAMPOS: CARGA DE ARCHIVO
+   ===================================================== */
+
+.campo-carga-archivo {
+  width: 100%;
+  padding: 4px 16px;
+  background: #ffffff;
+  border-radius: 4px;
+
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+
+  .campo-texto {
+    flex: 1;
+    padding: 0;
+
+    &::after {
+      margin-top: 4px;
+    }
+  }
+
+  button.btn-figma {
+    width: 120px;
+    white-space: nowrap;
+  }
+}
+
+/* =====================================================
+   BOTONES FIGMA
+   ===================================================== */
+
+.btn-figma {
+  width: 100%;
+  background: #6750a4;
+  border-radius: 100px;
+  padding: 6px 12px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover {
+    background: #7f67be;
+  }
+
+  .btn-icon img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .label {
+    font-size: 14px;
+    font-weight: 700;
+  }
+}
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+.tabla-footer {
+  display: flex;
+  justify-content: center; /* CENTRA LOS BOTONES */
+  align-items: center;
+  padding-top: 16px;
+
+  .botones-nuevo-usuario {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+
+    button {
+      width: 140px;
+    }
+  }
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 720px) {
+  .tbl-nuevo-usuario {
+    grid-template-columns: 1fr;
+  }
+
+  .campo-carga-archivo {
+    flex-direction: column;
+    align-items: stretch;
+
+    .btn-figma {
+      width: 100%;
+    }
+  }
+}

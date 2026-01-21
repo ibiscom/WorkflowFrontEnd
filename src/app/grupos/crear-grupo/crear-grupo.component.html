@@ -1,0 +1,202 @@
+<div class="cont-nuevo-grupo">
+  <form #form="ngForm">
+
+    <!-- TARJETA DATOS DEL GRUPO -->
+    <div class="card-nuevo-grupo-general">
+
+      <div class="card-header">
+        <h3>Datos del grupo</h3>
+      </div>
+
+      <div class="card-content">
+        <div class="tbl-nuevo-grupo">
+
+          <!-- NOMBRE -->
+          <div class="campo-texto">
+            <label for="name">Nombre</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Inserte nombre del grupo"
+              [(ngModel)]="nameN"
+              required
+              #name="ngModel"
+            />
+            @if (name.errors?.['required']) {
+              <div class="error">El nombre del grupo es obligatorio.</div>
+            }
+          </div>
+
+          <!-- DESCRIPCIÓN -->
+          <div class="campo-texto">
+            <label for="description">Descripción</label>
+            <input
+              id="description"
+              name="description"
+              type="text"
+              placeholder="Inserte descripción del grupo"
+              [(ngModel)]="descriptionN"
+              required
+              #description="ngModel"
+            />
+            @if (description.errors?.['required']) {
+              <div class="error">La descripción del grupo es obligatoria.</div>
+            }
+          </div>
+
+          <!-- COMPAÑÍA -->
+          <div class="campo-lista">
+            <label for="company">Compañía</label>
+
+            <select
+              id="company"
+              name="company"
+              [(ngModel)]="companyObjectN"
+              required
+              #company="ngModel"
+              (ngModelChange)="onCompanyChange($event)"
+            >
+              <option value="">Seleccione una opción</option>
+
+              @for (company of companiesList; track company) {
+                <option [ngValue]="company">
+                  {{ company.largeName }}
+                </option>
+              }
+            </select>
+
+            @if (company.errors?.['required']) {
+              <div class="error">La compañía del grupo es obligatoria.</div>
+            }
+          </div>
+
+          <!-- SUPERVISOR -->
+          <div class="campo-lista">
+            <label for="supervisor">Supervisor</label>
+
+            <select
+              id="supervisor"
+              name="supervisor"
+              [(ngModel)]="supervisorObjectN"
+              required
+              #supervisor="ngModel"
+              (ngModelChange)="onSupervisorChange($event)"
+            >
+              <option value="">Seleccione una opción</option>
+
+              @for (supervisor of supervisorsList; track supervisor) {
+                <option [ngValue]="supervisor">
+                  {{
+                    (supervisor.firstName ?? '') +
+                    (supervisor.secondName ? ' ' : '') +
+                    (supervisor.secondName ?? '') +
+                    (supervisor.lastName ? ' ' : '') +
+                    (supervisor.lastName ?? '') +
+                    (supervisor.secondLastName ? ' ' : '') +
+                    (supervisor.secondLastName ?? '')
+                  }}
+                  ({{ supervisor.name }})
+                </option>
+              }
+            </select>
+
+            @if (supervisor.errors?.['required']) {
+              <div class="error">El supervisor del grupo es obligatorio.</div>
+            }
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ADMINISTRACIÓN DE OPERACIONES -->
+    @if (editMode()) {
+      <div class="cont-nuevo-grupo">
+
+        <div class="card-nuevo-grupo">
+          <div class="card-header">
+            <h3>Administración operaciones</h3>
+          </div>
+
+          <div class="card-content">
+
+            <!-- AGREGAR OPERACIÓN -->
+            <div class="sec-operaciones-grupo">
+              <div class="campo-lista">
+                <label for="operation">Agregar operación</label>
+
+                <select
+                  id="operation"
+                  name="operation"
+                  [(ngModel)]="operationE"
+                  (ngModelChange)="addOperationToGroup($event)"
+                >
+                  <option value="">Seleccione la operación</option>
+
+                  @for (operation of restrictedOperationsList; track operation) {
+                    <option [value]="operation">
+                      {{ operation }}
+                    </option>
+                  }
+                </select>
+              </div>
+            </div>
+
+            <!-- HEADER OPERACIONES -->
+            <div class="tbl-permisos-header">
+              <div>Operaciones de éste grupo</div>
+            </div>
+
+            <!-- LISTADO OPERACIONES -->
+            <div class="tbl-permisos">
+
+              @for (operation of operationsList; track operation) {
+                <div>{{ operation }}</div>
+                <div>
+                  <button type="button" (click)="restrict(operation)">
+                    <span class="btn-figma">
+                    <img src="assets/img/restrict.svg" alt="Cargar logo" />
+                  </span>
+                  Restringir</button>
+                </div>
+              }
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    }
+
+    <!-- BOTONES FINALES -->
+    <div class="botones-nuevo-grupo">
+
+      <button class="btn-figma" type="submit" (click)="save()">
+        <span class="btn-icon">
+      <img src="assets/img/save.svg" alt="Guardar" />
+    </span>
+    Guardar</button>
+
+
+      @if (editMode()) {
+        <button class="btn-figma" type="button" (click)="delete()">
+          <span class="btn-icon">
+        <img src="assets/img/trash.svg" alt="Eliminar" />
+      </span>
+      Eliminar</button>
+      }
+
+     <button class="btn-figma" type="button" (click)="cancel()">
+        <span class="btn-icon">
+      <img src="assets/img/cancel.svg" alt="Cancelar" />
+    </span>
+    Cancelar</button>
+
+
+    </div>
+
+  </form>
+</div>

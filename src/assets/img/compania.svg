@@ -1,0 +1,36 @@
+<!-- Guarda esto como src/assets/img/building.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="building icon">
+  <title>Building icon</title>
+  <rect width="512" height="512" fill="#ffffff"></rect>
+
+  <!-- Building body -->
+  <g transform="translate(80,60)" fill="#1D1B20">
+    <!-- base platform -->
+    <rect x="-8" y="300" width="368" height="28" rx="12"></rect>
+    <!-- main building -->
+    <rect x="32" y="0" width="256" height="280" rx="20"></rect>
+    <!-- top smaller block -->
+    <rect x="104" y="-32" width="144" height="72" rx="14"></rect>
+    <!-- door -->
+    <rect x="156" y="220" width="56" height="44" rx="8" fill="#ffffff"></rect>
+    <!-- windows: 3 columns x 3 rows -->
+    <g fill="#ffffff">
+      <rect x="64" y="36" width="40" height="40" rx="6"></rect>
+      <rect x="64" y="96" width="40" height="40" rx="6"></rect>
+      <rect x="64" y="156" width="40" height="40" rx="6"></rect>
+
+      <rect x="136" y="36" width="40" height="40" rx="6"></rect>
+      <rect x="136" y="96" width="40" height="40" rx="6"></rect>
+      <rect x="136" y="156" width="40" height="40" rx="6"></rect>
+
+      <rect x="208" y="36" width="40" height="40" rx="6"></rect>
+      <rect x="208" y="96" width="40" height="40" rx="6"></rect>
+      <rect x="208" y="156" width="40" height="40" rx="6"></rect>
+    </g>
+  </g>
+
+  <!-- Texto "building" centrado -->
+  <text x="50%" y="460" text-anchor="middle" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="56" fill="#1D1B20">
+    building
+  </text>
+</svg>

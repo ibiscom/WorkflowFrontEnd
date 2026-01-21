@@ -1,0 +1,141 @@
+<div class="cont-filtro">
+  <div class="usuarios-container">
+    <!-- FILTROS -->
+    <div class="filtros-container">
+      <div class="filtros-titulo">Filtros de búsqueda</div>
+
+      <!-- FILA 1 -->
+      <div class="fila-filtros">
+        <!-- Cuenta de usuario -->
+        <div class="campo-texto-filtro">
+          <input
+            type="text"
+            [(ngModel)]="userNameF"
+            placeholder="Ingrese cuenta de usuario"
+          />
+        </div>
+
+        <!-- Grupo -->
+        <div class="campo-lista-filtro">
+          <select [(ngModel)]="groupF">
+            <option value="">Seleccione grupo</option>
+            <option *ngFor="let group of groupsList" [value]="group.name">
+              {{ group.name }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Tipo documento -->
+        <div class="campo-lista-filtro">
+          <select [(ngModel)]="docTypeF">
+            <option value="">Seleccione tipo documento</option>
+            <option *ngFor="let tipo of documentTypesList" [value]="tipo.name">
+              {{ tipo.name }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Número documento -->
+        <div class="campo-texto-filtro">
+          <input
+            type="text"
+            [(ngModel)]="docNumF"
+            placeholder="Ingrese número documento"
+          />
+        </div>
+      </div>
+
+      <!-- FILA 2 -->
+      <div class="fila-filtros">
+        <!-- Nombre -->
+        <div class="campo-texto-filtro">
+          <input
+            type="text"
+            [(ngModel)]="nameF"
+            placeholder="Ingrese nombre de usuario"
+          />
+        </div>
+
+        <!-- Apellido -->
+        <div class="campo-texto-filtro">
+          <input
+            type="text"
+            [(ngModel)]="lastNameF"
+            placeholder="Ingrese apellido de usuario"
+          />
+        </div>
+
+        <!-- Estado -->
+        <div class="campo-lista-filtro">
+          <select [(ngModel)]="statusF">
+            <option value="">Seleccione estado</option>
+            <option *ngFor="let estado of statusesList" [value]="estado.name">
+              {{ estado.name }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Área -->
+        <div class="campo-lista-filtro">
+          <select [(ngModel)]="areaF">
+            <option value="">Seleccione área</option>
+            <option *ngFor="let area of areasList" [value]="area.name">
+              {{ area.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- FILA 3 -->
+
+      <div class="fila-filtros-fila3">
+        <div class="campo-lista-filtro">
+          <select id="company" [(ngModel)]="companyF">
+            <option value="">Seleccione una compañia</option>
+            <option
+              *ngFor="let company of companiesList"
+              [value]="company.largeName"
+            >
+              {{ company.largeName }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Switch 2-->
+        <div class="campo-switch">
+          <label class="campo-switch__label">Generar reporte</label>
+
+          <div class="campo-switch__control">
+            <input
+              type="checkbox"
+              id="switchGenerateReport"
+              [checked]="generateReportF === 'true'"
+              (change)="onGenerateReportChange($event)"
+            />
+
+            <label
+              for="switchGenerateReport"
+              class="campo-switch__slider"
+            ></label>
+          </div>
+        </div>
+
+        <!-- Buscar -->
+        <button class="btn-figma" (click)="search()">
+          <span class="btn-icon">
+            <img src="assets/img/search.svg" alt="Buscar" />
+          </span>
+          <span class="label">Buscar</span>
+        </button>
+
+        <!-- Limpiar filtros -->
+        <button class="btn-figma" (click)="limpiarFiltros()">
+          <span class="btn-icon">
+            <img src="assets/img/limpiar.svg" alt="Limpiar filtros" />
+          </span>
+          <span class="label">Limpiar filtros</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,265 @@
+/* =======================================
+   CONTENEDOR PRINCIPAL
+======================================= */
+.tabla-card {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0px 1px 15.4px 6px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* =======================================
+   HEADER SUPERIOR
+======================================= */
+.tabla-header-container {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.tabla-titulo {
+  color: #1b1b1b;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0.5px;
+}
+
+/* =======================================
+   BODY (ÁREA TABLA)
+======================================= */
+.tabla-body {
+  width: 100%;
+  padding: 0 8px;
+  display: flex;
+  overflow-x: auto;
+  background: white;
+}
+
+/* =======================================
+   COLUMNAS
+======================================= */
+.tabla-columna {
+  min-width: 130px;
+  //max-width: 130px;
+  max-width: 98% !important;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-left: 0.5px solid #dcdcdc;
+  border-right: 0.5px solid #dcdcdc;
+  border-top: 1px solid #dcdcdc;
+  background: white;
+}
+
+/* Última columna se expande */
+.tabla-columna:last-child {
+  flex: 1;
+}
+
+/* =======================================
+   HEADER DE COLUMNAS
+======================================= */
+.tabla-col-header {
+  width: 100%;
+  background: #fafafa;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
+  justify-content: flex-start;
+}
+
+.tabla-col-header div {
+  flex: 1;
+  color: #757575;
+  font-size: 12px;
+  font-family: Roboto;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  text-align: left;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Flechita de ordenamiento */
+.sort-icon {
+  width: 9px;
+  height: 8px;
+  background: #6750a4;
+}
+
+/* =======================================
+   CELDAS
+======================================= */
+.tabla-celda {
+  height: 36px; /* Ajusta según tu Figma (32px, 40px, etc) */
+  min-height: 36px;
+  max-height: 36px;
+  width: 100%;
+  padding: 4px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
+}
+
+.tabla-celda div {
+  flex: 1;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: rgba(0, 0, 0, 0.87);
+  text-align: left;
+}
+
+/* =======================================
+   FOOTER / PAGINACIÓN
+======================================= */
+.tabla-footer {
+  height: 58px;
+  padding: 0 8px;
+  background: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 34px;
+}
+
+.tabla-footer-text {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+/* Registros por página */
+.registros-contenedor {
+  width: 33px;
+  display: flex;
+  flex-direction: column;
+}
+
+.registros-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 26px;
+}
+
+.registros-select span {
+  font-family: Roboto;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.registros-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.42);
+}
+
+/* Icono dropdown */
+.icon-dropdown {
+  font-family: "Material Icons";
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.54);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Paginador */
+.paginador-boton {
+  width: 32px;
+  height: 32px;
+  border-radius: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paginador-boton.disabled {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.paginador-boton.active {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.paginador-boton span {
+  font-family: "Material Icons";
+  font-size: 24px;
+  line-height: 24px;
+}
+
+/* ================= BOTONES ================= */
+
+/* Botón tipo Figma (buscar / nuevo usuario) */
+.btn-figma {
+  width: 10%;
+  flex: 1;
+  background: #6750a4;
+  border-radius: 100px;
+  padding: 6px 12px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  cursor: pointer;
+
+  .btn-icon img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .label {
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 700;
+  }
+}
+
+.campo-input {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  input,
+  select {
+    width: 10%;
+    padding: 8px 16px;
+    border: none;
+    outline: none;
+    background: white;
+    font-family: Roboto;
+    font-size: 16px;
+    color: #49454f;
+    border-bottom: 1px solid #49454f;
+  }
+}
+
+.campo-input select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%2349454F' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 18px;
+  cursor: pointer;
+}

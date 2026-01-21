@@ -1,0 +1,105 @@
+<div class="cont-nuevo-perfil">
+  <form #form="ngForm">
+
+    <!-- CARD DETALLE -->
+    <div class="card-nuevo-perfil-general">
+      <div class="card-header">
+        <h2>Ver detalle</h2>
+      </div>
+
+      <div class="card-body">
+
+        <div class="tbl-nuevo-perfil">
+
+          <!-- FECHA -->
+          <div class="campo-texto">
+            <label>Fecha</label>
+            <input
+              type="text"
+              name="dateV"
+              placeholder="Inserte fecha"
+              [(ngModel)]="dateV"
+              readonly
+            />
+          </div>
+
+          <!-- CUENTA DE USUARIO -->
+          <div class="campo-texto">
+            <label>Cuenta de usuario</label>
+            <input
+              type="text"
+              name="userNameV"
+              placeholder="Inserte cuenta de usuario"
+              [(ngModel)]="userNameV"
+              readonly
+            />
+          </div>
+
+          <!-- DIRECCIÓN IP -->
+          <div class="campo-texto">
+            <label>Dirección IP de acceso</label>
+            <input
+              type="text"
+              name="ipV"
+              placeholder="Inserte dirección IP"
+              [(ngModel)]="ipV"
+              readonly
+            />
+          </div>
+
+          <!-- CAMBIO -->
+          <div class="campo-texto">
+            <label>Cambio</label>
+            <input
+              type="text"
+              name="changeV"
+              placeholder="Inserte cambio"
+              [(ngModel)]="changeV"
+              readonly
+            />
+          </div>
+
+          <!-- TIPO -->
+          <div class="campo-texto">
+            <label>Tipo</label>
+            <input
+              type="text"
+              name="typeV"
+              placeholder="Inserte tipo"
+              [(ngModel)]="typeV"
+              readonly
+            />
+          </div>
+
+          <!-- NOMBRE -->
+          <div class="campo-texto">
+            <label>Nombre</label>
+            <input
+              type="text"
+              name="nameV"
+              placeholder="Inserte nombre"
+              [(ngModel)]="nameV"
+              readonly
+            />
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <!-- BOTONES -->
+    <div class="botones-nuevo-usuario">
+
+      <button class="btn-figma btn-secondary" type="button" (click)="back()">
+        <span class="btn-icon">
+          <img src="assets/img/cancel.svg" />
+        </span>
+        <span class="label">Volver</span>
+      </button>
+
+    </div>
+
+  </form>
+</div>

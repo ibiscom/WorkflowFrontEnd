@@ -1,0 +1,329 @@
+<div class="cont-nueva-compania">
+  <form #form="ngForm">
+    <div class="card-nueva-compania-general card">
+      <div class="card-header">
+        <div class="card-title">Datos generales</div>
+      </div>
+
+      <div class="card-content">
+        <br />
+
+        <div class="tbl-nueva-compania">
+          @if (editMode()) {
+            <div class="campo-texto">
+              <label>Identificador</label>
+              <input
+                name="identifier"
+                placeholder="Inserte identificador de la compañía"
+                type="text"
+                [(ngModel)]="identifierE"
+                readonly
+              />
+            </div>
+          }
+
+          <div class="campo-texto">
+            <label>Nombre</label>
+            <input
+            matInput
+              name="name"
+              placeholder="Inserte nombre de la compañía"
+              type="text"
+              [(ngModel)]="largeNameN"
+              required
+              ngModel
+              #name="ngModel"
+            />
+            @if (name.errors?.['required']) {
+              <span class="error">El nombre de la compañía es obligatorio.</span>
+            }
+          </div>
+
+          <div class="campo-texto">
+            <label>Sigla</label>
+            <input
+              name="sigla"
+              placeholder="Inserte sigla de la compañía"
+              type="text"
+              [(ngModel)]="siglaN"
+              required
+              ngModel
+              #sigla="ngModel"
+            />
+            @if (sigla.errors?.['required']) {
+              <span class="error">La sigla de la compañía es obligatoria.</span>
+            }
+          </div>
+
+          <div class="campo-texto">
+            <label>NIT</label>
+            <input
+              name="nit"
+              placeholder="Inserte NIT de la compañía"
+              type="text"
+              [(ngModel)]="nitN"
+              required
+              ngModel
+              #nit="ngModel"
+            />
+            @if (nit.errors?.['required']) {
+              <span class="error">El NIT de la compañía es obligatorio.</span>
+            }
+          </div>
+
+          <!-- Campos simples -->
+          <div class="campo-texto">
+            <label>Razón Social</label>
+            <input type="text" name="businessName" [(ngModel)]="businessNameN" />
+          </div>
+
+          <div class="campo-texto">
+            <label>Representante</label>
+            <input type="text" name="representative" [(ngModel)]="representativeN" />
+          </div>
+
+          <div class="campo-texto">
+            <label>Contacto</label>
+            <input type="text" name="contact" [(ngModel)]="contactN" />
+          </div>
+
+          <div class="campo-texto">
+            <label>Correo</label>
+            <input type="text" name="email" [(ngModel)]="emailN" />
+          </div>
+
+          <!-- País -->
+          <div class="campo-lista">
+            <label>País</label>
+            <select
+              name="country"
+              [(ngModel)]="countryObjectN"
+              (change)="onCountryChangeEvent($event)"
+            >
+              <option>Seleccione una opción</option>
+              @for (countryL of this.countriesList; track countryL) {
+                <option [ngValue]="countryL">{{ countryL.name }}</option>
+              }
+            </select>
+          </div>
+
+          <!-- Departamento -->
+          <div class="campo-lista">
+            <label>Departamento</label>
+            <select
+              name="state"
+              [(ngModel)]="stateObjectN"
+              (change)="onStateChangeEvent($event)"
+            >
+              <option>Seleccione una opción</option>
+              @for (stateL of this.statesList; track stateL) {
+                <option [ngValue]="stateL">{{ stateL.name }}</option>
+              }
+            </select>
+          </div>
+
+          <!-- Ciudad -->
+          <div class="campo-lista">
+            <label>Ciudad</label>
+            <select
+              name="city"
+              [(ngModel)]="cityObjectN"
+              (change)="onCityChangeEvent($event)"
+            >
+              <option>Seleccione una opción</option>
+              @for (cityL of this.citiesList; track cityL) {
+                <option [ngValue]="cityL">{{ cityL.name }}</option>
+              }
+            </select>
+          </div>
+
+          <!-- Teléfono -->
+          <div class="campo-texto">
+            <label>Teléfono</label>
+            <input type="text" name="phone" [(ngModel)]="phoneN" />
+          </div>
+
+          <!-- Dirección -->
+          <div class="campo-texto">
+            <label>Dirección</label>
+            <input type="text" name="address" [(ngModel)]="addressN" />
+          </div>
+
+          <!-- SMTP -->
+          <div class="campo-texto">
+            <label>Dirección de servidor SMTP</label>
+            <input type="text" name="smtpAddress" [(ngModel)]="smtpAddressN" />
+          </div>
+
+          <div class="campo-texto">
+            <label>Puerto de conexión</label>
+            <input type="text" name="smtpConnectionPort" [(ngModel)]="smtpConnectionPortN" />
+          </div>
+
+          <div class="campo-texto">
+            <label>Uso de TLS</label>
+            <input type="text" name="smtpUseTLS" [(ngModel)]="smtpUseTLSN" />
+          </div>
+
+          <div class="campo-texto">
+            <label>Usuario SMTP</label>
+            <input type="text" name="smtpUser" [(ngModel)]="smtpUserN" />
+          </div>
+
+          <div class="campo-texto">
+            <label>Clave SMTP</label>
+            <input type="text" name="smtpPassword" [(ngModel)]="smtpPasswordN" />
+          </div>
+
+          <div class="campo-texto">
+            <label>Nombre del remitente</label>
+            <input type="text" name="senderName" [(ngModel)]="senderNameN" />
+          </div>
+
+          <!-- Tamaño rótulo -->
+          <div class="campo-lista">
+            <label>Tamaño rótulo</label>
+            <select
+              name="labelSize"
+              [(ngModel)]="labelSizeObjectN"
+              (change)="onLabelSizeChangeEvent($event)"
+            >
+              <option>Seleccione una opción</option>
+              @for (labelSizeL of this.labelSizesList; track labelSizeL) {
+                <option [ngValue]="labelSizeL">{{ labelSizeL.name }}</option>
+              }
+            </select>
+          </div>
+
+          <!-- Campos BD -->
+          <div class="campo-texto">
+            <label>Ruta conexión BD</label>
+            <input type="text" name="dbConnectionUrl" [(ngModel)]="dbConnectionUrlN" />
+          </div>
+
+          <div class="campo-texto">
+            <label>Usuario BD</label>
+            <input type="text" name="dbUser" [(ngModel)]="dbUserN" />
+          </div>
+
+          <div class="campo-texto">
+            <label>Clave BD</label>
+            <input type="text" name="dbPassword" [(ngModel)]="dbPasswordN" />
+          </div>
+
+          <!-- Archivos SOLO si editMode -->
+          @if (editMode()) {
+            <div class="campo-carga-archivo-nueva-compania">
+              <label class ="tamlabel">Nombre encabezado</label>
+              <input name="headerNamePath" readonly [(ngModel)]="headerNamePathE" />
+              <button type="button" (click)="headerNamePathFileInput.click()">
+                <span class="btn-icon-pequeño">
+                  <img src="assets/img/upload.svg" alt="Cargar logo" />
+                </span>
+                Cargar</button>
+              <input type="file" #headerNamePathFileInput hidden (change)="onHeaderNamePathFileSelected($event)" />
+            </div>
+
+            <div class="campo-carga-archivo-nueva-compania">
+              <label class ="tamlabel">Nombre pie de página</label>
+              <input name="pageFooterPath" readonly [(ngModel)]="pageFooterPathE" />
+              <button type="button" (click)="pageFooterPathFileInput.click()">
+                <span class="btn-icon-pequeño">
+                  <img src="assets/img/upload.svg" alt="Cargar logo" />
+                </span>
+                Cargar</button>
+              <input type="file" #pageFooterPathFileInput hidden (change)="onPageFooterPathFileSelected($event)" />
+            </div>
+
+            <div class="campo-carga-archivo-nueva-compania">
+              <label class ="tamlabel">Imagen principal</label>
+              <input name="mainImagePath" readonly [(ngModel)]="mainImagePathE" />
+              <button type="button" (click)="mainImagePathFileInput.click()">
+                <span class="btn-icon-pequeño">
+                  <img src="assets/img/upload.svg" alt="Cargar logo" />
+                </span>
+                Cargar</button>
+              <input type="file" accept="image/*" #mainImagePathFileInput hidden (change)="onMainImagePathFileSelected($event)" />
+            </div>
+
+            <div class="campo-carga-archivo-nueva-compania">
+              <label class ="tamlabel">Icono Compañía</label>
+              <input name="companyIconPath" readonly [(ngModel)]="companyIconPathE" />
+              <button type="button" (click)="companyIconPathFileInput.click()">
+                <span class="btn-icon-pequeño">
+                  <img src="assets/img/upload.svg" alt="Cargar logo" />
+                </span>
+                Cargar</button>
+              <input type="file" accept="image/*" #companyIconPathFileInput hidden (change)="onCompanyIconPathFileSelected($event)" />
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    @if (editMode()) {
+      <div class="cont-nueva-compania-permisos-perfil-grupos">
+        <div class="card-nueva-compania-permisos card">
+          <div class="card-header">
+            <div class="card-title">Administración permisos</div>
+          </div>
+
+          <div class="card-content">
+            <br />
+
+            <div class="campo-lista">
+              <label>Agregar permiso</label>
+              <select name="operation" [(ngModel)]="operationE" (change)="addPermissionToCompany($event)">
+                <option>Seleccione una opción</option>
+                @for (operation of this.restrictedOperationsList; track operation) {
+                  <option [value]="operation">{{ operation }}</option>
+                }
+              </select>
+            </div>
+
+            <div class="tbl-permisos">
+              @for (operation of this.operationsList; track operation) {
+                <div>{{ operation }}</div>
+                <div>
+                  <button type="button" (click)="restrict(operation)">
+                    <span class="btn-figma">
+                    <img src="assets/img/restrict.svg" alt="Cargar logo" />
+                  </span>
+                  Restringir</button>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+
+    <br />
+
+    <div class="botones-nueva-compania">
+      <button class="btn-figma" type="submit" (click)="save()">
+        <span class="btn-icon">
+      <img src="assets/img/save.svg" alt="Guardar" />
+    </span>
+    Guardar</button>
+
+      @if (editMode()) {
+        <button class="btn-figma" type="button" (click)="delete()">
+          <span class="btn-icon">
+        <img src="assets/img/trash.svg" alt="Eliminar" />
+      </span>
+      Eliminar</button>
+      }
+
+      <button class="btn-figma" type="button" (click)="cancel()">
+        <span class="btn-icon">
+      <img src="assets/img/cancel.svg" alt="Cancelar" />
+    </span>
+    Cancelar</button>
+    </div>
+
+    <br />
+  </form>
+</div>

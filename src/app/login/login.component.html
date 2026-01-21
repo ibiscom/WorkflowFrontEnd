@@ -1,0 +1,62 @@
+<div class="cont-login">
+  <div class="pre-logo"></div>
+  <div class="img-login" alt="Icono de compania"></div>
+  <br />
+  <h2>Módulo de seguridad</h2>
+  @if (mensaje) {
+    <div>
+      <mat-card class="card-msg-login">
+        <mat-card-content>
+          <div class="msg-login">
+            {{ mensaje }}
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <p></p>
+    </div>
+  }
+
+  <div class="login-container">
+    <div class="login-card">
+      <h2 class="titulo">Bienvenido</h2>
+
+      <!-- CAMPO CORREO -->
+      <div class="campo">
+        <label class="campo-label">Usuario</label>
+        <div class="campo-contenedor">
+          <span class="icono material-icons">person</span>
+          <input
+            type="text"
+            [(ngModel)]="userName"
+            placeholder="Ingrese el usuario"
+          />
+        </div>
+      </div>
+
+      <!-- CAMPO CONTRASEÑA -->
+      <div class="campo">
+        <label class="campo-label">Contraseña</label>
+        <div class="campo-contenedor">
+          <span class="icono material-icons">keyboard</span>
+          <input
+            type="password"
+            [(ngModel)]="password"
+            placeholder="Ingrese la contraseña"
+          />
+        </div>
+      </div>
+
+      <!-- BOTÓN ENTRAR -->
+      <button class="btn-acceder" (click)="login()">
+        <span class="btn-icon material-icons">walk</span>
+        Entrar
+      </button>
+    </div>
+
+    <div class="footer-login">
+      <p>© 2025 IBISCOM. Todos los derechos reservados.</p>
+      <br />
+      <p>&nbsp;V 6.0</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+<fs-tiempos-maximos-sesiones [sc]="this.parent" 
+style="width: 100%">
+</fs-tiempos-maximos-sesiones>
+
+<!-- FILTROS -->
+<fs-filtros-busqueda-sesiones 
+  [sc]="this.parent" 
+  style="width: 100%">
+</fs-filtros-busqueda-sesiones>
+
+<!-- TARJETA TABLA -->
+<div class="tabla-card">
+
+  <!-- HEADER -->
+  <div class="tabla-header-container">
+    <div class="tabla-titulo">Sesiones activas</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="tabla-body">
+
+    <!-- COLUMNA: USUARIO -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Usuario</div>
+      </div>
+
+      @for (element of parent.sessions; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div>
+              {{ element.userNameFilter }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: DIRECCIÓN COMPUTADOR -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Dirección computador</div>
+      </div>
+
+      @for (element of parent.sessions; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div>
+              {{ element.userIpFilter }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: ÚLTIMA MODIFICACIÓN -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Última modificación</div>
+      </div>
+
+      @for (element of parent.sessions; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div>
+              {{ element.lastModified }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: CERRAR -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Cerrar</div>
+      </div>
+
+      @for (element of parent.sessions; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <button
+              class="btn-figma"
+              type="button"
+              (click)="closeSession(element)"
+            >
+              <span class="btn-icon">
+                <img src="assets/img/cancel.svg" alt="Cerrar sesión" />
+              </span>
+              <span class="label">Cerrar</span>
+            </button>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="tabla-footer">
+    <div class="tabla-footer-text">
+      Página {{ currentPage }} de {{ numberOfPages }}
+    </div>
+
+    <div class="paginador-boton">
+      <span>chevron_left</span>
+    </div>
+
+    <div class="paginador-boton active">
+      <span>chevron_right</span>
+    </div>
+  </div>
+
+</div>
