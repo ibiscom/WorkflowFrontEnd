@@ -20,9 +20,10 @@ export class ListadoWorkflowComponent {
 
   public displayedColumns: string[] = [
     'Nombre',
+    'Nombre Largo',
+    'Fecha creación',
     'Descripción',
-    'Supervisor',
-    'Compania',
+    'Estado',
   ];
 
   constructor(public parent: WorkflowComponent) {}
@@ -32,23 +33,23 @@ export class ListadoWorkflowComponent {
    */
   public goToEditarWorkflow(workflow: WorkflowEntity) {
     this.parent.router.navigate([
-      `/main-page/administrarWorkflow/editarEWorkflow/${workflow.nombre}`,
+      `/main-page/workflow/editarWorkflow/${workflow.nombre}`,
     ]);
   }
 
   /**
-   * Obtiene el nombre legible de la compañía a partir del identificador.
+   * Obtiene el nombre legible del workflow a partir del identificador.
    */
-  public getCompanyName(companyId: any) {
-    const company = this.parent.companias.find((c) => c.name === companyId);
-    return company ? company.largeName : '';
+  public getWorkflowName(workflowName: any) {
+    const workflow = this.parent.workflows.find((c) => c.nombre === workflowName);
+    return workflow ? workflow.nombreLargo : '';
   }
 
   // 🔹 Ir a página anterior
   public previousPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
-      this.parent.searchWorkflows(); // ajusta si tu método se llama diferente
+      this.parent.buscarWorkflows(); // ajusta si tu método se llama diferente
     }
   }
 
@@ -56,7 +57,7 @@ export class ListadoWorkflowComponent {
   public nextPage(): void {
     if (this.currentPage < this.numberOfPages) {
       this.currentPage++;
-      this.parent.searchWorkflows(); // ajusta si tu método se llama diferente
+      this.parent.buscarWorkflows(); // ajusta si tu método se llama diferente
     }
   }
 }

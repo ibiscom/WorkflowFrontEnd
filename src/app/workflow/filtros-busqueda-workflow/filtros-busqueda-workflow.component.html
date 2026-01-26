@@ -15,9 +15,9 @@
           <label for="description">Nombre del workflow</label>
           <input
             type="text"
-            [(ngModel)]="workflowNameF"
+            [(ngModel)]="nombreWorkFlowB"
             placeholder="Inserte nombre del workflow"
-            (keydown.enter)="search()"
+            (keydown.enter)="buscar()"
           />
         </div>
 
@@ -26,9 +26,9 @@
            <label for="description">Nombre largo del workflow</label>
           <input
             type="text"
-            [(ngModel)]="supervisorF"
+            [(ngModel)]="nombreLargoWorkFlowB"
             placeholder="Inserte nombre del supervisor"
-            (keydown.enter)="search()"
+            (keydown.enter)="buscar()"
           />
         </div>
 
@@ -39,28 +39,28 @@
 
         <!-- ESTADO -->
           <div class="campo-lista">
-            <label for="company">Estado</label>
+            <label for="estado">Estado</label>
 
             <select
-              id="company"
-              name="company"
-              [(ngModel)]="companyObjectN"
+              id="estado"
+              name="estado"
+              [(ngModel)]="estadoObjectN"
               required
-              #company="ngModel"
-              (ngModelChange)="onCompanyChange($event)"
+              #estado="ngModel"
+              (ngModelChange)="onEstadoChange($event)"
             >
               <option value="">Seleccione una opción</option>
 
-              @for (company of companiesList; track company) {
-                <option [ngValue]="company">
-                  {{ company.largeName }}
+              @for (estado of this.uc!.estados; track estado) {
+                <option [ngValue]="estado">
+                  {{ estado.name }}
                 </option>
               }
             </select>
           </div>
 
         <!-- Buscar -->
-        <button class="btn-figma" (click)="search()">
+        <button class="btn-figma" (click)="buscar()">
           <span class="btn-icon">
             <img src="assets/img/search.svg" alt="Buscar" />
           </span>

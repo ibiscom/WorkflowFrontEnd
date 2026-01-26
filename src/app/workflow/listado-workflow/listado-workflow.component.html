@@ -39,7 +39,7 @@
         <ng-container>
           <div class="tabla-celda">
             <div (click)="goToEditarWorkflow(element)">
-              {{ element.descripcion }}
+              {{ element.nombreLargo }}
             </div>
           </div>
         </ng-container>
@@ -56,7 +56,7 @@
         <ng-container>
           <div class="tabla-celda">
             <div (click)="goToEditarWorkflow(element)">
-              {{ element.supervisor }}
+              {{ element.fechaCreacion }}
             </div>
           </div>
         </ng-container>
@@ -73,7 +73,7 @@
         <ng-container>
           <div class="tabla-celda">
             <div>
-              {{ getCompanyName(element.compania) }}
+              {{ element.descripcion }}
             </div>
           </div>
         </ng-container>
@@ -90,7 +90,7 @@
         <ng-container>
           <div class="tabla-celda">
             <div>
-              {{ getCompanyName(element.compania) }}
+              {{ element.estado }}
             </div>
           </div>
         </ng-container>

@@ -3,6 +3,10 @@ import { FormsModule } from '@angular/forms';
 import { WorkflowComponent } from '../workflow.component';
 import { WorkflowService } from '../workflow.service';
 import { LoginEntity } from '../../login/login.entity';
+import { Constants } from '../../utils/constants';
+import { MessageUtil } from '../../utils/message.util';
+import { WorkflowFilterEntity } from '../workflow-filter.entity';
+import { EstadoWorkflowEntity } from '../estado-workflow.entity';
 
 @Component({
   selector: 'ibpm-filtros-busqueda-workflow',
@@ -11,14 +15,11 @@ import { LoginEntity } from '../../login/login.entity';
   styleUrl: './filtros-busqueda-workflow.component.scss',
 })
 export class FiltrosBusquedaWorkflowComponent {
-  public workflowNameF: string = '';
-  public supervisorF: string = '';
+  public nombreWorkFlowB: string = '';
+  public nombreLargoWorkFlowB: string = '';
 
   // 🔹 Estado seleccionado
-  public companyObjectN: any = null;
-
-  // 🔹 LISTA PARA EL SELECT (SOLUCIÓN AL ERROR)
-  public companiesList: any[] = [];
+  public estadoObjectN?: EstadoWorkflowEntity = undefined;
 
   // Manejo del switch
   public generateReportF: string = 'false';
@@ -32,46 +33,48 @@ export class FiltrosBusquedaWorkflowComponent {
     this.loggedUser = this.uc?.loggedUser;
 
     // 🔹 Carga inicial (puedes cambiar la lógica luego)
-    this.loadCompanies();
+    this.loadEstados();
   }
 
   // 🔹 Simulación / carga de estados
-  private loadCompanies(): void {
-    // Si luego viene de servicio, aquí se reemplaza
-    this.companiesList = [
-      { id: 1, largeName: 'Activo' },
-      { id: 2, largeName: 'Inactivo' }
-    ];
+  private loadEstados(): void {
+      this.uc?.obtenerEstados();
   }
 
+
+
   // Cambio del select
-  public onCompanyChange(value: any): void {
-    this.companyObjectN = value;
-    console.log('Estado seleccionado:', this.companyObjectN);
+  public onEstadoChange(value: any): void {
+    this.estadoObjectN = value;
+    console.log('Estado seleccionado:', this.estadoObjectN);
   }
 
   // Ejecuta búsqueda
-  public search(): void {
+  public buscar(): void {
     const generateReportBool = this.generateReportF === 'true';
 
-    this.searchWorkflow(
-      this.workflowNameF,
-      this.supervisorF,
-      generateReportBool
+    let filtros: WorkflowFilterEntity = {
+      nombre: this.nombreWorkFlowB,
+      nombreLargo: this.nombreLargoWorkFlowB,
+      estado: this.estadoObjectN ? this.estadoObjectN.name : undefined,
+    };
+
+    this.uc?.buscarWorkflows(
+      filtros
     );
   }
 
   public searchWorkflow(
     workflowName: string,
-    supervisor: string,
+    nombreLargo: string,
     generateReport: boolean
   ): void {
     console.log(
       'Filtros recibidos:',
       workflowName,
-      supervisor,
+      nombreLargo,
       generateReport,
-      this.companyObjectN
+      this.estadoObjectN
     );
 
     // Tu lógica actual aquí
