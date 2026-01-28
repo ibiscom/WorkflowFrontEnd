@@ -1,13 +1,15 @@
 /**
- * Entidad que representa un grupo en el sistema.
+ * Entidad que representa una definición de un workflow en el sistema.
  */
 export interface WorkflowEntity {
-  /** Nombre del grupo */
+  /** Nombre del workflow */
   nombre: string;
-  /** Descripción del grupo */
+  /** Nombre largo del workflow */
+  nombreLargo: string;
+  /** Breve descripción del workflow */
   descripcion: string;
-  /** Compañía asociada al grupo */
-  compania: string;
-  /** Supervisor del grupo */
-  supervisor: string;
+  /** Estado del workflow */
+  estado: string;
+  /** Fecha de creación del workflow */
+  fechaCreacion?: Date;
 }

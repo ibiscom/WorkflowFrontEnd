@@ -13,32 +13,32 @@
 
           <!-- NOMBRE -->
           <div class="campo-texto">
-            <label for="name">Nombre</label>
+            <label for="nombre">Nombre</label>
             <input
-              id="name"
-              name="name"
+              id="nombre"
+              name="nombre"
               type="text"
               placeholder="Inserte nombre del workflow"
-              [(ngModel)]="nameN"
+              [(ngModel)]="nombreN"
               required
-              #name="ngModel"
+              #nombre="ngModel"
             />
-            @if (name.errors?.['required']) {
+            @if (nombre.errors?.['required']) {
               <div class="error">El nombre del workflow es obligatorio.</div>
             }
           </div>
 
           <!-- NOMBRE LARGO -->
           <div class="campo-texto">
-            <label for="description">Nombre largo</label>
+            <label for="nombreLargo">Nombre largo</label>
             <input
-              id="description"
-              name="description"
+              id="nombreLargo"
+              name="nombreLargo"
               type="text"
               placeholder="Inserte nombre largo"
-              [(ngModel)]="descriptionN"
+              [(ngModel)]="nombreLargoN"
               required
-              #description="ngModel"
+              #nombreLargo="ngModel"
             />
           </div>
 
@@ -53,35 +53,36 @@
 
           <!-- DESCRIPCIÓN -->
           <div class="campo-texto">
-            <label for="description">Breve descripcion</label>
+            <label for="descripcion">Breve descripcion</label>
             <input
-              id="description"
-              name="description"
+              id="descripcion"
+              name="descripcion"
               type="text"
               placeholder="Inserte descripcion"
-              [(ngModel)]="descriptionN"
+              [(ngModel)]="descripcionN"
               required
-              #description="ngModel"
+              #descripcion="ngModel"
             />
           </div>
 
           <!-- ESTADO -->
           <div class="campo-lista">
-            <label for="company">Estado</label>
+            <label for="estado">Estado</label>
 
             <select
-              id="company"
-              name="company"
+              id="estado"
+              name="estado"
               [(ngModel)]="estadoObjectN"
               required
-              #company="ngModel"
+              #estado="ngModel"
               (ngModelChange)="onEstadoChange($event)"
+              [compareWith]="compararEstados"
             >
               <option value="">Seleccione una opción</option>
 
-              @for (estado of estadoList; track estado) {
+              @for (estado of this.uc!.estados; track estado) {
                 <option [ngValue]="estado">
-                  {{ estado.nombre }}
+                  {{ estado.name }}
                 </option>
               }
             </select>
@@ -92,8 +93,7 @@
     </div>
 
     <!-- BOTONES FINALES -->
-    <div class="botones-nuevo-grupo">
-
+    <div class="botones-nuevo-workflow">
       <button class="btn-figma" type="submit" (click)="save()">
         <span class="btn-icon">
       <img src="assets/img/save.svg" alt="Guardar" />
@@ -106,7 +106,7 @@
           <span class="btn-icon">
         <img src="assets/img/trash.svg" alt="Eliminar" />
       </span>
-      Cancelar</button>
+      Eliminar</button>
       }
 
      <button class="btn-figma" type="button" (click)="cancel()">

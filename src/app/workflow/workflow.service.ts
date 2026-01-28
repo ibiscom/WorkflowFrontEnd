@@ -6,13 +6,15 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environment';
+import { WorkflowEntity } from './workflow.entity';
+import { WorkflowFilterEntity } from './workflow-filter.entity';
 
 @Injectable({
   providedIn: 'root',
 })
 /**
- * Servicio para la administración de grupos.
- * Incluye búsquedas, CRUD y gestión de permisos/restricciones.
+ * Servicio para la administración de workflows.
+ * Incluye búsquedas y CRUD.
  */
 export class WorkflowService {
   constructor(
@@ -21,149 +23,78 @@ export class WorkflowService {
   ) {}
 
   /**
-   * Busca grupos según los filtros proporcionados.
-   * @param groupServerFilter Filtros de búsqueda (usuario, nombre de grupo, supervisor).
-   * @returns Observable con la respuesta y el listado de grupos.
+   * Crea un nuevo workflow.
+   * @param workflow La información del workflow a crear.
+   * @returns 
    */
-  public searchGroups(
-    groupServerFilter: GroupSearchFilterEntity,
-  ): Observable<FsResponseEntity<GroupEntity[]>> {
-    return this.http.get<FsResponseEntity<GroupEntity[]>>(
-      environment.frameSecApiUrl +
-        `/group/getGroups?userName=${groupServerFilter.userName}&groupName=${groupServerFilter.groupName}&supervisor=${groupServerFilter.supervisor}`,
-    );
+  public createWorkflow(workflow: WorkflowEntity): Observable<FsResponseEntity<any>> {
+      let ip: string = this.cookieService.get('ip');
+      return this.http.put<FsResponseEntity<any>>(
+        environment.workflowApiUrl +
+          `/workflow/create`, workflow
+      );
   }
 
   /**
-   * Obtiene la información de un grupo específico.
-   * @param userGenerator Usuario que realiza la consulta.
-   * @param groupName Nombre del grupo.
-   * @returns Observable con la respuesta y la entidad de grupo.
+   * Obtiene el listado de workflows según los filtros proporcionados.
+   * @param filtros Los filtros para la búsqueda de workflows.
+   * @returns 
    */
-  public getGroup(
-    userGenerator: string,
-    groupName: string,
-  ): Observable<FsResponseEntity<GroupEntity>> {
-    return this.http.get<FsResponseEntity<GroupEntity>>(
-      environment.frameSecApiUrl +
-        `/group/getGroup?userName=${userGenerator}&groupName=${groupName}`,
-    );
+  public getWorkflows(filtros: WorkflowFilterEntity): Observable<FsResponseEntity<any>> {
+      let ip: string = this.cookieService.get('ip');
+      return this.http.post<FsResponseEntity<any>>(
+        environment.workflowApiUrl +
+          `/workflow/getWorkflows`, filtros
+      );
   }
 
   /**
-   * Obtiene las operaciones asociadas a un grupo.
-   * @param userGenerator Usuario que realiza la consulta.
-   * @param groupName Nombre del grupo.
-   * @returns Observable con la respuesta y la lista de operaciones.
+   * Edita la información de un workflow existente.
+   * @param workflow La información del workflow a modificar.
+   * @returns 
    */
-  public getOperationsByGroup(
-    userGenerator: string,
-    groupName: string,
-  ): Observable<FsResponseEntity<string[]>> {
-    return this.http.get<FsResponseEntity<string[]>>(
-      environment.frameSecApiUrl +
-        `/group/getPermissions?userName=${userGenerator}&groupName=${groupName}`,
-    );
-  }
-  /**
-   * Obtiene las operaciones restringidas (no permitidas) de un grupo.
-   * @param userGenerator Usuario que realiza la consulta.
-   * @param groupName Nombre del grupo.
-   * @returns Observable con la respuesta y la lista de restricciones.
-   */
-  public getRestrictedOperationsByGroup(
-    userGenerator: string,
-    groupName: string,
-  ): Observable<FsResponseEntity<string[]>> {
-    return this.http.get<FsResponseEntity<string[]>>(
-      environment.frameSecApiUrl +
-        `/group/getRestrictions?userName=${userGenerator}&groupName=${groupName}`,
-    );
+  public editWorkflow(workflow: WorkflowEntity): Observable<FsResponseEntity<any>> {
+      let ip: string = this.cookieService.get('ip');
+      return this.http.post<FsResponseEntity<any>>(
+        environment.workflowApiUrl +
+          `/workflow/edit`, workflow
+      );
   }
 
   /**
-   * Crea un nuevo grupo.
-   * @param group Entidad del grupo a crear.
-   * @returns Observable con la respuesta del servidor.
+   * Obtiene la información de un workflow existente.
+   * @param workflowName La información del workflow a consultar.
+   * @returns 
    */
-  public createGroup(group: GroupEntity): Observable<FsResponseEntity<any>> {
-    let ip: string = this.cookieService.get('ip');
-    group.ip = ip;
-    return this.http.put<FsResponseEntity<any>>(
-      environment.frameSecApiUrl + `/group/create`,
-      group,
-    );
+  public getWorkflow(workflowName: string): Observable<FsResponseEntity<any>> {
+      let ip: string = this.cookieService.get('ip');
+      return this.http.get<FsResponseEntity<any>>(
+        environment.workflowApiUrl +
+          `/workflow/getWorkflow?workflowName=${workflowName}`
+      );
   }
 
   /**
-   * Edita un grupo existente.
-   * @param group Entidad del grupo con los datos a modificar.
-   * @returns Observable con la respuesta del servidor.
+   * Obtiene el listado de los estados que puede tener un workflow.
+   * @returns 
    */
-  public editGroup(group: GroupEntity): Observable<FsResponseEntity<any>> {
-    let ip: string = this.cookieService.get('ip');
-    group.ip = ip;
-    return this.http.post<FsResponseEntity<any>>(
-      environment.frameSecApiUrl + `/group/edit`,
-      group,
-    );
+  public getStatus(): Observable<FsResponseEntity<any>> {
+      let ip: string = this.cookieService.get('ip');
+      return this.http.get<FsResponseEntity<any>>(
+        environment.workflowApiUrl +
+          `/workflow/getStatus`);
   }
 
   /**
-   * Agrega una operación/permiso a un grupo.
-   * @param userGenerator Usuario que realiza la acción.
-   * @param groupName Nombre del grupo.
-   * @param permission Operación/permiso a agregar.
-   * @returns Observable con la respuesta del servidor.
+   * Elimina un workflow, dado su identificador
+   * @param workflowName Nombre del workflow a eliminar
+   * @returns 
    */
-  public addOperationToGroup(
-    userGenerator: string,
-    groupName: string,
-    permission: string,
-  ): Observable<FsResponseEntity<any>> {
-    let ip: string = this.cookieService.get('ip');
-    return this.http.post<FsResponseEntity<any>>(
-      environment.frameSecApiUrl +
-        `/group/addPermission?userName=${userGenerator}&groupName=${groupName}&permission=${permission}&ip=${ip}`,
-      {},
-    );
-  }
-
-  /**
-   * Agrega una restricción (operación no permitida) a un grupo.
-   * @param userGenerator Usuario que realiza la acción.
-   * @param groupName Nombre del grupo.
-   * @param operation Operación a restringir.
-   * @returns Observable con la respuesta del servidor.
-   */
-  public removeOperationFromGroup(
-    userGenerator: string,
-    groupName: string,
-    operation: string,
-  ): Observable<FsResponseEntity<any>> {
-    let ip: string = this.cookieService.get('ip');
-    return this.http.post<FsResponseEntity<any>>(
-      environment.frameSecApiUrl +
-        `/group/addRestriction?userName=${userGenerator}&groupName=${groupName}&restriction=${operation}&ip=${ip}`,
-      {},
-    );
-  }
-
-  /**
-   * Elimina un grupo del sistema.
-   * @param userGenerator Usuario que realiza la acción.
-   * @param groupName Nombre del grupo a eliminar.
-   * @returns Observable con la respuesta del servidor.
-   */
-  public deleteGroup(
-    userGenerator: string,
-    groupName: string | undefined,
-  ): Observable<FsResponseEntity<any>> {
-    let ip: string = this.cookieService.get('ip');
-    return this.http.delete<FsResponseEntity<any>>(
-      environment.frameSecApiUrl +
-        `/group/delete?userName=${userGenerator}&groupName=${groupName}&ip=${ip}`,
-    );
+  public deleteWorkflow(workflowName: string): Observable<FsResponseEntity<any>> {
+      let ip: string = this.cookieService.get('ip');
+      return this.http.delete<FsResponseEntity<any>>(
+        environment.workflowApiUrl +
+          `/workflow/delete?workflowName=${workflowName}`);
   }
 }
 

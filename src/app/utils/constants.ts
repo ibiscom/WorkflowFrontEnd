@@ -1,4 +1,19 @@
 export class Constants {
+  //Errores Workflow  
+  public static ERR_WORKFLOW_CREAR: string = 
+    'No se pudo crear el workflow.';
+  public static ERR_WORKFLOW_EDITAR: string = 
+    'No se pudo editar el workflow.';
+ public static ERR_WORKFLOW_ELIMINAR: string = 
+    'No se pudo eliminar el workflow.';
+  public static ERR_OBTENIENDO_ESTADOS_WORKFLOW: string =
+    'Error al obtener los estados de los workflows';
+  public static ERR_OBTENIENDO_WORKFLOWS: string = 
+    'Error al obtener los workflows';
+  public static ERR_WORKFLOW_DATOS: string =
+    'No se pudo obtener los datos del workflow';
+
+    
   public static ERR_LOG_AUDITORIA_DETALLE: string =
     'No se pudo obtener el detalle del log de auditoría';
   public static ERR_LOG_AUDITORIA_PROPIEDADES: string =
@@ -149,6 +164,8 @@ export class Constants {
   public static ERR_USUARIO_DESACTIVAR_MASIVO: string =
     'Error al desactivar los usuarios';
 
+
+
   public static VAL_GENERATE_LOGS: string = 'genera Logs';
   public static VAL_DONT_GENERATE_LOGS: string = 'no genera Logs';
   public static VAL_LOG_HORA_FECHA_EVENTO: string = 'Hora y fecha del evento';
@@ -173,4 +190,7 @@ export class Constants {
 
   public static EXCEL_MIME_TYPE: string =
     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+
+
+
 }

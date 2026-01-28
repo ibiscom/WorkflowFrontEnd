@@ -5,14 +5,12 @@ import { LoginService } from '../login/login.service';
 import { WorkflowService } from './workflow.service';
 import { WorkflowComponentInstanceService } from './workflow-component-instance.service';
 import { LoginEntity } from '../login/login.entity';
-import { GroupEntity } from '../entities/groups/group.entity';
 import { MessageUtil } from '../utils/message.util';
 import { Constants } from '../utils/constants';
-import { GroupSearchFilterEntity } from '../entities/groups/group-search-filter.entity';
-import { CompanyEntity } from '../entities/companies/company.entity';
-import { CompaniasService } from '../companias/companias.service';
 import { WorkflowEntity } from './workflow.entity';
 import { AccionesWorkflowComponent } from './acciones-workflow/acciones-workflow.component';
+import { WorkflowFilterEntity } from './workflow-filter.entity';
+import { EstadoWorkflowEntity } from './estado-workflow.entity';
 
 @Component({
   selector: 'ibpm-workflow',
@@ -23,12 +21,11 @@ import { AccionesWorkflowComponent } from './acciones-workflow/acciones-workflow
 export class WorkflowComponent {
   public loggedUser: LoginEntity | undefined;
   public workflows: WorkflowEntity[] = [];
-  public companias: CompanyEntity[] = [];
+  public estados: EstadoWorkflowEntity[] = [];
   public mensaje: string = '';
 
   constructor(
     private workflowService: WorkflowService,
-    private companiasService: CompaniasService,
     private workflowComponentInstanceService: WorkflowComponentInstanceService,
     private loginService: LoginService,
     public router: Router,
@@ -37,47 +34,41 @@ export class WorkflowComponent {
   ngOnInit(): void {
     this.workflowComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-    this.getAllCompanies();
-    this.searchWorkflows();
+    this.obtenerEstados();
+    this.buscarWorkflows();
   }
 
-  public getAllCompanies() {
-    /*
-    this.companiasService
-      .getAllCompanies(this.loggedUser?.user_name ?? '')
+  public buscarWorkflows(filtros?: WorkflowFilterEntity): void {
+    this.workflowService
+      .getWorkflows(filtros || {})
       .subscribe({
         next: (response) => {
-          this.companias = response.respuesta;
+          this.workflows = response.respuesta;
+          this.mensaje = '';
         },
         error: (err) => {
           this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-            Constants.ERR_OBTENIENDO_COMPANIAS,
+            Constants.ERR_OBTENIENDO_WORKFLOWS,
             err,
           );
         },
       });
-      */
   }
 
-  public searchWorkflows(workflowName?: string, supervisor?: string): void {
-    /*
-    let workflowServerFilter: WorkflowSearchFilterEntity = {
-      userName: this.loggedUser?.user_name ?? '',
-      workflowName: workflowName ?? '',
-      supervisor: supervisor ?? '',
-    };
+  public obtenerEstados(): void {
+    this.workflowService
+      .getStatus()
+      .subscribe({
+        next: (response) => {
+          this.estados = response.respuesta;
+        },
+        error: (err) => {
+          this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+            Constants.ERR_OBTENIENDO_ESTADOS_WORKFLOW,
+            err,
+          );
+        },
+      });
 
-    this.workflowService.searchWorkflows(workflowServerFilter).subscribe({
-      next: (response) => {
-        this.workflows = response.respuesta;
-      },
-      error: (err) => {
-        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-          Constants.ERR_BUSCAR_WORKFLOWS,
-          err,
-        );
-      },
-    });
-    */
   }
 }

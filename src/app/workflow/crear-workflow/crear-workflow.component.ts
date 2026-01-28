@@ -6,12 +6,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../../login/login.service';
 import { WorkflowComponentInstanceService } from '../workflow-component-instance.service';
 import { WorkflowService } from '../workflow.service';
-import { EstadoEntity } from '../estado.entity';
+import { EstadoWorkflowEntity } from '../estado-workflow.entity';
 import { UserEntity } from '../../entities/users/user.entity';
 import { MessageUtil } from '../../utils/message.util';
 import { Constants } from '../../utils/constants';
 import { firstValueFrom } from 'rxjs';
-import { GroupEntity } from '../../entities/groups/group.entity';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -20,7 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { CompaniasService } from '../../companias/companias.service';
 import { UsuariosService } from '../../usuarios/usuarios.service';
-import { UserSearchFilterEntity } from '../../entities/users/user-search-filter.entity';
+import { WorkflowEntity } from '../workflow.entity';
 
 @Component({
   selector: 'ibpm-crear-workflow',
@@ -43,15 +42,16 @@ import { UserSearchFilterEntity } from '../../entities/users/user-search-filter.
 export class CrearWorkflowComponent {
   public uc?: WorkflowComponent;
   public loggedUser?: LoginEntity;
-  public nameN: string = '';
-  public descriptionN: string = '';
+  public nombreN: string = '';
+  public nombreLargoN: string = '';
+  public descripcionN: string = '';
   public estadoN: string = '';
-  public estadoObjectN?: EstadoEntity;
+  public estadoObjectN?: EstadoWorkflowEntity;
+  public fechaCreacionN: string = '';
   public supervisorN: string = '';
   public operationE: string = '';
   public operationsList: string[] = [];
   public restrictedOperationsList: string[] = [];
-  public estadoList: EstadoEntity[] = [];
   public supervisorsList: UserEntity[] = [];
   public workflowIdEdit?: string;
   public supervisorObjectN?: UserEntity;
@@ -76,212 +76,57 @@ export class CrearWorkflowComponent {
     if (this.uc) {
       this.uc.mensaje = '';
     }
-    this.getEstadoList();
-    this.getSupervisorsList();
+    this.obtenerListaEstados();
     const id = this.route.snapshot.paramMap.get('id');
-    console.log('Edit Mode On. Group Id:', id);
+    console.log('Modo Edición Habilitado. Workflow:', id);
     if (id) {
       this.workflowIdEdit = id;
-      await this.fillEditFields();
-      this.getOperationsList();
-      this.getRestrictedOperationsList();
+      await this.llenarCamposEdicion();
     } else {
       this.workflowIdEdit = undefined;
     }
   }
 
   /**
-   * Carga la lista de supervisores disponibles.
+   * Carga la lista de estados de workflow disponibles para selección.
    */
-  public getSupervisorsList() {
-    /*
-    let filter: UserSearchFilterEntity = {
-      userName: this.loggedUser?.user_name ?? '',
-      status: 'Activo',
-    };
-    this.usuariosService.searchUsers(filter).subscribe({
-      next: (response) => {
-        if (response && response.respuesta) {
-          this.supervisorsList = response.respuesta as UserEntity[];
-        }
-      },
-      error: (e) => {
-        if (this.uc) {
-          this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-            Constants.ERR_GRUPO_SUPERVISORES,
-            e,
-          );
-        }
-      },
-    });
-    */
+  public obtenerListaEstados() {
+    this.uc!.obtenerEstados();
   }
 
   /**
-   * Carga la lista de compañías disponibles para selección.
+   * Llena los campos del formulario con la información del workflow en edición.
    */
-  public getEstadoList() {
-    /*
-    this.companiesList = [];
-    this.companiasService
-      .getAllCompanies(this.loggedUser?.user_name ?? '')
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
-            this.companiesList = response.respuesta as CompanyEntity[];
-          }
-        },
-        error: (e) => {
-          if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_COMPANIAS,
-              e,
-            );
-          }
-        },
-      });
-      */
-  }
-
-  /**
-   * Llena los campos del formulario con la información del grupo en edición.
-   */
-  public async fillEditFields(): Promise<void> {
-    /*
+  public async llenarCamposEdicion(): Promise<void> {
+    
     try {
       const response = await firstValueFrom(
-        this.gruposService.getGroup(
-          this.loggedUser?.user_name ?? '',
-          this.groupIdEdit ?? '',
+        this.workflowService.getWorkflow(
+          this.workflowIdEdit ?? '',
         ),
       );
       if (response?.respuesta) {
-        const group = response.respuesta as GroupEntity;
-        this.nameN = group.name ?? '';
-        this.descriptionN = group.description ?? '';
-        this.companyN = group.company ?? '';
-        this.companyObjectN = this.companiesList.find(
-          (c) => c.name === this.companyN,
+        const workflow = response.respuesta as WorkflowEntity;
+        this.nombreN = workflow.nombre ?? '';
+        this.nombreLargoN = workflow.nombreLargo ?? '';
+        this.descripcionN = workflow.descripcion ?? '';
+        this.estadoN = workflow.estado ?? '';
+        this.estadoObjectN = this.uc!.estados.find(
+          (c) => c.name === this.estadoN,
         );
-        this.supervisorN = group.supervisor ?? '';
-        this.supervisorObjectN = this.supervisorsList.find(
-          (s) => s.name === this.supervisorN,
-        );
+        this.fechaCreacionN = workflow.fechaCreacion
+          ? new Date(workflow.fechaCreacion).toISOString()
+          : new Date().toISOString();
       }
     } catch (e) {
       if (this.uc) {
         this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-          Constants.ERR_GRUPO_DATOS,
+          Constants.ERR_WORKFLOW_DATOS,
           e,
         );
       }
     }
-      */
-  }
-
-  /**
-   * Consulta las operaciones asociadas al grupo.
-   */
-  public getOperationsList() {
-    /*
-    if (!this.editMode()) {
-      this.operationsList = [];
-      return;
-    }
-
-    this.operationsList = [];
-
-    try {
-      this.workflowService
-        .getOperationsByGroup(
-          this.loggedUser?.user_name ?? '',
-          this.workflowIdEdit ?? '',
-        )
-        .subscribe({
-          next: (response) => {
-            if (response && response.respuesta) {
-              const ops = response.respuesta as string[];
-              this.operationsList.push(...ops);
-            }
-          },
-          error: (e) => {
-            if (this.uc) {
-              if (
-                !String(e.error.mensaje).includes(
-                  'no tiene operaciones asociadas',
-                )
-              ) {
-                this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-                  Constants.ERR_GRUPO_OPERACIONES,
-                  e,
-                );
-              }
-            }
-          },
-        });
-    } catch (error: any) {
-      if (this.uc) {
-        this.uc.mensaje =
-          error.status === 400
-            ? ''
-            : MessageUtil.buildErrorMessageFsResponse(
-                Constants.ERR_GRUPO_OPERACIONES_ENCONTRAR,
-                error,
-              );
-      }
-    }
-      */
-  }
-
-  /**
-   * Consulta las operaciones restringidas (no permitidas) del grupo.
-   */
-  public getRestrictedOperationsList() {
-    /*
-    if (!this.editMode()) {
-      this.restrictedOperationsList = [];
-      return;
-    }
-
-    this.restrictedOperationsList = [];
-
-    try {
-      this.workflowService
-        .getRestrictedOperationsByGroup(
-          this.loggedUser?.user_name ?? '',
-          this.workflowIdEdit ?? '',
-        )
-        .subscribe({
-          next: (response) => {
-            if (response && response.respuesta) {
-              const ops = response.respuesta as string[];
-              this.restrictedOperationsList.push(...ops);
-            }
-          },
-          error: (e) => {
-            if (this.uc) {
-              this.uc.mensaje =
-                e.status === 400
-                  ? ''
-                  : MessageUtil.buildErrorMessageFsResponse(
-                      Constants.ERR_GRUPO_OPERACIONES_RESTRINGIDAS,
-                      e,
-                    );
-            }
-          },
-        });
-    } catch (error: any) {
-      if (this.uc) {
-        this.uc.mensaje =
-          error.status === 400
-            ? ''
-            : MessageUtil.buildErrorMessageFsResponse(
-                Constants.ERR_GRUPO_OPERACIONES_RESTRINGIDAS,
-                error,
-              );
-      }
-    }
-      */
+      
   }
 
   /**
@@ -294,9 +139,10 @@ export class CrearWorkflowComponent {
   /**
    * Maneja el cambio de compañía seleccionada.
    */
-  public onEstadoChange(event: MatSelectChange<EstadoEntity>) {
-    this.estadoObjectN = event.value;
-    this.estadoN = event.value?.nombre ?? '';
+  public onEstadoChange(event:any): void {
+    console.log('Estado seleccionado:', event);
+    this.estadoObjectN = event as EstadoWorkflowEntity;
+    this.estadoN = event?.name ?? '';
   }
 
   /**
@@ -311,231 +157,109 @@ export class CrearWorkflowComponent {
   }
 
   /**
-   * Crea un nuevo grupo con los datos del formulario.
+   * Crea un nuevo workflow con los datos del formulario.
    */
   public create() {
-    /*
-    this.gruposService
-      .createGroup({
-        userName: this.loggedUser?.user_name ?? '',
-        name: this.nameN,
-        description: this.descriptionN,
-        company: this.companyN,
-        supervisor: this.supervisorN,
-      } as GroupEntity)
+    let workflow: WorkflowEntity = {
+       nombre: this.nombreN,
+        nombreLargo: this.nombreLargoN,
+        descripcion: this.descripcionN,
+        estado: this.estadoN,
+    }
+    this.workflowService
+      .createWorkflow(workflow)
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
             if (this.uc) {
               this.uc.mensaje = '';
             }
-            this.groupIdEdit = this.nameN;
+            this.workflowIdEdit = this.nombreN;
             this.router.navigate([
-              `/main-page/administrarGrupos/editarGrupo?id=${this.nameN}`,
+              `/main-page/workflow/editarWorkflow?id=${this.nombreN}`,
             ]);
           }
         },
         error: (e) => {
           if (this.uc) {
             this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_CREAR,
+              Constants.ERR_WORKFLOW_CREAR,
               e,
             );
           }
         },
       });
-      */
   }
 
   /**
-   * Edita el grupo existente con los datos proporcionados.
+   * Edita el workflow existente con los datos proporcionados.
    */
   public edit() {
-    /*
-    this.gruposService
-      .editGroup({
-        userName: this.loggedUser?.user_name ?? '',
-        name: this.nameN,
-        description: this.descriptionN,
-        company: this.companyN,
-        supervisor: this.supervisorN,
-      } as GroupEntity)
+    let workflow: WorkflowEntity = {
+       nombre: this.nombreN,
+        nombreLargo: this.nombreLargoN,
+        descripcion: this.descripcionN,
+        estado: this.estadoN,
+    }
+    this.workflowService
+      .editWorkflow(workflow)
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
             this.router.navigate([
-              `/main-page/administrarGrupos/editarGrupo?id=${this.nameN}`,
+              `/main-page/workflows/editarWorkflow?id=${this.nombreN}`,
             ]);
           }
         },
         error: (e) => {
           if (this.uc) {
             this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_EDITAR,
+              Constants.ERR_WORKFLOW_EDITAR,
               e,
             );
           }
         },
       });
-      */
   }
 
   /**
-   * Agrega una operación al grupo.
-   */
-  public addOperationToGroup(event: MatSelectChange<any>) {
-    /*
-    const operation = event.value;
-    this.gruposService
-      .addOperationToGroup(
-        this.loggedUser?.user_name ?? '',
-        this.groupIdEdit ?? '',
-        operation,
-      )
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
-            this.operationsList.push(operation);
-          }
-        },
-        error: (e) => {
-          if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_AGREGAR_OPERACION,
-              e,
-            );
-          }
-        },
-      });
-      */
-  }
-
-  /**
-   * Elimina una operación del grupo.
-   */
-  public remove(operation: string) {
-    /*
-    this.gruposService
-      .removeOperationFromGroup(
-        this.loggedUser?.user_name ?? '',
-        this.groupIdEdit ?? '',
-        operation,
-      )
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
-            this.operationsList = this.operationsList.filter(
-              (op) => op !== operation,
-            );
-          }
-        },
-        error: (e) => {
-          if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_ELIMINAR_OPERACION,
-              e,
-            );
-          }
-        },
-      });
-      */
-  }
-
-  /**
-   * Elimina el grupo actual.
+   * Elimina el workflow actual.
    */
   public delete() {
-    /*
-    this.gruposService
-      .deleteGroup(this.loggedUser?.user_name ?? '', this.groupIdEdit)
+    this.workflowService
+      .deleteWorkflow(this.workflowIdEdit ?? '')
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
-            this.router.navigate(['/main-page/administrarGrupos']);
+            this.uc!.mensaje = '';
+            this.router.navigate(['/main-page/workflow']);
           }
         },
         error: (e) => {
           if (this.uc) {
             this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_ELIMINAR,
+              Constants.ERR_WORKFLOW_ELIMINAR,
               e,
             );
           }
         },
       });
-      */
   }
 
   /**
-   * Cancela y regresa al listado de grupos.
+   * Cancela y regresa al listado de workflows.
    */
   public cancel() {
-    /*
     if (this.uc) {
       this.uc.mensaje = '';
     }
-    this.router.navigate(['/main-page/administrarGrupos']);
-    */
+    this.router.navigate(['/main-page/workflow']);
   }
 
   /**
-   * Compara compañías en el selector.
+   * Compara estados en el selector.
    */
-  public compareCompanies(c1: EstadoEntity, c2: EstadoEntity): boolean {
-    return c1.nombre === c2.nombre;
-  }
-
-  /**
-   * Compara supervisores en el selector.
-   */
-  public compareSupervisors(s1: UserEntity, s2: UserEntity): boolean {
-    return s1.name === s2.name;
-  }
-
-  /**
-   * Maneja el cambio de supervisor seleccionado.
-   */
-  public onSupervisorChange(event: MatSelectChange<UserEntity>) {
-    this.supervisorObjectN = event.value;
-    this.supervisorN = event.value?.name ?? '';
-  }
-
-
- /**
-   * Agrega una restricción de operación a la compañía.
-   */
-  public restrict(operation?: string | undefined) {
-    /*
-    try {
-      this.companiasService
-        .addRestrictionToCompany(
-          this.loggedUser?.user_name ?? '',
-          this.groupIdEdit?? '',
-          operation ?? '',
-        )
-        .subscribe({
-          next: (response) => {
-            if (response && response.respuesta) {
-              this.ngOnInit();
-            }
-          },
-          error: (e: any) => {
-            if (this.uc) {
-              this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-                Constants.ERR_COMPANIA_RESTRINGIR_OPERACION,
-                e,
-              );
-            }
-          },
-        });
-    } catch (e) {
-      if (this.uc) {
-        this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-          Constants.ERR_COMPANIA_ASOCIAR_PERMISO,
-          e,
-        );
-      }
-    }
-      */
+  public compararEstados(c1: EstadoWorkflowEntity, c2: EstadoWorkflowEntity): boolean {
+    return c1.name === c2.name && c1.code === c2.code;
   }
 }
