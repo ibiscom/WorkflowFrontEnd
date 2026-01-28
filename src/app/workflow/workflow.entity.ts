@@ -13,3 +13,4 @@ export interface WorkflowEntity {
   /** Fecha de creación del workflow */
   fechaCreacion?: Date;
 }
+
