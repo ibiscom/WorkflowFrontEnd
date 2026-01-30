@@ -35,3 +35,4 @@ export class AccionesObjetowComponent {
     this.router.navigate([`/main-page/objetow/crearObjetow`]);
   }
 }
+

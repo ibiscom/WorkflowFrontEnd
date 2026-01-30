@@ -9,3 +9,4 @@ import { ObjetowComponent } from './objetow.component';
  * Servicio que expone la instancia del componente padre de Grupos.
  */
 export class ObjetowComponentInstanceService extends BaseComponentInstanceService<ObjetowComponent> {}
+

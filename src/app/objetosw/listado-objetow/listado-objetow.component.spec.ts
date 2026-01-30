@@ -20,3 +20,4 @@ describe('ListadoObjetowsComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

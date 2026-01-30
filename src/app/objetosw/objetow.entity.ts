@@ -12,3 +12,4 @@ export interface ObjetowEntity {
   /** Supervisor del grupo */
   supervisor: string;
 }
+

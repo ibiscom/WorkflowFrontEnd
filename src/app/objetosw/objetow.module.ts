@@ -29,3 +29,4 @@ import { FiltrosBusquedaObjetowComponent } from './filtros-busqueda-objetow/filt
   ],
 })
 export class ObjetowModule {}
+
