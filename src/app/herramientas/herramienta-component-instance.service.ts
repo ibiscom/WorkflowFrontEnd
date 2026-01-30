@@ -9,3 +9,4 @@ import { HerramientaComponent } from './herramienta.component';
  * Servicio que expone la instancia del componente padre de Herramientas.
  */
 export class HerramientaComponentInstanceService extends BaseComponentInstanceService<HerramientaComponent> {}
+

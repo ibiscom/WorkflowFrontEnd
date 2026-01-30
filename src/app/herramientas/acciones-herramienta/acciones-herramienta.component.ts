@@ -35,3 +35,4 @@ export class AccionesHerramientaComponent {
     this.router.navigate([`/main-page/herramienta/crearHerramientas`]);
   }
 }
+

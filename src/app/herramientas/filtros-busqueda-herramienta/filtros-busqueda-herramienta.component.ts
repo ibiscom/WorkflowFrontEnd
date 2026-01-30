@@ -77,3 +77,4 @@ export class FiltrosBusquedaHerramientaComponent {
     // Tu lógica actual aquí
   }
 }
+
