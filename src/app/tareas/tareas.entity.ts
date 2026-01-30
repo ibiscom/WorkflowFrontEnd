@@ -12,3 +12,4 @@ export interface TareasEntity {
   /** Supervisor del grupo */
   supervisor: string;
 }
+

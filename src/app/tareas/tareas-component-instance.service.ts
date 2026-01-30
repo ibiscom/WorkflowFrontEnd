@@ -9,3 +9,4 @@ import { TareasComponent } from './tareas.component';
  * Servicio que expone la instancia del componente padre de Grupos.
  */
 export class TareasComponentInstanceService extends BaseComponentInstanceService<TareasComponent> {}
+

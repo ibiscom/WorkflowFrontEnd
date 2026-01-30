@@ -35,3 +35,4 @@ export class AccionesTareasComponent {
     this.router.navigate([`/main-page/administrarTareas/crearTareas`]);
   }
 }
+
