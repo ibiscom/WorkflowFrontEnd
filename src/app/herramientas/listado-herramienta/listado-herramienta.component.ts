@@ -31,8 +31,9 @@ export class ListadoHerramientaComponent {
    * Navega a la pantalla de edición de la herramienta seleccionado.
    */
   public goToEditarHerramienta(herramienta: HerramientaEntity) {
+    this.parent.mensaje = '';
     this.parent.router.navigate([
-      `/main-page/administrarherramienta/editarHerramienta/${herramienta.nombre}`,
+      `/main-page/herramientas/editarHerramienta/${herramienta.nombre}`,
     ]);
   }
 

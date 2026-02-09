@@ -81,18 +81,19 @@ export class HerramientaService {
       let ip: string = this.cookieService.get('ip');
       return this.http.get<FsResponseEntity<any>>(
         environment.workflowApiUrl +
-          `/Tool/Types`);
+          `/Tool/types`);
   }
   /**
    * Elimina un herramienta, dado su identificador
+   * @param workflowName El nombre del workflow al que pertenece la herramienta
    * @param herramientaName Nombre de la herramienta a eliminar
    * @returns 
    */
-  public deleteHerramienta(workflowName: string): Observable<FsResponseEntity<any>> {
+  public deleteHerramienta(workflowName: string, herramientaName: string): Observable<FsResponseEntity<any>> {
       let ip: string = this.cookieService.get('ip');
       return this.http.delete<FsResponseEntity<any>>(
         environment.workflowApiUrl +
-          `/Tool/delete?workflowName=${workflowName}`);
+          `/Tool/delete?workflowName=${workflowName}&toolName=${herramientaName}`);
   }
 }
 

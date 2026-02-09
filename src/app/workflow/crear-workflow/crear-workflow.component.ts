@@ -20,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 import { CompaniasService } from '../../companias/companias.service';
 import { UsuariosService } from '../../usuarios/usuarios.service';
 import { WorkflowEntity } from '../workflow.entity';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'ibpm-crear-workflow',
@@ -64,6 +65,7 @@ export class CrearWorkflowComponent {
     private workflowComponentInstanceService: WorkflowComponentInstanceService,
     private router: Router,
     private route: ActivatedRoute,
+    private cookieService: CookieService,
   ) {
     this.loggedUser = this.loginService.getLoggedUser();
     this.uc = this.workflowComponentInstanceService.getInstance();
@@ -82,9 +84,15 @@ export class CrearWorkflowComponent {
     if (id) {
       this.workflowIdEdit = id;
       await this.llenarCamposEdicion();
+      await this.seleccionarWorkflowActual();
     } else {
       this.workflowIdEdit = undefined;
     }
+  }
+
+
+  public async seleccionarWorkflowActual() {
+    this.cookieService.set('workflowActual', this.workflowIdEdit ?? '', 1)
   }
 
   /**

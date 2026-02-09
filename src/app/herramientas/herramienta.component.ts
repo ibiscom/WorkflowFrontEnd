@@ -10,8 +10,9 @@ import { MessageUtil } from '../utils/message.util';
 import { Constants } from '../utils/constants';
 import { HerramientaEntity } from './herramienta.entity';
 import { AccionesHerramientaComponent } from './acciones-herramienta/acciones-herramienta.component';
-import { TiposHerramientaEntity } from './tiposHerramienta.entity';
+import { TipoHerramientaEntity } from './tipo-herramienta.entity';
 import { HerramientasFilterEntity } from './herramienta-filter.entity';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'ibpm-herramienta',
@@ -22,33 +23,46 @@ import { HerramientasFilterEntity } from './herramienta-filter.entity';
 export class HerramientaComponent {
   public loggedUser: LoginEntity | undefined;
   public herramientas: HerramientaEntity[] = [];
-  public tipos: TiposHerramientaEntity[] = [];
+  public tipos: TipoHerramientaEntity[] = [];
   public mensaje: string = '';
+  public workflowActual: string = '';
 
   constructor(
     private herramientaService: HerramientaService,
     private herramientaComponentInstanceService: HerramientaComponentInstanceService,
     private loginService: LoginService,
     public router: Router,
+    private cookieService: CookieService,
   ) {}
 
   ngOnInit(): void {
     this.herramientaComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-    this.obtenerTipos();
-   /** this.buscarHerramientas(); */
+    if(this.hayWorkflowActual()) {
+      this.obtenerTipos();
+      this.buscarHerramientas();
+    }
   }
 
-  /**
-   * herramientas no tiene filtros!!!!!
-  
- public buscarHerramientas(filtros?: HerramientaFilterEntity): void {
+  public hayWorkflowActual(): boolean {
+    this.workflowActual = this.cookieService.get("workflowActual");
+    if (this.workflowActual === '') { 
+      this.mensaje = Constants.ERR_WORKFLOW_NO_SELECCIONADO;
+      return false;
+    }
+    return true;
+  }
+
+
+ public  buscarHerramientas(noLimpiar?:boolean): void {
      this.herramientaService
-       .getHerramientas(filtros || {})
+       .getHerramientas(this.workflowActual)
        .subscribe({
          next: (response) => {
-           this.herramientas = response.respuesta;
-           this.mensaje = '';
+           this.herramientas = response.respuesta;          
+           if(!noLimpiar) {
+             this.mensaje = '';
+           }
          },
          error: (err) => {
            this.mensaje = MessageUtil.buildErrorMessageFsResponse(
@@ -58,7 +72,6 @@ export class HerramientaComponent {
          },
        });
    }
-       */
 
    /**
     * REVISIÓN CARLOS!!!

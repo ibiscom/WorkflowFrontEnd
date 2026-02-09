@@ -485,12 +485,12 @@ export const routes: Routes = [
             canActivate: [CanActivateGuard],
           },
           {
-            path: 'crearHerramientas',
+            path: 'crearHerramienta',
             component: CrearHerramientaComponent,
             canActivate: [CanActivateGuard],
           },
           {
-            path: 'editarHerramientas/:id',
+            path: 'editarHerramienta/:id',
             component: CrearHerramientaComponent,
             canActivate: [CanActivateGuard],
           },
@@ -513,7 +513,7 @@ export const routes: Routes = [
             canActivate: [CanActivateGuard],
           },
           {
-            path: 'creardependencia',
+            path: 'crearDependencia',
             component: CrearDependenciaComponent,
             canActivate: [CanActivateGuard],
           },

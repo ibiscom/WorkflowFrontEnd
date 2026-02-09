@@ -1,10 +1,13 @@
 export class Constants {
+  //Errores Generales paginas Constructor
+    public static ERR_WORKFLOW_NO_SELECCIONADO: string = 'No se ha seleccionado un workflow. Por favor, seleccione un workflow para continuar.';
+  
   //Errores Workflow  
   public static ERR_WORKFLOW_CREAR: string = 
     'No se pudo crear el workflow.';
   public static ERR_WORKFLOW_EDITAR: string = 
     'No se pudo editar el workflow.';
- public static ERR_WORKFLOW_ELIMINAR: string = 
+  public static ERR_WORKFLOW_ELIMINAR: string = 
     'No se pudo eliminar el workflow.';
   public static ERR_OBTENIENDO_ESTADOS_WORKFLOW: string =
     'Error al obtener los estados de los workflows';
@@ -18,6 +21,8 @@ export class Constants {
     'No se pudo obtener las dependencias'; 
   public static  ERR_OBTENIENDO_ESTADO_DEPENDENCIA: string =
   'No se pudo obtener el estado de la dependencia';
+
+  // Errores Herramientas
   public static  ERR_HERRAMIENTA_CREAR: string =
     'No se pudo crear la herramienta';
   public static ERR_HERRAMIENTA_EDITAR: string =
@@ -26,6 +31,15 @@ export class Constants {
     'No se pudo eliminar la herramienta';
   public static ERR_OBTENIENDO_HERRAMIENTAS: string =
     'Error al obtener las herramientas';
+  public static ERR_OBTENIENDO_HERRAMIENTA: string =
+    'Error al obtener los datos de la herramienta';
+  public static MSG_HERRAMIENTA_CREACION_EXITOSA: string = 
+    'Herramienta creada exitosamente.';
+  public static MSG_HERRAMIENTA_EDICION_EXITOSA: string = 
+    'Herramienta editada exitosamente.';
+  public static MSG_HERRAMIENTA_ELIMINACION_EXITOSA: string = 
+    'Herramienta eliminada exitosamente.';
+
 
 
 
@@ -209,7 +223,5 @@ export class Constants {
 
   public static EXCEL_MIME_TYPE: string =
     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
-
-
-
+    
 }

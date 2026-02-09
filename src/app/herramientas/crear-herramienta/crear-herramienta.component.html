@@ -19,9 +19,10 @@
               name="name"
               type="text"
               placeholder="Inserte nombre de la herramienta"
-              [(ngModel)]="nameN"
+              [(ngModel)]="nombreN"
               required
               #name="ngModel"
+              [disabled]="editMode()"
             />
             @if (name.errors?.['required']) {
               <div class="error">El nombre de la herramienta es obligatorio.</div>
@@ -32,13 +33,13 @@
           <div class="campo-texto">
             <label for="description">Breve descripcion</label>
             <input
-              id="description"
-              name="description"
+              id="descripcion"
+              name="descripcion"
               type="text"
               placeholder="Inserte descripcion"
-              [(ngModel)]="descriptionN"
+              [(ngModel)]="descripcionN"
               required
-              #description="ngModel"
+              #descripcion="ngModel"
             />
           </div>
 
@@ -47,21 +48,20 @@
         
           <!-- TIPO HERRAMIENTA -->
           <div class="campo-lista">
-            <label for="company">Tipo herramienta</label>
+            <label for="tipoHerramienta">Tipo herramienta</label>
 
             <select
-              id="company"
-              name="company"
-              [(ngModel)]="herramientasObjectN"
+              id="tipoHerramienta"
+              name="tipoHerramienta"
+              [(ngModel)]="tipoHerramientaObjectN"
               required
-              #company="ngModel"
-              (ngModelChange)="onEstadoChange($event)"
-            >
+              #tipoHerramienta="ngModel"
+              (ngModelChange)="onTipoHerramientaChange($event)">
               <option value="">Seleccione una opción</option>
 
-              @for (estado of herramientasList; track herramienta) {
-                <option [ngValue]="herramienta">
-                  {{ herramienta.nombre }}
+              @for (tipoHerramienta of this.uc!.tipos; track tipoHerramienta) {
+                <option [ngValue]="tipoHerramienta">
+                  {{ tipoHerramienta.name }}
                 </option>
               }
             </select>
@@ -69,15 +69,15 @@
 
           <!-- URL DEL SERVICIO WEB -->
           <div class="campo-texto">
-            <label for="description">URL del servicio web</label>
+            <label for="urlServicioWeb">URL del servicio web</label>
             <input
-              id="description"
-              name="description"
+              id="urlServicioWeb"
+              name="urlServicioWeb"
               type="text"
               placeholder="URL del servicio web"
-              [(ngModel)]="descriptionN"
+              [(ngModel)]="urlServicioWebN"
               required
-              #description="ngModel"
+              #urlServicioWeb="ngModel"
             />
           </div>
         </div>
@@ -101,7 +101,7 @@
           <span class="btn-icon">
         <img src="assets/img/trash.svg" alt="Eliminar" />
       </span>
-      Cancelar</button>
+      Eliminar</button>
       }
 
      <button class="btn-figma" type="button" (click)="cancel()">

@@ -14,6 +14,7 @@ export interface HerramientaEntity {
   /** Supervisor de la herramienta */
   cadenaRepresentacion: string;
  /** Atributos de la herramienta */
-  attributes: string
+  attributes: string[];
+
 }
 

@@ -12,52 +12,18 @@
         
         <!-- Nombre -->
         <div class="campo-texto-filtro ">
-          <label for="description">Nombre del workflow</label>
+          <label for="description">Nombre de la herramienta</label>
           <input
             type="text"
             [(ngModel)]="herramientaNameF"
-            placeholder="Inserte nombre dela herramienta"
+            placeholder="Inserte nombre de la herramienta"
             (keydown.enter)="search()"
           />
         </div>
-
-        <!-- NOMBRE LARGO DEL WORKFLOW -->
-        <div class="campo-texto-filtro ">
-           <label for="description">Nombre largo del workflow</label>
-          <input
-            type="text"
-            [(ngModel)]="supervisorF"
-            placeholder="Inserte nombre del supervisor"
-            (keydown.enter)="search()"
-          />
-        </div>
-
       </div>
 
       <!-- FILA 2 -->
       <div class="fila-filtros-fila3">
-
-        <!-- ESTADO -->
-          <div class="campo-lista">
-            <label for="company">Estado</label>
-
-            <select
-              id="company"
-              name="company"
-              [(ngModel)]="companyObjectN"
-              required
-              #company="ngModel"
-              (ngModelChange)="onCompanyChange($event)"
-            >
-              <option value="">Seleccione una opción</option>
-
-              @for (company of companiesList; track company) {
-                <option [ngValue]="company">
-                  {{ company.largeName }}
-                </option>
-              }
-            </select>
-          </div>
 
         <!-- Buscar -->
         <button class="btn-figma" (click)="search()">
