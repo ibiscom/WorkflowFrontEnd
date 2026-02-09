@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListadoWorkflowComponent } from './listado-dependencia.component';
+import { ListadoDependenciaComponent } from './listado-dependencia.component';
 
-describe('ListadoWorkflowComponent', () => {
-  let component: ListadoWorkflowComponent;
-  let fixture: ComponentFixture<ListadoWorkflowComponent>;
+describe('ListadoDependenciaComponent', () => {
+  let component: ListadoDependenciaComponent;
+  let fixture: ComponentFixture<ListadoDependenciaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ListadoWorkflowComponent],
+      imports: [ListadoDependenciaComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ListadoWorkflowComponent);
+    fixture = TestBed.createComponent(ListadoDependenciaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

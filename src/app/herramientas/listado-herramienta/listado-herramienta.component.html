@@ -30,6 +30,7 @@
     </div>
 
     <!-- COLUMNA: TIPO -->
+
     <div class="tabla-columna">
       <div class="tabla-col-header">
         <div>Tipo</div>
@@ -38,13 +39,15 @@
       @for (element of parent.herramientas; track element) {
         <ng-container>
           <div class="tabla-celda">
-            <div>
-              {{ getCompanyName(element.compania) }}
+            <div (click)="goToEditarHerramienta(element)">
+              {{ element.tipo }}
             </div>
           </div>
         </ng-container>
       }
     </div>
+
+    
 
 
     <!-- COLUMNA: DESCRIPCIÓN -->
@@ -56,8 +59,8 @@
       @for (element of parent.herramientas; track element) {
         <ng-container>
           <div class="tabla-celda">
-            <div>
-              {{ getCompanyName(element.compania) }}
+            <div (click)="goToEditarHerramienta(element)">
+              {{ element.descripcion }}
             </div>
           </div>
         </ng-container>
@@ -73,8 +76,8 @@
       @for (element of parent.herramientas; track element) {
         <ng-container>
           <div class="tabla-celda">
-            <div>
-              {{ getCompanyName(element.compania) }}
+            <div (click)="goToEditarHerramienta(element)">
+              {{ element.cadenaRepresentacion }}
             </div>
           </div>
         </ng-container>
@@ -83,7 +86,7 @@
 
   </div>
 
-  <!-- FOOTER -->
+  <!-- FOOTER
   <div class="tabla-footer">
     <div class="tabla-footer-text">
       Página {{ currentPage }} de {{ numberOfPages }}
@@ -97,5 +100,6 @@
       <span>chevron_right</span>
     </div>
   </div>
+  -->
 </div>
 

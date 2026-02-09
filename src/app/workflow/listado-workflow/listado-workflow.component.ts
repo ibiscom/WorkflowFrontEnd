@@ -11,7 +11,7 @@ import { WorkflowEntity } from '../workflow.entity';
   styleUrl: './listado-workflow.component.scss',
 })
 /**
- * Listado de grupos con navegación a la edición y utilidades de presentación.
+ * Listado de workflows con navegación a la edición y utilidades de presentación.
  */
 export class ListadoWorkflowComponent {
   // 🔹 Variables de paginación
@@ -29,7 +29,7 @@ export class ListadoWorkflowComponent {
   constructor(public parent: WorkflowComponent) {}
 
   /**
-   * Navega a la pantalla de edición del grupo seleccionado.
+   * Navega a la pantalla de edición del workflow seleccionado.
    */
   public goToEditarWorkflow(workflow: WorkflowEntity) {
     this.parent.router.navigate([

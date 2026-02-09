@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
-import { DependenciaService } from './dependencia.service';
 import { DependenciaComponentInstanceService } from './dependencia-component-instance.service';
+import { DependenciaService } from './dependencia.service';
 import { LoginEntity } from '../login/login.entity';
 import { GroupEntity } from '../entities/groups/group.entity';
 import { MessageUtil } from '../utils/message.util';
@@ -13,6 +13,9 @@ import { CompanyEntity } from '../entities/companies/company.entity';
 import { CompaniasService } from '../companias/companias.service';
 import { DependenciaEntity } from './dependencia.entity';
 import { AccionesDependenciaComponent } from './acciones-dependencias/acciones-dependencia.component';
+import { DependenciaFilterEntity } from './dependencia-filter.entity';
+import { EstadoDependenciaEntity } from './estadoDependencia.entity';
+
 
 
 @Component({
@@ -22,13 +25,14 @@ import { AccionesDependenciaComponent } from './acciones-dependencias/acciones-d
   styleUrl: './dependencia.component.scss',
 })
 export class DependenciaComponent {
-  searchDependencias() {
+  searchDependencys() {
     throw new Error('Method not implemented.');
   }
   public loggedUser: LoginEntity | undefined;
-  public workflows: DependenciaEntity[] = [];
+  public dependencys: DependenciaEntity[] = [];
   public companias: CompanyEntity[] = [];
   public mensaje: string = '';
+  public estado: EstadoDependenciaEntity[] = [];
 
   constructor(
     private dependenciaService: DependenciaService,
@@ -41,47 +45,43 @@ export class DependenciaComponent {
   ngOnInit(): void {
     this.dependenciaComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-    this.getAllCompanies();
-    this.searchWorkflows();
+    this.buscarDependencia();
   }
 
-  public getAllCompanies() {
-    /*
-    this.companiasService
-      .getAllCompanies(this.loggedUser?.user_name ?? '')
+  
+  public buscarDependencia(filtros?: DependenciaFilterEntity): void {
+      this.dependenciaService
+        .buscarDependencia(filtros || {})
+        .subscribe({
+          next: (response) => {
+            this.dependencys = response.respuesta;
+            this.mensaje = '';
+          },
+          error: (err) => {
+            this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+              Constants.ERR_OBTENIENDO_DEPENDENCIAS,
+              err,
+            );
+          },
+        });
+    }
+
+  
+
+    public obtenerEstado(): void {
+    this.dependenciaService
+      .getEstado()
       .subscribe({
         next: (response) => {
-          this.companias = response.respuesta;
+          this.estado = response.respuesta;
         },
         error: (err) => {
           this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-            Constants.ERR_OBTENIENDO_COMPANIAS,
+            Constants.ERR_OBTENIENDO_ESTADO_DEPENDENCIA,
             err,
           );
         },
       });
-      */
-  }
 
-  public searchWorkflows(dependenciaName?: string, supervisor?: string): void {
-    /*
-    let workflowServerFilter: WorkflowSearchFilterEntity = {
-      userName: this.loggedUser?.user_name ?? '',
-      workflowName: workflowName ?? '',
-      supervisor: supervisor ?? '',
-    };
-
-    this.workflowService.searchWorkflows(workflowServerFilter).subscribe({
-      next: (response) => {
-        this.workflows = response.respuesta;
-      },
-      error: (err) => {
-        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-          Constants.ERR_BUSCAR_WORKFLOWS,
-          err,
-        );
-      },
-    });
-    */
   }
 }

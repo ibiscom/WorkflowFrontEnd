@@ -55,6 +55,15 @@ import { CrearTareasComponent } from './tareas/crear-tareas/crear-tareas.compone
 import { ObjetowComponent } from './objetosw/objetow.component';
 import { ListadoObjetowComponent } from './objetosw/listado-objetow/listado-objetow.component';
 import { CrearObjetowComponent } from './objetosw/crear-objetow/crear-objetow.component';
+import { HerramientaComponent } from './herramientas/herramienta.component';
+import { ListadoHerramientaComponent } from './herramientas/listado-herramienta/listado-herramienta.component';
+import { CrearHerramientaComponent } from './herramientas/crear-herramienta/crear-herramienta.component';
+import { DependenciaComponent } from './dependencias/dependencia.component';
+import { ListadoDependenciaComponent } from './dependencias/listado-dependencia/listado-dependencia.component';
+import { CrearDependenciaComponent } from './dependencias/crear-dependencias/crear-dependencia.component';
+import { RolesComponent } from './roles/roles.component';
+import { ListadoRolesComponent } from './roles/listado-roles/listado-roles.component';
+import { CrearRolesComponent } from './roles/crear-roles/crear-roles.component';
 
 export const CanActivateGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -455,6 +464,90 @@ export const routes: Routes = [
           {
             path: 'editarobjetow/:id',
             component: CrearObjetowComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+
+      {
+        path: 'herramientas',
+        component: HerramientaComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoHerramientas',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoHerramientas',
+            component: ListadoHerramientaComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'crearHerramientas',
+            component: CrearHerramientaComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'editarHerramientas/:id',
+            component: CrearHerramientaComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+
+      {
+        path: 'dependencias',
+        component: DependenciaComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoDependencias',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoDependencias',
+            component: ListadoDependenciaComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'creardependencia',
+            component: CrearDependenciaComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'editarDependencia/:id',
+            component: CrearDependenciaComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+
+      {
+        path: 'roles',
+        component: RolesComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoRoles',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoRoles',
+            component: ListadoRolesComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'crearRoles',
+            component: CrearRolesComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'editarRoles/:id',
+            component: CrearRolesComponent,
             canActivate: [CanActivateGuard],
           },
         ],

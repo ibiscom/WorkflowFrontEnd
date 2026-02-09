@@ -13,6 +13,7 @@ import { CompanyEntity } from '../entities/companies/company.entity';
 import { CompaniasService } from '../companias/companias.service';
 import { RolesEntity } from './roles.entity';
 import { AccionesRolesComponent } from './acciones-roles/acciones-roles.component';
+import { RolesFilterEntity } from './roles-filter.entity';
 
 @Component({
   selector: 'ibpm-roles',
@@ -22,8 +23,8 @@ import { AccionesRolesComponent } from './acciones-roles/acciones-roles.componen
 })
 export class RolesComponent {
   public loggedUser: LoginEntity | undefined;
-  public workflows: RolesEntity[] = [];
-  public companias: CompanyEntity[] = [];
+  public roles: RolesEntity[] = [];
+  public groups: GroupEntity[] = [];
   public mensaje: string = '';
 
   constructor(
@@ -37,47 +38,60 @@ export class RolesComponent {
   ngOnInit(): void {
     this.rolesComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-    this.getAllCompanies();
-    this.searchRoles();
+    this.obtenerGroups();
+    this.obtenerGroupsRol();
+    this.buscarRoles();
   }
 
-  public getAllCompanies() {
-    /*
-    this.companiasService
-      .getAllCompanies(this.loggedUser?.user_name ?? '')
-      .subscribe({
-        next: (response) => {
-          this.companias = response.respuesta;
-        },
-        error: (err) => {
-          this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-            Constants.ERR_OBTENIENDO_COMPANIAS,
-            err,
-          );
-        },
-      });
-      */
-  }
+  public buscarRoles(filtros?: RolesFilterEntity): void {
+      this.rolesService
+        .getRols(filtros || {})
+        .subscribe({
+          next: (response) => {
+            this.roles = response.respuesta;
+            this.mensaje = '';
+          },
+          error: (err) => {
+            this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+              Constants.ERR_OBTENIENDO_WORKFLOWS,
+              err,
+            );
+          },
+        });
+    }
+  
+    public obtenerGroups(): void {
+      this.rolesService
+        .getGroups()
+        .subscribe({
+          next: (response) => {
+            this.roles = response.respuesta;
+          },
+          error: (err) => {
+            this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+              Constants.ERR_OBTENIENDO_ESTADOS_WORKFLOW,
+              err,
+            );
+          },
+        });
+  
+    }
 
-  public searchRoles(rolesName?: string, supervisor?: string): void {
-    /*
-    let workflowServerFilter: WorkflowSearchFilterEntity = {
-      userName: this.loggedUser?.user_name ?? '',
-      workflowName: workflowName ?? '',
-      supervisor: supervisor ?? '',
-    };
-
-    this.workflowService.searchWorkflows(workflowServerFilter).subscribe({
-      next: (response) => {
-        this.workflows = response.respuesta;
-      },
-      error: (err) => {
-        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-          Constants.ERR_BUSCAR_WORKFLOWS,
-          err,
-        );
-      },
-    });
-    */
+    public obtenerGroupsRol(): void {
+      this.rolesService
+        .getGroups()
+        .subscribe({
+          next: (response) => {
+            this.roles = response.respuesta;
+          },
+          error: (err) => {
+            this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+              Constants.ERR_OBTENIENDO_ESTADOS_WORKFLOW,
+              err,
+            );
+          },
+        });
+  
+    }
   }
-}
+  

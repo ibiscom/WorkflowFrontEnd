@@ -18,7 +18,7 @@
         <div>Nombre</div>
       </div>
 
-      @for (element of parent.workflows; track element) {
+      @for (element of parent.dependencys; track element) {
         <ng-container>
           <div class="tabla-celda">
             <div (click)="goToEditarDependencia (element)">
@@ -36,11 +36,11 @@
         <div>Descripción</div>
       </div>
 
-      @for (element of parent.workflows; track element) {
+      @for (element of parent.dependencys; track element) {
         <ng-container>
           <div class="tabla-celda">
             <div>
-              {{ getCompanyName(element.compania) }}
+              {{ element.descripcion }}
             </div>
           </div>
         </ng-container>
@@ -48,7 +48,7 @@
     </div>
 
 
-  <!-- FOOTER -->
+  <!-- FOOTER
   <div class="tabla-footer">
     <div class="tabla-footer-text">
       Página {{ currentPage }} de {{ numberOfPages }}
@@ -62,4 +62,5 @@
       <span>chevron_right</span>
     </div>
   </div>
+  -->
 </div>

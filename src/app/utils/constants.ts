@@ -12,8 +12,27 @@ export class Constants {
     'Error al obtener los workflows';
   public static ERR_WORKFLOW_DATOS: string =
     'No se pudo obtener los datos del workflow';
+  public static ERR_OBTENIENDO_TIPOS_HERR: string =
+    'No se pudo obtener los tipos de herramientas'
+  public static ERR_OBTENIENDO_DEPENDENCIAS: string =
+    'No se pudo obtener las dependencias'; 
+  public static  ERR_OBTENIENDO_ESTADO_DEPENDENCIA: string =
+  'No se pudo obtener el estado de la dependencia';
+  public static  ERR_HERRAMIENTA_CREAR: string =
+    'No se pudo crear la herramienta';
+  public static ERR_HERRAMIENTA_EDITAR: string =
+    'No se pudo editar la herramienta';
+  public static ERR_HERRAMIENTA_ELIMINAR: string =
+    'No se pudo eliminar la herramienta';
+  public static ERR_OBTENIENDO_HERRAMIENTAS: string =
+    'Error al obtener las herramientas';
+
+
+
+
 
     
+
   public static ERR_LOG_AUDITORIA_DETALLE: string =
     'No se pudo obtener el detalle del log de auditoría';
   public static ERR_LOG_AUDITORIA_PROPIEDADES: string =

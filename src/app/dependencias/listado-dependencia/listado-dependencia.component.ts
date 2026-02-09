@@ -44,6 +44,9 @@ export class ListadoDependenciaComponent {
     return company ? company.largeName : '';
   }
 
+  /**
+   REVISAR!!!!
+  
   // 🔹 Ir a página anterior
   public previousPage(): void {
     if (this.currentPage > 1) {
@@ -59,4 +62,5 @@ export class ListadoDependenciaComponent {
       this.parent.searchWorkflows(); // ajusta si tu método se llama diferente
     }
   }
+    */
 }

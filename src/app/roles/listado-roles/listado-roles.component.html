@@ -18,7 +18,7 @@
         <div>Nombre</div>
       </div>
 
-      @for (element of parent.workflows; track element) {
+      @for (element of parent.roles; track element) {
         <ng-container>
           <div class="tabla-celda">
             <div (click)="goToEditarRoles(element)">
@@ -35,11 +35,11 @@
         <div>Descripción</div>
       </div>
 
-      @for (element of parent.workflows; track element) {
+      @for (element of parent.roles; track element) {
         <ng-container>
           <div class="tabla-celda">
             <div>
-              {{ getCompanyName(element.compania) }}
+              {{ element.descripcion }}
             </div>
           </div>
         </ng-container>

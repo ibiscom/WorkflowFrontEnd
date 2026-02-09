@@ -28,35 +28,36 @@ export class ListadoRolesComponent {
   constructor(public parent: RolesComponent) {}
 
   /**
-   * Navega a la pantalla de edición del grupo seleccionado.
-   */
-  public goToEditarRoles(roles: RolesEntity) {
-    this.parent.router.navigate([
-      `/main-page/administrarRoles/editarRoles/${roles.nombre}`,
-    ]);
-  }
-
-  /**
-   * Obtiene el nombre legible de la compañía a partir del identificador.
-   */
-  public getCompanyName(companyId: any) {
-    const company = this.parent.companias.find((c) => c.name === companyId);
-    return company ? company.largeName : '';
-  }
-
-  // 🔹 Ir a página anterior
-  public previousPage(): void {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.parent.searchRoles(); // ajusta si tu método se llama diferente
+     * Navega a la pantalla de edición del rol seleccionado.
+     */
+    public goToEditarRoles(roles: RolesEntity) {
+      this.parent.router.navigate([
+        `/main-page/roles/editarRoles/${roles.nombre}`,
+      ]);
+    }
+  
+    /**
+     * Obtiene el nombre legible del rol a partir del identificador.
+     */
+    public getGroups(rolName: any) {
+      const rol = this.parent.roles.find((c) => c.nombre === rolName);
+      return rol ? rol.nombre : '';
+    }
+  
+    // 🔹 Ir a página anterior
+    public previousPage(): void {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+        this.parent.buscarRoles(); // ajusta si tu método se llama diferente
+      }
+    }
+  
+    // 🔹 Ir a página siguiente
+    public nextPage(): void {
+      if (this.currentPage < this.numberOfPages) {
+        this.currentPage++;
+        this.parent.buscarRoles(); // ajusta si tu método se llama diferente
+      }
     }
   }
-
-  // 🔹 Ir a página siguiente
-  public nextPage(): void {
-    if (this.currentPage < this.numberOfPages) {
-      this.currentPage++;
-      this.parent.searchRoles(); // ajusta si tu método se llama diferente
-    }
-  }
-}
+  

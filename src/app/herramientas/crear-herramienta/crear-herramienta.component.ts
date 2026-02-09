@@ -55,6 +55,12 @@ export class CrearHerramientaComponent {
   public herramientaIdEdit?: string;
   public supervisorObjectN?: UserEntity;
   public herramientasList: string[] = [];
+  public nombreworkflowN: string = '';
+  public nombreN: string = '';
+  public tipoN: string = ''
+  public cadenaRepresentacionN: string = ''
+  public attributesN: string = ''
+
 herramienta: any;
 
   public constructor(
@@ -312,40 +318,41 @@ herramienta: any;
   }
 
   /**
-   * Crea un nuevo grupo con los datos del formulario.
+   * Crea un nuevo herramienta con los datos del formulario.
    */
   public create() {
-    /*
-    this.gruposService
-      .createGroup({
-        userName: this.loggedUser?.user_name ?? '',
-        name: this.nameN,
-        description: this.descriptionN,
-        company: this.companyN,
-        supervisor: this.supervisorN,
-      } as GroupEntity)
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
+    let herramienta: HerramientasEntity = {
+        nombreWorkflow: this.nombreworkflowN,
+        nombre: this.nombreN,
+        tipo: this.tipoN,
+        cadenaRepresentacion: this.cadenaRepresentacionN,
+        descripcion: this.descriptionN,
+        attributes: this.attributesN,
+    }
+    this.herramientaService
+    .createHerramienta(herramienta)
+    .subscribe({
+      next: (response) => {
+        if (response && response.respuesta) {
             if (this.uc) {
               this.uc.mensaje = '';
             }
-            this.groupIdEdit = this.nameN;
+            this.herramientaIdEdit = this.nombreN; /** Verificar que atributa va aca */
             this.router.navigate([
-              `/main-page/administrarGrupos/editarGrupo?id=${this.nameN}`,
+              `/main-page/herramienta/editarHerramienta?id=${this.nombreN}`,
             ]);
           }
         },
-        error: (e) => {
-          if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_CREAR,
-              e,
-            );
-          }
-        },
-      });
-      */
+      error: (e) => {
+        if (this.uc) {
+          this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
+            Constants.ERR_HERRAMIENTA_CREAR,
+            e,
+          );
+        }
+      },
+    });
+    
   }
 
   /**

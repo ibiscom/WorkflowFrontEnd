@@ -22,17 +22,17 @@ import { Router } from '@angular/router';
   styleUrl: './acciones-herramienta.component.scss',
 })
 /**
- * Componente de acciones para la administración de grupos.
- * Permite navegar a la pantalla de creación de grupos.
+ * Componente de acciones para la administración de herramientas.
+ * Permite navegar a la pantalla de creación de herramientas.
  */
 export class AccionesHerramientaComponent {
   constructor(public router: Router) {}
 
   /**
-   * Navega a la pantalla de creación de grupo.
+   * Navega a la pantalla de creación de herramientas.
    */
   public irACrearHerramienta() {
-    this.router.navigate([`/main-page/herramienta/crearHerramientas`]);
+    this.router.navigate([`/main-page/herramientas/crearHerramienta`]);
   }
 }
 
