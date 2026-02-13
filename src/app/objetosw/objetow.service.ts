@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environment';
+import { ObjetowEntity } from './objetow.entity';
+import { AtributoObjetowEntity } from './atributo-objetow.entity';
 
 @Injectable({
   providedIn: 'root',
@@ -20,150 +22,117 @@ export class ObjetowService {
     private cookieService: CookieService,
   ) {}
 
-  /**
-   * Busca grupos según los filtros proporcionados.
-   * @param groupServerFilter Filtros de búsqueda (usuario, nombre de grupo, supervisor).
-   * @returns Observable con la respuesta y el listado de grupos.
-   */
-  public searchGroups(
-    groupServerFilter: GroupSearchFilterEntity,
-  ): Observable<FsResponseEntity<GroupEntity[]>> {
-    return this.http.get<FsResponseEntity<GroupEntity[]>>(
-      environment.frameSecApiUrl +
-        `/group/getGroups?userName=${groupServerFilter.userName}&groupName=${groupServerFilter.groupName}&supervisor=${groupServerFilter.supervisor}`,
-    );
-  }
 
   /**
-   * Obtiene la información de un grupo específico.
-   * @param userGenerator Usuario que realiza la consulta.
-   * @param groupName Nombre del grupo.
-   * @returns Observable con la respuesta y la entidad de grupo.
-   */
-  public getGroup(
-    userGenerator: string,
-    groupName: string,
-  ): Observable<FsResponseEntity<GroupEntity>> {
-    return this.http.get<FsResponseEntity<GroupEntity>>(
-      environment.frameSecApiUrl +
-        `/group/getGroup?userName=${userGenerator}&groupName=${groupName}`,
-    );
-  }
-
-  /**
-   * Obtiene las operaciones asociadas a un grupo.
-   * @param userGenerator Usuario que realiza la consulta.
-   * @param groupName Nombre del grupo.
-   * @returns Observable con la respuesta y la lista de operaciones.
-   */
-  public getOperationsByGroup(
-    userGenerator: string,
-    groupName: string,
-  ): Observable<FsResponseEntity<string[]>> {
-    return this.http.get<FsResponseEntity<string[]>>(
-      environment.frameSecApiUrl +
-        `/group/getPermissions?userName=${userGenerator}&groupName=${groupName}`,
-    );
-  }
-  /**
-   * Obtiene las operaciones restringidas (no permitidas) de un grupo.
-   * @param userGenerator Usuario que realiza la consulta.
-   * @param groupName Nombre del grupo.
-   * @returns Observable con la respuesta y la lista de restricciones.
-   */
-  public getRestrictedOperationsByGroup(
-    userGenerator: string,
-    groupName: string,
-  ): Observable<FsResponseEntity<string[]>> {
-    return this.http.get<FsResponseEntity<string[]>>(
-      environment.frameSecApiUrl +
-        `/group/getRestrictions?userName=${userGenerator}&groupName=${groupName}`,
-    );
-  }
-
-  /**
-   * Crea un nuevo grupo.
-   * @param group Entidad del grupo a crear.
+   * Crea un nuevo objeto workflow en el sistema.
+   * @param objetow El objeto workflow a crear, con su nombre, descripción y atributos.
    * @returns Observable con la respuesta del servidor.
    */
-  public createGroup(group: GroupEntity): Observable<FsResponseEntity<any>> {
+  public crearObjetoWorkflow(objetow: ObjetowEntity): Observable<FsResponseEntity<any>> {
     let ip: string = this.cookieService.get('ip');
-    group.ip = ip;
     return this.http.put<FsResponseEntity<any>>(
-      environment.frameSecApiUrl + `/group/create`,
-      group,
+      environment.workflowApiUrl + 
+        `/WObject/create`,
+      objetow,
     );
   }
 
   /**
-   * Edita un grupo existente.
-   * @param group Entidad del grupo con los datos a modificar.
+   * Crea un nuevo atributo para un objeto workflow existente en el sistema.
+   * @param atributoObjeto El atributo de objeto workflow a crear, con su nombre, valor, descripción e identificadores.
    * @returns Observable con la respuesta del servidor.
    */
-  public editGroup(group: GroupEntity): Observable<FsResponseEntity<any>> {
+  public crearAtributoObjetoWorkflow(atributoObjeto: AtributoObjetowEntity): Observable<FsResponseEntity<any>> {
     let ip: string = this.cookieService.get('ip');
-    group.ip = ip;
-    return this.http.post<FsResponseEntity<any>>(
-      environment.frameSecApiUrl + `/group/edit`,
-      group,
+    return this.http.put<FsResponseEntity<any>>(
+      environment.workflowApiUrl + 
+        `/WObject/createAttibute`,
+      atributoObjeto,
     );
   }
 
   /**
-   * Agrega una operación/permiso a un grupo.
-   * @param userGenerator Usuario que realiza la acción.
-   * @param groupName Nombre del grupo.
-   * @param permission Operación/permiso a agregar.
+   * Edita un objeto workflow en el sistema.
+   * @param objetow El objeto workflow a modificar, con su nombre, descripción y atributos.
    * @returns Observable con la respuesta del servidor.
    */
-  public addOperationToGroup(
-    userGenerator: string,
-    groupName: string,
-    permission: string,
-  ): Observable<FsResponseEntity<any>> {
+  public editarObjetoWorkflow(objetow: ObjetowEntity): Observable<FsResponseEntity<any>> {
     let ip: string = this.cookieService.get('ip');
     return this.http.post<FsResponseEntity<any>>(
-      environment.frameSecApiUrl +
-        `/group/addPermission?userName=${userGenerator}&groupName=${groupName}&permission=${permission}&ip=${ip}`,
-      {},
+      environment.workflowApiUrl + 
+        `/WObject/edit`,
+      objetow,
     );
   }
 
   /**
-   * Agrega una restricción (operación no permitida) a un grupo.
-   * @param userGenerator Usuario que realiza la acción.
-   * @param groupName Nombre del grupo.
-   * @param operation Operación a restringir.
+   * Edita un nuevo atributo para un objeto workflow existente en el sistema.
+   * @param atributoObjeto El atributo de objeto workflow a crear, con su nombre, valor, descripción e identificadores.
    * @returns Observable con la respuesta del servidor.
    */
-  public removeOperationFromGroup(
-    userGenerator: string,
-    groupName: string,
-    operation: string,
-  ): Observable<FsResponseEntity<any>> {
+  public editarAtributoObjetoWorkflow(atributoObjeto: AtributoObjetowEntity): Observable<FsResponseEntity<any>> {
     let ip: string = this.cookieService.get('ip');
-    return this.http.post<FsResponseEntity<any>>(
-      environment.frameSecApiUrl +
-        `/group/addRestriction?userName=${userGenerator}&groupName=${groupName}&restriction=${operation}&ip=${ip}`,
-      {},
+    return this.http.put<FsResponseEntity<any>>(
+      environment.workflowApiUrl + 
+        `/WObject/editAttibute`,
+      atributoObjeto,
     );
   }
 
   /**
-   * Elimina un grupo del sistema.
-   * @param userGenerator Usuario que realiza la acción.
-   * @param groupName Nombre del grupo a eliminar.
+   * Obtiene un objeto workflow por su nombre de workflow.
+   * @param nombreWorkflow El nombre del workflow al que pertenece el objeto workflow a obtener.
+   * @returns Observable con la respuesta del servidor y el objeto workflow.
+   */
+  public obtenerObjetoWorkflow(nombreWorkflow: string): Observable<FsResponseEntity<ObjetowEntity>> {
+    let ip: string = this.cookieService.get('ip');
+    return this.http.get<FsResponseEntity<ObjetowEntity>>(
+      environment.workflowApiUrl + 
+        `/WObject/getWObject?workflowName=${nombreWorkflow}`,
+    );
+  }
+
+  /**
+   * Obtiene los atributos de un objeto workflow por el nombre del workflow al que pertenecen.
+   * @param nombreWorkflow El nombre del workflow al que pertenecen los atributos de objeto workflow a obtener.
+   * @returns Observable con la respuesta del servidor y la lista de atributos de objeto workflow.
+   */
+  public obtenerAtributosObjetoWorkflow(nombreWorkflow: string): Observable<FsResponseEntity<AtributoObjetowEntity[]>> {
+    let ip: string = this.cookieService.get('ip');
+    return this.http.get<FsResponseEntity<AtributoObjetowEntity[]>>(
+      environment.workflowApiUrl + 
+        `/WObject/getAttributes?workflowName=${nombreWorkflow}`,
+    );
+  }
+
+  /**
+   * Elimina un atributo de un objeto workflow del sistema por su nombre de workflow y nombre de atributo.
+   * @param nombreWorkflow El nombre del workflow al que pertenece el atributo de objeto workflow a eliminar.
+   * @param nombreAtributo El nombre del atributo de objeto workflow a eliminar.
    * @returns Observable con la respuesta del servidor.
    */
-  public deleteGroup(
-    userGenerator: string,
-    groupName: string | undefined,
-  ): Observable<FsResponseEntity<any>> {
+  public eliminarAtributoObjetoWorkflow(nombreWorkflow: string, nombreAtributo: string): Observable<FsResponseEntity<any>> {
     let ip: string = this.cookieService.get('ip');
     return this.http.delete<FsResponseEntity<any>>(
-      environment.frameSecApiUrl +
-        `/group/delete?userName=${userGenerator}&groupName=${groupName}&ip=${ip}`,
+      environment.workflowApiUrl + 
+        `/WObject/deleteAttibute?workflowName=${nombreWorkflow}&attributeName=${nombreAtributo}`,
     );
   }
+
+
+  /**
+   * Elimina un objeto workflow del sistema por su nombre de workflow.
+   * @param nombreWorkflow El nombre del workflow al que pertenece el objeto workflow a eliminar.
+   * @returns Observable con la respuesta del servidor. 
+   */
+  public eliminarObjetoWorkflow(nombreWorkflow: string): Observable<FsResponseEntity<any>> {
+    let ip: string = this.cookieService.get('ip');
+    return this.http.delete<FsResponseEntity<any>>(
+      environment.workflowApiUrl + 
+        `/WObject/delete?workflowName=${nombreWorkflow}`,
+    );
+  }
+
+
 }
 
