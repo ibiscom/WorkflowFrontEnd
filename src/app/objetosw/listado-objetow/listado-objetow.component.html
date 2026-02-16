@@ -6,22 +6,22 @@
 <div class="tabla-card">
   <!-- HEADER -->
   <div class="tabla-header-container">
-    <div class="tabla-titulo">Listado de tareas</div>
+    <div class="tabla-titulo">Listado de atributos del objeto workflow</div>
   </div>
 
   <!-- BODY -->
   <div class="tabla-body">
-
+   @let atributos = parent.objetoW?.attributes;
     <!-- COLUMNA: NOMBRE -->
     <div class="tabla-columna">
       <div class="tabla-col-header">
         <div>Nombre</div>
       </div>
 
-      @for (element of parent.tareas; track element) {
+      @for (element of atributos; track element) {
         <ng-container>
           <div class="tabla-celda">
-            <div (click)="goToEditarObjetow(element)">
+            <div (click)="goToEditarAtributoObjetow(element)">
               {{ element.nombre }}
             </div>
           </div>
@@ -35,10 +35,10 @@
         <div>Identificador negocio</div>
       </div>
 
-      @for (element of parent.tareas; track element) {
+      @for (element of atributos; track element) {
         <ng-container>
           <div class="tabla-celda">
-            <div (click)="goToEditarObjetow(element)">
+            <div (click)="goToEditarAtributoObjetow(element)">
               {{ element.identificadorNegocio }}
             </div>
           </div>
@@ -52,10 +52,10 @@
         <div>Label identificador</div>
       </div>
 
-      @for (element of parent.tareas; track element) {
+      @for (element of atributos; track element) {
         <ng-container>
           <div class="tabla-celda">
-            <div (click)="goToEditarObjetow(element)">
+            <div (click)="goToEditarAtributoObjetow(element)">
               {{ element.labelId }}
             </div>
           </div>
@@ -69,16 +69,18 @@
         <div>Label identificador</div>
       </div>
 
-      @for (element of parent.tareas; track element) {
+      @for (element of atributos; track element) {
         <ng-container>
           <div class="tabla-celda">
-            <div (click)="goToEditarObjetow(element)">
+            <div (click)="goToEditarAtributoObjetow(element)">
               {{ element.descripcion }}
             </div>
           </div>
         </ng-container>
       }
     </div>
+
+  </div>
 
 
   <!-- FOOTER

@@ -3,10 +3,8 @@ import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
 import { LoginEntity } from '../login/login.entity';
-import { GroupEntity } from '../entities/groups/group.entity';
 import { MessageUtil } from '../utils/message.util';
 import { Constants } from '../utils/constants';
-import { GroupSearchFilterEntity } from '../entities/groups/group-search-filter.entity';
 import { CompanyEntity } from '../entities/companies/company.entity';
 import { CompaniasService } from '../companias/companias.service';
 import { AccionesObjetowComponent } from './acciones-objetow/acciones-objetow.component';
@@ -23,7 +21,8 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class ObjetowComponent {
   public loggedUser: LoginEntity | undefined;
-  public tareas: ObjetowEntity[] = [];
+  public objetoW: ObjetowEntity | undefined;
+  public companias: CompanyEntity[] = [];
   public mensaje: string = '';
   public workflowActual: string = '';
 
@@ -32,30 +31,40 @@ export class ObjetowComponent {
     private objetowComponentInstanceService: ObjetowComponentInstanceService,
     private loginService: LoginService,
     public router: Router,
-    private cookieService: CookieService,
+    public cookieService: CookieService,
   ) {}
 
   ngOnInit(): void {
     console.log('ENTRO ngOnInit');
     this.objetowComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-   console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
     if(this.hayWorkflowActual()) {
-      console.log('SI hay workflow → voy a buscar');
+      this.buscarObjetoWorkflow();
     }
-    else {
-    console.log('NO hay workflow');
-         }
+  }
 
-      }
-
-   public hayWorkflowActual(): boolean {
+  public hayWorkflowActual(): boolean {
     this.workflowActual = this.cookieService.get("workflowActual");
-    if (this.workflowActual === '') { 
+    if (!this.workflowActual || this.workflowActual === '') { 
       this.mensaje = Constants.ERR_WORKFLOW_NO_SELECCIONADO;
       return false;
     }
     return true;
+  }
+
+  public buscarObjetoWorkflow(): void {
+    this.objetowService.obtenerObjetoWorkflow(this.workflowActual).subscribe({
+      next: (response) => {
+        this.objetoW = response.respuesta;
+        console.log('Objeto workflow obtenido:', this.objetoW);
+      },
+      error: (err) => {
+        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          Constants.ERR_BUSCAR_OBJETOW,
+          err,
+        );
+      },
+    });
   }
 }
 

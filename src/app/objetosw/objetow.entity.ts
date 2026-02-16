@@ -1,19 +1,15 @@
+import { AtributoObjetowEntity } from "./atributo-objetow.entity";
+
 /**
- * Entidad que representa un grupo en el sistema.
+ * Entidad que representa un objeto workflow en el sistema.
  */
 export interface ObjetowEntity {
-  name: string;
- /** Nombre del workflow */
+  /** Nombre del workflow */
   nombreWorkflow: string;
-  /** Nombre de la dependencia */
-  nombre: string;
-  /** Nombre de la tarea cabeza */
-  valor: string;
-  /** Descripción de la dependencia */
+  /** Nombre del objeto workflow */
+  nombre:string;
+  /** descripción del objeto workflow */
   descripcion: string;
-  /** Identificador de negocio de la dependencia */
-  identificadorNegocio: string;
-  /** Primitiva asociada a la dependencia */
-  labelId: string;
+  /** atributos del objeto workflow */
+  attributes: AtributoObjetowEntity[];
 }
-

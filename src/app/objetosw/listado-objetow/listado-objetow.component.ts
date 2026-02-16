@@ -3,6 +3,7 @@ import { ObjetowComponent } from '../objetow.component';
 import { FiltrosBusquedaObjetowComponent } from '../filtros-busqueda-objetow/filtros-busqueda-objetow.component';
 import { MatTableModule } from '@angular/material/table';
 import { ObjetowEntity } from '../objetow.entity';
+import { AtributoObjetowEntity } from '../atributo-objetow.entity';
 
 @Component({
   selector: 'ibpm-listado-objetow',
@@ -25,15 +26,32 @@ export class ListadoObjetowComponent {
     'Descripcion',
   ];
 
-  constructor(public parent: ObjetowComponent) {}
+  constructor(public parent: ObjetowComponent) {
+  }
 
   /**
-   * Navega a la pantalla de edición del grupo seleccionado.
+   * Navega a la pantalla de edición del atributo de objeto workflow seleccionado.
    */
-  public goToEditarObjetow(objetow: ObjetowEntity) {
+  public goToEditarAtributoObjetow(atributo: AtributoObjetowEntity) {
     this.parent.router.navigate([
-      `/main-page/Objetow/editarObjetow/${objetow.name}`,
+      `/main-page/objetow/crearObjetow/${atributo.nombre}`,
     ]);
+  }
+
+   // 🔹 Ir a página anterior
+  public previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.parent.buscarObjetoWorkflow(); // ajusta si tu método se llama diferente
+    }
+  }
+
+  // 🔹 Ir a página siguiente
+  public nextPage(): void {
+    if (this.currentPage < this.numberOfPages) {
+      this.currentPage++;
+      this.parent.buscarObjetoWorkflow(); // ajusta si tu método se llama diferente
+    }
   }
 }
 

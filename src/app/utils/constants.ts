@@ -22,6 +22,10 @@ export class Constants {
   public static  ERR_OBTENIENDO_ESTADO_DEPENDENCIA: string =
   'No se pudo obtener el estado de la dependencia';
 
+  // Errores Objetos Workflow
+    public static ERR_BUSCAR_OBJETOW: string = 
+      'Error al buscar objeto workflow';
+
   // Errores Herramientas
   public static  ERR_HERRAMIENTA_CREAR: string =
     'No se pudo crear la herramienta';
@@ -229,5 +233,6 @@ export class Constants {
 
   public static EXCEL_MIME_TYPE: string =
     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+
     
 }
