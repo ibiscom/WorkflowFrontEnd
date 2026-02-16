@@ -8,19 +8,21 @@ import { UserEntity } from '../../entities/users/user.entity';
 import { MessageUtil } from '../../utils/message.util';
 import { Constants } from '../../utils/constants';
 import { firstValueFrom } from 'rxjs';
-import { GroupEntity } from '../../entities/groups/group.entity';
+import { TareaEntity } from '../tarea.entity';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { CompaniasService } from '../../companias/companias.service';
-import { UsuariosService } from '../../usuarios/usuarios.service';
-import { UserSearchFilterEntity } from '../../entities/users/user-search-filter.entity';
 import { TareasComponentInstanceService } from '../tareas-component-instance.service';
 import { TareasService } from '../tareas.service';
 import { TareasComponent } from '../tareas.component';
+import { CookieService } from 'ngx-cookie-service';
+import { TipoTareaEntity } from '../tipo-tarea.entity';
+import { HerramientaTareaEntity } from '../herramienta-tarea.entity';
+import { RolTareaEntity } from '../rol-tarea.entity';
+import { MetodoAsignacionTareaEntity } from '../metodo-asignacion-tarea.entity';
 
 @Component({
   selector: 'ibpm-crear-tareas',
@@ -41,29 +43,36 @@ import { TareasComponent } from '../tareas.component';
  * Permite seleccionar compañía, supervisor y administrar permisos/restricciones.
  */
 export class CrearTareasComponent {
+  public metodosAsignacionList: any[] = [];
+  public herramientaN?: HerramientaTareaEntity;
+  public rolesList: RolTareaEntity[] = [];
+  public metodoAsignacionN?: MetodoAsignacionTareaEntity;
+  public nombreMetodoAsignacionN: string = '';
+  public rolN?: RolTareaEntity;
+  public nombreRolN: string = '';
+  public herramientasList: HerramientaTareaEntity[] = [];
+  public numeroTareaN: string = '';
+  public nombreTareaN: string = '';
+  public nombreLargoN: string = '';
+  public estadoObjetoN: string = '';
+  public modeloCarpetaN: string = '';
+  public descripcionN: string = '';
+  public tipoN?: TipoTareaEntity;
+  public nombreTipoN: string = '';
+  public nombreHerramientaN: string = '';
   public uc?: TareasComponent;
   public loggedUser?: LoginEntity;
-  public nameN: string = '';
-  public descriptionN: string = '';
-  public companyN: string = '';
-  public companyObjectN?: CompanyEntity;
-  public supervisorN: string = '';
-  public operationE: string = '';
-  public operationsList: string[] = [];
-  public restrictedOperationsList: string[] = [];
-  public companiesList: CompanyEntity[] = [];
-  public supervisorsList: UserEntity[] = [];
   public tareasIdEdit?: string;
-  public supervisorObjectN?: UserEntity;
+  public workflowActual: string = '';
+  public tiposList: TipoTareaEntity[] = [];
 
   public constructor(
     private tareasService: TareasService,
-    private companiasService: CompaniasService,
-    private usuariosService: UsuariosService,
     private loginService: LoginService,
     private tareasComponentInstanceService: TareasComponentInstanceService,
     private router: Router,
     private route: ActivatedRoute,
+    private cookieService: CookieService,
   ) {
     this.loggedUser = this.loginService.getLoggedUser();
     this.uc = this.tareasComponentInstanceService.getInstance();
@@ -76,208 +85,176 @@ export class CrearTareasComponent {
     if (this.uc) {
       this.uc.mensaje = '';
     }
-    this.getCompaniesList();
-    this.getSupervisorsList();
+    this.workflowActual = this.cookieService.get("workflowActual");
     const id = this.route.snapshot.paramMap.get('id');
     console.log('Edit Mode On. Group Id:', id);
+    await this.getTiposTareaList();
+    await this.getHerramientasTareaList();
+    await this.getRolesList();
+    await this.getMetodosAsignacionList();
     if (id) {
       this.tareasIdEdit = id;
       await this.fillEditFields();
-      this.getOperationsList();
-      this.getRestrictedOperationsList();
+
     } else {
       this.tareasIdEdit = undefined;
     }
   }
 
-  /**
-   * Carga la lista de supervisores disponibles.
-   */
-  public getSupervisorsList() {
-    let filter: UserSearchFilterEntity = {
-      userName: this.loggedUser?.user_name ?? '',
-      status: 'Activo',
-    };
-    this.usuariosService.searchUsers(filter).subscribe({
-      next: (response) => {
-        if (response && response.respuesta) {
-          this.supervisorsList = response.respuesta as UserEntity[];
-        }
-      },
-      error: (e) => {
-        if (this.uc) {
-          this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-            Constants.ERR_GRUPO_SUPERVISORES,
-            e,
-          );
-        }
-      },
-    });
-  }
+  
 
   /**
-   * Carga la lista de compañías disponibles para selección.
-   */
-  public getCompaniesList() {
-    this.companiesList = [];
-    this.companiasService
-      .getAllCompanies(this.loggedUser?.user_name ?? '')
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
-            this.companiesList = response.respuesta as CompanyEntity[];
-          }
-        },
-        error: (e) => {
-          if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_COMPANIAS,
-              e,
-            );
-          }
-        },
-      });
-  }
-
-  /**
-   * Llena los campos del formulario con la información del grupo en edición.
+   * Llena los campos del formulario con la información de la tarea en edición.
    */
   public async fillEditFields(): Promise<void> {
-    /*
+   
     try {
       const response = await firstValueFrom(
-        this.gruposService.getGroup(
+        this.tareasService.getTarea(
+          this.workflowActual ?? '',
+          this.tareasIdEdit ?? '',
           this.loggedUser?.user_name ?? '',
-          this.groupIdEdit ?? '',
         ),
       );
       if (response?.respuesta) {
-        const group = response.respuesta as GroupEntity;
-        this.nameN = group.name ?? '';
-        this.descriptionN = group.description ?? '';
-        this.companyN = group.company ?? '';
-        this.companyObjectN = this.companiesList.find(
-          (c) => c.name === this.companyN,
-        );
-        this.supervisorN = group.supervisor ?? '';
-        this.supervisorObjectN = this.supervisorsList.find(
-          (s) => s.name === this.supervisorN,
-        );
+        const tarea = response.respuesta as TareaEntity;
+        this.numeroTareaN = tarea.numero ? tarea.numero.toString() : '';
+        this.nombreTareaN = tarea.nombre ?? '';
+        this.nombreLargoN = tarea.nombreLargo ?? '';
+        this.estadoObjetoN = tarea.estadoTarea ?? '';
+        this.modeloCarpetaN = tarea.modeloCarpeta ?? '';
+        this.descripcionN = tarea.descripcion ?? '';
+        this.nombreTipoN = tarea.tipo ?? '';
+        this.tipoN = this.tiposList.find(t => t.code === this.nombreTipoN) ?? undefined;
+        this.nombreHerramientaN = tarea.herramienta ?? '';
+        this.herramientaN = this.herramientasList.find(h => h.code === this.nombreHerramientaN) ?? undefined;
+        this.nombreRolN = tarea.rol ?? '';
+        this.rolN = this.rolesList.find(r => r.code === this.nombreRolN) ?? undefined;
+        this.nombreMetodoAsignacionN = tarea.metodoAsignacion ?? '';
+        this.metodoAsignacionN = this.metodosAsignacionList.find(m => m.code === this.nombreMetodoAsignacionN) ?? undefined;
       }
     } catch (e) {
       if (this.uc) {
         this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-          Constants.ERR_GRUPO_DATOS,
+          Constants.ERR_TAREA_DATOS,
           e,
         );
       }
     }
-    */
   }
 
   /**
-   * Consulta las operaciones asociadas al grupo.
+   * Consulta los tipos de tarea.
    */
-  public getOperationsList() {
-    /*
-    if (!this.editMode()) {
-      this.operationsList = [];
-      return;
-    }
-
-    this.operationsList = [];
+  public async getTiposTareaList() {
+    this.tiposList = [];
 
     try {
-      this.gruposService
-        .getOperationsByGroup(
-          this.loggedUser?.user_name ?? '',
-          this.groupIdEdit ?? '',
-        )
-        .subscribe({
-          next: (response) => {
-            if (response && response.respuesta) {
-              const ops = response.respuesta as string[];
-              this.operationsList.push(...ops);
-            }
-          },
-          error: (e) => {
-            if (this.uc) {
-              if (
-                !String(e.error.mensaje).includes(
-                  'no tiene operaciones asociadas',
-                )
-              ) {
-                this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-                  Constants.ERR_GRUPO_OPERACIONES,
-                  e,
-                );
-              }
-            }
-          },
-        });
+      const response = await firstValueFrom(
+      this.tareasService
+        .getTipos()
+      );
+
+      if (response && response.respuesta) {
+        const ops = response.respuesta as TipoTareaEntity[];
+        this.tiposList.push(...ops);
+      }
     } catch (error: any) {
       if (this.uc) {
         this.uc.mensaje =
           error.status === 400
             ? ''
             : MessageUtil.buildErrorMessageFsResponse(
-                Constants.ERR_GRUPO_OPERACIONES_ENCONTRAR,
+                Constants.ERR_TIPO_TAREA_ENCONTRAR,
                 error,
               );
       }
     }
-      */
+      
   }
 
   /**
-   * Consulta las operaciones restringidas (no permitidas) del grupo.
+   * Consulta las herramientas de tarea.
    */
-  public getRestrictedOperationsList() {
-    /*
-    if (!this.editMode()) {
-      this.restrictedOperationsList = [];
-      return;
-    }
-
-    this.restrictedOperationsList = [];
+  public async getHerramientasTareaList() {
+    this.herramientasList = [];
 
     try {
-      this.gruposService
-        .getRestrictedOperationsByGroup(
-          this.loggedUser?.user_name ?? '',
-          this.groupIdEdit ?? '',
-        )
-        .subscribe({
-          next: (response) => {
-            if (response && response.respuesta) {
-              const ops = response.respuesta as string[];
-              this.restrictedOperationsList.push(...ops);
-            }
-          },
-          error: (e) => {
-            if (this.uc) {
-              this.uc.mensaje =
-                e.status === 400
-                  ? ''
-                  : MessageUtil.buildErrorMessageFsResponse(
-                      Constants.ERR_GRUPO_OPERACIONES_RESTRINGIDAS,
-                      e,
-                    );
-            }
-          },
-        });
+      const response = await firstValueFrom(
+        this.tareasService
+        .getHerramientas(this.workflowActual ?? ''));
+
+        if (response && response.respuesta) {
+          const ops = response.respuesta as HerramientaTareaEntity[];
+            this.herramientasList.push(...ops);
+        }
     } catch (error: any) {
       if (this.uc) {
         this.uc.mensaje =
           error.status === 400
             ? ''
             : MessageUtil.buildErrorMessageFsResponse(
-                Constants.ERR_GRUPO_OPERACIONES_RESTRINGIDAS,
+                Constants.ERR_HERRAMIENTA_TAREA_ENCONTRAR,
                 error,
               );
       }
     }
-      */
+  }
+
+  /**
+   * Consulta los roles de tarea.
+   */
+  public async getRolesList() {
+    this.rolesList = [];
+
+    try {
+      const response = await firstValueFrom(
+        this.tareasService
+        .getRoles());
+
+        if (response && response.respuesta) {
+          const ops = response.respuesta as RolTareaEntity[];
+            this.rolesList.push(...ops);
+        }
+    } catch (error: any) {
+      if (this.uc) {
+        this.uc.mensaje =
+          error.status === 400
+            ? ''
+            : MessageUtil.buildErrorMessageFsResponse(
+                Constants.ERR_ROL_TAREA_ENCONTRAR,
+                error,
+              );
+      }
+    }
+  }
+
+  /**
+   * Consulta los métodos de asignación de tarea.
+   */
+  public async getMetodosAsignacionList() {
+    this.metodosAsignacionList = [];
+
+    try {
+      const response = await firstValueFrom(
+        this.tareasService
+        .getMetodosAsignacion());
+
+        if (response && response.respuesta) {
+          const ops = response.respuesta as MetodoAsignacionTareaEntity[];
+            this.metodosAsignacionList.push(...ops);
+        }
+    } catch (error: any) {
+      if (this.uc) {
+        this.uc.mensaje =
+          error.status === 400
+            ? ''
+            : MessageUtil.buildErrorMessageFsResponse(
+                Constants.ERR_METODO_ASIGNACION_TAREA_ENCONTRAR,
+                error,
+              );
+      }
+    }
   }
 
   /**
@@ -291,8 +268,8 @@ export class CrearTareasComponent {
    * Maneja el cambio de compañía seleccionada.
    */
   public onCompanyChange(event: MatSelectChange<CompanyEntity>) {
-    this.companyObjectN = event.value;
-    this.companyN = event.value?.name ?? '';
+    /**this.companyObjectN = event.value;
+    this.companyN = event.value?.name ?? '';*/
   }
 
   /**
@@ -492,8 +469,8 @@ export class CrearTareasComponent {
    * Maneja el cambio de supervisor seleccionado.
    */
   public onSupervisorChange(event: MatSelectChange<UserEntity>) {
-    this.supervisorObjectN = event.value;
-    this.supervisorN = event.value?.name ?? '';
+    /*this.supervisorObjectN = event.value;
+    this.supervisorN = event.value?.name ?? '';*/
   }
 
 
@@ -534,4 +511,50 @@ export class CrearTareasComponent {
     }
       */
   }
+
+  public onMetodoAsignacionChange($event: any) {
+    let metodoAsignacionSeleccionado = $event as MetodoAsignacionTareaEntity;
+    this.metodoAsignacionN = metodoAsignacionSeleccionado;
+    this.nombreMetodoAsignacionN = metodoAsignacionSeleccionado.code ?? '';
+  }
+
+  public onRolChange($event: any) {
+    let rolSeleccionado = $event as RolTareaEntity;
+    this.rolN = rolSeleccionado;
+    this.nombreRolN = rolSeleccionado.code ?? '';
+  }
+
+  public onHerramientaChange($event: any) {
+    let herramientaSeleccionada = $event as HerramientaTareaEntity;
+    this.herramientaN = herramientaSeleccionada;
+    this.nombreHerramientaN = herramientaSeleccionada?.code ?? '';
+  } 
+
+  public onTipoChange(event: any) {
+    let tipoSeleccionado = event as TipoTareaEntity;
+    this.tipoN = tipoSeleccionado;
+    this.nombreTipoN = tipoSeleccionado?.code ?? '';
+  }   
+
+  public selectOpcion(_t155: any) {
+    throw new Error('Method not implemented.');
+  }
+
+  
+  public toggleRequerido(_t178: any) {  
+    throw new Error('Method not implemented.');
+  }
+  
+  public retirar() {
+throw new Error('Method not implemented.');
+  }
+
+  public asignar() {
+    throw new Error('Method not implemented.');
+  }
+
+  public toggleDropdown() {
+    throw new Error('Method not implemented.');
+  }
+
 }

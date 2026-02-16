@@ -51,7 +51,31 @@ export class Constants {
     public static ERR_OBTENIENDO_RESPONSABLESS: string = 'Error al obtener los responsables';
 
 
-
+//Errores Tareas
+  public static ERR_TAREA_DATOS: string =
+    'No se pudo obtener los datos de la tarea';
+  public static ERR_TAREA_CREAR: string =
+    'No se pudo crear la tarea';
+  public static ERR_TAREA_EDITAR: string =
+    'No se pudo editar la tarea';
+  public static ERR_TAREA_ELIMINAR: string =
+    'No se pudo eliminar la tarea'
+  public static ERR_TIPO_TAREA: string =
+    'No se pudo obtener los tipos de tarea';
+  public static ERR_TIPO_TAREA_ENCONTRAR: string =
+    'No se pudo encontrar los tipos de tarea';
+  public static ERR_HERRAMIENTA_TAREA: string =
+    'No se pudo obtener las herramientas de tarea';
+  public static ERR_HERRAMIENTA_TAREA_ENCONTRAR: string =
+    'No se pudo encontrar las herramientas de tarea';
+  public static ERR_ROL_TAREA: string =
+    'No se pudo obtener los roles de tarea'
+  public static ERR_ROL_TAREA_ENCONTRAR: string =
+    'No se pudo encontrar los roles de tarea';
+  public static ERR_METODO_ASIGNACION_TAREA: string = 
+  'No se pudo obtener los métodos de asignación de tarea';
+  public static ERR_METODO_ASIGNACION_TAREA_ENCONTRAR: string = 
+  'No se pudo encontrar los métodos de asignación de tarea';
 
 
 

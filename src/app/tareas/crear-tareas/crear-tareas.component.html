@@ -1,5 +1,6 @@
+ <!-- <form #form="ngForm">
 <div class="cont-nuevo-workflow">
-  <form #form="ngForm">
+
 
     <!-- TARJETA DATOS DE LA TAREA -->
     <div class="card-nuevo-workflow-general">
@@ -13,110 +14,109 @@
 
           <!-- NUMERO -->
           <div class="campo-texto">
-            <label for="name">Número</label>
+            <label for="numeroTarea">Número</label>
             <input
-              id="name"
-              name="name"
+              id="numeroTarea"
+              name="numeroTarea"
               type="text"
               placeholder="Inserte número de la tarea"
-              [(ngModel)]="nameN"
+              [(ngModel)]="numeroTareaN"
               required
-              #name="ngModel"
+              #numeroTarea="ngModel"
             />
-            @if (name.errors?.['required']) {
+            @if (numeroTarea.errors?.['required']) {
               <div class="error">El número de la tarea es obligatorio</div>
             }
           </div>
 
           <!-- NOMBRE -->
           <div class="campo-texto">
-            <label for="name">Nombre</label>
+            <label for="nombreTarea">Nombre</label>
             <input
-              id="name"
-              name="name"
+              id="nombreTarea"
+              name="nombreTarea"
               type="text"
               placeholder="Inserte nombre de la tarea"
-              [(ngModel)]="nameN"
+              [(ngModel)]="nombreTareaN"
               required
-              #name="ngModel"
+              #nombreTarea="ngModel"
             />
-            @if (name.errors?.['required']) {
+            @if (nombreTarea.errors?.['required']) {
               <div class="error">El nombre de la tarea es obligatorio.</div>
             }
           </div>
 
           <!-- NOMBRE LARGO -->
           <div class="campo-texto">
-            <label for="description">Nombre largo</label>
+            <label for="nombreLargo">Nombre largo</label>
             <input
-              id="description"
-              name="description"
+              id="nombreLargo"
+              name="nombreLargo"
               type="text"
               placeholder="Inserte nombre largo"
-              [(ngModel)]="descriptionN"
+              [(ngModel)]="nombreLargoN"
               required
-              #description="ngModel"
+              #nombreLargo="ngModel"
             />
           </div>
 
           <!-- ESTADO DEL OBJETO -->
           <div class="campo-texto">
-            <label for="description">Estado del objeto</label>
+            <label for="estadoObjeto">Estado del objeto</label>
             <input
-              id="description"
-              name="description"
+              id="estadoObjeto"
+              name="estadoObjeto"
               type="text"
-              placeholder="Inserte descripcion"
-              [(ngModel)]="descriptionN"
+              placeholder="Inserte estado del objeto"
+              [(ngModel)]="estadoObjetoN"
               required
-              #description="ngModel"
+              #estadoObjeto="ngModel"
             />
           </div>
 
           <!-- MODELO DE LA CARPETA -->
           <div class="campo-texto">
-            <label for="description">Modelo de la carpeta</label>
+            <label for="modeloCarpeta">Modelo de la carpeta</label>
             <input
-              id="description"
-              name="description"
+              id="modeloCarpeta"
+              name="modeloCarpeta"
               type="text"
-              placeholder="Inserte descripcion"
-              [(ngModel)]="descriptionN"
+              placeholder="Inserte modelo de la carpeta"
+              [(ngModel)]="modeloCarpetaN"
               required
-              #description="ngModel"
+              #modeloCarpeta="ngModel"
             />
           </div>
 
           <!-- DESCRIPCIÓN -->
           <div class="campo-texto">
-            <label for="description">Breve descripcion</label>
+            <label for="descripcion">Breve descripción</label>
             <input
-              id="description"
-              name="description"
+              id="descripcion"
+              name="descripcion"
               type="text"
-              placeholder="Inserte descripcion"
-              [(ngModel)]="descriptionN"
+              placeholder="Inserte descripción"
+              [(ngModel)]="descripcionN"
               required
-              #description="ngModel"
+              #descripcion="ngModel"
             />
           </div>
 
           <!-- TIPO -->
           <div class="campo-lista">
-            <label for="company">Tipo</label>
+            <label for="tipo">Tipo</label>
             <select
-              id="company"
-              name="company"
-              [(ngModel)]="companyObjectN"
+              id="tipo"
+              name="tipo"
+              [(ngModel)]="tipoN"
               required
-              #company="ngModel"
-              (ngModelChange)="onCompanyChange($event)"
+              #tipo="ngModel"
+              (ngModelChange)="onTipoChange($event)"
             >
-              <option value="">Seleccione una opción</option>
-
-              @for (company of companiesList; track company) {
-                <option [ngValue]="company">
-                  {{ company.largeName }}
+              <option>Seleccione una opción</option>
+              @for (tipo of tiposList; track tipo) {
+                <option [ngValue]="tipo">
+                  {{ tipo.code }}
                 </option>
               }
             </select>
@@ -124,20 +124,20 @@
 
           <!-- HERRAMIENTA -->
           <div class="campo-lista">
-            <label for="company">Herramienta</label>
+            <label for="herramienta">Herramienta</label>
             <select
-              id="company"
-              name="company"
-              [(ngModel)]="companyObjectN"
+              id="herramienta"
+              name="herramienta"
+              [(ngModel)]="herramientaN"
               required
-              #company="ngModel"
-              (ngModelChange)="onCompanyChange($event)"
+              #herramienta="ngModel"
+              (ngModelChange)="onHerramientaChange($event)"
             >
               <option value="">Seleccione una opción</option>
 
-              @for (company of companiesList; track company) {
-                <option [ngValue]="company">
-                  {{ company.largeName }}
+              @for (herramienta of herramientasList; track herramienta) {
+                <option [ngValue]="herramienta">
+                  {{ herramienta.code }}
                 </option>
               }
             </select>
@@ -145,20 +145,20 @@
 
           <!-- ROL QUE REALIZA LA TAREA -->
           <div class="campo-lista">
-            <label for="company">Rol que realiza la tarea</label>
+            <label for="rol">Rol que realiza la tarea</label>
             <select
-              id="company"
-              name="company"
-              [(ngModel)]="companyObjectN"
+              id="rol"
+              name="rol"
+              [(ngModel)]="rolN"
               required
-              #company="ngModel"
-              (ngModelChange)="onCompanyChange($event)"
+              #rol="ngModel"
+              (ngModelChange)="onRolChange($event)"
             >
               <option value="">Seleccione una opción</option>
 
-              @for (company of companiesList; track company) {
-                <option [ngValue]="company">
-                  {{ company.largeName }}
+              @for (rol of rolesList; track rol) {
+                <option [ngValue]="rol">
+                  {{ rol.code }}
                 </option>
               }
             </select>
@@ -166,20 +166,20 @@
 
           <!-- METÓDO DE ASIGNACIÓN UTILIZADO -->
           <div class="campo-lista">
-            <label for="company">Método de asignación utilizado</label>
+            <label for="metodoAsignacion">Método de asignación utilizado</label>
             <select
-              id="company"
-              name="company"
-              [(ngModel)]="companyObjectN"
+              id="metodoAsignacion"
+              name="metodoAsignacion"
+              [(ngModel)]="metodoAsignacionN"
               required
-              #company="ngModel"
-              (ngModelChange)="onCompanyChange($event)"
+              #metodoAsignacion="ngModel"
+              (ngModelChange)="onMetodoAsignacionChange($event)"
             >
               <option value="">Seleccione una opción</option>
 
-              @for (company of companiesList; track company) {
-                <option [ngValue]="company">
-                  {{ company.largeName }}
+              @for (metodoAsignacion of metodosAsignacionList; track metodoAsignacion) {
+                <option [ngValue]="metodoAsignacion">
+                  {{ metodoAsignacion.code }}
                 </option>
               }
             </select>
@@ -188,46 +188,45 @@
 
         <!-- PARTE DE SELECCIONAR SERIES, TIPOS DE DOCUMENTO-->
         <div class="serie-container"> 
+         <div class="serie-container">
+          <div class="serie-content">
+            <!-- Header -->
+            <div class="serie-header">
+              <span class="serie-title">Serie</span>
+            </div>
 
-      <div class="serie-container">
-  <div class="serie-content">
-    <!-- Header -->
-    <div class="serie-header">
-      <span class="serie-title">Serie</span>
-    </div>
+            <!-- Selector -->
+            <div class="serie-body">
+              <div class="dropdown">
+                <div class="dropdown-box" (click)="toggleDropdown()">
+                  <div class="dropdown-text">
+                    Acciones de grupo
+                  </div>
 
-    <!-- Selector -->
-    <div class="serie-body">
-      <div class="dropdown">
-        <div class="dropdown-box" (click)="toggleDropdown()">
-          <div class="dropdown-text">
-            Acciones de grupo
-          </div>
+                  <div class="dropdown-icon">
+                    <span></span>
+                  </div>
+                </div>
 
-          <div class="dropdown-icon">
-            <span></span>
+                <div class="dropdown-divider"></div>
+
+                <!-- Ejemplo de opciones -->
+                <div
+                  class="dropdown-options"
+                  *ngIf="dropdownOpen"
+                >
+                  <div
+                    class="dropdown-option"
+                    *ngFor="let opcion of opciones"
+                    (click)="selectOpcion(opcion)"
+                  >
+                    {{ opcion }}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div class="dropdown-divider"></div>
-
-        <!-- Ejemplo de opciones -->
-        <div
-          class="dropdown-options"
-          *ngIf="dropdownOpen"
-        >
-          <div
-            class="dropdown-option"
-            *ngFor="let opcion of opciones"
-            (click)="selectOpcion(opcion)"
-          >
-            {{ opcion }}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 <div class="card">
@@ -298,11 +297,11 @@
     <div class="assigned-actions">
       <span class="required">Requerido</span>
 
-      <div
+      <!--<div
         class="switch"
         [ngClass]="item.requerido ? 'on' : 'off'"
         (click)="toggleRequerido(item)"
-      ></div>
+      ></div>-->
     </div>
   </div>
 </div>
@@ -333,6 +332,6 @@
     </div>
     </div>
     </div>
-  </form>
 </div>
+<!--</form>-->
 

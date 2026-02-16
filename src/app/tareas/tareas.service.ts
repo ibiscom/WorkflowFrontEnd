@@ -6,8 +6,12 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environment';
-import { TareasEntity } from './tareas.entity';
+import { TareaEntity } from './tarea.entity';
 import { TareasFilterEntity } from './TareasFilterEntity';
+import { RolTareaEntity } from './rol-tarea.entity';
+import { HerramientaTareaEntity } from './herramienta-tarea.entity';
+import { TipoTareaEntity } from './tipo-tarea.entity';
+import { MetodoAsignacionTareaEntity } from './metodo-asignacion-tarea.entity';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +31,7 @@ export class TareasService {
        * @param tarea La información de la tarea a crear.
        * @returns 
        */
-      public createTarea(tarea: TareasEntity): Observable<FsResponseEntity<any>> {
+      public createTarea(tarea: TareaEntity): Observable<FsResponseEntity<any>> {
           let ip: string = this.cookieService.get('ip');
           return this.http.put<FsResponseEntity<any>>(
             environment.workflowApiUrl +
@@ -56,7 +60,7 @@ export class TareasService {
        * @param tarea La información de la tarea a modificar.
        * @returns 
        */
-      public editTareas(tarea: TareasEntity): Observable<FsResponseEntity<any>> {
+      public editTareas(tarea: TareaEntity): Observable<FsResponseEntity<any>> {
           let ip: string = this.cookieService.get('ip');
           return this.http.post<FsResponseEntity<any>>(
             environment.workflowApiUrl +
@@ -66,14 +70,16 @@ export class TareasService {
     
       /**
        * Obtiene la información de una tarea existente.
-       * @param tareaName La información de la tarea a consultar.
+       * @param workflowName El nombre del workflow al que pertenece la tarea.
+       * @param taskName El nombre de la tarea a consultar.
+       * @param userName El nombre del usuario que realiza la consulta.
        * @returns 
        */
-      public getTarea(tareaName: string): Observable<FsResponseEntity<any>> {
+      public getTarea(workflowName: string, taskName: string, userName: string): Observable<FsResponseEntity<any>> {
           let ip: string = this.cookieService.get('ip');
           return this.http.get<FsResponseEntity<any>>(
             environment.workflowApiUrl +
-              `/task/getTask?taskName=${tareaName}`
+              `/task/getTask?workflowName=${workflowName}&taskName=${taskName}&userName=${userName}`
           );
       }
     
@@ -81,9 +87,9 @@ export class TareasService {
        * Obtiene el listado de los tipos que puede tener una tarea.
        * @returns 
        */
-      public getTipos(): Observable<FsResponseEntity<any>> {
+      public getTipos(): Observable<FsResponseEntity<TipoTareaEntity[]>> {
           let ip: string = this.cookieService.get('ip');
-          return this.http.get<FsResponseEntity<any>>(
+          return this.http.get<FsResponseEntity<TipoTareaEntity[]>>(
             environment.workflowApiUrl +
               `/task/getTypes`);
       }
@@ -93,25 +99,24 @@ export class TareasService {
    * @param filtros la informacion del workflow seleccionado Los filtros para la búsqueda de herramientas.
    * @returns 
    */
-  public getHerramientas(workflowName: string): Observable<FsResponseEntity<any>> {
+  public getHerramientas(workflowName: string): Observable<FsResponseEntity<HerramientaTareaEntity[]>> {
       let ip: string = this.cookieService.get('ip');
-      return this.http.get<FsResponseEntity<any>>(
+      return this.http.get<FsResponseEntity<HerramientaTareaEntity[]>>(
         environment.workflowApiUrl +
-          `/Task/getTools?workflowName=${workflowName}`
+          `/task/getTools?workflowName=${workflowName}`
       );
   }
     
 
-        /**
-   * Obtiene el listado de herramientas de un workflow seleccionado
-   * @param filtros la informacion del workflow seleccionado Los filtros para la búsqueda de herramientas.
+  /**
+   * Obtiene el listado de roles de tarea.
    * @returns 
    */
-  public getRoles(workflowName: string): Observable<FsResponseEntity<any>> {
+  public getRoles(): Observable<FsResponseEntity<RolTareaEntity[]>> {
       let ip: string = this.cookieService.get('ip');
-      return this.http.get<FsResponseEntity<any>>(
+      return this.http.get<FsResponseEntity<RolTareaEntity[]>>(
         environment.workflowApiUrl +
-          `/Task/getRoles?workflowName=${workflowName}`
+          `/task/getRoles`
       );
   }
       /**
@@ -125,6 +130,19 @@ export class TareasService {
             environment.workflowApiUrl +
               `/task/delete?taskName=${tareaName}`);
       }
-    }
     
+    
+
+ /**
+   * Obtiene el listado de métodos de asignación de las tareas
+   * @returns 
+   */
+  public getMetodosAsignacion(): Observable<FsResponseEntity<MetodoAsignacionTareaEntity[]>> {
+      let ip: string = this.cookieService.get('ip');
+      return this.http.get<FsResponseEntity<MetodoAsignacionTareaEntity[]>>(
+        environment.workflowApiUrl +
+          `/task/getAssignmentMethod`
+      );
+  }
+}
     

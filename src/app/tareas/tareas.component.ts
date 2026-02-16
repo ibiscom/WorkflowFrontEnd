@@ -11,7 +11,7 @@ import { GroupSearchFilterEntity } from '../entities/groups/group-search-filter.
 import { CompanyEntity } from '../entities/companies/company.entity';
 import { CompaniasService } from '../companias/companias.service';
 import { AccionesTareasComponent } from './acciones-tareas/acciones-tareas.component';
-import { TareasEntity } from './tareas.entity';
+import { TareaEntity } from './tarea.entity';
 import { TareasService } from './tareas.service';
 import { CookieService } from 'ngx-cookie-service';
 import { TareasFilterEntity } from './TareasFilterEntity';
@@ -24,7 +24,7 @@ import { TareasFilterEntity } from './TareasFilterEntity';
 })
 export class TareasComponent {
   public loggedUser: LoginEntity | undefined;
-  public tareas: TareasEntity[] = [];
+  public tareas: TareaEntity[] = [];
   public companias: CompanyEntity[] = [];
   public mensaje: string = '';
   public workflowActual: string = '';

@@ -431,12 +431,12 @@ export const routes: Routes = [
             canActivate: [CanActivateGuard],
           },
           {
-            path: 'crearTareas',
+            path: 'crearTarea',
             component: CrearTareasComponent,
             canActivate: [CanActivateGuard],
           },
           {
-            path: 'editartareas/:id',
+            path: 'editarTarea/:id',
             component: CrearTareasComponent,
             canActivate: [CanActivateGuard],
           },

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TareasComponent } from '../tareas.component';
 import { FiltrosBusquedaTareasComponent } from '../filtros-busqueda-tareas/filtros-busqueda-tareas.component';
 import { MatTableModule } from '@angular/material/table';
-import { TareasEntity } from '../tareas.entity';
+import { TareaEntity } from '../tarea.entity';
 
 @Component({
   selector: 'ibpm-listado-tareas',
@@ -11,7 +11,7 @@ import { TareasEntity } from '../tareas.entity';
   styleUrl: './listado-tareas.component.scss',
 })
 /**
- * Listado de grupos con navegación a la edición y utilidades de presentación.
+ * Listado de tareas con navegación a la edición y utilidades de presentación.
  */
 export class ListadoTareasComponent {
   // 🔹 Variables de paginación
@@ -29,11 +29,11 @@ export class ListadoTareasComponent {
   constructor(public parent: TareasComponent) {}
 
   /**
-   * Navega a la pantalla de edición del grupo seleccionado.
+   * Navega a la pantalla de edición de la tarea seleccionada.
    */
-  public goToEditarTareas(tareas: TareasEntity) {
+  public goToEditarTareas(tareas: TareaEntity) {
     this.parent.router.navigate([
-      `/main-page/Tareas/editarTarea/${tareas.nombre}`,
+      `/main-page/tareas/editarTarea/${tareas.nombre}`,
     ]);
   }
 
