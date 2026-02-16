@@ -44,11 +44,11 @@ export class DependenciaService {
      */
 
    
-    public buscarDependencia(filtros: DependenciaFilterEntity): Observable<FsResponseEntity<any>> {
+    public getDependencies(filtros: DependenciaFilterEntity): Observable<FsResponseEntity<any>> {
         let ip: string = this.cookieService.get('ip');
         return this.http.post<FsResponseEntity<any>>(
           environment.workflowApiUrl +
-            `/dependency/getDependencies`, filtros
+            `/Dependency/getDependencies`, filtros
         );
     }
       
@@ -62,7 +62,7 @@ export class DependenciaService {
         let ip: string = this.cookieService.get('ip');
         return this.http.post<FsResponseEntity<any>>(
           environment.workflowApiUrl +
-            `/dependency/edit`, dependencia
+            `/Dependency/edit`, dependencia
         );
     }
   

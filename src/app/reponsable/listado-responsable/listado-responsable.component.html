@@ -63,7 +63,7 @@
       }
     </div>
 
-    <!-- COLUMNA: ES RESPONSABLE -->
+       <!-- COLUMNA: ES RESPONSABLE -->
     <div class="tabla-columna">
       <div class="tabla-col-header">
         <div>Es responsable</div>
@@ -72,17 +72,16 @@
       @for (element of parent.responsables; track element) {
         <ng-container>
           <div class="tabla-celda">
-            <div>
-              {{ getCompanyName(element.compania) }}
+            <div (click)="goToEditarResponsable(element)">
+              {{ element.supervisor }}
             </div>
           </div>
         </ng-container>
       }
     </div>
-
   </div>
 
-  <!-- FOOTER -->
+  <!-- FOOTER 
   <div class="tabla-footer">
     <div class="tabla-footer-text">
       Página {{ currentPage }} de {{ numberOfPages }}
@@ -95,5 +94,5 @@
     <div class="paginador-boton active" (click)="nextPage()">
       <span>chevron_right</span>
     </div>
-  </div>
+  </div>-->
 </div>

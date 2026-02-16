@@ -19,10 +19,11 @@ export class ListadoTareasComponent {
   public numberOfPages: number = 1;
 
   public displayedColumns: string[] = [
+    'Numero',
     'Nombre',
+    'Nombre Largo',
     'Descripción',
-    'Supervisor',
-    'Compania',
+    'Tipo',
   ];
 
   constructor(public parent: TareasComponent) {}
@@ -32,8 +33,16 @@ export class ListadoTareasComponent {
    */
   public goToEditarTareas(tareas: TareasEntity) {
     this.parent.router.navigate([
-      `/main-page/Tareas/editarTarea/${tareas.name}`,
+      `/main-page/Tareas/editarTarea/${tareas.nombre}`,
     ]);
+  }
+
+   /**
+   * Obtiene el nombre legible de la herramienta a partir del identificador.
+   */
+  public getTareasName(tareasName: any) {
+    const tareas = this.parent.tareas.find((c) => c.nombre === tareasName);
+    return tareas ? tareas.nombre : '';
   }
 
   /**

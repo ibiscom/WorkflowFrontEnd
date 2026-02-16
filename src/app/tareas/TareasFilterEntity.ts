@@ -1,4 +1,4 @@
-export interface DependenciaFilterEntity {
+export interface TareasFilterEntity {
   nombreWorkflow?: string;
   nombre?: string;
   nombreTareaCabeza?: string;

@@ -3,6 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { ResponsableComponent } from '../responsable.component';
 import { ResponsableService } from '../responsable.service';
 import { LoginEntity } from '../../login/login.entity';
+import { ResponsableEntity } from '../responsable.entity';
+import { ResponsablesFilterEntity } from '../reponsable-filter.entity';
 
 @Component({
   selector: 'ibpm-filtros-busqueda-responsable',
@@ -11,14 +13,14 @@ import { LoginEntity } from '../../login/login.entity';
   styleUrl: './filtros-busqueda-responsable.component.scss',
 })
 export class FiltrosBusquedaResponsableComponent {
-  public responsableNameF: string = '';
-  public supervisorF: string = '';
+search() {
+throw new Error('Method not implemented.');
+}
+  public userLoguinB: string = '';
+  public userRolNameB: string = '';
 
   // 🔹 Estado seleccionado
-  public companyObjectN: any = null;
-
-  // 🔹 LISTA PARA EL SELECT (SOLUCIÓN AL ERROR)
-  public companiesList: any[] = [];
+  public responsableObjectN?: ResponsableEntity = undefined;
 
   // Manejo del switch
   public generateReportF: string = 'false';
@@ -32,46 +34,33 @@ export class FiltrosBusquedaResponsableComponent {
     this.loggedUser = this.uc?.loggedUser;
 
     // 🔹 Carga inicial (puedes cambiar la lógica luego)
-    this.loadCompanies();
+    this.loadResponsables();
   }
 
-  // 🔹 Simulación / carga de estados
-  private loadCompanies(): void {
-    // Si luego viene de servicio, aquí se reemplaza
-    this.companiesList = [
-      { id: 1, largeName: 'Activo' },
-      { id: 2, largeName: 'Inactivo' }
-    ];
+  // 🔹 Simulación / carga de responsables
+  private loadResponsables(): void {
+      this.uc?.obtenerResponsables();
   }
+
+
 
   // Cambio del select
-  public onCompanyChange(value: any): void {
-    this.companyObjectN = value;
-    console.log('Estado seleccionado:', this.companyObjectN);
+  public onResponsableChange(value: any): void {
+    this.responsableObjectN = value;
+    console.log('Responsable seleccionado:', this.responsableObjectN);
   }
 
   // Ejecuta búsqueda
-  public search(): void {
-    const generateReportBool = this.generateReportF === 'true';
 
-    this.searchResponsable(
-      this.responsableNameF,
-      this.supervisorF,
-      generateReportBool
-    );
-  }
-
-  public searchResponsable(
-    responsableName: string,
-    supervisor: string,
-    generateReport: boolean
+  public searchResponsables(
+    userLoguin: string,
+    userRolName: string,
   ): void {
     console.log(
       'Filtros recibidos:',
-      responsableName,
-      supervisor,
-      generateReport,
-      this.companyObjectN
+      userLoguin,
+      userRolName,
+      this.responsableObjectN
     );
 
     // Tu lógica actual aquí

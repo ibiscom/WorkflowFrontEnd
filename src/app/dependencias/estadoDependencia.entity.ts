@@ -1,4 +1,5 @@
 export interface EstadoDependenciaEntity {
-    code: string;
+   code: string;
     name: string;
+    respuesta: string [];
 }

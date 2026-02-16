@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environment';
+import { ResponsableEntity } from './responsable.entity';
 
 @Injectable({
   providedIn: 'root',
@@ -20,149 +21,30 @@ export class ResponsableService {
     private cookieService: CookieService,
   ) {}
 
-  /**
-   * Busca grupos según los filtros proporcionados.
-   * @param groupServerFilter Filtros de búsqueda (usuario, nombre de grupo, supervisor).
-   * @returns Observable con la respuesta y el listado de grupos.
-   */
-  public searchGroups(
-    groupServerFilter: GroupSearchFilterEntity,
-  ): Observable<FsResponseEntity<GroupEntity[]>> {
-    return this.http.get<FsResponseEntity<GroupEntity[]>>(
-      environment.frameSecApiUrl +
-        `/group/getGroups?userName=${groupServerFilter.userName}&groupName=${groupServerFilter.groupName}&supervisor=${groupServerFilter.supervisor}`,
-    );
-  }
+   /**
+     * Edita la información de una herramienta existente.
+     * @param responsable La información de la herramienta a modificar.
+     * @returns 
+     */
+    public editResponsable(responsable: ResponsableEntity): Observable<FsResponseEntity<any>> {
+        let ip: string = this.cookieService.get('ip');
+        return this.http.post<FsResponseEntity<any>>(
+          environment.workflowApiUrl +
+            `/UserRol/edit`, responsable
+        );
+    }
 
-  /**
-   * Obtiene la información de un grupo específico.
-   * @param userGenerator Usuario que realiza la consulta.
-   * @param groupName Nombre del grupo.
-   * @returns Observable con la respuesta y la entidad de grupo.
+/**
+   * Obtiene el listado de herramientas de un workflow seleccionado
+   * @param filtros la informacion del workflow seleccionado Los filtros para la búsqueda de herramientas.
+   * @returns 
    */
-  public getGroup(
-    userGenerator: string,
-    groupName: string,
-  ): Observable<FsResponseEntity<GroupEntity>> {
-    return this.http.get<FsResponseEntity<GroupEntity>>(
-      environment.frameSecApiUrl +
-        `/group/getGroup?userName=${userGenerator}&groupName=${groupName}`,
-    );
-  }
-
-  /**
-   * Obtiene las operaciones asociadas a un grupo.
-   * @param userGenerator Usuario que realiza la consulta.
-   * @param groupName Nombre del grupo.
-   * @returns Observable con la respuesta y la lista de operaciones.
-   */
-  public getOperationsByGroup(
-    userGenerator: string,
-    groupName: string,
-  ): Observable<FsResponseEntity<string[]>> {
-    return this.http.get<FsResponseEntity<string[]>>(
-      environment.frameSecApiUrl +
-        `/group/getPermissions?userName=${userGenerator}&groupName=${groupName}`,
-    );
-  }
-  /**
-   * Obtiene las operaciones restringidas (no permitidas) de un grupo.
-   * @param userGenerator Usuario que realiza la consulta.
-   * @param groupName Nombre del grupo.
-   * @returns Observable con la respuesta y la lista de restricciones.
-   */
-  public getRestrictedOperationsByGroup(
-    userGenerator: string,
-    groupName: string,
-  ): Observable<FsResponseEntity<string[]>> {
-    return this.http.get<FsResponseEntity<string[]>>(
-      environment.frameSecApiUrl +
-        `/group/getRestrictions?userName=${userGenerator}&groupName=${groupName}`,
-    );
-  }
-
-  /**
-   * Crea un nuevo grupo.
-   * @param group Entidad del grupo a crear.
-   * @returns Observable con la respuesta del servidor.
-   */
-  public createGroup(group: GroupEntity): Observable<FsResponseEntity<any>> {
-    let ip: string = this.cookieService.get('ip');
-    group.ip = ip;
-    return this.http.put<FsResponseEntity<any>>(
-      environment.frameSecApiUrl + `/group/create`,
-      group,
-    );
-  }
-
-  /**
-   * Edita un grupo existente.
-   * @param group Entidad del grupo con los datos a modificar.
-   * @returns Observable con la respuesta del servidor.
-   */
-  public editGroup(group: GroupEntity): Observable<FsResponseEntity<any>> {
-    let ip: string = this.cookieService.get('ip');
-    group.ip = ip;
-    return this.http.post<FsResponseEntity<any>>(
-      environment.frameSecApiUrl + `/group/edit`,
-      group,
-    );
-  }
-
-  /**
-   * Agrega una operación/permiso a un grupo.
-   * @param userGenerator Usuario que realiza la acción.
-   * @param groupName Nombre del grupo.
-   * @param permission Operación/permiso a agregar.
-   * @returns Observable con la respuesta del servidor.
-   */
-  public addOperationToGroup(
-    userGenerator: string,
-    groupName: string,
-    permission: string,
-  ): Observable<FsResponseEntity<any>> {
-    let ip: string = this.cookieService.get('ip');
-    return this.http.post<FsResponseEntity<any>>(
-      environment.frameSecApiUrl +
-        `/group/addPermission?userName=${userGenerator}&groupName=${groupName}&permission=${permission}&ip=${ip}`,
-      {},
-    );
-  }
-
-  /**
-   * Agrega una restricción (operación no permitida) a un grupo.
-   * @param userGenerator Usuario que realiza la acción.
-   * @param groupName Nombre del grupo.
-   * @param operation Operación a restringir.
-   * @returns Observable con la respuesta del servidor.
-   */
-  public removeOperationFromGroup(
-    userGenerator: string,
-    groupName: string,
-    operation: string,
-  ): Observable<FsResponseEntity<any>> {
-    let ip: string = this.cookieService.get('ip');
-    return this.http.post<FsResponseEntity<any>>(
-      environment.frameSecApiUrl +
-        `/group/addRestriction?userName=${userGenerator}&groupName=${groupName}&restriction=${operation}&ip=${ip}`,
-      {},
-    );
-  }
-
-  /**
-   * Elimina un grupo del sistema.
-   * @param userGenerator Usuario que realiza la acción.
-   * @param groupName Nombre del grupo a eliminar.
-   * @returns Observable con la respuesta del servidor.
-   */
-  public deleteGroup(
-    userGenerator: string,
-    groupName: string | undefined,
-  ): Observable<FsResponseEntity<any>> {
-    let ip: string = this.cookieService.get('ip');
-    return this.http.delete<FsResponseEntity<any>>(
-      environment.frameSecApiUrl +
-        `/group/delete?userName=${userGenerator}&groupName=${groupName}&ip=${ip}`,
-    );
+  public getUsersRol(responsableName: string): Observable<FsResponseEntity<any>> {
+      let ip: string = this.cookieService.get('ip');
+      return this.http.get<FsResponseEntity<any>>(
+        environment.workflowApiUrl +
+          `/UserRol/getUsersRol?responsableName=${responsableName}`
+      );
   }
 }
+

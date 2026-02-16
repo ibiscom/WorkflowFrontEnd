@@ -3,6 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { DependenciaComponent } from '../dependencia.component';
 import { DependenciaService } from '../dependencia.service';
 import { LoginEntity } from '../../login/login.entity';
+import { WorkflowFilterEntity } from '../../workflow/workflow-filter.entity';
+import { DependenciaFilterEntity } from '../dependencia-filter.entity';
 
 @Component({
   selector: 'ibpm-filtros-busqueda-dependencia',
@@ -11,15 +13,15 @@ import { LoginEntity } from '../../login/login.entity';
   styleUrl: './filtros-busqueda-dependencia.component.scss',
 })
 export class FiltrosBusquedaDependenciaComponent {
-  public dependenciaNameF: string = '';
-  public supervisorF: string = '';
-
-  // 🔹 Estado seleccionado
-  public companyObjectN: any = null;
-
-  // 🔹 LISTA PARA EL SELECT (SOLUCIÓN AL ERROR)
-  public companiesList: any[] = [];
-
+  nombreWorkflowB: string= '';
+  nombreB: string= '';
+  nombreTareaCabezaB: string= '';
+  nombreTareaColaB: string= '';
+  estadoB: string= '';
+  primitivaB: string= '';
+  expresionB: string= '';
+  descripcionB: string= '';
+  
   // Manejo del switch
   public generateReportF: string = 'false';
 
@@ -32,48 +34,44 @@ export class FiltrosBusquedaDependenciaComponent {
     this.loggedUser = this.uc?.loggedUser;
 
     // 🔹 Carga inicial (puedes cambiar la lógica luego)
-    this.loadCompanies();
+    
   }
 
   // 🔹 Simulación / carga de estados
-  private loadCompanies(): void {
-    // Si luego viene de servicio, aquí se reemplaza
-    this.companiesList = [
-      { id: 1, largeName: 'Activo' },
-      { id: 2, largeName: 'Inactivo' }
-    ];
-  }
-
+  
   // Cambio del select
-  public onCompanyChange(value: any): void {
-    this.companyObjectN = value;
-    console.log('Estado seleccionado:', this.companyObjectN);
-  }
 
   // Ejecuta búsqueda
-  public search(): void {
-    const generateReportBool = this.generateReportF === 'true';
-
-    this.searchDependencia(
-      this.dependenciaNameF,
-      this.supervisorF,
-      generateReportBool
-    );
+    public buscar(): void {
+      const generateReportBool = this.generateReportF === 'true';
+  
+      let filtros: DependenciaFilterEntity = {
+  nombreWorkflow: this.nombreWorkflowB,
+  nombre: this.nombreB,
+  nombreTareaCabeza: this.nombreTareaCabezaB,
+  nombreTareaCola: this.nombreTareaColaB,
+  estado: this.estadoB,
+  primitiva: this.primitivaB,
+  expresion: this.expresionB,
+  descripcion: this.descripcionB
+      };
+  
+      this.uc?.buscarDependencias(
+        filtros
+      );
+    }
+  
+    public searchDependencia(
+      nombreworkflow: string,
+      nombre: string,
+          ): void {
+      console.log(
+        'Filtros recibidos:',
+        nombreworkflow,
+        nombre
+        
+      );
+  
+      // Tu lógica actual aquí
+    }
   }
-
-  public searchDependencia(
-    dependenciaName: string,
-    supervisor: string,
-    generateReport: boolean
-  ): void {
-    console.log(
-      'Filtros recibidos:',
-      dependenciaName,
-      supervisor,
-      generateReport,
-      this.companyObjectN
-    );
-
-    // Tu lógica actual aquí
-  }
-}

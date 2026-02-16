@@ -15,9 +15,9 @@
           <label for="description">Nombre de la dependencia</label>
           <input
             type="text"
-            [(ngModel)]="dependenciaNameF"
+            [(ngModel)]="nombreB"
             placeholder="Inserte nombre de la dependencia"
-            (keydown.enter)="search()"
+            (keydown.enter)="buscar()"
           />
         </div>
 
@@ -26,9 +26,9 @@
           <label for="description">Nombre de la tarea cabeza</label>
           <input
             type="text"
-            [(ngModel)]="dependenciaNameF"
+            [(ngModel)]="nombreTareaCabezaB"
             placeholder="Inserte nombre de la tarea cabeza"
-            (keydown.enter)="search()"
+            (keydown.enter)="buscar()"
           />
         </div>
 
@@ -37,16 +37,16 @@
           <label for="description">Nombre de la tarea cola</label>
           <input
             type="text"
-            [(ngModel)]="dependenciaNameF"
+            [(ngModel)]="nombreTareaColaB"
             placeholder="Inserte nombre de la tarea cola"
-            (keydown.enter)="search()"
+            (keydown.enter)="buscar()"
           />
         </div>
 
       </div>
 
         <!-- Buscar -->
-        <button class="btn-figma" (click)="search()">
+        <button class="btn-figma" (click)="buscar()">
           <span class="btn-icon">
             <img src="assets/img/search.svg" alt="Buscar" />
           </span>

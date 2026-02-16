@@ -64,6 +64,8 @@ import { CrearDependenciaComponent } from './dependencias/crear-dependencias/cre
 import { RolesComponent } from './roles/roles.component';
 import { ListadoRolesComponent } from './roles/listado-roles/listado-roles.component';
 import { CrearRolesComponent } from './roles/crear-roles/crear-roles.component';
+import { ResponsableComponent } from './reponsable/responsable.component';
+import { ListadoResponsableComponent } from './reponsable/listado-responsable/listado-responsable.component';
 
 export const CanActivateGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -441,33 +443,6 @@ export const routes: Routes = [
         ],
       },
 
-      {
-        path: 'objetow',
-        component: ObjetowComponent,
-        canActivate: [CanActivateGuard],
-        children: [
-          {
-            path: '',
-            redirectTo: 'listadoObjetow',
-            pathMatch: 'full',
-          },
-          {
-            path: 'listadoObjetow',
-            component: ListadoObjetowComponent,
-            canActivate: [CanActivateGuard],
-          },
-          {
-            path: 'crearObjetow',
-            component: CrearObjetowComponent,
-            canActivate: [CanActivateGuard],
-          },
-          {
-            path: 'editarobjetow/:id',
-            component: CrearObjetowComponent,
-            canActivate: [CanActivateGuard],
-          },
-        ],
-      },
 
       {
         path: 'herramientas',
@@ -552,6 +527,34 @@ export const routes: Routes = [
           },
         ],
       },
+
+      {
+        path: 'objeto workflow',
+        component: ObjetowComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoObjetow',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoObjetow',
+            component: ListadoObjetowComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'crearObjetow',
+            component: CrearObjetowComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'editarobjetow/:id',
+            component: CrearObjetowComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
     ],
   },
   {
@@ -563,4 +566,23 @@ export const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
+
+
+        {
+        path: 'responsable',
+        component: ResponsableComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoResponsables',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoResponsables',
+            component: ListadoResponsableComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
 ];

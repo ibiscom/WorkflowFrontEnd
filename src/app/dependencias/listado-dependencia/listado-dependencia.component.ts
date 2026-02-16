@@ -11,7 +11,7 @@ import { FiltrosBusquedaDependenciaComponent } from '../filtros-busqueda-depende
   styleUrl: './listado-dependencia.component.scss',
 })
 /**
- * Listado de grupos con navegación a la edición y utilidades de presentación.
+ * Listado de dependencias con navegación a la edición y utilidades de presentación.
  */
 export class ListadoDependenciaComponent {
   // 🔹 Variables de paginación
@@ -20,29 +20,21 @@ export class ListadoDependenciaComponent {
 
   public displayedColumns: string[] = [
     'Nombre',
-    'Descripción',
-    'Supervisor',
-    'Compania',
+    'Descripción'
+    
   ];
 
   constructor(public parent: DependenciaComponent) {}
 
   /**
-   * Navega a la pantalla de edición del grupo seleccionado.
+   * Navega a la pantalla de edición de grupo  la dependencia seleccionada.
    */
   public goToEditarDependencia(dependencia: DependenciaEntity) {
     this.parent.router.navigate([
-      `/main-page/administrarDependencia/editarDependencia/${dependencia.nombre}`,
+      `/main-page/Dependencia/editarDependencia/${dependencia.nombre}`,
     ]);
   }
 
-  /**
-   * Obtiene el nombre legible de la compañía a partir del identificador.
-   */
-  public getCompanyName(companyId: any) {
-    const company = this.parent.companias.find((c) => c.name === companyId);
-    return company ? company.largeName : '';
-  }
 
   /**
    REVISAR!!!!

@@ -2,14 +2,14 @@
  * Entidad que representa un grupo en el sistema.
  */
 export interface TareasEntity {
-  name: any;
+  numero: any;
   /** Nombre del grupo */
   nombre: string;
   /** Descripción del grupo */
-  descripcion: string;
+  nombreLargo: string;
   /** Compañía asociada al grupo */
-  compania: string;
+  descripcion: string;
   /** Supervisor del grupo */
-  supervisor: string;
+  tipo: string;
 }
 

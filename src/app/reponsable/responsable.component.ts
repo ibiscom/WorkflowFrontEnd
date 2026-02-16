@@ -13,6 +13,8 @@ import { CompanyEntity } from '../entities/companies/company.entity';
 import { CompaniasService } from '../companias/companias.service';
 import { ResponsableEntity } from './responsable.entity';
 import { AccionesResponsableComponent } from './acciones-responsable/acciones-responsable.component';
+import { CookieService } from 'ngx-cookie-service';
+import { ResponsablesFilterEntity } from './reponsable-filter.entity';
 
 @Component({
   selector: 'ibpm-responsable',
@@ -32,52 +34,47 @@ export class ResponsableComponent {
     private responsableComponentInstanceService: ResponsableComponentInstanceService,
     private loginService: LoginService,
     public router: Router,
+    private cookieService: CookieService,
   ) {}
 
-  ngOnInit(): void {
-    this.responsableComponentInstanceService.setInstance(this);
-    this.loggedUser = this.loginService.getLoggedUser();
-    this.getAllCompanies();
-    this.searchResponsables();
-  }
-
-  public getAllCompanies() {
-    /*
-    this.companiasService
-      .getAllCompanies(this.loggedUser?.user_name ?? '')
+    ngOnInit(): void {
+      this.responsableComponentInstanceService.setInstance(this);
+      this.loggedUser = this.loginService.getLoggedUser();
+      this.buscarResponsables();
+    }
+  
+    public buscarResponsables(filtros?: ResponsablesFilterEntity): void {
+      this.responsableService
+        .getUsersRol(filtros?.userLogin || '')
+        .subscribe({
+          next: (response) => {
+            this.responsables = response.respuesta;
+            this.mensaje = '';
+          },
+          error: (err) => {
+            this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+              Constants.ERR_OBTENIENDO_RESPONSABLES,
+              err,
+            );
+          },
+        });
+    }
+  
+      public obtenerResponsables(): void {
+    this.responsableService
+      .getUsersRol('')
       .subscribe({
         next: (response) => {
-          this.companias = response.respuesta;
+          this.responsables = response.respuesta;
         },
         error: (err) => {
           this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-            Constants.ERR_OBTENIENDO_COMPANIAS,
+            Constants.ERR_OBTENIENDO_RESPONSABLESS,
             err,
           );
         },
       });
-      */
+
   }
 
-  public searchResponsables(responsableName?: string, supervisor?: string): void {
-    /*
-    let workflowServerFilter: WorkflowSearchFilterEntity = {
-      userName: this.loggedUser?.user_name ?? '',
-      workflowName: workflowName ?? '',
-      supervisor: supervisor ?? '',
-    };
-
-    this.workflowService.searchWorkflows(workflowServerFilter).subscribe({
-      next: (response) => {
-        this.workflows = response.respuesta;
-      },
-      error: (err) => {
-        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-          Constants.ERR_BUSCAR_WORKFLOWS,
-          err,
-        );
-      },
-    });
-    */
   }
-}

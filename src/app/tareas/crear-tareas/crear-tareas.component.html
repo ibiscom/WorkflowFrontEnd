@@ -189,187 +189,123 @@
         <!-- PARTE DE SELECCIONAR SERIES, TIPOS DE DOCUMENTO-->
         <div class="serie-container"> 
 
-  <!-- HEADER -->
-  <div class="serie-header">
-    <div class="serie-title">Serie</div>
-  </div>
+      <div class="serie-container">
+  <div class="serie-content">
+    <!-- Header -->
+    <div class="serie-header">
+      <span class="serie-title">Serie</span>
+    </div>
 
-  <!-- SELECT
-  <div class="serie-select-container">
-    <div class="serie-select">
-      <div class="serie-select-box">
-        <div class="serie-select-content">
-          <div class="serie-select-label">
-            {{ accionesGrupo }}
+    <!-- Selector -->
+    <div class="serie-body">
+      <div class="dropdown">
+        <div class="dropdown-box" (click)="toggleDropdown()">
+          <div class="dropdown-text">
+            Acciones de grupo
           </div>
 
-          <span class="material-icons">arrow_drop_down</span>
+          <div class="dropdown-icon">
+            <span></span>
+          </div>
+        </div>
+
+        <div class="dropdown-divider"></div>
+
+        <!-- Ejemplo de opciones -->
+        <div
+          class="dropdown-options"
+          *ngIf="dropdownOpen"
+        >
+          <div
+            class="dropdown-option"
+            *ngFor="let opcion of opciones"
+            (click)="selectOpcion(opcion)"
+          >
+            {{ opcion }}
+          </div>
         </div>
       </div>
-      <div class="serie-select-divider"></div>
     </div>
-  </div>  -->
-
-  <!-- TABLA -->
-  <div class="serie-table">
-
-    <!-- IZQUIERDA
-    <div class="serie-table-left">
-      <div class="table-header">
-        <div class="header-text">Tipos de documento de la serie</div>
-        <div class="header-indicator"></div>
-      </div>
-
-      <div
-        class="table-row"
-        *ngFor="let doc of documentos | slice:(pageIndex * pageSize):(pageIndex * pageSize + pageSize)"
-      >
-        {{ doc.nombre }}
-      </div>  -->
-    </div> 
-
-    <!-- DERECHA
-    <div class="serie-table-right">
-      <div class="table-header center">Asignar</div>
-
-      <div
-        class="table-switch"
-        *ngFor="let doc of documentos | slice:(pageIndex * pageSize):(pageIndex * pageSize + pageSize)"
-        (click)="toggleAsignado(doc)"
-      >
-        <div class="switch" [class.active]="doc.asignado"></div>
-      </div>
-    </div> -->
-
-  </div> 
-
-  <!-- FOOTER / PAGINACIÓN 
-  <div class="serie-footer">
-    <div class="footer-text">Registros por página:</div>
-
-    <div class="footer-select">
-      <span>{{ pageSize }}</span>
-      <span class="material-icons">arrow_drop_down</span>
-    </div>
-
-    <div class="footer-text">
-      {{ pageIndex * pageSize + 1 }} -
-      {{ (pageIndex + 1) * pageSize > total ? total : (pageIndex + 1) * pageSize }}
-      of {{ total }}
-    </div>
-
-    <button
-      class="footer-btn"
-      [class.disabled]="pageIndex === 0"
-      (click)="prevPage()"
-    >
-      <span class="material-icons">chevron_left</span>
-    </button>
-
-    <button
-      class="footer-btn"
-      [class.disabled]="(pageIndex + 1) * pageSize >= total"
-      (click)="nextPage()"
-    >
-      <span class="material-icons">navigate_next</span>
-    </button>
   </div>
-
-</div> -->
-
-<div class="tareas-container">
-
-  <!-- HEADER -->
-  <div class="tareas-header">
-    <div class="tareas-title">Tareas asignadas</div>
-  </div>
-
-  <!-- TABLA -->
-  <div class="tabla-container">
-
-    <!-- COLUMNA IZQUIERDA -->
-    <div class="tabla-col tabla-col-texto">
-
-      <div class="tabla-header">
-        <div class="tabla-header-text">Tipos de documento de la serie</div>
-        <div class="tabla-indicator"></div>
-      </div>
-
-      <div class="tabla-row">Comunicaciones oficiales (oficios / memorandos)</div>
-      <div class="tabla-row">Gestión de correspondencia oficial (oficios y memorandos).</div>
-      <div class="tabla-row">Tramitación de documentos administrativos (notas).</div>
-      <div class="tabla-row">Supervisión de tareas relacionadas con documentos.</div>
-      <div class="tabla-row">Organización de archivos y gestión documental.</div>
-      <div class="tabla-row">Elaboración de informes sobre gestión documental.</div>
-      <div class="tabla-row">Revisión de políticas de archivo y documentación.</div>
-      <div class="tabla-row">Actualización de registros de documentos oficiales.</div>
-      <div class="tabla-row">Clasificación de documentos según normativas.</div>
-      <div class="tabla-row">Auditoría de procesos de gestión documental.</div>
-
-    </div>
-
-    <!-- COLUMNA REQUERIDO -->
-    <div class="tabla-col tabla-col-switch">
-      <div class="tabla-header center">Requerido</div>
-
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-    </div>
-
-    <!-- COLUMNA ASIGNADO -->
-    <div class="tabla-col tabla-col-switch">
-      <div class="tabla-header center">Asignado</div>
-
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-    </div>
-
-  </div>
-
-  <!-- FOOTER / PAGINACIÓN -->
-  <div class="tabla-footer">
-
-    <div class="footer-text">Registros por página:</div>
-
-    <div class="footer-select">
-      <span>5</span>
-      <span class="material-icons">arrow_drop_down</span>
-    </div>
-
-    <div class="footer-text">1-5 of 10</div>
-
-    <button class="footer-btn disabled">
-      <span class="material-icons">chevron_left</span>
-    </button>
-
-    <button class="footer-btn">
-      <span class="material-icons">navigate_next</span>
-    </button>
-
-  </div>
-
 </div>
 
 
-      </div>
+<div class="card">
+  <!-- Header -->
+  <div class="card-header">
+    <span class="card-title">Tipos documento de la serie</span>
+  </div>
 
+  <!-- Lista de tipos -->
+  <div
+    class="check-row"
+    *ngFor="let tipo of tiposDocumento"
+  >
+    <div class="checkbox selected">
+      <div class="checkbox-box"></div>
+      <div class="checkbox-check"></div>
     </div>
+
+    <span class="check-label">
+      {{ tipo }}
+    </span>
+  </div>
+</div>
+      
+
+        <div class="actions">
+  <!-- Botón Asignar -->
+  <button
+    class="btn btn-primary"
+    type="button"
+    (click)="asignar()"
+  >
+    <span class="btn-icon assign-icon"></span>
+    <span>Asignar</span>
+  </button> 
+
+  <!-- Botón Retirar -->
+  <button
+    class="btn btn-outline"
+    type="button"
+    (click)="retirar()"
+  >
+    <span class="btn-icon remove-icon"></span>
+    <span>Retirar</span>
+  </button>
+</div>
+
+
+        <div class="card">
+  <!-- Header -->
+  <div class="card-header">
+    <div class="card-title">
+      Tipos documento Asignados a la tareas
+    </div>
+  </div>
+
+  <!-- Item -->
+  <div class="assigned-row" *ngFor="let item of tiposDocumento">
+    <!-- Checkbox -->
+    <div class="checkbox selected"></div>
+
+    <!-- Título -->
+    <div class="assigned-title">
+      {{ item.nombre }}
+    </div>
+
+    <!-- Acciones -->
+    <div class="assigned-actions">
+      <span class="required">Requerido</span>
+
+      <div
+        class="switch"
+        [ngClass]="item.requerido ? 'on' : 'off'"
+        (click)="toggleRequerido(item)"
+      ></div>
+    </div>
+  </div>
+</div>
 
     <!-- BOTONES FINALES -->
     <div class="botones-nuevo-grupo">
@@ -394,6 +330,8 @@
       <img src="assets/img/cancel.svg" alt="Cancelar" />
     </span>
     Cancelar</button>
+    </div>
+    </div>
     </div>
   </form>
 </div>

@@ -840,6 +840,24 @@
           </div>
         </div>
 
+                <!-- Responsables -->
+        <div
+          class="section-white"
+          *ngIf="
+            opcionesPermitidas.includes('Responsables')
+          "
+          (click)="
+            $event.stopPropagation();
+            irA('/main-page/responsables')
+          "
+        >
+          <div class="row">
+            <div class="row-text">
+              <div class="text">Responsables</div>
+            </div>
+          </div>
+        </div>
+        
         <!-- Simulación -->
         <div
           class="section-white"

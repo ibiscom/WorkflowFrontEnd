@@ -39,6 +39,12 @@ export class Constants {
     'Herramienta editada exitosamente.';
   public static MSG_HERRAMIENTA_ELIMINACION_EXITOSA: string = 
     'Herramienta eliminada exitosamente.';
+  public static ERR_OBTENIENDO_TAREAS: string = 
+    'Error al obtener las tareas';
+
+    public static ERR_OBTENIENDO_RESPONSABLES: string = 
+    'Error al obtener los responsables';
+    public static ERR_OBTENIENDO_RESPONSABLESS: string = 'Error al obtener los responsables';
 
 
 

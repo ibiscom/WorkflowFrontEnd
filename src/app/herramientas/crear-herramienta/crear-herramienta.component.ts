@@ -92,7 +92,7 @@ export class CrearHerramientaComponent {
   }
 
   /**
-   * Llena los campos del formulario con la información del grupo en edición.
+   * Llena los campos del formulario con la información de la herramienta en edición.
    */
   public async llenarCamposEdicion(): Promise<void> {
     try {

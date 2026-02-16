@@ -13,6 +13,7 @@ import { AccionesObjetowComponent } from './acciones-objetow/acciones-objetow.co
 import { ObjetowEntity } from './objetow.entity';
 import { ObjetowService } from './objetow.service';
 import { ObjetowComponentInstanceService } from './objetow-component-instance.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'ibpm-objetow',
@@ -23,62 +24,38 @@ import { ObjetowComponentInstanceService } from './objetow-component-instance.se
 export class ObjetowComponent {
   public loggedUser: LoginEntity | undefined;
   public tareas: ObjetowEntity[] = [];
-  public companias: CompanyEntity[] = [];
   public mensaje: string = '';
+  public workflowActual: string = '';
 
   constructor(
     private objetowService: ObjetowService,
-    private companiasService: CompaniasService,
     private objetowComponentInstanceService: ObjetowComponentInstanceService,
     private loginService: LoginService,
     public router: Router,
+    private cookieService: CookieService,
   ) {}
 
   ngOnInit(): void {
+    console.log('ENTRO ngOnInit');
     this.objetowComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-    this.getAllCompanies();
-    this.searchTareas();
-  }
+   console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
+    if(this.hayWorkflowActual()) {
+      console.log('SI hay workflow → voy a buscar');
+    }
+    else {
+    console.log('NO hay workflow');
+         }
 
-  public getAllCompanies() {
-    /*
-    this.companiasService
-      .getAllCompanies(this.loggedUser?.user_name ?? '')
-      .subscribe({
-        next: (response) => {
-          this.companias = response.respuesta;
-        },
-        error: (err) => {
-          this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-            Constants.ERR_OBTENIENDO_COMPANIAS,
-            err,
-          );
-        },
-      });
-      */
-  }
+      }
 
-  public searchTareas(tareasName?: string, supervisor?: string): void {
-    /*
-    let groupServerFilter: TareasSearchFilterEntity = {
-      userName: this.loggedUser?.user_name ?? '',
-      tareasName: tareasName ?? '',
-      supervisor: supervisor ?? '',
-    };
-
-    this.gruposService.searchTareas(tareasServerFilter).subscribe({
-      next: (response) => {
-        this.tareas = response.respuesta;
-      },
-      error: (err) => {
-        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-          Constants.ERR_BUSCAR_GRUPOS,
-          err,
-        );
-      },
-    });
-    */
+   public hayWorkflowActual(): boolean {
+    this.workflowActual = this.cookieService.get("workflowActual");
+    if (this.workflowActual === '') { 
+      this.mensaje = Constants.ERR_WORKFLOW_NO_SELECCIONADO;
+      return false;
+    }
+    return true;
   }
 }
 
