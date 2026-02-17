@@ -32,7 +32,7 @@ export class AccionesTareasComponent {
    * Navega a la pantalla de creación de grupo.
    */
   public irACrearTareas() {
-    this.router.navigate([`/main-page/administrarTareas/crearTareas`]);
+    this.router.navigate([`/main-page/tareas/crearTarea`]);
   }
 }
 

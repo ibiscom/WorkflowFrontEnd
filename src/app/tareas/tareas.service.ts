@@ -12,6 +12,8 @@ import { RolTareaEntity } from './rol-tarea.entity';
 import { HerramientaTareaEntity } from './herramienta-tarea.entity';
 import { TipoTareaEntity } from './tipo-tarea.entity';
 import { MetodoAsignacionTareaEntity } from './metodo-asignacion-tarea.entity';
+import { SerieTareaEntity } from './serie-tarea.entity';
+import { TipoDocumentoTareaEntity } from './tipo-documento-tarea.entity';
 
 @Injectable({
   providedIn: 'root',
@@ -143,6 +145,32 @@ export class TareasService {
         environment.workflowApiUrl +
           `/task/getAssignmentMethod`
       );
+  }
+
+  /**
+   * Obtiene el listado de series de las tareas para un usuario dado
+   * @param username El nombre del usuario para el cual se desean obtener las series de tareas
+   * @returns 
+   */
+  public getSeriesTareas(username: string): Observable<FsResponseEntity<SerieTareaEntity[]>> {
+    let ip: string = this.cookieService.get('ip');
+    return this.http.get<FsResponseEntity<SerieTareaEntity[]>>(
+      environment.workflowApiUrl +
+        `/task/getFoldersModel?user=${username}`
+    );
+  }
+
+  /**
+   * Obtiene el listado de tipos de documento asociados a una serie de tareas dada
+   * @param idFolderModel El identificador de la serie de tareas para la cual se desean obtener los tipos de documento asociados
+   * @returns 
+   */
+  public getTiposDocumentoBySerie(idFolderModel: string): Observable<FsResponseEntity<TipoDocumentoTareaEntity[]>> {
+    let ip: string = this.cookieService.get('ip');
+    return this.http.get<FsResponseEntity<TipoDocumentoTareaEntity[]>>(
+      environment.workflowApiUrl +
+        `/task/getDocumentsModel?idFolderModel=${idFolderModel}`
+    );
   }
 }
     

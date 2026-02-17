@@ -76,6 +76,12 @@ export class Constants {
   'No se pudo obtener los métodos de asignación de tarea';
   public static ERR_METODO_ASIGNACION_TAREA_ENCONTRAR: string = 
   'No se pudo encontrar los métodos de asignación de tarea';
+  public static ERR_SERIE_TAREA_ENCONTRAR: string = 
+  'No se pudo encontrar las series de tarea';
+  public static ERR_TIPO_DOCUMENTO_TAREA_ENCONTRAR: string = 
+  'No se pudo encontrar los tipos de documento de tarea';
+  
+
 
 
 
@@ -257,6 +263,6 @@ export class Constants {
 
   public static EXCEL_MIME_TYPE: string =
     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
-
+  
     
 }

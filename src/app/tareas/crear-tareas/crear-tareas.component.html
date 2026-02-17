@@ -197,34 +197,24 @@
 
             <!-- Selector -->
             <div class="serie-body">
-              <div class="dropdown">
-                <div class="dropdown-box" (click)="toggleDropdown()">
-                  <div class="dropdown-text">
-                    Acciones de grupo
-                  </div>
-
-                  <div class="dropdown-icon">
-                    <span></span>
-                  </div>
-                </div>
-
-                <div class="dropdown-divider"></div>
-
-                <!-- Ejemplo de opciones -->
-                <div
-                  class="dropdown-options"
-                  *ngIf="dropdownOpen"
+              <div class="campo-lista">
+                <label for="serie">Serie</label>
+                <select
+                  id="serie"
+                  name="serie"
+                  [(ngModel)]="serieN"
+                  required
+                  #serie="ngModel"
+                  (ngModelChange)="onSerieChange($event)"
                 >
-                  <div
-                    class="dropdown-option"
-                    *ngFor="let opcion of opciones"
-                    (click)="selectOpcion(opcion)"
-                  >
-                    {{ opcion }}
-                  </div>
-                </div>
-              </div>
-            </div>
+                  <option value="">Seleccione una opción</option>
+
+                  @for (serie of seriesList; track serie) {
+                    <option [ngValue]="serie">
+                      {{ serie.code }}
+                    </option>
+                  }
+                </select>
           </div>
         </div>
 
@@ -236,19 +226,22 @@
   </div>
 
   <!-- Lista de tipos -->
+  @for(tipo of tiposDocumentoAgregarList; track tipo) {
   <div
     class="check-row"
-    *ngFor="let tipo of tiposDocumento"
   >
-    <div class="checkbox selected">
+
+    <div [ngClass]="{'checkbox': true, 'selected': tipo.selected}">
       <div class="checkbox-box"></div>
-      <div class="checkbox-check"></div>
+      <div class="checkbox-check"><input type="checkbox" [(ngModel)]="tipo.selected" /></div>
     </div>
 
     <span class="check-label">
-      {{ tipo }}
+      {{ tipo.code }}
     </span>
+
   </div>
+  }
 </div>
       
 
@@ -284,26 +277,30 @@
   </div>
 
   <!-- Item -->
-  <div class="assigned-row" *ngFor="let item of tiposDocumento">
+  @for(tipo of tiposDocumentoAsignadosTareaList; track tipo) {
+  <div class="assigned-row" >  <!--*ngFor="let item of tiposDocumentoList"-->
     <!-- Checkbox -->
-    <div class="checkbox selected"></div>
+    <div class="checkbox selected">
+      <input type="checkbox" [(ngModel)]="tipo.visible" />
+    </div>
 
     <!-- Título -->
     <div class="assigned-title">
-      {{ item.nombre }}
+      {{ tipo.code }}
     </div>
 
     <!-- Acciones -->
     <div class="assigned-actions">
       <span class="required">Requerido</span>
 
-      <!--<div
+      <div
         class="switch"
-        [ngClass]="item.requerido ? 'on' : 'off'"
-        (click)="toggleRequerido(item)"
-      ></div>-->
+        [ngClass]="tipo.obligatorio ? 'on' : 'off'"
+        (click)="toggleObligatorio(tipo)"
+      > </div>
     </div>
   </div>
+ }
 </div>
 
     <!-- BOTONES FINALES -->
