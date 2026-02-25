@@ -30,8 +30,9 @@ export class ListadoDependenciaComponent {
    * Navega a la pantalla de edición de grupo  la dependencia seleccionada.
    */
   public goToEditarDependencia(dependencia: DependenciaEntity) {
+    this.parent.mensaje = '';
     this.parent.router.navigate([
-      `/main-page/Dependencia/editarDependencia/${dependencia.nombre}`,
+      `/main-page/dependencias/editarDependencia/${dependencia.nombre}`,
     ]);
   }
 

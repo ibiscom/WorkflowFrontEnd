@@ -1,14 +1,18 @@
 <div class="cont-nuevo-dependencia">
-  <form #form="ngForm">
 
-    <!-- TARJETA DATOS DEL DEPENDENCIA -->
-    <div class="card-nuevo-dependencia-general">
+  <!-- TARJETA -->
+  <div class="card-nuevo-dependencia-general">
 
-      <div class="card-header">
-        <h3>Datos de la dependencia</h3>
-      </div>
+    <div class="card-header">
+      <h3>Datos de la dependencia</h3>
+    </div>
 
-      <div class="card-content">
+    <div class="card-content">
+
+      <!-- ===================== -->
+      <!-- PASO 1 -->
+      <!-- ===================== -->
+      @if (paso === 1) {
         <div class="tbl-nuevo-dependencia">
 
           <!-- NOMBRE -->
@@ -20,55 +24,192 @@
               type="text"
               placeholder="Inserte nombre del dependencia"
               [(ngModel)]="nameN"
-              required
-              #name="ngModel"
+              [disabled]="editMode()"
             />
-            @if (name.errors?.['required']) {
-              <div class="error">El nombre del dependencia es obligatorio.</div>
+
+            @if (!nameN) {
+              <div class="error">El nombre es obligatorio</div>
             }
           </div>
 
           <!-- DESCRIPCIÓN -->
           <div class="campo-texto">
-            <label for="description">Breve descripcion</label>
+            <label for="description">Descripción</label>
             <input
               id="description"
               name="description"
               type="text"
-              placeholder="Inserte descripcion"
+              placeholder="Inserte descripción"
               [(ngModel)]="descriptionN"
-              required
-              #description="ngModel"
             />
+
+            @if (!descriptionN) {
+              <div class="error">La descripción es obligatoria</div>
+            }
           </div>
+
         </div>
-      </div>
-
-    </div>
-
-    <!-- BOTONES FINALES -->
-    <div class="botones-nuevo-grupo">
-
-      <button class="btn-figma" type="submit" (click)="save()">
-        <span class="btn-icon">
-      <img src="assets/img/save.svg" alt="Guardar" />
-    </span>
-    Guardar</button>
-
-
-      @if (editMode()) {
-        <button class="btn-figma" type="button" (click)="delete()">
-          <span class="btn-icon">
-        <img src="assets/img/trash.svg" alt="Eliminar" />
-      </span>
-      Cancelar</button>
       }
 
-     <button class="btn-figma" type="button" (click)="cancel()">
-        <span class="btn-icon">
-      <img src="assets/img/cancel.svg" alt="Cancelar" />
-    </span>
-    Cancelar</button>
+      <!-- ===================== -->
+      <!-- PASO 2 -->
+      <!-- ===================== -->
+      @if (paso === 2) {
+        <div class="tbl-nuevo-dependencia">
+
+          <!-- TAREA CABEZA -->
+          <div class="campo-lista">
+            <label for="tareaCabeza">Tarea cabeza</label>
+            <select
+              id="tareaCabeza"
+              name="tareaCabeza"
+              [(ngModel)]="tareaCabeza"
+            >
+              <option value="">Seleccione una tarea</option>
+
+              @for (tarea of tareasList; track tarea) {
+                <option [value]="tarea">
+                  {{ tarea }}
+                </option>
+              }
+            </select>
+
+            @if (!tareaCabeza) {
+              <div class="error">Seleccione tarea cabeza</div>
+            }
+          </div>
+
+          <!-- TAREA COLA -->
+          <div class="campo-lista">
+            <label for="tareaCola">Tarea cola</label>
+            <select
+              id="tareaCola"
+              name="tareaCola"
+              [(ngModel)]="tareaCola"
+            >
+              <option value="">Seleccione una tarea</option>
+
+              @for (tarea of tareasList; track tarea) {
+                <option [value]="tarea">
+                  {{ tarea }}
+                </option>
+              }
+            </select>
+
+            @if (!tareaCola) {
+              <div class="error">Seleccione tarea cola</div>
+            }
+          </div>
+
+        </div>
+      }
+
+      <!-- ===================== -->
+      <!-- PASO 3 -->
+      <!-- ===================== -->
+      @if (paso === 3) {
+        <div class="tbl-nuevo-dependencia">
+
+          <!-- ESTADO -->
+          <div class="campo-lista">
+            <label for="estadoTareaCabeza">Estado de la tarea cabeza</label>
+            <select
+              id="estadoTareaCabeza"
+              name="estadoTareaCabeza"
+              [(ngModel)]="estadoTareaCabeza"
+            >
+              <option value="">Seleccione un estado</option>
+
+              @for (estado of estadosList; track estado) {
+                <option [value]="estado">
+                  {{ estado }}
+                </option>
+              }
+            </select>
+
+            @if (!estadoTareaCabeza) {
+              <div class="error">Seleccione un estado</div>
+            }
+          </div>
+
+        </div>
+      }
+
     </div>
-  </form>
+
+    <!-- ===================== -->
+<!-- PASO 4 -->
+<!-- ===================== -->
+@if (paso === 4) {
+  <div class="tbl-nuevo-dependencia">
+
+    <!-- PRIMITIVA -->
+    <div class="campo-lista">
+      <label for="primitivaDependencia">Primitiva de la dependencia</label>
+
+      <select
+        id="primitivaDependencia"
+        name="primitivaDependencia"
+        [(ngModel)]="primitivaDependencia"
+      >
+        <option value="">Seleccione una primitiva</option>
+
+        @for (prim of primitivasList; track prim) {
+          <option [value]="prim">
+            {{ prim }}
+          </option>
+        }
+      </select>
+
+      @if (!primitivaDependencia) {
+        <div class="error">Seleccione una primitiva</div>
+      }
+
+    </div>
+
+  </div>
+}
+
+    <!-- ===================== -->
+    <!-- BOTONES -->
+    <!-- ===================== -->
+    <div class="botones-nuevo-grupo">
+
+      <!-- ANTERIOR -->
+      @if (paso > 1) {
+        <button class="btn-figma" type="button" (click)="anterior()">
+          Anterior
+        </button>
+      }
+
+      <!-- SIGUIENTE -->
+      @if (paso < 3) {
+        <button class="btn-figma" type="button" (click)="siguiente()">
+          Siguiente
+        </button>
+      }
+
+      <!-- GUARDAR -->
+      @if (paso === 3) {
+        <button class="btn-figma" type="button" (click)="save()">
+          Guardar
+        </button>
+      }
+
+      <!-- ELIMINAR -->
+      @if (editMode()) {
+        <button class="btn-figma" type="button" (click)="delete()">
+          Eliminar
+        </button>
+      }
+
+      <!-- CANCELAR -->
+      <button class="btn-figma" type="button" (click)="cancel()">
+        Cancelar
+      </button>
+
+    </div>
+
+  </div>
+
 </div>

@@ -21,7 +21,7 @@
       @for (element of parent.dependencia; track element) {
         <ng-container>
           <div class="tabla-celda">
-            <div (click)="goToEditarDependencia (element)">
+            <div (click)="goToEditarDependencia(element)">
               {{ element.nombre }}
             </div>
           </div>
@@ -39,7 +39,7 @@
       @for (element of parent.dependencia; track element) {
         <ng-container>
           <div class="tabla-celda">
-            <div>
+            <div (click)="goToEditarDependencia(element)">
               {{ element.descripcion }}
             </div>
           </div>

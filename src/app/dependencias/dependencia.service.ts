@@ -91,6 +91,50 @@ export class DependenciaService {
     }
   
     /**
+     * Obtiene el listado de las tareas que puede tener un dependency.
+     * @returns 
+     */
+    public getTareas(): Observable<FsResponseEntity<any>> {
+        let ip: string = this.cookieService.get('ip');
+        return this.http.get<FsResponseEntity<any>>(
+          environment.workflowApiUrl +
+            `/dependency/getTasks`);
+    }
+
+     /**
+     * Obtiene el listado de las primitivas que puede tener un dependency.
+     * @returns 
+     */
+    public getPrimitivas(): Observable<FsResponseEntity<any>> {
+        let ip: string = this.cookieService.get('ip');
+        return this.http.get<FsResponseEntity<any>>(
+          environment.workflowApiUrl +
+            `/dependency/getPrimitives`);
+    }
+  
+    /**
+     * Obtiene el listado de los operadores que puede tener un dependency.
+     * @returns 
+     */
+    public getOperadores(): Observable<FsResponseEntity<any>> {
+        let ip: string = this.cookieService.get('ip');
+        return this.http.get<FsResponseEntity<any>>(
+          environment.workflowApiUrl +
+            `/dependency/getOperators`);
+    }
+
+    /**
+     * Obtiene el listado de los atributos workflow que puede tener un dependency.
+     * @returns 
+     */
+    public getAtributosWorkflow(): Observable<FsResponseEntity<any>> {
+        let ip: string = this.cookieService.get('ip');
+        return this.http.get<FsResponseEntity<any>>(
+          environment.workflowApiUrl +
+            `/dependency/getAttributesWorkflow`);
+    }
+
+    /**
      * Elimina un dependencia, dado su identificador
      * @param dependenciaName Nombre del dependencia a eliminar
      * @returns 
