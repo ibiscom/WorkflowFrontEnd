@@ -1,50 +1,140 @@
-<div class="cont-nuevo-workflow">
-  <form #form="ngForm">
+ <!-- <form #form="ngForm">
+<div class="cont-nuevo-rol">
 
-    <!-- TARJETA DATOS DEL WORKFLOW -->
-    <div class="card-nuevo-workflow-general">
+
+    <!-- TARJETA DATOS DE LA TAREA -->
+    <div class="card-nuevo-rol-general">
 
       <div class="card-header">
         <h3>Datos del rol</h3>
       </div>
 
       <div class="card-content">
-        <div class="tbl-nuevo-workflow">
+        <div class="tbl-nuevo-rol">
+
 
           <!-- NOMBRE -->
           <div class="campo-texto">
-            <label for="name">Nombre</label>
+            <label for="nombreTarea">Nombre</label>
             <input
-              id="name"
-              name="name"
+              id="nombreTarea"
+              name="nombreTarea"
               type="text"
               placeholder="Inserte nombre del rol"
-              [(ngModel)]="nameN"
+              [(ngModel)]="nombreRolN"
               required
-              #name="ngModel"
+              #nombreRol="ngModel"
             />
-            @if (name.errors?.['required']) {
+            @if (nombreRol.errors?.['required']) {
               <div class="error">El nombre del rol es obligatorio.</div>
             }
           </div>
 
           <!-- DESCRIPCIÓN -->
           <div class="campo-texto">
-            <label for="description">Breve descripcion</label>
+            <label for="descripcion">Breve descripción</label>
             <input
-              id="description"
-              name="description"
+              id="descripcion"
+              name="descripcion"
               type="text"
-              placeholder="Inserte descripcion"
-              [(ngModel)]="descriptionN"
+              placeholder="Inserte descripción"
+              [(ngModel)]="descripcionN"
               required
-              #description="ngModel"
+              #descripcion="ngModel"
             />
           </div>
 
-        </div>
-      </div>
+
+        <!-- PARTE DE SELECCIONAR RESPONSABLE, ROL-->
+        <div class="serie-container"> 
+         <div class="serie-container">
+          <div class="serie-content">
+            <!-- Header -->
+            <div class="serie-header">
+              <span class="serie-title">Responsables</span>
+            </div>
+
+<div class="card">
+  <!-- Header -->
+  <div class="card-header">
+    <span class="card-title">Responsables</span>
+  </div>
+
+  <!-- Lista de roles -->
+  @for(responsable of ResponsablesAgregarList; track responsable) {
+  <div
+    class="check-row"
+  >
+
+    <div [ngClass]="{'checkbox': true, 'selected': responsable.selected}">
+      <div class="checkbox-box"></div>
+      <div class="checkbox-check"><input type="checkbox" [(ngModel)]="responsable.selected" /></div>
     </div>
+
+    <span class="check-label">
+      {{ responsable.code }}
+    </span>
+
+  </div>
+  }
+</div>
+        <div class="actions">
+  <!-- Botón Asignar -->
+  <button
+    class="btn btn-primary"
+    type="button"
+    (click)="asignar()"
+  >
+    <span class="btn-icon assign-icon"></span>
+    <span>Asignar</span>
+  </button> 
+
+  <!-- Botón Retirar -->
+  <button
+    class="btn btn-outline"
+    type="button"
+    (click)="retirar()"
+  >
+    <span class="btn-icon remove-icon"></span>
+    <span>Retirar</span>
+  </button>
+</div>
+
+
+        <div class="card">
+  <!-- Header -->
+  <div class="card-header">
+    <div class="card-title">
+      Responsables asignados al rol
+    </div>
+  </div>
+
+  <!-- Item -->
+  @for(responsable of responsablesAsignadosList; track responsable) {
+  <div class="assigned-row" >  <!--*ngFor="let item of tiposDocumentoList"-->
+    <!-- Checkbox -->
+    <div class="checkbox selected">
+      <input type="checkbox" [(ngModel)]="responsable.visible" />
+    </div>
+
+    <!-- Título -->
+    <div class="assigned-title">
+      {{ responsable.code }}
+    </div>
+
+    <!-- Acciones -->
+    <div class="assigned-actions">
+      <span class="required">Requerido</span>
+
+      <div
+        class="switch"
+        [ngClass]="responsable.obligatorio ? 'on' : 'off'"
+        (click)="toggleObligatorio(responsable)"
+      > </div>
+    </div>
+  </div>
+ }
+</div>
 
     <!-- BOTONES FINALES -->
     <div class="botones-nuevo-grupo">
@@ -70,5 +160,8 @@
     </span>
     Cancelar</button>
     </div>
-  </form>
+    </div>
+    </div>
 </div>
+<!--</form>-->
+

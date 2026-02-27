@@ -1,27 +1,28 @@
 import { Component } from '@angular/core';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
-import { RolesComponent } from '../roles.component';
 import { LoginEntity } from '../../login/login.entity';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../../login/login.service';
-import { RolesComponentInstanceService } from '../roles-component-instance.service';
-import { RolesService } from '../roles.service';
-import { EstadoEntity } from '../estado.entity';
+import { CompanyEntity } from '../../entities/companies/company.entity';
 import { UserEntity } from '../../entities/users/user.entity';
 import { MessageUtil } from '../../utils/message.util';
 import { Constants } from '../../utils/constants';
 import { firstValueFrom } from 'rxjs';
-import { GroupEntity } from '../../entities/groups/group.entity';
+import { RolesEntity } from '../roles.entity';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { CompaniasService } from '../../companias/companias.service';
-import { UsuariosService } from '../../usuarios/usuarios.service';
-import { UserSearchFilterEntity } from '../../entities/users/user-search-filter.entity';
-import { RolesEntity } from '../roles.entity';
+import { RolesComponentInstanceService } from '../roles-component-instance.service';
+import { RolesService } from '../roles.service';
+import { RolesComponent } from '../roles.component';
+import { CookieService } from 'ngx-cookie-service';
+import { BrowserModule } from "@angular/platform-browser";
+import { CommonModule } from '@angular/common';
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { ResponsablesRolEntity } from '../ResponsablesRolEntity';
 
 @Component({
   selector: 'ibpm-crear-roles',
@@ -33,7 +34,9 @@ import { RolesEntity } from '../roles.entity';
     MatButtonModule,
     MatIconModule,
     MatSelectModule,
-  ],
+    CommonModule,
+    MatSlideToggleModule
+],
   templateUrl: './crear-roles.component.html',
   styleUrl: './crear-roles.component.scss',
 })
@@ -42,29 +45,25 @@ import { RolesEntity } from '../roles.entity';
  * Permite seleccionar compañía, supervisor y administrar permisos/restricciones.
  */
 export class CrearRolesComponent {
+  public rolesList: RolesEntity[] = [];
+  public rolN?: RolesEntity;
+  public nombreRolN: string = '';
+  public descripcionN: string = '';
   public uc?: RolesComponent;
   public loggedUser?: LoginEntity;
-  public nameN: string = '';
-  public descriptionN: string = '';
-  public rolesN: string = '';
-  public rolesObjectN?: EstadoEntity;
-  public supervisorN: string = '';
-  public operationE: string = '';
-  public operationsList: string[] = [];
-  public restrictedOperationsList: string[] = [];
-  public rolesList: EstadoEntity[] = [];
-  public supervisorsList: UserEntity[] = [];
   public rolesIdEdit?: string;
-  public supervisorObjectN?: UserEntity;
+  public workflowActual: string = '';
+  public responsablesAsignadosList: ResponsablesRolEntity[] = [];
+  ResponsablesAgregarList: never[];
+ 
 
   public constructor(
     private rolesService: RolesService,
-    private companiasService: CompaniasService,
-    private usuariosService: UsuariosService,
     private loginService: LoginService,
     private rolesComponentInstanceService: RolesComponentInstanceService,
     private router: Router,
     private route: ActivatedRoute,
+    private cookieService: CookieService,
   ) {
     this.loggedUser = this.loginService.getLoggedUser();
     this.uc = this.rolesComponentInstanceService.getInstance();
@@ -77,212 +76,112 @@ export class CrearRolesComponent {
     if (this.uc) {
       this.uc.mensaje = '';
     }
-    this.getRolesList();
-    this.getSupervisorsList();
+    this.workflowActual = this.cookieService.get("workflowActual");
     const id = this.route.snapshot.paramMap.get('id');
     console.log('Edit Mode On. Group Id:', id);
+    await this.getRolesList();
+      await this.getResponsablesRolList();
+
     if (id) {
       this.rolesIdEdit = id;
       await this.fillEditFields();
-      this.getOperationsList();
-      this.getRestrictedOperationsList();
+
     } else {
       this.rolesIdEdit = undefined;
     }
   }
+  
+  
+
+
+  
 
   /**
-   * Carga la lista de supervisores disponibles.
-   */
-  public getSupervisorsList() {
-    /*
-    let filter: UserSearchFilterEntity = {
-      userName: this.loggedUser?.user_name ?? '',
-      status: 'Activo',
-    };
-    this.usuariosService.searchUsers(filter).subscribe({
-      next: (response) => {
-        if (response && response.respuesta) {
-          this.supervisorsList = response.respuesta as UserEntity[];
-        }
-      },
-      error: (e) => {
-        if (this.uc) {
-          this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-            Constants.ERR_GRUPO_SUPERVISORES,
-            e,
-          );
-        }
-      },
-    });
-    */
-  }
-
-  /**
-   * Carga la lista de compañías disponibles para selección.
-   */
-  public getRolesList() {
-    /*
-    this.companiesList = [];
-    this.companiasService
-      .getAllCompanies(this.loggedUser?.user_name ?? '')
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
-            this.companiesList = response.respuesta as CompanyEntity[];
-          }
-        },
-        error: (e) => {
-          if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_COMPANIAS,
-              e,
-            );
-          }
-        },
-      });
-      */
-  }
-
-  /**
-   * Llena los campos del formulario con la información del grupo en edición.
+   * Llena los campos del formulario con la información de la rol en edición.
    */
   public async fillEditFields(): Promise<void> {
-    /*
+   
     try {
       const response = await firstValueFrom(
-        this.gruposService.getGroup(
+        this.rolesService.getGroups(
+          this.workflowActual ?? '',
+          this.rolesIdEdit ?? '',
           this.loggedUser?.user_name ?? '',
-          this.groupIdEdit ?? '',
         ),
       );
       if (response?.respuesta) {
-        const group = response.respuesta as GroupEntity;
-        this.nameN = group.name ?? '';
-        this.descriptionN = group.description ?? '';
-        this.companyN = group.company ?? '';
-        this.companyObjectN = this.companiesList.find(
-          (c) => c.name === this.companyN,
-        );
-        this.supervisorN = group.supervisor ?? '';
-        this.supervisorObjectN = this.supervisorsList.find(
-          (s) => s.name === this.supervisorN,
-        );
+        const rol = response.respuesta as RolesEntity;
+        this.nombreRolN = rol.nombre ?? '';
+        this.descripcionN = rol.descripcion ?? '';
       }
     } catch (e) {
       if (this.uc) {
         this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-          Constants.ERR_GRUPO_DATOS,
+          Constants.ERR_TAREA_DATOS,
           e,
         );
       }
     }
-      */
   }
 
   /**
-   * Consulta las operaciones asociadas al grupo.
+   * Consulta los tipos de rol.
    */
-  public getOperationsList() {
-    /*
-    if (!this.editMode()) {
-      this.operationsList = [];
-      return;
-    }
-
-    this.operationsList = [];
+  public async getResponsablesList() {
+    this.ResponsablesAgregarList = [];
 
     try {
-      this.workflowService
-        .getOperationsByGroup(
-          this.loggedUser?.user_name ?? '',
-          this.workflowIdEdit ?? '',
-        )
-        .subscribe({
-          next: (response) => {
-            if (response && response.respuesta) {
-              const ops = response.respuesta as string[];
-              this.operationsList.push(...ops);
-            }
-          },
-          error: (e) => {
-            if (this.uc) {
-              if (
-                !String(e.error.mensaje).includes(
-                  'no tiene operaciones asociadas',
-                )
-              ) {
-                this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-                  Constants.ERR_GRUPO_OPERACIONES,
-                  e,
-                );
-              }
-            }
-          },
-        });
+      const response = await firstValueFrom(
+      this.rolesService
+        .getGroups()
+      );
+
+      if (response && response.respuesta) {
+        const ops = response.respuesta as ResponsablesRolEntity[];
+        this.ResponsablesAgregarList.push(...ops);
+      }
     } catch (error: any) {
       if (this.uc) {
         this.uc.mensaje =
           error.status === 400
             ? ''
             : MessageUtil.buildErrorMessageFsResponse(
-                Constants.ERR_GRUPO_OPERACIONES_ENCONTRAR,
+                Constants.ERR_TIPO_TAREA_ENCONTRAR,
                 error,
               );
       }
     }
-      */
+      
   }
 
   /**
-   * Consulta las operaciones restringidas (no permitidas) del grupo.
+   * Consulta los tipos de rol.
    */
-  public getRestrictedOperationsList() {
-    /*
-    if (!this.editMode()) {
-      this.restrictedOperationsList = [];
-      return;
-    }
-
-    this.restrictedOperationsList = [];
+  public async getResponsablesRolList() {
+    this.responsablesAsignadosList = [];
 
     try {
-      this.workflowService
-        .getRestrictedOperationsByGroup(
-          this.loggedUser?.user_name ?? '',
-          this.workflowIdEdit ?? '',
-        )
-        .subscribe({
-          next: (response) => {
-            if (response && response.respuesta) {
-              const ops = response.respuesta as string[];
-              this.restrictedOperationsList.push(...ops);
-            }
-          },
-          error: (e) => {
-            if (this.uc) {
-              this.uc.mensaje =
-                e.status === 400
-                  ? ''
-                  : MessageUtil.buildErrorMessageFsResponse(
-                      Constants.ERR_GRUPO_OPERACIONES_RESTRINGIDAS,
-                      e,
-                    );
-            }
-          },
-        });
+      const response = await firstValueFrom(
+      this.rolesService
+        .getGroupsRol()
+      );
+
+      if (response && response.respuesta) {
+        const ops = response.respuesta as ResponsablesRolEntity[];
+        this.responsablesAsignadosList.push(...ops);
+      }
     } catch (error: any) {
       if (this.uc) {
         this.uc.mensaje =
           error.status === 400
             ? ''
             : MessageUtil.buildErrorMessageFsResponse(
-                Constants.ERR_GRUPO_OPERACIONES_RESTRINGIDAS,
+                Constants.ERR_TIPO_TAREA_ENCONTRAR,
                 error,
               );
       }
     }
-      */
+      
   }
 
   /**
@@ -295,9 +194,9 @@ export class CrearRolesComponent {
   /**
    * Maneja el cambio de compañía seleccionada.
    */
-  public onEstadoChange(event: MatSelectChange<EstadoEntity>) {
-    this.rolesObjectN = event.value;
-    this.rolesN = event.value?.nombre ?? '';
+  public onCompanyChange(event: MatSelectChange<CompanyEntity>) {
+    /**this.companyObjectN = event.value;
+    this.companyN = event.value?.name ?? '';*/
   }
 
   /**
@@ -315,228 +214,255 @@ export class CrearRolesComponent {
    * Crea un nuevo grupo con los datos del formulario.
    */
   public create() {
-    /*
-    this.gruposService
-      .createGroup({
-        userName: this.loggedUser?.user_name ?? '',
-        name: this.nameN,
-        description: this.descriptionN,
-        company: this.companyN,
-        supervisor: this.supervisorN,
-      } as GroupEntity)
+    this.rolesService
+      .createTarea({
+        nombreWorkflow: this.workflowActual,
+        usuario: this.loggedUser?.user_name ?? '',
+        descripcion: this.descripcionN,
+        rol: this.nombreRolN,
+        subProceso: '',
+        sincronico: '',
+        responsable: '',
+        docModels: this.mapearModelosDocumentoTarea(),
+      } as TareaEntity)
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
             if (this.uc) {
               this.uc.mensaje = '';
             }
-            this.groupIdEdit = this.nameN;
+            this.rolesIdEdit = this.nombreTareaN;
             this.router.navigate([
-              `/main-page/administrarGrupos/editarGrupo?id=${this.nameN}`,
+              `/main-page/roles/editarTarea?id=${this.nombreTareaN}`,
             ]);
           }
         },
         error: (e) => {
           if (this.uc) {
             this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_CREAR,
+              Constants.ERR_TAREA_CREAR,
               e,
             );
           }
         },
       });
-      */
   }
 
   /**
-   * Edita el grupo existente con los datos proporcionados.
+   * Edita la rol existente con los datos proporcionados.
    */
   public edit() {
-    /*
-    this.gruposService
-      .editGroup({
-        userName: this.loggedUser?.user_name ?? '',
-        name: this.nameN,
-        description: this.descriptionN,
-        company: this.companyN,
-        supervisor: this.supervisorN,
-      } as GroupEntity)
+    this.rolesService
+      .editRoles({
+        nombreWorkflow: this.workflowActual,
+        usuario: this.loggedUser?.user_name ?? '',
+        numero: this.numeroTareaN ? parseInt(this.numeroTareaN) : undefined,
+        nombre: this.nombreTareaN,
+        nombreLargo: this.nombreLargoN,
+        estadoTarea: this.estadoObjetoN,
+        modeloCarpeta: this.modeloCarpetaN,
+        descripcion: this.descripcionN,
+        tipo: this.nombreTipoN,
+        herramienta: this.nombreHerramientaN,
+        rol: this.nombreRolN,
+        metodoAsignacion: this.nombreMetodoAsignacionN,
+        subProceso: '',
+        sincronico: '',
+        responsable: '',
+        diasDuracionEstimada: this.diasDuracionEstimadaN ? parseInt(this.diasDuracionEstimadaN) : undefined,
+        horasDuracionEstimada: this.horasDuracionEstimadaN ? parseInt(this.horasDuracionEstimadaN) : undefined,
+        minutosDuracionEstimada: this.minutosDuracionEstimadaN ? parseInt(this.minutosDuracionEstimadaN) : undefined,
+        segundosDuracionEstimada: this.segundosDuracionEstimadaN ? parseInt(this.segundosDuracionEstimadaN) : undefined,
+        diasAlarmaAmarilla: this.diasAlarmaAmarillaN ? parseInt(this.diasAlarmaAmarillaN) : undefined,
+        horasAlarmaAmarilla: this.horasAlarmaAmarillaN ? parseInt(this.horasAlarmaAmarillaN) : undefined,
+        minutosAlarmaAmarilla: this.minutosAlarmaAmarillaN ? parseInt(this.minutosAlarmaAmarillaN) : undefined,
+        segundosAlarmaAmarilla: this.segundosAlarmaAmarillaN ? parseInt(this.segundosAlarmaAmarillaN) : undefined,
+        editarDocProceso: this.editarDocProcesoN,
+        docModels: this.mapearModelosDocumentoTarea(),
+      } as TareaEntity)
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
             this.router.navigate([
-              `/main-page/administrarGrupos/editarGrupo?id=${this.nameN}`,
+              `/main-page/roles/editarTarea?id=${this.nombreTareaN}`,
             ]);
           }
         },
         error: (e) => {
           if (this.uc) {
             this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_EDITAR,
+              Constants.ERR_TAREA_EDITAR,
               e,
             );
           }
         },
       });
-      */
+
+    
   }
 
+ 
   /**
-   * Agrega una operación al grupo.
-   */
-  public addOperationToGroup(event: MatSelectChange<any>) {
-    /*
-    const operation = event.value;
-    this.gruposService
-      .addOperationToGroup(
-        this.loggedUser?.user_name ?? '',
-        this.groupIdEdit ?? '',
-        operation,
-      )
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
-            this.operationsList.push(operation);
-          }
-        },
-        error: (e) => {
-          if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_AGREGAR_OPERACION,
-              e,
-            );
-          }
-        },
-      });
-      */
-  }
-
-  /**
-   * Elimina una operación del grupo.
-   */
-  public remove(operation: string) {
-    /*
-    this.gruposService
-      .removeOperationFromGroup(
-        this.loggedUser?.user_name ?? '',
-        this.groupIdEdit ?? '',
-        operation,
-      )
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
-            this.operationsList = this.operationsList.filter(
-              (op) => op !== operation,
-            );
-          }
-        },
-        error: (e) => {
-          if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_ELIMINAR_OPERACION,
-              e,
-            );
-          }
-        },
-      });
-      */
-  }
-
-  /**
-   * Elimina el grupo actual.
+   * Elimina la rol actual.
    */
   public delete() {
-    /*
-    this.gruposService
-      .deleteGroup(this.loggedUser?.user_name ?? '', this.groupIdEdit)
+    this.rolesService
+      .deleteTarea( this.rolesIdEdit ?? '')
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
-            this.router.navigate(['/main-page/administrarGrupos']);
+            this.router.navigate(['/main-page/roles']);
           }
         },
         error: (e) => {
           if (this.uc) {
             this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_ELIMINAR,
+              Constants.ERR_TAREA_ELIMINAR,
               e,
             );
           }
         },
       });
-      */
   }
 
   /**
-   * Cancela y regresa al listado de grupos.
+   * Cancela y regresa al listado de roles.
    */
   public cancel() {
-    /*
     if (this.uc) {
       this.uc.mensaje = '';
     }
-    this.router.navigate(['/main-page/administrarGrupos']);
-    */
-  }
-
-  /**
-   * Compara compañías en el selector.
-   */
-  public compareCompanies(c1: RolesEntity, c2: RolesEntity): boolean {
-    return c1.nombre === c2.nombre;
-  }
-
-  /**
-   * Compara supervisores en el selector.
-   */
-  public compareSupervisors(s1: UserEntity, s2: UserEntity): boolean {
-    return s1.name === s2.name;
-  }
-
-  /**
-   * Maneja el cambio de supervisor seleccionado.
-   */
-  public onSupervisorChange(event: MatSelectChange<UserEntity>) {
-    this.supervisorObjectN = event.value;
-    this.supervisorN = event.value?.name ?? '';
+    this.router.navigate(['/main-page/roles']);
   }
 
 
- /**
-   * Agrega una restricción de operación a la compañía.
-   */
-  public restrict(operation?: string | undefined) {
-    /*
-    try {
-      this.companiasService
-        .addRestrictionToCompany(
-          this.loggedUser?.user_name ?? '',
-          this.groupIdEdit?? '',
-          operation ?? '',
-        )
-        .subscribe({
-          next: (response) => {
-            if (response && response.respuesta) {
-              this.ngOnInit();
-            }
-          },
-          error: (e: any) => {
-            if (this.uc) {
-              this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-                Constants.ERR_COMPANIA_RESTRINGIR_OPERACION,
-                e,
-              );
-            }
-          },
+  public onMetodoAsignacionChange($event: any) {
+    let metodoAsignacionSeleccionado = $event as MetodoAsignacionTareaEntity;
+    this.metodoAsignacionN = metodoAsignacionSeleccionado;
+    this.nombreMetodoAsignacionN = metodoAsignacionSeleccionado.code ?? '';
+  }
+
+  public onRolChange($event: any) {
+    let rolSeleccionado = $event as RolTareaEntity;
+    this.rolN = rolSeleccionado;
+    this.nombreRolN = rolSeleccionado.code ?? '';
+  }
+
+  public onHerramientaChange($event: any) {
+    let herramientaSeleccionada = $event as HerramientaTareaEntity;
+    this.herramientaN = herramientaSeleccionada;
+    this.nombreHerramientaN = herramientaSeleccionada?.code ?? '';
+  } 
+
+  public onTipoChange(event: any) {
+    let tipoSeleccionado = event as TipoTareaEntity;
+    this.tipoN = tipoSeleccionado;
+    this.nombreTipoN = tipoSeleccionado?.code ?? '';
+  } 
+  
+  public async onSerieChange($event: any) {
+    let serieSeleccionada = $event as SerieTareaEntity;
+    this.serieN = serieSeleccionada;
+    this.nombreSerieN = serieSeleccionada?.code ?? '';
+    await this.getTiposDocumentoListBySerie();
+    this.diligenciarTiposDocumentoAsignadosTarea();
+    this.diligenciarTiposDocumentoAsignar();
+
+  }     
+
+  public diligenciarTiposDocumentoAsignar() {
+    this.tiposDocumentoAgregarList = [];
+    if(this.tiposDocumentoList.length > 0 ) {
+        this.tiposDocumentoList.forEach(tipoDoc => {
+          if (!this.tiposDocumentoAsignadosTareaList.some(asignado => asignado.code === tipoDoc.code)) {
+            this.tiposDocumentoAgregarList.push(tipoDoc);
+          }
         });
-    } catch (e) {
-      if (this.uc) {
-        this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-          Constants.ERR_COMPANIA_ASOCIAR_PERMISO,
-          e,
-        );
-      }
-    }
-      */
+   } 
   }
+
+  public diligenciarTiposDocumentoAsignadosTarea() {
+    this.tiposDocumentoAsignadosTareaList = [];
+    if(this.editMode()) {
+      this.modelosDocumentoTareaE.forEach(modeloDoc => {
+        if(modeloDoc.nombreSerie === this.nombreSerieN) {
+          const tipoDocAsignado: TipoDocumentoTareaEntity = {
+            code: modeloDoc.tipoDocumento ?? '',
+            name: modeloDoc.tipoDocumento ?? '',
+            obligatorio: modeloDoc.obligatoryTypeDocInTask ?? false,
+            visible: true,
+            selected: false
+          };
+          this.tiposDocumentoAsignadosTareaList.push(tipoDocAsignado);
+        }
+     });
+    }
+  }
+
+  public async getTiposDocumentoListBySerie() {
+   this.tiposDocumentoList = [];
+    try {
+      const response = await firstValueFrom(
+        this.rolesService
+          .getTiposDocumentoBySerie(this.nombreSerieN ?? '')
+      );
+        if (response && response.respuesta) {
+          const ops = response.respuesta as TipoDocumentoTareaEntity[];
+          this.tiposDocumentoList.push(...ops);
+        }
+    } catch (error: any) {
+      if (this.uc) {
+        this.uc.mensaje =
+          error.status === 400
+            ? ''
+            : MessageUtil.buildErrorMessageFsResponse(
+                Constants.ERR_TIPO_DOCUMENTO_TAREA_ENCONTRAR,
+                error,
+              );
+      }
+
+      //TEMPORAL: Se rellenan tipos de documento por defecto en caso de error para evitar bloqueos en la creación de roles
+      this.tiposDocumentoList.push(
+        { code: 'Demanda', name: 'Demanda' },
+        { code: 'Poder', name: 'Poder' },
+        { code: 'Solicitud de Antecedentes', name: 'Solicitud de Antecedentes' },
+        { code: 'Pruebas', name: 'Pruebas' },
+        { code: 'Fallo de primera instancia', name: 'Fallo de primera instancia' },
+        { code: 'Notificacion', name: 'Notificacion' },
+        { code: 'Fallo de segunda instancia', name: 'Fallo de segunda instancia' },
+      );
+    }
+  }
+  
+  public retirar() {
+    this.tiposDocumentoAgregarList.push(...this.tiposDocumentoAsignadosTareaList.some(tipo => tipo.visible) ? this.tiposDocumentoAsignadosTareaList.filter(tipo => tipo.visible) : []);
+    this.tiposDocumentoAsignadosTareaList = this.tiposDocumentoAsignadosTareaList.filter(tipo => !tipo.visible);
+    this.tiposDocumentoAgregarList.forEach(tipo => { tipo.visible = false; });
+  }
+
+  public asignar() {
+    this.tiposDocumentoAsignadosTareaList.push(...this.tiposDocumentoAgregarList.some(tipo => tipo.selected) ? this.tiposDocumentoAgregarList.filter(tipo => tipo.selected) : []);
+    this.tiposDocumentoAgregarList = this.tiposDocumentoAgregarList.filter(tipo => !tipo.selected);
+    this.tiposDocumentoAsignadosTareaList.forEach(tipo => { tipo.selected = false; });
+  }
+
+  public toggleObligatorio(tipoDocTarea: TipoDocumentoTareaEntity) {
+    tipoDocTarea.obligatorio = !tipoDocTarea.obligatorio;
+  }
+
+  public mapearModelosDocumentoTarea(): DocumentModelEntity[] {
+    if(this.tiposDocumentoAsignadosTareaList.length === 0) {
+      return [];
+    }
+    return this.tiposDocumentoAsignadosTareaList.map(tipoDoc => {
+      const modelo: DocumentModelEntity = {
+        tipoDocumento: tipoDoc.code,
+        idSerie: this.serieN?.code ?? '',
+        nombreSerie: this.nombreSerieN,
+        obligatoryTypeDocInTask: tipoDoc.obligatorio ?? false,
+        editableTypeDocInTask: this.editarDocProcesoN
+      };
+      return modelo;
+    });
+}
 }
