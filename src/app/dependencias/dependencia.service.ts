@@ -71,7 +71,7 @@ export class DependenciaService {
      * @param dependenciaName La información del dependencia a consultar.
      * @returns 
      */
-    public getDependencia(dependenciaName: string): Observable<FsResponseEntity<any>> {
+    public getDependencia(dependenciaName: string, p0: string): Observable<FsResponseEntity<any>> {
         let ip: string = this.cookieService.get('ip');
         return this.http.get<FsResponseEntity<any>>(
           environment.workflowApiUrl +

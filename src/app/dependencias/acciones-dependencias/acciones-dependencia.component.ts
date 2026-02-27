@@ -32,6 +32,6 @@ export class AccionesDependenciaComponent {
    * Navega a la pantalla de creación de grupo.
    */
   public irACrearDependencia() {
-    this.router.navigate([`/main-page/dependencia/crearDependencia`]);
+    this.router.navigate([`/main-page/dependencias/crearDependencia`]);
   }
 }

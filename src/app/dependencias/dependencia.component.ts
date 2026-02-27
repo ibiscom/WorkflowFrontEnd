@@ -16,6 +16,8 @@ import { AccionesDependenciaComponent } from './acciones-dependencias/acciones-d
 import { DependenciaFilterEntity } from './dependencia-filter.entity';
 import { EstadoDependenciaEntity } from './estadoDependencia.entity';
 import { CookieService } from 'ngx-cookie-service';
+import { TareaDependenciaEntity } from './tarea-dependencia.entity';
+import { PrimitivaDependenciaEntity } from './primitivaDependencia';
 
 
 
@@ -33,6 +35,11 @@ export class DependenciaComponent {
   public dependencia: DependenciaEntity[] = [];
   public mensaje: string = '';
   public workflowActual: string = '';
+  public estado: EstadoDependenciaEntity[] = [];
+  public tarea: TareaDependenciaEntity[] = [];
+  public tareaCabeza: string = '';
+  public tareaCola: string = '';
+  public primitiva: PrimitivaDependenciaEntity[] = [];
 
   constructor(
     private dependenciaService: DependenciaService,

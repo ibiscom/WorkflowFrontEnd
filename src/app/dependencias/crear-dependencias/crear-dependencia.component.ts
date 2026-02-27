@@ -24,6 +24,7 @@ import { UserSearchFilterEntity } from '../../entities/users/user-search-filter.
 import { CookieService } from 'ngx-cookie-service';
 import { EstadoDependenciaEntity } from '../estadoDependencia.entity';
 import { TareaDependenciaEntity } from '../tarea-dependencia.entity';
+import { PrimitivaDependenciaEntity } from '../primitivaDependencia';
 
 @Component({
   selector: 'ibpm-crear-dependencia',
@@ -67,6 +68,7 @@ export class CrearDependenciaComponent {
   public dependencia: any;
   public TareaObjectN?: TareaDependenciaEntity;
   public TareaN: string = '';
+  public primitivaObjectN?: PrimitivaDependenciaEntity;
 
   public constructor(
     private dependenciaService: DependenciaService,
@@ -160,6 +162,12 @@ export class CrearDependenciaComponent {
       this.TareaN = event?.name ?? '';
     }
 
+    public onPrimitivaChange(event:any): void {
+      console.log('Primitiva seleccionada:', event);
+      this.primitivaObjectN = event as PrimitivaDependenciaEntity;
+      this.primitivaN = event?.name ?? '';
+    }
+
     /**
      * Guarda los cambios, creando o editando la dependencia  según corresponda.
      */
@@ -186,7 +194,7 @@ export class CrearDependenciaComponent {
           descripcion:this.descripcionN, 
       }
       this.dependenciaService
-        .createDependencia(dependencia)
+        .createDependency(dependencia)
         .subscribe({
           next: (response) => {
             if (response && response.respuesta) {
@@ -195,7 +203,7 @@ export class CrearDependenciaComponent {
               }
               this.dependenciaIdEdit = this.nombreN;
               this.router.navigate([
-                `/main-page/workflow/editardependencia?id=${this.nombreN}`,
+                `/main-page/dependencias/editardependencia?id=${this.nombreN}`,
               ]);
             }
           },
@@ -229,7 +237,7 @@ export class CrearDependenciaComponent {
           next: (response) => {
             if (response && response.respuesta) {
               this.router.navigate([
-                `/main-page/workflows/editarDependencia?id=${this.nombreN}`,
+                `/main-page/dependencias/editarDependencia?id=${this.nombreN}`,
               ]);
             }
           },
@@ -257,7 +265,7 @@ export class CrearDependenciaComponent {
               this.uc.buscarDependencias();
               this.uc.mensaje = Constants.MSG_HERRAMIENTA_ELIMINACION_EXITOSA;
             }
-              this.router.navigate(['/main-page/dependencia']);
+              this.router.navigate(['/main-page/dependencias']);
             }
           },
           error: (e) => {
@@ -290,7 +298,37 @@ export class CrearDependenciaComponent {
     }
   
 
-  
+   public and() {
+      if (!this.editMode()) {
+        this.create();
+      } else {
+        this.edit();
+      }
+    }
 
+     public or() {
+      if (!this.editMode()) {
+        this.create();
+      } else {
+        this.edit();
+      }
+    }
+
+
+     public NOT() {
+      if (!this.editMode()) {
+        this.create();
+      } else {
+        this.edit();
+      }
+    }
+
+     public atributo() {
+      if (!this.editMode()) {
+        this.create();
+      } else {
+        this.edit();
+      }
+    }
   
 }
