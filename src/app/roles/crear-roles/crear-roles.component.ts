@@ -54,7 +54,7 @@ export class CrearRolesComponent {
   public rolesIdEdit?: string;
   public workflowActual: string = '';
   public responsablesAsignadosList: ResponsablesRolEntity[] = [];
-  ResponsablesAgregarList: never[];
+  public ResponsablesAgregarList: ResponsablesRolEntity[] = [];
  
 
   public constructor(
@@ -79,7 +79,7 @@ export class CrearRolesComponent {
     this.workflowActual = this.cookieService.get("workflowActual");
     const id = this.route.snapshot.paramMap.get('id');
     console.log('Edit Mode On. Group Id:', id);
-    await this.getRolesList();
+    await this.getResponsablesList();
       await this.getResponsablesRolList();
 
     if (id) {
@@ -215,7 +215,7 @@ export class CrearRolesComponent {
    */
   public create() {
     this.rolesService
-      .createTarea({
+      .createRole({
         nombreWorkflow: this.workflowActual,
         usuario: this.loggedUser?.user_name ?? '',
         descripcion: this.descripcionN,
@@ -224,16 +224,16 @@ export class CrearRolesComponent {
         sincronico: '',
         responsable: '',
         docModels: this.mapearModelosDocumentoTarea(),
-      } as TareaEntity)
+      } as RolesEntity)
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
             if (this.uc) {
               this.uc.mensaje = '';
             }
-            this.rolesIdEdit = this.nombreTareaN;
+            this.rolesIdEdit = this.nombreRolN;
             this.router.navigate([
-              `/main-page/roles/editarTarea?id=${this.nombreTareaN}`,
+              `/main-page/roles/editarRol?id=${this.nombreRolN}`,
             ]);
           }
         },
@@ -253,38 +253,21 @@ export class CrearRolesComponent {
    */
   public edit() {
     this.rolesService
-      .editRoles({
+      .editRol({
         nombreWorkflow: this.workflowActual,
         usuario: this.loggedUser?.user_name ?? '',
-        numero: this.numeroTareaN ? parseInt(this.numeroTareaN) : undefined,
-        nombre: this.nombreTareaN,
-        nombreLargo: this.nombreLargoN,
-        estadoTarea: this.estadoObjetoN,
-        modeloCarpeta: this.modeloCarpetaN,
         descripcion: this.descripcionN,
-        tipo: this.nombreTipoN,
-        herramienta: this.nombreHerramientaN,
         rol: this.nombreRolN,
-        metodoAsignacion: this.nombreMetodoAsignacionN,
         subProceso: '',
         sincronico: '',
         responsable: '',
-        diasDuracionEstimada: this.diasDuracionEstimadaN ? parseInt(this.diasDuracionEstimadaN) : undefined,
-        horasDuracionEstimada: this.horasDuracionEstimadaN ? parseInt(this.horasDuracionEstimadaN) : undefined,
-        minutosDuracionEstimada: this.minutosDuracionEstimadaN ? parseInt(this.minutosDuracionEstimadaN) : undefined,
-        segundosDuracionEstimada: this.segundosDuracionEstimadaN ? parseInt(this.segundosDuracionEstimadaN) : undefined,
-        diasAlarmaAmarilla: this.diasAlarmaAmarillaN ? parseInt(this.diasAlarmaAmarillaN) : undefined,
-        horasAlarmaAmarilla: this.horasAlarmaAmarillaN ? parseInt(this.horasAlarmaAmarillaN) : undefined,
-        minutosAlarmaAmarilla: this.minutosAlarmaAmarillaN ? parseInt(this.minutosAlarmaAmarillaN) : undefined,
-        segundosAlarmaAmarilla: this.segundosAlarmaAmarillaN ? parseInt(this.segundosAlarmaAmarillaN) : undefined,
-        editarDocProceso: this.editarDocProcesoN,
         docModels: this.mapearModelosDocumentoTarea(),
-      } as TareaEntity)
+      } as RolesEntity)
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
             this.router.navigate([
-              `/main-page/roles/editarTarea?id=${this.nombreTareaN}`,
+              `/main-page/roles/editarRol?id=${this.nombreRolN}`,
             ]);
           }
         },
@@ -307,7 +290,7 @@ export class CrearRolesComponent {
    */
   public delete() {
     this.rolesService
-      .deleteTarea( this.rolesIdEdit ?? '')
+      .deleteRol( this.rolesIdEdit ?? '')
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
@@ -336,133 +319,56 @@ export class CrearRolesComponent {
   }
 
 
-  public onMetodoAsignacionChange($event: any) {
-    let metodoAsignacionSeleccionado = $event as MetodoAsignacionTareaEntity;
-    this.metodoAsignacionN = metodoAsignacionSeleccionado;
-    this.nombreMetodoAsignacionN = metodoAsignacionSeleccionado.code ?? '';
-  }
+  
 
   public onRolChange($event: any) {
-    let rolSeleccionado = $event as RolTareaEntity;
+    let rolSeleccionado = $event as RolesEntity;
     this.rolN = rolSeleccionado;
     this.nombreRolN = rolSeleccionado.code ?? '';
   }
 
-  public onHerramientaChange($event: any) {
-    let herramientaSeleccionada = $event as HerramientaTareaEntity;
-    this.herramientaN = herramientaSeleccionada;
-    this.nombreHerramientaN = herramientaSeleccionada?.code ?? '';
-  } 
+     
 
-  public onTipoChange(event: any) {
-    let tipoSeleccionado = event as TipoTareaEntity;
-    this.tipoN = tipoSeleccionado;
-    this.nombreTipoN = tipoSeleccionado?.code ?? '';
-  } 
-  
-  public async onSerieChange($event: any) {
-    let serieSeleccionada = $event as SerieTareaEntity;
-    this.serieN = serieSeleccionada;
-    this.nombreSerieN = serieSeleccionada?.code ?? '';
-    await this.getTiposDocumentoListBySerie();
-    this.diligenciarTiposDocumentoAsignadosTarea();
-    this.diligenciarTiposDocumentoAsignar();
-
-  }     
-
-  public diligenciarTiposDocumentoAsignar() {
-    this.tiposDocumentoAgregarList = [];
-    if(this.tiposDocumentoList.length > 0 ) {
-        this.tiposDocumentoList.forEach(tipoDoc => {
-          if (!this.tiposDocumentoAsignadosTareaList.some(asignado => asignado.code === tipoDoc.code)) {
-            this.tiposDocumentoAgregarList.push(tipoDoc);
+  public diligenciarResponsable() {
+    this.ResponsablesAgregarList = [];
+    if(this.ResponsablesAgregarList.length > 0 ) {
+        this.ResponsablesAgregarList.forEach(tipoDoc => {
+          if (!this.responsablesAsignadosList.some(asignado => asignado.code === tipoDoc.code)) {
+            this.ResponsablesAgregarList.push(tipoDoc);
           }
         });
    } 
   }
 
-  public diligenciarTiposDocumentoAsignadosTarea() {
-    this.tiposDocumentoAsignadosTareaList = [];
+  public diligenciarResponsablesAsignados() {
+    this.responsablesAsignadosList = [];
     if(this.editMode()) {
       this.modelosDocumentoTareaE.forEach(modeloDoc => {
         if(modeloDoc.nombreSerie === this.nombreSerieN) {
-          const tipoDocAsignado: TipoDocumentoTareaEntity = {
+          const responsableasignado: ResponsablesRolEntity = {
             code: modeloDoc.tipoDocumento ?? '',
             name: modeloDoc.tipoDocumento ?? '',
             obligatorio: modeloDoc.obligatoryTypeDocInTask ?? false,
             visible: true,
             selected: false
           };
-          this.tiposDocumentoAsignadosTareaList.push(tipoDocAsignado);
+          this.responsablesAsignadosList.push(responsableasignado);
         }
      });
     }
-  }
-
-  public async getTiposDocumentoListBySerie() {
-   this.tiposDocumentoList = [];
-    try {
-      const response = await firstValueFrom(
-        this.rolesService
-          .getTiposDocumentoBySerie(this.nombreSerieN ?? '')
-      );
-        if (response && response.respuesta) {
-          const ops = response.respuesta as TipoDocumentoTareaEntity[];
-          this.tiposDocumentoList.push(...ops);
-        }
-    } catch (error: any) {
-      if (this.uc) {
-        this.uc.mensaje =
-          error.status === 400
-            ? ''
-            : MessageUtil.buildErrorMessageFsResponse(
-                Constants.ERR_TIPO_DOCUMENTO_TAREA_ENCONTRAR,
-                error,
-              );
-      }
-
-      //TEMPORAL: Se rellenan tipos de documento por defecto en caso de error para evitar bloqueos en la creación de roles
-      this.tiposDocumentoList.push(
-        { code: 'Demanda', name: 'Demanda' },
-        { code: 'Poder', name: 'Poder' },
-        { code: 'Solicitud de Antecedentes', name: 'Solicitud de Antecedentes' },
-        { code: 'Pruebas', name: 'Pruebas' },
-        { code: 'Fallo de primera instancia', name: 'Fallo de primera instancia' },
-        { code: 'Notificacion', name: 'Notificacion' },
-        { code: 'Fallo de segunda instancia', name: 'Fallo de segunda instancia' },
-      );
-    }
-  }
+  
   
   public retirar() {
-    this.tiposDocumentoAgregarList.push(...this.tiposDocumentoAsignadosTareaList.some(tipo => tipo.visible) ? this.tiposDocumentoAsignadosTareaList.filter(tipo => tipo.visible) : []);
-    this.tiposDocumentoAsignadosTareaList = this.tiposDocumentoAsignadosTareaList.filter(tipo => !tipo.visible);
-    this.tiposDocumentoAgregarList.forEach(tipo => { tipo.visible = false; });
+    this.responsablesAgregarList.push(...this.responsablesAsignadosList.some(responsable => responsable.visible) ? this.responsablesAsignadosList.filter(responsable => responsable.visible) : []);
+    this.responsablesAsignadosList = this.responsablesAsignadosList.filter(responsable => !responsable.visible);
+    this.responsablesAgregarList.forEach(responsable => { responsable.visible = false; });
   }
 
   public asignar() {
-    this.tiposDocumentoAsignadosTareaList.push(...this.tiposDocumentoAgregarList.some(tipo => tipo.selected) ? this.tiposDocumentoAgregarList.filter(tipo => tipo.selected) : []);
-    this.tiposDocumentoAgregarList = this.tiposDocumentoAgregarList.filter(tipo => !tipo.selected);
-    this.tiposDocumentoAsignadosTareaList.forEach(tipo => { tipo.selected = false; });
+    this.responsablesAsignadosList.push(...this.responsablesAgregarList.some(responsable => responsable.selected) ? this.responsablesAgregarList.filter(responsable => responsable.selected) : []);
+    this.responsablesAgregarList = this.responsablesAgregarList.filter(responsable => !responsable.selected);
+    this.responsablesAsignadosList.forEach(responsable => { responsable.selected = false; });
   }
 
-  public toggleObligatorio(tipoDocTarea: TipoDocumentoTareaEntity) {
-    tipoDocTarea.obligatorio = !tipoDocTarea.obligatorio;
-  }
-
-  public mapearModelosDocumentoTarea(): DocumentModelEntity[] {
-    if(this.tiposDocumentoAsignadosTareaList.length === 0) {
-      return [];
-    }
-    return this.tiposDocumentoAsignadosTareaList.map(tipoDoc => {
-      const modelo: DocumentModelEntity = {
-        tipoDocumento: tipoDoc.code,
-        idSerie: this.serieN?.code ?? '',
-        nombreSerie: this.nombreSerieN,
-        obligatoryTypeDocInTask: tipoDoc.obligatorio ?? false,
-        editableTypeDocInTask: this.editarDocProcesoN
-      };
-      return modelo;
-    });
 }
 }
