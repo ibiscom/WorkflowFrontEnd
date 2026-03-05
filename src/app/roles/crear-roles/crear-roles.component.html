@@ -61,7 +61,7 @@
   </div>
 
   <!-- Lista de roles -->
-  @for(responsable of ResponsablesAgregarList; track responsable) {
+  @for(responsable of responsablesAgregarList; track responsable) {
   <div
     class="check-row"
   >
@@ -72,7 +72,7 @@
     </div>
 
     <span class="check-label">
-      {{ responsable.code }}
+      {{ responsable.name }}
     </span>
 
   </div>
@@ -109,31 +109,8 @@
     </div>
   </div>
 
-  <!-- Item -->
-  @for(responsable of responsablesAsignadosList; track responsable) {
-  <div class="assigned-row" >  <!--*ngFor="let item of tiposDocumentoList"-->
-    <!-- Checkbox -->
-    <div class="checkbox selected">
-      <input type="checkbox" [(ngModel)]="responsable.visible" />
-    </div>
-
-    <!-- Título -->
-    <div class="assigned-title">
-      {{ responsable.code }}
-    </div>
-
-    <!-- Acciones -->
-    <div class="assigned-actions">
-      <span class="required">Requerido</span>
-
-      <div
-        class="switch"
-        [ngClass]="responsable.obligatorio ? 'on' : 'off'"
-        (click)="toggleObligatorio(responsable)"
-      > </div>
-    </div>
-  </div>
- }
+  
+ 
 </div>
 
     <!-- BOTONES FINALES -->
