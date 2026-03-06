@@ -857,6 +857,19 @@
             </div>
           </div>
         </div>
+
+         <!-- Roles -->
+        <div
+          class="section-white"
+          *ngIf="opcionesPermitidas.includes('Roles')"
+          (click)="$event.stopPropagation(); irA('/main-page/roles')"
+        >
+          <div class="row">
+            <div class="row-text">
+              <div class="text">Roles</div>
+            </div>
+          </div>
+        </div>
         
         <!-- Simulación -->
         <div
@@ -1484,18 +1497,6 @@
           </div>
         </div>
 
-        <!-- Roles -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Roles')"
-          (click)="$event.stopPropagation(); irA('/main-page/roles')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Roles</div>
-            </div>
-          </div>
-        </div>
 
         <!-- Serie - subseries -->
         <div
