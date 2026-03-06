@@ -51,12 +51,9 @@ export class CrearHerramientaComponent {
   public urlServicioWebN: string = '';
   public tipoHerramientaObjectN?: TipoHerramientaEntity;
   public tipoHerramientaN: string = '';
- 
-
   public herramientaIdEdit?: string;
   public supervisorObjectN?: UserEntity;
   public attributesN: string[] = [];
-
   public herramienta: any;
 
   public constructor(
@@ -73,9 +70,11 @@ export class CrearHerramientaComponent {
     this.uc = this.herramientaComponentInstanceService.getInstance();
   }
 
+  
   /**
    * Inicializa el formulario, carga listas y detecta modo de edición.
    */
+
   public async ngOnInit(): Promise<void> {
     this.workflowActual = this.cookieService.get("workflowActual");
     const id = this.route.snapshot.paramMap.get('id');
@@ -183,7 +182,6 @@ export class CrearHerramientaComponent {
         }
       },
     });
-    
   }
 
   /**

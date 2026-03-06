@@ -23,7 +23,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { CommonModule } from '@angular/common';
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { ResponsablesRolEntity } from '../ResponsablesRolEntity';
-
+import { ResponsableRolEntity } from '../ResponsableRolEntity';
 @Component({
   selector: 'ibpm-crear-roles',
   imports: [
@@ -49,13 +49,18 @@ export class CrearRolesComponent {
   public rolN?: RolesEntity;
   public nombreRolN: string = '';
   public descripcionN: string = '';
+  public userN : string = '';
+  public groupNameN: string = '';
+  public responsablesN: string [] = [];
   public uc?: RolesComponent;
   public loggedUser?: LoginEntity;
   public rolesIdEdit?: string;
   public workflowActual: string = '';
-  public responsablesAsignadosList: ResponsablesRolEntity[] = [];
-  public ResponsablesAgregarList: ResponsablesRolEntity[] = [];
- 
+  public responsablesList: ResponsableRolEntity [] = [];
+  public responsablesAsignadosList: ResponsableRolEntity[] = [];
+  public responsablesAgregarList: ResponsableRolEntity[] = [];
+  public responsablesRolE: ResponsablesRolEntity[]=[];
+  public respuestaServicio: ResponsablesRolEntity | undefined;
 
   public constructor(
     private rolesService: RolesService,
@@ -91,10 +96,7 @@ export class CrearRolesComponent {
     }
   }
   
-  
-
-
-  
+    
 
   /**
    * Llena los campos del formulario con la información de la rol en edición.
@@ -103,10 +105,8 @@ export class CrearRolesComponent {
    
     try {
       const response = await firstValueFrom(
-        this.rolesService.getGroups(
-          this.workflowActual ?? '',
+        this.rolesService.getRol(
           this.rolesIdEdit ?? '',
-          this.loggedUser?.user_name ?? '',
         ),
       );
       if (response?.respuesta) {
@@ -128,17 +128,16 @@ export class CrearRolesComponent {
    * Consulta los tipos de rol.
    */
   public async getResponsablesList() {
-    this.ResponsablesAgregarList = [];
-
+    this.responsablesAgregarList = [];
     try {
       const response = await firstValueFrom(
       this.rolesService
-        .getGroups()
+        .getGroups(this.userN ?? '', this.groupNameN ?? '')
       );
 
       if (response && response.respuesta) {
-        const ops = response.respuesta as ResponsablesRolEntity[];
-        this.ResponsablesAgregarList.push(...ops);
+        const ops = response.respuesta as ResponsableRolEntity[];
+        this.responsablesList.push(...ops);
       }
     } catch (error: any) {
       if (this.uc) {
@@ -155,19 +154,18 @@ export class CrearRolesComponent {
   }
 
   /**
-   * Consulta los tipos de rol.
+   * Consulta los responsables del rol.
    */
   public async getResponsablesRolList() {
     this.responsablesAsignadosList = [];
-
     try {
       const response = await firstValueFrom(
       this.rolesService
-        .getGroupsRol()
+        .getGroupsRol(this.nombreRolN ?? '')
       );
 
       if (response && response.respuesta) {
-        const ops = response.respuesta as ResponsablesRolEntity[];
+        const ops = response.respuesta as ResponsableRolEntity[];
         this.responsablesAsignadosList.push(...ops);
       }
     } catch (error: any) {
@@ -181,9 +179,10 @@ export class CrearRolesComponent {
               );
       }
     }
-      
-  }
+   }
 
+
+   
   /**
    * Indica si está en modo edición.
    */
@@ -216,14 +215,10 @@ export class CrearRolesComponent {
   public create() {
     this.rolesService
       .createRole({
-        nombreWorkflow: this.workflowActual,
-        usuario: this.loggedUser?.user_name ?? '',
+        nombre: this.nombreRolN,
         descripcion: this.descripcionN,
-        rol: this.nombreRolN,
-        subProceso: '',
-        sincronico: '',
-        responsable: '',
-        docModels: this.mapearModelosDocumentoTarea(),
+        user: this.userN,
+       /* falta responsables*/
       } as RolesEntity)
       .subscribe({
         next: (response) => {
@@ -254,14 +249,10 @@ export class CrearRolesComponent {
   public edit() {
     this.rolesService
       .editRol({
-        nombreWorkflow: this.workflowActual,
-        usuario: this.loggedUser?.user_name ?? '',
+        nombre: this.nombreRolN,
         descripcion: this.descripcionN,
-        rol: this.nombreRolN,
-        subProceso: '',
-        sincronico: '',
-        responsable: '',
-        docModels: this.mapearModelosDocumentoTarea(),
+        user: this.userN,
+       /* falta responsables*/
       } as RolesEntity)
       .subscribe({
         next: (response) => {
@@ -319,56 +310,56 @@ export class CrearRolesComponent {
   }
 
 
-  
-
-  public onRolChange($event: any) {
-    let rolSeleccionado = $event as RolesEntity;
-    this.rolN = rolSeleccionado;
-    this.nombreRolN = rolSeleccionado.code ?? '';
-  }
-
-     
-
-  public diligenciarResponsable() {
-    this.ResponsablesAgregarList = [];
-    if(this.ResponsablesAgregarList.length > 0 ) {
-        this.ResponsablesAgregarList.forEach(tipoDoc => {
-          if (!this.responsablesAsignadosList.some(asignado => asignado.code === tipoDoc.code)) {
-            this.ResponsablesAgregarList.push(tipoDoc);
-          }
+    public diligenciarResponsable() {
+    this.responsablesAgregarList = [];
+    if(this.responsablesAgregarList.length > 0 ) {
+        this.responsablesAgregarList.forEach(responsable => {
+        this.responsablesAgregarList.push(responsable);
+         
         });
    } 
   }
 
+ 
+
+
   public diligenciarResponsablesAsignados() {
-    this.responsablesAsignadosList = [];
-    if(this.editMode()) {
-      this.modelosDocumentoTareaE.forEach(modeloDoc => {
-        if(modeloDoc.nombreSerie === this.nombreSerieN) {
-          const responsableasignado: ResponsablesRolEntity = {
-            code: modeloDoc.tipoDocumento ?? '',
-            name: modeloDoc.tipoDocumento ?? '',
-            obligatorio: modeloDoc.obligatoryTypeDocInTask ?? false,
-            visible: true,
-            selected: false
-          };
-          this.responsablesAsignadosList.push(responsableasignado);
-        }
-     });
-    }
-  
-  
-  public retirar() {
-    this.responsablesAgregarList.push(...this.responsablesAsignadosList.some(responsable => responsable.visible) ? this.responsablesAsignadosList.filter(responsable => responsable.visible) : []);
-    this.responsablesAsignadosList = this.responsablesAsignadosList.filter(responsable => !responsable.visible);
-    this.responsablesAgregarList.forEach(responsable => { responsable.visible = false; });
+
+  this.responsablesAsignadosList = [];
+
+  if (this.editMode()) {
+
+    this.responsablesRolE.forEach(r => {
+      r.respuesta.forEach(nombre => {
+
+        const responsableAsignado: ResponsableRolEntity = {
+          name: nombre,
+          selected: false
+        };
+
+        this.responsablesAsignadosList.push(responsableAsignado);
+
+      });
+    });
+
   }
+  }
+
+
+  public retirar() {
+    /** 
+    this.ResponsablesAgregarList.push(...this.responsablesAsignadosList.some(responsable => responsable.visible) ? this.responsablesAsignadosList.filter(responsable => responsable.visible) : []);
+    this.responsablesAsignadosList = this.responsablesAsignadosList.filter(responsable => !responsable.visible);
+    this.ResponsablesAgregarList.forEach(responsable => { responsable.visible = false; });
+  */
+    }
 
   public asignar() {
-    this.responsablesAsignadosList.push(...this.responsablesAgregarList.some(responsable => responsable.selected) ? this.responsablesAgregarList.filter(responsable => responsable.selected) : []);
-    this.responsablesAgregarList = this.responsablesAgregarList.filter(responsable => !responsable.selected);
+    /** 
+    this.responsablesAsignadosList.push(...this.ResponsablesAgregarList.some(responsable => responsable.selected) ? this.ResponsablesAgregarList.filter(responsable => responsable.selected) : []);
+    this.ResponsablesAgregarList = this.ResponsablesAgregarList.filter(responsable => !responsable.selected);
     this.responsablesAsignadosList.forEach(responsable => { responsable.selected = false; });
+  */
   }
 
-}
 }

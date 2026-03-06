@@ -471,7 +471,7 @@ export const routes: Routes = [
           },
         ],
       },
-
+/* DEpendencias */
       {
         path: 'dependencias',
         component: DependenciaComponent,

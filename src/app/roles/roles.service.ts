@@ -79,22 +79,22 @@ export class RolesService {
      * Obtiene el listado de grupos (responsables).
      * @returns 
      */
-    public getGroups(): Observable<FsResponseEntity<any>> {
+    public getGroups(userName: string, groupName: string): Observable<FsResponseEntity<any>> {
         let ip: string = this.cookieService.get('ip');
         return this.http.get<FsResponseEntity<any>>(
           environment.workflowApiUrl +
-            `/Rol/getGroups`);
+            `/Rol/getGroups?userName=${userName}&groupName=${groupName}`);
     }
 
     /**
      * Obtiene el listado de grupos (responsables) que puede tener un rol.
      * @returns 
      */
-    public getGroupsRol(): Observable<FsResponseEntity<any>> {
+    public getGroupsRol(nombreRol: string): Observable<FsResponseEntity<any>> {
         let ip: string = this.cookieService.get('ip');
         return this.http.get<FsResponseEntity<any>>(
           environment.workflowApiUrl +
-            `/Rol/getGroupsRol`);
+            `/Rol/getGroupsRol?nombreRol=${nombreRol}`);
     }
   
     /**

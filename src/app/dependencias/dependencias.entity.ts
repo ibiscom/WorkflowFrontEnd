@@ -1,4 +1,4 @@
-export interface DependenciaEntity {
+export interface DependenciasEntity {
     nombre: string;
     descripcion: string;
 }

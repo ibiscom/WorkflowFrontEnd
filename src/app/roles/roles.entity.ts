@@ -6,8 +6,8 @@ export interface RolesEntity {
   nombre: string;
   /** Descripción del grupo */
   descripcion: string;
-  /** Compañía asociada al grupo */
-  compania: string;
-  /** Supervisor del grupo */
-  supervisor: string;
+  /** usuario asociada al grupo */
+  user: string;
+  /** responsables del grupo */
+  responsables: string [];
 }

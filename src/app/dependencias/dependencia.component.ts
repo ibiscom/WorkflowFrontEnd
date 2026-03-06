@@ -14,11 +14,10 @@ import { CompaniasService } from '../companias/companias.service';
 import { DependenciaEntity } from './dependencia.entity';
 import { AccionesDependenciaComponent } from './acciones-dependencias/acciones-dependencia.component';
 import { DependenciaFilterEntity } from './dependencia-filter.entity';
-import { EstadoDependenciaEntity } from './estadodependencia.entity';
 import { CookieService } from 'ngx-cookie-service';
 import { TareaDependenciaEntity } from './tarea-dependencia.entity';
-import { PrimitivaDependenciaEntity } from './primitivadependencia.entity';
-
+import { PrimitivaDependenciaEntity } from './primitiva-dependencia.entity';
+import { EstadoDependenciaEntity } from './estado-dependencia.entity';
 
 
 @Component({
@@ -57,6 +56,7 @@ export class DependenciaComponent {
     if(this.hayWorkflowActual()) {
       console.log('SI hay workflow → voy a buscar');
         this.buscarDependencias();
+        
     }
     else {
     console.log('NO hay workflow');

@@ -29,7 +29,7 @@ export class DependenciaService {
      * @param dependencia La información del dependencia a crear.
      * @returns 
      */
-    public createDependency(dependencia: DependenciaEntity): Observable<FsResponseEntity<any>> {
+    public createDependencia(dependencia: DependenciaEntity): Observable<FsResponseEntity<any>> {
         let ip: string = this.cookieService.get('ip');
         return this.http.put<FsResponseEntity<any>>(
           environment.workflowApiUrl +
@@ -71,16 +71,16 @@ export class DependenciaService {
      * @param dependenciaName La información del dependencia a consultar.
      * @returns 
      */
-    public getDependencia(dependenciaName: string, p0: string): Observable<FsResponseEntity<any>> {
+    public getDependencia(workflowName: string, dependenciaName: string): Observable<FsResponseEntity<any>> {
         let ip: string = this.cookieService.get('ip');
         return this.http.get<FsResponseEntity<any>>(
           environment.workflowApiUrl +
-            `/dependency/getDependency?dependencyName=${dependenciaName}`
+            `/dependency/getDependency?workflowName=${workflowName}&dependencyName=${dependenciaName}`
         );
     }
   
     /**
-     * Obtiene el listado de los estados que puede tener un dependency.
+     * Obtiene el listado de los estados que puede tener una dependencia.
      * @returns 
      */
     public getEstado(): Observable<FsResponseEntity<any>> {
@@ -91,7 +91,7 @@ export class DependenciaService {
     }
   
     /**
-     * Obtiene el listado de las tareas que puede tener un dependency.
+     * Obtiene el listado de las tareas que puede tener un dependencia.
      * @returns 
      */
     public getTareas(): Observable<FsResponseEntity<any>> {
@@ -102,7 +102,7 @@ export class DependenciaService {
     }
 
      /**
-     * Obtiene el listado de las primitivas que puede tener un dependency.
+     * Obtiene el listado de las primitivas que puede tener un dependencia.
      * @returns 
      */
     public getPrimitivas(): Observable<FsResponseEntity<any>> {
@@ -113,7 +113,7 @@ export class DependenciaService {
     }
   
     /**
-     * Obtiene el listado de los operadores que puede tener un dependency.
+     * Obtiene el listado de los operadores que puede tener un dependencia.
      * @returns 
      */
     public getOperadores(): Observable<FsResponseEntity<any>> {
@@ -124,7 +124,7 @@ export class DependenciaService {
     }
 
     /**
-     * Obtiene el listado de los atributos workflow que puede tener un dependency.
+     * Obtiene el listado de los atributos workflow que puede tener un dependencia.
      * @returns 
      */
     public getAtributosWorkflow(): Observable<FsResponseEntity<any>> {
@@ -145,6 +145,10 @@ export class DependenciaService {
           environment.workflowApiUrl +
             `/dependency/delete?dependencyName=${dependenciaName}`);
     }
+
+    public metodoTestUnico(): void {
+  console.log('UNICO');
+}
   }
   
   

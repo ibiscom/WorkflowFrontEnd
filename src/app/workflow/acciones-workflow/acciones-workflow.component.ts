@@ -22,14 +22,14 @@ import { Router } from '@angular/router';
   styleUrl: './acciones-workflow.component.scss',
 })
 /**
- * Componente de acciones para la administración de grupos.
- * Permite navegar a la pantalla de creación de grupos.
+ * Componente de acciones para la administración de workflow.
+ * Permite navegar a la pantalla de creación de workflow.
  */
 export class AccionesWorkflowComponent {
   constructor(public router: Router) {}
 
   /**
-   * Navega a la pantalla de creación de grupo.
+   * Navega a la pantalla de creación de workflow
    */
   public irACrearWorkflow() {
     this.router.navigate([`/main-page/workflow/crearWorkflow`]);

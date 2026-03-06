@@ -13,5 +13,5 @@ import { LoginComponent } from './login/login.component';
  * Renderiza el shell principal y el RouterOutlet para las rutas hijas.
  */
 export class AppComponent {
-  title = 'Framework de Seguridad';
+  title = 'DOCMA - IBPM';
 }

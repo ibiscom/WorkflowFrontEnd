@@ -93,7 +93,6 @@
   </select>
 </div>
 
-
           <!-- ESTADO DE LA TAREA CABEZA -->
           <div class="campo-lista">
             <label for="tareaCabezaEstado">Estado de la tarea cabeza</label>
@@ -185,32 +184,32 @@
       </div>
       </div>
 
-    </div>
+   
 
     <!-- BOTONES FINALES -->
     <div class="botones-nuevo-grupo">
 
       <button class="btn-figma" type="submit" (click)="save()">
         <span class="btn-icon">
-      <img src="assets/img/save.svg" alt="Guardar" />
-    </span>
-    Guardar</button>
+         <img src="assets/img/save.svg" alt="Guardar" />
+        </span>
+        Guardar
+      </button>
 
 
       @if (editMode()) {
         <button class="btn-figma" type="button" (click)="delete()">
           <span class="btn-icon">
-        <img src="assets/img/trash.svg" alt="Eliminar" />
-      </span>
-      Eliminar</button>
+           <img src="assets/img/trash.svg" alt="Eliminar" />
+          </span>
+          Eliminar
+        </button>
       }
 
      <button class="btn-figma" type="button" (click)="cancel()">
         <span class="btn-icon">
-      <img src="assets/img/cancel.svg" alt="Cancelar" />
-    </span>
-    Cancelar</button>
+          <img src="assets/img/cancel.svg" alt="Cancelar" />
+        </span>
+        Cancelar
+      </button>
     </div>
-  </form>
-</div>
-

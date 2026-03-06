@@ -22,9 +22,10 @@ import { CompaniasService } from '../../companias/companias.service';
 import { UsuariosService } from '../../usuarios/usuarios.service';
 import { UserSearchFilterEntity } from '../../entities/users/user-search-filter.entity';
 import { CookieService } from 'ngx-cookie-service';
-import { EstadoDependenciaEntity } from '../estadodependencia.entity';
+import { EstadoDependenciaEntity } from '../estado-dependencia.entity';
 import { TareaDependenciaEntity } from '../tarea-dependencia.entity';
-import { AnyCnameRecord } from 'dns';
+import { PrimitivaDependenciaEntity } from '../primitiva-dependencia.entity';
+/*import { AnyCnameRecord } from 'dns';*/
 
 @Component({
   selector: 'ibpm-crear-dependencia',
@@ -87,11 +88,13 @@ export class CrearDependenciaComponent {
   /**
    * Inicializa el formulario, carga listas y detecta modo de edición.
    */
+  
   public async ngOnInit(): Promise<void> {
     this.workflowActual = this.cookieService.get("workflowActual");
     const id = this.route.snapshot.paramMap.get('id');
-    /* this.obtenerListaEstados(); */
+    /**  this.obtenerListaEstados(); */
     console.log('Modo de edicion habilitado. Dependencia:', id);
+    console.log("ID recibido:", id);
     if (id) {
       this.dependenciaIdEdit = id;
       await this.llenarCamposEdicion();
@@ -99,13 +102,13 @@ export class CrearDependenciaComponent {
       this.dependenciaIdEdit = undefined;
       if (this.uc) {
         this.uc.mensaje = '';
+        
       }
     }
   }
-
    
     
-    /**
+/**
      * Llena los campos del formulario con la información de la dependencia en edición.
      */
     public async llenarCamposEdicion(): Promise<void> {
@@ -161,13 +164,11 @@ export class CrearDependenciaComponent {
       this.TareaObjectN = event as TareaDependenciaEntity;
       this.TareaN = event?.name ?? '';
     }
-
-    public onPrimitivaChange(event:any): void {
-      console.log('Primitiva seleccionada:', event);
+      public onPrimitivaChange(event:any): void {
+      console.log('primitiva seleccionada:', event);
       this.primitivaObjectN = event as PrimitivaDependenciaEntity;
       this.primitivaN = event?.name ?? '';
     }
-
     /**
      * Guarda los cambios, creando o editando la dependencia  según corresponda.
      */
@@ -194,7 +195,7 @@ export class CrearDependenciaComponent {
           descripcion:this.descripcionN, 
       }
       this.dependenciaService
-        .createDependency(dependencia)
+        .createDependencia(dependencia)
         .subscribe({
           next: (response) => {
             if (response && response.respuesta) {
@@ -207,7 +208,7 @@ export class CrearDependenciaComponent {
               ]);
             }
           },
-          error: (e) => {
+          error: (e: any) => {
             if (this.uc) {
               this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
                 Constants.ERR_WORKFLOW_CREAR,
@@ -216,7 +217,7 @@ export class CrearDependenciaComponent {
             }
           },
         });
-    }
+      }
   
     /**
      * Edita una dependencia existente con los datos proporcionados.
@@ -237,7 +238,7 @@ export class CrearDependenciaComponent {
           next: (response) => {
             if (response && response.respuesta) {
               this.router.navigate([
-                `/main-page/dependencias/editarDependencia?id=${this.nombreN}`,
+                `/main-page/workflows/editarDependencia?id=${this.nombreN}`,
               ]);
             }
           },
@@ -265,7 +266,7 @@ export class CrearDependenciaComponent {
               this.uc.buscarDependencias();
               this.uc.mensaje = Constants.MSG_HERRAMIENTA_ELIMINACION_EXITOSA;
             }
-              this.router.navigate(['/main-page/dependencias']);
+              this.router.navigate(['/main-page/dependencia']);
             }
           },
           error: (e) => {
@@ -279,6 +280,20 @@ export class CrearDependenciaComponent {
         });
     }
   
+and(): void {
+  console.log('AND ejecutado');
+}
+
+
+or(): void {
+  console.log('Or ejecutado');
+}
+NOT(): void {
+  console.log('NOT ejecutado');
+}
+atributo(): void {
+  console.log('atributo ejecutado');
+}
     /**
      * Cancela y regresa al listado de dependencias.
      */
@@ -296,39 +311,4 @@ export class CrearDependenciaComponent {
     public compararEstados(c1: EstadoDependenciaEntity, c2: EstadoDependenciaEntity): boolean {
       return c1.respuesta  === c2.respuesta;
     }
-  
-
-   public and() {
-      if (!this.editMode()) {
-        this.create();
-      } else {
-        this.edit();
-      }
-    }
-
-     public or() {
-      if (!this.editMode()) {
-        this.create();
-      } else {
-        this.edit();
-      }
-    }
-
-
-     public NOT() {
-      if (!this.editMode()) {
-        this.create();
-      } else {
-        this.edit();
-      }
-    }
-
-     public atributo() {
-      if (!this.editMode()) {
-        this.create();
-      } else {
-        this.edit();
-      }
-    }
-  
-}
+  }

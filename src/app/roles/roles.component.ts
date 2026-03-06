@@ -38,9 +38,7 @@ export class RolesComponent {
   ngOnInit(): void {
     this.rolesComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-    this.obtenerGroups();
-    this.obtenerGroupsRol();
-    this.buscarRoles();
+        this.buscarRoles();
   }
 
   public buscarRoles(filtros?: RolesFilterEntity): void {
@@ -59,39 +57,4 @@ export class RolesComponent {
           },
         });
     }
-  
-    public obtenerGroups(): void {
-      this.rolesService
-        .getGroups()
-        .subscribe({
-          next: (response) => {
-            this.roles = response.respuesta;
-          },
-          error: (err) => {
-            this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_OBTENIENDO_ESTADOS_WORKFLOW,
-              err,
-            );
-          },
-        });
-  
-    }
-
-    public obtenerGroupsRol(): void {
-      this.rolesService
-        .getGroups()
-        .subscribe({
-          next: (response) => {
-            this.roles = response.respuesta;
-          },
-          error: (err) => {
-            this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_OBTENIENDO_ESTADOS_WORKFLOW,
-              err,
-            );
-          },
-        });
-  
-    }
   }
-  

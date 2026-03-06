@@ -37,8 +37,8 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrl: './crear-workflow.component.scss',
 })
 /**
- * Componente para la creación y edición de grupos.
- * Permite seleccionar compañía, supervisor y administrar permisos/restricciones.
+ * Componente para la creación y edición de workflows.
+ * 
  */
 export class CrearWorkflowComponent {
   public uc?: WorkflowComponent;
@@ -53,7 +53,6 @@ export class CrearWorkflowComponent {
   public operationE: string = '';
   public operationsList: string[] = [];
   public restrictedOperationsList: string[] = [];
-  public supervisorsList: UserEntity[] = [];
   public workflowIdEdit?: string;
   public supervisorObjectN?: UserEntity;
 
