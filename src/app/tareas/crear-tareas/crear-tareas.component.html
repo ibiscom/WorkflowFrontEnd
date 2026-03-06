@@ -260,10 +260,23 @@
               id="horasAlertaAmarilla"
               name="horasAlertaAmarilla"
               type="text"
-              placeholder="Inserte número de la tarea"
+              placeholder="Inserte horas de la alerta amarilla"
               [(ngModel)]="horasAlarmaAmarillaN"
               required
               #horasAlertaAmarilla="ngModel"
+            />
+          </div>
+
+           <div class="campo-texto">
+            <label for="minutosAlertaAmarilla">Minutos</label>
+            <input
+              id="minutosAlertaAmarilla"
+              name="minutosAlertaAmarilla"
+              type="text"
+              placeholder="Inserte minutos de la alerta amarilla"
+              [(ngModel)]="minutosAlarmaAmarillaN"
+              required
+              #minutosAlertaAmarilla="ngModel"
             />
           </div>
 
@@ -273,7 +286,7 @@
               id="segundosAlertaAmarilla"
               name="segundosAlertaAmarilla"
               type="text"
-              placeholder="Inserte número de la tarea"
+              placeholder="Inserte segundos de la alerta amarilla"
               [(ngModel)]="segundosAlarmaAmarillaN"
               required
               #segundosAlertaAmarilla="ngModel"
@@ -318,7 +331,7 @@
 
                   @for (serie of seriesList; track serie) {
                     <option [ngValue]="serie">
-                      {{ serie.code }}
+                      {{ serie.name }}
                     </option>
                   }
                 </select>
@@ -344,7 +357,7 @@
     </div>
 
     <span class="check-label">
-      {{ tipo.code }}
+      {{ tipo.name }}
     </span>
 
   </div>
@@ -393,7 +406,7 @@
 
     <!-- Título -->
     <div class="assigned-title">
-      {{ tipo.code }}
+      {{ tipo.name }}
     </div>
 
     <!-- Acciones -->

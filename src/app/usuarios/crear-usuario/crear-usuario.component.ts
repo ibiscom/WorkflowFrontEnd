@@ -33,7 +33,6 @@ import { Constants } from '../../utils/constants';
   selector: 'fs-crear-usuario',
   imports: [
     FormsModule,
-    MatButton,
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,

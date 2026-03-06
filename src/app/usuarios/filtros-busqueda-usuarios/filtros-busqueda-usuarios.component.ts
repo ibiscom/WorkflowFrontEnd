@@ -22,7 +22,6 @@ import { JsonPipe } from '@angular/common';
   selector: 'fs-filtros-busqueda-usuarios',
   imports: [
     FormsModule,
-    MatButton,
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
@@ -30,7 +29,6 @@ import { JsonPipe } from '@angular/common';
     MatSelectModule,
     MatTableModule,
     MatExpansionModule,
-    JsonPipe,
   ],
   templateUrl: './filtros-busqueda-usuarios.component.html',
   styleUrl: './filtros-busqueda-usuarios.component.scss',

@@ -74,7 +74,7 @@ export class CrearTareasComponent {
   public workflowActual: string = '';
   public tiposList: TipoTareaEntity[] = [];
   public serieN?: SerieTareaEntity;
-  public nombreSerieN: string = '';
+  public idSerieN: string = '';
   public seriesList: SerieTareaEntity[] = [];
   public tiposDocumentoList: TipoDocumentoTareaEntity[] = [];
   public tiposDocumentoAsignadosTareaList: TipoDocumentoTareaEntity[] = [];
@@ -163,9 +163,19 @@ export class CrearTareasComponent {
         this.rolN = this.rolesList.find(r => r.code === this.nombreRolN) ?? undefined;
         this.nombreMetodoAsignacionN = tarea.metodoAsignacion ?? '';
         this.metodoAsignacionN = this.metodosAsignacionList.find(m => m.code === this.nombreMetodoAsignacionN) ?? undefined;
-        this.nombreSerieN = tarea.docModels?.[0]?.nombreSerie ?? '';
-        this.serieN = this.seriesList.find(s => s.code === this.nombreSerieN) ?? undefined;
+        this.diasDuracionEstimadaN = tarea.diasDuracionEstimada ? tarea.diasDuracionEstimada.toString() : '';
+        this.horasDuracionEstimadaN = tarea.horasDuracionEstimada ? tarea.horasDuracionEstimada.toString() : '';
+        this.minutosDuracionEstimadaN = tarea.minutosDuracionEstimada ? tarea.minutosDuracionEstimada.toString() : '';
+        this.segundosDuracionEstimadaN = tarea.segundosDuracionEstimada ? tarea.segundosDuracionEstimada.toString() : '';
+        this.diasAlarmaAmarillaN = tarea.diasAlarmaAmarilla ? tarea.diasAlarmaAmarilla.toString() : '';
+        this.horasAlarmaAmarillaN = tarea.horasAlarmaAmarilla ? tarea.horasAlarmaAmarilla.toString() : '';
+        this.minutosAlarmaAmarillaN = tarea.minutosAlarmaAmarilla ? tarea.minutosAlarmaAmarilla.toString() : '';
+        this.segundosAlarmaAmarillaN = tarea.segundosAlarmaAmarilla ? tarea.segundosAlarmaAmarilla.toString() : '';
+        this.editarDocProcesoN = tarea.editarDocProceso ?? false;
+        this.idSerieN = tarea.docModels?.[0]?.idSerie ?? '';
+        this.serieN = this.seriesList.find(s => s.code === this.idSerieN) ?? undefined;
         this.modelosDocumentoTareaE = tarea.docModels ?? [];
+
       }
     } catch (e) {
       if (this.uc) {
@@ -386,7 +396,7 @@ export class CrearTareasComponent {
         next: (response) => {
           if (response && response.respuesta) {
             if (this.uc) {
-              this.uc.mensaje = '';
+              this.uc.mensaje = 'Se ha creado la tarea exitósamente';
             }
             this.tareasIdEdit = this.nombreTareaN;
             this.router.navigate([
@@ -520,7 +530,7 @@ export class CrearTareasComponent {
   public async onSerieChange($event: any) {
     let serieSeleccionada = $event as SerieTareaEntity;
     this.serieN = serieSeleccionada;
-    this.nombreSerieN = serieSeleccionada?.code ?? '';
+    this.idSerieN = serieSeleccionada?.code ?? '';
     await this.getTiposDocumentoListBySerie();
     this.diligenciarTiposDocumentoAsignadosTarea();
     this.diligenciarTiposDocumentoAsignar();
@@ -542,7 +552,7 @@ export class CrearTareasComponent {
     this.tiposDocumentoAsignadosTareaList = [];
     if(this.editMode()) {
       this.modelosDocumentoTareaE.forEach(modeloDoc => {
-        if(modeloDoc.nombreSerie === this.nombreSerieN) {
+        if(modeloDoc.idSerie === this.idSerieN) {
           const tipoDocAsignado: TipoDocumentoTareaEntity = {
             code: modeloDoc.tipoDocumento ?? '',
             name: modeloDoc.tipoDocumento ?? '',
@@ -561,7 +571,7 @@ export class CrearTareasComponent {
     try {
       const response = await firstValueFrom(
         this.tareasService
-          .getTiposDocumentoBySerie(this.nombreSerieN ?? '')
+          .getTiposDocumentoBySerie(this.idSerieN ?? '')
       );
         if (response && response.respuesta) {
           const ops = response.respuesta as TipoDocumentoTareaEntity[];
@@ -579,7 +589,7 @@ export class CrearTareasComponent {
       }
 
       //TEMPORAL: Se rellenan tipos de documento por defecto en caso de error para evitar bloqueos en la creación de tareas
-      this.tiposDocumentoList.push(
+      /*this.tiposDocumentoList.push(
         { code: 'Demanda', name: 'Demanda' },
         { code: 'Poder', name: 'Poder' },
         { code: 'Solicitud de Antecedentes', name: 'Solicitud de Antecedentes' },
@@ -587,7 +597,7 @@ export class CrearTareasComponent {
         { code: 'Fallo de primera instancia', name: 'Fallo de primera instancia' },
         { code: 'Notificacion', name: 'Notificacion' },
         { code: 'Fallo de segunda instancia', name: 'Fallo de segunda instancia' },
-      );
+      );*/
     }
   }
   
@@ -615,7 +625,7 @@ export class CrearTareasComponent {
       const modelo: DocumentModelEntity = {
         tipoDocumento: tipoDoc.code,
         idSerie: this.serieN?.code ?? '',
-        nombreSerie: this.nombreSerieN,
+        nombreSerie: this.serieN?.name ?? '',
         obligatoryTypeDocInTask: tipoDoc.obligatorio ?? false,
         editableTypeDocInTask: this.editarDocProcesoN
       };
