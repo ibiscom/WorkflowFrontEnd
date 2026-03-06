@@ -186,6 +186,113 @@
           </div>
         </div>
 
+
+        <!-- DURACION ESTIMADA -->
+          <div class="campo-texto">
+            <label for="diasDuracionEstimada">Duración estimada Días</label>
+            <input
+              id="diasDuracionEstimada"
+              name="diasDuracionEstimada"
+              type="text"
+              placeholder="Inserte número de la tarea"
+              [(ngModel)]="diasDuracionEstimadaN"
+              required
+              #diasDuracionEstimada="ngModel"
+            />
+          </div>
+
+          <div class="campo-texto">
+            <label for="horasDuracionEstimada">Horas</label>
+            <input
+              id="horasDuracionEstimada"
+              name="horasDuracionEstimada"
+              type="text"
+              placeholder="Inserte número de la tarea"
+              [(ngModel)]="horasDuracionEstimadaN"
+              required
+              #horasDuracionEstimada="ngModel"
+            />
+          </div>
+
+          <div class="campo-texto">
+            <label for="minutosDuracionEstimada">Minutos</label>
+            <input
+              id="minutosDuracionEstimada"
+              name="minutosDuracionEstimada"
+              type="text"
+              placeholder="Inserte número de la tarea"
+              [(ngModel)]="minutosDuracionEstimadaN"
+              required
+              #minutosDuracionEstimada="ngModel"
+            />
+          </div>
+
+          <div class="campo-texto">
+            <label for="segundosDuracionEstimada">Segundos</label>
+            <input
+              id="segundosDuracionEstimada"
+              name="segundosDuracionEstimada"
+              type="text"
+              placeholder="Inserte número de la tarea"
+              [(ngModel)]="segundosDuracionEstimadaN"
+              required
+              #segundosDuracionEstimada="ngModel"
+            />
+          </div>
+
+          <!-- TIEMPOS ALARMAS -->
+          <div class="campo-texto">
+            <label for="diasAlertaAmarilla">Tiempo alerta amarilla Días</label>
+            <input
+              id="diasAlertaAmarilla"
+              name="diasAlertaAmarilla"
+              type="text"
+              placeholder="Inserte número de la tarea"
+              [(ngModel)]="diasAlarmaAmarillaN"
+              required
+              #diasAlertaAmarilla="ngModel"
+            />
+          </div>
+
+          <div class="campo-texto">
+            <label for="horasAlertaAmarilla">Horas</label>
+            <input
+              id="horasAlertaAmarilla"
+              name="horasAlertaAmarilla"
+              type="text"
+              placeholder="Inserte número de la tarea"
+              [(ngModel)]="horasAlarmaAmarillaN"
+              required
+              #horasAlertaAmarilla="ngModel"
+            />
+          </div>
+
+          <div class="campo-texto">
+            <label for="segundosAlertaAmarilla">Segundos</label>
+            <input
+              id="segundosAlertaAmarilla"
+              name="segundosAlertaAmarilla"
+              type="text"
+              placeholder="Inserte número de la tarea"
+              [(ngModel)]="segundosAlarmaAmarillaN"
+              required
+              #segundosAlertaAmarilla="ngModel"
+            />
+            @if (segundosAlertaAmarilla.errors?.['required']) {
+              <div class="error">El número de la tarea es obligatorio</div>
+            }
+          </div>
+
+          <!-- Editar documentos del proceso -->
+
+    <div class="assigned-actions">
+      <span class="editarDocProceso">Editar documento del proceso</span>
+      <div
+        class="switch"
+        [ngClass]="tipo.editarDocProceso ? 'on' : 'off'"
+        (click)="toggleObligatorio(tipo)"
+      > </div>
+    </div>
         <!-- PARTE DE SELECCIONAR SERIES, TIPOS DE DOCUMENTO-->
         <div class="serie-container"> 
          <div class="serie-container">
