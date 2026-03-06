@@ -14,10 +14,10 @@ import { CompaniasService } from '../companias/companias.service';
 import { DependenciaEntity } from './dependencia.entity';
 import { AccionesDependenciaComponent } from './acciones-dependencias/acciones-dependencia.component';
 import { DependenciaFilterEntity } from './dependencia-filter.entity';
-import { EstadoDependenciaEntity } from './estadoDependencia.entity';
+import { EstadoDependenciaEntity } from './estadodependencia.entity';
 import { CookieService } from 'ngx-cookie-service';
 import { TareaDependenciaEntity } from './tarea-dependencia.entity';
-import { PrimitivaDependenciaEntity } from './primitivaDependencia';
+import { PrimitivaDependenciaEntity } from './primitivadependencia.entity';
 
 
 
