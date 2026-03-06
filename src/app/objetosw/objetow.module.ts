@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ListadoObjetowComponent } from './listado-objetow/listado-objetow.component';
+import { ListadoAtributosObjetowComponent } from './listado-atributos-objetow/listado-atributos-objetow.component';
 import { ObjetowComponent } from './objetow.component';
 import { ObjetowComponentInstanceService } from './objetow-component-instance.service';
 import { ObjetowService } from './objetow.service';
 import { CrearObjetowComponent } from './crear-objetow/crear-objetow.component';
-import { FiltrosBusquedaObjetowComponent } from './filtros-busqueda-objetow/filtros-busqueda-objetow.component';
+import { CrearAtributoObjetowComponent } from './crear-atributo-objetow/crear-atributo-objetow.component';
 
 @NgModule({
   declarations: [],
@@ -15,16 +15,16 @@ import { FiltrosBusquedaObjetowComponent } from './filtros-busqueda-objetow/filt
     CommonModule,
     FormsModule,
     RouterModule,
+    CrearAtributoObjetowComponent,
     CrearObjetowComponent,
-    FiltrosBusquedaObjetowComponent,
-    ListadoObjetowComponent,
+    ListadoAtributosObjetowComponent,
     ObjetowComponent,
   ],
   providers: [ObjetowComponentInstanceService, ObjetowService],
   exports: [
+    CrearAtributoObjetowComponent,
     CrearObjetowComponent,
-    FiltrosBusquedaObjetowComponent,
-    ListadoObjetowComponent,
+    ListadoAtributosObjetowComponent,
     ObjetowComponent,
   ],
 })
