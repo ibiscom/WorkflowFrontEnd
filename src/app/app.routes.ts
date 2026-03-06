@@ -53,8 +53,8 @@ import { TareasComponent } from './tareas/tareas.component';
 import { ListadoTareasComponent } from './tareas/listado-tareas/listado-tareas.component';
 import { CrearTareasComponent } from './tareas/crear-tareas/crear-tareas.component';
 import { ObjetowComponent } from './objetosw/objetow.component';
-import { ListadoObjetowComponent } from './objetosw/listado-objetow/listado-objetow.component';
-import { CrearObjetowComponent } from './objetosw/crear-objetow/crear-objetow.component';
+import { ListadoAtributosObjetowComponent } from './objetosw/listado-atributos-objetow/listado-atributos-objetow.component';
+import { CrearAtributoObjetowComponent } from './objetosw/crear-atributo-objetow/crear-atributo-objetow.component';
 import { HerramientaComponent } from './herramientas/herramienta.component';
 import { ListadoHerramientaComponent } from './herramientas/listado-herramienta/listado-herramienta.component';
 import { CrearHerramientaComponent } from './herramientas/crear-herramienta/crear-herramienta.component';
@@ -529,28 +529,28 @@ export const routes: Routes = [
       },
 
       {
-        path: 'objeto workflow',
+        path: 'objetosWorkflow',
         component: ObjetowComponent,
         canActivate: [CanActivateGuard],
         children: [
           {
             path: '',
-            redirectTo: 'listadoObjetow',
+            redirectTo: 'listadoAtributosObjetoWorkflow',
             pathMatch: 'full',
           },
           {
-            path: 'listadoObjetow',
-            component: ListadoObjetowComponent,
+            path: 'listadoAtributosObjetoWorkflow',
+            component: ListadoAtributosObjetowComponent,
             canActivate: [CanActivateGuard],
           },
           {
-            path: 'crearObjetow',
-            component: CrearObjetowComponent,
+            path: 'crearAtributoObjetoWorkflow',
+            component: CrearAtributoObjetowComponent,
             canActivate: [CanActivateGuard],
           },
           {
-            path: 'editarobjetow/:id',
-            component: CrearObjetowComponent,
+            path: 'editarAtributoObjetoWorkflow/:id',
+            component: CrearAtributoObjetowComponent,
             canActivate: [CanActivateGuard],
           },
         ],

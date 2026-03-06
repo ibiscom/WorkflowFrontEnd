@@ -22,17 +22,17 @@ import { Router } from '@angular/router';
   styleUrl: './acciones-objetow.component.scss',
 })
 /**
- * Componente de acciones para la administración de grupos.
- * Permite navegar a la pantalla de creación de grupos.
+ * Componente de acciones para la administración de objetos workflow.
+ * Permite navegar a la pantalla de creación de objetos workflow.
  */
 export class AccionesObjetowComponent {
   constructor(public router: Router) {}
 
   /**
-   * Navega a la pantalla de creación de grupo.
+   * Navega a la pantalla de creación de objeto workflow.
    */
   public irACrearObjetow() {
-    this.router.navigate([`/main-page/objetow/crearObjetow`]);
+    this.router.navigate([`/main-page/objetosWorkflow/crearAtributoObjetoWorkflow`]);
   }
 }
 

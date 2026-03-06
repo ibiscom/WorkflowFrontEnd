@@ -47,47 +47,51 @@
       <div class="fila-filtros-fila3">
         
           <!-- TAREA CABEZA -->
-          <div class="campo-lista">
-            <label for="tareaCabeza">Tarea Cabeza</label>
+            
+<div class="campo-lista">
+  <label for="tareaCabeza">Tarea Cabeza</label>
 
-            <select
-              id="tareaCabeza"
-              name="tareaCabeza"
-              [(ngModel)]="nombreTareaCabezaN"
-              required
-              #tareaCabeza="ngModel"
-              (ngModelChange)="onTareaChange($event)">
-              <option value="">Seleccione una opción</option>
+  <select
+    id="tareaCabeza"
+    name="tareaCabeza"
+    [(ngModel)]="nombreTareaCabezaN"
+    required
+    #tareaCabeza="ngModel"
+    (ngModelChange)="onTareaChange($event)">
 
-              @for (tareaCabeza of this.uc!.tarea; track tareaCabeza) {
-                <option [ngValue]="tareaCabeza">
-                  {{ tareaCabeza.name }}
-                </option>
-              }
-            </select>
-          </div>
+    <option value="">Seleccione una opción</option>
 
+    @for (tarea of uc!.tarea; track tarea) {
+      <option [ngValue]="tarea">
+        {{ tarea }}
+      </option>
+    }
+
+  </select>
+</div>
 
           <!-- TAREA COLA -->
-          <div class="campo-lista">
-            <label for="tareaCola">Tarea Cola</label>
+          div class="campo-lista">
+  <label for="tareaCola">Tarea Cabeza</label>
 
-            <select
-              id="tareaCola"
-              name="tareaCola"
-              [(ngModel)]="nombreTareaColaN"
-              required
-              #tareaCola="ngModel"
-              (ngModelChange)="onTareaChange($event)">
-              <option value="">Seleccione una opción</option>
+  <select
+    id="tareaCola"
+    name="tareaCola"
+    [(ngModel)]="nombreTareaColaN"
+    required
+    #tareaCabeza="ngModel"
+    (ngModelChange)="onTareaChange($event)">
 
-              @for (tareaCola of this.uc!.tarea; track tareaCola) {
-                <option [ngValue]="tareaCola">
-                  {{ tareaCola.name }}
-                </option>
-              }
-            </select>
-          </div>
+    <option value="">Seleccione una opción</option>
+
+    @for (tarea of uc!.tarea; track tarea) {
+      <option [ngValue]="tarea">
+        {{ tarea }}
+      </option>
+    }
+
+  </select>
+</div>
 
 
           <!-- ESTADO DE LA TAREA CABEZA -->
@@ -103,9 +107,9 @@
               (ngModelChange)="onEstadoChange($event)">
               <option value="">Seleccione una opción</option>
 
-              @for (tareaCabezaEstado of this.uc!.estado; track tareaCabezaEstado) {
+              @for (estado of uc!.estado; track estado) {
                 <option [ngValue]="tareaCabezaEstado">
-                  {{ tareaCabezaEstado.name }}
+                  {{ estado }}
                 </option>
               }
             </select>
@@ -124,9 +128,9 @@
               (ngModelChange)="onPrimitivaChange($event)">
               <option value="">Seleccione una opción</option>
 
-              @for (primitiva of this.uc!.primitiva; track primitiva) {
+              @for (primitiva of uc!.primitiva; track primitiva) {
                 <option [ngValue]="primitiva">
-                  {{ primitiva.respuesta }}
+                  {{ primitiva}}
                 </option>
               }
             </select>

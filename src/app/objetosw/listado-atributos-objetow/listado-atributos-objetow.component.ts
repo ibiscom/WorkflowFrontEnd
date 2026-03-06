@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
 import { ObjetowComponent } from '../objetow.component';
-import { FiltrosBusquedaObjetowComponent } from '../filtros-busqueda-objetow/filtros-busqueda-objetow.component';
+import { CrearObjetowComponent } from '../crear-objetow/crear-objetow.component';
 import { MatTableModule } from '@angular/material/table';
 import { ObjetowEntity } from '../objetow.entity';
 import { AtributoObjetowEntity } from '../atributo-objetow.entity';
 
 @Component({
   selector: 'ibpm-listado-objetow',
-  imports: [MatTableModule, FiltrosBusquedaObjetowComponent],
-  templateUrl: './listado-objetow.component.html',
-  styleUrl: './listado-objetow.component.scss',
+  imports: [MatTableModule, CrearObjetowComponent],
+  templateUrl: './listado-atributos-objetow.component.html',
+  styleUrl: './listado-atributos-objetow.component.scss',
 })
 /**
- * Listado de grupos con navegación a la edición y utilidades de presentación.
+ * Listado de atributos de objetos workflow con navegación a la edición y utilidades de presentación.
  */
-export class ListadoObjetowComponent {
+export class ListadoAtributosObjetowComponent {
   // 🔹 Variables de paginación
   public currentPage: number = 1;
   public numberOfPages: number = 1;
@@ -34,7 +34,7 @@ export class ListadoObjetowComponent {
    */
   public goToEditarAtributoObjetow(atributo: AtributoObjetowEntity) {
     this.parent.router.navigate([
-      `/main-page/objetow/crearObjetow/${atributo.nombre}`,
+      `/main-page/objetosWorkflow/editarAtributoObjetoWorkflow/${atributo.nombre}`,
     ]);
   }
 

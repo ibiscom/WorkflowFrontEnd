@@ -22,9 +22,9 @@ import { CompaniasService } from '../../companias/companias.service';
 import { UsuariosService } from '../../usuarios/usuarios.service';
 import { UserSearchFilterEntity } from '../../entities/users/user-search-filter.entity';
 import { CookieService } from 'ngx-cookie-service';
-import { EstadoDependenciaEntity } from '../estadoDependencia.entity';
+import { EstadoDependenciaEntity } from '../estadodependencia.entity';
 import { TareaDependenciaEntity } from '../tarea-dependencia.entity';
-import { PrimitivaDependenciaEntity } from '../primitivaDependencia';
+import { AnyCnameRecord } from 'dns';
 
 @Component({
   selector: 'ibpm-crear-dependencia',
