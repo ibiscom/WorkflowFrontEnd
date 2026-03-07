@@ -117,9 +117,6 @@ export class CrearTareasComponent {
     await this.getRolesList();
     await this.getMetodosAsignacionList();
     await this.getSeriesList();
-    await this.getTiposDocumentoListBySerie();
-    await this.diligenciarTiposDocumentoAsignadosTarea();
-    await this.diligenciarTiposDocumentoAsignar();
     if (id) {
       this.tareasIdEdit = id;
       await this.fillEditFields();
@@ -175,6 +172,9 @@ export class CrearTareasComponent {
         this.idSerieN = tarea.docModels?.[0]?.idSerie ?? '';
         this.serieN = this.seriesList.find(s => s.code === this.idSerieN) ?? undefined;
         this.modelosDocumentoTareaE = tarea.docModels ?? [];
+        await this.getTiposDocumentoListBySerie();
+        await this.diligenciarTiposDocumentoAsignadosTarea();
+        await this.diligenciarTiposDocumentoAsignar();
 
       }
     } catch (e) {
