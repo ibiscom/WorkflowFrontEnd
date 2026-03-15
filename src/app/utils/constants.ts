@@ -94,6 +94,13 @@ export class Constants {
     'No se pudo editar el atributo de objeto workflow';
   public static ERR_ATRIBUTO_OBJETO_WORKFLOW_ELIMINAR: string = 
     'No se pudo eliminar el atributo de objeto workflow';
+   public static ATRIBUTO_OBJETO_WORKFLOW_EDITAR_EXITOSO: string = 
+    'Atributo de objeto workflow editado exitosamente.';
+  public static ATRIBUTO_OBJETO_WORKFLOW_ELIMINAR_EXITOSO: string =
+    'Atributo de objeto workflow eliminado exitosamente.';
+  public static ATRIBUTO_OBJETO_WORKFLOW_CREAR_EXITOSO: string =
+    'Atributo de objeto workflow creado exitosamente.';
+
   
   
 
@@ -279,8 +286,6 @@ export class Constants {
   public static LBL_LOG_KEY_TYPE: string = 'Type';
 
   public static EXCEL_MIME_TYPE: string =
-    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
-
-  
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'; 
     
 }

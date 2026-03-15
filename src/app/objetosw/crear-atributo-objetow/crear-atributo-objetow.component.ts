@@ -40,6 +40,7 @@ import { AtributoObjetowEntity } from '../atributo-objetow.entity';
  * Permite seleccionar compañía, supervisor y administrar permisos/restricciones.
  */
 export class CrearAtributoObjetowComponent {
+
   public uc?: ObjetowComponent;
   public loggedUser?: LoginEntity;
   public nombreN: string= '';
@@ -145,11 +146,12 @@ export class CrearAtributoObjetowComponent {
         next: (response) => {
           if (response && response.respuesta) {
             if (this.uc) {
-              this.uc.mensaje = '';
+              this.ngOnInit();
+              this.uc.mensaje = Constants.ATRIBUTO_OBJETO_WORKFLOW_CREAR_EXITOSO;
             }
             this.atrObjetowIdEdit = this.nombreN;
             this.router.navigate([
-              `/main-page/objetosWorkflow/editarAtributoObjetoWorkflow?id=${this.nombreN}`,
+              `/main-page/objetosWorkflow`,
             ]);
           }
         },
@@ -179,8 +181,13 @@ export class CrearAtributoObjetowComponent {
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
+              if (this.uc) {
+                this.uc.ngOnInit();
+                this.uc.mensaje =
+                  Constants.ATRIBUTO_OBJETO_WORKFLOW_EDITAR_EXITOSO;
+              }
             this.router.navigate([
-              `/main-page/objetosWorkflow/editarAtributoObjetoWorkflow?id=${this.nombreN}`,
+              `/main-page/objetosWorkflow`,
             ]);
           }
         },
@@ -204,7 +211,14 @@ export class CrearAtributoObjetowComponent {
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
-            this.router.navigate(['/main-page/objetosWorkflow']);
+            if (this.uc) {
+                this.uc.ngOnInit();
+                this.uc.mensaje =
+                  Constants.ATRIBUTO_OBJETO_WORKFLOW_ELIMINAR_EXITOSO;
+              }
+            this.router.navigate([
+              `/main-page/objetosWorkflow`,
+            ]);
           }
         },
         error: (e) => {
@@ -228,4 +242,19 @@ export class CrearAtributoObjetowComponent {
     this.router.navigate(['/main-page/objetosWorkflow']);
   }
 
+  /**
+   * Verifica si el identificador de negocio está marcado como "SI" para habilitar/deshabilitar el campo de label del identificador de negocio.
+   * @returns 
+   */
+  public esIdentificadorNegocioSi(): boolean {
+    return this.identificadorNegocioN === 'SI';   
+  }
+
+  public eventoCambioIdentificadorNegocio() {
+    // Aquí puedes agregar la lógica que deseas ejecutar cuando cambie el valor del identificador de negocio.
+    // Por ejemplo, podrías habilitar o deshabilitar el campo de label del identificador de negocio.
+    if (!this.esIdentificadorNegocioSi()) {
+      this.labelIdentificadorNegocioN = '';
+    }
+  }
 }

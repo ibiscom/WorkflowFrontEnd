@@ -48,9 +48,9 @@
           <!-- IDENTIFICADOR DE NEGOCIO -->
           <div class="campo-radio">
             <label>Identificador de negocio</label><br/><br/>
-            <input type="radio" id="identificadorNegocioSi" name="identificadorNegocio" value="SI" [(ngModel)]="identificadorNegocioN" required #identificadorNegocioSi="ngModel" />
+            <input type="radio" id="identificadorNegocioSi" name="identificadorNegocio" value="SI" [(ngModel)]="identificadorNegocioN"  #identificadorNegocioSi="ngModel" (change)="eventoCambioIdentificadorNegocio()" />
             <label for="identificadorNegocioSi">Si</label>
-            <input type="radio" id="identificadorNegocioNo" name="identificadorNegocio" value="NO" [(ngModel)]="identificadorNegocioN" required #identificadorNegocioNo="ngModel" />
+            <input type="radio" id="identificadorNegocioNo" name="identificadorNegocio" value="NO" [(ngModel)]="identificadorNegocioN"  #identificadorNegocioNo="ngModel" (change)="eventoCambioIdentificadorNegocio()" />
             <label for="identificadorNegocioNo">No</label>
             <br/><br/>
           </div>
@@ -64,8 +64,10 @@
               type="text"
               placeholder="Inserte label identificador"
               [(ngModel)]="labelIdentificadorNegocioN"
-              required
+              [readOnly]="!esIdentificadorNegocioSi()"
+              [disabled]="!esIdentificadorNegocioSi()"
               #labelIdentificador="ngModel"
+
             />
             @if (labelIdentificador.errors?.['required']) {
               <div class="error">El label del identificador de negocio es obligatorio</div>
