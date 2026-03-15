@@ -11,5 +11,5 @@ export interface ObjetowEntity {
   /** descripción del objeto workflow */
   descripcion: string;
   /** atributos del objeto workflow */
-  attributes: AtributoObjetowEntity[];
+  attributes?: AtributoObjetowEntity[];
 }

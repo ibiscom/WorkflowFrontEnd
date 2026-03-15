@@ -72,7 +72,7 @@ export class ObjetowService {
    */
   public editarAtributoObjetoWorkflow(atributoObjeto: AtributoObjetowEntity): Observable<FsResponseEntity<any>> {
     let ip: string = this.cookieService.get('ip');
-    return this.http.put<FsResponseEntity<any>>(
+    return this.http.post<FsResponseEntity<any>>(
       environment.workflowApiUrl + 
         `/WObject/editAttibute`,
       atributoObjeto,

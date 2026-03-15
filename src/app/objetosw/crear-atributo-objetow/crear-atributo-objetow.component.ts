@@ -19,6 +19,7 @@ import { UsuariosService } from '../../usuarios/usuarios.service';
 import { ObjetowComponentInstanceService } from '../objetow-component-instance.service';
 import { ObjetowService } from '../objetow.service';
 import { ObjetowComponent } from '../objetow.component';
+import { AtributoObjetowEntity } from '../atributo-objetow.entity';
 
 @Component({
   selector: 'ibpm-crear-atributo-objetow',
@@ -41,18 +42,13 @@ import { ObjetowComponent } from '../objetow.component';
 export class CrearAtributoObjetowComponent {
   public uc?: ObjetowComponent;
   public loggedUser?: LoginEntity;
-  public nameN: string = '';
-  public descriptionN: string = '';
-  public companyN: string = '';
-  public companyObjectN?: CompanyEntity;
-  public supervisorN: string = '';
-  public operationE: string = '';
-  public operationsList: string[] = [];
-  public restrictedOperationsList: string[] = [];
-  public companiesList: CompanyEntity[] = [];
-  public supervisorsList: UserEntity[] = [];
-  public objetowIdEdit?: string;
+  public nombreN: string= '';
+  public descripcionN: string= '';
+  public identificadorNegocioN: string= '';
+  public labelIdentificadorNegocioN: string= '';
+  public atrObjetowIdEdit?: string;
   public supervisorObjectN?: UserEntity;
+
 
   public constructor(
     private objetowService: ObjetowService,
@@ -74,95 +70,35 @@ export class CrearAtributoObjetowComponent {
     if (this.uc) {
       this.uc.mensaje = '';
     }
-    this.getCompaniesList();
-    this.getSupervisorsList();
     const id = this.route.snapshot.paramMap.get('id');
     console.log('Edit Mode On. Group Id:', id);
     if (id) {
-      this.objetowIdEdit = id;
+      this.atrObjetowIdEdit = id;
       await this.fillEditFields();
-      this.getOperationsList();
-      this.getRestrictedOperationsList();
     } else {
-      this.objetowIdEdit = undefined;
+      this.atrObjetowIdEdit = undefined;
     }
-  }
-
-  /**
-   * Carga la lista de supervisores disponibles.
-   */
-  public getSupervisorsList() {
-    /*
-    let filter: UserSearchFilterEntity = {
-      userName: this.loggedUser?.user_name ?? '',
-      status: 'Activo',
-    };
-    this.usuariosService.searchUsers(filter).subscribe({
-      next: (response) => {
-        if (response && response.respuesta) {
-          this.supervisorsList = response.respuesta as UserEntity[];
-        }
-      },
-      error: (e) => {
-        if (this.uc) {
-          this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-            Constants.ERR_GRUPO_SUPERVISORES,
-            e,
-          );
-        }
-      },
-    });
-    */
-  }
-
-  /**
-   * Carga la lista de compañías disponibles para selección.
-   */
-  public getCompaniesList() {
-    this.companiesList = [];
-    this.companiasService
-      .getAllCompanies(this.loggedUser?.user_name ?? '')
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
-            this.companiesList = response.respuesta as CompanyEntity[];
-          }
-        },
-        error: (e) => {
-          if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_COMPANIAS,
-              e,
-            );
-          }
-        },
-      });
   }
 
   /**
    * Llena los campos del formulario con la información del grupo en edición.
    */
   public async fillEditFields(): Promise<void> {
-    /*
+    
     try {
       const response = await firstValueFrom(
-        this.gruposService.getGroup(
-          this.loggedUser?.user_name ?? '',
-          this.groupIdEdit ?? '',
-        ),
+        this.objetowService.obtenerAtributosObjetoWorkflow(this.uc?.workflowActual  ?? '')
       );
       if (response?.respuesta) {
-        const group = response.respuesta as GroupEntity;
-        this.nameN = group.name ?? '';
-        this.descriptionN = group.description ?? '';
-        this.companyN = group.company ?? '';
-        this.companyObjectN = this.companiesList.find(
-          (c) => c.name === this.companyN,
-        );
-        this.supervisorN = group.supervisor ?? '';
-        this.supervisorObjectN = this.supervisorsList.find(
-          (s) => s.name === this.supervisorN,
-        );
+        const atributos = response.respuesta as AtributoObjetowEntity[];
+        const atributo = atributos.find(attr => attr.nombre === this.atrObjetowIdEdit);
+       
+
+        this.nombreN = atributo?.nombre ?? '';
+        this.descripcionN = atributo?.descripcion ?? '';
+        this.identificadorNegocioN = atributo?.identificadorNegocio ?? '';
+        this.labelIdentificadorNegocioN = atributo?.labelId ?? '';
+        
       }
     } catch (e) {
       if (this.uc) {
@@ -172,127 +108,14 @@ export class CrearAtributoObjetowComponent {
         );
       }
     }
-    */
-  }
-
-  /**
-   * Consulta las operaciones asociadas al grupo.
-   */
-  public getOperationsList() {
-    /*
-    if (!this.editMode()) {
-      this.operationsList = [];
-      return;
-    }
-
-    this.operationsList = [];
-
-    try {
-      this.gruposService
-        .getOperationsByGroup(
-          this.loggedUser?.user_name ?? '',
-          this.groupIdEdit ?? '',
-        )
-        .subscribe({
-          next: (response) => {
-            if (response && response.respuesta) {
-              const ops = response.respuesta as string[];
-              this.operationsList.push(...ops);
-            }
-          },
-          error: (e) => {
-            if (this.uc) {
-              if (
-                !String(e.error.mensaje).includes(
-                  'no tiene operaciones asociadas',
-                )
-              ) {
-                this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-                  Constants.ERR_GRUPO_OPERACIONES,
-                  e,
-                );
-              }
-            }
-          },
-        });
-    } catch (error: any) {
-      if (this.uc) {
-        this.uc.mensaje =
-          error.status === 400
-            ? ''
-            : MessageUtil.buildErrorMessageFsResponse(
-                Constants.ERR_GRUPO_OPERACIONES_ENCONTRAR,
-                error,
-              );
-      }
-    }
-      */
-  }
-
-  /**
-   * Consulta las operaciones restringidas (no permitidas) del grupo.
-   */
-  public getRestrictedOperationsList() {
-    /*
-    if (!this.editMode()) {
-      this.restrictedOperationsList = [];
-      return;
-    }
-
-    this.restrictedOperationsList = [];
-
-    try {
-      this.gruposService
-        .getRestrictedOperationsByGroup(
-          this.loggedUser?.user_name ?? '',
-          this.groupIdEdit ?? '',
-        )
-        .subscribe({
-          next: (response) => {
-            if (response && response.respuesta) {
-              const ops = response.respuesta as string[];
-              this.restrictedOperationsList.push(...ops);
-            }
-          },
-          error: (e) => {
-            if (this.uc) {
-              this.uc.mensaje =
-                e.status === 400
-                  ? ''
-                  : MessageUtil.buildErrorMessageFsResponse(
-                      Constants.ERR_GRUPO_OPERACIONES_RESTRINGIDAS,
-                      e,
-                    );
-            }
-          },
-        });
-    } catch (error: any) {
-      if (this.uc) {
-        this.uc.mensaje =
-          error.status === 400
-            ? ''
-            : MessageUtil.buildErrorMessageFsResponse(
-                Constants.ERR_GRUPO_OPERACIONES_RESTRINGIDAS,
-                error,
-              );
-      }
-    }
-      */
+    
   }
 
   /**
    * Indica si está en modo edición.
    */
   public editMode(): boolean {
-    return this.objetowIdEdit !== undefined && this.objetowIdEdit !== '';
-  }
-
-  /**
-   * Maneja el cambio de compañía seleccionada.
-   */
-  public onCompanyChange(event: MatSelectChange<CompanyEntity>) {
-    this.companyObjectN = event.value;
-    this.companyN = event.value?.name ?? '';
+    return this.atrObjetowIdEdit !== undefined && this.atrObjetowIdEdit !== '';
   }
 
   /**
@@ -307,231 +130,102 @@ export class CrearAtributoObjetowComponent {
   }
 
   /**
-   * Crea un nuevo grupo con los datos del formulario.
+   * Crea un nuevo atributo de objeto workflow con los datos del formulario.
    */
   public create() {
-    /*
-    this.gruposService
-      .createGroup({
-        userName: this.loggedUser?.user_name ?? '',
-        name: this.nameN,
-        description: this.descriptionN,
-        company: this.companyN,
-        supervisor: this.supervisorN,
-      } as GroupEntity)
+    this.objetowService
+      .crearAtributoObjetoWorkflow({
+        nombre: this.nombreN,
+        descripcion: this.descripcionN,
+        identificadorNegocio: this.identificadorNegocioN,
+        nombreWorkflow: this.uc?.workflowActual ?? '',
+        labelId: this.labelIdentificadorNegocioN,
+      } as AtributoObjetowEntity)
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
             if (this.uc) {
               this.uc.mensaje = '';
             }
-            this.groupIdEdit = this.nameN;
+            this.atrObjetowIdEdit = this.nombreN;
             this.router.navigate([
-              `/main-page/administrarGrupos/editarGrupo?id=${this.nameN}`,
+              `/main-page/objetosWorkflow/editarAtributoObjetoWorkflow?id=${this.nombreN}`,
             ]);
           }
         },
         error: (e) => {
           if (this.uc) {
             this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_CREAR,
+              Constants.ERR_ATRIBUTO_OBJETO_WORKFLOW_CREAR,
               e,
             );
           }
         },
       });
-      */
   }
 
   /**
-   * Edita el grupo existente con los datos proporcionados.
+   * Edita el atributo de objeto workflow existente con los datos proporcionados.
    */
   public edit() {
-    /*
-    this.gruposService
-      .editGroup({
-        userName: this.loggedUser?.user_name ?? '',
-        name: this.nameN,
-        description: this.descriptionN,
-        company: this.companyN,
-        supervisor: this.supervisorN,
-      } as GroupEntity)
+    this.objetowService
+      .editarAtributoObjetoWorkflow({
+        nombre: this.nombreN,
+        descripcion: this.descripcionN,
+        identificadorNegocio: this.identificadorNegocioN,
+        nombreWorkflow: this.uc?.workflowActual ?? '',
+        labelId: this.labelIdentificadorNegocioN,
+      } as AtributoObjetowEntity)
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
             this.router.navigate([
-              `/main-page/administrarGrupos/editarGrupo?id=${this.nameN}`,
+              `/main-page/objetosWorkflow/editarAtributoObjetoWorkflow?id=${this.nombreN}`,
             ]);
           }
         },
         error: (e) => {
           if (this.uc) {
             this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_EDITAR,
+              Constants.ERR_ATRIBUTO_OBJETO_WORKFLOW_EDITAR,
               e,
             );
           }
         },
       });
-      */
   }
 
   /**
-   * Agrega una operación al grupo.
-   */
-  public addOperationToGroup(event: MatSelectChange<any>) {
-    /*
-    const operation = event.value;
-    this.gruposService
-      .addOperationToGroup(
-        this.loggedUser?.user_name ?? '',
-        this.groupIdEdit ?? '',
-        operation,
-      )
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
-            this.operationsList.push(operation);
-          }
-        },
-        error: (e) => {
-          if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_AGREGAR_OPERACION,
-              e,
-            );
-          }
-        },
-      });
-      */
-  }
-
-  /**
-   * Elimina una operación del grupo.
-   */
-  public remove(operation: string) {
-    /*
-    this.gruposService
-      .removeOperationFromGroup(
-        this.loggedUser?.user_name ?? '',
-        this.groupIdEdit ?? '',
-        operation,
-      )
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
-            this.operationsList = this.operationsList.filter(
-              (op) => op !== operation,
-            );
-          }
-        },
-        error: (e) => {
-          if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_ELIMINAR_OPERACION,
-              e,
-            );
-          }
-        },
-      });
-      */
-  }
-
-  /**
-   * Elimina el grupo actual.
+   * Elimina el atributo de objeto workflow actual y regresa al listado.
    */
   public delete() {
-    /*
-    this.gruposService
-      .deleteGroup(this.loggedUser?.user_name ?? '', this.groupIdEdit)
+    this.objetowService
+      .eliminarAtributoObjetoWorkflow(this.uc?.workflowActual ?? '', this.nombreN ?? '')
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
-            this.router.navigate(['/main-page/administrarGrupos']);
+            this.router.navigate(['/main-page/objetosWorkflow']);
           }
         },
         error: (e) => {
           if (this.uc) {
             this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_ELIMINAR,
+              Constants.ERR_ATRIBUTO_OBJETO_WORKFLOW_ELIMINAR,
               e,
             );
           }
         },
       });
-      */
   }
 
   /**
-   * Cancela y regresa al listado de grupos.
+   * Cancela y regresa al listado de atributos de objeto workflow.
    */
   public cancel() {
-    /*
     if (this.uc) {
       this.uc.mensaje = '';
     }
-    this.router.navigate(['/main-page/administrarGrupos']);
-    */
+    this.router.navigate(['/main-page/objetosWorkflow']);
   }
 
-  /**
-   * Compara compañías en el selector.
-   */
-  public compareCompanies(c1: CompanyEntity, c2: CompanyEntity): boolean {
-    return c1.name === c2.name;
-  }
-
-  /**
-   * Compara supervisores en el selector.
-   */
-  public compareSupervisors(s1: UserEntity, s2: UserEntity): boolean {
-    return s1.name === s2.name;
-  }
-
-  /**
-   * Maneja el cambio de supervisor seleccionado.
-   */
-  public onSupervisorChange(event: MatSelectChange<UserEntity>) {
-    this.supervisorObjectN = event.value;
-    this.supervisorN = event.value?.name ?? '';
-  }
-
-
- /**
-   * Agrega una restricción de operación a la compañía.
-   */
-  public restrict(operation?: string | undefined) {
-    /*
-    try {
-      this.companiasService
-        .addRestrictionToCompany(
-          this.loggedUser?.user_name ?? '',
-          this.groupIdEdit?? '',
-          operation ?? '',
-        )
-        .subscribe({
-          next: (response) => {
-            if (response && response.respuesta) {
-              this.ngOnInit();
-            }
-          },
-          error: (e: any) => {
-            if (this.uc) {
-              this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-                Constants.ERR_COMPANIA_RESTRINGIR_OPERACION,
-                e,
-              );
-            }
-          },
-        });
-    } catch (e) {
-      if (this.uc) {
-        this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-          Constants.ERR_COMPANIA_ASOCIAR_PERMISO,
-          e,
-        );
-      }
-    }
-      */
-  }
 }

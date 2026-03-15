@@ -73,13 +73,30 @@ export class Constants {
   public static ERR_ROL_TAREA_ENCONTRAR: string =
     'No se pudo encontrar los roles de tarea';
   public static ERR_METODO_ASIGNACION_TAREA: string = 
-  'No se pudo obtener los métodos de asignación de tarea';
+    'No se pudo obtener los métodos de asignación de tarea';
   public static ERR_METODO_ASIGNACION_TAREA_ENCONTRAR: string = 
-  'No se pudo encontrar los métodos de asignación de tarea';
+    'No se pudo encontrar los métodos de asignación de tarea';
   public static ERR_SERIE_TAREA_ENCONTRAR: string = 
-  'No se pudo encontrar las series de tarea';
+    'No se pudo encontrar las series de tarea';
   public static ERR_TIPO_DOCUMENTO_TAREA_ENCONTRAR: string = 
-  'No se pudo encontrar los tipos de documento de tarea';
+    'No se pudo encontrar los tipos de documento de tarea';
+  
+//Errores Objeto Workflow y atributos  
+  public static ERR_OBJETO_WORKFLOW_OBTENER: string = 
+    'No se pudo obtener el objeto workflow';
+  public static ERR_OBJETO_WORKFLOW_CREAR: string = 
+    'No se pudo crear el objeto workflow';
+  public static ERR_OBJETO_WORKFLOW_EDITAR: string = 
+    'No se pudo editar el objeto workflow';
+  public static ERR_ATRIBUTO_OBJETO_WORKFLOW_CREAR: string = 
+    'No se pudo crear el atributo de objeto workflow';
+  public static ERR_ATRIBUTO_OBJETO_WORKFLOW_EDITAR: string = 
+    'No se pudo editar el atributo de objeto workflow';
+  public static ERR_ATRIBUTO_OBJETO_WORKFLOW_ELIMINAR: string = 
+    'No se pudo eliminar el atributo de objeto workflow';
+  
+  
+
   
 
 
@@ -263,6 +280,7 @@ export class Constants {
 
   public static EXCEL_MIME_TYPE: string =
     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+
   
     
 }
