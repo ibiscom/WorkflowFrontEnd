@@ -1,0 +1,105 @@
+<!-- FILTROS: Se deja inactivo mientras se define su implementacion -->
+<!--<ibpm-filtros-busqueda-patron [uc]="this.parent" style="width: 100%">
+</ibpm-filtros-busqueda-patron>-->
+
+<!-- TARJETA TABLA -->
+<div class="tabla-card">
+  <!-- HEADER -->
+  <div class="tabla-header-container">
+    <div class="tabla-titulo">Listado de patrones</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="tabla-body">
+
+    <!-- COLUMNA: NOMBRE -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Nombre</div>
+      </div>
+
+      @for (element of parent.patrones; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarPatron(element)">
+              {{ element.nombre }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: TIPO -->
+
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Tipo</div>
+      </div>
+
+      @for (element of parent.patrones; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarPatron(element)">
+              {{ element.tipo }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    
+
+
+    <!-- COLUMNA: DESCRIPCIÓN -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Descripción</div>
+      </div>
+
+      @for (element of parent.patrones; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarPatron(element)">
+              {{ element.descripcion }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: CADENA DE REPRESENTACIÓN -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Cadena de representación</div>
+      </div>
+
+      @for (element of parent.patrones; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarPatron(element)">
+              {{ element.cadenaRepresentacion }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+  </div>
+
+  <!-- FOOTER
+  <div class="tabla-footer">
+    <div class="tabla-footer-text">
+      Página {{ currentPage }} de {{ numberOfPages }}
+    </div>
+
+    <div class="paginador-boton" (click)="previousPage()">
+      <span>chevron_left</span>
+    </div>
+
+    <div class="paginador-boton active" (click)="nextPage()">
+      <span>chevron_right</span>
+    </div>
+  </div>
+  -->
+</div>
+

@@ -1,4 +1,7 @@
 export class Constants {
+  static ERR_OBTENIENDO_PATRONES(ERR_OBTENIENDO_PATRONES: any, err: any): string {
+    throw new Error('Method not implemented.');
+  }
   //Errores Generales paginas Constructor
     public static ERR_WORKFLOW_NO_SELECCIONADO: string = 'No se ha seleccionado un workflow. Por favor, seleccione un workflow para continuar.';
   
@@ -21,6 +24,7 @@ export class Constants {
     'No se pudo obtener las dependencias'; 
   public static  ERR_OBTENIENDO_ESTADO_DEPENDENCIA: string =
   'No se pudo obtener el estado de la dependencia';
+  
 
   // Errores Objetos Workflow
     public static ERR_BUSCAR_OBJETOW: string = 
@@ -81,7 +85,7 @@ export class Constants {
   public static ERR_TIPO_DOCUMENTO_TAREA_ENCONTRAR: string = 
   'No se pudo encontrar los tipos de documento de tarea';
   
-
+  
 
 
 

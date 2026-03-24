@@ -1,0 +1,115 @@
+<div class="cont-nuevo-workflow">
+  <form #form="ngForm">
+
+    <!-- TARJETA DATOS DEL WORKFLOW -->
+    <div class="card-nuevo-workflow-general">
+
+      <div class="card-header">
+        <h3>Datos de la patron</h3>
+      </div>
+
+      <div class="card-content">
+        <div class="tbl-nuevo-workflow">
+
+          <!-- NOMBRE -->
+          <div class="campo-texto">
+            <label for="name">Nombre de patron</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Inserte nombre de la patron"
+              [(ngModel)]="nombreN"
+              required
+              #name="ngModel"
+              [disabled]="editMode()"
+            />
+            @if (name.errors?.['required']) {
+              <div class="error">El nombre de la patron es obligatorio.</div>
+            }
+          </div>
+
+          <!-- DESCRIPCIÓN -->
+          <div class="campo-texto">
+            <label for="description">Breve descripcion</label>
+            <input
+              id="descripcion"
+              name="descripcion"
+              type="text"
+              placeholder="Inserte descripcion"
+              [(ngModel)]="descripcionN"
+              required
+              #descripcion="ngModel"
+            />
+          </div>
+
+          <!-- FILA 2 -->
+      <div class="fila-filtros-fila3">
+        
+          <!-- TIPO HERRAMIENTA -->
+          <div class="campo-lista">
+            <label for="tipoPatron">Tipo patron</label>
+
+            <select
+              id="tipoPatron"
+              name="tipoPatron"
+              [(ngModel)]="tipoPatronObjectN"
+              required
+              #tipoPatron="ngModel"
+              (ngModelChange)="onTipoPatronChange($event)">
+              <option value="">Seleccione una opción</option>
+
+              @for (tipoPatron of this.uc!.tipos; track tipoPatron) {
+                <option [ngValue]="tipoPatron">
+                  {{ tipoPatron.name }}
+                </option>
+              }
+            </select>
+          </div>
+
+          <!-- URL DEL SERVICIO WEB -->
+          <div class="campo-texto">
+            <label for="urlServicioWeb">URL del servicio web</label>
+            <input
+              id="urlServicioWeb"
+              name="urlServicioWeb"
+              type="text"
+              placeholder="URL del servicio web"
+              [(ngModel)]="urlServicioWebN"
+              required
+              #urlServicioWeb="ngModel"
+            />
+          </div>
+        </div>
+      </div>
+      </div>
+
+    </div>
+
+    <!-- BOTONES FINALES -->
+    <div class="botones-nuevo-grupo">
+
+      <button class="btn-figma" type="submit" (click)="save()">
+        <span class="btn-icon">
+      <img src="assets/img/save.svg" alt="Guardar" />
+    </span>
+    Guardar</button>
+
+
+      @if (editMode()) {
+        <button class="btn-figma" type="button" (click)="delete()">
+          <span class="btn-icon">
+        <img src="assets/img/trash.svg" alt="Eliminar" />
+      </span>
+      Eliminar</button>
+      }
+
+     <button class="btn-figma" type="button" (click)="cancel()">
+        <span class="btn-icon">
+      <img src="assets/img/cancel.svg" alt="Cancelar" />
+    </span>
+    Cancelar</button>
+    </div>
+  </form>
+</div>
+
