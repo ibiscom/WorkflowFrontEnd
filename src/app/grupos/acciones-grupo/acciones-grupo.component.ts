@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'fs-acciones-grupos',
+  selector: 'ibpm-acciones-grupo',
   imports: [
     FormsModule,
     MatButton,
@@ -18,20 +18,21 @@ import { Router } from '@angular/router';
     MatFormFieldModule,
     MatButtonModule,
   ],
-  templateUrl: './acciones-grupos.component.html',
-  styleUrl: './acciones-grupos.component.scss',
+  templateUrl: './acciones-grupo.component.html',
+  styleUrl: './acciones-grupo.component.scss',
 })
 /**
  * Componente de acciones para la administración de grupos.
  * Permite navegar a la pantalla de creación de grupos.
  */
-export class AccionesGruposComponent {
+export class AccionesGrupoComponent {
   constructor(public router: Router) {}
 
   /**
-   * Navega a la pantalla de creación de grupo.
+   * Navega a la pantalla de creación de grupos.
    */
   public irACrearGrupo() {
-    this.router.navigate([`/main-page/administrarGrupos/crearGrupo`]);
+    this.router.navigate([`/main-page/grupos/crearGrupo`]);
   }
 }
+

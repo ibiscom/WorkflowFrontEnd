@@ -1,175 +1,90 @@
-<div class="cont-nuevo-grupo">
+<div class="cont-nuevo-workflow">
   <form #form="ngForm">
 
-    <!-- TARJETA DATOS DEL GRUPO -->
-    <div class="card-nuevo-grupo-general">
+    <!-- TARJETA DATOS DEL WORKFLOW -->
+    <div class="card-nuevo-workflow-general">
 
       <div class="card-header">
-        <h3>Datos del grupo</h3>
+        <h3>Datos de la grupo</h3>
       </div>
 
       <div class="card-content">
-        <div class="tbl-nuevo-grupo">
+        <div class="tbl-nuevo-workflow">
 
           <!-- NOMBRE -->
           <div class="campo-texto">
-            <label for="name">Nombre</label>
+            <label for="name">Nombre de grupo</label>
             <input
               id="name"
               name="name"
               type="text"
-              placeholder="Inserte nombre del grupo"
-              [(ngModel)]="nameN"
+              placeholder="Inserte nombre de la grupo"
+              [(ngModel)]="nombreN"
               required
               #name="ngModel"
+              [disabled]="editMode()"
             />
             @if (name.errors?.['required']) {
-              <div class="error">El nombre del grupo es obligatorio.</div>
+              <div class="error">El nombre de la grupo es obligatorio.</div>
             }
           </div>
 
           <!-- DESCRIPCIÓN -->
           <div class="campo-texto">
-            <label for="description">Descripción</label>
+            <label for="description">Breve descripcion</label>
             <input
-              id="description"
-              name="description"
+              id="descripcion"
+              name="descripcion"
               type="text"
-              placeholder="Inserte descripción del grupo"
-              [(ngModel)]="descriptionN"
+              placeholder="Inserte descripcion"
+              [(ngModel)]="descripcionN"
               required
-              #description="ngModel"
+              #descripcion="ngModel"
             />
-            @if (description.errors?.['required']) {
-              <div class="error">La descripción del grupo es obligatoria.</div>
-            }
           </div>
 
-          <!-- COMPAÑÍA -->
+          <!-- FILA 2 -->
+      <div class="fila-filtros-fila3">
+        
+          <!-- TIPO HERRAMIENTA -->
           <div class="campo-lista">
-            <label for="company">Compañía</label>
+            <label for="tipoGrupo">Tipo grupo</label>
 
             <select
-              id="company"
-              name="company"
-              [(ngModel)]="companyObjectN"
+              id="tipoGrupo"
+              name="tipoGrupo"
+              [(ngModel)]="tipoGrupoObjectN"
               required
-              #company="ngModel"
-              (ngModelChange)="onCompanyChange($event)"
-            >
+              #tipoGrupo="ngModel"
+              (ngModelChange)="onTipoGrupoChange($event)">
               <option value="">Seleccione una opción</option>
 
-              @for (company of companiesList; track company) {
-                <option [ngValue]="company">
-                  {{ company.largeName }}
+              @for (tipoGrupo of this.uc!.tipos; track tipoGrupo) {
+                <option [ngValue]="tipoGrupo">
+                  {{ tipoGrupo.name }}
                 </option>
               }
             </select>
-
-            @if (company.errors?.['required']) {
-              <div class="error">La compañía del grupo es obligatoria.</div>
-            }
           </div>
 
-          <!-- SUPERVISOR -->
-          <div class="campo-lista">
-            <label for="supervisor">Supervisor</label>
-
-            <select
-              id="supervisor"
-              name="supervisor"
-              [(ngModel)]="supervisorObjectN"
+          <!-- URL DEL SERVICIO WEB -->
+          <div class="campo-texto">
+            <label for="urlServicioWeb">URL del servicio web</label>
+            <input
+              id="urlServicioWeb"
+              name="urlServicioWeb"
+              type="text"
+              placeholder="URL del servicio web"
+              [(ngModel)]="urlServicioWebN"
               required
-              #supervisor="ngModel"
-              (ngModelChange)="onSupervisorChange($event)"
-            >
-              <option value="">Seleccione una opción</option>
-
-              @for (supervisor of supervisorsList; track supervisor) {
-                <option [ngValue]="supervisor">
-                  {{
-                    (supervisor.firstName ?? '') +
-                    (supervisor.secondName ? ' ' : '') +
-                    (supervisor.secondName ?? '') +
-                    (supervisor.lastName ? ' ' : '') +
-                    (supervisor.lastName ?? '') +
-                    (supervisor.secondLastName ? ' ' : '') +
-                    (supervisor.secondLastName ?? '')
-                  }}
-                  ({{ supervisor.name }})
-                </option>
-              }
-            </select>
-
-            @if (supervisor.errors?.['required']) {
-              <div class="error">El supervisor del grupo es obligatorio.</div>
-            }
+              #urlServicioWeb="ngModel"
+            />
           </div>
-
         </div>
+      </div>
       </div>
 
     </div>
-
-    <!-- ADMINISTRACIÓN DE OPERACIONES -->
-    @if (editMode()) {
-      <div class="cont-nuevo-grupo">
-
-        <div class="card-nuevo-grupo">
-          <div class="card-header">
-            <h3>Administración operaciones</h3>
-          </div>
-
-          <div class="card-content">
-
-            <!-- AGREGAR OPERACIÓN -->
-            <div class="sec-operaciones-grupo">
-              <div class="campo-lista">
-                <label for="operation">Agregar operación</label>
-
-                <select
-                  id="operation"
-                  name="operation"
-                  [(ngModel)]="operationE"
-                  (ngModelChange)="addOperationToGroup($event)"
-                >
-                  <option value="">Seleccione la operación</option>
-
-                  @for (operation of restrictedOperationsList; track operation) {
-                    <option [value]="operation">
-                      {{ operation }}
-                    </option>
-                  }
-                </select>
-              </div>
-            </div>
-
-            <!-- HEADER OPERACIONES -->
-            <div class="tbl-permisos-header">
-              <div>Operaciones de éste grupo</div>
-            </div>
-
-            <!-- LISTADO OPERACIONES -->
-            <div class="tbl-permisos">
-
-              @for (operation of operationsList; track operation) {
-                <div>{{ operation }}</div>
-                <div>
-                  <button type="button" (click)="restrict(operation)">
-                    <span class="btn-figma">
-                    <img src="assets/img/restrict.svg" alt="Cargar logo" />
-                  </span>
-                  Restringir</button>
-                </div>
-              }
-
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    }
 
     <!-- BOTONES FINALES -->
     <div class="botones-nuevo-grupo">
@@ -194,9 +109,7 @@
       <img src="assets/img/cancel.svg" alt="Cancelar" />
     </span>
     Cancelar</button>
-
-
     </div>
-
   </form>
 </div>
+

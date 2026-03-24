@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseComponentInstanceService } from '../utils/base-component-instance.service';
-import { GruposComponent } from './grupos.component';
+import { GrupoComponent } from './grupo.component';
 
 @Injectable({
   providedIn: 'root',
@@ -8,4 +8,5 @@ import { GruposComponent } from './grupos.component';
 /**
  * Servicio que expone la instancia del componente padre de Grupos.
  */
-export class GruposComponentInstanceService extends BaseComponentInstanceService<GruposComponent> {}
+export class GrupoComponentInstanceService extends BaseComponentInstanceService<GrupoComponent> {}
+

@@ -1,13 +1,20 @@
 /**
- * Entidad que representa un grupo en el sistema.
+ * Entidad que representa una herramienta en el sistema.
  */
 export interface GrupoEntity {
-  /** Nombre del grupo */
+
+  /** Nombre del workflow */
+  nombreWorkflow: string;
+  /** Nombre de la herramienta */
   nombre: string;
-  /** Descripción del grupo */
+  /** Descripción de la herramienta */
+  tipo: string;
+  /** Compañía asociada a la herramienta */
   descripcion: string;
-  /** Compañía asociada al grupo */
-  compania: string;
-  /** Supervisor del grupo */
-  supervisor: string;
+  /** Supervisor de la herramienta */
+  cadenaRepresentacion: string;
+ /** Atributos de la herramienta */
+  attributes: string[];
+
 }
+

@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccionesGruposComponent } from './acciones-grupos.component';
+import { GrupoComponent } from './grupo.component';
 
-describe('AccionesGruposComponent', () => {
-  let component: AccionesGruposComponent;
-  let fixture: ComponentFixture<AccionesGruposComponent>;
+describe('GrupoComponent', () => {
+  let component: GrupoComponent;
+  let fixture: ComponentFixture<GrupoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AccionesGruposComponent],
+      imports: [GrupoComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AccionesGruposComponent);
+    fixture = TestBed.createComponent(GrupoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -20,3 +20,4 @@ describe('AccionesGruposComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
-import { GruposComponent } from '../grupos.component';
+import { GrupoComponent } from '../grupo.component';
 import { LoginEntity } from '../../login/login.entity';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../../login/login.service';
-import { GruposComponentInstanceService } from '../grupos-component-instance.service';
-import { GruposService } from '../grupos.service';
-import { CompanyEntity } from '../../entities/companies/company.entity';
+import { GrupoComponentInstanceService } from '../grupo-component-instance.service';
+import { GrupoService } from '../grupo.service';
 import { UserEntity } from '../../entities/users/user.entity';
 import { MessageUtil } from '../../utils/message.util';
 import { Constants } from '../../utils/constants';
@@ -21,9 +20,12 @@ import { MatInputModule } from '@angular/material/input';
 import { CompaniasService } from '../../companias/companias.service';
 import { UsuariosService } from '../../usuarios/usuarios.service';
 import { UserSearchFilterEntity } from '../../entities/users/user-search-filter.entity';
+import { GrupoEntity } from '../grupo.entity';
+import { CookieService } from 'ngx-cookie-service';
+import { TipoGrupoEntity } from '../tipo-grupo.entity';
 
 @Component({
-  selector: 'fs-crear-grupo',
+  selector: 'ibpm-crear-grupo',
   imports: [
     FormsModule,
     MatCardModule,
@@ -41,252 +43,97 @@ import { UserSearchFilterEntity } from '../../entities/users/user-search-filter.
  * Permite seleccionar compañía, supervisor y administrar permisos/restricciones.
  */
 export class CrearGrupoComponent {
-  public uc?: GruposComponent;
+  public workflowActual: string = '';
+  public uc?: GrupoComponent;
   public loggedUser?: LoginEntity;
-  public nameN: string = '';
-  public descriptionN: string = '';
-  public companyN: string = '';
-  public companyObjectN?: CompanyEntity;
-  public supervisorN: string = '';
-  public operationE: string = '';
-  public operationsList: string[] = [];
-  public restrictedOperationsList: string[] = [];
-  public companiesList: CompanyEntity[] = [];
-  public supervisorsList: UserEntity[] = [];
-  public groupIdEdit?: string;
+  public nombreN: string = '';
+  public descripcionN: string = '';
+  public urlServicioWebN: string = '';
+  public tipoGrupoObjectN?: TipoGrupoEntity;
+  public tipoGrupoN: string = '';
+  public grupoIdEdit?: string;
   public supervisorObjectN?: UserEntity;
+  public attributesN: string[] = [];
+  public grupo: any;
 
   public constructor(
-    private gruposService: GruposService,
+    private grupoService: GrupoService,
     private companiasService: CompaniasService,
     private usuariosService: UsuariosService,
     private loginService: LoginService,
-    private gruposComponentInstanceService: GruposComponentInstanceService,
+    private grupoComponentInstanceService: GrupoComponentInstanceService,
     private router: Router,
     private route: ActivatedRoute,
+    private cookieService: CookieService,
   ) {
     this.loggedUser = this.loginService.getLoggedUser();
-    this.uc = this.gruposComponentInstanceService.getInstance();
+    this.uc = this.grupoComponentInstanceService.getInstance();
   }
 
+  
   /**
    * Inicializa el formulario, carga listas y detecta modo de edición.
    */
+
   public async ngOnInit(): Promise<void> {
-    if (this.uc) {
-      this.uc.mensaje = '';
-    }
-    this.getCompaniesList();
-    this.getSupervisorsList();
+    this.workflowActual = this.cookieService.get("workflowActual");
     const id = this.route.snapshot.paramMap.get('id');
-    console.log('Edit Mode On. Group Id:', id);
+    console.log('Modo Edición Habilitado. Id Grupo:', id);
     if (id) {
-      this.groupIdEdit = id;
-      await this.fillEditFields();
-      this.getOperationsList();
-      this.getRestrictedOperationsList();
+      this.grupoIdEdit = id;
+      await this.llenarCamposEdicion();
     } else {
-      this.groupIdEdit = undefined;
+      this.grupoIdEdit = undefined;
+      if (this.uc) {
+        this.uc.mensaje = '';
+      }
     }
   }
 
   /**
-   * Carga la lista de supervisores disponibles.
+   * Llena los campos del formulario con la información de la grupo en edición.
    */
-  public getSupervisorsList() {
-    let filter: UserSearchFilterEntity = {
-      userName: this.loggedUser?.user_name ?? '',
-      status: 'Activo',
-    };
-    this.usuariosService.searchUsers(filter).subscribe({
-      next: (response) => {
-        if (response && response.respuesta) {
-          this.supervisorsList = response.respuesta as UserEntity[];
-        }
-      },
-      error: (e) => {
-        if (this.uc) {
-          this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-            Constants.ERR_GRUPO_SUPERVISORES,
-            e,
-          );
-        }
-      },
-    });
-  }
-
-  /**
-   * Carga la lista de compañías disponibles para selección.
-   */
-  public getCompaniesList() {
-    this.companiesList = [];
-    this.companiasService
-      .getAllCompanies(this.loggedUser?.user_name ?? '')
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
-            this.companiesList = response.respuesta as CompanyEntity[];
-          }
-        },
-        error: (e) => {
-          if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_COMPANIAS,
-              e,
-            );
-          }
-        },
-      });
-  }
-
-  /**
-   * Llena los campos del formulario con la información del grupo en edición.
-   */
-  public async fillEditFields(): Promise<void> {
+  public async llenarCamposEdicion(): Promise<void> {
     try {
       const response = await firstValueFrom(
-        this.gruposService.getGroup(
-          this.loggedUser?.user_name ?? '',
-          this.groupIdEdit ?? '',
+        this.grupoService.getGrupo(
+          this.workflowActual ?? '',
+          this.grupoIdEdit ?? '',
         ),
       );
       if (response?.respuesta) {
-        const group = response.respuesta as GroupEntity;
-        this.nameN = group.name ?? '';
-        this.descriptionN = group.description ?? '';
-        this.companyN = group.company ?? '';
-        this.companyObjectN = this.companiesList.find(
-          (c) => c.name === this.companyN,
-        );
-        this.supervisorN = group.supervisor ?? '';
-        this.supervisorObjectN = this.supervisorsList.find(
-          (s) => s.name === this.supervisorN,
-        );
+        const grupo = response.respuesta as GrupoEntity;
+        this.nombreN = grupo.nombre ?? '';
+        this.descripcionN = grupo.descripcion ?? '';
+        this.urlServicioWebN = grupo.cadenaRepresentacion ?? '';
+        this.tipoGrupoN = grupo.tipo ?? '';
+        this.tipoGrupoObjectN = this.uc?.tipos.find(t => t.name === grupo.tipo);
+        this.attributesN = grupo.attributes ?? [];
       }
     } catch (e) {
       if (this.uc) {
         this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-          Constants.ERR_GRUPO_DATOS,
+          Constants.ERR_OBTENIENDO_HERRAMIENTA,
           e,
         );
       }
-    }
-  }
-
-  /**
-   * Consulta las operaciones asociadas al grupo.
-   */
-  public getOperationsList() {
-    if (!this.editMode()) {
-      this.operationsList = [];
-      return;
-    }
-
-    this.operationsList = [];
-
-    try {
-      this.gruposService
-        .getOperationsByGroup(
-          this.loggedUser?.user_name ?? '',
-          this.groupIdEdit ?? '',
-        )
-        .subscribe({
-          next: (response) => {
-            if (response && response.respuesta) {
-              const ops = response.respuesta as string[];
-              this.operationsList.push(...ops);
-            }
-          },
-          error: (e) => {
-            if (this.uc) {
-              if (
-                !String(e.error.mensaje).includes(
-                  'no tiene operaciones asociadas',
-                )
-              ) {
-                this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-                  Constants.ERR_GRUPO_OPERACIONES,
-                  e,
-                );
-              }
-            }
-          },
-        });
-    } catch (error: any) {
-      if (this.uc) {
-        this.uc.mensaje =
-          error.status === 400
-            ? ''
-            : MessageUtil.buildErrorMessageFsResponse(
-                Constants.ERR_GRUPO_OPERACIONES_ENCONTRAR,
-                error,
-              );
-      }
-    }
-  }
-
-  /**
-   * Consulta las operaciones restringidas (no permitidas) del grupo.
-   */
-  public getRestrictedOperationsList() {
-    if (!this.editMode()) {
-      this.restrictedOperationsList = [];
-      return;
-    }
-
-    this.restrictedOperationsList = [];
-
-    try {
-      this.gruposService
-        .getRestrictedOperationsByGroup(
-          this.loggedUser?.user_name ?? '',
-          this.groupIdEdit ?? '',
-        )
-        .subscribe({
-          next: (response) => {
-            if (response && response.respuesta) {
-              const ops = response.respuesta as string[];
-              this.restrictedOperationsList.push(...ops);
-            }
-          },
-          error: (e) => {
-            if (this.uc) {
-              this.uc.mensaje =
-                e.status === 400
-                  ? ''
-                  : MessageUtil.buildErrorMessageFsResponse(
-                      Constants.ERR_GRUPO_OPERACIONES_RESTRINGIDAS,
-                      e,
-                    );
-            }
-          },
-        });
-    } catch (error: any) {
-      if (this.uc) {
-        this.uc.mensaje =
-          error.status === 400
-            ? ''
-            : MessageUtil.buildErrorMessageFsResponse(
-                Constants.ERR_GRUPO_OPERACIONES_RESTRINGIDAS,
-                error,
-              );
-      }
-    }
+    } 
   }
 
   /**
    * Indica si está en modo edición.
    */
   public editMode(): boolean {
-    return this.groupIdEdit !== undefined && this.groupIdEdit !== '';
+    return this.grupoIdEdit !== undefined && this.grupoIdEdit !== '';
   }
 
   /**
-   * Maneja el cambio de compañía seleccionada.
+   * Maneja el cambio de tipo de grupo seleccionada.
    */
-  public onCompanyChange(event: MatSelectChange<CompanyEntity>) {
-    this.companyObjectN = event.value;
-    this.companyN = event.value?.name ?? '';
+  public onTipoGrupoChange(event: any) {
+    console.log('Tipo de grupo seleccionada:', event);
+    this.tipoGrupoObjectN = event as TipoGrupoEntity;
+    this.tipoGrupoN = event?.name ?? '';
   }
 
   /**
@@ -304,141 +151,95 @@ export class CrearGrupoComponent {
    * Crea un nuevo grupo con los datos del formulario.
    */
   public create() {
-    this.gruposService
-      .createGroup({
-        userName: this.loggedUser?.user_name ?? '',
-        name: this.nameN,
-        description: this.descriptionN,
-        company: this.companyN,
-        supervisor: this.supervisorN,
-      } as GroupEntity)
+    let grupo: GrupoEntity = {
+        nombreWorkflow: this.workflowActual,
+        nombre: this.nombreN,
+        tipo: this.tipoGrupoN,
+        cadenaRepresentacion: this.urlServicioWebN,
+        descripcion: this.descripcionN,
+        attributes: [],
+    }
+    this.grupoService
+    .createGrupo(grupo)
+    .subscribe({
+      next: (response) => {
+        if (response && response.respuesta) {
+            if (this.uc) {
+              this.uc.mensaje = Constants.MSG_HERRAMIENTA_CREACION_EXITOSA;
+            }
+            this.grupoIdEdit = this.nombreN; /** Verificar que atributa va aca */
+            this.router.navigate([
+              `/main-page/grupos/editarGrupo/${this.nombreN}`,
+            ]);
+          }
+        },
+      error: (e) => {
+        if (this.uc) {
+          this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
+            Constants.ERR_HERRAMIENTA_CREAR,
+            e,
+          );
+        }
+      },
+    });
+  }
+
+  /**
+   * Edita la grupo existente con los datos proporcionados.
+   */
+  public edit() {
+    this.grupoService
+      .editGrupo({
+        nombreWorkflow: this.workflowActual,
+        nombre: this.nombreN,
+        tipo: this.tipoGrupoN,
+        cadenaRepresentacion: this.urlServicioWebN,
+        descripcion: this.descripcionN,
+        attributes: this.attributesN,
+      } as GrupoEntity)
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
             if (this.uc) {
-              this.uc.mensaje = '';
+              this.uc.mensaje = Constants.MSG_HERRAMIENTA_EDICION_EXITOSA;
             }
-            this.groupIdEdit = this.nameN;
             this.router.navigate([
-              `/main-page/administrarGrupos/editarGrupo?id=${this.nameN}`,
+               `/main-page/grupos/editarGrupo/${this.nombreN}`
             ]);
           }
         },
         error: (e) => {
           if (this.uc) {
             this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_CREAR,
+              Constants.ERR_HERRAMIENTA_EDITAR,
               e,
             );
           }
         },
       });
-  }
+    }
+  
 
   /**
-   * Edita el grupo existente con los datos proporcionados.
-   */
-  public edit() {
-    this.gruposService
-      .editGroup({
-        userName: this.loggedUser?.user_name ?? '',
-        name: this.nameN,
-        description: this.descriptionN,
-        company: this.companyN,
-        supervisor: this.supervisorN,
-      } as GroupEntity)
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
-            this.router.navigate([
-              `/main-page/administrarGrupos/editarGrupo?id=${this.nameN}`,
-            ]);
-          }
-        },
-        error: (e) => {
-          if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_EDITAR,
-              e,
-            );
-          }
-        },
-      });
-  }
-
-  /**
-   * Agrega una operación al grupo.
-   */
-  public addOperationToGroup(event: MatSelectChange<any>) {
-    const operation = event.value;
-    this.gruposService
-      .addOperationToGroup(
-        this.loggedUser?.user_name ?? '',
-        this.groupIdEdit ?? '',
-        operation,
-      )
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
-            this.operationsList.push(operation);
-          }
-        },
-        error: (e) => {
-          if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_AGREGAR_OPERACION,
-              e,
-            );
-          }
-        },
-      });
-  }
-
-  /**
-   * Elimina una operación del grupo.
-   */
-  public remove(operation: string) {
-    this.gruposService
-      .removeOperationFromGroup(
-        this.loggedUser?.user_name ?? '',
-        this.groupIdEdit ?? '',
-        operation,
-      )
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
-            this.operationsList = this.operationsList.filter(
-              (op) => op !== operation,
-            );
-          }
-        },
-        error: (e) => {
-          if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_ELIMINAR_OPERACION,
-              e,
-            );
-          }
-        },
-      });
-  }
-
-  /**
-   * Elimina el grupo actual.
+   * Elimina la grupo actual.
    */
   public delete() {
-    this.gruposService
-      .deleteGroup(this.loggedUser?.user_name ?? '', this.groupIdEdit)
+    this.grupoService
+      .deleteGrupo(this.workflowActual ?? '', this.grupoIdEdit ?? '')
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
-            this.router.navigate(['/main-page/administrarGrupos']);
+            if(this.uc) {
+              this.uc.buscarGrupos(true);
+              this.uc.mensaje = Constants.MSG_HERRAMIENTA_ELIMINACION_EXITOSA;
+            }
+            this.router.navigate(['/main-page/grupos']);
           }
         },
         error: (e) => {
           if (this.uc) {
             this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_GRUPO_ELIMINAR,
+              Constants.ERR_HERRAMIENTA_ELIMINAR,
               e,
             );
           }
@@ -452,66 +253,17 @@ export class CrearGrupoComponent {
   public cancel() {
     if (this.uc) {
       this.uc.mensaje = '';
+      this.uc.buscarGrupos();
     }
-    this.router.navigate(['/main-page/administrarGrupos']);
+    this.router.navigate(['/main-page/grupos']);
   }
 
-  /**
-   * Compara compañías en el selector.
-   */
-  public compareCompanies(c1: CompanyEntity, c2: CompanyEntity): boolean {
-    return c1.name === c2.name;
-  }
 
   /**
-   * Compara supervisores en el selector.
+   * Compara tipos de grupo en el selector.
    */
-  public compareSupervisors(s1: UserEntity, s2: UserEntity): boolean {
+  public compareTiposGrupo(s1: TipoGrupoEntity, s2: TipoGrupoEntity): boolean {
     return s1.name === s2.name;
   }
 
-  /**
-   * Maneja el cambio de supervisor seleccionado.
-   */
-  public onSupervisorChange(event: MatSelectChange<UserEntity>) {
-    this.supervisorObjectN = event.value;
-    this.supervisorN = event.value?.name ?? '';
-  }
-
-
- /**
-   * Agrega una restricción de operación a la compañía.
-   */
-  public restrict(operation?: string | undefined) {
-    try {
-      this.companiasService
-        .addRestrictionToCompany(
-          this.loggedUser?.user_name ?? '',
-          this.groupIdEdit?? '',
-          operation ?? '',
-        )
-        .subscribe({
-          next: (response) => {
-            if (response && response.respuesta) {
-              this.ngOnInit();
-            }
-          },
-          error: (e: any) => {
-            if (this.uc) {
-              this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-                Constants.ERR_COMPANIA_RESTRINGIR_OPERACION,
-                e,
-              );
-            }
-          },
-        });
-    } catch (e) {
-      if (this.uc) {
-        this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-          Constants.ERR_COMPANIA_ASOCIAR_PERMISO,
-          e,
-        );
-      }
-    }
-  }
 }
