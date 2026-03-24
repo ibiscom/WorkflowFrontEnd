@@ -18,6 +18,7 @@
             type="text"
             [(ngModel)]="nombreObjetoWN"
             placeholder="Inserte nombre del objeto workflow"
+            disabled="{{ editMode ? 'disabled' : '' }}"
           />
         </div>
 

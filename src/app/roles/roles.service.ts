@@ -8,6 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environment';
 import { RolesEntity } from './roles.entity';
 import { RolesFilterEntity } from './roles-filter.entity';
+import { ResponsableEntity } from './ResponsableEntity';
 
 
 @Injectable({
@@ -79,9 +80,9 @@ export class RolesService {
      * Obtiene el listado de grupos (responsables).
      * @returns 
      */
-    public getGroups(userName: string, groupName: string): Observable<FsResponseEntity<any>> {
+    public getGroups(userName: string, groupName: string): Observable<FsResponseEntity<string[]>> {
         let ip: string = this.cookieService.get('ip');
-        return this.http.get<FsResponseEntity<any>>(
+        return this.http.get<FsResponseEntity<string[]>>(
           environment.workflowApiUrl +
             `/Rol/getGroups?userName=${userName}&groupName=${groupName}`);
     }
@@ -90,11 +91,11 @@ export class RolesService {
      * Obtiene el listado de grupos (responsables) que puede tener un rol.
      * @returns 
      */
-    public getGroupsRol(nombreRol: string): Observable<FsResponseEntity<any>> {
+    public getGroupsRol(nombreRol: string): Observable<FsResponseEntity<string[]>> {
         let ip: string = this.cookieService.get('ip');
-        return this.http.get<FsResponseEntity<any>>(
+        return this.http.get<FsResponseEntity<string[]>>(
           environment.workflowApiUrl +
-            `/Rol/getGroupsRol?nombreRol=${nombreRol}`);
+            `/Rol/getGroupsRol?rolName=${nombreRol}`);
     }
   
     /**

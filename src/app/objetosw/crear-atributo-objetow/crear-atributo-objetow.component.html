@@ -13,256 +13,71 @@
 
           <!-- NOMBRE -->
           <div class="campo-texto">
-            <label for="name">Nombre</label>
+            <label for="nombre">Nombre</label>
             <input
-              id="name"
-              name="name"
+              id="nombre"
+              name="nombre"
               type="text"
-              placeholder="Inserte número de la tarea"
-              [(ngModel)]="nameN"
+              placeholder="Inserte nombre del atributo"
+              [(ngModel)]="nombreN"
               required
-              #name="ngModel"
+              #nombre="ngModel"
             />
-            @if (name.errors?.['required']) {
-              <div class="error">El nombre del objeto workflow es obligatorio</div>
+            @if (nombre.errors?.['required']) {
+              <div class="error">El nombre del atributo del objeto workflow es obligatorio</div>
             }
           </div>
 
           <!-- DESCRIPCIÓN -->
           <div class="campo-texto">
-            <label for="description">Breve descripcion</label>
+            <label for="descripcion">Breve descripcion</label>
             <input
-              id="description"
-              name="description"
+              id="descripcion"
+              name="descipcion"
               type="text"
-              placeholder="Inserte descripcion"
-              [(ngModel)]="descriptionN"
+              placeholder="Inserte breve descripción"
+              [(ngModel)]="descripcionN"
               required
-              #description="ngModel"
+              #descripcion="ngModel"
             />
+            @if (descripcion.errors?.['required']) {
+              <div class="error">La descripción del atributo del objeto workflow es obligatoria</div>
+            }
           </div>
 
           <!-- IDENTIFICADOR DE NEGOCIO -->
-          <div class="campo-lista">
-            <label for="company">Identificador de negocio</label>
-            <select
-              id="company"
-              name="company"
-              [(ngModel)]="companyObjectN"
-              required
-              #company="ngModel"
-              (ngModelChange)="onCompanyChange($event)"
-            >
-              <option value="">Seleccione una opción</option>
-
-              @for (company of companiesList; track company) {
-                <option [ngValue]="company">
-                  {{ company.largeName }}
-                </option>
-              }
-            </select>
+          <div class="campo-radio">
+            <label>Identificador de negocio</label><br/><br/>
+            <input type="radio" id="identificadorNegocioSi" name="identificadorNegocio" value="SI" [(ngModel)]="identificadorNegocioN"  #identificadorNegocioSi="ngModel" (change)="eventoCambioIdentificadorNegocio()" />
+            <label for="identificadorNegocioSi">Si</label>
+            <input type="radio" id="identificadorNegocioNo" name="identificadorNegocio" value="NO" [(ngModel)]="identificadorNegocioN"  #identificadorNegocioNo="ngModel" (change)="eventoCambioIdentificadorNegocio()" />
+            <label for="identificadorNegocioNo">No</label>
+            <br/><br/>
           </div>
 
           <!-- LABEL IDENTIFICADOR -->
           <div class="campo-texto">
-            <label for="description">Label identificador</label>
+            <label for="labelIdentificador">Label identificador</label>
             <input
-              id="description"
-              name="description"
+              id="labelIdentificador"
+              name="labelIdentificador"
               type="text"
-              placeholder="Inserte descripcion"
-              [(ngModel)]="descriptionN"
-              required
-              #description="ngModel"
+              placeholder="Inserte label identificador"
+              [(ngModel)]="labelIdentificadorNegocioN"
+              [readOnly]="!esIdentificadorNegocioSi()"
+              [disabled]="!esIdentificadorNegocioSi()"
+              #labelIdentificador="ngModel"
+
             />
+            @if (labelIdentificador.errors?.['required']) {
+              <div class="error">El label del identificador de negocio es obligatorio</div>
+            }
           </div>
-          </div>
-
-          
-        <!-- PARTE DE SELECCIONAR SERIES, TIPOS DE DOCUMENTO-->
-        <div class="serie-container"> 
-
-  <!-- HEADER -->
-  <div class="serie-header">
-    <div class="serie-title">Serie</div>
-  </div>
-
-  <!-- SELECT
-  <div class="serie-select-container">
-    <div class="serie-select">
-      <div class="serie-select-box">
-        <div class="serie-select-content">
-          <div class="serie-select-label">
-            {{ accionesGrupo }}
-          </div>
-
-          <span class="material-icons">arrow_drop_down</span>
         </div>
       </div>
-      <div class="serie-select-divider"></div>
-    </div>
-  </div>  -->
-
-  <!-- TABLA -->
-  <div class="serie-table">
-
-    <!-- IZQUIERDA
-    <div class="serie-table-left">
-      <div class="table-header">
-        <div class="header-text">Tipos de documento de la serie</div>
-        <div class="header-indicator"></div>
-      </div>
-
-      <div
-        class="table-row"
-        *ngFor="let doc of documentos | slice:(pageIndex * pageSize):(pageIndex * pageSize + pageSize)"
-      >
-        {{ doc.nombre }}
-      </div>  -->
-    </div> 
-
-    <!-- DERECHA
-    <div class="serie-table-right">
-      <div class="table-header center">Asignar</div>
-
-      <div
-        class="table-switch"
-        *ngFor="let doc of documentos | slice:(pageIndex * pageSize):(pageIndex * pageSize + pageSize)"
-        (click)="toggleAsignado(doc)"
-      >
-        <div class="switch" [class.active]="doc.asignado"></div>
-      </div>
-    </div> -->
-
-  </div> 
-
-  <!-- FOOTER / PAGINACIÓN 
-  <div class="serie-footer">
-    <div class="footer-text">Registros por página:</div>
-
-    <div class="footer-select">
-      <span>{{ pageSize }}</span>
-      <span class="material-icons">arrow_drop_down</span>
     </div>
 
-    <div class="footer-text">
-      {{ pageIndex * pageSize + 1 }} -
-      {{ (pageIndex + 1) * pageSize > total ? total : (pageIndex + 1) * pageSize }}
-      of {{ total }}
-    </div>
-
-    <button
-      class="footer-btn"
-      [class.disabled]="pageIndex === 0"
-      (click)="prevPage()"
-    >
-      <span class="material-icons">chevron_left</span>
-    </button>
-
-    <button
-      class="footer-btn"
-      [class.disabled]="(pageIndex + 1) * pageSize >= total"
-      (click)="nextPage()"
-    >
-      <span class="material-icons">navigate_next</span>
-    </button>
-  </div>
-
-</div> -->
-
-<div class="tareas-container">
-
-  <!-- HEADER -->
-  <div class="tareas-header">
-    <div class="tareas-title">Tareas asignadas</div>
-  </div>
-
-  <!-- TABLA -->
-  <div class="tabla-container">
-
-    <!-- COLUMNA IZQUIERDA -->
-    <div class="tabla-col tabla-col-texto">
-
-      <div class="tabla-header">
-        <div class="tabla-header-text">Tipos de documento de la serie</div>
-        <div class="tabla-indicator"></div>
-      </div>
-
-      <div class="tabla-row">Comunicaciones oficiales (oficios / memorandos)</div>
-      <div class="tabla-row">Gestión de correspondencia oficial (oficios y memorandos).</div>
-      <div class="tabla-row">Tramitación de documentos administrativos (notas).</div>
-      <div class="tabla-row">Supervisión de tareas relacionadas con documentos.</div>
-      <div class="tabla-row">Organización de archivos y gestión documental.</div>
-      <div class="tabla-row">Elaboración de informes sobre gestión documental.</div>
-      <div class="tabla-row">Revisión de políticas de archivo y documentación.</div>
-      <div class="tabla-row">Actualización de registros de documentos oficiales.</div>
-      <div class="tabla-row">Clasificación de documentos según normativas.</div>
-      <div class="tabla-row">Auditoría de procesos de gestión documental.</div>
-
-    </div>
-
-    <!-- COLUMNA REQUERIDO -->
-    <div class="tabla-col tabla-col-switch">
-      <div class="tabla-header center">Requerido</div>
-
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-    </div>
-
-    <!-- COLUMNA ASIGNADO -->
-    <div class="tabla-col tabla-col-switch">
-      <div class="tabla-header center">Asignado</div>
-
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-      <div class="tabla-switch"><div class="switch active"></div></div>
-    </div>
-
-  </div>
-
-  <!-- FOOTER / PAGINACIÓN -->
-  <div class="tabla-footer">
-
-    <div class="footer-text">Registros por página:</div>
-
-    <div class="footer-select">
-      <span>5</span>
-      <span class="material-icons">arrow_drop_down</span>
-    </div>
-
-    <div class="footer-text">1-5 of 10</div>
-
-    <button class="footer-btn disabled">
-      <span class="material-icons">chevron_left</span>
-    </button>
-
-    <button class="footer-btn">
-      <span class="material-icons">navigate_next</span>
-    </button>
-
-  </div>
-
-</div>
-
-
-      </div>
-
-    </div>
+          
 
     <!-- BOTONES FINALES -->
     <div class="botones-nuevo-grupo">
@@ -279,7 +94,7 @@
           <span class="btn-icon">
         <img src="assets/img/trash.svg" alt="Eliminar" />
       </span>
-      Cancelar</button>
+      Eliminar</button>
       }
 
      <button class="btn-figma" type="button" (click)="cancel()">
