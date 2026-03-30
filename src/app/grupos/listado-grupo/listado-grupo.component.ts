@@ -6,7 +6,7 @@ import { GrupoEntity } from '../grupo.entity';
 
 @Component({
   selector: 'ibpm-listado-grupo',
-  imports: [MatTableModule, FiltrosBusquedaGrupoComponent],
+  imports: [MatTableModule],
   templateUrl: './listado-grupo.component.html',
   styleUrl: './listado-grupo.component.scss',
 })
