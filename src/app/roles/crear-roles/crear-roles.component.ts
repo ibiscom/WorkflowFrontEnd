@@ -227,12 +227,13 @@ export class CrearRolesComponent {
    * Crea un nuevo grupo con los datos del formulario.
    */
   public create() {
+    console.log("estoy en create", this.rolesIdEdit);
     this.rolesService
       .createRole({
         nombre: this.nombreRolN,
         descripcion: this.descripcionN,
         user: this.userN,
-      
+        responsables: this.responsablesAsignadosList.map(r => r.name)
        /* falta responsables*/
       } as RolesEntity)
       .subscribe({
@@ -241,6 +242,7 @@ export class CrearRolesComponent {
             if (this.uc) {
               this.uc.mensaje = 'Se ha creado el rol exitosamente';
             }
+            console.log("creado", this.rolesIdEdit);
             this.rolesIdEdit = this.nombreRolN;
             this.router.navigate([
               `/main-page/roles/editarRol?id=${this.nombreRolN}`,

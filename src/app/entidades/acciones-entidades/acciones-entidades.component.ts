@@ -11,21 +11,20 @@ import { Router } from '@angular/router';
   selector: 'ibpm-acciones-entidad',
   imports: [
     FormsModule,
-    MatButton,
     MatIconModule,
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
-    MatButtonModule,
+
   ],
-  templateUrl: './acciones-entidad.component.html',
-  styleUrl: './acciones-entidad.component.scss',
+  templateUrl: './acciones-entidades.component.html',
+  styleUrl: './acciones-entidades.component.scss',
 })
 /**
  * Componente de acciones para la administración de grupos.
  * Permite navegar a la pantalla de creación de grupos.
  */
-export class AccionesEntidadComponent {
+export class AccionesEntidadesComponent {
   constructor(public router: Router) {}
 
   /**

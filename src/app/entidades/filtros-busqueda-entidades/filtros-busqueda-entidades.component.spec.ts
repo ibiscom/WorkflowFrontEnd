@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FiltrosBusquedaEntidadComponent } from './filtros-busqueda-entidad.component';
+import { FiltrosBusquedaEntidadComponent } from './filtros-busqueda-entidades.component';
 
 describe('FiltrosBusquedaEntidadComponent', () => {
   let component: FiltrosBusquedaEntidadComponent;

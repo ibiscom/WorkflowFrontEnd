@@ -30,7 +30,6 @@ export class FiltrosBusquedaRolesComponent {
 
   ngOnInit(): void {
     this.loggedUser = this.uc?.loggedUser;
-
     // 🔹 Carga inicial (puedes cambiar la lógica luego)
     this.loadCompanies();
   }

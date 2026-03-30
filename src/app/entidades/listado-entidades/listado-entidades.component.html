@@ -1,12 +1,12 @@
-<!-- FILTROS -->
-<ibpm-filtros-busqueda-entidad [uc]="this.parent" style="width: 100%">
-</ibpm-filtros-busqueda-entidad>
+<!-- FILTROS 
+<ibpm-filtros-busqueda-entidades [uc]="this.parent" style="width: 100%">
+</ibpm-filtros-busqueda-entidades>  -->
 
 <!-- TARJETA TABLA -->
 <div class="tabla-card">
   <!-- HEADER -->
   <div class="tabla-header-container">
-    <div class="tabla-titulo">Listado de entidadess</div>
+    <div class="tabla-titulo">Listado de entidades</div>
   </div>
 
   <!-- BODY -->
@@ -40,7 +40,7 @@
         <ng-container>
           <div class="tabla-celda">
             <div>
-              {{ getCompanyName(element.compania) }}
+              {{ element.descripcion }}
             </div>
           </div>
         </ng-container>
@@ -57,7 +57,7 @@
         <ng-container>
           <div class="tabla-celda">
             <div (click)="goToEditarEntidad(element)">
-              {{ element.descripcion }}
+              {{ element.listaGrupos }}
             </div>
           </div>
         </ng-container>

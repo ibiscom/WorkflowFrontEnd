@@ -1,25 +1,25 @@
 <div class="cont-nuevo-workflow">
   <form #form="ngForm">
 
-    <!-- TARJETA DATOS DEL WORKFLOW -->
-    <div class="card-nuevo-workflow-general">
+    <!-- TARJETA DATOS DE ENTIDADES -->
+    <div class="card-nuevo-entidad-general">
 
       <div class="card-header">
         <h3>Datos de la entidad</h3>
       </div>
 
       <div class="card-content">
-        <div class="tbl-nuevo-workflow">
+        <div class="tbl-nueva-entidad">
 
           <!-- NOMBRE -->
           <div class="campo-texto">
             <label for="name">Nombre</label>
             <input
-              id="name"
-              name="name"
+              id="nombreEntidad"
+              name="nombreEntidad"
               type="text"
               placeholder="Inserte nombre de la entidad"
-              [(ngModel)]="nameN"
+              [(ngModel)]="nombreEntidadN"
               required
               #name="ngModel"
             />
@@ -32,11 +32,11 @@
           <div class="campo-texto">
             <label for="description">Breve descripcion</label>
             <input
-              id="description"
-              name="description"
+              id="descripcion"
+              name="descripcion"
               type="text"
               placeholder="Inserte descripcion"
-              [(ngModel)]="descriptionN"
+              [(ngModel)]="descripcionN"
               required
               #description="ngModel"
             />

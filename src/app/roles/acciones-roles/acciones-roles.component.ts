@@ -15,7 +15,6 @@ import { Router } from '@angular/router';
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
-    MatButtonModule,
   ],
   templateUrl: './acciones-roles.component.html',
   styleUrl: './acciones-roles.component.scss',

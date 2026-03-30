@@ -17,7 +17,6 @@ export class ListadoRolesComponent {
   // 🔹 Variables de paginación
   public currentPage: number = 1;
   public numberOfPages: number = 1;
-
   public displayedColumns: string[] = [
     'Nombre',
     'Descripción',

@@ -1,16 +1,16 @@
 import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { EntidadComponent } from '../entidad.component';
-import { EntidadService } from '../entidad.service';
+import { EntidadesComponent } from '../entidades.component';
+import { EntidadesService } from '../entidades.service';
 import { LoginEntity } from '../../login/login.entity';
 
 @Component({
-  selector: 'ibpm-filtros-busqueda-entidad',
+  selector: 'ibpm-filtros-busqueda-entidades',
   imports: [FormsModule],
-  templateUrl: './filtros-busqueda-entidad.component.html',
-  styleUrl: './filtros-busqueda-entidad.component.scss',
+  templateUrl: './filtros-busqueda-entidades.component.html',
+  styleUrl: './filtros-busqueda-entidades.component.scss',
 })
-export class FiltrosBusquedaEntidadComponent {
+export class FiltrosBusquedaEntidadesComponent {
   public entidadNameF: string = '';
   public supervisorF: string = '';
 
@@ -23,10 +23,10 @@ export class FiltrosBusquedaEntidadComponent {
   // Manejo del switch
   public generateReportF: string = 'false';
 
-  @Input() public uc?: EntidadComponent;
+  @Input() public uc?: EntidadesComponent;
   public loggedUser: LoginEntity | undefined;
 
-  constructor(private entidadService: EntidadService) {}
+  constructor(private entidadesService: EntidadesService) {}
 
   ngOnInit(): void {
     this.loggedUser = this.uc?.loggedUser;
