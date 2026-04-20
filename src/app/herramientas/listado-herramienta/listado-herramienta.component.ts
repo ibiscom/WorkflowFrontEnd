@@ -20,9 +20,8 @@ export class ListadoHerramientaComponent {
 
   public displayedColumns: string[] = [
     'Nombre',
-    'Tipo',
     'Descripción',
-    'Cadena de representación',
+    'CadenaRepresentación',
   ];
 
   constructor(public parent: HerramientaComponent) {}

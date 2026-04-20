@@ -24,6 +24,9 @@ import { CommonModule } from '@angular/common';
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { ResponsablesRolEntity } from '../ResponsablesRolEntity';
 import { ResponsableEntity } from '../Responsable.Entity';
+import { RolesEntity } from '../roles.entity'; 
+import { FsResponseEntity } from '../../entities/backend/fs-response.entity';
+
 @Component({
   selector: 'ibpm-crear-entidades',
   imports: [
@@ -31,7 +34,6 @@ import { ResponsableEntity } from '../Responsable.Entity';
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
-    MatButtonModule,
     MatIconModule,
     MatSelectModule,
     CommonModule,
@@ -51,6 +53,7 @@ export class CrearEntidadesComponent {
   public descripcionN: string = '';
   public nombreRolN: string = '';
   public entidadesList: EntidadesEntity[] = [];
+  public rolesList: RolesEntity[] = [];
   public rolN?: EntidadesEntity;
   public userN : string = '';
   public groupNameN: string = '';
@@ -91,6 +94,7 @@ export class CrearEntidadesComponent {
     this.workflowActual = this.cookieService.get("workflowActual");
     const id = this.route.snapshot.paramMap.get('nombre');
     console.log('Edit Mode On. Group Id:', id);
+    await this.getRolesList();
     /* await this.getResponsablesList(); */
     
     if (id) {
@@ -135,6 +139,33 @@ export class CrearEntidadesComponent {
     }
   }
 
+   public async getRolesList() {
+      this.rolesList = [];
+
+  
+      try {const response:FsResponseEntity<string[]> = await firstValueFrom(
+      this.entidadesService.getRoles()
+    );
+
+    if (response?.respuesta) {
+      this.rolesList = response.respuesta.map((rol: string) => ({
+        name: rol
+      }));
+    }
+
+  
+      } catch (error: any) {
+        if (this.uc) {
+          this.uc.mensaje =
+            error.status === 400
+              ? ''
+              : MessageUtil.buildErrorMessageFsResponse(
+                  Constants.ERR_ROL_TAREA_ENCONTRAR,
+                  error,
+                );
+        }
+      }
+    }
   
 
   /**
@@ -172,7 +203,7 @@ export class CrearEntidadesComponent {
   }
 
   /**
-   * Consulta los responsables del entidad.
+   * Consulta los responsables asociados al rol.
    */
   public async getResponsablesRolList() {
     this.responsablesAsignadosList = [];

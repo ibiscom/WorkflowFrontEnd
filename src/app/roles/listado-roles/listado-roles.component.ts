@@ -20,8 +20,7 @@ export class ListadoRolesComponent {
   public displayedColumns: string[] = [
     'Nombre',
     'Descripción',
-    'Supervisor',
-    'Compania',
+    
   ];
 
   constructor(public parent: RolesComponent) {}

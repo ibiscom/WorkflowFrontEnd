@@ -19,7 +19,7 @@ export class ListadoEntidadesComponent {
   public displayedColumns: string[] = [
     'Nombre',
     'Descripción',
-    'Rol'  ];
+    'listaGrupos'  ];
 
   constructor(public parent: EntidadesComponent) {}
 

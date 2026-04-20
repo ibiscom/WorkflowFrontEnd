@@ -75,6 +75,15 @@ export class EntidadesService {
   );
 }
 
+
+
+ public getRoles(): Observable<FsResponseEntity<string[]>> {
+        let ip: string = this.cookieService.get('ip');
+        return this.http.get<FsResponseEntity<string[]>>(
+          environment.workflowApiUrl +
+            `/BussinesUnit/getRoles`);
+    }
+
   /*ok 8*/
 
     /**
