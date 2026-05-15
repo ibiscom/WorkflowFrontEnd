@@ -54,7 +54,11 @@ export class Constants {
     'Error al obtener los responsables';
     public static ERR_OBTENIENDO_RESPONSABLESS: string = 'Error al obtener los responsables';
 
-
+    // Errores Entidadess
+    public static ERR_ENTIDADES_CREAR : string = 
+    'Error al obtener los datos de la entidad';
+public static ERR_ENTIDAD_DATOS : string = 
+    'Error al obtener los datos de la entidad';
 //Errores Tareas
   public static ERR_TAREA_DATOS: string =
     'No se pudo obtener los datos de la tarea';

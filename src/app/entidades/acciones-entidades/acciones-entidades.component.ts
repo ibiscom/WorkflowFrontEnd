@@ -28,9 +28,9 @@ export class AccionesEntidadesComponent {
   constructor(public router: Router) {}
 
   /**
-   * Navega a la pantalla de creación de grupo.
+   * Navega a la pantalla de creación de entidad.
    */
   public irACrearEntidad() {
-    this.router.navigate([`/main-page/entidad/crearEntidad`]);
+    this.router.navigate([`/main-page/entidades/crearEntidades`]);
   }
 }

@@ -47,28 +47,30 @@ import { FsResponseEntity } from '../../entities/backend/fs-response.entity';
  * Permite seleccionar compañía, supervisor y administrar permisos/restricciones.
  */
 export class CrearEntidadesComponent {
+  public loggedUser?: LoginEntity;
+  public workflowActual: string = '';
   public userNameN: string = '';
   public idEntidadN: number = 0; 
   public nombreEntidadN: string = '';
   public descripcionN: string = '';
-  public nombreRolN: string = '';
   public entidadesList: EntidadesEntity[] = [];
+  public entidadesIdEdit?: number;
+  public nombreRolN: string = '';
   public rolesList: RolesEntity[] = [];
-  public rolN?: EntidadesEntity;
+  public rolN?: RolesEntity;
+  public rolesIdEdit?: string;
   public userN : string = '';
   public groupNameN: string = '';
   public responsablesN: string [] = [];
   public uc?: EntidadesComponent;
-  public loggedUser?: LoginEntity;
-  public rolesIdEdit?: string;
   public nombreIdEdit?: string;
-  public entidadesIdEdit?: number;
-  public workflowActual: string = '';
-  public responsablesList: ResponsableEntity [] = [];
+  public responsablesRolList: ResponsableEntity [] = [];
   public responsablesAsignadosList: ResponsableEntity[] = [];
   public responsablesAgregarList: ResponsableEntity[] = [];
+  public editarRolesN: boolean = false;
   public responsablesRolE!: ResponsablesRolEntity;
   public respuestaServicio: ResponsablesRolEntity | undefined;
+responsable: any;
 
   public constructor(
     private entidadesService: EntidadesService,
@@ -95,24 +97,20 @@ export class CrearEntidadesComponent {
     const id = this.route.snapshot.paramMap.get('nombre');
     console.log('Edit Mode On. Group Id:', id);
     await this.getRolesList();
-    /* await this.getResponsablesList(); */
-    
-    if (id) {
+       console.log('Id seleccionado en roleslist:', id); 
+     if (id) {
       this.nombreIdEdit = id;
       await this.fillEditFields();
-
     } else {
       this.nombreIdEdit = undefined;
     }
   }
-  
-    
+      
 
   /**
    * Llena los campos del formulario con la información de la entidad en edición.
    */
-  
-  
+    
   public async fillEditFields(): Promise<void> {
    
     try {
@@ -120,16 +118,20 @@ export class CrearEntidadesComponent {
         this.entidadesService.getEntidad(
           this.entidadesIdEdit ?? 0,
           this.nombreIdEdit ?? '',
-      ),
+        ),
       );
       if (response?.respuesta) {
         const entidad = response.respuesta as EntidadesEntity;
         this.nombreEntidadN = entidad.nombre ?? '';
         this.descripcionN = entidad.descripcion ?? '';
-      /*  await this.getResponsablesRolList(); */
-       
+        this.rolN = this.rolesList.find(r => r.name === this.nombreRolN) ?? undefined;
+        await this.getResponsablesRolList(); 
+        /*await this.diligenciarResponsablesAsignadosRolEntidad();
+        await this.diligenciarResponsablesAsignar();
+        */
       }
-    } catch (e) {
+    } 
+    catch (e) {
       if (this.uc) {
         this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
           Constants.ERR_TAREA_DATOS,
@@ -138,21 +140,19 @@ export class CrearEntidadesComponent {
       }
     }
   }
+/* Consulta los roles  */
 
-   public async getRolesList() {
-      this.rolesList = [];
-
-  
-      try {const response:FsResponseEntity<string[]> = await firstValueFrom(
-      this.entidadesService.getRoles()
+  public async getRolesList() {
+   this.rolesList = [];
+    try {const response:FsResponseEntity<string[]> = await firstValueFrom(
+    this.entidadesService.getRoles()
     );
-
-    if (response?.respuesta) {
+    console.log('getRolesListRoles obtenidos:', response);
+    if (response && response.respuesta) {
       this.rolesList = response.respuesta.map((rol: string) => ({
         name: rol
       }));
     }
-
   
       } catch (error: any) {
         if (this.uc) {
@@ -167,12 +167,22 @@ export class CrearEntidadesComponent {
       }
     }
   
+public async onrolChange($event: any) {
+    let rolSeleccionado = $event as RolesEntity;
+    this.rolN = rolSeleccionado;
+    this.nombreRolN = rolSeleccionado?.name ?? '';
+    console.log('rol seleccionado de la Lista:', this.nombreRolN);
+    await this.getResponsablesRolList ();     
+   /*  await this.diligenciarResponsablesAsignar();
+   await this.diligenciarResponsablesAsignadosRolEntidad(); */
+  }    
+
 
   /**
-   * Consulta los tipos de entidad.
+   * Consulta los resonsables del rol entidad.
    */
   public async getResponsablesList() {
-    this.responsablesList = [];
+    this.responsablesRolList = [];
     console.log('Edit entre a getresponsablesList:', this.entidadesIdEdit);
     try {
       const response = await firstValueFrom(
@@ -182,7 +192,7 @@ export class CrearEntidadesComponent {
     );
 
    if (response?.respuesta) {
-  this.responsablesList = response.respuesta.map(r => ({
+    this.responsablesRolList = response.respuesta.map(r => ({
     name: r,
     selected: false
   }));
@@ -206,21 +216,21 @@ export class CrearEntidadesComponent {
    * Consulta los responsables asociados al rol.
    */
   public async getResponsablesRolList() {
-    this.responsablesAsignadosList = [];
-    console.log('Edit getResponsablesROLLIST: nombreROLN:', this.nombreRolN);
+    this.responsablesRolList = [];
+    console.log('Entre a getResponsablesRolList: nombreROLN:', this.nombreRolN);
     try {
       const response = await firstValueFrom(
       this.entidadesService
-        .getGroupsRol(this.nombreRolN ?? '',this.loggedUser?.user_name ?? '')
+        .getGroupsRol(this.nombreRolN ?? '','')
       );
-
+       console.log('Edit getResponsablesRolList: responsablesasignadoslist1:', this.responsablesRolList);
       if (response?.respuesta) {
-       this.responsablesAsignadosList = response.respuesta.map(r => ({
+       this.responsablesRolList = response.respuesta.map(r => ({
         name: r,
         selected: false
   }));
 }
-
+console.log('Edit getResponsablesRolList: responsablesasignadoslist2:', this.responsablesRolList);
     } catch (error: any) {
       if (this.uc) {
         this.uc.mensaje =
@@ -268,7 +278,7 @@ export class CrearEntidadesComponent {
    * Crea un nuevo grupo con los datos del formulario.
    */
   public create() {
-    console.log("estoy en create", this.entidadesIdEdit);
+    console.log("estoy en create", this.entidadesIdEdit,this.userNameN,this.idEntidadN, this.nombreEntidadN, this.descripcionN, this.nombreRolN, this.responsablesAsignadosList);
     this.entidadesService
       .createEntidad({
         userName: this.userNameN,
@@ -278,6 +288,7 @@ export class CrearEntidadesComponent {
         nombreRol: this.nombreRolN,
         listaGrupos: this.responsablesAsignadosList.map(r => r.name)
              } as EntidadesEntity)
+           
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
@@ -294,7 +305,7 @@ export class CrearEntidadesComponent {
         error: (e) => {
           if (this.uc) {
             this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_TAREA_CREAR,
+              Constants.ERR_ENTIDADES_CREAR,
               e,
             );
           }
@@ -371,11 +382,14 @@ export class CrearEntidadesComponent {
   }
 
 
-    public diligenciarResponsables() {
-    this.responsablesAgregarList = [];
-    if(this.responsablesAgregarList.length > 0 ) {
-        this.responsablesAgregarList.forEach(responsable => {
-        this.responsablesAgregarList.push(responsable);
+    public diligenciarResponsablesAsignar() {
+      console.log('Entre a diligenciarrespasignar');
+      this.responsablesAgregarList = [];
+      if(this.responsablesRolList.length > 0 ) {
+      this.responsablesRolList.forEach(responsable => {
+        if (!this.responsablesAsignadosList.some(asignado => asignado === responsable )){
+            this.responsablesAgregarList.push(responsable);
+          }
          
         });
    } 
@@ -383,30 +397,11 @@ export class CrearEntidadesComponent {
 
  
 
-/*
-  public diligenciarResponsablesAsignados() {
-  this.responsablesAsignadosList = [];
-  if (this.editMode()) {
-    console.log('Edit diligenciarrespasignados. edit:');
-    /* this.responsablesRolE.forEach(responsableRol => {*/
-     /* this.responsablesRolE.forEach(responsable => {
-        const responsableAsignado: ResponsableRolEntity = {
-          name: responsable,
-          selected: false
-        };
-        this.responsablesAsignadosList.push(responsableAsignado);
-        console.log('Edit diligenciarrespasignados.responsablesasignados:',this.responsablesAsignadosList);
-      });
-
- );
-
-  }
-  } */
-
-  public diligenciarResponsablesAsignados() {
-  if (this.editMode()) {
-    console.log('Edit1 diligenciarrespasignados');
-    this.responsablesAsignadosList =
+  public diligenciarResponsablesAsignadosRolEntidad() {
+   console.log('Entra adiligenciarrespasignados');
+    if (this.editMode()) {
+   
+    this.responsablesAsignadosList =[];
       this.responsablesRolE.respuesta.map((responsable: string) => ({
         name: responsable,
         selected: false
@@ -417,21 +412,14 @@ export class CrearEntidadesComponent {
     );
   }
 }
-/*
-  public retirar() {
- 
-    this.responsablesList.push(...this.responsablesAsignadosList.some(responsable => responsable.selected) ? this.responsablesAsignadosList.filter(responsable => responsable.selected) : []);
-    this.responsablesAsignadosList = this.responsablesAsignadosList.filter(responsable => !responsable.selected);
-    this.responsablesList.forEach(responsable => {responsable.selected= false; });
- 
-    } 
-*/
+
+
   public retirar() {
   const nuevosAsignados: ResponsableEntity[] = [];
   this.responsablesAsignadosList = this.responsablesAsignadosList.filter(responsable => {
     if (responsable.selected) {
       responsable.selected = false;
-      this.responsablesList.push(responsable);
+      this.responsablesRolList.push(responsable);
       return false; // se elimina de la lista de asignados
     }
     return true; // permanece en asignados
@@ -440,8 +428,8 @@ export class CrearEntidadesComponent {
 
   public asignar() {
     
-    this.responsablesAsignadosList.push(...this.responsablesList.some(responsable => responsable.selected) ? this.responsablesList.filter(responsable => responsable.selected) : []);
-    this.responsablesList = this.responsablesList.filter(responsable => !responsable.selected);
+    this.responsablesAsignadosList.push(...this.responsablesRolList.some(responsable => responsable.selected) ? this.responsablesRolList.filter(responsable => responsable.selected) : []);
+    this.responsablesRolList = this.responsablesRolList.filter(responsable => !responsable.selected);
     this.responsablesAsignadosList.forEach(responsable => { responsable.selected = false; });
   
   }

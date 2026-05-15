@@ -6,7 +6,7 @@ import { HerramientaEntity } from '../herramienta.entity';
 
 @Component({
   selector: 'ibpm-listado-herramienta',
-  imports: [MatTableModule, FiltrosBusquedaHerramientaComponent],
+  imports: [MatTableModule],
   templateUrl: './listado-herramienta.component.html',
   styleUrl: './listado-herramienta.component.scss',
 })

@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
   selector: 'ibpm-acciones-tareas',
   imports: [
     FormsModule,
-    MatButton,
     MatIconModule,
     MatCardModule,
     MatInputModule,
