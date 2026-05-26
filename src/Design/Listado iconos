@@ -1,0 +1,362 @@
+<div style="width: 100%; height: 100%; padding: 8px; background: var(--Schemes-On-Secondary, white); flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Guardar</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-floppy-disk</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/floppy-disk?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Eliminar / Borrar</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-trash</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/trash?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Editar</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-pen</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/pen?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Agregar / Nuevo</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-plus</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/plus?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word">+</div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Iniciar sesión</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-right-to-bracket</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/right-to-bracket?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Cerrar sesión</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-right-from-bracket</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/right-from-bracket?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Correo</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-envelope</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/envelope?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Ver más / Detalles</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-ellipsis / fa-solid fa-eye</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/ellipsis?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Documentación / Archivo</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-file / fa-solid fa-book</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/file?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Buscar</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-magnifying-glass</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/magnifying-glass?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Filtrar</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-filter</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/filter?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Descargar</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-download</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/download?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Subir archivo</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-upload</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/upload?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Calendario / Agenda</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-calendar</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/calendar?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Notificaciones</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-bell</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/bell?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Configuración / Ajustes</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-gear</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/gear?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Usuario / Perfil</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-user</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/user?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Dashboard / Inicio</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-house</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/house?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Compartir</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-share</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/share?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Cerrar / Cancelar</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-xmark</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/xmark?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Abrir carpeta</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-folder-open</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/folder-open?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Cerrar carpeta</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-folder</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/folder?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Copiar</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-copy</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/copy?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Cortar</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-scissors</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/scissors?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Pegar</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-paste</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/paste?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Imprimir</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-print</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/print?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Descargar en PDF</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-file-pdf</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/file-pdf?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Subir a la nube</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-cloud-upload-alt</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/cloud-upload-alt?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Descargar de la nube</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-cloud-download-alt</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/cloud-download-alt?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Adjuntar archivo</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-paperclip</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/paperclip?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Comentarios / Mensajes</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-comment-dots</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/comment-dots?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Lista de tareas</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-list-check</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/list-check?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Completar / Aprobado</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-circle-check</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/circle-check?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Rechazar / Error</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-circle-xmark</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/circle-xmark?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Progreso / Cargando</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-spinner</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/spinner?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Historial</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-clock-rotate-left</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/clock-rotate-left?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Seguridad / Candado</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-lock</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/lock?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Abrir candado</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-unlock</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/unlock?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Favorito / Estrella</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-star</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/star?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Ubicación / Mapa</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-map-marker-alt</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/map-marker-alt?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Editar campo formulario</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-pen</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/pen?s=solid&f=classic</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Visualizar formulario</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-eye</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/eye?s=solid&f=classic</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Copiar formulario</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-copy</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/copy?s=solid&f=classic</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Generar gráfica</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-chart-column</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/chart-column?s=solid&f=classic</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 6 Free; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Ver detalle tarea</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-list</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/list?s=solid&f=classic</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Refrescar pantalla</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-rotate</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/rotate?s=solid&f=classic</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Finalizar tarea</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-check</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/check?s=solid&f=classic</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Ayuda</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-circle-question</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/circle-question?s=solid&f=classic</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Ver info tarea</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-circle-info</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/circle-info?s=solid&f=classic</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Escanear documento</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-camera</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/camera?s=solid&f=classic</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Ordenar datos</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-sort</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/sort?s=solid&f=classic</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Volver</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-arrow-left</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/arrow-left?s=solid&f=classic</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Firmar documento</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-signature</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/signature?f=classic&s=solid</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Campo tipo lista</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-list-check</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/list-check?s=solid&f=classic</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Campo tipo fecha</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-calendar-days</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/calendar-days?s=solid&f=classic</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Campo tipo texto</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-font</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/font?s=solid&f=classic</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Ver log</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-scroll</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/scroll?s=solid&f=classic</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Ver trazabilidad</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-route</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/route?s=solid&f=classic</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Generar excel</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-file-excel</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/file-excel?s=solid&f=classic</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+    <div style="align-self: stretch; padding: 4px; background: var(--Schemes-Background, #FEF7FF); justify-content: flex-start; align-items: center; gap: 32px; display: inline-flex">
+        <div style="width: 228px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Documento no puede ver</div>
+        <div style="width: 269px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-weight: 300; word-wrap: break-word">fa-solid fa-ban</div>
+        <div style="width: 535px; justify-content: center; display: flex; flex-direction: column; color: black; font-size: 16px; font-family: Roboto; font-style: italic; font-weight: 600; text-decoration: underline; word-wrap: break-word">https://fontawesome.com/icons/ban?s=solid&f=classic</div>
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 24px; font-family: Font Awesome 5 Pro; font-weight: 900; word-wrap: break-word"></div>
+    </div>
+</div>

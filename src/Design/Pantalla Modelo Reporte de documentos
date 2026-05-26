@@ -1,0 +1,619 @@
+<div style="width: 100%; height: 100%; position: relative; background: var(--Schemes-On-Primary, white); box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); overflow: hidden; border-radius: 8px">
+    <div style="width: 1280px; padding: 16px; left: 0px; top: 65px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: inline-flex">
+        <div style="justify-content: center; align-items: center; gap: 16px; display: inline-flex">
+            <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 20px; font-family: Font Awesome 5 Pro; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">home</div>
+            <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-On-Secondary-Container, #4A4459); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Home</div>
+            <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 15px; font-family: Font Awesome 5 Pro; font-weight: 300; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word"></div>
+            <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-On-Secondary-Container, #4A4459); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Reportes</div>
+            <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 15px; font-family: Font Awesome 5 Pro; font-weight: 300; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word"></div>
+            <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-On-Secondary-Container, #4A4459); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Ver documentos</div>
+        </div>
+        <div style="align-self: stretch; padding: 8px; background: var(--Grays-Gray-6, #F2F2F7); border-radius: 8px; justify-content: flex-start; align-items: center; gap: 8px; display: inline-flex">
+            <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 14px; font-family: Font Awesome 5 Pro; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">tasks</div>
+            <div style="flex: 1 1 0; color: var(--Schemes-On-Primary-Container, #4F378A); font-size: 16px; font-family: Roboto; font-weight: 700; line-height: 16px; letter-spacing: 0.50px; word-wrap: break-word">Reporte de documentos</div>
+        </div>
+        <div style="align-self: stretch; padding: 16px; background: #FAFAFA; box-shadow: 0px 1px 15.399999618530273px 6px rgba(0, 0, 0, 0.13); border-radius: 16px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
+            <div style="align-self: stretch; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+                <div style="flex: 1 1 0; color: #1B1B1B; font-size: 14px; font-family: Roboto; font-weight: 700; line-height: 16px; letter-spacing: 0.50px; word-wrap: break-word">Información de búsqueda</div>
+                <div style="flex: 1 1 0; text-align: right"><span style="color: #1B1B1B; font-size: 14px; font-family: Roboto; font-weight: 400; line-height: 16px; letter-spacing: 0.50px; word-wrap: break-word">Fecha de generación del reporte: </span><span style="color: #1B1B1B; font-size: 14px; font-family: Roboto; font-weight: 700; line-height: 16px; letter-spacing: 0.50px; word-wrap: break-word">20/08/2025</span></div>
+            </div>
+            <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
+                <div style="width: 80px; text-align: right; color: #1B1B1B; font-size: 14px; font-family: Roboto; font-weight: 700; line-height: 16px; letter-spacing: 0.50px; word-wrap: break-word">Serie</div>
+                <div data-leading-icon="False" data-show-supporting-text="false" data-state="Enabled" data-style="Filled" data-text-configurations="Label text" data-trailing-icon="True" style="width: 128px; border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                    <div style="align-self: stretch; background: var(--Schemes-On-Secondary, white); border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                        <div style="align-self: stretch; padding-top: 4px; padding-bottom: 4px; padding-left: 16px; border-top-left-radius: 4px; border-top-right-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                            <div style="flex: 1 1 0; padding-top: 4px; padding-bottom: 4px; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
+                                <div style="width: 41px; justify-content: flex-start; align-items: center; display: inline-flex">
+                                    <div style="color: var(--Schemes-On-Surface-Variant, #49454F); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Condición</div>
+                                </div>
+                            </div>
+                            <div data-size="Small" data-style="Standard" data-type="Round" data-width="Default" style="width: 48px; align-self: stretch; justify-content: center; align-items: center; display: flex">
+                                <div data-state="Enabled" style="overflow: hidden; border-radius: 100px; flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
+                                    <div style="align-self: stretch; justify-content: center; align-items: center; display: inline-flex">
+                                        <div style="width: 24px; height: 24px; position: relative">
+                                            <div style="width: 12px; height: 7.40px; left: 6px; top: 8px; position: absolute; background: var(--Schemes-On-Surface-Variant, #49454F)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="align-self: stretch; height: 0px; outline: 1px var(--Schemes-On-Surface-Variant, #49454F) solid; outline-offset: -0.50px"></div>
+                </div>
+                <div data-leading-icon="False" data-show-supporting-text="false" data-state="Enabled" data-style="Filled" data-text-configurations="Label text" data-trailing-icon="False" style="flex: 1 1 0; border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                    <div style="align-self: stretch; background: var(--Schemes-Surface-Container-Lowest, white); border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                        <div style="align-self: stretch; padding-left: 16px; padding-right: 16px; padding-top: 4px; padding-bottom: 4px; border-top-left-radius: 4px; border-top-right-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                            <div style="flex: 1 1 0; padding-top: 4px; padding-bottom: 4px; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
+                                <div style="width: 41px; justify-content: flex-start; align-items: center; display: inline-flex">
+                                    <div style="color: var(--Schemes-On-Surface-Variant, #49454F); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Serie</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="align-self: stretch; height: 0px; outline: 1px var(--Schemes-On-Surface-Variant, #49454F) solid; outline-offset: -0.50px"></div>
+                </div>
+                <div style="width: 80px; text-align: right; color: #1B1B1B; font-size: 14px; font-family: Roboto; font-weight: 700; line-height: 16px; letter-spacing: 0.50px; word-wrap: break-word">Expediente</div>
+                <div data-leading-icon="False" data-show-supporting-text="false" data-state="Enabled" data-style="Filled" data-text-configurations="Label text" data-trailing-icon="True" style="width: 128px; border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                    <div style="align-self: stretch; background: var(--Schemes-On-Secondary, white); border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                        <div style="align-self: stretch; padding-top: 4px; padding-bottom: 4px; padding-left: 16px; border-top-left-radius: 4px; border-top-right-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                            <div style="flex: 1 1 0; padding-top: 4px; padding-bottom: 4px; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
+                                <div style="width: 41px; justify-content: flex-start; align-items: center; display: inline-flex">
+                                    <div style="color: var(--Schemes-On-Surface-Variant, #49454F); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Condición</div>
+                                </div>
+                            </div>
+                            <div data-size="Small" data-style="Standard" data-type="Round" data-width="Default" style="width: 48px; align-self: stretch; justify-content: center; align-items: center; display: flex">
+                                <div data-state="Enabled" style="overflow: hidden; border-radius: 100px; flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
+                                    <div style="align-self: stretch; justify-content: center; align-items: center; display: inline-flex">
+                                        <div style="width: 24px; height: 24px; position: relative">
+                                            <div style="width: 12px; height: 7.40px; left: 6px; top: 8px; position: absolute; background: var(--Schemes-On-Surface-Variant, #49454F)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="align-self: stretch; height: 0px; outline: 1px var(--Schemes-On-Surface-Variant, #49454F) solid; outline-offset: -0.50px"></div>
+                </div>
+                <div data-leading-icon="False" data-show-supporting-text="false" data-state="Enabled" data-style="Filled" data-text-configurations="Label text" data-trailing-icon="False" style="flex: 1 1 0; border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                    <div style="align-self: stretch; background: var(--Schemes-Surface-Container-Lowest, white); border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                        <div style="align-self: stretch; padding-left: 16px; padding-right: 16px; padding-top: 4px; padding-bottom: 4px; border-top-left-radius: 4px; border-top-right-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                            <div style="flex: 1 1 0; padding-top: 4px; padding-bottom: 4px; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
+                                <div style="width: 41px; justify-content: flex-start; align-items: center; display: inline-flex">
+                                    <div style="color: var(--Schemes-On-Surface-Variant, #49454F); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Expediente</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="align-self: stretch; height: 0px; outline: 1px var(--Schemes-On-Surface-Variant, #49454F) solid; outline-offset: -0.50px"></div>
+                </div>
+            </div>
+            <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
+                <div style="width: 80px; text-align: right; color: #1B1B1B; font-size: 14px; font-family: Roboto; font-weight: 700; line-height: 16px; letter-spacing: 0.50px; word-wrap: break-word">Tipo</div>
+                <div data-leading-icon="False" data-show-supporting-text="false" data-state="Enabled" data-style="Filled" data-text-configurations="Label text" data-trailing-icon="True" style="width: 128px; border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                    <div style="align-self: stretch; background: var(--Schemes-On-Secondary, white); border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                        <div style="align-self: stretch; padding-top: 4px; padding-bottom: 4px; padding-left: 16px; border-top-left-radius: 4px; border-top-right-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                            <div style="flex: 1 1 0; padding-top: 4px; padding-bottom: 4px; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
+                                <div style="width: 41px; justify-content: flex-start; align-items: center; display: inline-flex">
+                                    <div style="color: var(--Schemes-On-Surface-Variant, #49454F); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Condición</div>
+                                </div>
+                            </div>
+                            <div data-size="Small" data-style="Standard" data-type="Round" data-width="Default" style="width: 48px; align-self: stretch; justify-content: center; align-items: center; display: flex">
+                                <div data-state="Enabled" style="overflow: hidden; border-radius: 100px; flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
+                                    <div style="align-self: stretch; justify-content: center; align-items: center; display: inline-flex">
+                                        <div style="width: 24px; height: 24px; position: relative">
+                                            <div style="width: 12px; height: 7.40px; left: 6px; top: 8px; position: absolute; background: var(--Schemes-On-Surface-Variant, #49454F)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="align-self: stretch; height: 0px; outline: 1px var(--Schemes-On-Surface-Variant, #49454F) solid; outline-offset: -0.50px"></div>
+                </div>
+                <div data-leading-icon="False" data-show-supporting-text="false" data-state="Enabled" data-style="Filled" data-text-configurations="Label text" data-trailing-icon="False" style="flex: 1 1 0; border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                    <div style="align-self: stretch; background: var(--Schemes-Surface-Container-Lowest, white); border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                        <div style="align-self: stretch; padding-left: 16px; padding-right: 16px; padding-top: 4px; padding-bottom: 4px; border-top-left-radius: 4px; border-top-right-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                            <div style="flex: 1 1 0; padding-top: 4px; padding-bottom: 4px; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
+                                <div style="width: 41px; justify-content: flex-start; align-items: center; display: inline-flex">
+                                    <div style="color: var(--Schemes-On-Surface-Variant, #49454F); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Tipo</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="align-self: stretch; height: 0px; outline: 1px var(--Schemes-On-Surface-Variant, #49454F) solid; outline-offset: -0.50px"></div>
+                </div>
+                <div style="width: 80px; text-align: right; color: #1B1B1B; font-size: 14px; font-family: Roboto; font-weight: 700; line-height: 16px; letter-spacing: 0.50px; word-wrap: break-word">Nombre</div>
+                <div data-leading-icon="False" data-show-supporting-text="false" data-state="Enabled" data-style="Filled" data-text-configurations="Label text" data-trailing-icon="True" style="width: 128px; border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                    <div style="align-self: stretch; background: var(--Schemes-On-Secondary, white); border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                        <div style="align-self: stretch; padding-top: 4px; padding-bottom: 4px; padding-left: 16px; border-top-left-radius: 4px; border-top-right-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                            <div style="flex: 1 1 0; padding-top: 4px; padding-bottom: 4px; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
+                                <div style="width: 41px; justify-content: flex-start; align-items: center; display: inline-flex">
+                                    <div style="color: var(--Schemes-On-Surface-Variant, #49454F); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Condición</div>
+                                </div>
+                            </div>
+                            <div data-size="Small" data-style="Standard" data-type="Round" data-width="Default" style="width: 48px; align-self: stretch; justify-content: center; align-items: center; display: flex">
+                                <div data-state="Enabled" style="overflow: hidden; border-radius: 100px; flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
+                                    <div style="align-self: stretch; justify-content: center; align-items: center; display: inline-flex">
+                                        <div style="width: 24px; height: 24px; position: relative">
+                                            <div style="width: 12px; height: 7.40px; left: 6px; top: 8px; position: absolute; background: var(--Schemes-On-Surface-Variant, #49454F)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="align-self: stretch; height: 0px; outline: 1px var(--Schemes-On-Surface-Variant, #49454F) solid; outline-offset: -0.50px"></div>
+                </div>
+                <div data-leading-icon="False" data-show-supporting-text="false" data-state="Enabled" data-style="Filled" data-text-configurations="Label text" data-trailing-icon="False" style="flex: 1 1 0; border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                    <div style="align-self: stretch; background: var(--Schemes-Surface-Container-Lowest, white); border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                        <div style="align-self: stretch; padding-left: 16px; padding-right: 16px; padding-top: 4px; padding-bottom: 4px; border-top-left-radius: 4px; border-top-right-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                            <div style="flex: 1 1 0; padding-top: 4px; padding-bottom: 4px; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
+                                <div style="width: 41px; justify-content: flex-start; align-items: center; display: inline-flex">
+                                    <div style="color: var(--Schemes-On-Surface-Variant, #49454F); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Nombre</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="align-self: stretch; height: 0px; outline: 1px var(--Schemes-On-Surface-Variant, #49454F) solid; outline-offset: -0.50px"></div>
+                </div>
+            </div>
+            <div style="align-self: stretch; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
+                <div style="width: 80px; text-align: right; color: #1B1B1B; font-size: 14px; font-family: Roboto; font-weight: 700; line-height: 16px; letter-spacing: 0.50px; word-wrap: break-word">Propietario</div>
+                <div data-leading-icon="False" data-show-supporting-text="false" data-state="Enabled" data-style="Filled" data-text-configurations="Label text" data-trailing-icon="True" style="width: 128px; border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                    <div style="align-self: stretch; background: var(--Schemes-On-Secondary, white); border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                        <div style="align-self: stretch; padding-top: 4px; padding-bottom: 4px; padding-left: 16px; border-top-left-radius: 4px; border-top-right-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                            <div style="flex: 1 1 0; padding-top: 4px; padding-bottom: 4px; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
+                                <div style="width: 41px; justify-content: flex-start; align-items: center; display: inline-flex">
+                                    <div style="color: var(--Schemes-On-Surface-Variant, #49454F); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Condición</div>
+                                </div>
+                            </div>
+                            <div data-size="Small" data-style="Standard" data-type="Round" data-width="Default" style="width: 48px; align-self: stretch; justify-content: center; align-items: center; display: flex">
+                                <div data-state="Enabled" style="overflow: hidden; border-radius: 100px; flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
+                                    <div style="align-self: stretch; justify-content: center; align-items: center; display: inline-flex">
+                                        <div style="width: 24px; height: 24px; position: relative">
+                                            <div style="width: 12px; height: 7.40px; left: 6px; top: 8px; position: absolute; background: var(--Schemes-On-Surface-Variant, #49454F)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="align-self: stretch; height: 0px; outline: 1px var(--Schemes-On-Surface-Variant, #49454F) solid; outline-offset: -0.50px"></div>
+                </div>
+                <div data-leading-icon="False" data-show-supporting-text="false" data-state="Enabled" data-style="Filled" data-text-configurations="Label text" data-trailing-icon="False" style="flex: 1 1 0; border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                    <div style="align-self: stretch; background: var(--Schemes-Surface-Container-Lowest, white); border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                        <div style="align-self: stretch; padding-left: 16px; padding-right: 16px; padding-top: 4px; padding-bottom: 4px; border-top-left-radius: 4px; border-top-right-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                            <div style="flex: 1 1 0; padding-top: 4px; padding-bottom: 4px; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
+                                <div style="width: 41px; justify-content: flex-start; align-items: center; display: inline-flex">
+                                    <div style="color: var(--Schemes-On-Surface-Variant, #49454F); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Propietario</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="align-self: stretch; height: 0px; outline: 1px var(--Schemes-On-Surface-Variant, #49454F) solid; outline-offset: -0.50px"></div>
+                </div>
+                <div data-leading-icon="False" data-show-supporting-text="false" data-state="Enabled" data-style="Filled" data-text-configurations="Label text" data-trailing-icon="True" style="flex: 1 1 0; border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                    <div style="align-self: stretch; background: var(--Schemes-On-Secondary, white); border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                        <div style="align-self: stretch; padding-top: 4px; padding-bottom: 4px; padding-left: 16px; border-top-left-radius: 4px; border-top-right-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                            <div style="flex: 1 1 0; padding-top: 4px; padding-bottom: 4px; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
+                                <div style="width: 41px; justify-content: flex-start; align-items: center; display: inline-flex">
+                                    <div style="color: var(--Schemes-On-Surface-Variant, #49454F); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Fecha creación inicial</div>
+                                </div>
+                            </div>
+                            <div data-size="Small" data-style="Standard" data-type="Round" data-width="Default" style="width: 48px; align-self: stretch; justify-content: center; align-items: center; display: flex">
+                                <div data-state="Enabled" style="overflow: hidden; border-radius: 100px; flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
+                                    <div style="align-self: stretch; justify-content: center; align-items: center; display: inline-flex">
+                                        <div style="width: 24px; height: 24px; position: relative">
+                                            <div style="width: 18px; height: 20px; left: 3px; top: 2px; position: absolute; background: var(--Schemes-On-Surface, #1D1B20)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="align-self: stretch; height: 0px; outline: 1px var(--Schemes-On-Surface-Variant, #49454F) solid; outline-offset: -0.50px"></div>
+                </div>
+                <div data-leading-icon="False" data-show-supporting-text="false" data-state="Enabled" data-style="Filled" data-text-configurations="Label text" data-trailing-icon="True" style="flex: 1 1 0; border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                    <div style="align-self: stretch; background: var(--Schemes-On-Secondary, white); border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                        <div style="align-self: stretch; padding-top: 4px; padding-bottom: 4px; padding-left: 16px; border-top-left-radius: 4px; border-top-right-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                            <div style="flex: 1 1 0; padding-top: 4px; padding-bottom: 4px; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
+                                <div style="width: 41px; justify-content: flex-start; align-items: center; display: inline-flex">
+                                    <div style="color: var(--Schemes-On-Surface-Variant, #49454F); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Fecha creación final</div>
+                                </div>
+                            </div>
+                            <div data-size="Small" data-style="Standard" data-type="Round" data-width="Default" style="width: 48px; align-self: stretch; justify-content: center; align-items: center; display: flex">
+                                <div data-state="Enabled" style="overflow: hidden; border-radius: 100px; flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
+                                    <div style="align-self: stretch; justify-content: center; align-items: center; display: inline-flex">
+                                        <div style="width: 24px; height: 24px; position: relative">
+                                            <div style="width: 18px; height: 20px; left: 3px; top: 2px; position: absolute; background: var(--Schemes-On-Surface, #1D1B20)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="align-self: stretch; height: 0px; outline: 1px var(--Schemes-On-Surface-Variant, #49454F) solid; outline-offset: -0.50px"></div>
+                </div>
+            </div>
+            <div style="align-self: stretch; padding: 8px; justify-content: center; align-items: center; gap: 16px; display: inline-flex">
+                <div style="width: 150px; justify-content: center; align-items: center; display: flex">
+                    <div style="flex: 1 1 0; background: var(--Schemes-Secondary-Container, #E8DEF8); overflow: hidden; border-radius: 100px; justify-content: center; align-items: center; display: flex">
+                        <div style="padding-left: 12px; padding-right: 12px; padding-top: 6px; padding-bottom: 6px; justify-content: center; align-items: center; gap: 4px; display: flex">
+                            <div style="width: 24px; text-align: center; justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-Primary, #6750A4); font-size: 20px; font-family: Font Awesome 5 Pro; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word"></div>
+                            <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-On-Secondary-Container, #4A4459); font-size: 14px; font-family: Roboto; font-weight: 500; line-height: 20px; letter-spacing: 0.10px; word-wrap: break-word">Limpiar filtros</div>
+                        </div>
+                    </div>
+                </div>
+                <div data-size="XSmall" data-style="Filled" data-type="Round" style="width: 150px; justify-content: center; align-items: center; display: flex">
+                    <div data-show-icon="true" data-state="Enabled" style="flex: 1 1 0; background: var(--Schemes-Primary, #6750A4); overflow: hidden; border-radius: 100px; justify-content: center; align-items: center; display: flex">
+                        <div style="padding-left: 12px; padding-right: 12px; padding-top: 6px; padding-bottom: 6px; justify-content: center; align-items: center; gap: 4px; display: flex">
+                            <div style="width: 20px; height: 20px; position: relative">
+                                <div style="width: 15px; height: 15px; left: 2.50px; top: 2.50px; position: absolute; background: var(--Schemes-On-Primary, white)"></div>
+                            </div>
+                            <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-On-Primary, white); font-size: 14px; font-family: Roboto; font-weight: 500; line-height: 20px; letter-spacing: 0.10px; word-wrap: break-word">Buscar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="align-self: stretch; background: white; box-shadow: 0px 1px 15.399999618530273px 6px rgba(0, 0, 0, 0.07); overflow: hidden; border-radius: 16px; flex-direction: column; justify-content: flex-start; align-items: center; display: flex">
+            <div style="align-self: stretch; padding: 16px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: inline-flex">
+                <div style="text-align: center; color: #1B1B1B; font-size: 14px; font-family: Roboto; font-weight: 700; line-height: 16px; letter-spacing: 0.50px; word-wrap: break-word">Resultado de búsqueda</div>
+            </div>
+            <div style="align-self: stretch; padding-left: 8px; padding-right: 8px; background: white; overflow: hidden; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                <div style="flex: 1 1 0; background: white; overflow: hidden; border-left: 0.50px #DCDCDC solid; border-top: 1px #DCDCDC solid; border-right: 0.50px #DCDCDC solid; flex-direction: column; justify-content: flex-start; align-items: center; display: inline-flex">
+                    <div style="align-self: stretch; padding-left: 4px; padding-right: 4px; background: #FAFAFA; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: center; align-items: center; gap: 4px; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: #757575; font-size: 12px; font-family: Roboto; font-weight: 700; line-height: 20px; letter-spacing: 0.40px; word-wrap: break-word">Id documento</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+                        <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">26</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+                        <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">26</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+                        <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">26</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+                        <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">26</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+                        <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">26</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+                        <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">26</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+                        <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">26</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+                        <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">26</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+                        <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">26</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+                        <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">26</div>
+                    </div>
+                </div>
+                <div style="flex: 1 1 0; background: white; overflow: hidden; border-left: 0.50px #DCDCDC solid; border-top: 1px #DCDCDC solid; border-right: 0.50px #DCDCDC solid; flex-direction: column; justify-content: flex-start; align-items: center; display: inline-flex">
+                    <div style="align-self: stretch; padding-left: 4px; padding-right: 4px; background: #FAFAFA; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: center; align-items: center; gap: 4px; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: #757575; font-size: 12px; font-family: Roboto; font-weight: 700; line-height: 20px; letter-spacing: 0.40px; word-wrap: break-word">Serie</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Correspondencia</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Correspondencia</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Correspondencia</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Correspondencia</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Correspondencia</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Correspondencia</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Correspondencia</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Correspondencia</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Correspondencia</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Correspondencia</div>
+                    </div>
+                </div>
+                <div style="flex: 1 1 0; background: white; overflow: hidden; border-left: 0.50px #DCDCDC solid; border-top: 1px #DCDCDC solid; border-right: 0.50px #DCDCDC solid; flex-direction: column; justify-content: flex-start; align-items: center; display: inline-flex">
+                    <div style="align-self: stretch; padding-left: 4px; padding-right: 4px; background: #FAFAFA; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 4px; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: #757575; font-size: 12px; font-family: Roboto; font-weight: 700; line-height: 20px; letter-spacing: 0.40px; word-wrap: break-word">Expediente</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Entrada</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Entrada</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Entrada</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Entrada</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Entrada</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Entrada</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Entrada</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Entrada</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Entrada</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Entrada</div>
+                    </div>
+                </div>
+                <div style="flex: 1 1 0; background: white; overflow: hidden; border-left: 0.50px #DCDCDC solid; border-top: 1px #DCDCDC solid; border-right: 0.50px #DCDCDC solid; flex-direction: column; justify-content: flex-start; align-items: center; display: inline-flex">
+                    <div style="align-self: stretch; padding-left: 4px; padding-right: 4px; background: #FAFAFA; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 4px; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: #757575; font-size: 12px; font-family: Roboto; font-weight: 700; line-height: 20px; letter-spacing: 0.40px; word-wrap: break-word">Tipo documento</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Documento Radicado</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Documento Radicado</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Documento Radicado</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Documento Radicado</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Documento Radicado</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Documento Radicado</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Documento Radicado</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Documento Radicado</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Documento Radicado</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">Documento Radicado</div>
+                    </div>
+                </div>
+                <div style="flex: 1 1 0; background: white; overflow: hidden; border-left: 0.50px #DCDCDC solid; border-top: 1px #DCDCDC solid; border-right: 0.50px #DCDCDC solid; flex-direction: column; justify-content: flex-start; align-items: center; display: inline-flex">
+                    <div style="align-self: stretch; padding-left: 4px; padding-right: 4px; background: #FAFAFA; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 4px; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: #757575; font-size: 12px; font-family: Roboto; font-weight: 700; line-height: 20px; letter-spacing: 0.40px; word-wrap: break-word">Documento</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">GGD31 201400007</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">GGD31 201400007</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">GGD31 201400007</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">GGD31 201400007</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">GGD31 201400007</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">GGD31 201400007</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">GGD31 201400007</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">GGD31 201400007</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">GGD31 201400007</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">GGD31 201400007</div>
+                    </div>
+                </div>
+                <div style="flex: 1 1 0; background: white; overflow: hidden; border-left: 0.50px #DCDCDC solid; border-top: 1px #DCDCDC solid; border-right: 0.50px #DCDCDC solid; flex-direction: column; justify-content: flex-start; align-items: center; display: inline-flex">
+                    <div style="align-self: stretch; padding-left: 4px; padding-right: 4px; background: #FAFAFA; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 4px; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: #757575; font-size: 12px; font-family: Roboto; font-weight: 700; line-height: 20px; letter-spacing: 0.40px; word-wrap: break-word">Fechan creación</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">05/11/2015</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">05/11/2015</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">05/11/2015</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">05/11/2015</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">05/11/2015</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">05/11/2015</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">05/11/2015</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">05/11/2015</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">05/11/2015</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">05/11/2015</div>
+                    </div>
+                </div>
+                <div style="flex: 1 1 0; background: white; overflow: hidden; border-left: 0.50px #DCDCDC solid; border-top: 1px #DCDCDC solid; border-right: 0.50px #DCDCDC solid; flex-direction: column; justify-content: flex-start; align-items: center; display: inline-flex">
+                    <div style="align-self: stretch; padding-left: 4px; padding-right: 4px; background: #FAFAFA; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 4px; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: #757575; font-size: 12px; font-family: Roboto; font-weight: 700; line-height: 20px; letter-spacing: 0.40px; word-wrap: break-word">Creado por</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">jose.radicador</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">jose.radicador</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">jose.radicador</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">jose.radicador</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">jose.radicador</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">jose.radicador</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">jose.radicador</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">jose.radicador</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">jose.radicador</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">jose.radicador</div>
+                    </div>
+                </div>
+                <div style="flex: 1 1 0; background: white; overflow: hidden; border-left: 0.50px #DCDCDC solid; border-top: 1px #DCDCDC solid; border-right: 0.50px #DCDCDC solid; flex-direction: column; justify-content: flex-start; align-items: center; display: inline-flex">
+                    <div style="align-self: stretch; padding-left: 4px; padding-right: 4px; background: #FAFAFA; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: flex-start; align-items: center; gap: 4px; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: #757575; font-size: 12px; font-family: Roboto; font-weight: 700; line-height: 20px; letter-spacing: 0.40px; word-wrap: break-word">Canal</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">-</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">-</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">-</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">-</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">-</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">-</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">-</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">-</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">-</div>
+                    </div>
+                    <div style="align-self: stretch; padding: 4px; background: white; box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.12) inset; overflow: hidden; justify-content: space-between; align-items: center; display: inline-flex">
+                        <div style="flex: 1 1 0; height: 20px; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">-</div>
+                    </div>
+                </div>
+            </div>
+            <div style="align-self: stretch; height: 58px; padding-left: 8px; padding-right: 8px; background: white; overflow: hidden; justify-content: flex-end; align-items: center; gap: 34px; display: inline-flex">
+                <div style="text-align: right; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.40px; word-wrap: break-word">Registros por página:</div>
+                <div data-size="dense" data-style="default" style="width: 33px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                    <div style="align-self: stretch; height: 26px; padding-top: 8px; padding-bottom: 8px; overflow: hidden; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+                        <div style="flex: 1 1 0; justify-content: flex-start; align-items: center; gap: 10px; display: flex">
+                            <div style="justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.40px; word-wrap: break-word">10</div>
+                        </div>
+                        <div data-color="plain" data-disabled="no" data-size="medium" style="width: 24px; height: 24px; position: relative">
+                            <div style="left: 0px; top: 0px; position: absolute; text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.54); font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">arrow_drop_down</div>
+                        </div>
+                    </div>
+                    <div data-inset="no" data-type="horizontal" style="align-self: stretch; height: 1px; position: relative; background: rgba(0, 0, 0, 0.42)"></div>
+                </div>
+                <div style="text-align: right; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.87); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.40px; word-wrap: break-word">1-10 of 40</div>
+                <div data-color="normal" data-disabled="no" data-size="x-small" data-type="plain" style="width: 32px; height: 32px; padding-left: 16px; padding-right: 16px; border-radius: 32px; justify-content: center; align-items: center; display: flex">
+                    <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.20); font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">chevron_left</div>
+                </div>
+                <div data-color="normal" data-disabled="no" data-size="x-small" data-type="plain" style="width: 32px; height: 32px; padding-left: 16px; padding-right: 16px; border-radius: 32px; justify-content: center; align-items: center; display: flex">
+                    <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.54); font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">navigate_next</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="width: 1280px; padding-left: 32px; padding-right: 32px; left: 0px; top: 0.50px; position: absolute; background: #F4F4F4; box-shadow: 0px 2px 13.399999618530273px rgba(65.92, 65.92, 65.92, 0.20); border-bottom: 0.50px #BEBEBE solid; justify-content: center; align-items: center; gap: 16px; display: inline-flex">
+        <div style="width: 24px; justify-content: flex-start; align-items: center; gap: 10px; display: flex">
+            <div data-type="Icon" style="width: 24px; height: 24px; position: relative">
+                <div style="width: 24px; height: 24px; left: 0px; top: 0px; position: absolute">
+                    <div style="width: 18px; height: 12px; left: 3px; top: 6px; position: absolute; background: var(--Schemes-On-Secondary-Container, #4A4459)"></div>
+                </div>
+            </div>
+        </div>
+        <div data-show-1st-trailing-icon="true" data-show-2nd-trailing-icon="false" data-show-avatar="False" data-show-leading-icon="false" data-state="Enabled" style="flex: 1 1 0; background: var(--Grays-Gray-5, #E5E5EA); overflow: hidden; border-radius: 28px; justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+            <div style="flex: 1 1 0; padding: 4px; position: relative; justify-content: flex-start; align-items: center; display: flex">
+                <div style="align-self: stretch; padding-left: 20px; padding-right: 20px; justify-content: flex-start; align-items: center; gap: 10px; display: flex">
+                    <div style="width: 139px; justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-On-Surface-Variant, #49454F); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Búsqueda</div>
+                </div>
+                <div style="left: 958px; top: -8px; position: absolute; justify-content: flex-end; align-items: center; display: flex">
+                    <div data-size="Small" data-style="Standard" data-type="Round" data-width="Default" style="width: 48px; height: 48px; justify-content: center; align-items: center; display: flex">
+                        <div data-state="Enabled" style="width: 40px; overflow: hidden; border-radius: 100px; flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
+                            <div style="align-self: stretch; height: 40px; justify-content: center; align-items: center; display: inline-flex">
+                                <div style="width: 24px; height: 24px; position: relative">
+                                    <div style="width: 18px; height: 18px; left: 3px; top: 3px; position: absolute; background: var(--Schemes-On-Surface-Variant, #49454F)"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-show-divider="false" data-show-leading-element="false" data-show-supporting-text="false" data-show-trailing-element="true" data-state="Enabled" style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+            <div style="align-self: stretch; height: 48px; padding-left: 12px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px; justify-content: flex-start; align-items: center; gap: 12px; display: inline-flex">
+                <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                    <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-On-Secondary-Container, #4A4459); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Hola, Javier</div>
+                </div>
+                <div data-type="Icon" style="width: 24px; height: 24px; position: relative">
+                    <div style="width: 24px; height: 24px; left: 0px; top: 0px; position: absolute">
+                        <div style="width: 12px; height: 7.40px; left: 6px; top: 8px; position: absolute; background: var(--Schemes-On-Secondary-Container, #4A4459)"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="width: 1248px; height: 36px; left: 8px; top: 900px; position: absolute">
+        <div style="width: 1248px; left: 0px; top: 0px; position: absolute; justify-content: flex-end; align-items: center; gap: 24px; display: inline-flex">
+            <div style="padding-left: 16px; padding-right: 16px; padding-top: 6px; padding-bottom: 6px; background: #4A4459; box-shadow: 0px 3px 6.400000095367432px rgba(178.37, 178.37, 178.37, 0.77); border-radius: 16px; justify-content: center; align-items: center; gap: 16px; display: flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-On-Primary, white); font-size: 16px; font-family: Font Awesome 5 Pro; font-weight: 900; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word"></div>
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-On-Primary, white); font-size: 16px; font-family: Roboto; font-weight: 700; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Graficar</div>
+            </div>
+            <div style="padding-left: 16px; padding-right: 16px; padding-top: 6px; padding-bottom: 6px; background: #4A4459; box-shadow: 0px 3px 6.400000095367432px rgba(178.37, 178.37, 178.37, 0.77); border-radius: 16px; justify-content: center; align-items: center; gap: 16px; display: flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-On-Primary, white); font-size: 16px; font-family: Font Awesome 5 Pro; font-weight: 900; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word"></div>
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-On-Primary, white); font-size: 16px; font-family: Roboto; font-weight: 700; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Descargar</div>
+            </div>
+        </div>
+    </div>
+</div>

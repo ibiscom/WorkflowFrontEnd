@@ -1,0 +1,87 @@
+<div style="width: 100%; height: 100%; position: relative; background: black; overflow: hidden; backdrop-filter: blur(5px)">
+    <img style="width: 1420.50px; height: 869px; left: -27px; top: -50px; position: absolute" src="https://placehold.co/1421x869" />
+    <div style="width: 1400.19px; height: 848.80px; left: -17.09px; top: 0px; position: absolute; box-shadow: 10px 10px 10px; filter: blur(5px)"></div>
+    <div style="width: 381px; padding: 32px; left: 493px; top: 247px; position: absolute; background: var(--Schemes-Primary, #6750A4); box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px rgba(0, 0, 0, 0.30); border-radius: 16px; flex-direction: column; justify-content: center; align-items: center; gap: 16px; display: inline-flex">
+        <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-On-Primary, white); font-size: 22px; font-family: Roboto; font-weight: 400; line-height: 28px; word-wrap: break-word">Bienvenido</div>
+        <div data-leading-icon="True" data-show-supporting-text="false" data-state="Enabled" data-style="Outlined" data-text-configurations="Input text" data-trailing-icon="False" style="align-self: stretch; border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+            <div style="align-self: stretch; height: 56px; border-radius: 4px; outline: 1px var(--Schemes-On-Error, white) solid; outline-offset: -1px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                <div style="align-self: stretch; flex: 1 1 0; padding-top: 4px; padding-bottom: 4px; padding-right: 16px; border-top-left-radius: 4px; border-top-right-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                    <div data-size="Small" data-style="Standard" data-type="Round" data-width="Default" style="width: 48px; height: 48px; justify-content: center; align-items: center; display: flex">
+                        <div data-state="Enabled" style="width: 40px; overflow: hidden; border-radius: 100px; flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
+                            <div style="align-self: stretch; height: 40px; justify-content: center; align-items: center; display: inline-flex">
+                                <div style="width: 24px; height: 24px; position: relative">
+                                    <div style="width: 20px; height: 16px; left: 2px; top: 4px; position: absolute; background: var(--Schemes-On-Tertiary, white)"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex: 1 1 0; height: 48px; padding-top: 4px; padding-bottom: 4px; position: relative; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
+                        <div style="align-self: stretch; justify-content: flex-start; align-items: center; display: inline-flex">
+                            <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-On-Secondary, white); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Eje: ernesto@gmail.com</div>
+                        </div>
+                        <div style="padding-left: 4px; padding-right: 4px; left: -36px; top: -12px; position: absolute; background: var(--Schemes-On-Tertiary, white); justify-content: flex-start; align-items: center; display: inline-flex">
+                            <div style="color: var(--Schemes-On-Surface-Variant, #49454F); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 16px; letter-spacing: 0.40px; word-wrap: break-word">Correo</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-leading-icon="True" data-show-supporting-text="false" data-state="Enabled" data-style="Outlined" data-text-configurations="Input text" data-trailing-icon="False" style="align-self: stretch; border-top-left-radius: 4px; border-top-right-radius: 4px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+            <div style="align-self: stretch; height: 56px; border-radius: 4px; outline: 1px var(--Schemes-On-Error, white) solid; outline-offset: -1px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                <div style="align-self: stretch; flex: 1 1 0; padding-top: 4px; padding-bottom: 4px; padding-right: 16px; border-top-left-radius: 4px; border-top-right-radius: 4px; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                    <div data-size="Small" data-style="Standard" data-type="Round" data-width="Default" style="width: 48px; height: 48px; justify-content: center; align-items: center; display: flex">
+                        <div data-state="Enabled" style="width: 40px; overflow: hidden; border-radius: 100px; flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
+                            <div style="align-self: stretch; height: 40px; justify-content: center; align-items: center; display: inline-flex">
+                                <div style="width: 24px; height: 24px; position: relative">
+                                    <div style="width: 20px; height: 14px; left: 2px; top: 5px; position: absolute; background: var(--Schemes-On-Secondary, white)"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex: 1 1 0; height: 48px; padding-top: 4px; padding-bottom: 4px; position: relative; flex-direction: column; justify-content: center; align-items: flex-start; display: inline-flex">
+                        <div style="align-self: stretch; justify-content: flex-start; align-items: center; display: inline-flex">
+                            <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-On-Secondary, white); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">*********</div>
+                        </div>
+                        <div style="padding-left: 4px; padding-right: 4px; left: -36px; top: -12px; position: absolute; background: var(--Schemes-On-Tertiary, white); justify-content: flex-start; align-items: center; display: inline-flex">
+                            <div style="color: var(--Schemes-On-Surface-Variant, #49454F); font-size: 12px; font-family: Roboto; font-weight: 400; line-height: 16px; letter-spacing: 0.40px; word-wrap: break-word">Contraseña</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div data-size="Small" data-style="Tonal" data-type="Square" style="align-self: stretch; justify-content: center; align-items: center; display: inline-flex">
+            <div data-show-icon="true" data-state="Enabled" style="flex: 1 1 0; background: var(--Schemes-Secondary-Container, #E8DEF8); overflow: hidden; border-radius: 12px; justify-content: center; align-items: center; display: flex">
+                <div style="padding-left: 16px; padding-right: 16px; padding-top: 10px; padding-bottom: 10px; justify-content: center; align-items: center; gap: 8px; display: flex">
+                    <div style="width: 20px; height: 20px; position: relative">
+                        <div style="width: 10.83px; height: 17.92px; left: 5px; top: 1.25px; position: absolute; background: var(--Schemes-On-Secondary-Container, #4A4459)"></div>
+                    </div>
+                    <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-On-Secondary-Container, #4A4459); font-size: 14px; font-family: Roboto; font-weight: 500; line-height: 20px; letter-spacing: 0.10px; word-wrap: break-word">Entrar</div>
+                </div>
+            </div>
+        </div>
+        <div data-size="Small" data-style="Outline" data-type="Square" style="align-self: stretch; justify-content: center; align-items: center; display: inline-flex">
+            <div data-show-icon="false" data-state="Enabled" style="flex: 1 1 0; overflow: hidden; border-radius: 12px; outline: 1px var(--Schemes-Outline-Variant, #CAC4D0) solid; outline-offset: -1px; flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
+                <div style="padding-left: 16px; padding-right: 16px; padding-top: 10px; padding-bottom: 10px; justify-content: center; align-items: center; gap: 8px; display: inline-flex">
+                    <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-On-Tertiary, white); font-size: 14px; font-family: Roboto; font-weight: 500; line-height: 20px; letter-spacing: 0.10px; word-wrap: break-word">Inicio de sesión simple</div>
+                </div>
+            </div>
+        </div>
+        <div data-size="Small" data-style="Filled" data-type="Square" style="align-self: stretch; justify-content: center; align-items: center; display: inline-flex">
+            <div data-show-icon="false" data-state="Enabled" style="flex: 1 1 0; background: var(--Schemes-Primary, #6750A4); overflow: hidden; border-radius: 12px; flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
+                <div style="padding-left: 16px; padding-right: 16px; padding-top: 10px; padding-bottom: 10px; justify-content: center; align-items: center; gap: 8px; display: inline-flex">
+                    <div style="justify-content: center; display: flex; flex-direction: column; color: var(--Schemes-On-Primary, white); font-size: 14px; font-family: Roboto; font-weight: 500; line-height: 20px; letter-spacing: 0.10px; word-wrap: break-word">¿Olvidó su contraseña?</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="width: 317px; left: 66px; top: 150px; position: absolute; color: var(--Schemes-Surface, #FEF7FF); font-size: 14px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">SISTEMA DE GESTIÓN DOCUMENTAL</div>
+    <div style="width: 317px; left: 68px; top: 708px; position: absolute"><span style="color: var(--Schemes-Surface, #FEF7FF); font-size: 14px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">2024 - V 5.4-2<br/></span><span style="color: var(--Schemes-Surface, #FEF7FF); font-size: 16px; font-family: Inter; font-weight: 400; text-decoration: underline; line-height: 22.40px; word-wrap: break-word">Enviar comentarios</span></div>
+    <div style="width: 165.60px; height: 39px; left: 68px; top: 170px; position: absolute"></div>
+    <div style="width: 218.66px; height: 70px; left: 61px; top: 58px; position: absolute"></div>
+    <div style="width: 276px; height: 0px; left: 66px; top: 143px; position: absolute; outline: 1px white solid; outline-offset: -0.50px"></div>
+    <div style="width: 129.50px; height: 40px; left: 58px; top: 730px; position: absolute"></div>
+    <img style="width: 220px; height: 70px; left: 61px; top: 58px; position: absolute" src="https://placehold.co/220x70" />
+    <div style="width: 165.60px; height: 39px; left: 213px; top: 208px; position: absolute"></div>
+    <img style="width: 165px; height: 39px; left: 60px; top: 177px; position: absolute" src="https://placehold.co/165x39" />
+    <img style="width: 127px; height: 40px; left: 46px; top: 656px; position: absolute" src="https://placehold.co/127x40" />
+</div>
