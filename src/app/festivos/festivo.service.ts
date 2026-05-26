@@ -7,6 +7,16 @@ import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environment';
 
+export interface HolidayDTO {
+  fecha: string;
+  descripcion: string;
+}
+
+export interface SaveHolidaysRequestDTO {
+  addHolidaysDTO: HolidayDTO[];
+  removeHolidaysDTO: HolidayDTO[];
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -29,7 +39,7 @@ export class FestivoService {
     groupServerFilter: GroupSearchFilterEntity,
   ): Observable<FsResponseEntity<GroupEntity[]>> {
     return this.http.get<FsResponseEntity<GroupEntity[]>>(
-      environment.frameSecApiUrl +
+      environment.workflowApiUrl +
         `/group/getGroups?userName=${groupServerFilter.userName}&groupName=${groupServerFilter.groupName}&supervisor=${groupServerFilter.supervisor}`,
     );
   }
@@ -45,7 +55,7 @@ export class FestivoService {
     groupName: string,
   ): Observable<FsResponseEntity<GroupEntity>> {
     return this.http.get<FsResponseEntity<GroupEntity>>(
-      environment.frameSecApiUrl +
+      environment.workflowApiUrl +
         `/group/getGroup?userName=${userGenerator}&groupName=${groupName}`,
     );
   }
@@ -61,7 +71,7 @@ export class FestivoService {
     groupName: string,
   ): Observable<FsResponseEntity<string[]>> {
     return this.http.get<FsResponseEntity<string[]>>(
-      environment.frameSecApiUrl +
+      environment.workflowApiUrl +
         `/group/getPermissions?userName=${userGenerator}&groupName=${groupName}`,
     );
   }
@@ -76,7 +86,7 @@ export class FestivoService {
     groupName: string,
   ): Observable<FsResponseEntity<string[]>> {
     return this.http.get<FsResponseEntity<string[]>>(
-      environment.frameSecApiUrl +
+      environment.workflowApiUrl +
         `/group/getRestrictions?userName=${userGenerator}&groupName=${groupName}`,
     );
   }
@@ -90,7 +100,7 @@ export class FestivoService {
     let ip: string = this.cookieService.get('ip');
     group.ip = ip;
     return this.http.put<FsResponseEntity<any>>(
-      environment.frameSecApiUrl + `/group/create`,
+      environment.workflowApiUrl + `/group/create`,
       group,
     );
   }
@@ -104,7 +114,7 @@ export class FestivoService {
     let ip: string = this.cookieService.get('ip');
     group.ip = ip;
     return this.http.post<FsResponseEntity<any>>(
-      environment.frameSecApiUrl + `/group/edit`,
+      environment.workflowApiUrl + `/group/edit`,
       group,
     );
   }
@@ -123,7 +133,7 @@ export class FestivoService {
   ): Observable<FsResponseEntity<any>> {
     let ip: string = this.cookieService.get('ip');
     return this.http.post<FsResponseEntity<any>>(
-      environment.frameSecApiUrl +
+      environment.workflowApiUrl +
         `/group/addPermission?userName=${userGenerator}&groupName=${groupName}&permission=${permission}&ip=${ip}`,
       {},
     );
@@ -143,7 +153,7 @@ export class FestivoService {
   ): Observable<FsResponseEntity<any>> {
     let ip: string = this.cookieService.get('ip');
     return this.http.post<FsResponseEntity<any>>(
-      environment.frameSecApiUrl +
+      environment.workflowApiUrl +
         `/group/addRestriction?userName=${userGenerator}&groupName=${groupName}&restriction=${operation}&ip=${ip}`,
       {},
     );
@@ -161,8 +171,51 @@ export class FestivoService {
   ): Observable<FsResponseEntity<any>> {
     let ip: string = this.cookieService.get('ip');
     return this.http.delete<FsResponseEntity<any>>(
-      environment.frameSecApiUrl +
+      environment.workflowApiUrl +
         `/group/delete?userName=${userGenerator}&groupName=${groupName}&ip=${ip}`,
+    );
+  }
+
+  /**
+   * Convierte una fecha a ISO usando "UTC midnight".
+   * Nota: algunos backends validan mal `Z`/timezone, así que enviamos sin zona horaria (sin sufijo `Z`).
+   */
+  private toIsoLocalMidday(date: Date): string {
+    const y = date.getFullYear();
+    const m = String(date.getMonth() + 1).padStart(2, '0');
+    const d = String(date.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}T00:00:00`;
+  }
+
+  /**
+   * Obtiene los festivos consultando por una "fecha base" (backend usa el año).
+   */
+  public getHolidays(fechaBase: Date): Observable<FsResponseEntity<HolidayDTO[]>> {
+    const iso = this.toIsoLocalMidday(fechaBase);
+    return this.http.get<FsResponseEntity<HolidayDTO[]>>(
+      `${environment.workflowApiUrl}/holiday/getHolidays`,
+      { params: { fecha: iso } },
+    );
+  }
+
+  /**
+   * Consulta si una fecha específica es festivo.
+   */
+  public getHoliday(fecha: Date): Observable<FsResponseEntity<HolidayDTO[]>> {
+    const iso = this.toIsoLocalMidday(fecha);
+    return this.http.get<FsResponseEntity<HolidayDTO[]>>(
+      `${environment.workflowApiUrl}/holiday/getHoliday`,
+      { params: { fecha: iso } },
+    );
+  }
+
+  /**
+   * Guarda cambios agregando o quitando festivos de un calendario.
+   */
+  public saveHolidays(payload: SaveHolidaysRequestDTO): Observable<FsResponseEntity<boolean>> {
+    return this.http.post<FsResponseEntity<boolean>>(
+      `${environment.workflowApiUrl}/holiday/save`,
+      payload,
     );
   }
 }

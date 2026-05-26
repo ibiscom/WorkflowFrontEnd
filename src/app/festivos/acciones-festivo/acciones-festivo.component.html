@@ -1,59 +1,88 @@
-<button class="btn-figma" (click)="irACrearFestivo()">
-  <span class="btn-icon">
-    <img src="assets/img/adduser.svg" alt="Nuevo workflow" />
-  </span>
-  <span class="label">Nuevo</span>
-</button>
-
-<!-- CALENDARIO 
 <div class="calendario-container">
-
-  <div class="titulo">
-    Por favor Seleccione un Workflow
-  </div>
+  <div class="titulo">Calendario de festivos</div>
 
   <div class="selectores">
-    <select [(ngModel)]="mesSeleccionado" (change)="cambiarMes()">
-      <option *ngFor="let mes of meses; let i = index" [value]="i">
-        {{ mes }}
-      </option>
-    </select>
+    <div class="selector">
+      <label>Mes</label>
+      <select [(ngModel)]="mesSeleccionado" (ngModelChange)="onChangeMonth()">
+        @for (mes of meses; track $index) {
+          <option [ngValue]="$index">{{ mes }}</option>
+        }
+      </select>
+    </div>
 
-    <select [(ngModel)]="anioSeleccionado" (change)="cambiarMes()">
-      <option *ngFor="let anio of [2024,2025,2026,2027,2028]">
-        {{ anio }}
-      </option>
-    </select>
+    <div class="selector">
+      <label>Año</label>
+      <select [(ngModel)]="anioSeleccionado" (ngModelChange)="onChangeYear()">
+        @for (anio of anios; track anio) {
+          <option [ngValue]="anio">{{ anio }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <div class="descripcion">
+    <mat-form-field appearance="outline" class="descripcion-field">
+      <mat-label>Descripción para nuevos festivos</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Ej: Día de la independencia"
+        [(ngModel)]="descripcionNueva"
+      />
+    </mat-form-field>
   </div>
 
   <table class="calendario">
     <thead>
       <tr>
-        <th *ngFor="let dia of diasSemana">{{ dia }}</th>
+        @for (dia of diasSemana; track $index) {
+          <th>{{ dia }}</th>
+        }
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let semana of calendario">
-        <td
-          *ngFor="let dia of semana"
-          [class.seleccionado]="dia && esSeleccionado(dia)"
-          (click)="dia && seleccionarDia(dia)"
-        >
-          {{ dia }}
-        </td>
-      </tr>
+      @for (semana of calendario; track $index) {
+        <tr>
+          @for (celda of semana; track $index) {
+            @if (celda) {
+              <td
+                class="dia"
+                [class.holiday]="isHolidayEffective(celda)"
+                [class.pending-add]="isPendingAdd(celda)"
+                [class.pending-remove]="isPendingRemove(celda)"
+                (click)="toggleDay(celda)"
+              >
+                <span class="numero">{{ celda.getDate() }}</span>
+              </td>
+            } @else {
+              <td class="dia empty"></td>
+            }
+          }
+        </tr>
+      }
     </tbody>
   </table>
 
   <div class="resumen">
-    Días festivos seleccionados para {{ meses[mesSeleccionado] }} {{ anioSeleccionado }}:
-    {{ diasSeleccionados.join(', ') || 'Ninguno' }}
+    Pendientes: <b>{{ pendingAdds.size }}</b> agregar, <b>{{ pendingRemoves.size }}</b> quitar
   </div>
 
   <div class="botones">
-    <button (click)="guardar()">Guardar</button>
-    <button (click)="consultar()">Consultar</button>
-  </div>
+    <button
+      class="btn-figma"
+      type="button"
+      (click)="guardar()"
+      [disabled]="isLoading || (pendingAdds.size === 0 && pendingRemoves.size === 0)"
+    >
+      <span class="btn-icon">
+        <img src="assets/img/save.svg" alt="Guardar" />
+      </span>
+      Guardar
+    </button>
 
+    <button class="btn-figma secondary" type="button" (click)="consultar()" [disabled]="isLoading">
+      Consultar
+    </button>
+  </div>
 </div>
--->

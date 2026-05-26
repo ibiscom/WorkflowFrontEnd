@@ -69,6 +69,7 @@ import { ListadoResponsableComponent } from './reponsable/listado-responsable/li
 import { EntidadesComponent } from './entidades/entidades.component';
 import { CrearEntidadesComponent } from './entidades/crear-entidades/crear-entidades.component';
 import { ListadoEntidadesComponent } from './entidades/listado-entidades/listado-entidades.component';
+import { FestivoComponent } from './festivos/festivo.component';
 
 
 
@@ -554,7 +555,7 @@ export const routes: Routes = [
             canActivate: [CanActivateGuard],
           },
           {
-            path: 'editarEntidad/:nombre',
+            path: 'editarEntidad/:id',
             component: CrearEntidadesComponent,
             canActivate: [CanActivateGuard],
           },
@@ -587,6 +588,11 @@ export const routes: Routes = [
             canActivate: [CanActivateGuard],
           },
         ],
+      },
+      {
+        path: 'festivos',
+        component: FestivoComponent,
+        canActivate: [CanActivateGuard],
       },
     ],
   },
