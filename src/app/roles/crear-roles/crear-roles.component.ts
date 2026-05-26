@@ -61,6 +61,7 @@ export class CrearRolesComponent {
   public responsablesAgregarList: ResponsableEntity[] = [];
   public responsablesRolE!: ResponsablesRolEntity;
   public respuestaServicio: ResponsablesRolEntity | undefined;
+  public parent?: RolesComponent;
 
   public constructor(
     private rolesService: RolesService,
@@ -246,6 +247,7 @@ export class CrearRolesComponent {
             }
             console.log("creado", this.rolesIdEdit);
             this.rolesIdEdit = this.nombreRolN;
+            this.uc?.buscarRoles();
             this.router.navigate([
               `/main-page/roles/editarRol?id=${this.nombreRolN}`,
             ]);
@@ -276,6 +278,7 @@ export class CrearRolesComponent {
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
+            this.uc?.buscarRoles();
             this.router.navigate([
               `/main-page/roles/editarRol?id=${this.nombreRolN}`,
             ]);

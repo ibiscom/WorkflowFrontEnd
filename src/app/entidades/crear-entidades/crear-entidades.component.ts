@@ -89,12 +89,13 @@ responsable: any;
    */
   public async ngOnInit(): Promise<void> {
     console.log('entre a crear /editar', this.loggedUser);
-
+    this.userNameN = this.loggedUser?.user_name ?? '';
     if (this.uc) {
       this.uc.mensaje = '';
     }
     this.workflowActual = this.cookieService.get("workflowActual");
-    const id = this.route.snapshot.paramMap.get('nombre');
+    const id = this.route.snapshot.paramMap.get('id');
+    
     console.log('Edit Mode On. Group Id:', id);
     await this.getRolesList();
        console.log('Id seleccionado en roleslist:', id); 
@@ -124,11 +125,12 @@ responsable: any;
         const entidad = response.respuesta as EntidadesEntity;
         this.nombreEntidadN = entidad.nombre ?? '';
         this.descripcionN = entidad.descripcion ?? '';
-        this.rolN = this.rolesList.find(r => r.name === this.nombreRolN) ?? undefined;
-        await this.getResponsablesRolList(); 
-        /*await this.diligenciarResponsablesAsignadosRolEntidad();
+        this.responsablesN = entidad.listaGrupos;
+        console.log("nombreIdEdit**", this.responsablesN,this.nombreIdEdit);
+       /* await this.getResponsablesEntidadList(); */
+        await this.diligenciarResponsablesAsignadosEntidad();
         await this.diligenciarResponsablesAsignar();
-        */
+      
       }
     } 
     catch (e) {
@@ -168,6 +170,7 @@ responsable: any;
     }
   
 public async onrolChange($event: any) {
+  console.log('estoy en onrolchange:'); 
     let rolSeleccionado = $event as RolesEntity;
     this.rolN = rolSeleccionado;
     this.nombreRolN = rolSeleccionado?.name ?? '';
@@ -244,14 +247,13 @@ console.log('Edit getResponsablesRolList: responsablesasignadoslist2:', this.res
     }
    }
 
-
    
   /**
    * Indica si está en modo edición.
    */
   public editMode(): boolean {
-    return this.entidadesIdEdit !== undefined && this.nombreIdEdit !== '';
-  console.log("rolesIdEdit", this.entidadesIdEdit);
+    return this.nombreIdEdit !== undefined && this.nombreIdEdit !== '';
+  console.log("rolesIdEdit", this.nombreIdEdit);
   }
 
   /**
@@ -278,27 +280,31 @@ console.log('Edit getResponsablesRolList: responsablesasignadoslist2:', this.res
    * Crea un nuevo grupo con los datos del formulario.
    */
   public create() {
-    console.log("estoy en create", this.entidadesIdEdit,this.userNameN,this.idEntidadN, this.nombreEntidadN, this.descripcionN, this.nombreRolN, this.responsablesAsignadosList);
+    console.log("estoy en create: ",this.userNameN,this.idEntidadN, this.nombreEntidadN, this.descripcionN, this.nombreRolN, this.responsablesAsignadosList);
+    console.log(typeof this.idEntidadN)
+    const payload = {
+    userName: this.userNameN,
+    idEntidad: this.idEntidadN,
+    nombre: this.nombreEntidadN,
+    descripcion: this.descripcionN,
+    nombreRol: this.nombreRolN,
+    listaGrupos: this.responsablesAsignadosList.map(r => r.name)
+    };
+
+console.log(JSON.stringify(payload, null, 2));
+
     this.entidadesService
-      .createEntidad({
-        userName: this.userNameN,
-        idEntidad: this.idEntidadN,
-        nombre: this.nombreEntidadN,
-        descripcion: this.descripcionN,
-        nombreRol: this.nombreRolN,
-        listaGrupos: this.responsablesAsignadosList.map(r => r.name)
-             } as EntidadesEntity)
-           
+      .createEntidad(payload)
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
             if (this.uc) {
-              this.uc.mensaje = 'Se ha creado el entidad exitosamente';
+              this.uc.mensaje = 'Se ha creado la entidad exitosamente';
             }
-            console.log("creado", this.entidadesIdEdit);
-            this.nombreIdEdit = this.nombreRolN;
+            console.log("creado", this.idEntidadN, this.responsablesAsignadosList);
+            this.nombreIdEdit = this.nombreEntidadN;
             this.router.navigate([
-              `/main-page/entidades/editarRol?id=${this.nombreRolN}`,
+              `/main-page/entidades/editarEntidad`,this.nombreEntidadN,
             ]);
           }
         },
@@ -397,15 +403,19 @@ console.log('Edit getResponsablesRolList: responsablesasignadoslist2:', this.res
 
  
 
-  public diligenciarResponsablesAsignadosRolEntidad() {
-   console.log('Entra adiligenciarrespasignados');
-    if (this.editMode()) {
-   
-    this.responsablesAsignadosList =[];
-      this.responsablesRolE.respuesta.map((responsable: string) => ({
-        name: responsable,
-        selected: false
-      }));
+  public diligenciarResponsablesAsignadosEntidad() {
+   console.log('Entra adiligenciarrespasignadosEntidad',this.editMode());
+   this.responsablesAsignadosList =[]; 
+
+   if (this.editMode()) {
+
+    this.responsablesAsignadosList = this.responsablesN.map( 
+    (responsable: string): ResponsableEntity => ({
+    name: responsable,
+    selected: false
+    })
+   );
+       
     console.log(
       'Edit2 diligenciarrespasignados.responsablesasignados:',
       this.responsablesAsignadosList

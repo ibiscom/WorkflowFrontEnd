@@ -73,27 +73,25 @@ export class AccionesFestivoComponent {
 
   ngOnInit(): void {
     this.uc = this.festivoComponentInstanceService.getInstance();
-    this.loadHolidaysForSelectedYear();
+    this.loadHolidaysForSelectedMonth();
   }
 
   public onChangeMonth(): void {
-    this.buildCalendar();
+    this.loadHolidaysForSelectedMonth();
   }
 
   public onChangeYear(): void {
-    // Cambiar de año invalida la consulta base, así que reiniciamos cambios pendientes.
     this.pendingAdds.clear();
     this.pendingRemoves.clear();
 
     const now = new Date();
     const currentYear = now.getFullYear();
-    // Mantener un rango centrado en el año seleccionado (evita "opciones vacías").
     this.anios =
       this.anioSeleccionado === currentYear
         ? this.anios
         : Array.from({ length: 11 }, (_, i) => this.anioSeleccionado - 5 + i);
 
-    this.loadHolidaysForSelectedYear();
+    this.loadHolidaysForSelectedMonth();
   }
 
   public toggleDay(dia: Date): void {
@@ -153,7 +151,7 @@ export class AccionesFestivoComponent {
   public consultar(): void {
     this.pendingAdds.clear();
     this.pendingRemoves.clear();
-    this.loadHolidaysForSelectedYear();
+    this.loadHolidaysForSelectedMonth();
     if (this.uc) this.uc.mensaje = 'Consulta actualizada.';
   }
 
@@ -184,7 +182,7 @@ export class AccionesFestivoComponent {
           if (response?.respuesta) {
             this.pendingAdds.clear();
             this.pendingRemoves.clear();
-            this.loadHolidaysForSelectedYear();
+            this.loadHolidaysForSelectedMonth();
             if (this.uc) this.uc.mensaje = 'Cambios de festivos guardados correctamente.';
           } else {
             if (this.uc) this.uc.mensaje = response?.mensaje ?? 'No se pudo guardar los festivos.';
@@ -199,31 +197,60 @@ export class AccionesFestivoComponent {
       });
   }
 
-  private loadHolidaysForSelectedYear(): void {
+  /**
+   * El backend consulta festivos por mes usando la fecha base (día 1 del mes visible).
+   */
+  private loadHolidaysForSelectedMonth(): void {
     this.isLoading = true;
     this.serverHolidays.clear();
 
-    // Usamos fecha sin hora. El servicio la convierte a UTC midnight.
-    const fechaBase = new Date(this.anioSeleccionado, 0, 1);
+    const fechaBase = new Date(
+      this.anioSeleccionado,
+      this.mesSeleccionado,
+      1,
+    );
+
     this.festivoService.getHolidays(fechaBase).subscribe({
       next: (response) => {
         this.isLoading = false;
-        const lista = response?.respuesta ?? [];
-        this.serverHolidays.clear();
-
-        for (const item of lista) {
-          const key = this.isoToDateKey(item.fecha);
-          this.serverHolidays.set(key, item.descripcion ?? '');
-        }
-
-        this.buildCalendar();
+        this.applyHolidaysFromServer(response?.respuesta ?? []);
       },
-      error: () => {
+      error: (err) => {
         this.isLoading = false;
-        if (this.uc) this.uc.mensaje = 'Error consultando festivos.';
+        if (this.isNoHolidaysForMonthError(err)) {
+          this.applyHolidaysFromServer([]);
+          return;
+        }
+        if (this.uc) {
+          this.uc.mensaje =
+            err?.error?.mensaje ?? 'Error consultando festivos.';
+        }
         this.buildCalendar();
       },
     });
+  }
+
+  private applyHolidaysFromServer(
+    lista: Array<{ fecha: string; descripcion: string }>,
+  ): void {
+    this.serverHolidays.clear();
+    const items = Array.isArray(lista) ? lista : lista ? [lista] : [];
+
+    for (const item of items) {
+      const key = this.isoToDateKey(item.fecha);
+      this.serverHolidays.set(key, item.descripcion ?? '');
+    }
+
+    this.buildCalendar();
+  }
+
+  /** El API devuelve HTTP 400 cuando el mes no tiene festivos registrados. */
+  private isNoHolidaysForMonthError(err: unknown): boolean {
+    const mensaje = (err as { error?: { mensaje?: string } })?.error?.mensaje;
+    return (
+      typeof mensaje === 'string' &&
+      mensaje.toLowerCase().includes('no se encontraron dias festivos')
+    );
   }
 
   private buildCalendar(): void {
@@ -264,6 +291,10 @@ export class AccionesFestivoComponent {
   }
 
   private isoToDateKey(iso: string): string {
+    const dateOnly = iso?.substring(0, 10);
+    if (/^\d{4}-\d{2}-\d{2}$/.test(dateOnly)) {
+      return dateOnly;
+    }
     const d = new Date(iso);
     return this.dateToKey(d);
   }
@@ -273,9 +304,7 @@ export class AccionesFestivoComponent {
     const y = Number(yS);
     const m = Number(mS) - 1;
     const d = Number(dS);
-    const mm = String(m + 1).padStart(2, '0');
-    const dd = String(d).padStart(2, '0');
-    // Formato sin zona horaria para evitar 400 por parsing.
-    return `${y}-${mm}-${dd}T00:00:00`;
+    // UTC midnight para que el backend reciba una fecha estable.
+    return new Date(Date.UTC(y, m, d, 0, 0, 0, 0)).toISOString();
   }
 }

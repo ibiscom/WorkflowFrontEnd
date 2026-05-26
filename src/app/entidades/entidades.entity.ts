@@ -5,7 +5,7 @@ export interface EntidadesEntity {
     
       /** Nombre del grupo */
       userName: string;
-      idEntidad:0;
+      idEntidad: number;
       nombre: string;
       /** Descripción del grupo */
       descripcion: string;

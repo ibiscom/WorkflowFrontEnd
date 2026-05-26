@@ -35,49 +35,8 @@ export class FestivoComponent {
   ) {}
 
   ngOnInit(): void {
+    console.log ('Entre a festivo component base')
     this.festivoComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-    this.getAllCompanies();
-    this.searchFestivos();
-  }
-
-  public getAllCompanies() {
-    /*
-    this.companiasService
-      .getAllCompanies(this.loggedUser?.user_name ?? '')
-      .subscribe({
-        next: (response) => {
-          this.companias = response.respuesta;
-        },
-        error: (err) => {
-          this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-            Constants.ERR_OBTENIENDO_COMPANIAS,
-            err,
-          );
-        },
-      });
-      */
-  }
-
-  public searchFestivos(festivoName?: string, supervisor?: string): void {
-    /*
-    let festivoServerFilter: FestivoSearchFilterEntity = {
-      userName: this.loggedUser?.user_name ?? '',
-      festivoName: festivoName ?? '',
-      supervisor: supervisor ?? '',
-    };
-
-    this.festivoService.searchFestivos(festivoServerFilter).subscribe({
-      next: (response) => {
-        this.festivos = response.respuesta;
-      },
-      error: (err) => {
-        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-          Constants.ERR_BUSCAR_WORKFLOWS,
-          err,
-        );
-      },
-    });
-    */
-  }
+     }
 }

@@ -26,14 +26,16 @@ export class RolesComponent {
   public roles: RolesEntity[] = [];
   public groups: GroupEntity[] = [];
   public mensaje: string = '';
-
+  
+ 
   constructor(
     private rolesService: RolesService,
     private companiasService: CompaniasService,
     private rolesComponentInstanceService: RolesComponentInstanceService,
     private loginService: LoginService,
     public router: Router,
-  ) {}
+  ) { 
+     }
 
   ngOnInit(): void {
     this.rolesComponentInstanceService.setInstance(this);

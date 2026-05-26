@@ -177,18 +177,26 @@ export class FestivoService {
   }
 
   /**
-   * Convierte una fecha a ISO usando "UTC midnight".
-   * Nota: algunos backends validan mal `Z`/timezone, así que enviamos sin zona horaria (sin sufijo `Z`).
+   * Convierte una fecha a ISO usando "UTC midnight" (siempre `T00:00:00.000Z`).
+   * Esto evita que la zona horaria del navegador altere el valor.
    */
   private toIsoLocalMidday(date: Date): string {
-    const y = date.getFullYear();
-    const m = String(date.getMonth() + 1).padStart(2, '0');
-    const d = String(date.getDate()).padStart(2, '0');
-    return `${y}-${m}-${d}T00:00:00`;
+    return new Date(
+      Date.UTC(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate(),
+        0,
+        0,
+        0,
+        0,
+      ),
+    ).toISOString();
   }
 
   /**
-   * Obtiene los festivos consultando por una "fecha base" (backend usa el año).
+   * Obtiene los festivos del mes indicado por la fecha base (p. ej. 2026-05-01).
+   * Si el mes no tiene festivos, el backend puede responder HTTP 400.
    */
   public getHolidays(fechaBase: Date): Observable<FsResponseEntity<HolidayDTO[]>> {
     const iso = this.toIsoLocalMidday(fechaBase);

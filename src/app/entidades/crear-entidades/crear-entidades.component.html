@@ -1,5 +1,5 @@
 <div class="cont-nuevo-workflow">
-  <form #form="ngForm">
+ 
 
     <!-- TARJETA DATOS DE ENTIDADES -->
     <div class="card-nuevo-entidad-general">
@@ -89,9 +89,9 @@
 
           @for(responsable of responsablesRolList; track responsable) {
             <div class="check-row">
-
-              <div [ngClass]="{'checkbox': true, 'selected': responsable.selected}">
-                <div class="checkbox-box"></div>
+            <div [ngClass]="{'checkbox': true, 'selected': responsable.selected}">  
+                
+             <div class="checkbox-box"></div>
                 <div class="checkbox-check">
                   <input type="checkbox" [(ngModel)]="responsable.selected" />
                 </div>
@@ -127,19 +127,20 @@
           </div>
 
           @for(responsable of responsablesAsignadosList; track responsable) {
-  <div class="assigned-row" >  <!--*ngFor="let item of tiposDocumentoList"-->
-    <!-- Checkbox -->
-    <div [ngClass]="{'checkbox': true, 'selected': responsable.selected}">
-      <div class="checkbox-box"></div>
-      <div class="checkbox-check"><input type="checkbox" [(ngModel)]="responsable.selected" /></div>
-    </div>
+          <div class="assigned-row" >  <!--*ngFor="let item of tiposDocumentoList"-->
+            <!-- Checkbox -->
+            <div [ngClass]="{'checkbox': true, 'selected': responsable.selected}">
+              <div class="checkbox-box"></div>
+              <div class="checkbox-check"><input type="checkbox" [(ngModel)]="responsable.selected" /></div>
+            </div>
 
-       <!-- Título -->
-    <div class="assigned-title">
-      {{ responsable.name}}
-    </div>
-   </div>
-  }
+              <!-- Título -->
+            <div class="assigned-title">
+              {{ responsable.name}}
+            </div>
+          </div>
+          }
+        </div>
 
         <!-- BOTONES FINALES -->
         <div class="botones-nuevo-grupo">
@@ -172,5 +173,7 @@
       </div> <!-- card-content -->
 
     </div> <!-- card-nuevo-entidad-general -->
+ 
+</div>
 
   
