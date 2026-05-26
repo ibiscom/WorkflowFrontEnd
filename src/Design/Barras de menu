@@ -1,0 +1,73 @@
+<div style="width: 100%; height: 100%; padding: 88px; background: white; overflow: hidden; border-radius: 24px; outline: 3px var(--Primary-Docma, #6750A4) solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 88px; display: inline-flex">
+    <div style="align-self: stretch; padding-top: 40px; background: white; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
+        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+            <div style="align-self: stretch; color: #212529; font-size: 48px; font-family: Inter; font-weight: 700; line-height: 64px; word-wrap: break-word">Bars</div>
+        </div>
+        <div style="align-self: stretch; height: 1px; background: #CED4DA"></div>
+    </div>
+    <div style="width: 597px; height: 197px; position: relative; overflow: hidden; border-radius: 5px; border: 1px var(--Primary-Docma, #6750A4) solid">
+        <div style="width: 557px; height: 64px; padding-left: 16px; padding-right: 16px; padding-top: 4px; padding-bottom: 4px; left: 20px; top: 20px; position: absolute; background: var(--Primary-Docma, #6750A4); overflow: hidden; justify-content: flex-start; align-items: center; display: inline-flex">
+            <div data-color="normal" data-disabled="no" data-size="small" data-type="plain" style="width: 48px; height: 48px; padding-left: 16px; padding-right: 16px; border-radius: 40px; justify-content: center; align-items: center; display: flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">menu</div>
+            </div>
+            <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 20px; font-family: Roboto; font-weight: 400; line-height: 32px; letter-spacing: 0.25px; word-wrap: break-word">Page Title</div>
+            <div data-color="normal" data-disabled="no" data-size="small" data-type="plain" style="width: 48px; height: 48px; padding-left: 16px; padding-right: 16px; border-radius: 40px; justify-content: center; align-items: center; display: flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">favorite</div>
+            </div>
+            <div data-color="normal" data-disabled="no" data-size="small" data-type="plain" style="width: 48px; height: 48px; padding-left: 16px; padding-right: 16px; border-radius: 40px; justify-content: center; align-items: center; display: flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">search</div>
+            </div>
+            <div data-color="normal" data-disabled="no" data-size="small" data-type="plain" style="width: 48px; height: 48px; padding-left: 16px; padding-right: 16px; border-radius: 40px; justify-content: center; align-items: center; display: flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">more_vert</div>
+            </div>
+        </div>
+        <div style="width: 557px; height: 48px; padding-left: 16px; padding-right: 16px; padding-top: 4px; padding-bottom: 4px; left: 20px; top: 129px; position: absolute; background: var(--Primary-Docma, #6750A4); overflow: hidden; justify-content: flex-start; align-items: center; display: inline-flex">
+            <div data-color="normal" data-disabled="no" data-size="small" data-type="plain" style="width: 48px; height: 48px; padding-left: 16px; padding-right: 16px; border-radius: 40px; justify-content: center; align-items: center; display: flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">menu</div>
+            </div>
+            <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 20px; font-family: Roboto; font-weight: 400; line-height: 32px; letter-spacing: 0.25px; word-wrap: break-word">Page Title</div>
+            <div data-color="normal" data-disabled="no" data-size="small" data-type="plain" style="width: 48px; height: 48px; padding-left: 16px; padding-right: 16px; border-radius: 40px; justify-content: center; align-items: center; display: flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">favorite</div>
+            </div>
+            <div data-color="normal" data-disabled="no" data-size="small" data-type="plain" style="width: 48px; height: 48px; padding-left: 16px; padding-right: 16px; border-radius: 40px; justify-content: center; align-items: center; display: flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">search</div>
+            </div>
+            <div data-color="normal" data-disabled="no" data-size="small" data-type="plain" style="width: 48px; height: 48px; padding-left: 16px; padding-right: 16px; border-radius: 40px; justify-content: center; align-items: center; display: flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">more_vert</div>
+            </div>
+        </div>
+    </div>
+    <div style="background: white; overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: center; display: flex">
+        <div data-dense="no" style="width: 557px; height: 64px; padding-left: 16px; padding-right: 16px; padding-top: 4px; padding-bottom: 4px; background: var(--Primary-Docma, #6750A4); overflow: hidden; justify-content: flex-start; align-items: center; display: inline-flex">
+            <div data-color="normal" data-disabled="no" data-size="small" data-type="plain" style="width: 48px; height: 48px; padding-left: 16px; padding-right: 16px; border-radius: 40px; justify-content: center; align-items: center; display: flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">menu</div>
+            </div>
+            <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 20px; font-family: Roboto; font-weight: 400; line-height: 32px; letter-spacing: 0.25px; word-wrap: break-word">Page Title</div>
+            <div data-color="normal" data-disabled="no" data-size="small" data-type="plain" style="width: 48px; height: 48px; padding-left: 16px; padding-right: 16px; border-radius: 40px; justify-content: center; align-items: center; display: flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">favorite</div>
+            </div>
+            <div data-color="normal" data-disabled="no" data-size="small" data-type="plain" style="width: 48px; height: 48px; padding-left: 16px; padding-right: 16px; border-radius: 40px; justify-content: center; align-items: center; display: flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">search</div>
+            </div>
+            <div data-color="normal" data-disabled="no" data-size="small" data-type="plain" style="width: 48px; height: 48px; padding-left: 16px; padding-right: 16px; border-radius: 40px; justify-content: center; align-items: center; display: flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">more_vert</div>
+            </div>
+        </div>
+        <div style="width: 557px; height: 64px; padding-left: 16px; padding-right: 16px; padding-top: 4px; padding-bottom: 4px; background: var(--Primary-Docma, #6750A4)"></div>
+    </div>
+    <div style="width: 557px; height: 32px; padding-left: 8px; padding-right: 8px; background: var(--Primary-Docma, #6750A4); overflow: hidden; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+        <div data-color="plain" data-disabled="no" data-size="dense" style="width: 20px; height: 20px; position: relative">
+            <div style="left: 0px; top: 0px; position: absolute; text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 20px; font-family: Material Icons; font-weight: 400; line-height: 20px; word-wrap: break-word">chat_bubble</div>
+        </div>
+        <div style="flex: 1 1 0; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 14px; font-family: Roboto; font-weight: 400; line-height: 20px; letter-spacing: 0.25px; word-wrap: break-word">10 unread messages</div>
+        <div data-color="plain" data-disabled="no" data-size="dense" style="width: 20px; height: 20px; position: relative">
+            <div style="left: 0px; top: 0px; position: absolute; text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 20px; font-family: Material Icons; font-weight: 400; line-height: 20px; word-wrap: break-word">remove</div>
+        </div>
+        <div data-color="plain" data-disabled="no" data-size="dense" style="width: 20px; height: 20px; position: relative">
+            <div style="left: 0px; top: 0px; position: absolute; text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 20px; font-family: Material Icons; font-weight: 400; line-height: 20px; word-wrap: break-word">check_box_outline_blank</div>
+        </div>
+        <div data-color="plain" data-disabled="no" data-size="dense" style="width: 20px; height: 20px; position: relative">
+            <div style="left: 0px; top: 0px; position: absolute; text-align: center; justify-content: center; display: flex; flex-direction: column; color: white; font-size: 20px; font-family: Material Icons; font-weight: 400; line-height: 20px; word-wrap: break-word">close</div>
+        </div>
+    </div>
+</div>

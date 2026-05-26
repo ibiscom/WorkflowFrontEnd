@@ -1,0 +1,94 @@
+<div style="width: 100%; height: 100%; padding: 88px; background: white; overflow: hidden; border-radius: 24px; outline: 3px var(--Primary-Docma, #6750A4) solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 88px; display: inline-flex">
+    <div style="align-self: stretch; padding-top: 40px; background: white; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: flex">
+        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+            <div style="align-self: stretch; color: #212529; font-size: 48px; font-family: Inter; font-weight: 700; line-height: 64px; word-wrap: break-word">Labels, Switches, Checkboxes y Radio Button</div>
+        </div>
+        <div style="align-self: stretch; height: 1px; background: #CED4DA"></div>
+    </div>
+    <div style="justify-content: flex-start; align-items: flex-start; gap: 43px; display: inline-flex">
+        <div style="width: 162px; height: 64px; position: relative; overflow: hidden; border-radius: 5px; border: 1px var(--Primary-Docma, #6750A4) solid">
+            <div style="left: 20px; top: 20px; position: absolute; justify-content: flex-start; align-items: flex-start; gap: 10px; display: inline-flex">
+                <div style="justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.60); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Label</div>
+            </div>
+            <div style="left: 101px; top: 20px; position: absolute; justify-content: flex-start; align-items: flex-start; gap: 10px; display: inline-flex">
+                <div style="justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.38); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Label</div>
+            </div>
+        </div>
+        <div style="width: 169px; height: 528px; position: relative; overflow: hidden; border-radius: 5px; border: 1px var(--Primary-Docma, #6750A4) solid">
+            <div style="width: 32px; height: 32px; padding-left: 16px; padding-right: 16px; left: 20px; top: 169px; position: absolute; border-radius: 32px; justify-content: center; align-items: center; display: inline-flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.60); font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">radio_button_unchecked</div>
+            </div>
+            <div style="width: 32px; height: 32px; padding-left: 16px; padding-right: 16px; left: 106px; top: 169px; position: absolute; border-radius: 32px; justify-content: center; align-items: center; display: inline-flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.38); font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">radio_button_unchecked</div>
+            </div>
+            <div style="width: 32px; height: 32px; padding-left: 16px; padding-right: 16px; left: 20px; top: 230px; position: absolute; border-radius: 32px; justify-content: center; align-items: center; display: inline-flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: var(--Primary-Docma, #6750A4); font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">radio_button_checked</div>
+            </div>
+            <div style="width: 32px; height: 32px; padding-left: 16px; padding-right: 16px; left: 106px; top: 230px; position: absolute; border-radius: 32px; justify-content: center; align-items: center; display: inline-flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.38); font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">radio_button_checked</div>
+            </div>
+            <div style="width: 32px; height: 32px; padding-left: 16px; padding-right: 16px; left: 20px; top: 20px; position: absolute; border-radius: 32px; justify-content: center; align-items: center; display: inline-flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.60); font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">check_box_outline_blank</div>
+            </div>
+            <div style="width: 32px; height: 32px; padding-left: 16px; padding-right: 16px; left: 106px; top: 20px; position: absolute; border-radius: 32px; justify-content: center; align-items: center; display: inline-flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.38); font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">check_box_outline_blank</div>
+            </div>
+            <div style="width: 32px; height: 32px; padding-left: 16px; padding-right: 16px; left: 20px; top: 81px; position: absolute; border-radius: 32px; justify-content: center; align-items: center; display: inline-flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: var(--Primary-Docma, #6750A4); font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">check_box</div>
+            </div>
+            <div style="width: 32px; height: 32px; padding-left: 16px; padding-right: 16px; left: 106px; top: 81px; position: absolute; border-radius: 32px; justify-content: center; align-items: center; display: inline-flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.38); font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">check_box</div>
+            </div>
+            <div style="width: 43px; padding: 2px; left: 20px; top: 484px; position: absolute; background: rgba(25, 118, 210, 0.20); border-radius: 14px; justify-content: flex-end; align-items: center; display: inline-flex">
+                <div style="width: 20px; height: 20px; background: var(--Primary-Docma, #6750A4); border-radius: 9999px"></div>
+            </div>
+            <div style="width: 43px; padding: 2px; left: 106px; top: 484px; position: absolute; background: rgba(0, 0, 0, 0.12); border-radius: 14px; justify-content: flex-end; align-items: center; display: inline-flex">
+                <div style="width: 20px; height: 20px; background: #FAFAFA; border-radius: 9999px"></div>
+            </div>
+            <div style="width: 43px; padding: 2px; left: 20px; top: 431px; position: absolute; background: rgba(0, 0, 0, 0.38); border-radius: 14px; justify-content: flex-start; align-items: center; display: inline-flex">
+                <div style="width: 20px; height: 20px; background: white; border-radius: 9999px"></div>
+            </div>
+            <div style="width: 43px; padding: 2px; left: 106px; top: 431px; position: absolute; background: rgba(0, 0, 0, 0.12); border-radius: 14px; justify-content: flex-start; align-items: center; display: inline-flex">
+                <div style="width: 20px; height: 20px; background: #FAFAFA; border-radius: 9999px"></div>
+            </div>
+            <div style="width: 43px; height: 14px; left: 20px; top: 361px; position: absolute; background: rgba(25, 118, 210, 0.20); border-radius: 14px; justify-content: flex-end; align-items: center; display: inline-flex">
+                <div style="width: 20px; height: 20px; background: var(--Primary-Docma, #6750A4); box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.12), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 1px rgba(0, 0, 0, 0.20); border-radius: 9999px"></div>
+            </div>
+            <div style="width: 43px; height: 14px; left: 106px; top: 361px; position: absolute; background: rgba(0, 0, 0, 0.12); border-radius: 14px; justify-content: flex-end; align-items: center; display: inline-flex">
+                <div style="width: 20px; height: 20px; background: #FAFAFA; box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.12), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 1px rgba(0, 0, 0, 0.20); border-radius: 9999px"></div>
+            </div>
+            <div style="width: 43px; height: 14px; left: 20px; top: 318px; position: absolute; background: rgba(0, 0, 0, 0.38); border-radius: 14px; justify-content: flex-start; align-items: center; display: inline-flex">
+                <div style="width: 20px; height: 20px; background: white; box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.12), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 1px rgba(0, 0, 0, 0.20); border-radius: 9999px"></div>
+            </div>
+            <div style="width: 43px; height: 14px; left: 106px; top: 318px; position: absolute; background: rgba(0, 0, 0, 0.12); border-radius: 14px; justify-content: flex-start; align-items: center; display: inline-flex">
+                <div style="width: 20px; height: 20px; background: #FAFAFA; box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.12), 0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 1px rgba(0, 0, 0, 0.20); border-radius: 9999px"></div>
+            </div>
+        </div>
+        <div style="overflow: hidden; justify-content: flex-start; align-items: center; gap: 8px; display: flex">
+            <div data-disabled="no" data-selected="no" data-type="checkbox" style="width: 32px; height: 32px; padding-left: 16px; padding-right: 16px; border-radius: 32px; justify-content: center; align-items: center; display: flex">
+                <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.60); font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">check_box_outline_blank</div>
+            </div>
+            <div data-disabled="no" style="justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                <div style="justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.60); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Label</div>
+            </div>
+        </div>
+        <div style="padding-top: 20px; overflow: hidden; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 20px; display: inline-flex">
+            <div style="overflow: hidden; justify-content: flex-start; align-items: center; gap: 8px; display: inline-flex">
+                <div data-disabled="no" data-selected="no" data-type="checkbox" style="width: 32px; height: 32px; padding-left: 16px; padding-right: 16px; border-radius: 32px; justify-content: center; align-items: center; display: flex">
+                    <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.60); font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">check_box_outline_blank</div>
+                </div>
+                <div data-disabled="no" style="justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                    <div style="justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.60); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Label</div>
+                </div>
+            </div>
+            <div style="overflow: hidden; justify-content: flex-start; align-items: center; gap: 8px; display: inline-flex">
+                <div data-disabled="no" data-selected="yes" data-type="checkbox" style="width: 32px; height: 32px; padding-left: 16px; padding-right: 16px; border-radius: 32px; justify-content: center; align-items: center; display: flex">
+                    <div style="text-align: center; justify-content: center; display: flex; flex-direction: column; color: var(--Primary-Docma, #6750A4); font-size: 24px; font-family: Material Icons; font-weight: 400; line-height: 24px; word-wrap: break-word">check_box</div>
+                </div>
+                <div data-disabled="no" style="justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">
+                    <div style="justify-content: center; display: flex; flex-direction: column; color: rgba(0, 0, 0, 0.60); font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; letter-spacing: 0.50px; word-wrap: break-word">Label</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+DropdownMenu(expanded = true, onDismissRequest = { }) {
+        repeat(12) {
+                DropdownMenuItem(
+                        text = { Text("Igual a (=)") },
+                        onClick = {},
+                        enabled = true,
+                        modifier = Modifier.padding(8.dp)
+                )
+        }
+}
+
+DropdownMenuItem(
+        text = { Text("Igual a (=)") },
+        onClick = {},
+        enabled = true,
+        modifier = Modifier.padding(8.dp)
+)
+
+DropdownMenuItem(
+        text = { Text("Diferente de (!=)") },
+        onClick = {},
+        enabled = true,
+        modifier = Modifier.padding(8.dp)
+)
+
+DropdownMenuItem(
+        text = { Text("Menor que (<)") },
+        onClick = {},
+        enabled = true,
+        modifier = Modifier.padding(8.dp)
+)
+
+DropdownMenuItem(
+        text = { Text("Mayor que (>)") },
+        onClick = {},
+        enabled = true,
+        modifier = Modifier.padding(8.dp)
+)
+
+DropdownMenuItem(
+        text = { Text("Menor o igual que (<=)") },
+        onClick = {},
+        enabled = true,
+        modifier = Modifier.padding(8.dp)
+)
+
+DropdownMenuItem(
+        text = { Text("Mayor o igual que (>=)") },
+        onClick = {},
+        enabled = true,
+        modifier = Modifier.padding(8.dp)
+)
+
+DropdownMenuItem(
+        text = { Text("Contiene (LIKE)") },
+        onClick = {},
+        enabled = true,
+        modifier = Modifier.padding(8.dp)
+)
+
+DropdownMenuItem(
+        text = { Text("Está vacío (NULL)") },
+        onClick = {},
+        enabled = true,
+        modifier = Modifier.padding(8.dp)
+)
+
+DropdownMenuItem(
+        text = { Text("No está vacío (NOT NULL)") },
+        onClick = {},
+        enabled = true,
+        modifier = Modifier.padding(8.dp)
+)
