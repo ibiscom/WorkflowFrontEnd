@@ -1,4 +1,4 @@
-DropdownMenu(expanded = true, onDismissRequest = { }) {
+/**DropdownMenu(expanded = true, onDismissRequest = { }) {
         repeat(12) {
                 DropdownMenuItem(
                         text = { Text("Igual a (=)") },
@@ -7,7 +7,7 @@ DropdownMenu(expanded = true, onDismissRequest = { }) {
                         modifier = Modifier.padding(8.dp)
                 )
         }
-}
+}-->
 
 DropdownMenuItem(
         text = { Text("Igual a (=)") },
@@ -71,3 +71,5 @@ DropdownMenuItem(
         enabled = true,
         modifier = Modifier.padding(8.dp)
 )
+
+*/
