@@ -12,13 +12,12 @@
       <div class="card-content">
         <div class="tbl-nuevo-rol">
 
-
           <!-- NOMBRE -->
           <div class="campo-texto">
             <label for="nombreTarea">Nombre</label>
             <input
-              id="nombreTarea"
-              name="nombreTarea"
+              id="nombreRol"
+              name="nombreRol"
               type="text"
               placeholder="Inserte nombre del rol"
               [(ngModel)]="nombreRolN"
@@ -46,12 +45,12 @@
 
 
         <!-- PARTE DE SELECCIONAR RESPONSABLE, ROL-->
-      <div class="serie-container"> 
-         <div class="serie-container">
-          <div class="serie-content">
+      <div class="rol-container"> 
+         <div class="rol-container">
+          <div class="rol-content">
             <!-- Header -->
-            <div class="serie-header">
-              <span class="serie-title">Responsables</span>
+            <div class="rol-header">
+              <span class="rol-title">Responsables</span>
             </div>
 
 <div class="card">
@@ -61,7 +60,7 @@
   </div>
 
   <!-- Lista de roles -->
-  @for(responsable of responsablesAgregarList; track responsable) {
+  @for(responsable of responsablesList; track responsable) {
   <div
     class="check-row"
   >
@@ -71,10 +70,12 @@
       <div class="checkbox-check"><input type="checkbox" [(ngModel)]="responsable.selected" /></div>
     </div>
 
-    <span class="check-label">
-      {{ responsable.name }}
-    </span>
-
+ <!--   <span class="check-label">
+      {{ responsable }}
+    </span> -->
+<span class="check-label">
+  {{ responsable.name }}
+</span>
   </div>
   }
 </div>
@@ -101,17 +102,29 @@
 </div>
 
 
-        <div class="card">
+<div class="card">
   <!-- Header -->
   <div class="card-header">
     <div class="card-title">
       Responsables asignados al rol
     </div>
   </div>
+ <!-- Item -->
+  @for(responsable of responsablesAsignadosList; track responsable) {
+  <div class="assigned-row" >  <!--*ngFor="let item of tiposDocumentoList"-->
+    <!-- Checkbox -->
+    <div [ngClass]="{'checkbox': true, 'selected': responsable.selected}">
+      <div class="checkbox-box"></div>
+      <div class="checkbox-check"><input type="checkbox" [(ngModel)]="responsable.selected" /></div>
+    </div>
 
-  
+       <!-- Título -->
+    <div class="assigned-title">
+      {{ responsable.name}}
+    </div>
+   </div>
+  }
  
-</div>
 
     <!-- BOTONES FINALES -->
     <div class="botones-nuevo-grupo">
@@ -136,9 +149,8 @@
       <img src="assets/img/cancel.svg" alt="Cancelar" />
     </span>
     Cancelar</button>
-    </div>
-    </div>
-    </div>
-</div>
-<!--</form>-->
+   </div>
+  </div>
+  </div>
+
 

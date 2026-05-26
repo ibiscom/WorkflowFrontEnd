@@ -11,12 +11,10 @@ import { Router } from '@angular/router';
   selector: 'ibpm-acciones-roles',
   imports: [
     FormsModule,
-    MatButton,
     MatIconModule,
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
-    MatButtonModule,
   ],
   templateUrl: './acciones-roles.component.html',
   styleUrl: './acciones-roles.component.scss',

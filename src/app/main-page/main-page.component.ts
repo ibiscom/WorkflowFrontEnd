@@ -46,7 +46,7 @@ export class MainPageComponent {
     this.mensaje = '';
   }
 
-  title = '¡Bienvenido al Framework de Seguridad!';
+  title = '¡Bienvenido al SGDEA DOCMA!';
   userName = this.cookieService.get('userName');
 
   /**

@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccionesEntidadComponent } from './acciones-entidad.component';
+import { AccionesEntidadesComponent } from './acciones-entidades.component';
 
 describe('AccionesEntidadComponent', () => {
-  let component: AccionesEntidadComponent;
-  let fixture: ComponentFixture<AccionesEntidadComponent>;
+  let component: AccionesEntidadesComponent;
+  let fixture: ComponentFixture<AccionesEntidadesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AccionesEntidadComponent],
+      imports: [AccionesEntidadesComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AccionesEntidadComponent);
+    fixture = TestBed.createComponent(AccionesEntidadesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

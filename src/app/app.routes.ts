@@ -22,8 +22,8 @@ import { CompaniasComponent } from './companias/companias.component';
 import { ListadoCompaniasComponent } from './companias/listado-companias/listado-companias.component';
 import { CrearCompaniaComponent } from './companias/crear-compania/crear-compania.component';
 import { CrearGrupoComponent } from './grupos/crear-grupo/crear-grupo.component';
-import { GruposComponent } from './grupos/grupos.component';
-import { ListadoGruposComponent } from './grupos/listado-grupos/listado-grupos.component';
+import { GrupoComponent } from './grupos/grupo.component';
+import { ListadoGrupoComponent } from './grupos/listado-grupo/listado-grupo.component';
 import { CrearPerfilComponent } from './perfiles/crear-perfil/crear-perfil.component';
 import { ListadoPerfilesComponent } from './perfiles/listado-perfiles/listado-perfiles.component';
 import { PerfilesComponent } from './perfiles/perfiles.component';
@@ -66,6 +66,11 @@ import { ListadoRolesComponent } from './roles/listado-roles/listado-roles.compo
 import { CrearRolesComponent } from './roles/crear-roles/crear-roles.component';
 import { ResponsableComponent } from './reponsable/responsable.component';
 import { ListadoResponsableComponent } from './reponsable/listado-responsable/listado-responsable.component';
+import { EntidadesComponent } from './entidades/entidades.component';
+import { CrearEntidadesComponent } from './entidades/crear-entidades/crear-entidades.component';
+import { ListadoEntidadesComponent } from './entidades/listado-entidades/listado-entidades.component';
+
+
 
 export const CanActivateGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -197,7 +202,7 @@ export const routes: Routes = [
       },
       {
         path: 'administrarGrupos',
-        component: GruposComponent,
+        component: GrupoComponent,
         canActivate: [CanActivateGuard],
         children: [
           {
@@ -207,7 +212,7 @@ export const routes: Routes = [
           },
           {
             path: 'listadoGrupos',
-            component: ListadoGruposComponent,
+            component: ListadoGrupoComponent,
             canActivate: [CanActivateGuard],
           },
           {
@@ -528,6 +533,34 @@ export const routes: Routes = [
         ],
       },
 
+{
+        path: 'entidades',
+        component: EntidadesComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoEntidades',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoEntidades',
+            component: ListadoEntidadesComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'crearEntidades',
+            component: CrearEntidadesComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'editarEntidad/:nombre',
+            component: CrearEntidadesComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+      
       {
         path: 'objetosWorkflow',
         component: ObjetowComponent,

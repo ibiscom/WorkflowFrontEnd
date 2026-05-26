@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseComponentInstanceService } from '../utils/base-component-instance.service';
-import { EntidadComponent } from './entidad.component';
+import { EntidadesComponent } from './entidades.component';
 
 @Injectable({
   providedIn: 'root',
@@ -8,4 +8,4 @@ import { EntidadComponent } from './entidad.component';
 /**
  * Servicio que expone la instancia del componente padre de Workflows.
  */
-export class EntidadComponentInstanceService extends BaseComponentInstanceService<EntidadComponent> {}
+export class EntidadesComponentInstanceService extends BaseComponentInstanceService<EntidadesComponent> {}

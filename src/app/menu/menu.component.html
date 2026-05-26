@@ -870,7 +870,20 @@
             </div>
           </div>
         </div>
-        
+
+        <!-- Entidad -->
+        <div
+          class="section-white"
+          *ngIf="opcionesPermitidas.includes('Entidades')"
+          (click)="$event.stopPropagation(); irA('/main-page/entidades')"
+        >
+          <div class="row">
+            <div class="row-text">
+              <div class="text">Entidades</div>
+            </div>
+          </div>
+        </div>
+
         <!-- Simulación -->
         <div
           class="section-white"
@@ -1471,15 +1484,15 @@
 
       <!-- SUBMENÚ LOGS -->
       <div class="submenu" *ngIf="isOpenEstructura">
-        <!-- Entidades -->
+        <!-- Entidades1 -->
         <div
           class="section-white"
-          *ngIf="opcionesPermitidas.includes('Entidades')"
-          (click)="$event.stopPropagation(); irA('/main-page/entidades')"
+          *ngIf="opcionesPermitidas.includes('Entidades1')"
+          (click)="$event.stopPropagation(); irA('/main-page/entidades1')"
         >
           <div class="row">
             <div class="row-text">
-              <div class="text">Entidades</div>
+              <div class="text">Entidades1</div>
             </div>
           </div>
         </div>

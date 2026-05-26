@@ -85,7 +85,7 @@ export class CrearRolesComponent {
     const id = this.route.snapshot.paramMap.get('id');
     console.log('Edit Mode On. Group Id:', id);
     await this.getResponsablesList();
-    
+    console.log('ID:', id);
     if (id) {
       this.rolesIdEdit = id;
       await this.fillEditFields();
@@ -101,7 +101,7 @@ export class CrearRolesComponent {
    * Llena los campos del formulario con la información de la rol en edición.
    */
   public async fillEditFields(): Promise<void> {
-   
+   console.log('Entre FillEdithFields con rolesIdEdit:', this.rolesIdEdit);
     try {
       const response = await firstValueFrom(
         this.rolesService.getRol(
@@ -113,7 +113,8 @@ export class CrearRolesComponent {
         this.nombreRolN = rol.nombre ?? '';
         this.descripcionN = rol.descripcion ?? '';
         await this.getResponsablesRolList();
-       /**  await this.diligenciarResponsablesAsignados();
+       
+        /**  await this.diligenciarResponsablesAsignados();
         await this.diligenciarResponsables(); */
       }
     } catch (e) {
@@ -131,7 +132,7 @@ export class CrearRolesComponent {
    */
   public async getResponsablesList() {
     this.responsablesList = [];
-    console.log('Edit entre a getresponsablesList:', this.rolesIdEdit);
+    console.log('Entre a getresponsablesList:', this.rolesIdEdit);
     try {
       const response = await firstValueFrom(
       this.rolesService.getGroups(
@@ -223,17 +224,19 @@ export class CrearRolesComponent {
     }
   }
 
-  /**
-   * Crea un nuevo grupo con los datos del formulario.
+  /** 
+   * Crea un nuevo rolcon los datos del formulario.
    */
   public create() {
+    console.log("estoy en create", this.rolesIdEdit);
     this.rolesService
       .createRole({
         nombre: this.nombreRolN,
         descripcion: this.descripcionN,
         user: this.userN,
-      
+        responsables: this.responsablesAsignadosList.map(r => r.name)
        /* falta responsables*/
+       
       } as RolesEntity)
       .subscribe({
         next: (response) => {
@@ -241,6 +244,7 @@ export class CrearRolesComponent {
             if (this.uc) {
               this.uc.mensaje = 'Se ha creado el rol exitosamente';
             }
+            console.log("creado", this.rolesIdEdit);
             this.rolesIdEdit = this.nombreRolN;
             this.router.navigate([
               `/main-page/roles/editarRol?id=${this.nombreRolN}`,
@@ -326,7 +330,8 @@ export class CrearRolesComponent {
 
 
     public diligenciarResponsables() {
-    this.responsablesAgregarList = [];
+      console.log('Entre a diligenciar responsables:');
+     this.responsablesAgregarList = [];
     if(this.responsablesAgregarList.length > 0 ) {
         this.responsablesAgregarList.forEach(responsable => {
         this.responsablesAgregarList.push(responsable);
@@ -335,27 +340,6 @@ export class CrearRolesComponent {
    } 
   }
 
- 
-
-/*
-  public diligenciarResponsablesAsignados() {
-  this.responsablesAsignadosList = [];
-  if (this.editMode()) {
-    console.log('Edit diligenciarrespasignados. edit:');
-    /* this.responsablesRolE.forEach(responsableRol => {*/
-     /* this.responsablesRolE.forEach(responsable => {
-        const responsableAsignado: ResponsableRolEntity = {
-          name: responsable,
-          selected: false
-        };
-        this.responsablesAsignadosList.push(responsableAsignado);
-        console.log('Edit diligenciarrespasignados.responsablesasignados:',this.responsablesAsignadosList);
-      });
-
- );
-
-  }
-  } */
 
   public diligenciarResponsablesAsignados() {
   if (this.editMode()) {
@@ -371,15 +355,7 @@ export class CrearRolesComponent {
     );
   }
 }
-/*
-  public retirar() {
- 
-    this.responsablesList.push(...this.responsablesAsignadosList.some(responsable => responsable.selected) ? this.responsablesAsignadosList.filter(responsable => responsable.selected) : []);
-    this.responsablesAsignadosList = this.responsablesAsignadosList.filter(responsable => !responsable.selected);
-    this.responsablesList.forEach(responsable => {responsable.selected= false; });
- 
-    } 
-*/
+
   public retirar() {
   const nuevosAsignados: ResponsableEntity[] = [];
   this.responsablesAsignadosList = this.responsablesAsignadosList.filter(responsable => {
