@@ -21,6 +21,10 @@ import { MatInputModule } from '@angular/material/input';
 import { CompaniasService } from '../../companias/companias.service';
 import { UsuariosService } from '../../usuarios/usuarios.service';
 import { UserSearchFilterEntity } from '../../entities/users/user-search-filter.entity';
+import { DocumentModelEntity } from '../../tareas/document-model.entity';
+import { TipoDocumentoTareaEntity } from '../../tareas/tipo-documento-tarea.entity';
+import { SerieTareaEntity } from '../../tareas/serie-tarea.entity';
+import { HerramientaTareaEntity } from '../../tareas/herramienta-tarea.entity';
 
 @Component({
   selector: 'ibpm-crear-eventoinicio',
@@ -44,7 +48,9 @@ export class CrearEventoinicioComponent {
   public uc?: EventoinicioComponent;
   public loggedUser?: LoginEntity;
   public nameN: string = '';
+  public longNameN: string = '';
   public descriptionN: string = '';
+  public herramientasN: string = '';
   public eventoinicioN: string = '';
   public eventoinicioObjectN?: EventosdeinicioEntity;
   public supervisorN: string = '';
@@ -55,6 +61,14 @@ export class CrearEventoinicioComponent {
   public supervisorsList: UserEntity[] = [];
   public eventoinicioIdEdit?: string;
   public supervisorObjectN?: UserEntity;
+  public serieN?: SerieTareaEntity;
+  public idSerieN: string = '';
+  public seriesList: SerieTareaEntity[] = [];
+  public tiposDocumentoList: TipoDocumentoTareaEntity[] = [];
+  public tiposDocumentoAsignadosTareaList: TipoDocumentoTareaEntity[] = [];
+  public tiposDocumentoAgregarList: TipoDocumentoTareaEntity[] = [];
+  public modelosDocumentoTareaE: DocumentModelEntity[] = [];
+  public herramientasList: HerramientaTareaEntity[] = [];
 
   public constructor(
     private eventoinicioService: EventoinicioService,
