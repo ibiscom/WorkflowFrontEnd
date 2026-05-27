@@ -6,13 +6,30 @@
 <div class="tabla-card">
   <!-- HEADER -->
   <div class="tabla-header-container">
-    <div class="tabla-titulo">Listado de procesos</div>
+    <div class="tabla-titulo">Listado de tareas</div>
   </div>
 
   <!-- BODY -->
   <div class="tabla-body">
 
-    <!-- COLUMNA: NOMBRE -->
+    <!-- COLUMNA: NUMERO -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Número</div>
+      </div>
+
+      @for (element of parent.eventosdeinicio; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarEventoinicio(element)">
+              {{ element.numero}}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA:  NOMBRE -->
     <div class="tabla-columna">
       <div class="tabla-col-header">
         <div>Nombre</div>
@@ -29,7 +46,7 @@
       }
     </div>
 
-    <!-- COLUMNA:  NOMBRE LARGO -->
+    <!-- COLUMNA: NOMBRE LARGO -->
     <div class="tabla-columna">
       <div class="tabla-col-header">
         <div>Nombre Largo</div>
@@ -39,24 +56,7 @@
         <ng-container>
           <div class="tabla-celda">
             <div (click)="goToEditarEventoinicio(element)">
-              {{ element.descripcion }}
-            </div>
-          </div>
-        </ng-container>
-      }
-    </div>
-
-    <!-- COLUMNA: FECHA CREACIÓN -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header">
-        <div>Fecha creación</div>
-      </div>
-
-      @for (element of parent.eventosdeinicio; track element) {
-        <ng-container>
-          <div class="tabla-celda">
-            <div (click)="goToEditarEventoinicio(element)">
-              {{ element.supervisor }}
+              {{ element.nombreLargo }}
             </div>
           </div>
         </ng-container>
@@ -73,24 +73,24 @@
         <ng-container>
           <div class="tabla-celda">
             <div>
-              {{ getCompanyName(element.compania) }}
+              {{ element.descripcion }}
             </div>
           </div>
         </ng-container>
       }
     </div>
 
-    <!-- COLUMNA: ESTADO -->
+    <!-- COLUMNA: TIPO -->
     <div class="tabla-columna">
       <div class="tabla-col-header">
-        <div>Estado</div>
+        <div>Tipo</div>
       </div>
 
       @for (element of parent.eventosdeinicio; track element) {
         <ng-container>
           <div class="tabla-celda">
             <div>
-              {{ getCompanyName(element.compania) }}
+              {{ element.tipo }}
             </div>
           </div>
         </ng-container>
@@ -114,3 +114,4 @@
     </div>
   </div>
 </div>
+

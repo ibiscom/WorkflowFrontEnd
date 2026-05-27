@@ -45,7 +45,7 @@
           </div>
 
 
-          <!-- MODELO DE LA CARPETA -->
+          <!-- MODELO DE LA CARPETA
           <div class="campo-texto">
             <label for="modeloCarpeta">Modelo de la carpeta</label>
             <input
@@ -55,7 +55,7 @@
               placeholder="Inserte modelo de la carpeta"
               [(ngModel)]="modeloCarpetaN"
               required
-              #modeloCarpeta="ngModel"
+              #modeloCarpeta="ngModel"-->
             />
           </div>
 
@@ -73,7 +73,7 @@
             />
           </div>
 
-          <!-- HERRAMIENTA -->
+          <!-- HERRAMIENTA
 
           <div class="campo-lista">
             <label for="herramienta">Herramienta</label>
@@ -93,9 +93,9 @@
                 </option>
               }
             </select>
-          </div>
+          </div>-->
 
-          <!-- ASIGNAR RESPONSABLE -->
+          <!-- ASIGNAR RESPONSABLE
           <div class="campo-lista">
             <label for="Asignar Responsable">¿Asignar primera tarea a responsable que inicia el proceso?</label>
             <select
@@ -114,22 +114,7 @@
                 </option>
               }
             </select>
-          </div>
-
-         <!-- MODELO DE LA CARPETA -->
-
-          <div class="campo-texto">
-            <label for="modeloCarpeta">Modelo de la carpeta</label>
-            <input
-              id="modeloCarpeta"
-              name="modeloCarpeta"
-              type="text"
-              placeholder="Inserte modelo de la carpeta"
-              [(ngModel)]="modeloCarpetaN"
-              required
-              #modeloCarpeta="ngModel"
-            />
-          </div>
+          </div>  -->
 
 
           <!-- Editar documentos del proceso
@@ -151,7 +136,7 @@
               <span class="serie-title">Serie</span>
             </div>
 
-            <!-- Selector -->
+            <!-- Selector
             <div class="serie-body">
               <div class="campo-lista">
                 <label for="serie">Serie</label>
@@ -170,7 +155,7 @@
                       {{ serie.name }}
                     </option>
                   }
-                </select>
+                </select>-->
           </div>
         </div>
 
@@ -181,7 +166,7 @@
     <span class="card-title">Tipos documento de la serie</span>
   </div>
 
-  <!-- Lista de tipos -->
+  <!-- Lista de tipos
   @for(tipo of tiposDocumentoAgregarList; track tipo) {
   <div
     class="check-row"
@@ -198,12 +183,12 @@
 
   </div>
   }
-</div>
+</div>-->
       
 
 
   <div class="actions">
-  <!-- Botón Asignar -->
+  <!-- Botón Asignar
   <button
     class="btn btn-primary"
     type="button"
@@ -212,8 +197,8 @@
     <span class="btn-icon assign-icon"></span>
     <span>Asignar</span>
   </button> 
-
-  <!-- Botón Retirar -->
+-->
+  <!-- Botón Retirar 
   <button
     class="btn btn-outline"
     type="button"
@@ -222,6 +207,7 @@
     <span class="btn-icon remove-icon"></span>
     <span>Retirar</span>
   </button>
+  -->
 </div>
 
 
@@ -246,7 +232,7 @@
       {{ tipo.name }}
     </div>
 
-    <!-- Acciones -->
+    <!-- Acciones
     <div class="assigned-actions">
       <span class="required">Requerido</span>
 
@@ -255,7 +241,7 @@
         [ngClass]="tipo.obligatorio ? 'on' : 'off'"
         (click)="toggleObligatorio(tipo)"
       > </div>
-    </div>
+    </div>-->
   </div>
  }
 </div>
