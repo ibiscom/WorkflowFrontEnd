@@ -1,39 +1,48 @@
 import { Component } from '@angular/core';
-import { EventoinicioComponent } from '../eventoinicio.component';
-import { FiltrosBusquedaEventoinicioComponent } from '../filtros-busqueda-eventoinicio/filtros-busqueda-eventoinicio.component';
+import { TareasComponent } from '../tareas.component';
+import { FiltrosBusquedaTareasComponent } from '../filtros-busqueda-tareas/filtros-busqueda-tareas.component';
 import { MatTableModule } from '@angular/material/table';
-import { EventoinicioEntity } from '../eventoinicio.entity';
+import { TareaEntity } from '../tarea.entity';
 
 @Component({
-  selector: 'ibpm-listado-eventoinicio',
-  imports: [MatTableModule, FiltrosBusquedaEventoinicioComponent],
-  templateUrl: './listado-eventoinicio.component.html',
-  styleUrl: './listado-eventoinicio.component.scss',
+  selector: 'ibpm-listado-tareas',
+  imports: [MatTableModule, FiltrosBusquedaTareasComponent],
+  templateUrl: './listado-tareas.component.html',
+  styleUrl: './listado-tareas.component.scss',
 })
 /**
- * Listado de grupos con navegación a la edición y utilidades de presentación.
+ * Listado de tareas con navegación a la edición y utilidades de presentación.
  */
-export class ListadoEventoinicioComponent {
+export class ListadoTareasComponent {
   // 🔹 Variables de paginación
   public currentPage: number = 1;
   public numberOfPages: number = 1;
 
   public displayedColumns: string[] = [
+    'Numero',
     'Nombre',
+    'Nombre Largo',
     'Descripción',
-    'Supervisor',
-    'Compania',
+    'Tipo',
   ];
 
-  constructor(public parent: EventoinicioComponent) {}
+  constructor(public parent: TareasComponent) {}
 
   /**
-   * Navega a la pantalla de edición del grupo seleccionado.
+   * Navega a la pantalla de edición de la tarea seleccionada.
    */
-  public goToEditarEventoinicio(eventoinicio: EventoinicioEntity) {
+  public goToEditarTareas(tareas: TareaEntity) {
     this.parent.router.navigate([
-      `/main-page/administrarEventoinicio/editarEventoinicio/${eventoinicio.nombre}`,
+      `/main-page/tareas/editarTarea/${tareas.nombre}`,
     ]);
+  }
+
+   /**
+   * Obtiene el nombre legible de la herramienta a partir del identificador.
+   */
+  public getTareasName(tareasName: any) {
+    const tareas = this.parent.tareas.find((c) => c.nombre === tareasName);
+    return tareas ? tareas.nombre : '';
   }
 
   /**
@@ -48,7 +57,7 @@ export class ListadoEventoinicioComponent {
   public previousPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
-      this.parent.searchEventosdeinicio(); // ajusta si tu método se llama diferente
+      this.parent.searchTareas(); // ajusta si tu método se llama diferente
     }
   }
 
@@ -56,7 +65,8 @@ export class ListadoEventoinicioComponent {
   public nextPage(): void {
     if (this.currentPage < this.numberOfPages) {
       this.currentPage++;
-      this.parent.searchEventosdeinicio(); // ajusta si tu método se llama diferente
+      this.parent.searchTareas(); // ajusta si tu método se llama diferente
     }
   }
 }
+

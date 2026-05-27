@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { FiltrosBusquedaEventoinicioComponent } from './filtros-busqueda-eventoinicio/filtros-busqueda-eventoinicio.component';
-import { ListadoEventoinicioComponent } from './listado-eventoinicio/listado-eventoinicio.component';
-import { EventoinicioComponent } from './eventoinicio.component';
-import { EventoinicioComponentInstanceService } from './eventoinicio-component-instance.service';
-import { EventoinicioService } from './eventoinicio.service';
-import { CrearEventoinicioComponent } from './crear-eventoinicio/crear-eventoinicio.component';
+import { ListadoTareasComponent } from './listado-tareas/listado-tareas.component';
+import { TareasComponent } from './tareas.component';
+import { TareasComponentInstanceService } from './tareas-component-instance.service';
+import { TareasService } from './tareas.service';
+import { CrearTareasComponent } from './crear-tareas/crear-tareas.component';
+import { FiltrosBusquedaTareasComponent } from './filtros-busqueda-tareas/filtros-busqueda-tareas.component';
 
 @NgModule({
   declarations: [],
@@ -15,17 +15,18 @@ import { CrearEventoinicioComponent } from './crear-eventoinicio/crear-eventoini
     CommonModule,
     FormsModule,
     RouterModule,
-    CrearEventoinicioComponent,
-    FiltrosBusquedaEventoinicioComponent,
-    ListadoEventoinicioComponent,
-    EventoinicioComponent,
+    CrearTareasComponent,
+    FiltrosBusquedaTareasComponent,
+    ListadoTareasComponent,
+    TareasComponent,
   ],
-  providers: [EventoinicioComponentInstanceService, EventoinicioService],
+  providers: [TareasComponentInstanceService, TareasService],
   exports: [
-    CrearEventoinicioComponent,
-    FiltrosBusquedaEventoinicioComponent,
-    ListadoEventoinicioComponent,
-    EventoinicioComponent,
+    CrearTareasComponent,
+    FiltrosBusquedaTareasComponent,
+    ListadoTareasComponent,
+    TareasComponent,
   ],
 })
-export class EventoinicioModule {}
+export class TareasModule {}
+

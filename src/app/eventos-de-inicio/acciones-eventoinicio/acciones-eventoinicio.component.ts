@@ -8,30 +8,30 @@ import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'ibpm-acciones-eventoinicio',
+  selector: 'ibpm-acciones-tareas',
   imports: [
     FormsModule,
-    MatButton,
     MatIconModule,
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
   ],
-  templateUrl: './acciones-eventoinicio.component.html',
-  styleUrl: './acciones-eventoinicio.component.scss',
+  templateUrl: './acciones-tareas.component.html',
+  styleUrl: './acciones-tareas.component.scss',
 })
 /**
  * Componente de acciones para la administración de grupos.
  * Permite navegar a la pantalla de creación de grupos.
  */
-export class AccionesEventoinicioComponent {
+export class AccionesTareasComponent {
   constructor(public router: Router) {}
 
   /**
    * Navega a la pantalla de creación de grupo.
    */
-  public irACrearEventodeinicio() {
-    this.router.navigate([`/main-page/eventoinicio/crearEventodeinicio`]);
+  public irACrearTareas() {
+    this.router.navigate([`/main-page/tareas/crearTarea`]);
   }
 }
+

@@ -1,17 +1,17 @@
 import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { EventoinicioComponent } from '../eventoinicio.component';
-import { EventoinicioService } from '../eventoinicio.service';
+import { TareasComponent } from '../tareas.component';
+import { TareasService } from '../tareas.service';
 import { LoginEntity } from '../../login/login.entity';
 
 @Component({
-  selector: 'ibpm-filtros-busqueda-eventoinicio',
+  selector: 'ibpm-filtros-busqueda-tareas',
   imports: [FormsModule],
-  templateUrl: './filtros-busqueda-eventoinicio.component.html',
-  styleUrl: './filtros-busqueda-eventoinicio.component.scss',
+  templateUrl: './filtros-busqueda-tareas.component.html',
+  styleUrl: './filtros-busqueda-tareas.component.scss',
 })
-export class FiltrosBusquedaEventoinicioComponent {
-  public eventoinicioNameF: string = '';
+export class FiltrosBusquedaTareasComponent {
+  public tareasNameF: string = '';
   public supervisorF: string = '';
 
   // 🔹 Estado seleccionado
@@ -23,10 +23,10 @@ export class FiltrosBusquedaEventoinicioComponent {
   // Manejo del switch
   public generateReportF: string = 'false';
 
-  @Input() public uc?: EventoinicioComponent;
+  @Input() public uc?: TareasComponent;
   public loggedUser: LoginEntity | undefined;
 
-  constructor(private eventoinicioService: EventoinicioService) {}
+  constructor(private tareasService: TareasService) {}
 
   ngOnInit(): void {
     this.loggedUser = this.uc?.loggedUser;
@@ -54,21 +54,21 @@ export class FiltrosBusquedaEventoinicioComponent {
   public search(): void {
     const generateReportBool = this.generateReportF === 'true';
 
-    this.searchEventoinicio(
-      this.eventoinicioNameF,
+    this.searchTareas(
+      this.tareasNameF,
       this.supervisorF,
       generateReportBool
     );
   }
 
-  public searchEventoinicio(
-    eventoinicioName: string,
+  public searchTareas(
+    tareasName: string,
     supervisor: string,
     generateReport: boolean
   ): void {
     console.log(
       'Filtros recibidos:',
-      eventoinicioName,
+      tareasName,
       supervisor,
       generateReport,
       this.companyObjectN
@@ -77,3 +77,4 @@ export class FiltrosBusquedaEventoinicioComponent {
     // Tu lógica actual aquí
   }
 }
+

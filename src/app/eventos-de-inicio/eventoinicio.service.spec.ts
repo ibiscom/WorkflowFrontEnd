@@ -1,16 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EventoinicioService } from './eventoinicio.service';
+import { TareasService } from './tareas.service';
 
-describe('EventoinicioService', () => {
-  let service: EventoinicioService;
+describe('TareasService', () => {
+  let service: TareasService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(EventoinicioService);
+    service = TestBed.inject(TareasService);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 });
+

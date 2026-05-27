@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EventoinicioComponent } from './eventoinicio.component';
+import { TareasComponent } from './tareas.component';
 
-describe('EventoinicioComponent', () => {
-  let component: EventoinicioComponent;
-  let fixture: ComponentFixture<EventoinicioComponent>;
+describe('TareasComponent', () => {
+  let component: TareasComponent;
+  let fixture: ComponentFixture<TareasComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EventoinicioComponent],
+      imports: [TareasComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(EventoinicioComponent);
+    fixture = TestBed.createComponent(TareasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -20,3 +20,4 @@ describe('EventoinicioComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
