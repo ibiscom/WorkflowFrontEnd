@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { LoginEntity } from '../../login/login.entity';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -46,7 +47,8 @@ import { FsResponseEntity } from '../../entities/backend/fs-response.entity';
  * Componente para la creación y edición de grupos.
  * Permite seleccionar compañía, supervisor y administrar permisos/restricciones.
  */
-export class CrearEntidadesComponent {
+export class CrearEntidadesComponent implements OnInit, OnDestroy {
+  private routeSub?: Subscription;
   public loggedUser?: LoginEntity;
   public workflowActual: string = '';
   public userNameN: string = '';
@@ -88,22 +90,85 @@ responsable: any;
    * Inicializa el formulario, carga listas y detecta modo de edición.
    */
   public async ngOnInit(): Promise<void> {
-    console.log('entre a crear /editar', this.loggedUser);
     this.userNameN = this.loggedUser?.user_name ?? '';
     if (this.uc) {
       this.uc.mensaje = '';
     }
-    this.workflowActual = this.cookieService.get("workflowActual");
-    const id = this.route.snapshot.paramMap.get('id');
-    
-    console.log('Edit Mode On. Group Id:', id);
+    this.workflowActual = this.cookieService.get('workflowActual');
     await this.getRolesList();
-       console.log('Id seleccionado en roleslist:', id); 
-     if (id) {
+    this.routeSub = this.route.paramMap.subscribe(async (params) => {
+      await this.initFromRoute(params.get('id'));
+    });
+  }
+
+  public ngOnDestroy(): void {
+    this.routeSub?.unsubscribe();
+  }
+
+  private async initFromRoute(id: string | null): Promise<void> {
+    this.resetFormState();
+    if (id) {
       this.nombreIdEdit = id;
       await this.fillEditFields();
     } else {
       this.nombreIdEdit = undefined;
+    }
+  }
+
+  private resetFormState(): void {
+    this.nombreIdEdit = undefined;
+    this.entidadesIdEdit = undefined;
+    this.idEntidadN = 0;
+    this.nombreEntidadN = '';
+    this.descripcionN = '';
+    this.nombreRolN = '';
+    this.rolN = undefined;
+    this.rolesIdEdit = undefined;
+    this.responsablesN = [];
+    this.responsablesRolList = [];
+    this.responsablesAsignadosList = [];
+    this.responsablesAgregarList = [];
+  }
+
+  private buildEntidadPayload(): EntidadesEntity {
+    return {
+      userName: this.userNameN,
+      idEntidad: this.idEntidadN,
+      nombre: this.nombreEntidadN,
+      descripcion: this.descripcionN,
+      nombreRol: this.nombreRolN,
+      listaGrupos: this.responsablesAsignadosList.map((r) => r.name),
+    };
+  }
+
+  private syncResponsablesN(): void {
+    this.responsablesN = this.responsablesAsignadosList.map((r) => r.name);
+  }
+
+  private async resolveIdEntidadAfterCreate(
+    createResponse: FsResponseEntity<unknown>,
+  ): Promise<void> {
+    const resp = createResponse.respuesta;
+    if (resp && typeof resp === 'object' && 'idEntidad' in resp) {
+      const id = (resp as EntidadesEntity).idEntidad;
+      if (id) {
+        this.idEntidadN = id;
+        this.entidadesIdEdit = id;
+        return;
+      }
+    }
+    if (typeof resp === 'number' && resp > 0) {
+      this.idEntidadN = resp;
+      this.entidadesIdEdit = resp;
+      return;
+    }
+    const getResponse = await firstValueFrom(
+      this.entidadesService.getEntidad(0, this.nombreEntidadN),
+    );
+    if (getResponse?.respuesta) {
+      const entidad = getResponse.respuesta as EntidadesEntity;
+      this.idEntidadN = entidad.idEntidad ?? 0;
+      this.entidadesIdEdit = entidad.idEntidad ?? 0;
     }
   }
       
@@ -125,9 +190,13 @@ responsable: any;
         const entidad = response.respuesta as EntidadesEntity;
         this.nombreEntidadN = entidad.nombre ?? '';
         this.descripcionN = entidad.descripcion ?? '';
+        this.entidadesIdEdit = entidad.idEntidad ?? 0;
+        this.idEntidadN = entidad.idEntidad ?? 0;
+        console.log("FilledEditFields nombreIdEdit**", this.nombreIdEdit,this.responsablesN);
         this.responsablesN = entidad.listaGrupos;
-        console.log("nombreIdEdit**", this.responsablesN,this.nombreIdEdit);
-       /* await this.getResponsablesEntidadList(); */
+        this.rolesIdEdit = entidad.nombreRol ?? '';
+        this.nombreRolN = entidad.nombreRol ?? '';
+        await this.getResponsablesList(); 
         await this.diligenciarResponsablesAsignadosEntidad();
         await this.diligenciarResponsablesAsignar();
       
@@ -149,7 +218,7 @@ responsable: any;
     try {const response:FsResponseEntity<string[]> = await firstValueFrom(
     this.entidadesService.getRoles()
     );
-    console.log('getRolesListRoles obtenidos:', response);
+    console.log('getRolesList Roles obtenidos:', response.respuesta);
     if (response && response.respuesta) {
       this.rolesList = response.respuesta.map((rol: string) => ({
         name: rol
@@ -169,16 +238,20 @@ responsable: any;
       }
     }
   
-public async onrolChange($event: any) {
-  console.log('estoy en onrolchange:'); 
-    let rolSeleccionado = $event as RolesEntity;
-    this.rolN = rolSeleccionado;
+  public async onrolChange($event: any): Promise<void> {
+    const rolSeleccionado = $event as RolesEntity | null;
+    this.rolN = rolSeleccionado ?? undefined;
     this.nombreRolN = rolSeleccionado?.name ?? '';
-    console.log('rol seleccionado de la Lista:', this.nombreRolN);
-    await this.getResponsablesRolList ();     
-   /*  await this.diligenciarResponsablesAsignar();
-   await this.diligenciarResponsablesAsignadosRolEntidad(); */
-  }    
+    if (!this.nombreRolN) {
+      this.responsablesRolList = [];
+      return;
+    }
+    await this.getResponsablesRolList();
+    await this.diligenciarResponsablesAsignar();
+    if (this.editMode()) {
+      await this.diligenciarResponsablesAsignadosEntidad();
+    }
+  }
 
 
   /**
@@ -186,7 +259,8 @@ public async onrolChange($event: any) {
    */
   public async getResponsablesList() {
     this.responsablesRolList = [];
-    console.log('Edit entre a getresponsablesList:', this.entidadesIdEdit);
+    console.log('Edit entre a getresponsablesList:', this.rolesIdEdit ,
+        this.loggedUser?.user_name ,  this.entidadesIdEdit);
     try {
       const response = await firstValueFrom(
       this.entidadesService.getGroupsRol(
@@ -279,78 +353,88 @@ console.log('Edit getResponsablesRolList: responsablesasignadoslist2:', this.res
   /**
    * Crea un nuevo grupo con los datos del formulario.
    */
-  public create() {
-    console.log("estoy en create: ",this.userNameN,this.idEntidadN, this.nombreEntidadN, this.descripcionN, this.nombreRolN, this.responsablesAsignadosList);
-    console.log(typeof this.idEntidadN)
-    const payload = {
-    userName: this.userNameN,
-    idEntidad: this.idEntidadN,
-    nombre: this.nombreEntidadN,
-    descripcion: this.descripcionN,
-    nombreRol: this.nombreRolN,
-    listaGrupos: this.responsablesAsignadosList.map(r => r.name)
-    };
+  public create(): void {
+    void this.createAndPersistResponsables();
+  }
 
-console.log(JSON.stringify(payload, null, 2));
-
-    this.entidadesService
-      .createEntidad(payload)
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
-            if (this.uc) {
-              this.uc.mensaje = 'Se ha creado la entidad exitosamente';
-            }
-            console.log("creado", this.idEntidadN, this.responsablesAsignadosList);
-            this.nombreIdEdit = this.nombreEntidadN;
-            this.router.navigate([
-              `/main-page/entidades/editarEntidad`,this.nombreEntidadN,
-            ]);
-          }
-        },
-        error: (e) => {
-          if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
+  /**
+   * Crea la entidad y encadena edit para persistir listaGrupos (create no los guarda en backend).
+   */
+  private async createAndPersistResponsables(): Promise<void> {
+    this.syncResponsablesN();
+    const createPayload = this.buildEntidadPayload();
+    try {
+      const createResponse = await firstValueFrom(
+        this.entidadesService.createEntidad(createPayload),
+      );
+      if (!createResponse?.respuesta) {
+        return;
+      }
+      await this.resolveIdEntidadAfterCreate(createResponse);
+      this.nombreIdEdit = this.nombreEntidadN;
+      const editResponse = await firstValueFrom(
+        this.entidadesService.editEntidad(this.buildEntidadPayload()),
+      );
+      if (editResponse?.respuesta) {
+        if (this.uc) {
+          this.uc.mensaje =
+            'Se ha creado la entidad y se guardaron los responsables exitosamente';
+        }
+        await this.router.navigate([
+          '/main-page/entidades/editarEntidad',
+          this.nombreEntidadN,
+        ]);
+      }
+    } catch (e) {
+      if (this.uc) {
+        const msg = this.nombreIdEdit
+          ? MessageUtil.buildErrorMessageFsResponse(
+              Constants.ERR_TAREA_EDITAR,
+              e,
+            )
+          : MessageUtil.buildErrorMessageFsResponse(
               Constants.ERR_ENTIDADES_CREAR,
               e,
             );
-          }
-        },
-      });
+        this.uc.mensaje = this.nombreIdEdit
+          ? `La entidad se creó pero no se pudieron guardar los responsables. ${msg}`
+          : msg;
+      }
+    }
   }
 
   /**
    * Edita la entidad existente con los datos proporcionados.
    */
-  public edit() {
-    this.entidadesService
-      .editEntidad({
-        userName: this.userNameN,
-        idEntidad: this.idEntidadN,
-        nombre: this.nombreEntidadN,
-        descripcion: this.descripcionN,
-        nombreRol: this.nombreRolN,
-       /* falta responsables*/
-      } as EntidadesEntity)
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
-            this.router.navigate([
-              `/main-page/entidades/editarRol?id=${this.nombreRolN}`,
-            ]);
-          }
-        },
-        error: (e) => {
-          if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_TAREA_EDITAR,
-              e,
-            );
-          }
-        },
-      });
+  public edit(): void {
+    void this.persistEdit(true);
+  }
 
-    
+  private async persistEdit(navigateAfterSuccess: boolean): Promise<void> {
+    this.syncResponsablesN();
+    try {
+      const response = await firstValueFrom(
+        this.entidadesService.editEntidad(this.buildEntidadPayload()),
+      );
+      if (response?.respuesta) {
+        if (this.uc) {
+          this.uc.mensaje = 'Se ha actualizado la entidad exitosamente';
+        }
+        if (navigateAfterSuccess) {
+          await this.router.navigate([
+            '/main-page/entidades/editarEntidad',
+            this.nombreEntidadN,
+          ]);
+        }
+      }
+    } catch (e) {
+      if (this.uc) {
+        this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          Constants.ERR_TAREA_EDITAR,
+          e,
+        );
+      }
+    }
   }
 
  
@@ -405,8 +489,8 @@ console.log(JSON.stringify(payload, null, 2));
 
   public diligenciarResponsablesAsignadosEntidad() {
    console.log('Entra adiligenciarrespasignadosEntidad',this.editMode());
-   this.responsablesAsignadosList =[]; 
-
+   console.log('Responsables asignados:', this.responsablesAsignadosList);
+  
    if (this.editMode()) {
 
     this.responsablesAsignadosList = this.responsablesN.map( 
@@ -417,7 +501,7 @@ console.log(JSON.stringify(payload, null, 2));
    );
        
     console.log(
-      'Edit2 diligenciarrespasignados.responsablesasignados:',
+      'Edit2 diligenciarresponsablesasignados.responsablesasignados:',
       this.responsablesAsignadosList
     );
   }
