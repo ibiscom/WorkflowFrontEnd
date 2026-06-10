@@ -127,9 +127,9 @@ export class CrearEventoInicioComponent {
       if (response?.respuesta) {
         const eventoInicio = response.respuesta as EventoInicioEntity;
         this.nombreEventoInicioN = eventoInicio.nombreEvento ?? '';
-        this.nombreLargoN = eventoInicio.nombreLargo ?? '';
+        this.nombreLargoEventoInicioN = eventoInicio.nombreLargo ?? '';
         this.modeloCarpetaN = eventoInicio.modeloCarpeta ?? '';
-        this.descripcionN =  eventoInicio.descripcion ?? '';
+        this.descripcionEventoInicioN = eventoInicio.descripcion ?? '';
         this.nombreHerramientaN = eventoInicio.herramienta ?? '';
         this.herramientaN = this.herramientasList.find(h => h.code === this.nombreHerramientaN) ?? undefined;
         this.nombreMetodoAsignacionB = eventoInicio.usuarioIniciaTarea ?? false;
@@ -252,7 +252,20 @@ export class CrearEventoInicioComponent {
     return this.eventoInicioIdEdit !== undefined && this.eventoInicioIdEdit !== '';
   }
 
-  
+  private buildEventoInicioPayload(): EventoInicioEntity {
+    return {
+      nombreWorkflow: this.workflowActual,
+      usuario: this.loggedUser?.user_name ?? '',
+      nombreEvento: this.nombreEventoInicioN,
+      nombreLargo: this.nombreLargoEventoInicioN,
+      modeloCarpeta: this.modeloCarpetaN ?? '',
+      descripcion: this.descripcionEventoInicioN,
+      herramienta: this.nombreHerramientaN,
+      usuarioIniciaTarea: this.nombreMetodoAsignacionB,
+      docModels: this.mapearModelosDocumentoEventoInicio(),
+    };
+  }
+
    /**
     * Guarda los cambios, creando o editando el evento de inicio según corresponda.
    */
@@ -269,17 +282,7 @@ export class CrearEventoInicioComponent {
    */
   public create() {
     this.eventoInicioService
-      .createEventoInicio({
-        nombreWorkflow: this.workflowActual,
-        usuario: this.loggedUser?.user_name ?? '',
-        nombreEvento: this.nombreEventoInicioN,
-        nombreLargo: this.nombreLargoEventoInicioN,
-        modeloCarpeta: this.modeloCarpetaN,
-        descripcion: this.descripcionEventoInicioN,
-        herramienta: this.nombreHerramientaN,
-        usuarioIniciaTarea: this.nombreMetodoAsignacionB,
-        docModels: this.mapearModelosDocumentoEventoInicio(),
-      } as EventoInicioEntity)
+      .createEventoInicio(this.buildEventoInicioPayload())
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
@@ -308,17 +311,7 @@ export class CrearEventoInicioComponent {
    */
   public edit() {
     this.eventoInicioService
-      .editEventoInicio({
-        nombreWorkflow: this.workflowActual,
-        usuario: this.loggedUser?.user_name ?? '',
-        nombreEvento: this.nombreEventoInicioN,
-        nombreLargo: this.nombreLargoEventoInicioN,
-        modeloCarpeta: this.modeloCarpetaN,
-        descripcion: this.descripcionEventoInicioN,
-        herramienta: this.nombreHerramientaN,
-        usuarioIniciaTarea: this.nombreMetodoAsignacionB,
-        docModels: this.mapearModelosDocumentoEventoInicio(),
-       } as EventoInicioEntity)
+      .editEventoInicio(this.buildEventoInicioPayload())
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
