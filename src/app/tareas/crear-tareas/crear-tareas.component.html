@@ -188,13 +188,13 @@
 
 
         <!-- DURACION ESTIMADA -->
+         <div class="grupo-duracion-alerta">
           <div class="campo-texto">
             <label for="diasDuracionEstimada">Duración estimada Días</label>
             <input
               id="diasDuracionEstimada"
               name="diasDuracionEstimada"
               type="text"
-              placeholder="Inserte número de la tarea"
               [(ngModel)]="diasDuracionEstimadaN"
               required
               #diasDuracionEstimada="ngModel"
@@ -207,7 +207,6 @@
               id="horasDuracionEstimada"
               name="horasDuracionEstimada"
               type="text"
-              placeholder="Inserte número de la tarea"
               [(ngModel)]="horasDuracionEstimadaN"
               required
               #horasDuracionEstimada="ngModel"
@@ -220,7 +219,6 @@
               id="minutosDuracionEstimada"
               name="minutosDuracionEstimada"
               type="text"
-              placeholder="Inserte número de la tarea"
               [(ngModel)]="minutosDuracionEstimadaN"
               required
               #minutosDuracionEstimada="ngModel"
@@ -233,7 +231,6 @@
               id="segundosDuracionEstimada"
               name="segundosDuracionEstimada"
               type="text"
-              placeholder="Inserte número de la tarea"
               [(ngModel)]="segundosDuracionEstimadaN"
               required
               #segundosDuracionEstimada="ngModel"
@@ -241,13 +238,13 @@
           </div>
 
           <!-- TIEMPOS ALARMAS -->
+           
           <div class="campo-texto">
             <label for="diasAlertaAmarilla">Tiempo alerta amarilla Días</label>
             <input
               id="diasAlertaAmarilla"
               name="diasAlertaAmarilla"
               type="text"
-              placeholder="Inserte número de la tarea"
               [(ngModel)]="diasAlarmaAmarillaN"
               required
               #diasAlertaAmarilla="ngModel"
@@ -260,7 +257,6 @@
               id="horasAlertaAmarilla"
               name="horasAlertaAmarilla"
               type="text"
-              placeholder="Inserte horas de la alerta amarilla"
               [(ngModel)]="horasAlarmaAmarillaN"
               required
               #horasAlertaAmarilla="ngModel"
@@ -273,7 +269,6 @@
               id="minutosAlertaAmarilla"
               name="minutosAlertaAmarilla"
               type="text"
-              placeholder="Inserte minutos de la alerta amarilla"
               [(ngModel)]="minutosAlarmaAmarillaN"
               required
               #minutosAlertaAmarilla="ngModel"
@@ -286,15 +281,13 @@
               id="segundosAlertaAmarilla"
               name="segundosAlertaAmarilla"
               type="text"
-              placeholder="Inserte segundos de la alerta amarilla"
               [(ngModel)]="segundosAlarmaAmarillaN"
               required
               #segundosAlertaAmarilla="ngModel"
             />
-            @if (segundosAlertaAmarilla.errors?.['required']) {
-              <div class="error">El número de la tarea es obligatorio</div>
-            }
           </div>
+          </div>
+          
 
           <!-- Editar documentos del proceso
 
@@ -305,151 +298,204 @@
         [ngClass]="tipo.editarDocProceso ? 'on' : 'off'"
         (click)="toggleObligatorio(tipo)"
       > </div>-->
+       
+    
+     <!-- =======================================
+     ASIGNAR TAREA
+======================================= -->
+
+<div class="serie-container">
+
+  <div class="serie-content">
+
+    <div class="serie-header">
+      <span class="serie-title">Asignar tarea</span>
     </div>
-        <!-- PARTE DE SELECCIONAR SERIES, TIPOS DE DOCUMENTO-->
-        <div class="serie-container"> 
-         <div class="serie-container">
-          <div class="serie-content">
-            <!-- Header -->
-            <div class="serie-header">
-              <span class="serie-title">Serie</span>
-            </div>
 
-            <!-- Selector -->
-            <div class="serie-body">
-              <div class="campo-lista">
-                <label for="serie">Serie</label>
-                <select
-                  id="serie"
-                  name="serie"
-                  [(ngModel)]="serieN"
-                  required
-                  #serie="ngModel"
-                  (ngModelChange)="onSerieChange($event)"
-                >
-                  <option value="">Seleccione una opción</option>
+    <div class="asignacion-documentos">
 
-                  @for (serie of seriesList; track serie) {
-                    <option [ngValue]="serie">
-                      {{ serie.name }}
-                    </option>
-                  }
-                </select>
-          </div>
+      <!-- PANEL SERIE -->
+      <div class="panel-serie">
+
+        <div class="card-header">
+          <span class="card-title">
+            Serie
+          </span>
         </div>
 
+        <div class="panel-body">
 
-<div class="card">
-  <!-- Header -->
-  <div class="card-header">
-    <span class="card-title">Tipos documento de la serie</span>
-  </div>
+          <div class="campo-lista">
+            <label for="serie">Serie</label>
 
-  <!-- Lista de tipos -->
-  @for(tipo of tiposDocumentoAgregarList; track tipo) {
-  <div
-    class="check-row"
-  >
+            <select
+              id="serie"
+              name="serie"
+              [(ngModel)]="serieN"
+              required
+              #serie="ngModel"
+              (ngModelChange)="onSerieChange($event)"
+            >
+              <option value="">Seleccione una opción</option>
 
-    <div [ngClass]="{'checkbox': true, 'selected': tipo.selected}">
-      <div class="checkbox-box"></div>
-      <div class="checkbox-check"><input type="checkbox" [(ngModel)]="tipo.selected" /></div>
+              @for (serie of seriesList; track serie) {
+                <option [ngValue]="serie">
+                  {{ serie.name }}
+                </option>
+              }
+
+            </select>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- DOCUMENTOS DE LA SERIE -->
+      <div class="panel-documentos">
+
+        <div class="card-header">
+          <span class="card-title">
+            Tipos documento de la serie
+          </span>
+        </div>
+
+        @for (tipo of tiposDocumentoAgregarList; track tipo) {
+
+          <div class="check-row">
+
+            <div class="checkbox">
+              <input
+                type="checkbox"
+                [(ngModel)]="tipo.selected"
+              />
+            </div>
+
+            <span class="check-label">
+              {{ tipo.name }}
+            </span>
+
+          </div>
+
+        }
+
+      </div>
+
+      <!-- BOTONES -->
+      <div class="panel-acciones">
+
+        <button
+          class="btn btn-primary"
+          type="button"
+          (click)="asignar()"
+        >
+          Asignar
+        </button>
+
+        <button
+          class="btn btn-outline"
+          type="button"
+          (click)="retirar()"
+        >
+          Retirar
+        </button>
+
+      </div>
+
+      <!-- DOCUMENTOS ASIGNADOS -->
+      <div class="panel-documentos">
+
+        <div class="card-header">
+          <span class="card-title">
+            Tipos documento asignados a la tarea
+          </span>
+        </div>
+
+        @for (tipo of tiposDocumentoAsignadosTareaList; track tipo) {
+
+          <div class="assigned-row">
+
+            <div class="checkbox">
+              <input
+                type="checkbox"
+                [(ngModel)]="tipo.visible"
+              />
+            </div>
+
+            <div class="assigned-title">
+              {{ tipo.name }}
+            </div>
+
+            <div class="assigned-actions">
+
+              <span class="required">
+                Requerido
+              </span>
+
+              <div
+  class="switch"
+  [ngClass]="tipo.obligatorio ? 'on' : 'off'"
+  (click)="tipo.obligatorio = !tipo.obligatorio">
+</div>
+
+            </div>
+
+          </div>
+
+        }
+
+      </div>
+
     </div>
 
-    <span class="check-label">
-      {{ tipo.name }}
-    </span>
-
   </div>
-  }
+
 </div>
-      
 
+<!-- =======================================
+     BOTONES FINALES
+======================================= -->
 
-  <div class="actions">
-  <!-- Botón Asignar -->
+<div class="botones-nuevo-grupo">
+
   <button
-    class="btn btn-primary"
-    type="button"
-    (click)="asignar()"
+    class="btn-figma"
+    type="submit"
+    (click)="save()"
   >
-    <span class="btn-icon assign-icon"></span>
-    <span>Asignar</span>
-  </button> 
-
-  <!-- Botón Retirar -->
-  <button
-    class="btn btn-outline"
-    type="button"
-    (click)="retirar()"
-  >
-    <span class="btn-icon remove-icon"></span>
-    <span>Retirar</span>
-  </button>
-</div>
-
-
- <div class="card">
-  <!-- Header -->
-  <div class="card-header">
-    <div class="card-title">
-      Tipos documento Asignados a la tareas
-    </div>
-  </div>
-
-  <!-- Item -->
-  @for(tipo of tiposDocumentoAsignadosTareaList; track tipo) {
-  <div class="assigned-row" >  <!--*ngFor="let item of tiposDocumentoList"-->
-    <!-- Checkbox -->
-    <div class="checkbox selected">
-      <input type="checkbox" [(ngModel)]="tipo.visible" />
-    </div>
-
-    <!-- Título -->
-    <div class="assigned-title">
-      {{ tipo.name }}
-    </div>
-
-    <!-- Acciones -->
-    <div class="assigned-actions">
-      <span class="required">Requerido</span>
-
-      <div
-        class="switch"
-        [ngClass]="tipo.obligatorio ? 'on' : 'off'"
-        (click)="toggleObligatorio(tipo)"
-      > </div>
-    </div>
-  </div>
- }
-</div>
-
-    <!-- BOTONES FINALES -->
-    <div class="botones-nuevo-grupo">
-
-      <button class="btn-figma" type="submit" (click)="save()">
-        <span class="btn-icon">
+    <span class="btn-icon">
       <img src="assets/img/save.svg" alt="Guardar" />
     </span>
-    Guardar</button>
+    Guardar
+  </button>
 
-
-      @if (editMode()) {
-        <button class="btn-figma" type="button" (click)="delete()">
-          <span class="btn-icon">
+  @if (editMode()) {
+    <button
+      class="btn-figma"
+      type="button"
+      (click)="delete()"
+    >
+      <span class="btn-icon">
         <img src="assets/img/trash.svg" alt="Eliminar" />
       </span>
-      Cancelar</button>
-      }
+      Eliminar
+    </button>
+  }
 
-     <button class="btn-figma" type="button" (click)="cancel()">
-        <span class="btn-icon">
+  <button
+    class="btn-figma"
+    type="button"
+    (click)="cancel()"
+  >
+    <span class="btn-icon">
       <img src="assets/img/cancel.svg" alt="Cancelar" />
     </span>
-    Cancelar</button>
-    </div>
-    </div>
-    </div>
+    Cancelar
+  </button>
+
+</div>
+  </div>
 </div>
 <!--</form>-->
 

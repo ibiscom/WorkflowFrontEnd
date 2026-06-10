@@ -1,8 +1,11 @@
- <!-- <form #form="ngForm">
-<div class="cont-nuevo-rol">
+<form #form="ngForm">
 
+  <div class="cont-nuevo-rol">
 
-    <!-- TARJETA DATOS DE LA TAREA -->
+    <!-- =======================================
+         DATOS DEL ROL
+    ======================================== -->
+
     <div class="card-nuevo-rol-general">
 
       <div class="card-header">
@@ -10,11 +13,13 @@
       </div>
 
       <div class="card-content">
+
         <div class="tbl-nuevo-rol">
 
           <!-- NOMBRE -->
           <div class="campo-texto">
-            <label for="nombreTarea">Nombre</label>
+            <label for="nombreRol">Nombre</label>
+
             <input
               id="nombreRol"
               name="nombreRol"
@@ -24,14 +29,22 @@
               required
               #nombreRol="ngModel"
             />
+
             @if (nombreRol.errors?.['required']) {
-              <div class="error">El nombre del rol es obligatorio.</div>
+              <div class="error">
+                El nombre del rol es obligatorio.
+              </div>
             }
+
           </div>
 
           <!-- DESCRIPCIÓN -->
           <div class="campo-texto">
-            <label for="descripcion">Breve descripción</label>
+
+            <label for="descripcion">
+              Breve descripción
+            </label>
+
             <input
               id="descripcion"
               name="descripcion"
@@ -41,116 +54,205 @@
               required
               #descripcion="ngModel"
             />
+
           </div>
 
+        </div>
 
-        <!-- PARTE DE SELECCIONAR RESPONSABLE, ROL-->
-      <div class="rol-container"> 
-         <div class="rol-container">
-          <div class="rol-content">
-            <!-- Header -->
-            <div class="rol-header">
-              <span class="rol-title">Responsables</span>
+      </div>
+
+    </div>
+
+    <!-- =======================================
+         RESPONSABLES
+    ======================================== -->
+
+    <div class="rol-container">
+
+      <div class="rol-content">
+
+        <div class="rol-header">
+          <span class="rol-title">
+            Responsables
+          </span>
+        </div>
+
+        <div class="asignacion-responsables">
+
+          <!-- =======================================
+               RESPONSABLES DISPONIBLES
+          ======================================== -->
+
+          <div class="panel-responsables">
+
+            <div class="card-header">
+              <span class="card-title">
+                Responsables
+              </span>
             </div>
 
-<div class="card">
-  <!-- Header -->
-  <div class="card-header">
-    <span class="card-title">Responsables</span>
-  </div>
+            @for(responsable of responsablesList; track responsable) {
 
-  <!-- Lista de roles -->
-  @for(responsable of responsablesList; track responsable) {
-  <div
-    class="check-row"
-  >
+              <div class="check-row">
 
-    <div [ngClass]="{'checkbox': true, 'selected': responsable.selected}">
-      <div class="checkbox-box"></div>
-      <div class="checkbox-check"><input type="checkbox" [(ngModel)]="responsable.selected" /></div>
+                <div
+                  [ngClass]="{
+                    'checkbox': true,
+                    'selected': responsable.selected
+                  }">
+
+                  <input
+                    type="checkbox"
+                    [(ngModel)]="responsable.selected"
+                    [name]="'responsable_' + responsable.name"
+                  />
+
+                </div>
+
+                <span class="check-label">
+                  {{ responsable.name }}
+                </span>
+
+              </div>
+
+            }
+
+          </div>
+
+          <!-- =======================================
+               BOTONES CENTRALES
+          ======================================== -->
+
+          <div class="actions">
+
+            <button
+              class="btn btn-primary"
+              type="button"
+              (click)="asignar()">
+
+              Asignar
+
+            </button>
+
+            <button
+              class="btn btn-outline"
+              type="button"
+              (click)="retirar()">
+
+              Retirar
+
+            </button>
+
+          </div>
+
+          <!-- =======================================
+               RESPONSABLES ASIGNADOS
+          ======================================== -->
+
+          <div class="panel-responsables">
+
+            <div class="card-header">
+
+              <span class="card-title">
+                Responsables asignados al rol
+              </span>
+
+            </div>
+
+            @for(responsable of responsablesAsignadosList; track responsable) {
+
+              <div class="assigned-row">
+
+                <div
+                  [ngClass]="{
+                    'checkbox': true,
+                    'selected': responsable.selected
+                  }">
+
+                  <input
+                    type="checkbox"
+                    [(ngModel)]="responsable.selected"
+                    [name]="'responsableAsignado_' + responsable.name"
+                  />
+
+                </div>
+
+                <div class="assigned-title">
+                  {{ responsable.name }}
+                </div>
+
+              </div>
+
+            }
+
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
 
- <!--   <span class="check-label">
-      {{ responsable }}
-    </span> -->
-<span class="check-label">
-  {{ responsable.name }}
-</span>
-  </div>
-  }
-</div>
-        <div class="actions">
-  <!-- Botón Asignar -->
-  <button
-    class="btn btn-primary"
-    type="button"
-    (click)="asignar()"
-  >
-    <span class="btn-icon assign-icon"></span>
-    <span>Asignar</span>
-  </button> 
+    <!-- =======================================
+         BOTONES FINALES
+    ======================================== -->
 
-  <!-- Botón Retirar -->
-  <button
-    class="btn btn-outline"
-    type="button"
-    (click)="retirar()"
-  >
-    <span class="btn-icon remove-icon"></span>
-    <span>Retirar</span>
-  </button>
-</div>
-
-
-<div class="card">
-  <!-- Header -->
-  <div class="card-header">
-    <div class="card-title">
-      Responsables asignados al rol
-    </div>
-  </div>
- <!-- Item -->
-  @for(responsable of responsablesAsignadosList; track responsable) {
-  <div class="assigned-row" >  <!--*ngFor="let item of tiposDocumentoList"-->
-    <!-- Checkbox -->
-    <div [ngClass]="{'checkbox': true, 'selected': responsable.selected}">
-      <div class="checkbox-box"></div>
-      <div class="checkbox-check"><input type="checkbox" [(ngModel)]="responsable.selected" /></div>
-    </div>
-
-       <!-- Título -->
-    <div class="assigned-title">
-      {{ responsable.name}}
-    </div>
-   </div>
-  }
- 
-
-    <!-- BOTONES FINALES -->
     <div class="botones-nuevo-grupo">
 
-      <button class="btn-figma" type="submit" (click)="save()">
-        <span class="btn-icon">
-      <img src="assets/img/save.svg" alt="Guardar" />
-    </span>
-    Guardar</button>
+      <button
+        class="btn-figma"
+        type="submit"
+        (click)="save()">
 
+        <span class="btn-icon">
+          <img
+            src="assets/img/save.svg"
+            alt="Guardar"
+          />
+        </span>
+
+        Guardar
+
+      </button>
 
       @if (editMode()) {
-        <button class="btn-figma" type="button" (click)="delete()">
+
+        <button
+          class="btn-figma"
+          type="button"
+          (click)="delete()">
+
           <span class="btn-icon">
-        <img src="assets/img/trash.svg" alt="Eliminar" />
-      </span>
-      Cancelar</button>
+            <img
+              src="assets/img/trash.svg"
+              alt="Eliminar"
+            />
+          </span>
+
+          Eliminar
+
+        </button>
+
       }
 
-     <button class="btn-figma" type="button" (click)="cancel()">
+      <button
+        class="btn-figma"
+        type="button"
+        (click)="cancel()">
+
         <span class="btn-icon">
-      <img src="assets/img/cancel.svg" alt="Cancelar" />
-    </span>
-    Cancelar</button>
-   </div>
-  </div>
+          <img
+            src="assets/img/cancel.svg"
+            alt="Cancelar"
+          />
+        </span>
+
+        Cancelar
+
+      </button>
+
+    </div>
+
   </div>
 
-
+</form>

@@ -1,47 +1,53 @@
-.botones-grupos {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-/* BOTON 4 */
-
-.acciones-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px; // espacio entre botones
-  margin-top: 15px;
-  background-color: white;
-}
+/* =======================================
+   BOTÓN NUEVO
+======================================= */
 
 .btn-figma {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 22px;
-  background-color: #494260;
+  justify-content: center;
+
+  gap: 8px;
+
+  height: 40px;
+  padding: 0 24px;
+
   border: none;
-  border-radius: 20px;
-  color: white;
+  border-radius: 100px;
+
+  background: #6750a4;
+
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
-  transition: background 0.2s ease;
+
+  transition: all 0.2s ease;
 }
 
 .btn-figma:hover {
-  background-color: #5b5574;
+  opacity: 0.95;
 }
 
-.btn-figma .btn-icon img {
+.btn-figma:active {
+  transform: scale(0.98);
+}
+
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-icon img {
   width: 18px;
   height: 18px;
-  filter: brightness(0) invert(1); // vuelve el ícono blanco
 }
 
-.btn-figma .label {
-  white-space: nowrap; // evita que el texto se corte
-}
+.label {
+  color: #ffffff;
 
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+
+  letter-spacing: 0.1px;
+}

@@ -1,200 +1,280 @@
 /* =======================================
-   CONTENEDOR PRINCIPAL
+   TARJETA TABLA
 ======================================= */
+
 .tabla-card {
   width: 100%;
-  height: 100%;
+
   background: #ffffff;
+
   border-radius: 16px;
+
   box-shadow: 0px 1px 15.4px 6px rgba(0, 0, 0, 0.07);
+
   overflow: hidden;
+
   display: flex;
+
   flex-direction: column;
-  align-items: stretch;
+
+  margin-top: 24px;
 }
 
 /* =======================================
-   HEADER SUPERIOR
+   HEADER
 ======================================= */
+
 .tabla-header-container {
   width: 100%;
-  padding: 16px;
+
+  padding: 16px 24px;
+
   display: flex;
-  align-items: flex-start;
+
+  align-items: center;
+
+  background: #ffffff;
 }
 
 .tabla-titulo {
   color: #1b1b1b;
-  font-family: Roboto;
-  font-size: 14px;
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 16px;
+
   font-weight: 700;
-  line-height: 16px;
+
+  line-height: 20px;
+
   letter-spacing: 0.5px;
 }
 
 /* =======================================
-   BODY (ÁREA TABLA)
+   BODY TABLA
 ======================================= */
+
 .tabla-body {
   width: 100%;
-  padding: 0 8px;
+
   display: flex;
-  overflow-x: auto;
-  background: white;
+
+  overflow-x: hidden;
+
+  overflow-y: hidden;
+
+  background: #ffffff;
+
+  border-top: 1px solid #ececec;
 }
 
 /* =======================================
    COLUMNAS
 ======================================= */
+
 .tabla-columna {
-  min-width: 130px;
-  //max-width: 130px;
-  max-width: 98% !important;
+  flex: 1;
+
+  min-width: 0;
+
   display: flex;
+
   flex-direction: column;
-  align-items: stretch;
-  border-left: 0.5px solid #dcdcdc;
-  border-right: 0.5px solid #dcdcdc;
-  border-top: 1px solid #dcdcdc;
-  background: white;
+
+  border-right: 1px solid #ececec;
+
+  background: #ffffff;
 }
 
-/* Última columna se expande */
+/* nombre largo */
+
+.tabla-columna:nth-child(2) {
+  flex: 1.2;
+}
+
+/* descripción */
+
+.tabla-columna:nth-child(4) {
+  flex: 1.6;
+}
+
+/* estado más pequeño */
+
+.tabla-columna:nth-child(5) {
+  flex: 0.7;
+}
+
+/* última columna */
+
 .tabla-columna:last-child {
-  flex: 1;
+  border-right: none;
 }
 
 /* =======================================
-   HEADER DE COLUMNAS
+   HEADER COLUMNAS
 ======================================= */
+
 .tabla-col-header {
-  width: 100%;
-  background: #fafafa;
-  padding: 4px;
+  height: 48px;
+
+  min-height: 48px;
+
+  max-height: 48px;
+
+  padding: 0 16px;
+
   display: flex;
+
   align-items: center;
-  gap: 4px;
-  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
-  justify-content: flex-start;
+
+  background: #fafafa;
+
+  border-bottom: 1px solid #ececec;
 }
 
 .tabla-col-header div {
-  flex: 1;
-  color: #757575;
-  font-size: 12px;
-  font-family: Roboto;
-  font-weight: 700;
-  line-height: 20px;
-  letter-spacing: 0.4px;
-  text-align: left;
-  display: flex;
-  justify-content: flex-start;
-}
+  width: 100%;
 
-/* Flechita de ordenamiento */
-.sort-icon {
-  width: 9px;
-  height: 8px;
-  background: #6750a4;
+  color: #757575;
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  line-height: 20px;
+
+  letter-spacing: 0.4px;
+
+  text-align: left;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
 }
 
 /* =======================================
    CELDAS
 ======================================= */
+
 .tabla-celda {
-  height: 36px; /* Ajusta según tu Figma (32px, 40px, etc) */
-  min-height: 36px;
-  max-height: 36px;
-  width: 100%;
-  padding: 4px;
-  background: #ffffff;
+  height: 44px;
+
+  min-height: 44px;
+
+  max-height: 44px;
+
+  padding: 0 16px;
+
   display: flex;
+
   align-items: center;
-  justify-content: flex-start;
-  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
+
+  border-bottom: 1px solid #f1f1f1;
+
+  background: #ffffff;
+
+  overflow: hidden;
+
+  transition: background 0.2s ease;
+}
+
+.tabla-celda:hover {
+  background: #fafafa;
 }
 
 .tabla-celda div {
-  flex: 1;
-  font-family: Roboto;
-  font-size: 12px;
+  width: 100%;
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 13px;
+
   font-weight: 400;
-  line-height: 20px;
+
+  line-height: 18px;
+
   letter-spacing: 0.25px;
+
   color: rgba(0, 0, 0, 0.87);
-  text-align: left;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+/* clickeables */
+
+.tabla-celda div[click],
+.tabla-celda div:hover {
+  cursor: pointer;
 }
 
 /* =======================================
-   FOOTER / PAGINACIÓN
+   FOOTER
 ======================================= */
+
 .tabla-footer {
   height: 58px;
-  padding: 0 8px;
-  background: white;
+
+  padding: 0 16px;
+
+  background: #ffffff;
+
   display: flex;
+
   justify-content: flex-end;
+
   align-items: center;
-  gap: 34px;
+
+  gap: 24px;
+
+  border-top: 1px solid #ececec;
 }
 
 .tabla-footer-text {
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
+
   font-size: 12px;
+
   font-weight: 400;
+
   line-height: 20px;
+
   letter-spacing: 0.4px;
+
   color: rgba(0, 0, 0, 0.87);
 }
 
-/* Registros por página */
-.registros-contenedor {
-  width: 33px;
-  display: flex;
-  flex-direction: column;
-}
+/* =======================================
+   PAGINADOR
+======================================= */
 
-.registros-select {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 26px;
-}
-
-.registros-select span {
-  font-family: Roboto;
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.87);
-}
-
-.registros-divider {
-  width: 100%;
-  height: 1px;
-  background: rgba(0, 0, 0, 0.42);
-}
-
-/* Icono dropdown */
-.icon-dropdown {
-  font-family: "Material Icons";
-  font-size: 24px;
-  color: rgba(0, 0, 0, 0.54);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Paginador */
 .paginador-boton {
   width: 32px;
+
   height: 32px;
+
   border-radius: 32px;
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
 }
 
-.paginador-boton.disabled {
-  color: rgba(0, 0, 0, 0.2);
+.paginador-boton:hover {
+  background: #f5f5f5;
 }
 
 .paginador-boton.active {
@@ -203,6 +283,28 @@
 
 .paginador-boton span {
   font-family: "Material Icons";
+
   font-size: 24px;
+
   line-height: 24px;
+}
+
+/* =======================================
+   RESPONSIVE
+======================================= */
+
+@media (max-width: 900px) {
+
+  .tabla-body {
+    flex-direction: column;
+  }
+
+  .tabla-columna {
+    width: 100%;
+
+    border-right: none;
+
+    border-bottom: 1px solid #ececec;
+  }
+
 }

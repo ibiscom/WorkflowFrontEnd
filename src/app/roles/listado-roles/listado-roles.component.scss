@@ -1,208 +1,219 @@
 /* =======================================
-   CONTENEDOR PRINCIPAL
+   TARJETA TABLA
 ======================================= */
+
 .tabla-card {
   width: 100%;
-  height: 100%;
+
   background: #ffffff;
+
   border-radius: 16px;
-  box-shadow: 0px 1px 15.4px 6px rgba(0, 0, 0, 0.07);
+
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.13);
+
   overflow: hidden;
+
   display: flex;
+
   flex-direction: column;
-  align-items: stretch;
 }
 
 /* =======================================
-   HEADER SUPERIOR
+   HEADER
 ======================================= */
+
 .tabla-header-container {
-  width: 100%;
-  padding: 16px;
+  padding: 16px 24px;
+
   display: flex;
-  align-items: flex-start;
+
+  align-items: center;
 }
 
 .tabla-titulo {
-  color: #1b1b1b;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
+
   font-size: 14px;
+
   font-weight: 700;
+
   line-height: 16px;
+
   letter-spacing: 0.5px;
+
+  color: #1b1b1b;
 }
 
 /* =======================================
-   BODY (ÁREA TABLA)
+   BODY
 ======================================= */
+
 .tabla-body {
   width: 100%;
-  padding: 0 8px;
+
   display: flex;
-  overflow-x: auto;
-  background: white;
+
+  background: #ffffff;
 }
 
 /* =======================================
    COLUMNAS
 ======================================= */
+
 .tabla-columna {
-  min-width: 130px;
-  //max-width: 130px;
-  max-width: 98% !important;
   display: flex;
+
   flex-direction: column;
-  align-items: stretch;
+
+  min-width: 0;
+
   border-left: 0.5px solid #dcdcdc;
+
   border-right: 0.5px solid #dcdcdc;
+
   border-top: 1px solid #dcdcdc;
-  background: white;
+
+  background: #ffffff;
 }
 
-/* Última columna se expande */
-.tabla-columna:last-child {
+/* Nombre */
+
+.tabla-columna:nth-child(1) {
   flex: 1;
+}
+
+/* Descripción */
+
+.tabla-columna:nth-child(2) {
+  flex: 2;
 }
 
 /* =======================================
-   HEADER DE COLUMNAS
+   HEADER COLUMNAS
 ======================================= */
+
 .tabla-col-header {
-  width: 100%;
   background: #fafafa;
-  padding: 4px;
+
+  padding: 4px 8px;
+
   display: flex;
+
   align-items: center;
-  gap: 4px;
-  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
-  justify-content: flex-start;
+
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.12);
 }
 
 .tabla-col-header div {
-  flex: 1;
-  color: #757575;
-  font-size: 12px;
-  font-family: Roboto;
-  font-weight: 700;
-  line-height: 20px;
-  letter-spacing: 0.4px;
-  text-align: left;
-  display: flex;
-  justify-content: flex-start;
-}
+  width: 100%;
 
-/* Flechita de ordenamiento */
-.sort-icon {
-  width: 9px;
-  height: 8px;
-  background: #6750a4;
+  font-family: Roboto, sans-serif;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  line-height: 20px;
+
+  letter-spacing: 0.4px;
+
+  color: #757575;
+
+  text-align: left;
 }
 
 /* =======================================
    CELDAS
 ======================================= */
+
 .tabla-celda {
-  height: 36px; /* Ajusta según tu Figma (32px, 40px, etc) */
-  min-height: 36px;
-  max-height: 36px;
-  width: 100%;
-  padding: 4px;
-  background: #ffffff;
+  height: 40px;
+
+  min-height: 40px;
+
+  padding: 4px 8px;
+
   display: flex;
+
   align-items: center;
-  justify-content: flex-start;
-  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
+
+  background: #ffffff;
+
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.12);
+}
+
+.tabla-celda:hover {
+  background: rgba(103, 80, 164, 0.04);
 }
 
 .tabla-celda div {
-  flex: 1;
-  font-family: Roboto;
+  width: 100%;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  font-family: Roboto, sans-serif;
+
   font-size: 12px;
+
   font-weight: 400;
+
   line-height: 20px;
+
   letter-spacing: 0.25px;
+
   color: rgba(0, 0, 0, 0.87);
-  text-align: left;
+}
+
+.tabla-celda div[click] {
+  cursor: pointer;
 }
 
 /* =======================================
-   FOOTER / PAGINACIÓN
+   FOOTER
 ======================================= */
+
 .tabla-footer {
-  height: 58px;
-  padding: 0 8px;
-  background: white;
+  height: 56px;
+
   display: flex;
+
   justify-content: flex-end;
+
   align-items: center;
-  gap: 34px;
+
+  gap: 16px;
+
+  padding: 0 16px;
+
+  border-top: 1px solid #eeeeee;
+
+  background: #ffffff;
 }
 
 .tabla-footer-text {
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
+
   font-size: 12px;
-  font-weight: 400;
-  line-height: 20px;
-  letter-spacing: 0.4px;
+
   color: rgba(0, 0, 0, 0.87);
 }
 
-/* Registros por página */
-.registros-contenedor {
-  width: 33px;
-  display: flex;
-  flex-direction: column;
-}
 
-.registros-select {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 26px;
-}
 
-.registros-select span {
-  font-family: Roboto;
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.87);
-}
+/* =======================================
+   RESPONSIVE
+======================================= */
 
-.registros-divider {
-  width: 100%;
-  height: 1px;
-  background: rgba(0, 0, 0, 0.42);
-}
+@media (max-width: 768px) {
+  .tabla-body {
+    overflow-x: auto;
+  }
 
-/* Icono dropdown */
-.icon-dropdown {
-  font-family: "Material Icons";
-  font-size: 24px;
-  color: rgba(0, 0, 0, 0.54);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Paginador */
-.paginador-boton {
-  width: 32px;
-  height: 32px;
-  border-radius: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.paginador-boton.disabled {
-  color: rgba(0, 0, 0, 0.2);
-}
-
-.paginador-boton.active {
-  color: rgba(0, 0, 0, 0.54);
-}
-
-.paginador-boton span {
-  font-family: "Material Icons";
-  font-size: 24px;
-  line-height: 24px;
+  .tabla-columna {
+    min-width: 250px;
+  }
 }

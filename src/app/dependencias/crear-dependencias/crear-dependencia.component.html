@@ -1,215 +1,180 @@
-<div class="cont-nueva-dependencia">
-  <form #form="ngForm">
+<!-- FILA 2 -->
+<div class="fila-filtros-fila3">
 
-    <!-- TARJETA DATOS DE LA DEPENDENCIA -->
-    <div class="card-nueva-dependencia-general">
+  <!-- TAREA CABEZA -->
+  <div class="campo-lista">
+    <label for="tareaCabeza">Tarea Cabeza</label>
 
-      <div class="card-header">
-        <h3>Datos de la dependencia</h3>
-      </div>
+    <select
+      id="tareaCabeza"
+      name="tareaCabeza"
+      [(ngModel)]="nombreTareaCabezaN"
+      required
+      #tareaCabeza="ngModel"
+      (ngModelChange)="onTareaChange($event)">
 
-      <div class="card-content">
-        <div class="tbl-nueva-dependencia">
+      <option value="">Seleccione una opción</option>
 
-          <!-- NOMBRE -->
-          <div class="campo-texto">
-            <label for="name">Nombre</label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              placeholder="Inserte nombre de la dependencia"
-              [(ngModel)]="nombreN"
-              required
-              #name="ngModel"
-              [disabled]="editMode()"
-            />
-            @if (name.errors?.['required']) {
-              <div class="error">El nombre de la dependencia es obligatorio.</div>
-            }
-          </div>
-
-          <!-- DESCRIPCIÓN -->
-          <div class="campo-texto">
-            <label for="description">Descripcion</label>
-            <input
-              id="descripcion"
-              name="descripcion"
-              type="text"
-              placeholder="Inserte descripcion"
-              [(ngModel)]="descripcionN"
-              required
-              #descripcion="ngModel"
-            />
-          </div>
-
-          <!-- FILA 2 -->
-      <div class="fila-filtros-fila3">
-        
-          <!-- TAREA CABEZA -->
-            
-<div class="campo-lista">
-  <label for="tareaCabeza">Tarea Cabeza</label>
-
-  <select
-    id="tareaCabeza"
-    name="tareaCabeza"
-    [(ngModel)]="nombreTareaCabezaN"
-    required
-    #tareaCabeza="ngModel"
-    (ngModelChange)="onTareaChange($event)">
-
-    <option value="">Seleccione una opción</option>
-
-    @for (tarea of uc!.tarea; track tarea) {
-      <option [ngValue]="tarea">
-        {{ tarea }}
-      </option>
-    }
-
-  </select>
-</div>
-
-          <!-- TAREA COLA -->
-          div class="campo-lista">
-  <label for="tareaCola">Tarea Cabeza</label>
-
-  <select
-    id="tareaCola"
-    name="tareaCola"
-    [(ngModel)]="nombreTareaColaN"
-    required
-    #tareaCabeza="ngModel"
-    (ngModelChange)="onTareaChange($event)">
-
-    <option value="">Seleccione una opción</option>
-
-    @for (tarea of uc!.tarea; track tarea) {
-      <option [ngValue]="tarea">
-        {{ tarea }}
-      </option>
-    }
-
-  </select>
-</div>
-
-          <!-- ESTADO DE LA TAREA CABEZA -->
-          <div class="campo-lista">
-            <label for="tareaCabezaEstado">Estado de la tarea cabeza</label>
-
-            <select
-              id="tareaCabezaEstado"
-              name="tareaCabezaEstado"
-              [(ngModel)]="estadoN"
-              required
-              #tareaCabezaEstado="ngModel"
-              (ngModelChange)="onEstadoChange($event)">
-              <option value="">Seleccione una opción</option>
-
-              @for (estado of uc!.estado; track estado) {
-                <option [ngValue]="tareaCabezaEstado">
-                  {{ estado }}
-                </option>
-              }
-            </select>
-          </div>
-
-          <!-- PRIMITIVA DE LA DEPENDENCIA -->
-          <div class="campo-lista">
-            <label for="primitivaDependencia">Primitiva de la dependencia</label>
-
-            <select
-              id="primitivaDependencia"
-              name="primitivaDependencia"
-              [(ngModel)]="primitivaN"
-              required
-              #primitivaDependencia="ngModel"
-              (ngModelChange)="onPrimitivaChange($event)">
-              <option value="">Seleccione una opción</option>
-
-              @for (primitiva of uc!.primitiva; track primitiva) {
-                <option [ngValue]="primitiva">
-                  {{ primitiva}}
-                </option>
-              }
-            </select>
-          </div>
-
-
-          <!-- EXPRESION -->
-          <div class="campo-texto">
-            <label for="expresion">Expresion</label>
-            <input
-              id="expresion"
-              name="expresion"
-              type="text"
-              placeholder="Inserte expresion"
-              [(ngModel)]="expresionN"
-              required
-              #expresion="ngModel"
-            />
-          </div>
-          <div class="botones">
-    <button class="btn-figma" type="submit" (click)="and()">
-        <span class="btn-icon">
-      <img src="assets/img/save.svg" alt="And" />
-    </span>
-    AND</button>
-
-    <button class="btn-figma" type="submit" (click)="or()">
-        <span class="btn-icon">
-      <img src="assets/img/save.svg" alt="Or" />
-    </span>
-    OR</button>
-
-    <button class="btn-figma" type="submit" (click)="NOT()">
-        <span class="btn-icon">
-      <img src="assets/img/save.svg" alt="NOT" />
-    </span>
-    NOT</button>
-
-    <button class="btn-figma" type="submit" (click)="save()">
-        <span class="btn-icon">
-      <img src="assets/img/save.svg" alt="Guardar" />
-    </span>
-    ()</button>
-
-    <button class="btn-figma" type="submit" (click)="atributo()">
-        <span class="btn-icon">
-      <img src="assets/img/save.svg" alt="Atributo" />
-    </span>
-    Atributo</button>
-  </div>
-        </div>
-      </div>
-      </div>
-
-   
-
-    <!-- BOTONES FINALES -->
-    <div class="botones-nuevo-grupo">
-
-      <button class="btn-figma" type="submit" (click)="save()">
-        <span class="btn-icon">
-         <img src="assets/img/save.svg" alt="Guardar" />
-        </span>
-        Guardar
-      </button>
-
-
-      @if (editMode()) {
-        <button class="btn-figma" type="button" (click)="delete()">
-          <span class="btn-icon">
-           <img src="assets/img/trash.svg" alt="Eliminar" />
-          </span>
-          Eliminar
-        </button>
+      @for (tarea of uc!.tarea; track tarea) {
+        <option [ngValue]="tarea">
+          {{ tarea }}
+        </option>
       }
 
-     <button class="btn-figma" type="button" (click)="cancel()">
-        <span class="btn-icon">
-          <img src="assets/img/cancel.svg" alt="Cancelar" />
-        </span>
-        Cancelar
-      </button>
-    </div>
+    </select>
+  </div>
+
+  <!-- TAREA COLA -->
+  <div class="campo-lista">
+    <label for="tareaCola">Tarea Cola</label>
+
+    <select
+      id="tareaCola"
+      name="tareaCola"
+      [(ngModel)]="nombreTareaColaN"
+      required
+      #tareaCola="ngModel"
+      (ngModelChange)="onTareaChange($event)">
+
+      <option value="">Seleccione una opción</option>
+
+      @for (tarea of uc!.tarea; track tarea) {
+        <option [ngValue]="tarea">
+          {{ tarea }}
+        </option>
+      }
+
+    </select>
+  </div>
+
+  <!-- ESTADO DE LA TAREA CABEZA -->
+  <div class="campo-lista">
+    <label for="tareaCabezaEstado">Estado de la tarea cabeza</label>
+
+    <select
+      id="tareaCabezaEstado"
+      name="tareaCabezaEstado"
+      [(ngModel)]="estadoN"
+      required
+      #tareaCabezaEstado="ngModel"
+      (ngModelChange)="onEstadoChange($event)">
+
+      <option value="">Seleccione una opción</option>
+
+      @for (estado of uc!.estado; track estado) {
+        <option [ngValue]="estado">
+          {{ estado }}
+        </option>
+      }
+
+    </select>
+  </div>
+
+  <!-- PRIMITIVA DE LA DEPENDENCIA -->
+  <div class="campo-lista">
+    <label for="primitivaDependencia">Primitiva de la dependencia</label>
+
+    <select
+      id="primitivaDependencia"
+      name="primitivaDependencia"
+      [(ngModel)]="primitivaN"
+      required
+      #primitivaDependencia="ngModel"
+      (ngModelChange)="onPrimitivaChange($event)">
+
+      <option value="">Seleccione una opción</option>
+
+      @for (primitiva of uc!.primitiva; track primitiva) {
+        <option [ngValue]="primitiva">
+          {{ primitiva }}
+        </option>
+      }
+
+    </select>
+  </div>
+
+  <!-- EXPRESIÓN -->
+  <div class="campo-texto">
+    <label for="expresion">Expresión</label>
+
+    <input
+      id="expresion"
+      name="expresion"
+      type="text"
+      placeholder="Inserte expresión"
+      [(ngModel)]="expresionN"
+      required
+      #expresion="ngModel"
+    />
+  </div>
+
+  <!-- BOTONES EXPRESIÓN -->
+  <div class="botones">
+
+    <button class="btn-figma" type="button" (click)="and()">
+      <span class="btn-icon">
+        <img src="assets/img/save.svg" alt="AND" />
+      </span>
+      AND
+    </button>
+
+    <button class="btn-figma" type="button" (click)="or()">
+      <span class="btn-icon">
+        <img src="assets/img/save.svg" alt="OR" />
+      </span>
+      OR
+    </button>
+
+    <button class="btn-figma" type="button" (click)="NOT()">
+      <span class="btn-icon">
+        <img src="assets/img/save.svg" alt="NOT" />
+      </span>
+      NOT
+    </button>
+
+    <button class="btn-figma" type="button" (click)="save()">
+      <span class="btn-icon">
+        <img src="assets/img/save.svg" alt="Paréntesis" />
+      </span>
+      ()
+    </button>
+
+    <button class="btn-figma" type="button" (click)="atributo()">
+      <span class="btn-icon">
+        <img src="assets/img/save.svg" alt="Atributo" />
+      </span>
+      Atributo
+    </button>
+
+
+    
+  </div>
+
+  <!-- BOTONES FINALES -->
+<div class="botones-nuevo-grupo">
+
+  <button class="btn-figma" type="submit" (click)="save()">
+    <span class="btn-icon">
+      <img src="assets/img/save.svg" alt="Guardar" />
+    </span>
+    Guardar
+  </button>
+
+  @if (editMode()) {
+    <button class="btn-figma" type="button" (click)="delete()">
+      <span class="btn-icon">
+        <img src="assets/img/trash.svg" alt="Eliminar" />
+      </span>
+      Eliminar
+    </button>
+  }
+
+  <button class="btn-figma" type="button" (click)="cancel()">
+    <span class="btn-icon">
+      <img src="assets/img/cancel.svg" alt="Cancelar" />
+    </span>
+    Cancelar
+  </button>
+
+</div>
+</div>
