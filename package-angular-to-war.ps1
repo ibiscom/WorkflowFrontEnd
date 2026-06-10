@@ -296,7 +296,7 @@ if (-not (Test-Path -Path $DistFull)) {
     Write-Error "Expected build output not found at '$DistFull'. Build may have failed or output path differs."
     exit 8
 }
-if (($buildExit -ne 0) -and (-not $IgnoreBudgetErrors)) {
+if ((-not $SkipBuild) -and ($buildExit -ne 0) -and (-not $IgnoreBudgetErrors)) {
     Write-Error "Build failed (exit $buildExit) and -IgnoreBudgetErrors is not set. Aborting."
     exit 7
 }

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
-import { TareasComponentInstanceService } from './tareas-component-instance.service';
+import { EventoInicioComponentInstanceService } from './eventoinicio-component-instance.service';
 import { LoginEntity } from '../login/login.entity';
 import { GroupEntity } from '../entities/groups/group.entity';
 import { MessageUtil } from '../utils/message.util';
@@ -10,29 +10,29 @@ import { Constants } from '../utils/constants';
 import { GroupSearchFilterEntity } from '../entities/groups/group-search-filter.entity';
 import { CompanyEntity } from '../entities/companies/company.entity';
 import { CompaniasService } from '../companias/companias.service';
-import { AccionesTareasComponent } from './acciones-tareas/acciones-tareas.component';
-import { TareaEntity } from './tarea.entity';
-import { TareasService } from './tareas.service';
+import { AccionesEventoInicioComponent } from './acciones-eventoinicio/acciones-eventoinicio.component';
+import { EventoInicioEntity } from './eventoinicio.entity';
+import { EventoInicioService } from './eventoinicio.service';
 import { CookieService } from 'ngx-cookie-service';
-import { TareasFilterEntity } from './TareasFilterEntity';
+import { EventoInicioFilterEntity } from './eventoinicio-filter.entity';
 
 @Component({
-  selector: 'ibpm-tareas',
-  imports: [MatCardModule, RouterModule, AccionesTareasComponent],
-  templateUrl: './tareas.component.html',
-  styleUrl: './tareas.component.scss',
+  selector: 'ibpm-eventos-de-inicio',
+  imports: [MatCardModule, RouterModule, AccionesEventoInicioComponent],
+  templateUrl: './eventoinicio.component.html',
+  styleUrl: './eventoinicio.component.scss',
 })
-export class TareasComponent {
-  public loggedUser: LoginEntity | undefined;
-  public tareas: TareaEntity[] = [];
+export class EventoInicioComponent {
+  public loggedUser: LoginEntity | undefined; 
+  public eventosInicio: EventoInicioEntity[] = [];
   public companias: CompanyEntity[] = [];
   public mensaje: string = '';
   public workflowActual: string = '';
 
   constructor(
-    private tareasService: TareasService,
+    private eventoInicioService: EventoInicioService,
     private companiasService: CompaniasService,
-    private tareasComponentInstanceService: TareasComponentInstanceService,
+    private eventoInicioComponentInstanceService: EventoInicioComponentInstanceService,
     private loginService: LoginService,
     public router: Router,
     private cookieService: CookieService,
@@ -40,12 +40,12 @@ export class TareasComponent {
 
   ngOnInit(): void {
     console.log('ENTRO ngOnInit');
-    this.tareasComponentInstanceService.setInstance(this);
+    this.eventoInicioComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
    console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
     if(this.hayWorkflowActual()) {
       console.log('SI hay workflow → voy a buscar');
-        this.buscarTareas();
+        this.buscarEventosInicio();
     }
     else {
     console.log('NO hay workflow');
@@ -61,28 +61,26 @@ export class TareasComponent {
     }
     return true;
   }
-
-   public buscarTareas(filtros?: TareasFilterEntity): void {
+/* revisar si se eliminan los filtros de nombre, descripcion, editarDocProceso, idSerie*/
+   public buscarEventosInicio(filtros?: EventoInicioFilterEntity): void {
     console.log("FILTROS RECIBIDOS EN PADRE:", filtros);
       const workflowActual = this.cookieService.get('workflowActual');
-      const body: TareasFilterEntity = {
+      const body: EventoInicioFilterEntity = {
       nombreWorkflow: workflowActual,
       nombre: filtros?.nombre ?? '',
-      nombreTareaCabeza: filtros?.nombreTareaCabeza ?? '',
-      nombreTareaCola: filtros?.nombreTareaCola ?? '',
-      estado: filtros?.estado ?? '',
-      primitiva: filtros?.primitiva ?? '',
-      expresion: filtros?.expresion ?? '',
-      descripcion: filtros?.descripcion ?? ''
+      modeloCarpeta: filtros?.modeloCarpeta ?? '',
+      descripcion: filtros?.descripcion ?? '',
+      editarDocProceso: filtros?.editarDocProceso ?? false,
+      idSerie: filtros?.idSerie ?? ''
     };
    console.log("BODY FINAL:", body);
       console.log('BODY ENVIADO AL BACKEND:', body);
   
-      this.tareasService
-        .getTareas(body)
+      this.eventoInicioService
+        .getEventoInicioList(body)
         .subscribe({
           next: (response) => {
-            this.tareas = response.respuesta;
+            this.eventosInicio = response.respuesta;
             this.mensaje = '';
           },
           error: (err) => {

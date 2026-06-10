@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccionesEventoinicioComponent } from './acciones-eventoinicio.component';
+import { AccionesEventoInicioComponent } from './acciones-eventoinicio.component';  
 
-describe('AccionesEventoinicioComponent', () => {
-  let component: AccionesEventoinicioComponent;
-  let fixture: ComponentFixture<AccionesEventoinicioComponent>;
+describe('AccionesEventoInicioComponent', () => {
+  let component: AccionesEventoInicioComponent;
+  let fixture: ComponentFixture<AccionesEventoInicioComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AccionesEventoinicioComponent],
+      imports: [AccionesEventoInicioComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AccionesEventoinicioComponent);
+    fixture = TestBed.createComponent(AccionesEventoInicioComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

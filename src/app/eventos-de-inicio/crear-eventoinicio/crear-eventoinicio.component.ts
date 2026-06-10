@@ -8,30 +8,28 @@ import { UserEntity } from '../../entities/users/user.entity';
 import { MessageUtil } from '../../utils/message.util';
 import { Constants } from '../../utils/constants';
 import { firstValueFrom } from 'rxjs';
-import { TareaEntity } from '../tarea.entity';
+import { EventoInicioEntity } from '../eventoinicio.entity';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { TareasComponentInstanceService } from '../tareas-component-instance.service';
-import { TareasService } from '../tareas.service';
-import { TareasComponent } from '../tareas.component';
+import { EventoInicioComponentInstanceService } from '../eventoinicio-component-instance.service';
+import { EventoInicioService } from '../eventoinicio.service';
+import { EventoInicioComponent } from '../eventoinicio.component';
 import { CookieService } from 'ngx-cookie-service';
-import { TipoTareaEntity } from '../tipo-tarea.entity';
-import { HerramientaTareaEntity } from '../herramienta-tarea.entity';
-import { RolTareaEntity } from '../rol-tarea.entity';
-import { MetodoAsignacionTareaEntity } from '../metodo-asignacion-tarea.entity';
-import { SerieTareaEntity } from '../serie-tarea.entity';
-import { TipoDocumentoTareaEntity } from '../tipo-documento-tarea.entity';
+import { MetodoAsignacionPrimeraTareaEntity } from '../metodoasignacion-primeratarea.entity';
+import { SerieEventoInicioEntity } from '../serie-eventoinicio.entity';
+import { TipoDocumentoEventoInicioEntity } from '../tipodocumento-eventoinicio.entity';
 import { BrowserModule } from "@angular/platform-browser";
 import { CommonModule } from '@angular/common';
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { HerramientaEventoInicioEntity } from '../herramienta-eventoinicio.entity';
 import { DocumentModelEntity } from '../document-model.entity';
 
 @Component({
-  selector: 'ibpm-crear-tareas',
+  selector: 'ibpm-crear-evento-inicio',
   imports: [
     FormsModule,
     MatCardModule,
@@ -43,63 +41,51 @@ import { DocumentModelEntity } from '../document-model.entity';
     CommonModule,
     MatSlideToggleModule
 ],
-  templateUrl: './crear-tareas.component.html',
-  styleUrl: './crear-tareas.component.scss',
+  templateUrl: './crear-eventoinicio.component.html',
+  styleUrl: './crear-eventoinicio.component.scss',
 })
 /**
  * Componente para la creación y edición de grupos.
  * Permite seleccionar compañía, supervisor y administrar permisos/restricciones.
  */
-export class CrearTareasComponent {
+export class CrearEventoInicioComponent {
   public metodosAsignacionList: any[] = [];
-  public herramientaN?: HerramientaTareaEntity;
-  public rolesList: RolTareaEntity[] = [];
-  public metodoAsignacionN?: MetodoAsignacionTareaEntity;
-  public nombreMetodoAsignacionN: string = '';
-  public rolN?: RolTareaEntity;
-  public nombreRolN: string = '';
-  public herramientasList: HerramientaTareaEntity[] = [];
-  public numeroTareaN: string = '';
-  public nombreTareaN: string = '';
-  public nombreLargoN: string = '';
-  public estadoObjetoN: string = '';
-  public modeloCarpetaN: string = '';
-  public descripcionN: string = '';
-  public tipoN?: TipoTareaEntity;
-  public nombreTipoN: string = '';
+  public herramientaN?: HerramientaEventoInicioEntity;
+  public metodoAsignacionN?: MetodoAsignacionPrimeraTareaEntity;
+  public nombreMetodoAsignacionB: boolean = false;
+  public nombreMetodoAsignacionN: string = 'No'
+  public herramientasList: HerramientaEventoInicioEntity[] = [];
+  public nombreEventoInicioN: string = '';
+  public nombreLargoEventoInicioN: string = '';
+  public descripcionEventoInicioN: string = '';
   public nombreHerramientaN: string = '';
-  public uc?: TareasComponent;
+  public modeloCarpetaN?: string;
+   public uc?: EventoInicioComponent;
   public loggedUser?: LoginEntity;
-  public tareasIdEdit?: string;
+  public eventoInicioIdEdit?: string;
   public workflowActual: string = '';
-  public tiposList: TipoTareaEntity[] = [];
-  public serieN?: SerieTareaEntity;
+  public serieN?: SerieEventoInicioEntity;
   public idSerieN: string = '';
-  public seriesList: SerieTareaEntity[] = [];
-  public tiposDocumentoList: TipoDocumentoTareaEntity[] = [];
-  public tiposDocumentoAsignadosTareaList: TipoDocumentoTareaEntity[] = [];
-  public tiposDocumentoAgregarList: TipoDocumentoTareaEntity[] = [];
-  public modelosDocumentoTareaE: DocumentModelEntity[] = [];
-  public diasDuracionEstimadaN: string = '';
-  public horasDuracionEstimadaN: string = '';
-  public minutosDuracionEstimadaN: string = '';
-  public segundosDuracionEstimadaN: string = '';
-  public diasAlarmaAmarillaN: string = '';
-  public horasAlarmaAmarillaN: string = '';
-  public minutosAlarmaAmarillaN: string = '';
-  public segundosAlarmaAmarillaN: string = '';
-  public editarDocProcesoN: boolean = false;
+  public seriesList: SerieEventoInicioEntity[] = [];
+  public tiposDocumentoList: TipoDocumentoEventoInicioEntity[] = [];
+  public tiposDocumentoAsignadosEventoInicioList: TipoDocumentoEventoInicioEntity[] = [];
+  public tiposDocumentoAgregarList: TipoDocumentoEventoInicioEntity[] = [];
+  public modelosDocumentoEventoInicioE: DocumentModelEntity[] = [];
+  public nombreLargoN: string = '';
+  public descripcionN: string = '';
+  public editarDocProcesoN: any = false;
+  
 
   public constructor(
-    private tareasService: TareasService,
+    private eventoInicioService: EventoInicioService,
     private loginService: LoginService,
-    private tareasComponentInstanceService: TareasComponentInstanceService,
+    private eventoInicioComponentInstanceService: EventoInicioComponentInstanceService,
     private router: Router,
     private route: ActivatedRoute,
     private cookieService: CookieService,
   ) {
     this.loggedUser = this.loginService.getLoggedUser();
-    this.uc = this.tareasComponentInstanceService.getInstance();
+    this.uc = this.eventoInicioComponentInstanceService.getInstance();
   }
 
   /**
@@ -112,25 +98,19 @@ export class CrearTareasComponent {
     this.workflowActual = this.cookieService.get("workflowActual");
     const id = this.route.snapshot.paramMap.get('id');
     console.log('Edit Mode On. Group Id:', id);
-    await this.getTiposTareaList();
-    await this.getHerramientasTareaList();
-    await this.getRolesList();
+    await this.getHerramientasEventoInicioList();
     await this.getMetodosAsignacionList();
     await this.getSeriesList();
     if (id) {
-      this.tareasIdEdit = id;
+      this.eventoInicioIdEdit = id;
       await this.fillEditFields();
 
     } else {
-      this.tareasIdEdit = undefined;
+      this.eventoInicioIdEdit = undefined;
     }
   }
   
   
-
-
-  
-
   /**
    * Llena los campos del formulario con la información de la tarea en edición.
    */
@@ -138,42 +118,27 @@ export class CrearTareasComponent {
    
     try {
       const response = await firstValueFrom(
-        this.tareasService.getTarea(
+        this.eventoInicioService.getEventoInicio(
           this.workflowActual ?? '',
-          this.tareasIdEdit ?? '',
+          this.eventoInicioIdEdit ?? '',
           this.loggedUser?.user_name ?? '',
         ),
       );
       if (response?.respuesta) {
-        const tarea = response.respuesta as TareaEntity;
-        this.numeroTareaN = tarea.numero ? tarea.numero.toString() : '';
-        this.nombreTareaN = tarea.nombre ?? '';
-        this.nombreLargoN = tarea.nombreLargo ?? '';
-        this.estadoObjetoN = tarea.estadoTarea ?? '';
-        this.modeloCarpetaN = tarea.modeloCarpeta ?? '';
-        this.descripcionN = tarea.descripcion ?? '';
-        this.nombreTipoN = tarea.tipo ?? '';
-        this.tipoN = this.tiposList.find(t => t.code === this.nombreTipoN) ?? undefined;
-        this.nombreHerramientaN = tarea.herramienta ?? '';
+        const eventoInicio = response.respuesta as EventoInicioEntity;
+        this.nombreEventoInicioN = eventoInicio.nombreEvento ?? '';
+        this.nombreLargoEventoInicioN = eventoInicio.nombreLargo ?? '';
+        this.modeloCarpetaN = eventoInicio.modeloCarpeta ?? '';
+        this.descripcionEventoInicioN = eventoInicio.descripcion ?? '';
+        this.nombreHerramientaN = eventoInicio.herramienta ?? '';
         this.herramientaN = this.herramientasList.find(h => h.code === this.nombreHerramientaN) ?? undefined;
-        this.nombreRolN = tarea.rol ?? '';
-        this.rolN = this.rolesList.find(r => r.code === this.nombreRolN) ?? undefined;
-        this.nombreMetodoAsignacionN = tarea.metodoAsignacion ?? '';
+        this.nombreMetodoAsignacionB = eventoInicio.usuarioIniciaTarea ?? false;
         this.metodoAsignacionN = this.metodosAsignacionList.find(m => m.code === this.nombreMetodoAsignacionN) ?? undefined;
-        this.diasDuracionEstimadaN = tarea.diasDuracionEstimada ? tarea.diasDuracionEstimada.toString() : '';
-        this.horasDuracionEstimadaN = tarea.horasDuracionEstimada ? tarea.horasDuracionEstimada.toString() : '';
-        this.minutosDuracionEstimadaN = tarea.minutosDuracionEstimada ? tarea.minutosDuracionEstimada.toString() : '';
-        this.segundosDuracionEstimadaN = tarea.segundosDuracionEstimada ? tarea.segundosDuracionEstimada.toString() : '';
-        this.diasAlarmaAmarillaN = tarea.diasAlarmaAmarilla ? tarea.diasAlarmaAmarilla.toString() : '';
-        this.horasAlarmaAmarillaN = tarea.horasAlarmaAmarilla ? tarea.horasAlarmaAmarilla.toString() : '';
-        this.minutosAlarmaAmarillaN = tarea.minutosAlarmaAmarilla ? tarea.minutosAlarmaAmarilla.toString() : '';
-        this.segundosAlarmaAmarillaN = tarea.segundosAlarmaAmarilla ? tarea.segundosAlarmaAmarilla.toString() : '';
-        this.editarDocProcesoN = tarea.editarDocProceso ?? false;
-        this.idSerieN = tarea.docModels?.[0]?.idSerie ?? '';
+        this.idSerieN = eventoInicio.docModels?.[0]?.idSerie ?? '';
         this.serieN = this.seriesList.find(s => s.code === this.idSerieN) ?? undefined;
-        this.modelosDocumentoTareaE = tarea.docModels ?? [];
+        this.modelosDocumentoEventoInicioE = eventoInicio.docModels ?? [];
         await this.getTiposDocumentoListBySerie();
-        await this.diligenciarTiposDocumentoAsignadosTarea();
+        await this.diligenciarTiposDocumentoAsignadosEventoInicio();
         await this.diligenciarTiposDocumentoAsignar();
 
       }
@@ -187,49 +152,22 @@ export class CrearTareasComponent {
     }
   }
 
-  /**
-   * Consulta los tipos de tarea.
-   */
-  public async getTiposTareaList() {
-    this.tiposList = [];
 
-    try {
-      const response = await firstValueFrom(
-      this.tareasService
-        .getTipos()
-      );
 
-      if (response && response.respuesta) {
-        const ops = response.respuesta as TipoTareaEntity[];
-        this.tiposList.push(...ops);
-      }
-    } catch (error: any) {
-      if (this.uc) {
-        this.uc.mensaje =
-          error.status === 400
-            ? ''
-            : MessageUtil.buildErrorMessageFsResponse(
-                Constants.ERR_TIPO_TAREA_ENCONTRAR,
-                error,
-              );
-      }
-    }
-      
-  }
 
   /**
-   * Consulta las herramientas de tarea.
+   * Consulta las herramientas de evento de inicio.
    */
-  public async getHerramientasTareaList() {
+  public async getHerramientasEventoInicioList() {
     this.herramientasList = [];
 
     try {
       const response = await firstValueFrom(
-        this.tareasService
+        this.eventoInicioService
         .getHerramientas(this.workflowActual ?? ''));
 
         if (response && response.respuesta) {
-          const ops = response.respuesta as HerramientaTareaEntity[];
+          const ops = response.respuesta as HerramientaEventoInicioEntity[];
             this.herramientasList.push(...ops);
         }
     } catch (error: any) {
@@ -245,47 +183,20 @@ export class CrearTareasComponent {
     }
   }
 
+  
   /**
-   * Consulta los roles de tarea.
-   */
-  public async getRolesList() {
-    this.rolesList = [];
-
-    try {
-      const response = await firstValueFrom(
-        this.tareasService
-        .getRoles());
-
-        if (response && response.respuesta) {
-          const ops = response.respuesta as RolTareaEntity[];
-            this.rolesList.push(...ops);
-        }
-    } catch (error: any) {
-      if (this.uc) {
-        this.uc.mensaje =
-          error.status === 400
-            ? ''
-            : MessageUtil.buildErrorMessageFsResponse(
-                Constants.ERR_ROL_TAREA_ENCONTRAR,
-                error,
-              );
-      }
-    }
-  }
-
-  /**
-   * Consulta los métodos de asignación de tarea.
+   * Consulta los métodos de asignación de la primera tarea.
    */
   public async getMetodosAsignacionList() {
     this.metodosAsignacionList = [];
 
     try {
       const response = await firstValueFrom(
-        this.tareasService
+        this.eventoInicioService
         .getMetodosAsignacion());
 
         if (response && response.respuesta) {
-          const ops = response.respuesta as MetodoAsignacionTareaEntity[];
+          const ops = response.respuesta as MetodoAsignacionPrimeraTareaEntity[];
             this.metodosAsignacionList.push(...ops);
         }
     } catch (error: any) {
@@ -308,11 +219,11 @@ export class CrearTareasComponent {
     this.seriesList = [];
     try {
       const response = await firstValueFrom(
-        this.tareasService        
-          .getSeriesTareas(this.loggedUser?.user_name ?? ''));
+        this.eventoInicioService        
+          .getSeriesEventoInicio(this.loggedUser?.user_name ?? ''));
 
         if (response && response.respuesta) {
-          const ops = response.respuesta as SerieTareaEntity[];
+          const ops = response.respuesta as SerieEventoInicioEntity[];
           this.seriesList.push(...ops);
         }
     } catch (error: any) {
@@ -324,7 +235,7 @@ export class CrearTareasComponent {
                 Constants.ERR_SERIE_TAREA_ENCONTRAR,
                 error,
               );
-        // TEMPORAL: Se rellenan series de tarea por defecto en caso de error para evitar bloqueos en la creación de tareas
+        // TEMPORAL: Se rellenan series de evento de inicio por defecto en caso de error para evitar bloqueos en la creación de evento de inicio
         this.seriesList.push(
           { code: 'Acciones Populares', name: 'Acciones Populares' },
           { code: 'Serie2', name: 'Serie 2' },
@@ -338,19 +249,25 @@ export class CrearTareasComponent {
    * Indica si está en modo edición.
    */
   public editMode(): boolean {
-    return this.tareasIdEdit !== undefined && this.tareasIdEdit !== '';
+    return this.eventoInicioIdEdit !== undefined && this.eventoInicioIdEdit !== '';
   }
 
-  /**
-   * Maneja el cambio de compañía seleccionada.
-   */
-  public onCompanyChange(event: MatSelectChange<CompanyEntity>) {
-    /**this.companyObjectN = event.value;
-    this.companyN = event.value?.name ?? '';*/
+  private buildEventoInicioPayload(): EventoInicioEntity {
+    return {
+      nombreWorkflow: this.workflowActual,
+      usuario: this.loggedUser?.user_name ?? '',
+      nombreEvento: this.nombreEventoInicioN,
+      nombreLargo: this.nombreLargoEventoInicioN,
+      modeloCarpeta: this.modeloCarpetaN ?? '',
+      descripcion: this.descripcionEventoInicioN,
+      herramienta: this.nombreHerramientaN,
+      usuarioIniciaTarea: this.nombreMetodoAsignacionB,
+      docModels: this.mapearModelosDocumentoEventoInicio(),
+    };
   }
 
-  /**
-   * Guarda los cambios, creando o editando el grupo según corresponda.
+   /**
+    * Guarda los cambios, creando o editando el evento de inicio según corresponda.
    */
   public save() {
     if (!this.editMode()) {
@@ -364,50 +281,24 @@ export class CrearTareasComponent {
    * Crea un nuevo grupo con los datos del formulario.
    */
   public create() {
-    this.tareasService
-      .createTarea({
-        nombreWorkflow: this.workflowActual,
-        usuario: this.loggedUser?.user_name ?? '',
-        numero: this.numeroTareaN ? parseInt(this.numeroTareaN) : undefined,
-        nombre: this.nombreTareaN,
-        nombreLargo: this.nombreLargoN,
-        estadoTarea: this.estadoObjetoN,
-        modeloCarpeta: this.modeloCarpetaN,
-        descripcion: this.descripcionN,
-        tipo: this.nombreTipoN,
-        herramienta: this.nombreHerramientaN,
-        rol: this.nombreRolN,
-        metodoAsignacion: this.nombreMetodoAsignacionN,
-        subProceso: '',
-        sincronico: '',
-        responsable: '',
-        diasDuracionEstimada: this.diasDuracionEstimadaN ? parseInt(this.diasDuracionEstimadaN) : undefined,
-        horasDuracionEstimada: this.horasDuracionEstimadaN ? parseInt(this.horasDuracionEstimadaN) : undefined,
-        minutosDuracionEstimada: this.minutosDuracionEstimadaN ? parseInt(this.minutosDuracionEstimadaN) : undefined,
-        segundosDuracionEstimada: this.segundosDuracionEstimadaN ? parseInt(this.segundosDuracionEstimadaN) : undefined,
-        diasAlarmaAmarilla: this.diasAlarmaAmarillaN ? parseInt(this.diasAlarmaAmarillaN) : undefined,
-        horasAlarmaAmarilla: this.horasAlarmaAmarillaN ? parseInt(this.horasAlarmaAmarillaN) : undefined,
-        minutosAlarmaAmarilla: this.minutosAlarmaAmarillaN ? parseInt(this.minutosAlarmaAmarillaN) : undefined,
-        segundosAlarmaAmarilla: this.segundosAlarmaAmarillaN ? parseInt(this.segundosAlarmaAmarillaN) : undefined,
-        editarDocProceso: this.editarDocProcesoN,
-        docModels: this.mapearModelosDocumentoTarea(),
-      } as TareaEntity)
+    this.eventoInicioService
+      .createEventoInicio(this.buildEventoInicioPayload())
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
             if (this.uc) {
-              this.uc.mensaje = 'Se ha creado la tarea exitósamente';
+              this.uc.mensaje = 'Se ha creado el evento de inicio exitósamente';
             }
-            this.tareasIdEdit = this.nombreTareaN;
+            this.eventoInicioIdEdit = this.nombreEventoInicioN;
             this.router.navigate([
-              `/main-page/tareas/editarTarea?id=${this.nombreTareaN}`,
+              `/main-page/eventos-de-inicio/editarEventoInicio?id=${this.nombreEventoInicioN}`,
             ]);
           }
         },
         error: (e) => {
           if (this.uc) {
             this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_TAREA_CREAR,
+              Constants.ERR_EVENTO_INICIO_CREAR,
               e,
             );
           }
@@ -419,39 +310,13 @@ export class CrearTareasComponent {
    * Edita la tarea existente con los datos proporcionados.
    */
   public edit() {
-    this.tareasService
-      .editTareas({
-        nombreWorkflow: this.workflowActual,
-        usuario: this.loggedUser?.user_name ?? '',
-        numero: this.numeroTareaN ? parseInt(this.numeroTareaN) : undefined,
-        nombre: this.nombreTareaN,
-        nombreLargo: this.nombreLargoN,
-        estadoTarea: this.estadoObjetoN,
-        modeloCarpeta: this.modeloCarpetaN,
-        descripcion: this.descripcionN,
-        tipo: this.nombreTipoN,
-        herramienta: this.nombreHerramientaN,
-        rol: this.nombreRolN,
-        metodoAsignacion: this.nombreMetodoAsignacionN,
-        subProceso: '',
-        sincronico: '',
-        responsable: '',
-        diasDuracionEstimada: this.diasDuracionEstimadaN ? parseInt(this.diasDuracionEstimadaN) : undefined,
-        horasDuracionEstimada: this.horasDuracionEstimadaN ? parseInt(this.horasDuracionEstimadaN) : undefined,
-        minutosDuracionEstimada: this.minutosDuracionEstimadaN ? parseInt(this.minutosDuracionEstimadaN) : undefined,
-        segundosDuracionEstimada: this.segundosDuracionEstimadaN ? parseInt(this.segundosDuracionEstimadaN) : undefined,
-        diasAlarmaAmarilla: this.diasAlarmaAmarillaN ? parseInt(this.diasAlarmaAmarillaN) : undefined,
-        horasAlarmaAmarilla: this.horasAlarmaAmarillaN ? parseInt(this.horasAlarmaAmarillaN) : undefined,
-        minutosAlarmaAmarilla: this.minutosAlarmaAmarillaN ? parseInt(this.minutosAlarmaAmarillaN) : undefined,
-        segundosAlarmaAmarilla: this.segundosAlarmaAmarillaN ? parseInt(this.segundosAlarmaAmarillaN) : undefined,
-        editarDocProceso: this.editarDocProcesoN,
-        docModels: this.mapearModelosDocumentoTarea(),
-      } as TareaEntity)
+    this.eventoInicioService
+      .editEventoInicio(this.buildEventoInicioPayload())
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
             this.router.navigate([
-              `/main-page/tareas/editarTarea?id=${this.nombreTareaN}`,
+              `/main-page/eventos-de-inicio/editarEventoInicio?id=${this.nombreEventoInicioN}`,
             ]);
           }
         },
@@ -473,12 +338,12 @@ export class CrearTareasComponent {
    * Elimina la tarea actual.
    */
   public delete() {
-    this.tareasService
-      .deleteTarea( this.tareasIdEdit ?? '')
+    this.eventoInicioService
+      .deleteEventoInicio( this.eventoInicioIdEdit ?? '')
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
-            this.router.navigate(['/main-page/tareas']);
+            this.router.navigate(['/main-page/eventos-de-inicio']);
           }
         },
         error: (e) => {
@@ -499,40 +364,29 @@ export class CrearTareasComponent {
     if (this.uc) {
       this.uc.mensaje = '';
     }
-    this.router.navigate(['/main-page/tareas']);
+    this.router.navigate(['/main-page/eventos-de-inicio']);
   }
 
 
   public onMetodoAsignacionChange($event: any) {
-    let metodoAsignacionSeleccionado = $event as MetodoAsignacionTareaEntity;
+    let metodoAsignacionSeleccionado = $event as MetodoAsignacionPrimeraTareaEntity;
     this.metodoAsignacionN = metodoAsignacionSeleccionado;
     this.nombreMetodoAsignacionN = metodoAsignacionSeleccionado.code ?? '';
   }
 
-  public onRolChange($event: any) {
-    let rolSeleccionado = $event as RolTareaEntity;
-    this.rolN = rolSeleccionado;
-    this.nombreRolN = rolSeleccionado.code ?? '';
-  }
-
-  public onHerramientaChange($event: any) {
-    let herramientaSeleccionada = $event as HerramientaTareaEntity;
+    public onHerramientaChange($event: any) {
+    let herramientaSeleccionada = $event as HerramientaEventoInicioEntity;
     this.herramientaN = herramientaSeleccionada;
     this.nombreHerramientaN = herramientaSeleccionada?.code ?? '';
   } 
 
-  public onTipoChange(event: any) {
-    let tipoSeleccionado = event as TipoTareaEntity;
-    this.tipoN = tipoSeleccionado;
-    this.nombreTipoN = tipoSeleccionado?.code ?? '';
-  } 
-  
+
   public async onSerieChange($event: any) {
-    let serieSeleccionada = $event as SerieTareaEntity;
+    let serieSeleccionada = $event as SerieEventoInicioEntity;
     this.serieN = serieSeleccionada;
     this.idSerieN = serieSeleccionada?.code ?? '';
     await this.getTiposDocumentoListBySerie();
-    this.diligenciarTiposDocumentoAsignadosTarea();
+    this.diligenciarTiposDocumentoAsignadosEventoInicio();
     this.diligenciarTiposDocumentoAsignar();
 
   }     
@@ -541,26 +395,26 @@ export class CrearTareasComponent {
     this.tiposDocumentoAgregarList = [];
     if(this.tiposDocumentoList.length > 0 ) {
         this.tiposDocumentoList.forEach(tipoDoc => {
-          if (!this.tiposDocumentoAsignadosTareaList.some(asignado => asignado.code === tipoDoc.code)) {
+          if (!this.tiposDocumentoAsignadosEventoInicioList.some(asignado => asignado.code === tipoDoc.code)) {
             this.tiposDocumentoAgregarList.push(tipoDoc);
           }
         });
    } 
   }
 
-  public diligenciarTiposDocumentoAsignadosTarea() {
-    this.tiposDocumentoAsignadosTareaList = [];
+  public diligenciarTiposDocumentoAsignadosEventoInicio() {
+    this.tiposDocumentoAsignadosEventoInicioList = [];
     if(this.editMode()) {
-      this.modelosDocumentoTareaE.forEach(modeloDoc => {
+      this.modelosDocumentoEventoInicioE.forEach(modeloDoc => {
         if(modeloDoc.idSerie === this.idSerieN) {
-          const tipoDocAsignado: TipoDocumentoTareaEntity = {
+          const tipoDocAsignado: TipoDocumentoEventoInicioEntity = {
             code: modeloDoc.tipoDocumento ?? '',
             name: modeloDoc.tipoDocumento ?? '',
             obligatorio: modeloDoc.obligatoryTypeDocInTask ?? false,
             visible: true,
             selected: false
           };
-          this.tiposDocumentoAsignadosTareaList.push(tipoDocAsignado);
+          this.tiposDocumentoAsignadosEventoInicioList.push(tipoDocAsignado);
         }
      });
     }
@@ -570,11 +424,11 @@ export class CrearTareasComponent {
    this.tiposDocumentoList = [];
     try {
       const response = await firstValueFrom(
-        this.tareasService
+        this.eventoInicioService
           .getTiposDocumentoBySerie(this.idSerieN ?? '')
       );
         if (response && response.respuesta) {
-          const ops = response.respuesta as TipoDocumentoTareaEntity[];
+          const ops = response.respuesta as TipoDocumentoEventoInicioEntity[];
           this.tiposDocumentoList.push(...ops);
         }
     } catch (error: any) {
@@ -602,26 +456,26 @@ export class CrearTareasComponent {
   }
   
   public retirar() {
-    this.tiposDocumentoAgregarList.push(...this.tiposDocumentoAsignadosTareaList.some(tipo => tipo.visible) ? this.tiposDocumentoAsignadosTareaList.filter(tipo => tipo.visible) : []);
-    this.tiposDocumentoAsignadosTareaList = this.tiposDocumentoAsignadosTareaList.filter(tipo => !tipo.visible);
+    this.tiposDocumentoAgregarList.push(...this.tiposDocumentoAsignadosEventoInicioList.some(tipo => tipo.visible) ? this.tiposDocumentoAsignadosEventoInicioList.filter(tipo => tipo.visible) : []);
+    this.tiposDocumentoAsignadosEventoInicioList = this.tiposDocumentoAsignadosEventoInicioList.filter(tipo => !tipo.visible);
     this.tiposDocumentoAgregarList.forEach(tipo => { tipo.visible = false; });
   }
 
   public asignar() {
-    this.tiposDocumentoAsignadosTareaList.push(...this.tiposDocumentoAgregarList.some(tipo => tipo.selected) ? this.tiposDocumentoAgregarList.filter(tipo => tipo.selected) : []);
+    this.tiposDocumentoAsignadosEventoInicioList.push(...this.tiposDocumentoAgregarList.some(tipo => tipo.selected) ? this.tiposDocumentoAgregarList.filter(tipo => tipo.selected) : []);
     this.tiposDocumentoAgregarList = this.tiposDocumentoAgregarList.filter(tipo => !tipo.selected);
-    this.tiposDocumentoAsignadosTareaList.forEach(tipo => { tipo.selected = false; });
+    this.tiposDocumentoAsignadosEventoInicioList.forEach(tipo => { tipo.selected = false; });
   }
 
-  public toggleObligatorio(tipoDocTarea: TipoDocumentoTareaEntity) {
-    tipoDocTarea.obligatorio = !tipoDocTarea.obligatorio;
+  public toggleObligatorio(tipoDocEventoInicio: TipoDocumentoEventoInicioEntity) {
+    tipoDocEventoInicio.obligatorio = !tipoDocEventoInicio.obligatorio;
   }
 
-  public mapearModelosDocumentoTarea(): DocumentModelEntity[] {
-    if(this.tiposDocumentoAsignadosTareaList.length === 0) {
+  public mapearModelosDocumentoEventoInicio(): DocumentModelEntity[] {
+    if(this.tiposDocumentoAsignadosEventoInicioList.length === 0) {
       return [];
     }
-    return this.tiposDocumentoAsignadosTareaList.map(tipoDoc => {
+    return this.tiposDocumentoAsignadosEventoInicioList.map(tipoDoc => {
       const modelo: DocumentModelEntity = {
         tipoDocumento: tipoDoc.code,
         idSerie: this.serieN?.code ?? '',
