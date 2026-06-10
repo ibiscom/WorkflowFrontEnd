@@ -70,9 +70,7 @@ import { EntidadesComponent } from './entidades/entidades.component';
 import { CrearEntidadesComponent } from './entidades/crear-entidades/crear-entidades.component';
 import { ListadoEntidadesComponent } from './entidades/listado-entidades/listado-entidades.component';
 import { FestivoComponent } from './festivos/festivo.component';
-import { EventoInicioComponent } from './eventos-de-inicio/eventoinicio.component';
-import { CrearEventoInicioComponent } from './eventos-de-inicio/crear-eventoinicio/crear-eventoinicio.component';
-import { ListadoEventoInicioComponent } from './eventos-de-inicio/listado-eventoinicio/listado-eventoinicio.component';
+
 
 
 export const CanActivateGuard: CanActivateFn = (
@@ -654,6 +652,64 @@ export const routes: Routes = [
             component: ListadoResponsableComponent,
             canActivate: [CanActivateGuard],
           },
+
+                {
+        path: 'responsable',
+        component: ResponsableComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoResponsables',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoResponsables',
+            component: ListadoResponsableComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'crearResponsable',
+            component: CrearResponsableComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'editarResponsable/:id',
+            component: CrearResponsableComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+
+      {
+        path: 'eventos de inicio',
+        component: EventosInicioComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'eventos de inicio',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoEventosInicio',
+            component: ListadoEventosInicioComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'crearEventoInicio',
+            component: CrearEventosInicioComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'editarEventoInicio/:id',
+            component: CrearEventosInicioComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
         ],
       },
 ];
+
+
