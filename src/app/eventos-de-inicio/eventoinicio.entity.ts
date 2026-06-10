@@ -1,33 +1,16 @@
 import { DocumentModelEntity } from "./document-model.entity";
 
 /**
- * Entidad que representa una tarea en el sistema.
+ * Entidad que representa un evento de inicio en el sistema.
  */
-export interface TareaEntity {
+export interface EventoInicioEntity {
     nombreWorkflow: string;
     usuario: string;
-    numero: number;
-    nombre: string;
+    nombreEvento: string;
     nombreLargo: string;
-    estadoTarea: string;
     modeloCarpeta: string;
     descripcion: string;
-    tipo: string;
     herramienta: string;
-    rol: string;
-    metodoAsignacion: string;
-    subProceso: string;
-    sincronico: string;
-    responsable: string;
-    diasDuracionEstimada: number;
-    horasDuracionEstimada: number;
-    minutosDuracionEstimada: number;
-    segundosDuracionEstimada: number;
-    diasAlarmaAmarilla: number;
-    horasAlarmaAmarilla: number;
-    minutosAlarmaAmarilla: number;
-    segundosAlarmaAmarilla: number;
-    editarDocProceso: boolean;
+    usuarioIniciaTarea: boolean;
     docModels?: DocumentModelEntity[];
 }
-

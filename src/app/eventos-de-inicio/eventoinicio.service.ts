@@ -6,170 +6,149 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environment';
-import { TareaEntity } from './tarea.entity';
-import { TareasFilterEntity } from './TareasFilterEntity';
-import { RolTareaEntity } from './rol-tarea.entity';
-import { HerramientaTareaEntity } from './herramienta-tarea.entity';
-import { TipoTareaEntity } from './tipo-tarea.entity';
-import { MetodoAsignacionTareaEntity } from './metodo-asignacion-tarea.entity';
-import { SerieTareaEntity } from './serie-tarea.entity';
-import { TipoDocumentoTareaEntity } from './tipo-documento-tarea.entity';
+import { EventoInicioEntity } from './eventoinicio.entity';
+import { EventoInicioFilterEntity } from './eventoinicio-filter.entity';
+import { HerramientaEventoInicioEntity } from './herramienta-eventoinicio.entity';
+import { MetodoAsignacionPrimeraTareaEntity } from './metodoasignacion-primeratarea.entity';
+import { SerieEventoInicioEntity } from './serie-eventoinicio.entity';
+import { TipoDocumentoEventoInicioEntity } from './tipodocumento-eventoinicio.entity';
 
 @Injectable({
   providedIn: 'root',
 })
 /**
- * Servicio para la administración de grupos.
+ * Servicio para la administración de eventos de inicio.
  * Incluye búsquedas, CRUD y gestión de permisos/restricciones.
  */
-export class TareasService {
+export class EventoInicioService {
   constructor(
     private http: HttpClient,
     private cookieService: CookieService,
   ) {}
 
   /**
-       * Crea un nueva tarea.
-       * @param tarea La información de la tarea a crear.
+       * Crea un nuevo evento de inicio.
+       * @param eventoInicio La información del evento de inicio a crear.
        * @returns 
        */
-      public createTarea(tarea: TareaEntity): Observable<FsResponseEntity<any>> {
+      public createEventoInicio(eventoInicio: EventoInicioEntity): Observable<FsResponseEntity<any>> {
           let ip: string = this.cookieService.get('ip');
           return this.http.put<FsResponseEntity<any>>(
             environment.workflowApiUrl +
-              `/task/create`, tarea
+              `/startEvent/create`, eventoInicio
           );
       }
   
      /**
-       * Obtiene el listado de dependencias según los filtros proporcionados.
-       * @param filtros Los filtros para la búsqueda de dependencias.
+       * Obtiene el listado de eventos de inicio según los filtros proporcionados.
+       * @param filtros Los filtros para la búsqueda de eventos de inicio.
        * @returns 
        */
   
      
-      public getTareas(filtros: TareasFilterEntity): Observable<FsResponseEntity<any>> {
+      public getEventoInicioList(filtros: EventoInicioFilterEntity): Observable<FsResponseEntity<any>> {
           let ip: string = this.cookieService.get('ip');
           return this.http.post<FsResponseEntity<any>>(
             environment.workflowApiUrl +
-              `/task/getTasks`, filtros
+              `/startEvent/getStartEvents`, filtros
           );
       }
         
     
       /**
-       * Edita la información de una tarea existente.
-       * @param tarea La información de la tarea a modificar.
+       * Edita la información de un evento de inicio existente.
+       * @param eventoInicio La información del evento de inicio a modificar.
        * @returns 
        */
-      public editTareas(tarea: TareaEntity): Observable<FsResponseEntity<any>> {
+      public editEventoInicio(eventoInicio: EventoInicioEntity): Observable<FsResponseEntity<any>> {
           let ip: string = this.cookieService.get('ip');
           return this.http.post<FsResponseEntity<any>>(
             environment.workflowApiUrl +
-              `/task/edit`, tarea
+              `/startEvent/edit`, eventoInicio
           );
       }
     
       /**
-       * Obtiene la información de una tarea existente.
-       * @param workflowName El nombre del workflow al que pertenece la tarea.
-       * @param taskName El nombre de la tarea a consultar.
+        * Obtiene la información de un evento de inicio existente.
+       * @param workflowName El nombre del workflow al que pertenece el evento de inicio.
+       * @param eventoInicioName El nombre del evento de inicio a consultar.
        * @param userName El nombre del usuario que realiza la consulta.
        * @returns 
        */
-      public getTarea(workflowName: string, taskName: string, userName: string): Observable<FsResponseEntity<any>> {
+      public getEventoInicio(workflowName: string, eventoInicioName: string, userName: string): Observable<FsResponseEntity<any>> {
           let ip: string = this.cookieService.get('ip');
           return this.http.get<FsResponseEntity<any>>(
             environment.workflowApiUrl +
-              `/task/getTask?workflowName=${workflowName}&taskName=${taskName}&userName=${userName}`
+              `/startEvent/getStartEvent?workflowName=${workflowName}&eventoInicioName=${eventoInicioName}&userName=${userName}`
           );
       }
     
-      /**
-       * Obtiene el listado de los tipos que puede tener una tarea.
-       * @returns 
-       */
-      public getTipos(): Observable<FsResponseEntity<TipoTareaEntity[]>> {
-          let ip: string = this.cookieService.get('ip');
-          return this.http.get<FsResponseEntity<TipoTareaEntity[]>>(
-            environment.workflowApiUrl +
-              `/task/getTypes`);
-      }
+      
 
       /**
    * Obtiene el listado de herramientas de un workflow seleccionado
    * @param filtros la informacion del workflow seleccionado Los filtros para la búsqueda de herramientas.
    * @returns 
    */
-  public getHerramientas(workflowName: string): Observable<FsResponseEntity<HerramientaTareaEntity[]>> {
+  public getHerramientas(workflowName: string): Observable<FsResponseEntity<HerramientaEventoInicioEntity[]>> {
       let ip: string = this.cookieService.get('ip');
-      return this.http.get<FsResponseEntity<HerramientaTareaEntity[]>>(
+      return this.http.get<FsResponseEntity<HerramientaEventoInicioEntity[]>>(
         environment.workflowApiUrl +
-          `/task/getTools?workflowName=${workflowName}`
+          `/startEvent/getTools?workflowName=${workflowName}`
       );
   }
     
 
-  /**
-   * Obtiene el listado de roles de tarea.
-   * @returns 
-   */
-  public getRoles(): Observable<FsResponseEntity<RolTareaEntity[]>> {
-      let ip: string = this.cookieService.get('ip');
-      return this.http.get<FsResponseEntity<RolTareaEntity[]>>(
-        environment.workflowApiUrl +
-          `/task/getRoles`
-      );
-  }
+  
       /**
-       * Elimina un tarea, dado su identificador
-       * @param tareaName Nombre del tarea a eliminar
+       * Elimina un evento de inicio, dado su identificador
+       * @param eventoInicioName Nombre del evento de inicio a eliminar
        * @returns 
        */
-      public deleteTarea(tareaName: string): Observable<FsResponseEntity<any>> {
+      public deleteEventoInicio(eventoInicioName: string): Observable<FsResponseEntity<any>> {
           let ip: string = this.cookieService.get('ip');
           return this.http.delete<FsResponseEntity<any>>(
             environment.workflowApiUrl +
-              `/task/delete?taskName=${tareaName}`);
+              `/startEvent/delete?eventoInicioName=${eventoInicioName}`);
       }
     
     
 
  /**
-   * Obtiene el listado de métodos de asignación de las tareas
+   * Obtiene el listado de métodos de asignación de los eventos de inicio
    * @returns 
    */
-  public getMetodosAsignacion(): Observable<FsResponseEntity<MetodoAsignacionTareaEntity[]>> {
+  public getMetodosAsignacion(): Observable<FsResponseEntity<MetodoAsignacionPrimeraTareaEntity[]>> {
       let ip: string = this.cookieService.get('ip');
-      return this.http.get<FsResponseEntity<MetodoAsignacionTareaEntity[]>>(
+      return this.http.get<FsResponseEntity<MetodoAsignacionPrimeraTareaEntity[]>>(
         environment.workflowApiUrl +
-          `/task/getAssignmentMethod`
+          `/StartEvent/options`
       );
   }
 
   /**
-   * Obtiene el listado de series de las tareas para un usuario dado
-   * @param username El nombre del usuario para el cual se desean obtener las series de tareas
+    * Obtiene el listado de series de los eventos de inicio para un usuario dado
+   * @param username El nombre del usuario para el cual se desean obtener las series de eventos de inicio
    * @returns 
    */
-  public getSeriesTareas(username: string): Observable<FsResponseEntity<SerieTareaEntity[]>> {
+  public getSeriesEventoInicio(username: string): Observable<FsResponseEntity<SerieEventoInicioEntity[]>> {
     let ip: string = this.cookieService.get('ip');
-    return this.http.get<FsResponseEntity<SerieTareaEntity[]>>(
+    return this.http.get<FsResponseEntity<SerieEventoInicioEntity[]>>(
       environment.workflowApiUrl +
-        `/task/getFoldersModel?user=${username}`
+        `/startEvent/getFoldersModel?user=${username}`
     );
   }
 
   /**
-   * Obtiene el listado de tipos de documento asociados a una serie de tareas dada
-   * @param idFolderModel El identificador de la serie de tareas para la cual se desean obtener los tipos de documento asociados
+   * Obtiene el listado de tipos de documento asociados a una serie de eventos de inicio dada
+   * @param idFolderModel El identificador de la serie de eventos de inicio para la cual se desean obtener los tipos de documento asociados
    * @returns 
    */
-  public getTiposDocumentoBySerie(idFolderModel: string): Observable<FsResponseEntity<TipoDocumentoTareaEntity[]>> {
+  public getTiposDocumentoBySerie(idFolderModel: string): Observable<FsResponseEntity<TipoDocumentoEventoInicioEntity[]>> {
     let ip: string = this.cookieService.get('ip');
-    return this.http.get<FsResponseEntity<TipoDocumentoTareaEntity[]>>(
+    return this.http.get<FsResponseEntity<TipoDocumentoEventoInicioEntity[]>>(
       environment.workflowApiUrl +
-        `/task/getDocumentsModel?idFolderModel=${idFolderModel}`
+        `/startEvent/getDocumentsModel?idFolderModel=${idFolderModel}`
     );
   }
 }

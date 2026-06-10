@@ -70,7 +70,9 @@ import { EntidadesComponent } from './entidades/entidades.component';
 import { CrearEntidadesComponent } from './entidades/crear-entidades/crear-entidades.component';
 import { ListadoEntidadesComponent } from './entidades/listado-entidades/listado-entidades.component';
 import { FestivoComponent } from './festivos/festivo.component';
-
+import { EventoInicioComponent } from './eventos-de-inicio/eventoinicio.component';
+import { CrearEventoInicioComponent } from './eventos-de-inicio/crear-eventoinicio/crear-eventoinicio.component';
+import { ListadoEventoInicioComponent } from './eventos-de-inicio/listado-eventoinicio/listado-eventoinicio.component';
 
 
 export const CanActivateGuard: CanActivateFn = (
@@ -450,6 +452,36 @@ export const routes: Routes = [
       },
 
 
+      /* Eventos de Inicio */
+      {
+        path: 'eventoinicio',
+        component: EventoInicioComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoEventoInicio',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoEventoInicio',
+            component: ListadoEventoInicioComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'crearEventoInicio',
+            component: CrearEventoInicioComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'editarEventoInicio/:id',
+            component: CrearEventoInicioComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+
+      /* Herramientas */
       {
         path: 'herramientas',
         component: HerramientaComponent,

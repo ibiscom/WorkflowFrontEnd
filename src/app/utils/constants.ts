@@ -110,10 +110,30 @@ public static ERR_ENTIDAD_DATOS : string =
     'Atributo de objeto workflow creado exitosamente.';
 
   
-  
+    //Errores Evento de Inicio  
+    public static ERR_EVENTO_INICIO_CREAR: string = 
+      'No se pudo crear el evento de inicio';
+    public static ERR_EVENTO_INICIO_EDITAR: string = 
+      'No se pudo editar el evento de inicio';
+    public static ERR_EVENTO_INICIO_ELIMINAR: string = 
+      'No se pudo eliminar el evento de inicio';
+    public static ERR_EVENTO_INICIO_OBTENER: string = 
+      'No se pudo obtener el evento de inicio';
+    public static ERR_EVENTO_INICIO_LISTAR: string = 
+      'No se pudo listar los eventos de inicio';
+     
 
   
   
+
+
+
+
+
+
+
+
+
 
 
 

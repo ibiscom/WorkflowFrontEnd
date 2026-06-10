@@ -1,17 +1,16 @@
- <!-- <form #form="ngForm">
-<div class="cont-nuevo-evento-inicio"> -->
+<!-- <form #form="ngForm">
+<div class="cont-nuevo-workflow">
 
 
-    <!-- TARJETA DATOS DE LA TAREA -->
-    <div class="card-nuevo-evento-inicio">
+    <!-- TARJETA DATOS DEL EVENTO DE INICIO -->
+    <div class="card-nuevo-workflow-general">
 
       <div class="card-header">
-        <h3>Datos de la tarea</h3>
+        <h3>Datos del evento de inicio</h3>
       </div>
 
       <div class="card-content">
-        <div class="tbl-nuevo-evento-inicio">
-
+        <div class="tbl-nuevo-workflow">
 
           <!-- NOMBRE -->
           <div class="campo-texto">
@@ -20,32 +19,31 @@
               id="nombreEventoInicio"
               name="nombreEventoInicio"
               type="text"
-              placeholder="Inserte nombre del evento de inicio"
-              [(ngModel)]="nameN"
+              placeholder="Inserte nombre de el evento de inicio"
+              [(ngModel)]="nombreEventoInicioN"
               required
               #nombreEventoInicio="ngModel"
             />
             @if (nombreEventoInicio.errors?.['required']) {
-              <div class="error">El nombre deL evento de inicio es obligatorio.</div>
+              <div class="error">El nombre de el evento de inicio es obligatorio.</div>
             }
           </div>
 
           <!-- NOMBRE LARGO -->
           <div class="campo-texto">
-            <label for="nombreLargo">Nombre largo</label>
+            <label for="nombreLargoEventoInicio">Nombre largo</label>
             <input
-              id="nombreLargo"
-              name="nombreLargo"
+              id="nombreLargoEventoInicio"
+              name="nombreLargoEventoInicio"
               type="text"
               placeholder="Inserte nombre largo"
-              [(ngModel)]="longNameN"
+              [(ngModel)]="nombreLargoEventoInicioN"
               required
               #nombreLargo="ngModel"
             />
           </div>
 
-
-          <!-- MODELO DE LA CARPETA
+          <!-- MODELO DE LA CARPETA -->
           <div class="campo-texto">
             <label for="modeloCarpeta">Modelo de la carpeta</label>
             <input
@@ -55,7 +53,7 @@
               placeholder="Inserte modelo de la carpeta"
               [(ngModel)]="modeloCarpetaN"
               required
-              #modeloCarpeta="ngModel"-->
+              #modeloCarpeta="ngModel"
             />
           </div>
 
@@ -67,20 +65,20 @@
               name="descripcion"
               type="text"
               placeholder="Inserte descripción"
-              [(ngModel)]="descriptionN"
+              [(ngModel)]="descripcionN"
               required
               #descripcion="ngModel"
             />
           </div>
 
-          <!-- HERRAMIENTA
-
+          
+          <!-- HERRAMIENTA -->
           <div class="campo-lista">
             <label for="herramienta">Herramienta</label>
             <select
               id="herramienta"
               name="herramienta"
-              [(ngModel)]="herramientasN"
+              [(ngModel)]="herramientaN"
               required
               #herramienta="ngModel"
               (ngModelChange)="onHerramientaChange($event)"
@@ -93,29 +91,36 @@
                 </option>
               }
             </select>
-          </div>-->
+          </div>
 
-          <!-- ASIGNAR RESPONSABLE
+          
+
+          <!-- METÓDO DE ASIGNACIÓN de la primera tareaUTILIZADO -->
           <div class="campo-lista">
-            <label for="Asignar Responsable">¿Asignar primera tarea a responsable que inicia el proceso?</label>
+            <label for="metodoAsignacionPrimeraTarea">Método de asignación de la primera tarea utilizado</label>
             <select
-              id="Asignar Responsable"
-              name="Asignar Responsable"
-              [(ngModel)]="supervisorN"
-              [(ngModel)]="supervisorN"
+              id="metodoAsignacionPrimeraTarea"
+              name="metodoAsignacionPrimeraTarea"
+              [(ngModel)]="metodoAsignacionN"
               required
-              #supervisor="ngModel"
-              (ngModelChange)="onSupervisorChange($event)"
+              #metodoAsignacionPrimeraTarea="ngModel"
+              (ngModelChange)="onMetodoAsignacionChange($event)"
             >
-              <option>Seleccione una opción</option>
-              @for (supervisor of supervisorsList; track supervisor) {
-                <option [ngValue]="supervisor">
-                  {{ supervisor.code }}
+              <option value="">Seleccione una opción</option>
+
+              @for (metodoAsignacionPrimeraTarea of metodosAsignacionList; track metodoAsignacionPrimeraTarea) {
+                <option [ngValue]="metodoAsignacionPrimeraTarea">
+                  {{ metodoAsignacionPrimeraTarea.code }}
                 </option>
               }
             </select>
-          </div>  -->
+          </div>
+        </div>
 
+
+        
+
+         
 
           <!-- Editar documentos del proceso
 
@@ -136,7 +141,7 @@
               <span class="serie-title">Serie</span>
             </div>
 
-            <!-- Selector
+            <!-- Selector -->
             <div class="serie-body">
               <div class="campo-lista">
                 <label for="serie">Serie</label>
@@ -155,7 +160,7 @@
                       {{ serie.name }}
                     </option>
                   }
-                </select>-->
+                </select>
           </div>
         </div>
 
@@ -163,10 +168,10 @@
 <div class="card">
   <!-- Header -->
   <div class="card-header">
-    <span class="card-title">Tipos documento de la serie</span>
+    <span class="card-title">Tipos documento del evento de inicio</span>
   </div>
 
-  <!-- Lista de tipos
+  <!-- Lista de tipos -->
   @for(tipo of tiposDocumentoAgregarList; track tipo) {
   <div
     class="check-row"
@@ -183,12 +188,12 @@
 
   </div>
   }
-</div>-->
+</div>
       
 
 
   <div class="actions">
-  <!-- Botón Asignar
+  <!-- Botón Asignar -->
   <button
     class="btn btn-primary"
     type="button"
@@ -197,8 +202,8 @@
     <span class="btn-icon assign-icon"></span>
     <span>Asignar</span>
   </button> 
--->
-  <!-- Botón Retirar 
+
+  <!-- Botón Retirar -->
   <button
     class="btn btn-outline"
     type="button"
@@ -207,7 +212,6 @@
     <span class="btn-icon remove-icon"></span>
     <span>Retirar</span>
   </button>
-  -->
 </div>
 
 
@@ -215,12 +219,12 @@
   <!-- Header -->
   <div class="card-header">
     <div class="card-title">
-      Tipos documento Asignados a la tareas
+      Tipos documento Asignados al evento de inicio
     </div>
   </div>
 
   <!-- Item -->
-  @for(tipo of tiposDocumentoAsignadosTareaList; track tipo) {
+  @for(tipo of tiposDocumentoAsignadosEventoInicioList; track tipo) {
   <div class="assigned-row" >  <!--*ngFor="let item of tiposDocumentoList"-->
     <!-- Checkbox -->
     <div class="checkbox selected">
@@ -232,7 +236,7 @@
       {{ tipo.name }}
     </div>
 
-    <!-- Acciones
+    <!-- Acciones -->
     <div class="assigned-actions">
       <span class="required">Requerido</span>
 
@@ -241,7 +245,7 @@
         [ngClass]="tipo.obligatorio ? 'on' : 'off'"
         (click)="toggleObligatorio(tipo)"
       > </div>
-    </div>-->
+    </div>
   </div>
  }
 </div>
@@ -274,4 +278,5 @@
     </div>
 </div>
 <!--</form>-->
+
 

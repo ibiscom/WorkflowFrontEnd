@@ -1,77 +1,90 @@
 import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TareasComponent } from '../tareas.component';
-import { TareasService } from '../tareas.service';
+  import { EventoInicioComponent } from '../eventoinicio.component';
+  import { EventoInicioService } from '../eventoinicio.service';
 import { LoginEntity } from '../../login/login.entity';
 
 @Component({
   selector: 'ibpm-filtros-busqueda-tareas',
   imports: [FormsModule],
-  templateUrl: './filtros-busqueda-tareas.component.html',
-  styleUrl: './filtros-busqueda-tareas.component.scss',
+  templateUrl: './filtros-busqueda-eventoinicio.component.html',
+  styleUrl: './filtros-busqueda-eventoinicio.component.scss',
 })
-export class FiltrosBusquedaTareasComponent {
-  public tareasNameF: string = '';
-  public supervisorF: string = '';
+export class FiltrosBusquedaEventoInicioComponent {
+  public eventoInicioNameF: string = '';
+  public modeloCarpetaF: string = '';
+  public descripcionF: string = '';
+  public editarDocProcesoF: boolean = false;
+  public idSerieF: string = '';
 
   // 🔹 Estado seleccionado
-  public companyObjectN: any = null;
+  public modeloCarpetaObjectN: any = null;
 
   // 🔹 LISTA PARA EL SELECT (SOLUCIÓN AL ERROR)
-  public companiesList: any[] = [];
+    public modelosCarpetaList: any[] = [];
 
   // Manejo del switch
   public generateReportF: string = 'false';
 
-  @Input() public uc?: TareasComponent;
+  @Input() public uc?: EventoInicioComponent;
   public loggedUser: LoginEntity | undefined;
 
-  constructor(private tareasService: TareasService) {}
+  constructor(private eventoInicioService: EventoInicioService) {}
 
   ngOnInit(): void {
     this.loggedUser = this.uc?.loggedUser;
 
     // 🔹 Carga inicial (puedes cambiar la lógica luego)
-    this.loadCompanies();
+    this.loadModelosCarpeta();
   }
 
   // 🔹 Simulación / carga de estados
-  private loadCompanies(): void {
+  private loadModelosCarpeta(): void {
     // Si luego viene de servicio, aquí se reemplaza
-    this.companiesList = [
+    this.modelosCarpetaList = [
       { id: 1, largeName: 'Activo' },
       { id: 2, largeName: 'Inactivo' }
     ];
   }
 
   // Cambio del select
-  public onCompanyChange(value: any): void {
-    this.companyObjectN = value;
-    console.log('Estado seleccionado:', this.companyObjectN);
+  public onModeloCarpetaChange(value: any): void {
+    this.modeloCarpetaObjectN = value;
+    console.log('Modelo Carpeta seleccionado:', this.modeloCarpetaObjectN);
   }
 
   // Ejecuta búsqueda
   public search(): void {
     const generateReportBool = this.generateReportF === 'true';
 
-    this.searchTareas(
-      this.tareasNameF,
-      this.supervisorF,
+    this.searchEventoInicio(
+      this.eventoInicioNameF,
+      this.modeloCarpetaF,
+      this.descripcionF,
+      this.editarDocProcesoF,
+      this.idSerieF,
+      this.modeloCarpetaObjectN,
       generateReportBool
     );
   }
 
-  public searchTareas(
-    tareasName: string,
-    supervisor: string,
+  public searchEventoInicio(
+    eventoInicioName: string,
+    modeloCarpeta: string,
+    descripcion: string,
+    editarDocProceso: boolean,
+    idSerie: string,
+    modeloCarpetaObjectN: any,
     generateReport: boolean
   ): void {
     console.log(
       'Filtros recibidos:',
-      tareasName,
-      supervisor,
-      generateReport,
-      this.companyObjectN
+      eventoInicioName,        
+      modeloCarpeta,
+      descripcion,
+      editarDocProceso,
+      idSerie,
+      modeloCarpetaObjectN
     );
 
     // Tu lógica actual aquí
