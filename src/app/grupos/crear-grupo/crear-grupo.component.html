@@ -1,115 +1,211 @@
-<div class="cont-nuevo-workflow">
+<div class="cont-nuevo-grupo">
   <form #form="ngForm">
 
-    <!-- TARJETA DATOS DEL WORKFLOW -->
-    <div class="card-nuevo-workflow-general">
+    <!-- DATOS DEL GRUPO -->
+    <div class="card-nuevo-grupo-general">
 
       <div class="card-header">
-        <h3>Datos de la grupo</h3>
+        <h3>Datos del grupo</h3>
       </div>
 
       <div class="card-content">
-        <div class="tbl-nuevo-workflow">
+
+        <div class="tbl-nuevo-grupo">
 
           <!-- NOMBRE -->
           <div class="campo-texto">
-            <label for="name">Nombre de grupo</label>
+            <label for="nombre">Nombre</label>
             <input
-              id="name"
-              name="name"
+              id="nombre"
+              name="nombre"
               type="text"
-              placeholder="Inserte nombre de la grupo"
+              placeholder="Inserte nombre del grupo"
               [(ngModel)]="nombreN"
               required
-              #name="ngModel"
+              #nombre="ngModel"
               [disabled]="editMode()"
             />
-            @if (name.errors?.['required']) {
-              <div class="error">El nombre de la grupo es obligatorio.</div>
+
+            @if (nombre.errors?.['required']) {
+              <div class="error">
+                El nombre del grupo es obligatorio.
+              </div>
             }
           </div>
 
           <!-- DESCRIPCIÓN -->
           <div class="campo-texto">
-            <label for="description">Breve descripcion</label>
+            <label for="descripcion">Breve descripción</label>
             <input
               id="descripcion"
               name="descripcion"
               type="text"
-              placeholder="Inserte descripcion"
+              placeholder="Inserte descripción"
               [(ngModel)]="descripcionN"
               required
               #descripcion="ngModel"
             />
           </div>
 
-          <!-- FILA 2 -->
-      <div class="fila-filtros-fila3">
-        
-          <!-- TIPO HERRAMIENTA -->
+          <!-- ENTIDAD -->
           <div class="campo-lista">
-            <label for="tipoGrupo">Tipo grupo</label>
+            <label for="entidad">Entidad</label>
 
             <select
-              id="tipoGrupo"
-              name="tipoGrupo"
-              [(ngModel)]="tipoGrupoObjectN"
+              id="entidad"
+              name="entidad"
+              [(ngModel)]="entidadN"
               required
-              #tipoGrupo="ngModel"
-              (ngModelChange)="onTipoGrupoChange($event)">
-              <option value="">Seleccione una opción</option>
+              (ngModelChange)="onEntidadChange($event)"
+            >
+              <option value="">
+                Seleccione una opción
+              </option>
 
-              @for (tipoGrupo of this.uc!.tipos; track tipoGrupo) {
-                <option [ngValue]="tipoGrupo">
-                  {{ tipoGrupo.name }}
+              @for (entidad of entidadesList; track entidad) {
+                <option [ngValue]="entidad">
+                  {{ entidad.nombre }}
                 </option>
               }
             </select>
           </div>
 
-          <!-- URL DEL SERVICIO WEB -->
-          <div class="campo-texto">
-            <label for="urlServicioWeb">URL del servicio web</label>
-            <input
-              id="urlServicioWeb"
-              name="urlServicioWeb"
-              type="text"
-              placeholder="URL del servicio web"
-              [(ngModel)]="urlServicioWebN"
-              required
-              #urlServicioWeb="ngModel"
-            />
-          </div>
         </div>
+
       </div>
+    </div>
+
+    <!-- ASIGNACIÓN RESPONSABLES -->
+    <div class="responsables-container">
+
+      <div class="responsables-header">
+        <span class="responsables-title">
+          Asignación de responsables
+        </span>
+      </div>
+
+      <div class="asignacion-responsables">
+
+        <!-- DISPONIBLES -->
+        <div class="panel-responsables">
+
+          <div class="card-header">
+            <span class="card-title">
+              Responsables disponibles
+            </span>
+          </div>
+
+          @for (responsable of responsablesDisponiblesList; track responsable) {
+            <div class="check-row">
+
+              <div class="checkbox">
+                <input
+                  type="checkbox"
+                  [(ngModel)]="responsable.selected"
+                />
+              </div>
+
+              <span class="check-label">
+                {{ responsable.name }}
+              </span>
+
+            </div>
+          }
+
+        </div>
+
+        <!-- BOTONES -->
+        <div class="actions">
+
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="asignar()"
+          >
+            Asignar
+          </button>
+
+          <button
+            class="btn btn-outline"
+            type="button"
+            (click)="retirar()"
+          >
+            Retirar
+          </button>
+
+        </div>
+
+        <!-- ASIGNADOS -->
+        <div class="panel-responsables">
+
+          <div class="card-header">
+            <span class="card-title">
+              Responsables asociados al grupo
+            </span>
+          </div>
+
+          @for (responsable of responsablesAsignadosList; track responsable) {
+            <div class="assigned-row">
+
+              <div class="checkbox">
+                <input
+                  type="checkbox"
+                  [(ngModel)]="responsable.selected"
+                />
+              </div>
+
+              <span class="assigned-title">
+                {{ responsable.name }}
+              </span>
+
+            </div>
+          }
+
+        </div>
+
       </div>
 
     </div>
 
-    <!-- BOTONES FINALES -->
+    <!-- BOTONES -->
     <div class="botones-nuevo-grupo">
 
-      <button class="btn-figma" type="submit" (click)="save()">
+      <button
+        class="btn-figma"
+        type="button"
+        (click)="save()"
+      >
         <span class="btn-icon">
-      <img src="assets/img/save.svg" alt="Guardar" />
-    </span>
-    Guardar</button>
-
+          <img src="assets/img/save.svg" alt="Guardar" />
+        </span>
+        Guardar
+      </button>
 
       @if (editMode()) {
-        <button class="btn-figma" type="button" (click)="delete()">
+        <button
+          class="btn-figma"
+          type="button"
+          (click)="delete()"
+        >
           <span class="btn-icon">
-        <img src="assets/img/trash.svg" alt="Eliminar" />
-      </span>
-      Eliminar</button>
+            <img src="assets/img/trash.svg" alt="Eliminar" />
+          </span>
+          Eliminar
+        </button>
       }
 
-     <button class="btn-figma" type="button" (click)="cancel()">
+      <button
+        class="btn-figma"
+        type="button"
+        (click)="cancel()"
+      >
         <span class="btn-icon">
-      <img src="assets/img/cancel.svg" alt="Cancelar" />
-    </span>
-    Cancelar</button>
+          <img src="assets/img/cancel.svg" alt="Cancelar" />
+        </span>
+        Cancelar
+      </button>
+
     </div>
+
   </form>
 </div>
-

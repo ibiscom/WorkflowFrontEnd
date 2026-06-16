@@ -1,0 +1,17 @@
+import { TestBed } from '@angular/core/testing';
+
+import { AlarmaService } from './alarmas.service';
+
+describe('TareasService', () => {
+  let service: AlarmaService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(AlarmaService);
+  });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+});
+

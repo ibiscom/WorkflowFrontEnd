@@ -1,0 +1,273 @@
+<div class="cont-nuevo-workflow">
+  <form #form="ngForm">
+
+    <!-- TARJETA DATOS DEL OBJETO WORKFLOW -->
+    <div class="card-nuevo-objetoworkflow-general">
+
+      <div class="card-header">
+        <h3>Datos del objeto workflow</h3>
+      </div>
+
+      <div class="card-content">
+        <div class="tbl-nuevo-workflow">
+
+          <!-- TIPO DE ALARMA -->
+           <div class="campo-lista">
+            <label for="company">Tipo de alarma</label>
+
+            <select
+              id="company"
+              name="company"
+              [(ngModel)]="responsableObjectN"
+              required
+              #company="ngModel"
+              (ngModelChange)="onResponsableChange($event)"
+            >
+              <option value="">Seleccione una opción</option>
+
+              @for (responsable of responsableList; track responsable) {
+                <option [ngValue]="responsable">
+                  {{ responsable.nombre }}
+                </option>
+              }
+            </select>
+          </div>
+    
+
+          <!-- TAREA -->
+         <div class="campo-lista">
+            <label for="company">Tarea</label>
+
+            <select
+              id="company"
+              name="company"
+              [(ngModel)]="responsableObjectN"
+              required
+              #company="ngModel"
+              (ngModelChange)="onResponsableChange($event)"
+            >
+              <option value="">Seleccione una opción</option>
+
+              @for (responsable of responsableList; track responsable) {
+                <option [ngValue]="responsable">
+                  {{ responsable.nombre }}
+                </option>
+              }
+            </select>
+          </div>
+
+          <!-- ACTIVACION ALARMA -->
+         <div class="campo-lista">
+            <label for="company">Se activa la alarma siempre y cuando la tarea no se encuentre en estado</label>
+
+            <select
+              id="company"
+              name="company"
+              [(ngModel)]="responsableObjectN"
+              required
+              #company="ngModel"
+              (ngModelChange)="onResponsableChange($event)"
+            >
+              <option value="">Seleccione una opción</option>
+
+              @for (responsable of responsableList; track responsable) {
+                <option [ngValue]="responsable">
+                  {{ responsable.nombre }}
+                </option>
+              }
+            </select>
+          </div>
+
+          <!-- ESTADO -->
+
+         <div class="campo-lista">
+            <label for="company">Estado</label>
+
+            <select
+              id="company"
+              name="company"
+              [(ngModel)]="responsableObjectN"
+              required
+              #company="ngModel"
+              (ngModelChange)="onResponsableChange($event)"
+            >
+              <option value="">Seleccione una opción</option>
+
+              @for (responsable of responsableList; track responsable) {
+                <option [ngValue]="responsable">
+                  {{ responsable.nombre }}
+                </option>
+              }
+            </select>
+          </div>
+
+        <!-- TIEMPO DE AVISO -->
+
+         <!-- Tarea inmediata -->
+        <div class="opcion-item">
+        <label for="tareaInmediata"> Tarea inmediata</label>
+        <input
+        id="tareaInmediata"
+        name="tareaInmediata"
+        type="checkbox"
+        [(ngModel)]="tareaInmediataN"
+        />
+        </div>
+
+         <div class="grupo-duracion-alerta">
+          <div class="campo-texto">
+            <label for="diasDuracionEstimada">Días</label>
+            <input
+              id="diasDuracionEstimada"
+              name="diasDuracionEstimada"
+              type="text"
+              [(ngModel)]="diasDuracionEstimadaN"
+              required
+              #diasDuracionEstimada="ngModel"
+            />
+          </div>
+
+          <div class="campo-texto">
+            <label for="horasDuracionEstimada">Horas</label>
+            <input
+              id="horasDuracionEstimada"
+              name="horasDuracionEstimada"
+              type="text"
+              [(ngModel)]="horasDuracionEstimadaN"
+              required
+              #horasDuracionEstimada="ngModel"
+            />
+          </div>
+
+          <div class="campo-texto">
+            <label for="minutosDuracionEstimada">Minutos</label>
+            <input
+              id="minutosDuracionEstimada"
+              name="minutosDuracionEstimada"
+              type="text"
+              [(ngModel)]="minutosDuracionEstimadaN"
+              required
+              #minutosDuracionEstimada="ngModel"
+            />
+          </div>
+
+          <div class="campo-texto">
+            <label for="segundosDuracionEstimada">Segundos</label>
+            <input
+              id="segundosDuracionEstimada"
+              name="segundosDuracionEstimada"
+              type="text"
+              [(ngModel)]="segundosDuracionEstimadaN"
+              required
+              #segundosDuracionEstimada="ngModel"
+            />
+          </div>
+
+            <!-- Incluir responsable -->
+            <div class="opcion-item">
+            <label for="incluirResponsable">Incluir responsable</label>
+            <input
+            id="incluirResponsable"
+            name="incluirResponsable"
+            type="checkbox"
+            [(ngModel)]="incluirResponsableN"
+            />
+            </div>
+
+          <!-- MAIL DESTINO -->
+          <div class="campo-texto">
+            <label for="descripcion">Mails_Destinos</label>
+            <input
+              id="descripcion"
+              name="descripcion"
+              type="text"
+              [(ngModel)]="descripcionN"
+              required
+              #descripcion="ngModel"
+            />
+          </div>
+
+          <!-- DESTINATARIOS -->
+          <div class="campo-texto">
+            <label for="descripcion">Destinatarios</label>
+            <input
+              id="descripcion"
+              name="descripcion"
+              type="text"
+              [(ngModel)]="descripcionN"
+              required
+              #descripcion="ngModel"
+            />
+          </div>
+
+          <!-- REMITENTE -->
+          <div class="campo-texto">
+            <label for="descripcion">Remitente</label>
+            <input
+              id="descripcion"
+              name="descripcion"
+              type="text"
+              [(ngModel)]="descripcionN"
+              required
+              #descripcion="ngModel"
+            />
+          </div>
+
+          <!-- ASUNTO -->
+          <div class="campo-texto">
+            <label for="descripcion">Asunto</label>
+            <input
+              id="descripcion"
+              name="descripcion"
+              type="text"
+              [(ngModel)]="descripcionN"
+              required
+              #descripcion="ngModel"
+            />
+          </div>
+
+          <!-- MAIL -->
+          <div class="campo-texto">
+            <label for="descripcion">Mail</label>
+            <input
+              id="descripcion"
+              name="descripcion"
+              type="text"
+              [(ngModel)]="descripcionN"
+              required
+              #descripcion="ngModel"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+          
+
+    <!-- BOTONES FINALES -->
+    <div class="botones-nuevo-grupo">
+
+      <button class="btn-figma" type="submit" (click)="save()">
+        <span class="btn-icon">
+      <img src="assets/img/save.svg" alt="Guardar" />
+    </span>
+    Guardar</button>
+
+
+      @if (editMode()) {
+        <button class="btn-figma" type="button" (click)="delete()">
+          <span class="btn-icon">
+        <img src="assets/img/trash.svg" alt="Eliminar Alarma" />
+      </span>
+      Eliminar</button>
+      }
+
+     <button class="btn-figma" type="button" (click)="cancel()">
+        <span class="btn-icon">
+      <img src="assets/img/cancel.svg" alt="Cancelar" />
+    </span>
+    Cancelar</button>
+    </div>
+  </form>
+</div>
+

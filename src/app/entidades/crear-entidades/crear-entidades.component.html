@@ -1,179 +1,295 @@
 <div class="cont-nuevo-workflow">
- 
 
-    <!-- TARJETA DATOS DE ENTIDADES -->
-    <div class="card-nuevo-entidad-general">
+  <!-- =======================================
+       DATOS DE LA ENTIDAD
+  ======================================== -->
 
-      <div class="card-header">
-        <h3>Datos de la entidad</h3>
+  <div class="card-nuevo-entidad-general">
+
+    <div class="card-header">
+      <h3>Datos de la entidad</h3>
+    </div>
+
+    <div class="card-content">
+
+      <!-- =======================================
+           DATOS BÁSICOS
+      ======================================== -->
+
+      <div class="tbl-nueva-entidad">
+
+        <!-- NOMBRE -->
+        <div class="campo-texto">
+          <label for="nombreEntidad">Nombre</label>
+
+          <input
+            id="nombreEntidad"
+            name="nombreEntidad"
+            type="text"
+            placeholder="Inserte nombre de la entidad"
+            [(ngModel)]="nombreEntidadN"
+            required
+            #name="ngModel"
+          />
+
+          @if (name.errors?.['required']) {
+            <div class="error">
+              El nombre de la entidad es obligatorio.
+            </div>
+          }
+
+        </div>
+
+        <!-- DESCRIPCIÓN -->
+        <div class="campo-texto">
+
+          <label for="descripcion">
+            Breve descripción
+          </label>
+
+          <input
+            id="descripcion"
+            name="descripcion"
+            type="text"
+            placeholder="Inserte descripción"
+            [(ngModel)]="descripcionN"
+            required
+            #description="ngModel"
+          />
+
+        </div>
+
       </div>
 
-      <div class="card-content">
+      <!-- =======================================
+           ROL
+      ======================================== -->
 
-        <div class="tbl-nueva-entidad">
+      <div class="rol-container">
 
-          <!-- NOMBRE -->
-          <div class="campo-texto">
-            <label for="name">Nombre</label>
-            <input
-              id="nombreEntidad"
-              name="nombreEntidad"
-              type="text"
-              placeholder="Inserte nombre de la entidad"
-              [(ngModel)]="nombreEntidadN"
-              required
-              #name="ngModel"
-            />
-            @if (name.errors?.['required']) {
-              <div class="error">El nombre de la entidad es obligatorio.</div>
-            }
+        <div class="rol-content">
+
+          <div class="rol-header">
+            <span class="rol-title">
+              Rol
+            </span>
           </div>
 
-          <!-- DESCRIPCIÓN -->
-          <div class="campo-texto">
-            <label for="description">Breve descripcion</label>
-            <input
-              id="descripcion"
-              name="descripcion"
-              type="text"
-              placeholder="Inserte descripcion"
-              [(ngModel)]="descripcionN"
-              required
-              #description="ngModel"
-            />
+          <div class="rol-body">
+
+            <div class="campo-lista">
+
+              <label for="rol">
+                Rol
+              </label>
+
+              <select
+                id="rol"
+                name="rol"
+                [(ngModel)]="rolN"
+                required
+                #rol="ngModel"
+                (ngModelChange)="onrolChange($event)"
+              >
+
+                <option value="">
+                  Seleccione una opción
+                </option>
+
+                @for (rol of rolesList; track rol) {
+                  <option [ngValue]="rol">
+                    {{ rol.name }}
+                  </option>
+                }
+
+              </select>
+
+            </div>
+
           </div>
 
         </div>
 
-        <!-- PARTE DE SELECCIONAR responsables -->
-        <div class="Rol-container">
+      </div>
 
-          <div class="Rol-content">
+      <!-- =======================================
+           RESPONSABLES
+      ======================================== -->
 
-            <!-- Header -->
-            <div class="Rol-header">
-              <span class="serie-title">Rol</span>
-            </div>
+      <div class="asignacion-responsables">
 
-            <!-- Selector -->
-            <div class="Rol-body">
-              <div class="campo-lista">
-                <label for="Rol">Rol</label>
-                <select
-                  id="Rol"
-                  name="Roles"
-                  [(ngModel)]="rolN"
-                  required
-                  #serie="ngModel"
-                  (ngModelChange)="onrolChange($event)"
-                >
-                  <option value="">Seleccione una opción</option>
+        <!-- =======================================
+             RESPONSABLES DEL ROL
+        ======================================== -->
 
-                  @for (rol of rolesList; track rol) {
-                    <option [ngValue]="rol">
-                      {{ rol.name }}
-                    </option>
-                  }
-                </select>
-              </div>
-            </div>
+        <div class="panel-responsables">
 
-          </div>
-        </div>
-
-        <!-- Responsables del rol -->
-        <div class="card">
           <div class="card-header">
-            <span class="card-title">Responsables del rol</span>
+            <span class="card-title">
+              Responsables del rol
+            </span>
           </div>
 
           @for(responsable of responsablesRolList; track responsable) {
+
             <div class="check-row">
-            <div [ngClass]="{'checkbox': true, 'selected': responsable.selected}">  
-                
-             <div class="checkbox-box"></div>
-                <div class="checkbox-check">
-                  <input type="checkbox" [(ngModel)]="responsable.selected" />
-                </div>
+
+              <div
+                [ngClass]="{
+                  'checkbox': true,
+                  'selected': responsable.selected
+                }">
+
+                <input
+                  type="checkbox"
+                  [(ngModel)]="responsable.selected"
+                  [name]="'rol_' + responsable.name"
+                />
+
               </div>
 
               <span class="check-label">
-                {{ responsable.name}}
+                {{ responsable.name }}
               </span>
 
             </div>
+
           }
+
         </div>
 
-        <!-- BOTONES ACCIONES -->
+        <!-- =======================================
+             BOTONES ACCIÓN
+        ======================================== -->
+
         <div class="actions">
-          <button class="btn btn-primary" type="button" (click)="asignar()">
-            <span class="btn-icon assign-icon"></span>
-            <span>Asignar</span>
-          </button> 
 
-          <button class="btn btn-outline" type="button" (click)="retirar()">
-            <span class="btn-icon remove-icon"></span>
-            <span>Retirar</span>
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="asignar()">
+
+            Asignar
+
           </button>
+
+          <button
+            class="btn btn-outline"
+            type="button"
+            (click)="retirar()">
+
+            Retirar
+
+          </button>
+
         </div>
 
-        <!-- ASIGNADOS -->
-        <div class="card">
+        <!-- =======================================
+             RESPONSABLES ASIGNADOS
+        ======================================== -->
+
+        <div class="panel-responsables">
+
           <div class="card-header">
-            <div class="card-title">
-              Responsables asignados a la Entidad
-            </div>
+
+            <span class="card-title">
+              Responsables asignados a la entidad
+            </span>
+
           </div>
 
           @for(responsable of responsablesAsignadosList; track responsable) {
-          <div class="assigned-row" >  <!--*ngFor="let item of tiposDocumentoList"-->
-            <!-- Checkbox -->
-            <div [ngClass]="{'checkbox': true, 'selected': responsable.selected}">
-              <div class="checkbox-box"></div>
-              <div class="checkbox-check"><input type="checkbox" [(ngModel)]="responsable.selected" /></div>
+
+            <div class="assigned-row">
+
+              <div
+                [ngClass]="{
+                  'checkbox': true,
+                  'selected': responsable.selected
+                }">
+
+                <input
+                  type="checkbox"
+                  [(ngModel)]="responsable.selected"
+                  [name]="'asignado_' + responsable.name"
+                />
+
+              </div>
+
+              <div class="assigned-title">
+                {{ responsable.name }}
+              </div>
+
             </div>
 
-              <!-- Título -->
-            <div class="assigned-title">
-              {{ responsable.name}}
-            </div>
-          </div>
           }
-        </div>
-
-        <!-- BOTONES FINALES -->
-        <div class="botones-nuevo-grupo">
-
-          <button class="btn-figma" type="button" (click)="save()">
-            <span class="btn-icon">
-              <img src="assets/img/save.svg" alt="Guardar" />
-            </span>
-            Guardar
-          </button>
-
-          @if (editMode()) {
-            <button class="btn-figma" type="button" (click)="delete()">
-              <span class="btn-icon">
-                <img src="assets/img/trash.svg" alt="Eliminar" />
-              </span>
-              Cancelar
-            </button>
-          }
-
-          <button class="btn-figma" type="button" (click)="cancel()">
-            <span class="btn-icon">
-              <img src="assets/img/cancel.svg" alt="Cancelar" />
-            </span>
-            Cancelar
-          </button>
 
         </div>
 
-      </div> <!-- card-content -->
+      </div>
 
-    </div> <!-- card-nuevo-entidad-general -->
- 
+      <!-- =======================================
+           BOTONES FINALES
+      ======================================== -->
+
+      <div class="botones-nuevo-grupo">
+
+        <button
+          class="btn-figma"
+          type="button"
+          (click)="save()">
+
+          <span class="btn-icon">
+            <img
+              src="assets/img/save.svg"
+              alt="Guardar"
+            />
+          </span>
+
+          Guardar
+
+        </button>
+
+        @if (editMode()) {
+
+          <button
+            class="btn-figma"
+            type="button"
+            (click)="delete()">
+
+            <span class="btn-icon">
+              <img
+                src="assets/img/trash.svg"
+                alt="Eliminar"
+              />
+            </span>
+
+            Eliminar
+
+          </button>
+
+        }
+
+        <button
+          class="btn-figma"
+          type="button"
+          (click)="cancel()">
+
+          <span class="btn-icon">
+            <img
+              src="assets/img/cancel.svg"
+              alt="Cancelar"
+            />
+          </span>
+
+          Cancelar
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </div>
-
-  

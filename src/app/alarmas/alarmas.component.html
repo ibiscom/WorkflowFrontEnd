@@ -1,0 +1,19 @@
+<div class="cont-objetosw">
+  <div class="enc-objetosw">Objeto workflow {{ workflowActual }}</div>
+  @if (mensaje) {
+    <div>
+      <mat-card class="card-msg-objetosw">
+        <mat-card-content>
+          <div class="msg-objetosw">
+            {{ mensaje }}
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <p></p>
+    </div>
+  }
+  <ibpm-acciones-alarma style="width: 100%"></ibpm-acciones-alarma>
+  <br />
+  <router-outlet></router-outlet>
+</div>
+

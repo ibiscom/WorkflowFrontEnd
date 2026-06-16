@@ -1,0 +1,53 @@
+/* =======================================
+   BOTÓN NUEVO
+======================================= */
+
+.btn-figma {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  height: 40px;
+  padding: 0 24px;
+
+  border: none;
+  border-radius: 100px;
+
+  background: #6750a4;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.btn-figma:hover {
+  opacity: 0.95;
+}
+
+.btn-figma:active {
+  transform: scale(0.98);
+}
+
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-icon img {
+  width: 18px;
+  height: 18px;
+}
+
+.label {
+  color: #ffffff;
+
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+
+  letter-spacing: 0.1px;
+}

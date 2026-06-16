@@ -1,27 +1,27 @@
 <!-- FILTROS -->
-<ibpm-filtros-busqueda-festivo [uc]="this.parent" style="width: 100%">
-</ibpm-filtros-busqueda-festivo>
-
+<ibpm-crear-objetow [uc]="this.parent" style="width: 100%">
+</ibpm-crear-objetow>
+<br />
 <!-- TARJETA TABLA -->
 <div class="tabla-card">
   <!-- HEADER -->
   <div class="tabla-header-container">
-    <div class="tabla-titulo">Listado de procesos</div>
+    <div class="tabla-titulo">Listado de alarmas</div>
   </div>
 
   <!-- BODY -->
   <div class="tabla-body">
-
-    <!-- COLUMNA: NOMBRE -->
+   @let atributos = parent.objetoW?.attributes;
+    <!-- COLUMNA: IDENTIFICADOR -->
     <div class="tabla-columna">
       <div class="tabla-col-header">
-        <div>Nombre</div>
+        <div>Identificador</div>
       </div>
 
-      @for (element of parent.festivos; track element) {
+      @for (element of atributos; track element) {
         <ng-container>
           <div class="tabla-celda">
-            <div (click)="goToEditarFestivo(element)">
+            <div (click)="goToEditarAtributoObjetow(element)">
               {{ element.nombre }}
             </div>
           </div>
@@ -29,16 +29,50 @@
       }
     </div>
 
-    <!-- COLUMNA:  NOMBRE LARGO -->
+    <!-- COLUMNA:  TIPO DE ALARMA -->
     <div class="tabla-columna">
       <div class="tabla-col-header">
-        <div>Nombre Largo</div>
+        <div>Tipo de alarma</div>
       </div>
 
-      @for (element of parent.festivos; track element) {
+      @for (element of atributos; track element) {
         <ng-container>
           <div class="tabla-celda">
-            <div (click)="goToEditarFestivo(element)">
+            <div (click)="goToEditarAtributoObjetow(element)">
+              {{ element.identificadorNegocio }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: ELEMENTO DE ACTIVACION -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Elemento de activación</div>
+      </div>
+
+      @for (element of atributos; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarAtributoObjetow(element)">
+              {{ element.labelId }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: ESTADO PARA LA ACTIVACIÓN -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Estado para la activación</div>
+      </div>
+
+      @for (element of atributos; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarAtributoObjetow(element)">
               {{ element.descripcion }}
             </div>
           </div>
@@ -46,51 +80,17 @@
       }
     </div>
 
-    <!-- COLUMNA: FECHA CREACIÓN -->
+    <!-- COLUMNA: TIEMPO PARA LA ACTIVACIÓN (Dias-HH:MM:SS) -->
     <div class="tabla-columna">
       <div class="tabla-col-header">
-        <div>Fecha creación</div>
+        <div>Tiempo para la activación (Dias-HH:MM:SS)</div>
       </div>
 
-      @for (element of parent.festivos; track element) {
+      @for (element of atributos; track element) {
         <ng-container>
           <div class="tabla-celda">
-            <div (click)="goToEditarFestivo(element)">
-              {{ element.supervisor }}
-            </div>
-          </div>
-        </ng-container>
-      }
-    </div>
-
-    <!-- COLUMNA: DESCRIPCIÓN -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header">
-        <div>Descripción</div>
-      </div>
-
-      @for (element of parent.festivos; track element) {
-        <ng-container>
-          <div class="tabla-celda">
-            <div>
-              {{ getCompanyName(element.compania) }}
-            </div>
-          </div>
-        </ng-container>
-      }
-    </div>
-
-    <!-- COLUMNA: ESTADO -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header">
-        <div>Estado</div>
-      </div>
-
-      @for (element of parent.festivos; track element) {
-        <ng-container>
-          <div class="tabla-celda">
-            <div>
-              {{ getCompanyName(element.compania) }}
+            <div (click)="goToEditarAtributoObjetow(element)">
+              {{ element.descripcion }}
             </div>
           </div>
         </ng-container>
@@ -99,7 +99,8 @@
 
   </div>
 
-  <!-- FOOTER -->
+
+  <!-- FOOTER
   <div class="tabla-footer">
     <div class="tabla-footer-text">
       Página {{ currentPage }} de {{ numberOfPages }}
@@ -112,5 +113,6 @@
     <div class="paginador-boton active" (click)="nextPage()">
       <span>chevron_right</span>
     </div>
-  </div>
+  </div>-->
 </div>
+

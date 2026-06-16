@@ -15,7 +15,7 @@ import { FiltrosBusquedaEventoInicioComponent } from './filtros-busqueda-eventoi
     CommonModule,
     FormsModule,
     RouterModule,
-    CrearEventoInicioComponent,
+    CrearEventoInicioComponent
     FiltrosBusquedaEventoInicioComponent,
     ListadoEventoInicioComponent,
     EventoInicioComponent,

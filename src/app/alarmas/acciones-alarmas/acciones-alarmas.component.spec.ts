@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListadoFestivoComponent } from './listado-festivo.component';
+import { AccionesAlarmaComponent } from './acciones-alarmas.component';
 
-describe('ListadoFestivoComponent', () => {
-  let component: ListadoFestivoComponent;
-  let fixture: ComponentFixture<ListadoFestivoComponent>;
+describe('AccionesAlarmaComponent', () => {
+  let component: AccionesAlarmaComponent;
+  let fixture: ComponentFixture<AccionesAlarmaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ListadoFestivoComponent],
+      imports: [AccionesAlarmaComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ListadoFestivoComponent);
+    fixture = TestBed.createComponent(AccionesAlarmaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -20,3 +20,4 @@ describe('ListadoFestivoComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

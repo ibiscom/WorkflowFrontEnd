@@ -1,0 +1,32 @@
+:host {
+  width: calc(100% - 20px);
+  height: auto;
+}
+.cont-objetosw {
+  width: 100%;
+  margin-top: 10px;
+}
+.msg-objetosw {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.enc-objetosw {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: normal;
+  color: #333;
+  background-color: none;
+  padding-bottom: 10px;
+}
+
+.card-msg-objetosw {
+  background-color: lightgoldenrodyellow;
+}
+
