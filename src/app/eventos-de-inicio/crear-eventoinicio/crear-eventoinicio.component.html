@@ -65,7 +65,7 @@
               name="descripcion"
               type="text"
               placeholder="Inserte descripción"
-              [(ngModel)]="descripcionN"
+              [(ngModel)]="descripcionEventoInicioN"
               required
               #descripcion="ngModel"
             />
@@ -85,7 +85,7 @@
             >
               <option value="">Seleccione una opción</option>
 
-              @for (herramienta of herramientasList; track herramienta) {
+              @for (herramienta of herramientasList; track herramienta.code) {
                 <option [ngValue]="herramienta">
                   {{ herramienta.code }}
                 </option>
@@ -108,7 +108,7 @@
             >
               <option value="">Seleccione una opción</option>
 
-              @for (metodoAsignacionPrimeraTarea of metodosAsignacionList; track metodoAsignacionPrimeraTarea) {
+              @for (metodoAsignacionPrimeraTarea of metodosAsignacionList; track metodoAsignacionPrimeraTarea.code) {
                 <option [ngValue]="metodoAsignacionPrimeraTarea">
                   {{ metodoAsignacionPrimeraTarea.code }}
                 </option>
@@ -155,7 +155,7 @@
                 >
                   <option value="">Seleccione una opción</option>
 
-                  @for (serie of seriesList; track serie) {
+                  @for (serie of seriesList; track serie.code) {
                     <option [ngValue]="serie">
                       {{ serie.name }}
                     </option>
@@ -172,7 +172,7 @@
   </div>
 
   <!-- Lista de tipos -->
-  @for(tipo of tiposDocumentoAgregarList; track tipo) {
+  @for(tipo of tiposDocumentoAgregarList; track tipo.code) {
   <div
     class="check-row"
   >
@@ -224,7 +224,7 @@
   </div>
 
   <!-- Item -->
-  @for(tipo of tiposDocumentoAsignadosEventoInicioList; track tipo) {
+  @for(tipo of tiposDocumentoAsignadosEventoInicioList; track tipo.code) {
   <div class="assigned-row" >  <!--*ngFor="let item of tiposDocumentoList"-->
     <!-- Checkbox -->
     <div class="checkbox selected">

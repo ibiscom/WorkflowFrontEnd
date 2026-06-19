@@ -48,10 +48,11 @@ export class EventoInicioService {
      
       public getEventoInicioList(filtros: EventoInicioFilterEntity): Observable<FsResponseEntity<any>> {
           let ip: string = this.cookieService.get('ip');
-          return this.http.post<FsResponseEntity<any>>(
+          const workflowName = encodeURIComponent(filtros.nombreWorkflow ?? '');
+          const url =
             environment.workflowApiUrl +
-              `/startEvent/getStartEvents`, filtros
-          );
+            `/startEvent/getStartEvents?workflowName=${workflowName}`;
+          return this.http.get<FsResponseEntity<any>>(url);
       }
         
     
@@ -77,10 +78,12 @@ export class EventoInicioService {
        */
       public getEventoInicio(workflowName: string, eventoInicioName: string, userName: string): Observable<FsResponseEntity<any>> {
           let ip: string = this.cookieService.get('ip');
-          return this.http.get<FsResponseEntity<any>>(
+          const url =
             environment.workflowApiUrl +
-              `/startEvent/getStartEvent?workflowName=${workflowName}&eventoInicioName=${eventoInicioName}&userName=${userName}`
-          );
+            `/startEvent/getStartEvent?workflowName=${encodeURIComponent(workflowName)}` +
+            `&startEventName=${encodeURIComponent(eventoInicioName)}` +
+            `&userName=${encodeURIComponent(userName)}`;
+          return this.http.get<FsResponseEntity<any>>(url);
       }
     
       
@@ -122,7 +125,7 @@ export class EventoInicioService {
       let ip: string = this.cookieService.get('ip');
       return this.http.get<FsResponseEntity<MetodoAsignacionPrimeraTareaEntity[]>>(
         environment.workflowApiUrl +
-          `/StartEvent/options`
+          `/startEvent/options`
       );
   }
 
