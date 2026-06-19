@@ -1,0 +1,196 @@
+/* =======================================
+   TARJETA TABLA
+======================================= */
+
+.tabla-card {
+  width: 100%;
+
+  margin-top: 24px;
+
+  background: #ffffff;
+
+  border-radius: 16px;
+
+  box-shadow: 0px 1px 15.4px 6px rgba(0, 0, 0, 0.07);
+
+  overflow: hidden;
+}
+
+/* =======================================
+   HEADER
+======================================= */
+
+.tabla-header-container {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 24px;
+}
+
+.tabla-titulo {
+  color: #1b1b1b;
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 16px;
+
+  font-style: normal;
+
+  font-weight: 700;
+
+  line-height: 20px;
+
+  letter-spacing: 0.5px;
+}
+
+/* =======================================
+   BODY TABLA
+======================================= */
+
+.tabla-body {
+  width: 100%;
+
+  overflow-x: auto;
+
+  display: flex;
+
+  align-items: flex-start;
+}
+
+/* =======================================
+   COLUMNAS
+======================================= */
+
+.tabla-columna {
+  min-width: 180px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  flex-shrink: 0;
+}
+
+.tabla-col-header {
+  height: 56px;
+
+  padding: 16px;
+
+  display: flex;
+
+  align-items: center;
+
+  background: var(--Schemes-Primary, #6750a4);
+
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.tabla-col-header div {
+  color: #ffffff;
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 14px;
+
+  font-style: normal;
+
+  font-weight: 500;
+
+  line-height: 20px;
+
+  letter-spacing: 0.1px;
+}
+
+/* =======================================
+   CELDAS
+======================================= */
+
+.tabla-celda {
+  min-height: 56px;
+
+  padding: 16px;
+
+  display: flex;
+
+  align-items: center;
+
+  border-bottom: 1px solid #e7e0ec;
+
+  background: #ffffff;
+}
+
+.tabla-celda div {
+  color: var(--Schemes-On-Surface, #1c1b1f);
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 14px;
+
+  font-style: normal;
+
+  font-weight: 400;
+
+  line-height: 20px;
+
+  letter-spacing: 0.25px;
+
+  word-break: break-word;
+}
+
+/* =======================================
+   LINKS CLICKEABLES
+======================================= */
+
+.tabla-celda div[click],
+.tabla-celda div:hover {
+  cursor: pointer;
+}
+
+.tabla-celda div:hover {
+  color: var(--Schemes-Primary, #6750a4);
+}
+
+/* =======================================
+   SCROLL
+======================================= */
+
+.tabla-body::-webkit-scrollbar {
+  height: 8px;
+}
+
+.tabla-body::-webkit-scrollbar-track {
+  background: #f3edf7;
+}
+
+.tabla-body::-webkit-scrollbar-thumb {
+  background: #c4b8dd;
+
+  border-radius: 10px;
+}
+
+/* =======================================
+   RESPONSIVE
+======================================= */
+
+@media (max-width: 1200px) {
+  .tabla-columna {
+    min-width: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tabla-header-container {
+    padding: 16px;
+  }
+
+  .tabla-titulo {
+    font-size: 14px;
+  }
+
+  .tabla-columna {
+    min-width: 140px;
+  }
+}

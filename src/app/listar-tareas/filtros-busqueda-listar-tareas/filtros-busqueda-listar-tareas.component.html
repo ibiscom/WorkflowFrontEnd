@@ -1,0 +1,135 @@
+<div class="cont-filtro">
+  <div class="usuarios-container">
+
+    <div class="filtros-container">
+
+      <!-- TÍTULO -->
+      <div class="filtros-titulo">
+        Información de búsqueda
+      </div>
+
+      <!-- FILA 1 -->
+      <div class="fila-filtros">
+
+        <div class="campo-texto-filtro">
+          <label># Instancia WF</label>
+          <input
+            type="text"
+            [(ngModel)]="instanciaWfF"
+            placeholder="Inserte número de la instancia"
+            (keydown.enter)="search()"
+          />
+        </div>
+
+        <div class="campo-lista">
+          <label>Nombre proceso</label>
+
+          <select [(ngModel)]="procesoF">
+            <option value="">Seleccione una opción</option>
+
+            @for (company of companiesList; track company) {
+              <option [ngValue]="company">
+                {{ company.largeName }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="campo-texto-filtro">
+          <label># Tarea</label>
+          <input
+            type="text"
+            [(ngModel)]="tareaF"
+            placeholder="Inserte número de la tarea"
+            (keydown.enter)="search()"
+          />
+        </div>
+
+      </div>
+
+      <!-- FILA 2 -->
+      <div class="fila-filtros">
+
+        <div class="campo-texto-filtro">
+          <label># Instancia WF padre</label>
+          <input
+            type="text"
+            [(ngModel)]="instanciaPadreF"
+            placeholder="Inserte número de la instancia padre"
+            (keydown.enter)="search()"
+          />
+        </div>
+
+        <div class="campo-lista">
+          <label>Nombre proceso padre</label>
+
+          <select [(ngModel)]="procesoPadreF">
+            <option value="">Seleccione una opción</option>
+
+            @for (company of companiesList; track company) {
+              <option [ngValue]="company">
+                {{ company.largeName }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="campo-checkbox-filtro">
+          <label>¿Fecha asignación?</label>
+
+          <input
+            type="checkbox"
+            [(ngModel)]="fechaAsignacionF"
+          />
+        </div>
+
+      </div>
+
+      <!-- FILA 3 -->
+      <div class="fila-filtros">
+
+        <div class="campo-fecha-filtro">
+          <label>Desde</label>
+          <input
+            type="date"
+            [(ngModel)]="fechaDesdeF"
+          />
+        </div>
+
+        <div class="campo-fecha-filtro">
+          <label>Hasta</label>
+          <input
+            type="date"
+            [(ngModel)]="fechaHastaF"
+          />
+        </div>
+
+        <div class="campo-texto-filtro">
+          <label>ID negocio</label>
+          <input
+            type="text"
+            [(ngModel)]="idNegocioF"
+            placeholder="Inserte ID negocio"
+            (keydown.enter)="search()"
+          />
+        </div>
+
+      </div>
+
+      <!-- BOTÓN -->
+      <div class="contenedor-boton">
+        <button class="btn-figma" (click)="search()">
+          <span class="btn-icon">
+            <img src="assets/img/search.svg" alt="Buscar" />
+          </span>
+
+          <span class="label">
+            Buscar
+          </span>
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,115 @@
+/* =======================================
+   CAMPOS FECHA
+======================================= */
+
+.campo-fecha-filtro {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  background: var(--Schemes-Surface-Container-Lowest, #ffffff);
+
+  border-top-left-radius: 4px;
+
+  border-top-right-radius: 4px;
+}
+
+.campo-fecha-filtro label {
+  padding: 4px 16px;
+
+  display: flex;
+
+  align-items: center;
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 400;
+
+  line-height: 24px;
+
+  letter-spacing: 0.5px;
+
+  color: var(--Schemes-On-Surface-Variant, #49454f);
+}
+
+.campo-fecha-filtro input {
+  width: 100%;
+
+  padding: 4px 16px 8px 16px;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 16px;
+
+  color: var(--Schemes-On-Surface, #1c1b1f);
+}
+
+.campo-fecha-filtro::after {
+  content: "";
+
+  width: 100%;
+
+  height: 1px;
+
+  background: var(--Schemes-On-Surface-Variant, #49454f);
+}
+
+/* =======================================
+   CHECKBOX
+======================================= */
+
+.campo-checkbox-filtro {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: flex-end;
+
+  gap: 8px;
+
+  min-height: 56px;
+}
+
+.campo-checkbox-filtro label {
+  font-family: Roboto, sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 400;
+
+  line-height: 24px;
+
+  letter-spacing: 0.5px;
+
+  color: var(--Schemes-On-Surface-Variant, #49454f);
+}
+
+.campo-checkbox-filtro input[type="checkbox"] {
+  width: 18px;
+
+  height: 18px;
+
+  cursor: pointer;
+}
+
+/* =======================================
+   CONTENEDOR BOTÓN
+======================================= */
+
+.contenedor-boton {
+  display: flex;
+
+  justify-content: flex-end;
+
+  width: 100%;
+}

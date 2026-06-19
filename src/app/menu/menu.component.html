@@ -537,12 +537,9 @@
         <!-- Eventos de inicio -->
         <div
           class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Eventos de inicio')
-          "
+          *ngIf="opcionesPermitidas.includes('Eventos de Inicio')"
           (click)="
-            $event.stopPropagation();
-            irA('/main-page/eventoinicio')
+            $event.stopPropagation(); irA('/main-page/eventoinicio')
           "
         >
           <div class="row">
@@ -551,6 +548,7 @@
             </div>
           </div>
         </div>
+
 
         <!-- Festivos -->
         <div

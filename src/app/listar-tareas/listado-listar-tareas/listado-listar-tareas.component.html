@@ -1,0 +1,171 @@
+<!-- FILTROS --> 
+ <ibpm-filtros-busqueda-listarlistartareas [uc]="this.parent" style="width: 100%"> 
+ </ibpm-filtros-busqueda-listarlistartareas> 
+
+ <!-- TARJETA TABLA --> 
+  <div class="tabla-card"> 
+
+    <!-- HEADER --> 
+     <div class="tabla-header-container"> 
+      <div class="tabla-titulo">Listado de listar listartareas</div> 
+    </div> 
+
+    <!-- BODY --> 
+     <div class="tabla-body"> 
+
+      <!-- COLUMNA:INSTANCIA --> 
+       <div class="tabla-columna"> 
+        <div class="tabla-col-header"> 
+          <div>Instancia</div> 
+        </div> @for (element of parent.listartareas; track element) 
+        { <ng-container> <div class="tabla-celda"> 
+          <div (click)="goToEditarTareas(element)"> {{ element.numero}} </div> 
+        </div> </ng-container> } 
+      </div> 
+
+        <!-- COLUMNA: PROCESO --> 
+         <div class="tabla-columna"> 
+          <div class="tabla-col-header"> 
+            <div>Proceso</div> 
+          </div> @for (element of parent.listartareas; track element) 
+          { <ng-container> <div class="tabla-celda"> 
+            <div (click)="goToEditarTareas(element)"> {{ element.descripcion }} </div> 
+          </div> </ng-container> } 
+        </div> 
+
+        <!-- COLUMNA: IDENTIFICADOR --> 
+         
+        <div class="tabla-columna"> 
+          <div class="tabla-col-header"> 
+            <div>Identificador</div> 
+          </div> @for (element of parent.listartareas; track element) 
+          { <ng-container> <div class="tabla-celda"> <div (click)="goToEditarTareas(element)"> 
+            {{ element.nombreLargo }} </div> </div> </ng-container> } 
+          </div> 
+          
+          <!-- COLUMNA: IDENTIFICADOR 2 --> 
+           
+          <div class="tabla-columna"> 
+            <div class="tabla-col-header"> 
+              <div>Identificador 2</div> 
+            </div> @for (element of parent.listartareas; track element) 
+            { <ng-container> <div class="tabla-celda"> <div> {{ element.descripcion }} 
+            </div> </div> </ng-container> } 
+          </div> 
+          
+          <!-- COLUMNA: NO. TAREA --> 
+           
+          <div class="tabla-columna"> 
+            <div class="tabla-col-header"> 
+              <div>No. Tarea</div> </div> @for (element of parent.listartareas; track element) 
+              { <ng-container> <div class="tabla-celda"> <div> {{ element.tipo }} </div> 
+              </div> </ng-container> } 
+            </div> 
+            
+            <!-- COLUMNA: NOMBRE TAREA -->
+          
+            <div class="tabla-columna"> 
+              <div class="tabla-col-header"> 
+                <div>Nombre Tarea</div> </div> @for (element of parent.listartareas; track element) 
+                { <ng-container> <div class="tabla-celda"> <div> {{ element.tipo }} </div> 
+                </div> </ng-container> } 
+              </div> 
+                
+                <!-- COLUMNA: ESTADO TAREA --> 
+                 
+                <div class="tabla-columna">
+                   <div class="tabla-col-header"> 
+                    <div>Estado Tarea</div> </div> @for (element of parent.listartareas; track element) 
+                    { <ng-container> <div class="tabla-celda"> <div> {{ element.tipo }} </div>
+                     </div> </ng-container> } 
+                    </div> 
+                    
+                <!-- COLUMNA:FECHA ASIGNACIÓN --> 
+                 
+                <div class="tabla-columna"> 
+                <div class="tabla-col-header"> 
+                  <div>Fecha Asignación</div> </div> @for (element of parent.listartareas; track element) 
+                  { <ng-container> <div class="tabla-celda"> <div> {{ element.tipo }} </div>
+                   </div> </ng-container> } 
+                  </div> 
+                  
+                  <!-- COLUMNA: TIEMPO PARA VENCIMIENTO --> 
+                   
+                  <div class="tabla-columna"> 
+                    <div class="tabla-col-header"> 
+                      <div>Tiempo para Vencimiento</div> </div> @for (element of parent.listartareas; track element) 
+                      { <ng-container> <div class="tabla-celda"> <div> {{ element.tipo }} </div> <
+                        /div> </ng-container> } 
+                      </div> 
+                      
+                    <!-- COLUMNA: INSTANCIA PADRE --> 
+                     
+                    <div class="tabla-columna"> 
+                      <div class="tabla-col-header"> 
+                        <div>Instancia Padre</div> </div> @for (element of parent.listartareas; track element) 
+                        { <ng-container> <div class="tabla-celda"> <div> {{ element.tipo }} </div> 
+                        </div> </ng-container> } 
+                      </div> 
+                      
+                      <!-- COLUMNA: PROCESO PADRE --> 
+                       
+                      <div class="tabla-columna"> 
+                        <div class="tabla-col-header"> 
+                          <div>Proceso Padre</div> </div> @for (element of parent.listartareas; track element) 
+                          { <ng-container> <div class="tabla-celda"> <div> {{ element.tipo }} </div> 
+                          </div> </ng-container> } 
+                        </div> 
+
+                        <!-- COLUMNA: VER -->
+<div class="tabla-columna">
+  <div class="tabla-col-header">
+    <div>Ver</div>
+  </div>
+
+  @for (element of parent.listartareas; track element) {
+    <ng-container>
+      <div class="tabla-celda tabla-celda-accion">
+        <button
+          class="btn-ver"
+          type="button"
+          (click)="abrirVentana(element)"
+          title="Ver detalle"
+        >
+          <img
+            src="assets/img/ver.svg"
+            alt="Ver"
+          />
+        </button>
+      </div>
+    </ng-container>
+  }
+</div>
+
+<!-- COLUMNA: ESTADO -->
+<div class="tabla-columna">
+  <div class="tabla-col-header">
+    <div>Estado</div>
+  </div>
+
+  @for (element of parent.listartareas; track element) {
+    <ng-container>
+      <div class="tabla-celda tabla-celda-estado">
+
+        @if (element.estado === 'VERDE') {
+          <span class="semaforo semaforo-verde"></span>
+        }
+
+        @if (element.estado === 'AMARILLO') {
+          <span class="semaforo semaforo-amarillo"></span>
+        }
+
+        @if (element.estado === 'ROJO') {
+          <span class="semaforo semaforo-rojo"></span>
+        }
+
+      </div>
+    </ng-container>
+  }
+</div>
+                      </div> 
+                    </div>

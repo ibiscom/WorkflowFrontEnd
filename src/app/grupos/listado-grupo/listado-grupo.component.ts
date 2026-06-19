@@ -3,10 +3,11 @@ import { GrupoComponent } from '../grupo.component';
 import { FiltrosBusquedaGrupoComponent } from '../filtros-busqueda-grupo/filtros-busqueda-grupo.component';
 import { MatTableModule } from '@angular/material/table';
 import { GrupoEntity } from '../grupo.entity';
+import { CrearGrupoComponent } from "../crear-grupo/crear-grupo.component";
 
 @Component({
   selector: 'ibpm-listado-grupo',
-  imports: [MatTableModule],
+  imports: [MatTableModule, CrearGrupoComponent],
   templateUrl: './listado-grupo.component.html',
   styleUrl: './listado-grupo.component.scss',
 })
