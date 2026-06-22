@@ -115,7 +115,7 @@ export class CrearEventoInicioComponent {
    * Llena los campos del formulario con la información de la tarea en edición.
    */
   public async fillEditFields(): Promise<void> {
-   
+    console.log('fillEditFields', this.workflowActual ?? '', this.eventoInicioIdEdit ?? '', this.loggedUser?.user_name ?? '');
     try {
       const response = await firstValueFrom(
         this.eventoInicioService.getEventoInicio(
@@ -132,6 +132,7 @@ export class CrearEventoInicioComponent {
         this.descripcionEventoInicioN = eventoInicio.descripcion ?? '';
         this.nombreHerramientaN = eventoInicio.herramienta ?? '';
         this.herramientaN = this.herramientasList.find(h => h.code === this.nombreHerramientaN) ?? undefined;
+        this.nombreMetodoAsignacionN = eventoInicio.usuarioIniciaTarea ? 'Si' : 'No';
         this.nombreMetodoAsignacionB = eventoInicio.usuarioIniciaTarea ?? false;
         this.metodoAsignacionN = this.metodosAsignacionList.find(m => m.code === this.nombreMetodoAsignacionN) ?? undefined;
         this.idSerieN = eventoInicio.docModels?.[0]?.idSerie ?? '';
@@ -145,7 +146,7 @@ export class CrearEventoInicioComponent {
     } catch (e) {
       if (this.uc) {
         this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-          Constants.ERR_TAREA_DATOS,
+          Constants.ERR_EVENTO_INICIO_OBTENER,
           e,
         );
       }
@@ -160,11 +161,13 @@ export class CrearEventoInicioComponent {
    */
   public async getHerramientasEventoInicioList() {
     this.herramientasList = [];
-
+    console.log('getHerramientasEventoInicioList', this.workflowActual ?? '');
     try {
       const response = await firstValueFrom(
         this.eventoInicioService
         .getHerramientas(this.workflowActual ?? ''));
+
+        console.log('getHerramientasEventoInicioList', response);
 
         if (response && response.respuesta) {
           const ops = response.respuesta as HerramientaEventoInicioEntity[];
@@ -189,7 +192,7 @@ export class CrearEventoInicioComponent {
    */
   public async getMetodosAsignacionList() {
     this.metodosAsignacionList = [];
-
+    console.log('getMetodosAsignacionList');
     try {
       const response = await firstValueFrom(
         this.eventoInicioService
@@ -217,6 +220,7 @@ export class CrearEventoInicioComponent {
    */
   public async getSeriesList() {
     this.seriesList = [];
+    console.log('getSeriesList', this.loggedUser?.user_name ?? '');
     try {
       const response = await firstValueFrom(
         this.eventoInicioService        
@@ -253,15 +257,16 @@ export class CrearEventoInicioComponent {
   }
 
   private buildEventoInicioPayload(): EventoInicioEntity {
+    const metodoCode = this.metodoAsignacionN?.code ?? this.nombreMetodoAsignacionN;
     return {
       nombreWorkflow: this.workflowActual,
       usuario: this.loggedUser?.user_name ?? '',
       nombreEvento: this.nombreEventoInicioN,
       nombreLargo: this.nombreLargoEventoInicioN,
       modeloCarpeta: this.modeloCarpetaN ?? '',
-      descripcion: this.descripcionEventoInicioN,
-      herramienta: this.nombreHerramientaN,
-      usuarioIniciaTarea: this.nombreMetodoAsignacionB,
+      descripcion: this.descripcionEventoInicioN || this.descripcionN,
+      herramienta: this.nombreHerramientaN || this.herramientaN?.code || '',
+      usuarioIniciaTarea: metodoCode === 'Si',
       docModels: this.mapearModelosDocumentoEventoInicio(),
     };
   }
@@ -270,6 +275,24 @@ export class CrearEventoInicioComponent {
     * Guarda los cambios, creando o editando el evento de inicio según corresponda.
    */
   public save() {
+    if (!this.workflowActual) {
+      if (this.uc) {
+        this.uc.mensaje = 'Debe seleccionar un workflow antes de guardar el evento de inicio.';
+      }
+      return;
+    }
+    if (!this.loggedUser?.user_name) {
+      if (this.uc) {
+        this.uc.mensaje = 'No se encontró el usuario en sesión. Vuelva a iniciar sesión.';
+      }
+      return;
+    }
+    if (!this.nombreEventoInicioN || !this.nombreLargoEventoInicioN) {
+      if (this.uc) {
+        this.uc.mensaje = 'El nombre y el nombre largo del evento de inicio son obligatorios.';
+      }
+      return;
+    }
     if (!this.editMode()) {
       this.create();
     } else {
@@ -281,6 +304,7 @@ export class CrearEventoInicioComponent {
    * Crea un nuevo grupo con los datos del formulario.
    */
   public create() {
+    console.log('create', this.buildEventoInicioPayload());
     this.eventoInicioService
       .createEventoInicio(this.buildEventoInicioPayload())
       .subscribe({
@@ -291,7 +315,7 @@ export class CrearEventoInicioComponent {
             }
             this.eventoInicioIdEdit = this.nombreEventoInicioN;
             this.router.navigate([
-              `/main-page/eventos-de-inicio/editarEventoInicio?id=${this.nombreEventoInicioN}`,
+              `/main-page/eventoinicio/editarEventoInicio/${this.nombreEventoInicioN}`,
             ]);
           }
         },
@@ -310,13 +334,14 @@ export class CrearEventoInicioComponent {
    * Edita la tarea existente con los datos proporcionados.
    */
   public edit() {
+    console.log('edit', this.buildEventoInicioPayload());
     this.eventoInicioService
       .editEventoInicio(this.buildEventoInicioPayload())
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
             this.router.navigate([
-              `/main-page/eventos-de-inicio/editarEventoInicio?id=${this.nombreEventoInicioN}`,
+              `/main-page/eventoinicio/editarEventoInicio/${this.nombreEventoInicioN}`,
             ]);
           }
         },
@@ -343,7 +368,7 @@ export class CrearEventoInicioComponent {
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
-            this.router.navigate(['/main-page/eventos-de-inicio']);
+            this.router.navigate(['/main-page/eventoinicio/listadoEventoInicio']);
           }
         },
         error: (e) => {
@@ -364,7 +389,7 @@ export class CrearEventoInicioComponent {
     if (this.uc) {
       this.uc.mensaje = '';
     }
-    this.router.navigate(['/main-page/eventos-de-inicio']);
+    this.router.navigate(['/main-page/eventoinicio/listadoEventoInicio']);
   }
 
 
@@ -372,6 +397,7 @@ export class CrearEventoInicioComponent {
     let metodoAsignacionSeleccionado = $event as MetodoAsignacionPrimeraTareaEntity;
     this.metodoAsignacionN = metodoAsignacionSeleccionado;
     this.nombreMetodoAsignacionN = metodoAsignacionSeleccionado.code ?? '';
+    this.nombreMetodoAsignacionB = this.nombreMetodoAsignacionN === 'Si';
   }
 
     public onHerramientaChange($event: any) {

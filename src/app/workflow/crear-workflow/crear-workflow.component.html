@@ -80,7 +80,7 @@
             >
               <option value="">Seleccione una opción</option>
 
-              @for (estado of this.uc!.estados; track estado) {
+              @for (estado of this.uc!.estados; track estado.code) {
                 <option [ngValue]="estado">
                   {{ estado.name }}
                 </option>

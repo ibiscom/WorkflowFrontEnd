@@ -39,7 +39,7 @@ export class EventoInicioComponent {
   ) {}
 
   ngOnInit(): void {
-    console.log('ENTRO ngOnInit');
+    console.log('Evento Inicio ENTRO ngOnInit');
     this.eventoInicioComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
    console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
@@ -61,35 +61,34 @@ export class EventoInicioComponent {
     }
     return true;
   }
-/* revisar si se eliminan los filtros de nombre, descripcion, editarDocProceso, idSerie*/
-   public buscarEventosInicio(filtros?: EventoInicioFilterEntity): void {
-    console.log("FILTROS RECIBIDOS EN PADRE:", filtros);
-      const workflowActual = this.cookieService.get('workflowActual');
-      const body: EventoInicioFilterEntity = {
+  public buscarEventosInicio(filtros?: EventoInicioFilterEntity): void {
+    const workflowActual = this.cookieService.get('workflowActual');
+    const body: EventoInicioFilterEntity = {
       nombreWorkflow: workflowActual,
       nombre: filtros?.nombre ?? '',
       modeloCarpeta: filtros?.modeloCarpeta ?? '',
       descripcion: filtros?.descripcion ?? '',
       editarDocProceso: filtros?.editarDocProceso ?? false,
-      idSerie: filtros?.idSerie ?? ''
+      idSerie: filtros?.idSerie ?? '',
     };
-   console.log("BODY FINAL:", body);
-      console.log('BODY ENVIADO AL BACKEND:', body);
-  
-      this.eventoInicioService
-        .getEventoInicioList(body)
-        .subscribe({
+
+    console.log('buscando eventos de inicio para el workflow:', workflowActual,body);
+
+    this.eventoInicioService
+      .getEventoInicioList(body)
+      .subscribe({
           next: (response) => {
             this.eventosInicio = response.respuesta;
             this.mensaje = '';
           },
           error: (err) => {
             this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_OBTENIENDO_TAREAS,
+              Constants.ERR_EVENTO_INICIO_LISTAR,
               err,
             );
           },
         });
+        console.log('eventosInicio', Response, 'EI:',this.eventosInicio);
     }
 
   public getAllCompanies() {

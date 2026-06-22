@@ -20,7 +20,7 @@
         <div>Nombre</div>
       </div>
 
-      @for (element of parent.eventosInicio; track element) {
+      @for (element of parent.eventosInicio; track element.nombreEvento) {
         <ng-container>
           <div class="tabla-celda">
             <div (click)="goToEditarEventoInicio(element)">
@@ -37,7 +37,7 @@
         <div>Nombre Largo</div>
       </div>
 
-      @for (element of parent.eventosInicio; track element) {
+      @for (element of parent.eventosInicio; track element.nombreEvento) {
         <ng-container>
           <div class="tabla-celda">
             <div (click)="goToEditarEventoInicio(element)">
@@ -54,7 +54,7 @@
         <div>Descripción</div>
       </div>
 
-      @for (element of parent.eventosInicio; track element) {
+      @for (element of parent.eventosInicio; track element.nombreEvento) {
         <ng-container>
           <div class="tabla-celda">
             <div>
@@ -71,7 +71,7 @@
         <div>Tipo</div>
       </div>
 
-          @for (element of parent.eventosInicio; track element) {
+          @for (element of parent.eventosInicio; track element.nombreEvento) {
         <ng-container>
           <div class="tabla-celda">
             <div>
