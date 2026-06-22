@@ -21,7 +21,7 @@ import { Router } from '@angular/router';
   styleUrl: './acciones-eventoinicio.component.scss',
 })
 /**
- * Componente de acciones para la administración de Eventos de Inicio.
+ * -- Componente de acciones para la administración de Eventos de Inicio.
  * Permite navegar a la pantalla de creación de Eventos de Inicio.
  */
 export class AccionesEventoInicioComponent {
