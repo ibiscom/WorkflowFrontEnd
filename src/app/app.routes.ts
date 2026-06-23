@@ -204,7 +204,7 @@ export const routes: Routes = [
         ],
       },
       {
-        path: 'administrarGrupos',
+        path: 'grupos',
         component: GrupoComponent,
         canActivate: [CanActivateGuard],
         children: [
