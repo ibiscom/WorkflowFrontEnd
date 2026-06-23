@@ -1,494 +1,538 @@
-/* =======================================
-   CONTENEDOR PRINCIPAL
-======================================= */
-
-.cont-nuevo-grupo {
+:host {
+  display: block;
   width: 100%;
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 24px;
-}
-
-/* =======================================
-   CARD PRINCIPAL
-======================================= */
-
-.card-nuevo-grupo-general {
-  background: #fafafa;
-
-  border-radius: 16px;
-
-  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.13);
-
-  padding: 24px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 24px;
-}
-
-/* =======================================
-   HEADER
-======================================= */
-
-.card-header {
-  display: flex;
-
-  align-items: center;
-
-  padding: 16px 20px;
-}
-
-.card-header h3 {
-  margin: 0;
-
   font-family: Roboto, sans-serif;
-
-  font-size: 18px;
-
-  font-weight: 700;
-
-  line-height: 24px;
-
-  color: #1b1b1b;
+  color: #1a1a1a;
 }
 
-.card-title {
-  font-family: Roboto, sans-serif;
+/* ===========================
+   CONTENEDOR GENERAL
+   =========================== */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px;
 
+  &.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
+/* ===========================
+   LABEL (EQUIVALENTE A mat-label)
+   =========================== */
+.field-label {
   font-size: 14px;
-
-  font-weight: 700;
-
-  color: #1b1b1b;
-
-  white-space: normal;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #444;
 }
 
-/* =======================================
-   CONTENT
-======================================= */
-
-.card-content {
+/* ===========================
+   INPUT / SELECT CON ESTILO MATERIAL
+   =========================== */
+.field-control {
   width: 100%;
+  padding: 12px 14px;
+  font-size: 15px;
+  border-radius: 6px;
+  outline: none;
+
+  background: #fff;
+  border: 1px solid #c7c7c7;
+  transition: all 0.22s ease;
+
+  &:hover {
+    border-color: #999;
+  }
+
+  &:focus {
+    border-color: #3f51b5;
+    box-shadow: 0 0 0 2px rgba(63, 81, 181, 0.25);
+  }
+
+  &.ng-invalid.ng-touched {
+    border-color: #d32f2f;
+    box-shadow: 0 0 0 2px rgba(211, 47, 47, 0.2);
+  }
 }
 
-/* =======================================
-   GRID CAMPOS
-======================================= */
+/* ===========================
+   SELECT STYLE
+   =========================== */
+select.field-control {
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+}
 
-.tbl-nuevo-grupo {
+/* ===========================
+   MENSAJE DE ERROR (EQUIVALENTE A mat-error)
+   =========================== */
+.field-error {
+  font-size: 13px;
+  margin-top: 6px;
+  color: #d32f2f;
+}
+
+/* ===========================
+   BOTÓN (ESTILO mat-flat-button)
+   =========================== */
+.button-primary {
   width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
 
-  display: grid;
+  background: #3f51b5;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
 
-  grid-template-columns: repeat(2, 1fr);
+  cursor: pointer;
+  transition: background 0.22s ease;
 
-  gap: 24px;
+  &:hover {
+    background: #32408f;
+  }
+
+  &:active {
+    background: #28347a;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
 }
 
-/* =======================================
-   CAMPOS TEXTO
-======================================= */
+/* ===========================
+   ESPACIO ENTRE CAMPOS
+   =========================== */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
 
+/* ===========================
+   CONTENEDOR DE ÍCONO
+   =========================== */
+.field-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  .control-icon {
+    position: absolute;
+    right: 12px;
+    color: #777;
+    font-size: 18px;
+    pointer-events: none;
+  }
+}
+
+/* Cuando el campo tiene ícono, deja espacio */
+.field-control.with-icon {
+  padding-right: 42px;
+}
+
+/* ================= CAMPOS ================= */
 .campo-texto {
   width: 100%;
-
   display: flex;
-
   flex-direction: column;
-
-  background: #ffffff;
-
-  border-top-left-radius: 4px;
-
-  border-top-right-radius: 4px;
-}
-
-.campo-texto label {
+  gap: 8px;
   padding: 4px 16px;
+  background: var(--Schemes-Surface-Container-Lowest, #ffffff);
+  border-radius: 4px;
 
-  display: flex;
+  /* Label */
+  label {
+    color: var(--Schemes-On-Surface-Variant, #49454f);
+    font-size: 16px;
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
 
-  align-items: center;
+  /* Input */
+  input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    font-family: Roboto, sans-serif;
+    color: var(--Schemes-On-Surface, #1c1b1f);
+    padding: 4px 0;
+  }
 
-  font-family: Roboto, sans-serif;
-
-  font-size: 16px;
-
-  font-weight: 400;
-
-  line-height: 24px;
-
-  color: #49454f;
+  /* Línea inferior */
+  &::after {
+    content: "";
+    width: 100%;
+    height: 0px;
+    outline: 1px solid var(--Schemes-On-Surface-Variant, #49454f);
+    outline-offset: -0.5px;
+    margin-top: 4px;
+  }
 }
 
-.campo-texto input {
-  width: 100%;
-
-  padding: 4px 16px 8px 16px;
-
-  border: none;
-
-  outline: none;
-
-  background: transparent;
-
-  font-family: Roboto, sans-serif;
-
-  font-size: 16px;
-
-  color: #1c1b1f;
-}
-
-.campo-texto::after {
-  content: "";
-
-  width: 100%;
-
-  height: 1px;
-
-  background: #49454f;
-}
-
-/* =======================================
-   SELECTS
-======================================= */
-
+/* Dropdown simulados */
 .campo-lista {
   width: 100%;
-
   display: flex;
-
   flex-direction: column;
-
-  background: #ffffff;
-
-  border-top-left-radius: 4px;
-
-  border-top-right-radius: 4px;
-}
-
-.campo-lista label {
-  padding: 4px 16px;
-
-  font-family: Roboto, sans-serif;
-
-  font-size: 16px;
-
-  color: #49454f;
-}
-
-.campo-lista select {
-  width: 100%;
-
-  padding: 4px 16px 8px 16px;
-
-  border: none;
-
-  outline: none;
-
-  background: transparent;
-
-  font-family: Roboto, sans-serif;
-
-  font-size: 16px;
-
-  color: #1c1b1f;
-}
-
-.campo-lista::after {
-  content: "";
-
-  width: 100%;
-
-  height: 1px;
-
-  background: #49454f;
-}
-
-/* =======================================
-   MENSAJES ERROR
-======================================= */
-
-.error {
-  padding-left: 16px;
-
-  font-family: Roboto, sans-serif;
-
-  font-size: 12px;
-
-  color: #b3261e;
-}
-
-/* =======================================
-   RESPONSABLES
-======================================= */
-
-.responsables-container {
-  width: 100%;
-}
-
-.responsables-header {
-  margin-bottom: 16px;
-}
-
-.responsables-title {
-  font-family: Roboto, sans-serif;
-
-  font-size: 18px;
-
-  font-weight: 700;
-
-  color: #1b1b1b;
-}
-
-/* =======================================
-   ASIGNACIÓN RESPONSABLES
-======================================= */
-
-.asignacion-responsables {
-  display: flex;
-
-  align-items: stretch;
-
-  gap: 24px;
-}
-
-/* =======================================
-   PANELES
-======================================= */
-
-.panel-responsables {
-  flex: 1;
-
-  background: #ffffff;
-
-  border-radius: 16px;
-
-  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.08);
-
-  min-height: 450px;
-
-  max-height: 450px;
-
-  overflow-y: auto;
-
-  display: flex;
-
-  flex-direction: column;
-}
-
-/* =======================================
-   FILAS
-======================================= */
-
-.check-row,
-.assigned-row {
-  display: flex;
-
-  align-items: center;
-
-  gap: 12px;
-
-  padding: 12px 16px;
-
-  border-bottom: 1px solid #eeeeee;
-}
-
-.check-label,
-.assigned-title {
-  flex: 1;
-
-  font-family: Roboto, sans-serif;
-
-  font-size: 14px;
-
-  color: #1b1b1b;
-}
-
-/* =======================================
-   CHECKBOX
-======================================= */
-
-.checkbox {
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-}
-
-.checkbox input {
-  width: 16px;
-
-  height: 16px;
-
-  cursor: pointer;
-}
-
-/* =======================================
-   BOTONES CENTRALES
-======================================= */
-
-.actions {
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: center;
-
-  gap: 16px;
-}
-
-.btn {
-  min-width: 130px;
-
-  height: 40px;
-
-  border-radius: 100px;
-
-  cursor: pointer;
-
-  font-family: Roboto, sans-serif;
-
-  font-size: 14px;
-
-  font-weight: 500;
-
-  transition: 0.2s ease;
-}
-
-.btn-primary {
-  border: none;
-
-  background: #6750a4;
-
-  color: #ffffff;
-}
-
-.btn-primary:hover {
-  filter: brightness(0.95);
-}
-
-.btn-outline {
-  background: #ffffff;
-
-  border: 1px solid #6750a4;
-
-  color: #6750a4;
-}
-
-.btn-outline:hover {
-  background: rgba(103, 80, 164, 0.06);
-}
-
-/* =======================================
-   BOTONES FINALES
-======================================= */
-
-.botones-nuevo-grupo {
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  gap: 16px;
-
-  flex-wrap: wrap;
-
-  margin-top: 8px;
-}
-
-/* =======================================
-   BOTÓN FIGMA
-======================================= */
-
-.btn-figma {
-  display: inline-flex;
-
-  align-items: center;
-
-  justify-content: center;
-
   gap: 6px;
+  padding: 4px 16px;
+  background: var(--Schemes-On-Secondary, #ffffff);
+  border-radius: 4px;
 
-  padding: 8px 18px;
+  /* Label */
+  label {
+    color: var(--Schemes-On-Surface-Variant, #49454f);
+    font-size: 16px;
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+    padding-left: 16px;
+  }
 
-  border: none;
+  /* Select */
+  select {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    font-family: Roboto, sans-serif;
+    padding: 8px 0;
+    color: var(--Schemes-On-Surface, #1c1b1f);
+    appearance: none;
+    cursor: pointer;
 
-  border-radius: 100px;
+    /* Flecha personalizada */
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10L12 15L17 10H7Z' fill='currentColor'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: calc(100% + 32px) 9px;
+  }
 
+  /* Línea inferior */
+  &::after {
+    content: "";
+    width: 100%;
+    height: 0px;
+    outline: 1px solid var(--Schemes-On-Surface-Variant, #49454f);
+    outline-offset: -0.5px;
+    margin-top: 4px;
+  }
+}
+
+/* ================= BOTONES ================= */
+
+/* Botón tipo Figma (buscar / nuevo usuario) */
+.btn-figma {
+  width: 100%;
+  flex: 1;
   background: #6750a4;
-
+  border-radius: 100px;
+  padding: 6px 12px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: white;
   cursor: pointer;
 
-  transition: 0.2s ease;
-
-  font-family: Roboto, sans-serif;
-
-  font-size: 14px;
-
-  font-weight: 500;
-
-  color: #ffffff;
-}
-
-.btn-figma:hover {
-  filter: brightness(0.95);
-}
-
-.btn-figma:active {
-  filter: brightness(0.9);
-}
-
-/* =======================================
-   ICONOS
-======================================= */
-
-.btn-icon {
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-}
-
-.btn-icon img {
-  width: 20px;
-
+ .btn-icon {
+  width: 20px;   // cambia aquí el tamaño deseado
   height: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-/* =======================================
-   RESPONSIVE
-======================================= */
+  .label {
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 700;
+  }
+}
 
-@media (max-width: 1024px) {
+.campo-input {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 
-  .tbl-nuevo-grupo {
-    grid-template-columns: 1fr;
+  input,
+  select {
+    width: 100%;
+    padding: 8px 16px;
+    border: none;
+    outline: none;
+    background: white;
+    font-family: Roboto;
+    font-size: 16px;
+    color: #49454f;
+    border-bottom: 1px solid #49454f;
+  }
+}
+
+.campo-input select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%2349454F' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 18px;
+  cursor: pointer;
+}
+
+
+/* Contenedor que actúa como tabla */
+.tbl-permisos {
+  display: grid;
+  grid-template-columns: 1fr auto; /* columna izquierda flexible, derecha compacta */
+  row-gap: 12px;
+  column-gap: 20px;
+  width: 50%;
+  padding: 16px;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+/* Cada celda de texto */
+.tbl-permisos > div:first-child,
+.tbl-permisos > div {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  color: #333;
+}
+
+/* Ajustar botón */
+.tbl-permisos button {
+  padding: 6px 12px;
+  background: #6750a4;
+  color: white;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #6750a4;
   }
 
-  .asignacion-responsables {
+  &:active {
+    background: #6750a4;
+  }
+}
+
+/* ===========================
+   CAMPO DE CARGA DE ARCHIVO
+   =========================== */
+.campo-carga-archivo-nueva-compania {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+
+  /* Si quieres que cada bloque se comporte como fila completa */
+  flex-wrap: wrap;
+  padding: 8px 12px;
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+
+  /* Para que se integre con el estilo de .campo-nueva-compania */
+  .campo-nueva-compania &,
+  &.campo-nueva-compania {
+    padding: 0; /* evita doble padding si se anida */
+    border: none;
+    background: transparent;
+  }
+
+  /* Contenedor del input readonly (ruta) */
+  input[type="text"],
+  input[readonly] {
+    flex: 1 1 320px;          /* ocupa el máximo posible */
+    min-width: 160px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #cfcfcf;
+    background: #fafafa;
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+
+    &:focus {
+      outline: none;
+      border-color: #6750a4;
+      box-shadow: 0 0 0 2px rgba(63,81,181,0.12);
+      background: #fff;
+    }
+  }
+
+  /* Contenedor del botón (mantener altura consistente) */
+  > div,
+  .file-button-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Botón de carga estilo "material" */
+  button {
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    background: #6750a4;
+    color: #fff;
+    transition: background 0.18s ease, transform 0.06s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+
+    &:hover {
+      background: #6750a4;
+    }
+    &:active {
+      transform: translateY(1px);
+    }
+    &:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+  }
+
+  /* El input file debe permanecer oculto */
+  input[type="file"] {
+    display: none;
+  }
+
+  /* Texto pequeño de ayuda */
+  .file-hint {
+    font-size: 12px;
+    color: #6750a4;
+    margin-left: 4px;
+  }
+
+  /* Cuando el campo esté "solo lectura" y sin valor */
+  &.empty input[readonly] {
+    color: #9e9e9e;
+    font-style: italic;
+  }
+
+  /* Error state */
+  &.error input[type="text"],
+  &.error input[readonly] {
+    border-color: #d32f2f;
+    box-shadow: 0 0 0 2px rgba(211,47,47,0.08);
+  }
+
+  /* Responsive: apila en pantallas pequeñas */
+  @media (max-width: 640px) {
     flex-direction: column;
-  }
+    align-items: stretch;
 
-  .actions {
-    flex-direction: row;
+    input[type="text"],
+    input[readonly] {
+      width: 100%;
+      order: 1;
+    }
 
-    justify-content: center;
-  }
+    .file-button-wrapper,
+    > div {
+      order: 2;
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+    }
 
-  .panel-responsables {
-    min-height: 350px;
-
-    max-height: 350px;
+    button {
+      width: auto;
+    }
   }
 }
+
+.botones-nueva-compania {
+  display: flex;
+  flex-direction: row;   /* Asegura que los botones estén en una fila */
+  gap: 16px;             /* Separación entre botones */
+  justify-content: center; /* Opciones: center | flex-start | flex-end | space-between */
+  align-items: center;
+  margin-top: 20px;
+}
+
+
+.campo-carga-archivo-nueva-compania {
+  
+  button {
+    display: flex;
+    align-items: center;
+    gap: 12px; // separación entre ícono y texto
+  flex: 1;
+  background: #6750a4;
+  border-radius: 100px;
+  padding: 6px 8px;
+  border: none;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  }
+
+  .btn-icon-pequeño {
+    display: flex;
+    width: 16px;   // <-- cambia aquí el tamaño deseado
+    height: 16px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;  // evita deformación
+    }
+  }
+}
+
+.tbl-permisos {
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 6px; // espacio entre icono y texto
+  }
+
+  .btn-figma {
+    display: flex;
+    width: 16px;   // <-- AJUSTA AQUÍ EL TAMAÑO DEL ICONO
+    height: 16px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; // evita deformación
+      display: block;
+    }
+  }
+}
+
+ .tamlabel{
+    width: 100% !important;
+    display: inline-block;
+  }
+  

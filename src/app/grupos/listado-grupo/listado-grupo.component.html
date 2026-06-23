@@ -1,23 +1,16 @@
-<!-- CREAR / EDITAR GRUPO 
-<ibpm-crear-grupo [uc]="this.parent" style="width: 100%">
-</ibpm-crear-grupo>-->
-
-<br />
+<!-- FILTROS: Se deja inactivo mientras se define su implementacion -->
+<!--<ibpm-filtros-busqueda-grupo [uc]="this.parent" style="width: 100%">
+</ibpm-filtros-busqueda-grupo>-->
 
 <!-- TARJETA TABLA -->
 <div class="tabla-card">
-
   <!-- HEADER -->
   <div class="tabla-header-container">
-    <div class="tabla-titulo">
-      Listado de grupos
-    </div>
+    <div class="tabla-titulo">Listado de grupos</div>
   </div>
 
   <!-- BODY -->
   <div class="tabla-body">
-
-    @let grupos = parent.grupos;
 
     <!-- COLUMNA: NOMBRE -->
     <div class="tabla-columna">
@@ -25,7 +18,7 @@
         <div>Nombre</div>
       </div>
 
-      @for (element of grupos; track element) {
+      @for (element of parent.grupos; track element) {
         <ng-container>
           <div class="tabla-celda">
             <div (click)="goToEditarGrupo(element)">
@@ -36,13 +29,34 @@
       }
     </div>
 
+    <!-- COLUMNA: TIPO -->
+
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Tipo</div>
+      </div>
+
+      @for (element of parent.grupos; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarGrupo(element)">
+              {{ element.tipo }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    
+
+
     <!-- COLUMNA: DESCRIPCIÓN -->
     <div class="tabla-columna">
       <div class="tabla-col-header">
         <div>Descripción</div>
       </div>
 
-      @for (element of grupos; track element) {
+      @for (element of parent.grupos; track element) {
         <ng-container>
           <div class="tabla-celda">
             <div (click)="goToEditarGrupo(element)">
@@ -53,34 +67,17 @@
       }
     </div>
 
-    <!-- COLUMNA: ENTIDAD -->
+    <!-- COLUMNA: CADENA DE REPRESENTACIÓN -->
     <div class="tabla-columna">
       <div class="tabla-col-header">
-        <div>Entidad</div>
+        <div>Cadena de representación</div>
       </div>
 
-      @for (element of grupos; track element) {
+      @for (element of parent.grupos; track element) {
         <ng-container>
           <div class="tabla-celda">
             <div (click)="goToEditarGrupo(element)">
-              {{ element.descripcion }}
-            </div>
-          </div>
-        </ng-container>
-      }
-    </div>
-
-    <!-- COLUMNA: RESPONSABLES ASOCIADOS -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header">
-        <div>Responsables asociados</div>
-      </div>
-
-      @for (element of grupos; track element) {
-        <ng-container>
-          <div class="tabla-celda">
-            <div (click)="goToEditarGrupo(element)">
-              {{ element.descripcion }}
+              {{ element.cadenaRepresentacion }}
             </div>
           </div>
         </ng-container>
@@ -88,4 +85,21 @@
     </div>
 
   </div>
+
+  <!-- FOOTER
+  <div class="tabla-footer">
+    <div class="tabla-footer-text">
+      Página {{ currentPage }} de {{ numberOfPages }}
+    </div>
+
+    <div class="paginador-boton" (click)="previousPage()">
+      <span>chevron_left</span>
+    </div>
+
+    <div class="paginador-boton active" (click)="nextPage()">
+      <span>chevron_right</span>
+    </div>
+  </div>
+  -->
 </div>
+

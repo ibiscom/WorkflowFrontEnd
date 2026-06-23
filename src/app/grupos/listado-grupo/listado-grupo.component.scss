@@ -1,90 +1,209 @@
-:host {
-  display: block;
-  width: 100%;
-}
-
+/* =======================================
+   CONTENEDOR PRINCIPAL
+======================================= */
 .tabla-card {
   width: 100%;
-  background: #fff;
-  border: 1px solid #dfe6ee;
-  border-radius: 12px;
+  height: 100%;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0px 1px 15.4px 6px rgba(0, 0, 0, 0.07);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
+/* =======================================
+   HEADER SUPERIOR
+======================================= */
 .tabla-header-container {
+  width: 100%;
+  padding: 16px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 24px;
-  border-bottom: 1px solid #dfe6ee;
-  background: #fafbfc;
+  align-items: flex-start;
 }
 
 .tabla-titulo {
-  font-size: 18px;
-  font-weight: 600;
-  color: #1f2937;
+  color: #1b1b1b;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0.5px;
 }
 
+/* =======================================
+   BODY (ÁREA TABLA)
+======================================= */
 .tabla-body {
-  display: flex;
   width: 100%;
+  padding: 0 8px;
+  display: flex;
+  overflow-x: auto;
+  background: white;
 }
 
+/* =======================================
+   COLUMNAS
+======================================= */
 .tabla-columna {
+  min-width: 130px;
+  //max-width: 130px;
+  max-width: 98% !important;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-left: 0.5px solid #dcdcdc;
+  border-right: 0.5px solid #dcdcdc;
+  border-top: 1px solid #dcdcdc;
+  background: white;
+}
+
+/* Última columna se expande */
+.tabla-columna:last-child {
   flex: 1;
-  min-width: 220px;
-  border-right: 1px solid #eef2f6;
-
-  &:last-child {
-    border-right: none;
-  }
 }
 
+/* =======================================
+   HEADER DE COLUMNAS
+======================================= */
 .tabla-col-header {
-  background: #f5f7fa;
-  border-bottom: 1px solid #dfe6ee;
-  min-height: 52px;
-
-  div {
-    padding: 16px;
-    font-size: 13px;
-    font-weight: 600;
-    color: #4b5563;
-  }
-}
-
-.tabla-celda {
-  min-height: 52px;
+  width: 100%;
+  background: #fafafa;
+  padding: 4px;
   display: flex;
   align-items: center;
-  padding: 0 16px;
-  border-bottom: 1px solid #eef2f6;
-  transition: background-color 0.2s ease;
-
-  &:hover {
-    background: #f8fafc;
-  }
-
-  div {
-    width: 100%;
-    cursor: pointer;
-    color: #374151;
-    font-size: 14px;
-    word-break: break-word;
-  }
+  gap: 4px;
+  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
+  justify-content: flex-start;
 }
 
-.tabla-celda:last-child {
-  border-bottom: none;
+.tabla-col-header div {
+  flex: 1;
+  color: #757575;
+  font-size: 12px;
+  font-family: Roboto;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  text-align: left;
+  display: flex;
+  justify-content: flex-start;
 }
 
-@media (max-width: 1024px) {
-  .tabla-card {
-    overflow-x: auto;
-  }
-
-  .tabla-body {
-    min-width: 1000px;
-  }
+/* Flechita de ordenamiento */
+.sort-icon {
+  width: 9px;
+  height: 8px;
+  background: #6750a4;
 }
+
+/* =======================================
+   CELDAS
+======================================= */
+.tabla-celda {
+  height: 36px; /* Ajusta según tu Figma (32px, 40px, etc) */
+  min-height: 36px;
+  max-height: 36px;
+  width: 100%;
+  padding: 4px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
+}
+
+.tabla-celda div {
+  flex: 1;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: rgba(0, 0, 0, 0.87);
+  text-align: left;
+}
+
+/* =======================================
+   FOOTER / PAGINACIÓN
+======================================= */
+.tabla-footer {
+  height: 58px;
+  padding: 0 8px;
+  background: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 34px;
+}
+
+.tabla-footer-text {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+/* Registros por página */
+.registros-contenedor {
+  width: 33px;
+  display: flex;
+  flex-direction: column;
+}
+
+.registros-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 26px;
+}
+
+.registros-select span {
+  font-family: Roboto;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.registros-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.42);
+}
+
+/* Icono dropdown */
+.icon-dropdown {
+  font-family: "Material Icons";
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.54);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Paginador */
+.paginador-boton {
+  width: 32px;
+  height: 32px;
+  border-radius: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paginador-boton.disabled {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.paginador-boton.active {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.paginador-boton span {
+  font-family: "Material Icons";
+  font-size: 24px;
+  line-height: 24px;
+}
+
