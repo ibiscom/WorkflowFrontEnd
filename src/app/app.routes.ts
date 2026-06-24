@@ -40,6 +40,12 @@ import { CrearResponsableComponent } from './reponsable/crear-responsable/crear-
 import { GrupoComponent } from './grupos/grupo.component';
 import { CrearGrupoComponent } from './grupos/crear-grupo/crear-grupo.component';
 import { ListadoGrupoComponent } from './grupos/listado-grupo/listado-grupo.component';
+import { AlarmaComponent } from './alarmas/alarmas.component';
+import { CrearAlarmaComponent } from './alarmas/crear-alarmas/crear-alarmas.component';
+import { ListadoAlarmasComponent } from './alarmas/listado-alarmas/listado-alarmas.component';
+import { ListarTareaComponent } from './listar-tareas/listar-tareas.component';
+import { CrearListarTareasComponent } from './listar-tareas/crear-listar-tareas/crear-listar-tareas.component';
+import { ListadoListarTareaComponent } from './listar-tareas/listado-listar-tareas/listado-listar-tareas.component';
 
 export const CanActivateGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -337,6 +343,62 @@ export const routes: Routes = [
           {
             path: 'editarGrupo/:id',
             component: CrearGrupoComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+
+      {
+        path: 'alarmas',
+        component: AlarmaComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoAlarmas',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoAlarmas',
+            component: ListadoAlarmasComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'crearAlarma',
+            component: CrearAlarmaComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'editarAlarma/:id',
+            component: CrearAlarmaComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+
+      {
+        path: 'listarTareas',
+        component: ListarTareaComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoListarTareas',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoListarTareas',
+            component: ListadoListarTareaComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'crearListarTareas',
+            component: CrearListarTareasComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'editarListarTareas/:id',
+            component: CrearListarTareasComponent,
             canActivate: [CanActivateGuard],
           },
         ],

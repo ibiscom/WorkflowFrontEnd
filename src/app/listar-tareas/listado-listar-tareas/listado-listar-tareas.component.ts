@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { ListarTareaComponent } from '../listar-tareas.component';
 import { FiltrosBusquedaListarTareaComponent } from '../filtros-busqueda-listar-tareas/filtros-busqueda-listar-tareas.component';
 import { MatTableModule } from '@angular/material/table';
-import { ListarTareaEntity } from '../listar-tareas.entity';
+import { ListarTareasEntity } from '../listar-tareas.entity';
 
 @Component({
-  selector: 'ibpm-listado-listartarea',
+  selector: 'ibpm-listado-listar-tarea',
   imports: [MatTableModule, FiltrosBusquedaListarTareaComponent],
-  templateUrl: './listado-listartarea.component.html',
-  styleUrl: './listado-listartarea.component.scss',
+  templateUrl: './listado-listar-tareas.component.html',
+  styleUrl: './listado-listar-tareas.component.scss',
 })
 /**
  * Listado de listartareas con navegación a la edición y utilidades de presentación.
@@ -31,7 +31,7 @@ export class ListadoListarTareaComponent {
   /**
    * Navega a la pantalla de edición del listartarea seleccionado.
    */
-  public goToEditarListarTarea(listartarea: ListarTareaEntity) {
+  public goToEditarListarTarea(listartarea: ListarTareasEntity) {
     this.parent.router.navigate([
       `/main-page/listartarea/editarListarTarea/${listartarea.nombre}`,
     ]);

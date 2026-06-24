@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
-import { WorkflowComponent } from '../listar-tareas.component';
+import { ListarTareaComponent } from '../listar-tareas.component';
 import { LoginEntity } from '../../login/login.entity';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../../login/login.service';
-import { WorkflowComponentInstanceService } from '../listar-tareas-component-instance.service';
-import { WorkflowService } from '../listar-tareas.service';
-import { EstadoWorkflowEntity } from '../estado-listar-tareas.entity';
+import { ListarTareaComponentInstanceService } from '../listar-tareas-component-instance.service';
+import { ListarTareaService } from '../listar-tareas.service';
+import { EstadoListarTareaEntity } from '../estado-listar-tareas.entity';
 import { UserEntity } from '../../entities/users/user.entity';
 import { MessageUtil } from '../../utils/message.util';
 import { Constants } from '../../utils/constants';
@@ -19,11 +19,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { CompaniasService } from '../../companias/companias.service';
 import { UsuariosService } from '../../usuarios/usuarios.service';
-import { WorkflowEntity } from '../listar-tareas.entity';
+import { ListarTareasEntity } from '../listar-tareas.entity';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
-  selector: 'ibpm-crear-workflow',
+  selector: 'ibpm-crear-listar-tareas',
   imports: [
     FormsModule,
     MatCardModule,
@@ -33,21 +33,21 @@ import { CookieService } from 'ngx-cookie-service';
     MatIconModule,
     MatSelectModule,
   ],
-  templateUrl: './crear-workflow.component.html',
-  styleUrl: './crear-workflow.component.scss',
+  templateUrl: './crear-listar-tareas.component.html',
+  styleUrl: './crear-listar-tareas.component.scss',
 })
 /**
  * Componente para la creación y edición de workflows.
  * 
  */
-export class CrearWorkflowComponent {
-  public uc?: WorkflowComponent;
+export class CrearListarTareasComponent {
+  public uc?: ListarTareaComponent;
   public loggedUser?: LoginEntity;
   public nombreN: string = '';
   public nombreLargoN: string = '';
   public descripcionN: string = '';
   public estadoN: string = '';
-  public estadoObjectN?: EstadoWorkflowEntity;
+  public estadoObjectN?: EstadoListarTareaEntity;
   public fechaCreacionN: string = '';
   public supervisorN: string = '';
   public operationE: string = '';
@@ -57,11 +57,11 @@ export class CrearWorkflowComponent {
   public supervisorObjectN?: UserEntity;
 
   public constructor(
-    private workflowService: WorkflowService,
+    private workflowService: ListarTareaService,
     private companiasService: CompaniasService,
     private usuariosService: UsuariosService,
     private loginService: LoginService,
-    private workflowComponentInstanceService: WorkflowComponentInstanceService,
+    private workflowComponentInstanceService: ListarTareaComponentInstanceService,
     private router: Router,
     private route: ActivatedRoute,
     private cookieService: CookieService,
@@ -79,18 +79,18 @@ export class CrearWorkflowComponent {
     }
     this.obtenerListaEstados();
     const id = this.route.snapshot.paramMap.get('id');
-    console.log('Modo Edición Habilitado. Workflow:', id);
+    console.log('Modo Edición Habilitado. ListarTarea:', id);
     if (id) {
       this.workflowIdEdit = id;
       await this.llenarCamposEdicion();
-      await this.seleccionarWorkflowActual();
+      await this.seleccionarListarTareaActual();
     } else {
       this.workflowIdEdit = undefined;
     }
   }
 
 
-  public async seleccionarWorkflowActual() {
+  public async seleccionarListarTareaActual() {
     this.cookieService.set('workflowActual', this.workflowIdEdit ?? '', 1)
   }
 
@@ -108,12 +108,12 @@ export class CrearWorkflowComponent {
     
     try {
       const response = await firstValueFrom(
-        this.workflowService.getWorkflow(
+        this.workflowService.getListarTarea(
           this.workflowIdEdit ?? '',
         ),
       );
       if (response?.respuesta) {
-        const workflow = response.respuesta as WorkflowEntity;
+        const workflow = response.respuesta as ListarTareasEntity;
         this.nombreN = workflow.nombre ?? '';
         this.nombreLargoN = workflow.nombreLargo ?? '';
         this.descripcionN = workflow.descripcion ?? '';
@@ -148,7 +148,7 @@ export class CrearWorkflowComponent {
    */
   public onEstadoChange(event:any): void {
     console.log('Estado seleccionado:', event);
-    this.estadoObjectN = event as EstadoWorkflowEntity;
+    this.estadoObjectN = event as EstadoListarTareaEntity;
     this.estadoN = event?.name ?? '';
   }
 
@@ -167,14 +167,14 @@ export class CrearWorkflowComponent {
    * Crea un nuevo workflow con los datos del formulario.
    */
   public create() {
-    let workflow: WorkflowEntity = {
+    let workflow: ListarTareasEntity = {
        nombre: this.nombreN,
         nombreLargo: this.nombreLargoN,
         descripcion: this.descripcionN,
         estado: this.estadoN,
     }
     this.workflowService
-      .createWorkflow(workflow)
+      .createListarTarea(workflow)
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
@@ -183,7 +183,7 @@ export class CrearWorkflowComponent {
             }
             this.workflowIdEdit = this.nombreN;
             this.router.navigate([
-              `/main-page/workflow/editarWorkflow?id=${this.nombreN}`,
+              `/main-page/workflow/editarListarTarea?id=${this.nombreN}`,
             ]);
           }
         },
@@ -202,19 +202,19 @@ export class CrearWorkflowComponent {
    * Edita el workflow existente con los datos proporcionados.
    */
   public edit() {
-    let workflow: WorkflowEntity = {
+    let workflow: ListarTareasEntity = {
        nombre: this.nombreN,
         nombreLargo: this.nombreLargoN,
         descripcion: this.descripcionN,
         estado: this.estadoN,
     }
     this.workflowService
-      .editWorkflow(workflow)
+      .editListarTarea(workflow)
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
             this.router.navigate([
-              `/main-page/workflows/editarWorkflow?id=${this.nombreN}`,
+              `/main-page/workflows/editarListarTarea?id=${this.nombreN}`,
             ]);
           }
         },
@@ -234,7 +234,7 @@ export class CrearWorkflowComponent {
    */
   public delete() {
     this.workflowService
-      .deleteWorkflow(this.workflowIdEdit ?? '')
+      .deleteListarTarea(this.workflowIdEdit ?? '')
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
@@ -266,7 +266,7 @@ export class CrearWorkflowComponent {
   /**
    * Compara estados en el selector.
    */
-  public compararEstados(c1: EstadoWorkflowEntity, c2: EstadoWorkflowEntity): boolean {
+  public compararEstados(c1: EstadoListarTareaEntity, c2: EstadoListarTareaEntity): boolean {
     return c1.name === c2.name && c1.code === c2.code;
   }
 }

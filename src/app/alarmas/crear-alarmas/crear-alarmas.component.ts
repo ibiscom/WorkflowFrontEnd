@@ -19,10 +19,10 @@ import { UsuariosService } from '../../usuarios/usuarios.service';
 import { AlarmaComponentInstanceService } from '../alarmas-component-instance.service';
 import { AlarmaService } from '../alarmas.service';
 import { AlarmaComponent } from '../alarmas.component';
-import { AtributoAlarmaEntity } from '../alarmas.entity';
+import { AlarmaEntity } from '../alarmas.entity';
 
 @Component({
-  selector: 'ibpm-crear-atributo-alarma',
+  selector: 'ibpm-crear-alarma',
   imports: [
     FormsModule,
     MatCardModule,
@@ -32,14 +32,14 @@ import { AtributoAlarmaEntity } from '../alarmas.entity';
     MatIconModule,
     MatSelectModule,
   ],
-  templateUrl: './crear-atributo-alarma.component.html',
-  styleUrl: './crear-atributo-alarma.component.scss',
+  templateUrl: './crear-alarmas.component.html',
+  styleUrl: './crear-alarmas.component.scss',
 })
 /**
  * Componente para la creación y edición de atributos de objetos workflow.
  * Permite seleccionar compañía, supervisor y administrar permisos/restricciones.
  */
-export class CrearAtributoAlarmaComponent {
+export class CrearAlarmaComponent {
 
   public uc?: AlarmaComponent;
   public loggedUser?: LoginEntity;
