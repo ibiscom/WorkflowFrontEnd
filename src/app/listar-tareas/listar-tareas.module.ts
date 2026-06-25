@@ -7,7 +7,7 @@ import { ListadoListarTareaComponent } from './listado-listar-tareas/listado-lis
 import { ListarTareaComponent } from './listar-tareas.component';
 import { ListarTareaComponentInstanceService } from './listar-tareas-component-instance.service';
 import { ListarTareaService } from './listar-tareas.service';
-import { CrearListarTareaComponent } from './crear-listar-tareas/crear-listar-tareas.component';
+import { CrearListarTareaComponent } from './mostrar-herramienta/mostrar-herramienta.component';
 
 @NgModule({
   declarations: [],

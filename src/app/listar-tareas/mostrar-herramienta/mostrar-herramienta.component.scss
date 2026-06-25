@@ -1,4 +1,30 @@
 /* =======================================
+   TABS MATERIAL
+======================================= */
+
+::ng-deep .mat-mdc-tab-group {
+  width: 100%;
+}
+
+::ng-deep .mat-mdc-tab-header {
+  margin-bottom: 24px;
+}
+
+::ng-deep .mdc-tab__text-label {
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+::ng-deep .mdc-tab--active .mdc-tab__text-label {
+  color: #6750a4 !important;
+}
+
+::ng-deep .mdc-tab-indicator__content--underline {
+  border-color: #6750a4 !important;
+}
+
+/* =======================================
    TARJETA
 ======================================= */
 
@@ -19,12 +45,6 @@
 ======================================= */
 
 .tabla-header-container {
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
   padding: 20px 24px;
 
   border-bottom: 1px solid #e7e0ec;
@@ -45,15 +65,15 @@
 }
 
 /* =======================================
-   TABLA
+   BODY TABLA
 ======================================= */
 
 .tabla-body {
   display: flex;
 
-  width: 100%;
-
   overflow-x: auto;
+
+  width: 100%;
 }
 
 /* =======================================
@@ -61,17 +81,23 @@
 ======================================= */
 
 .tabla-columna {
+  min-width: 180px;
+
   display: flex;
 
   flex-direction: column;
 
-  min-width: 220px;
-
   flex-shrink: 0;
 }
 
+.tabla-columna-expandida {
+  flex: 1;
+
+  min-width: 280px;
+}
+
 /* =======================================
-   HEADER COLUMNAS
+   HEADER COLUMNA
 ======================================= */
 
 .tabla-col-header {
@@ -120,94 +146,71 @@
   word-break: break-word;
 }
 
-.tabla-celda div {
-  width: 100%;
-}
-
 .tabla-celda:last-child {
   border-bottom: none;
 }
 
 /* =======================================
-   CELDAS CLICKEABLES
+   BOTÓN FIGMA
 ======================================= */
 
-.tabla-celda div[click] {
-  cursor: pointer;
-}
-
-.tabla-celda div:hover {
-  color: #6750a4;
-}
-
-/* =======================================
-   SCROLL TABLA
-======================================= */
-
-.tabla-body::-webkit-scrollbar {
-  height: 8px;
-}
-
-.tabla-body::-webkit-scrollbar-track {
-  background: #f5f5f5;
-}
-
-.tabla-body::-webkit-scrollbar-thumb {
-  background: #c7c7c7;
-
-  border-radius: 8px;
-}
-
-/* =======================================
-   FOOTER PAGINACIÓN
-======================================= */
-
-.tabla-footer {
-  display: flex;
-
-  justify-content: flex-end;
-
-  align-items: center;
-
-  gap: 12px;
-
-  padding: 16px 24px;
-
-  border-top: 1px solid #e7e0ec;
-}
-
-.tabla-footer-text {
-  font-family: Roboto, sans-serif;
-
-  font-size: 14px;
-
-  color: #49454f;
-}
-
-.paginador-boton {
-  width: 36px;
-
-  height: 36px;
-
-  display: flex;
-
-  align-items: center;
+.btn-anexar,
+.btn-ver-documento {
+  display: inline-flex;
 
   justify-content: center;
 
-  border-radius: 50%;
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 8px 18px;
+
+  border: none;
+
+  border-radius: 100px;
+
+  background: #6750a4;
 
   cursor: pointer;
 
   transition: 0.2s ease;
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  color: #ffffff;
 }
 
-.paginador-boton:hover {
-  background: rgba(103, 80, 164, 0.08);
+.btn-anexar:hover,
+.btn-ver-documento:hover {
+  filter: brightness(0.95);
 }
 
-.paginador-boton.active {
-  color: #6750a4;
+.btn-anexar:active,
+.btn-ver-documento:active {
+  filter: brightness(0.9);
+}
+
+/* =======================================
+   TABLAS DE DETALLE
+======================================= */
+
+.tabla-body-detalle {
+  display: grid;
+
+  grid-template-columns: 280px 1fr;
+}
+
+.tabla-body-detalle .tabla-columna {
+  min-width: auto;
+}
+
+.tabla-body-detalle .tabla-celda {
+  min-height: 48px;
 }
 
 /* =======================================
@@ -215,7 +218,12 @@
 ======================================= */
 
 @media (max-width: 900px) {
+
+  .tabla-body-detalle {
+    grid-template-columns: 180px 1fr;
+  }
+
   .tabla-columna {
-    min-width: 180px;
+    min-width: 150px;
   }
 }

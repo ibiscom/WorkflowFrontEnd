@@ -44,7 +44,7 @@ import { AlarmaComponent } from './alarmas/alarmas.component';
 import { CrearAlarmaComponent } from './alarmas/crear-alarmas/crear-alarmas.component';
 import { ListadoAlarmasComponent } from './alarmas/listado-alarmas/listado-alarmas.component';
 import { ListarTareaComponent } from './listar-tareas/listar-tareas.component';
-import { CrearListarTareasComponent } from './listar-tareas/crear-listar-tareas/crear-listar-tareas.component';
+import { MostrarHerramientaComponent } from './listar-tareas/mostrar-herramienta/mostrar-herramienta.component';
 import { ListadoListarTareaComponent } from './listar-tareas/listado-listar-tareas/listado-listar-tareas.component';
 
 export const CanActivateGuard: CanActivateFn = (
@@ -393,12 +393,12 @@ export const routes: Routes = [
           },
           {
             path: 'crearListarTareas',
-            component: CrearListarTareasComponent,
+            component: MostrarHerramientaComponent,
             canActivate: [CanActivateGuard],
           },
           {
             path: 'editarListarTareas/:id',
-            component: CrearListarTareasComponent,
+            component: MostrarHerramientaComponent,
             canActivate: [CanActivateGuard],
           },
         ],

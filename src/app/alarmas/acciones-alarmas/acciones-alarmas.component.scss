@@ -1,53 +1,79 @@
 /* =======================================
-   BOTÓN NUEVO
+   BOTÓN FIGMA
 ======================================= */
 
 .btn-figma {
   display: inline-flex;
+
   align-items: center;
+
   justify-content: center;
 
-  gap: 8px;
+  gap: 6px;
 
-  height: 40px;
-  padding: 0 24px;
+  padding: 8px 18px;
 
   border: none;
+
   border-radius: 100px;
 
-  background: #6750a4;
+  background: var(--Schemes-Primary, #6750a4);
 
   cursor: pointer;
 
-  transition: all 0.2s ease;
+  transition: 0.2s ease;
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  color: #ffffff;
 }
 
 .btn-figma:hover {
-  opacity: 0.95;
+  filter: brightness(0.95);
 }
 
 .btn-figma:active {
-  transform: scale(0.98);
+  filter: brightness(0.9);
 }
+
+/* =======================================
+   ICONO
+======================================= */
 
 .btn-icon {
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 }
 
 .btn-icon img {
   width: 18px;
+
   height: 18px;
+
+  object-fit: contain;
 }
 
-.label {
-  color: #ffffff;
+/* =======================================
+   TEXTO
+======================================= */
 
+.btn-figma .label {
   font-family: Roboto, sans-serif;
+
   font-size: 14px;
+
   font-weight: 500;
+
   line-height: 20px;
 
   letter-spacing: 0.1px;
+
+  color: #ffffff;
 }

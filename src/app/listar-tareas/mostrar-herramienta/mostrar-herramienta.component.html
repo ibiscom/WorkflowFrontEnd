@@ -1,0 +1,279 @@
+<mat-tab-group>
+
+  <!-- ========================================= -->
+  <!-- INFORMACIÓN DE LA TAREA -->
+  <!-- ========================================= -->
+  <mat-tab label="Información de la tarea">
+
+    <div class="tabla-card">
+
+      <div class="tabla-body">
+
+        <div class="tabla-columna">
+          <div class="tabla-celda"><div>Identificador de proceso</div></div>
+          <div class="tabla-celda"><div>Nombre de proceso</div></div>
+          <div class="tabla-celda"><div>Identificador tarea</div></div>
+          <div class="tabla-celda"><div>Número tarea</div></div>
+          <div class="tabla-celda"><div>Nombre tarea</div></div>
+          <div class="tabla-celda"><div>Instancia del proceso</div></div>
+          <div class="tabla-celda"><div>Estado del objeto</div></div>
+        </div>
+
+        <div class="tabla-columna tabla-columna-expandida">
+          <div class="tabla-celda"><div>{{ tarea.identificadorProceso }}</div></div>
+          <div class="tabla-celda"><div>{{ tarea.nombreProceso }}</div></div>
+          <div class="tabla-celda"><div>{{ tarea.identificadorTarea }}</div></div>
+          <div class="tabla-celda"><div>{{ tarea.numeroTarea }}</div></div>
+          <div class="tabla-celda"><div>{{ tarea.nombreTarea }}</div></div>
+          <div class="tabla-celda"><div>{{ tarea.instanciaProceso }}</div></div>
+          <div class="tabla-celda"><div>{{ tarea.estadoObjeto }}</div></div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </mat-tab>
+
+  <!-- ========================================= -->
+  <!-- INFORMACIÓN DEL PROCESO -->
+  <!-- ========================================= -->
+  <mat-tab label="Información del proceso">
+
+    <div class="tabla-card">
+
+      <div class="tabla-body">
+
+        <div class="tabla-columna">
+          <div class="tabla-celda"><div>tipoRadicado</div></div>
+          <div class="tabla-celda"><div>idProyeccion</div></div>
+          <div class="tabla-celda"><div>operacion</div></div>
+          <div class="tabla-celda"><div>Asunto</div></div>
+          <div class="tabla-celda"><div>instancia</div></div>
+          <div class="tabla-celda"><div>compania</div></div>
+          <div class="tabla-celda"><div>¿Documento a radicar?</div></div>
+        </div>
+
+        <div class="tabla-columna tabla-columna-expandida">
+          <div class="tabla-celda"><div>{{ proceso.tipoRadicado }}</div></div>
+          <div class="tabla-celda"><div>{{ proceso.idProyeccion }}</div></div>
+          <div class="tabla-celda"><div>{{ proceso.operacion }}</div></div>
+          <div class="tabla-celda"><div>{{ proceso.asunto }}</div></div>
+          <div class="tabla-celda"><div>{{ proceso.instancia }}</div></div>
+          <div class="tabla-celda"><div>{{ proceso.compania }}</div></div>
+          <div class="tabla-celda"><div>{{ proceso.documentoRadicar }}</div></div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </mat-tab>
+
+  <!-- ========================================= -->
+  <!-- DOCUMENTOS DE LA TAREA -->
+  <!-- ========================================= -->
+  <mat-tab label="Documentos de la tarea">
+
+    <div class="tabla-card">
+
+      <div class="tabla-body">
+
+        <div class="tabla-columna">
+          <div class="tabla-col-header">
+            <div>¿Cargado?</div>
+          </div>
+
+          @for (doc of documentosTarea; track doc) {
+            <div class="tabla-celda">
+              <div>{{ doc.cargado }}</div>
+            </div>
+          }
+        </div>
+
+        <div class="tabla-columna">
+          <div class="tabla-col-header">
+            <div>¿Obligatorio?</div>
+          </div>
+
+          @for (doc of documentosTarea; track doc) {
+            <div class="tabla-celda">
+              <div>{{ doc.obligatorio }}</div>
+            </div>
+          }
+        </div>
+
+        <div class="tabla-columna tabla-columna-expandida">
+          <div class="tabla-col-header">
+            <div>Tipo documento</div>
+          </div>
+
+          @for (doc of documentosTarea; track doc) {
+            <div class="tabla-celda">
+              <div>{{ doc.tipoDocumento }}</div>
+            </div>
+          }
+        </div>
+
+        <div class="tabla-columna">
+          <div class="tabla-col-header">
+            <div>Acciones</div>
+          </div>
+
+          @for (doc of documentosTarea; track doc) {
+            <div class="tabla-celda">
+              <button
+                class="btn-anexar"
+                (click)="anexarDocumento(doc)">
+                Anexar
+              </button>
+            </div>
+          }
+        </div>
+
+      </div>
+
+    </div>
+
+  </mat-tab>
+
+  <!-- ========================================= -->
+  <!-- DOCUMENTOS DEL PROCESO -->
+  <!-- ========================================= -->
+  <mat-tab label="Documentos del proceso">
+
+    <div class="tabla-card">
+
+      <div class="tabla-body">
+
+        <div class="tabla-columna">
+          <div class="tabla-col-header">
+            <div>¿Cargado?</div>
+          </div>
+
+          @for (doc of documentosProceso; track doc) {
+            <div class="tabla-celda">
+              <div>{{ doc.cargado }}</div>
+            </div>
+          }
+        </div>
+
+        <div class="tabla-columna">
+          <div class="tabla-col-header">
+            <div>¿Obligatorio?</div>
+          </div>
+
+          @for (doc of documentosProceso; track doc) {
+            <div class="tabla-celda">
+              <div>{{ doc.obligatorio }}</div>
+            </div>
+          }
+        </div>
+
+        <div class="tabla-columna">
+          <div class="tabla-col-header">
+            <div>Tipo documento</div>
+          </div>
+
+          @for (doc of documentosProceso; track doc) {
+            <div class="tabla-celda">
+              <div>{{ doc.tipoDocumento }}</div>
+            </div>
+          }
+        </div>
+
+        <div class="tabla-columna">
+          <div class="tabla-col-header">
+            <div>Instancia</div>
+          </div>
+
+          @for (doc of documentosProceso; track doc) {
+            <div class="tabla-celda">
+              <div>{{ doc.instancia }}</div>
+            </div>
+          }
+        </div>
+
+        <div class="tabla-columna tabla-columna-expandida">
+          <div class="tabla-col-header">
+            <div>Proceso</div>
+          </div>
+
+          @for (doc of documentosProceso; track doc) {
+            <div class="tabla-celda">
+              <div>{{ doc.proceso }}</div>
+            </div>
+          }
+        </div>
+
+        <div class="tabla-columna tabla-columna-expandida">
+          <div class="tabla-col-header">
+            <div>Tarea</div>
+          </div>
+
+          @for (doc of documentosProceso; track doc) {
+            <div class="tabla-celda">
+              <div>{{ doc.tarea }}</div>
+            </div>
+          }
+        </div>
+
+        <div class="tabla-columna">
+          <div class="tabla-col-header">
+            <div>Instancia tarea</div>
+          </div>
+
+          @for (doc of documentosProceso; track doc) {
+            <div class="tabla-celda">
+              <div>{{ doc.instanciaTarea }}</div>
+            </div>
+          }
+        </div>
+
+        <div class="tabla-columna">
+          <div class="tabla-col-header">
+            <div>Fecha</div>
+          </div>
+
+          @for (doc of documentosProceso; track doc) {
+            <div class="tabla-celda">
+              <div>{{ doc.fecha }}</div>
+            </div>
+          }
+        </div>
+
+        <div class="tabla-columna">
+          <div class="tabla-col-header">
+            <div>Versión</div>
+          </div>
+
+          @for (doc of documentosProceso; track doc) {
+            <div class="tabla-celda">
+              <div>{{ doc.version }}</div>
+            </div>
+          }
+        </div>
+
+        <div class="tabla-columna">
+          <div class="tabla-col-header">
+            <div>Acciones</div>
+          </div>
+
+          @for (doc of documentosProceso; track doc) {
+            <div class="tabla-celda">
+              <button
+                class="btn-ver-documento"
+                (click)="verDocumento(doc)">
+                Ver
+              </button>
+            </div>
+          }
+        </div>
+
+      </div>
+
+    </div>
+
+  </mat-tab>
+
+</mat-tab-group>
