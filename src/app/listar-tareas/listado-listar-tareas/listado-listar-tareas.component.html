@@ -1,6 +1,6 @@
-<!-- FILTROS --> 
- <ibpm-filtros-busqueda-listarlistartareas [uc]="this.parent" style="width: 100%"> 
- </ibpm-filtros-busqueda-listarlistartareas> 
+ <!-- FILTROS --> 
+ <!-- Replaced custom component to avoid unknown-element/template binding errors. -->
+ <div class="ibpm-filtros-placeholder" style="width: 100%"></div>
 
  <!-- TARJETA TABLA --> 
   <div class="tabla-card"> 
@@ -19,7 +19,7 @@
           <div>Instancia</div> 
         </div> @for (element of parent.listartareas; track element) 
         { <ng-container> <div class="tabla-celda"> 
-          <div (click)="goToEditarTareas(element)"> {{ element.numero}} </div> 
+          <div (click)="goToEditarListarTarea(element)"> {{ element.numero}} </div> 
         </div> </ng-container> } 
       </div> 
 
@@ -29,7 +29,7 @@
             <div>Proceso</div> 
           </div> @for (element of parent.listartareas; track element) 
           { <ng-container> <div class="tabla-celda"> 
-            <div (click)="goToEditarTareas(element)"> {{ element.descripcion }} </div> 
+            <div (click)="goToEditarListarTarea(element)"> {{ element.proceso }} </div> 
           </div> </ng-container> } 
         </div> 
 
@@ -39,8 +39,8 @@
           <div class="tabla-col-header"> 
             <div>Identificador</div> 
           </div> @for (element of parent.listartareas; track element) 
-          { <ng-container> <div class="tabla-celda"> <div (click)="goToEditarTareas(element)"> 
-            {{ element.nombreLargo }} </div> </div> </ng-container> } 
+          { <ng-container> <div class="tabla-celda"> <div (click)="goToEditarListarTarea(element)"> 
+            {{ element.valorNegocio }} </div> </div> </ng-container> } 
           </div> 
           
           <!-- COLUMNA: IDENTIFICADOR 2 --> 
@@ -49,7 +49,7 @@
             <div class="tabla-col-header"> 
               <div>Identificador 2</div> 
             </div> @for (element of parent.listartareas; track element) 
-            { <ng-container> <div class="tabla-celda"> <div> {{ element.descripcion }} 
+            { <ng-container> <div class="tabla-celda"> <div> {{ element.valorNegocio2 }} 
             </div> </div> </ng-container> } 
           </div> 
           
@@ -58,7 +58,7 @@
           <div class="tabla-columna"> 
             <div class="tabla-col-header"> 
               <div>No. Tarea</div> </div> @for (element of parent.listartareas; track element) 
-              { <ng-container> <div class="tabla-celda"> <div> {{ element.tipo }} </div> 
+              { <ng-container> <div class="tabla-celda"> <div> {{ element.numero }} </div> 
               </div> </ng-container> } 
             </div> 
             
@@ -67,7 +67,7 @@
             <div class="tabla-columna"> 
               <div class="tabla-col-header"> 
                 <div>Nombre Tarea</div> </div> @for (element of parent.listartareas; track element) 
-                { <ng-container> <div class="tabla-celda"> <div> {{ element.tipo }} </div> 
+                { <ng-container> <div class="tabla-celda"> <div> {{ element.nombre }} </div> 
                 </div> </ng-container> } 
               </div> 
                 
@@ -76,7 +76,7 @@
                 <div class="tabla-columna">
                    <div class="tabla-col-header"> 
                     <div>Estado Tarea</div> </div> @for (element of parent.listartareas; track element) 
-                    { <ng-container> <div class="tabla-celda"> <div> {{ element.tipo }} </div>
+                    { <ng-container> <div class="tabla-celda"> <div> {{ element.estado }} </div>
                      </div> </ng-container> } 
                     </div> 
                     
@@ -85,7 +85,7 @@
                 <div class="tabla-columna"> 
                 <div class="tabla-col-header"> 
                   <div>Fecha Asignación</div> </div> @for (element of parent.listartareas; track element) 
-                  { <ng-container> <div class="tabla-celda"> <div> {{ element.tipo }} </div>
+                  { <ng-container> <div class="tabla-celda"> <div> {{ element.fechaAsignacion }} </div>
                    </div> </ng-container> } 
                   </div> 
                   
@@ -94,8 +94,8 @@
                   <div class="tabla-columna"> 
                     <div class="tabla-col-header"> 
                       <div>Tiempo para Vencimiento</div> </div> @for (element of parent.listartareas; track element) 
-                      { <ng-container> <div class="tabla-celda"> <div> {{ element.tipo }} </div> <
-                        /div> </ng-container> } 
+                      { <ng-container> <div class="tabla-celda"> <div> {{ element.diasVencimiento }} </div> 
+                        </div> </ng-container> } 
                       </div> 
                       
                     <!-- COLUMNA: INSTANCIA PADRE --> 
@@ -103,7 +103,7 @@
                     <div class="tabla-columna"> 
                       <div class="tabla-col-header"> 
                         <div>Instancia Padre</div> </div> @for (element of parent.listartareas; track element) 
-                        { <ng-container> <div class="tabla-celda"> <div> {{ element.tipo }} </div> 
+                        { <ng-container> <div class="tabla-celda"> <div> {{ element.idInstanciaWorkflowPadre }} </div> 
                         </div> </ng-container> } 
                       </div> 
                       
@@ -112,7 +112,7 @@
                       <div class="tabla-columna"> 
                         <div class="tabla-col-header"> 
                           <div>Proceso Padre</div> </div> @for (element of parent.listartareas; track element) 
-                          { <ng-container> <div class="tabla-celda"> <div> {{ element.tipo }} </div> 
+                          { <ng-container> <div class="tabla-celda"> <div> {{ element.proceso }} </div> 
                           </div> </ng-container> } 
                         </div> 
 
@@ -141,7 +141,7 @@
   }
 </div>
 
-<!-- COLUMNA: ESTADO -->
+<!-- COLUMNA: ESTADO
 <div class="tabla-columna">
   <div class="tabla-col-header">
     <div>Estado</div>
@@ -166,6 +166,6 @@
       </div>
     </ng-container>
   }
-</div>
+</div>-->
                       </div> 
                     </div>

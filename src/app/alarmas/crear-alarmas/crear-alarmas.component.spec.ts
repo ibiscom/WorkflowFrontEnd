@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CrearAtributoAlarmaComponent } from './crear-alarmas.component';
+import { CrearAlarmaComponent } from './crear-alarmas.component';
 
-describe('CrearAtributoAlarmaComponent', () => {
-  let component: CrearAtributoAlarmaComponent;
-  let fixture: ComponentFixture<CrearAtributoAlarmaComponent>;
+describe('CrearAlarmaComponent', () => {
+  let component: CrearAlarmaComponent;
+  let fixture: ComponentFixture<CrearAlarmaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CrearAtributoAlarmaComponent],
+      imports: [CrearAlarmaComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CrearAtributoAlarmaComponent);
+    fixture = TestBed.createComponent(CrearAlarmaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

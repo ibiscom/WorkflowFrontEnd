@@ -18,16 +18,16 @@
             <select
               id="company"
               name="company"
-              [(ngModel)]="responsableObjectN"
+              [(ngModel)]="tipoN"
               required
               #company="ngModel"
-              (ngModelChange)="onResponsableChange($event)"
+              (ngModelChange)="onAlarmaChange($event)"
             >
               <option value="">Seleccione una opción</option>
 
-              @for (responsable of responsableList; track responsable) {
-                <option [ngValue]="responsable">
-                  {{ responsable.nombre }}
+              @for (alarma of alarmasList; track alarma) {
+                <option [ngValue]="alarma">
+                  {{ alarma.nombre }}
                 </option>
               }
             </select>
@@ -41,16 +41,16 @@
             <select
               id="company"
               name="company"
-              [(ngModel)]="responsableObjectN"
+              [(ngModel)]="tipoTareaTiempoN"
               required
               #company="ngModel"
-              (ngModelChange)="onResponsableChange($event)"
+              (ngModelChange)="onAlarmaChange($event)"
             >
               <option value="">Seleccione una opción</option>
 
-              @for (responsable of responsableList; track responsable) {
-                <option [ngValue]="responsable">
-                  {{ responsable.nombre }}
+              @for (alarma of alarmasList; track alarma) {
+                <option [ngValue]="alarma">
+                  {{ alarma.nombre }}
                 </option>
               }
             </select>
@@ -63,16 +63,16 @@
             <select
               id="company"
               name="company"
-              [(ngModel)]="responsableObjectN"
+              [(ngModel)]="nombreAtributoN"
               required
               #company="ngModel"
-              (ngModelChange)="onResponsableChange($event)"
+              (ngModelChange)="onAlarmaChange($event)"
             >
               <option value="">Seleccione una opción</option>
 
-              @for (responsable of responsableList; track responsable) {
-                <option [ngValue]="responsable">
-                  {{ responsable.nombre }}
+              @for (alarma of alarmasList; track alarma) {
+                <option [ngValue]="alarma">
+                  {{ alarma.nombre }}
                 </option>
               }
             </select>
@@ -86,16 +86,16 @@
             <select
               id="company"
               name="company"
-              [(ngModel)]="responsableObjectN"
+              [(ngModel)]="estadoNoEjecucionN"
               required
               #company="ngModel"
-              (ngModelChange)="onResponsableChange($event)"
+              (ngModelChange)="onAlarmaChange($event)"
             >
               <option value="">Seleccione una opción</option>
 
-              @for (responsable of responsableList; track responsable) {
-                <option [ngValue]="responsable">
-                  {{ responsable.nombre }}
+              @for (alarma of alarmasList; track alarma) {
+                <option [ngValue]="alarma">
+                  {{ alarma.nombre }}
                 </option>
               }
             </select>
@@ -121,7 +121,7 @@
               id="diasDuracionEstimada"
               name="diasDuracionEstimada"
               type="text"
-              [(ngModel)]="diasDuracionEstimadaN"
+              [(ngModel)]="diaAvisoN"
               required
               #diasDuracionEstimada="ngModel"
             />
@@ -133,7 +133,7 @@
               id="horasDuracionEstimada"
               name="horasDuracionEstimada"
               type="text"
-              [(ngModel)]="horasDuracionEstimadaN"
+              [(ngModel)]="horaAvisoN"
               required
               #horasDuracionEstimada="ngModel"
             />
@@ -145,7 +145,7 @@
               id="minutosDuracionEstimada"
               name="minutosDuracionEstimada"
               type="text"
-              [(ngModel)]="minutosDuracionEstimadaN"
+              [(ngModel)]="minutosAvisoN"
               required
               #minutosDuracionEstimada="ngModel"
             />
@@ -157,7 +157,7 @@
               id="segundosDuracionEstimada"
               name="segundosDuracionEstimada"
               type="text"
-              [(ngModel)]="segundosDuracionEstimadaN"
+              [(ngModel)]="segundosAvisoN"
               required
               #segundosDuracionEstimada="ngModel"
             />
@@ -267,6 +267,7 @@
       <img src="assets/img/cancel.svg" alt="Cancelar" />
     </span>
     Cancelar</button>
+    </div>
     </div>
   </form>
 </div>

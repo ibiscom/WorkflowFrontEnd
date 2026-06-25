@@ -7,20 +7,20 @@ import { ListarTareaComponentInstanceService } from './listar-tareas-component-i
 import { LoginEntity } from '../login/login.entity';
 import { MessageUtil } from '../utils/message.util';
 import { Constants } from '../utils/constants';
-import { ListarTareaEntity } from './listar-tareas.entity';
-import { AccionesListarTareaComponent } from './acciones-listartarea/acciones-listartarea.component';
+import { ListarTareasEntity } from './listar-tareas.entity';
 import { ListarTareaFilterEntity } from './listar-tareas-filter.entity';
 import { EstadoListarTareaEntity } from './estado-listar-tareas.entity';
 
+
 @Component({
-  selector: 'ibpm-listartarea',
-  imports: [MatCardModule, RouterModule, AccionesListarTareaComponent],
-  templateUrl: './listartarea.component.html',
-  styleUrl: './listartarea.component.scss',
+  selector: 'ibpm-listar-tareas',
+  imports: [MatCardModule, RouterModule],
+  templateUrl: './listar-tareas.component.html',
+  styleUrl: './listar-tareas.component.scss',
 })
 export class ListarTareaComponent {
   public loggedUser: LoginEntity | undefined;
-  public listartareas: ListarTareaEntity[] = [];
+  public listartareas: ListarTareasEntity[] = [];
   public estados: EstadoListarTareaEntity[] = [];
   public mensaje: string = '';
 
@@ -34,13 +34,12 @@ export class ListarTareaComponent {
   ngOnInit(): void {
     this.listartareaComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-    this.obtenerEstados();
     this.buscarListarTareas();
   }
 
   public buscarListarTareas(filtros?: ListarTareaFilterEntity): void {
     this.listartareaService
-      .getListarTareas(filtros || {})
+      .getListarTarea(filtros || ({} as ListarTareaFilterEntity))
       .subscribe({
         next: (response) => {
           this.listartareas = response.respuesta;
@@ -55,20 +54,4 @@ export class ListarTareaComponent {
       });
   }
 
-  public obtenerEstados(): void {
-    this.listartareaService
-      .getStatus()
-      .subscribe({
-        next: (response) => {
-          this.estados = response.respuesta;
-        },
-        error: (err) => {
-          this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-            Constants.ERR_OBTENIENDO_ESTADOS_WORKFLOW,
-            err,
-          );
-        },
-      });
-
-  }
 }

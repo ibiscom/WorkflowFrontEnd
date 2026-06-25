@@ -1,6 +1,6 @@
 <!-- FILTROS -->
-<ibpm-crear-objetow [uc]="this.parent" style="width: 100%">
-</ibpm-crear-objetow>
+<!-- Placeholder for ibpm-crear-alarmas component. Replace with actual component import in module or add schema. -->
+<div class="ibpm-crear-alarmas" style="width: 100%"></div>
 <br />
 <!-- TARJETA TABLA -->
 <div class="tabla-card">
@@ -11,7 +11,7 @@
 
   <!-- BODY -->
   <div class="tabla-body">
-   @let atributos = parent.objetoW?.attributes;
+   @let atributos = parent.workflow;
     <!-- COLUMNA: IDENTIFICADOR -->
     <div class="tabla-columna">
       <div class="tabla-col-header">
@@ -21,8 +21,8 @@
       @for (element of atributos; track element) {
         <ng-container>
           <div class="tabla-celda">
-            <div (click)="goToEditarAtributoObjetow(element)">
-              {{ element.nombre }}
+            <div (click)="goToEditarAlarma(element)">
+              {{ element.id }}
             </div>
           </div>
         </ng-container>
@@ -38,8 +38,8 @@
       @for (element of atributos; track element) {
         <ng-container>
           <div class="tabla-celda">
-            <div (click)="goToEditarAtributoObjetow(element)">
-              {{ element.identificadorNegocio }}
+            <div (click)="goToEditarAlarma(element)">
+              {{ element.tipoTareaTiempo }}
             </div>
           </div>
         </ng-container>
@@ -55,8 +55,8 @@
       @for (element of atributos; track element) {
         <ng-container>
           <div class="tabla-celda">
-            <div (click)="goToEditarAtributoObjetow(element)">
-              {{ element.labelId }}
+            <div (click)="goToEditarAlarma(element)">
+              {{ element.workflow }}
             </div>
           </div>
         </ng-container>
@@ -72,8 +72,8 @@
       @for (element of atributos; track element) {
         <ng-container>
           <div class="tabla-celda">
-            <div (click)="goToEditarAtributoObjetow(element)">
-              {{ element.descripcion }}
+            <div (click)="goToEditarAlarma(element)">
+              {{ element.estadoTarea }}
             </div>
           </div>
         </ng-container>
@@ -89,8 +89,8 @@
       @for (element of atributos; track element) {
         <ng-container>
           <div class="tabla-celda">
-            <div (click)="goToEditarAtributoObjetow(element)">
-              {{ element.descripcion }}
+            <div (click)="goToEditarAlarma(element)">
+              {{ element.diaAviso }}-{{ element.horaAviso }}:{{ element.minutosAviso }}:{{ element.segundosAviso }}
             </div>
           </div>
         </ng-container>

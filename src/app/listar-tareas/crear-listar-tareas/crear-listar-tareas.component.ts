@@ -77,7 +77,7 @@ export class CrearListarTareasComponent {
     if (this.uc) {
       this.uc.mensaje = '';
     }
-    this.obtenerListaEstados();
+    this.obtenerListaTareas();
     const id = this.route.snapshot.paramMap.get('id');
     console.log('Modo Edición Habilitado. ListarTarea:', id);
     if (id) {
@@ -88,18 +88,16 @@ export class CrearListarTareasComponent {
       this.workflowIdEdit = undefined;
     }
   }
+  obtenerListaTareas() {
+    throw new Error('Method not implemented.');
+  }
 
 
   public async seleccionarListarTareaActual() {
     this.cookieService.set('workflowActual', this.workflowIdEdit ?? '', 1)
   }
 
-  /**
-   * Carga la lista de estados de workflow disponibles para selección.
-   */
-  public obtenerListaEstados() {
-    this.uc!.obtenerEstados();
-  }
+
 
   /**
    * Llena los campos del formulario con la información del workflow en edición.
@@ -109,7 +107,28 @@ export class CrearListarTareasComponent {
     try {
       const response = await firstValueFrom(
         this.workflowService.getListarTarea(
-          this.workflowIdEdit ?? '',
+          {
+            idInstanciaWorkflow: this.workflowIdEdit ?? '',
+            nombreWorkflow: '',
+            numero: '',
+            nombre: '',
+            idInstanciaWorkflowPadre: '',
+            nombreWorkflowPadre: '',
+            nombreLargoTarea: '',
+            nombreLargoProceso: '',
+            nombreLargoProcesoPadre: '',
+            responsable: '',
+            valorNegocio: '',
+            valorNegocio2: '',
+            valorNegocio3: '',
+            valorNegocio4: '',
+            diasVencimiento: '',
+            imagenesSemaforo: [],
+            fechaDesde: [],
+            fechaHasta: [],
+            estado: undefined,
+            fechaAsignacion: undefined
+          },
         ),
       );
       if (response?.respuesta) {
@@ -117,7 +136,9 @@ export class CrearListarTareasComponent {
         this.nombreN = workflow.nombre ?? '';
         this.nombreLargoN = workflow.nombreLargo ?? '';
         this.descripcionN = workflow.descripcion ?? '';
-        this.estadoN = workflow.estado ?? '';
+        this.estadoN = workflow.estado instanceof Date 
+          ? workflow.estado.toString()
+          : (workflow.estado ?? '');
         this.estadoObjectN = this.uc!.estados.find(
           (c) => c.name === this.estadoN,
         );
@@ -171,12 +192,12 @@ export class CrearListarTareasComponent {
        nombre: this.nombreN,
         nombreLargo: this.nombreLargoN,
         descripcion: this.descripcionN,
-        estado: this.estadoN,
+      estado: this.estadoObjectN?.name ?? this.estadoN,
+      fechaCreacion: this.fechaCreacionN && this.fechaCreacionN.trim() ? new Date(this.fechaCreacionN) : undefined,
     }
-    this.workflowService
-      .createListarTarea(workflow)
+    this.workflowService.createListarTarea(workflow)
       .subscribe({
-        next: (response) => {
+        next: (response: { respuesta: any; }) => {
           if (response && response.respuesta) {
             if (this.uc) {
               this.uc.mensaje = '';
@@ -187,7 +208,7 @@ export class CrearListarTareasComponent {
             ]);
           }
         },
-        error: (e) => {
+        error: (e: any) => {
           if (this.uc) {
             this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
               Constants.ERR_WORKFLOW_CREAR,
@@ -206,19 +227,23 @@ export class CrearListarTareasComponent {
        nombre: this.nombreN,
         nombreLargo: this.nombreLargoN,
         descripcion: this.descripcionN,
-        estado: this.estadoN,
+      estado: this.estadoN ? new Date(this.estadoN) : undefined,
+      fechaCreacion: this.fechaCreacionN ? new Date(this.fechaCreacionN) : undefined,
     }
     this.workflowService
       .editListarTarea(workflow)
       .subscribe({
-        next: (response) => {
+        next: (response: { respuesta: any; }) => {
           if (response && response.respuesta) {
+            if (this.uc) {
+              this.uc.mensaje = '';
+            }
             this.router.navigate([
               `/main-page/workflows/editarListarTarea?id=${this.nombreN}`,
             ]);
           }
         },
-        error: (e) => {
+        error: (e: any) => {
           if (this.uc) {
             this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
               Constants.ERR_WORKFLOW_EDITAR,

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environment';
-import { ListarTareaEntity, ListarTareasEntity } from './listar-tareas.entity';
+import { ListarTareasEntity } from './listar-tareas.entity';
 import { ListarTareaFilterEntity } from './listar-tareas-filter.entity';
 
 @Injectable({
@@ -17,6 +17,15 @@ import { ListarTareaFilterEntity } from './listar-tareas-filter.entity';
  * Incluye búsquedas y CRUD.
  */
 export class ListarTareaService {
+  createListarTarea(workflow: ListarTareasEntity) {
+    throw new Error('Method not implemented.');
+  }
+  editListarTarea(workflow: ListarTareasEntity) {
+    throw new Error('Method not implemented.');
+  }
+  getStatus() {
+    throw new Error('Method not implemented.');
+  }
   constructor(
     private http: HttpClient,
     private cookieService: CookieService,
@@ -27,10 +36,10 @@ export class ListarTareaService {
    * @param listartarea La información del listartarea a crear.
    * @returns 
    */
-  public CargarListarTarea(listartarea: ListarTareaEntity): Observable<FsResponseEntity<any>> {
+  public CargarListarTarea(listartarea: ListarTareasEntity): Observable<FsResponseEntity<any>> {
       let ip: string = this.cookieService.get('ip');
       return this.http.put<FsResponseEntity<any>>(
-        environment.listartareaApiUrl +
+        environment.workflowApiUrl +
           `/taskList/loadTask`, listartarea
       );
   }
@@ -43,7 +52,7 @@ export class ListarTareaService {
   public getListarTarea(filtros: ListarTareaFilterEntity): Observable<FsResponseEntity<any>> {
       let ip: string = this.cookieService.get('ip');
       return this.http.post<FsResponseEntity<any>>(
-        environment.listartareaApiUrl +
+        environment.workflowApiUrl +
           `/taskList/getAssignedTasks`, filtros
       );
   }
@@ -56,7 +65,7 @@ export class ListarTareaService {
   public obtenerAtributo(atributoListarTareas: string): Observable<FsResponseEntity<ListarTareasEntity>> {
     let ip: string = this.cookieService.get('ip');
     return this.http.get<FsResponseEntity<ListarTareasEntity>>(
-      environment.workflowApiUrl + 
+      environment.workflowApiUrl +
         `/taskList/getInfoWorkflow${atributoListarTareas}`,
     );
   }
@@ -69,8 +78,8 @@ export class ListarTareaService {
   public obtenerInformacion(informacionListarTareas: string): Observable<FsResponseEntity<ListarTareasEntity>> {
     let ip: string = this.cookieService.get('ip');
     return this.http.get<FsResponseEntity<ListarTareasEntity>>(
-      environment.workflowApiUrl + 
-        `/taskList/getInfoTask{informacionListarTareas}`,
+      environment.workflowApiUrl +
+        `/taskList/getInfoTask${informacionListarTareas}`,
     );
   }
 
@@ -83,8 +92,8 @@ export class ListarTareaService {
   public obtenerAtributos(atributosListarTareas: string): Observable<FsResponseEntity<ListarTareasEntity>> {
     let ip: string = this.cookieService.get('ip');
     return this.http.get<FsResponseEntity<ListarTareasEntity>>(
-      environment.workflowApiUrl + 
-        `/taskList/getDocsWorkflow{atributosListarTareas}`,
+      environment.workflowApiUrl +
+        `/taskList/getDocsWorkflow${atributosListarTareas}`,
     );
   }
 
@@ -96,8 +105,8 @@ export class ListarTareaService {
   public obtenerDocumentos(documentosListarTareas: string): Observable<FsResponseEntity<ListarTareasEntity>> {
     let ip: string = this.cookieService.get('ip');
     return this.http.get<FsResponseEntity<ListarTareasEntity>>(
-      environment.workflowApiUrl + 
-        `/taskList/getDocsTask{documentosListarTareas}`,
+      environment.workflowApiUrl +
+        `/taskList/getDocsTask${documentosListarTareas}`,
     );
   }
 
@@ -109,8 +118,8 @@ export class ListarTareaService {
   public obtenerDocumentosEvento(documentoseventoTareas: string): Observable<FsResponseEntity<ListarTareasEntity>> {
     let ip: string = this.cookieService.get('ip');
     return this.http.get<FsResponseEntity<ListarTareasEntity>>(
-      environment.workflowApiUrl + 
-        `/taskList/getDocsStart{documentoseventoTarea}`,
+      environment.workflowApiUrl +
+        `/taskList/getDocsStart${documentoseventoTareas}`,
     );
   }
   
@@ -124,7 +133,7 @@ export class ListarTareaService {
   public deleteListarTarea(listartareaName: string): Observable<FsResponseEntity<any>> {
       let ip: string = this.cookieService.get('ip');
       return this.http.delete<FsResponseEntity<any>>(
-        environment.listartareaApiUrl +
+        environment.workflowApiUrl +
           `/listartarea/delete?listartareaName=${listartareaName}`);
   }
 }

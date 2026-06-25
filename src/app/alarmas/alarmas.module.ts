@@ -2,12 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ListadoAtributosAlarmasComponent } from './listado-alarmas/listado-alarmas.component';
-import { AlarmaComponent } from './alarmas.component';
+import { ListadoAlarmasComponent } from './listado-alarmas/listado-alarmas.component';
 import { AlarmaComponentInstanceService } from './alarmas-component-instance.service';
-import { AlarmasService } from './alarmas.service';
-import { CrearAlarmaComponent } from './crear-alarma/crear-alarma.component';
-import { CrearAtributoAlarmaComponent } from './crear-alarmas/crear-alarmas.component';
+import { AlarmaService } from './alarmas.service';
+import { CrearAlarmaComponent } from './crear-alarmas/crear-alarmas.component';
+import { AlarmaComponent } from './alarmas.component';
 
 @NgModule({
   declarations: [],
@@ -15,16 +14,14 @@ import { CrearAtributoAlarmaComponent } from './crear-alarmas/crear-alarmas.comp
     CommonModule,
     FormsModule,
     RouterModule,
-    CrearAtributoAlarmaComponent,
     CrearAlarmaComponent,
-    ListadoAtributosAlarmasComponent,
+    ListadoAlarmasComponent,
     AlarmaComponent,
   ],
-  providers: [AlarmaComponentInstanceService, AlarmasService],
+  providers: [AlarmaComponentInstanceService, AlarmaService],
   exports: [
-    CrearAtributoAlarmaComponent,
     CrearAlarmaComponent,
-    ListadoAtributosAlarmasComponent,
+    ListadoAlarmasComponent,
     AlarmaComponent,
   ],
 })

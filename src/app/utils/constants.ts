@@ -1,4 +1,5 @@
 export class Constants {
+  static ERR_BUSCAR_ALARMA: any;
   static ERR_OBTENIENDO_PATRONES(ERR_OBTENIENDO_PATRONES: any, err: any): string {
     throw new Error('Method not implemented.');
   }

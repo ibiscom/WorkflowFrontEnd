@@ -18,8 +18,8 @@ import { Router } from '@angular/router';
     MatFormFieldModule,
     MatButtonModule,
   ],
-  templateUrl: './acciones-alarma.component.html',
-  styleUrl: './acciones-alarma.component.scss',
+  templateUrl: './acciones-alarmas.component.html',
+  styleUrl: './acciones-alarmas.component.scss',
 })
 /**
  * Componente de acciones para la administración de objetos workflow.

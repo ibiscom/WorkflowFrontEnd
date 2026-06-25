@@ -29,13 +29,20 @@ export class ListadoAlarmasComponent {
   constructor(public parent: AlarmaComponent) {
   }
 
-
+  /**
+   * Navega a la pantalla de edición del atributo de objeto workflow seleccionado.
+   */
+  public goToEditarAlarma(atributo: AlarmaEntity) {
+    this.parent.router.navigate([
+      `/main-page/alarmas/editarAlarma/${atributo.nombre}`,
+    ]);
+  }
 
    // 🔹 Ir a página anterior
   public previousPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
-      this.parent.buscarObjetoWorkflow(); // ajusta si tu método se llama diferente
+      this.parent.buscarAlarma(); // ajusta si tu método se llama diferente
     }
   }
 
@@ -43,7 +50,7 @@ export class ListadoAlarmasComponent {
   public nextPage(): void {
     if (this.currentPage < this.numberOfPages) {
       this.currentPage++;
-      this.parent.buscarObjetoWorkflow(); // ajusta si tu método se llama diferente
+      this.parent.buscarAlarma(); // ajusta si tu método se llama diferente
     }
   }
 }

@@ -2,6 +2,10 @@
  * Entidad que representa una definición de un listartarea en el sistema.
  */
 export interface ListarTareasEntity {
+  fechaCreacion: any;
+  descripcion: string;
+  nombreLargo: any;
+proceso: any;
   /** id del workflow */
   idInstanciaWorkflow: string;
   /** Nombre del workflow */

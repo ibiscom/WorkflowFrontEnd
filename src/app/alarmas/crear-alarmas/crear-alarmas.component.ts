@@ -40,6 +40,17 @@ import { AlarmaEntity } from '../alarmas.entity';
  * Permite seleccionar compañía, supervisor y administrar permisos/restricciones.
  */
 export class CrearAlarmaComponent {
+onTareaChange($event: any) {
+throw new Error('Method not implemented.');
+}
+alarmasList: any;
+tareaN: any;
+onAlarmaChange($event: any) {
+throw new Error('Method not implemented.');
+}
+onResponsableChange($event: any) {
+throw new Error('Method not implemented.');
+}
 
   public uc?: AlarmaComponent;
   public loggedUser?: LoginEntity;
@@ -49,6 +60,29 @@ export class CrearAlarmaComponent {
   public labelIdentificadorNegocioN: string= '';
   public atrAlarmaIdEdit?: string;
   public supervisorObjectN?: UserEntity;
+  public workflowActual: string | undefined;
+  public nombrelargoN: string | undefined;
+  public fechaCreacionN: string | undefined;
+  public tipoTareaTiempoN: string | undefined;
+  public estadoN: string | undefined;
+  public numeroN: string | undefined;
+  public nombreWorkflowN: string | undefined;
+  public estadoTareaN: string | undefined;
+  public tipoN: string | undefined;
+  public idN: number | undefined;
+  public diaAvisoN: number | undefined;
+  public horaAvisoN: number | undefined;
+  public minutosAvisoN: number | undefined;
+  public segundosAvisoN: number | undefined;
+  public diaLimiteN: number | undefined;
+  public horaLimiteN: number | undefined;
+  public minutosLimiteN: number | undefined;
+  public segundosLimiteN: number | undefined;
+  public tareaInmediataN: boolean | undefined;
+  public estadoNoEjecucionN: string | undefined;
+  public incluirResponsableN: boolean | undefined;
+  public nombreAtributoN: string | undefined;
+  public valorN: string | undefined;
 
 
   public constructor(
@@ -88,17 +122,37 @@ export class CrearAlarmaComponent {
     
     try {
       const response = await firstValueFrom(
-        this.alarmaService.obtenerAtributosObjetoWorkflow(this.uc?.workflowActual  ?? '')
+        this.alarmaService.obtenerAlarmas(this.uc?.workflowActual  ?? '')
       );
       if (response?.respuesta) {
-        const atributos = response.respuesta as AtributoAlarmaEntity[];
+        const atributos = response.respuesta as AlarmaEntity[];
         const atributo = atributos.find(attr => attr.nombre === this.atrAlarmaIdEdit);
        
-
+        this.workflowActual = this.uc?.workflowActual ?? '';
         this.nombreN = atributo?.nombre ?? '';
+        this.nombrelargoN = atributo?.nombrelargo ?? '';
+        this.fechaCreacionN = atributo?.fechaCreacion ?? '';
         this.descripcionN = atributo?.descripcion ?? '';
-        this.identificadorNegocioN = atributo?.identificadorNegocio ?? '';
-        this.labelIdentificadorNegocioN = atributo?.labelId ?? '';
+        this.estadoN = atributo?.estado ?? '';
+        this.nombreWorkflowN = atributo?.nombreWorkflow ?? '';
+        this.numeroN = atributo?.numero ?? '';
+        this.tipoN = atributo?.tipo ?? '';
+        this.idN = atributo?.id ?? 0;
+        this.estadoTareaN = atributo?.estadoTarea ?? '';
+        this.diaAvisoN = atributo?.diaAviso ?? 0;
+        this.horaAvisoN = atributo?.horaAviso ?? 0;
+        this.minutosAvisoN = atributo?.minutosAviso ?? 0;
+        this.segundosAvisoN = atributo?.segundosAviso ?? 0;
+        this.diaLimiteN = atributo?.diaLimite ?? 0;
+        this.horaLimiteN = atributo?.horaLimite ?? 0;
+        this.minutosLimiteN = atributo?.minutosLimite ?? 0;
+        this.segundosLimiteN = atributo?.segundosLimite ?? 0;
+        this.tareaInmediataN = atributo?.tareaInmediata ?? true;
+        this.estadoNoEjecucionN = atributo?.estadoNoEjecucion ?? '';
+        this.incluirResponsableN = atributo?.incluirResponsable ?? true;
+        this.nombreAtributoN = atributo?.nombreAtributo ?? '';
+        this.valorN = atributo?.valor ?? '';
+        this.tipoTareaTiempoN = atributo?.tipoTareaTiempo ?? '';
         
       }
     } catch (e) {
@@ -135,13 +189,33 @@ export class CrearAlarmaComponent {
    */
   public create() {
     this.alarmaService
-      .crearAtributoObjetoWorkflow({
+      .crearAlarma({
+        workflowActual: this.workflowActual ?? '',
         nombre: this.nombreN,
+        nombrelargo: this.nombrelargoN,
+        fechaCreacion: this.fechaCreacionN,
         descripcion: this.descripcionN,
-        identificadorNegocio: this.identificadorNegocioN,
-        nombreWorkflow: this.uc?.workflowActual ?? '',
-        labelId: this.labelIdentificadorNegocioN,
-      } as AtributoAlarmaEntity)
+        estado: this.estadoN,
+        nombreWorkflow: this.nombreWorkflowN,
+        numero: this.numeroN,
+        tipo: this.tipoN,
+        id: this.idN,
+        estadoTarea: this.estadoTareaN,
+        diaAviso: this.diaAvisoN,
+        horaAviso: this.horaAvisoN,
+        minutosAviso: this.minutosAvisoN,
+        segundosAviso: this.segundosAvisoN,
+        diaLimite: this.diaLimiteN,
+        horaLimite: this.horaLimiteN,
+        minutosLimite: this.minutosLimiteN,
+        segundosLimite: this.segundosLimiteN,
+        tareaInmediata: this.tareaInmediataN,
+        estadoNoEjecucion: this.estadoNoEjecucionN,
+        incluirResponsable: this.incluirResponsableN,
+        nombreAtributo: this.nombreAtributoN,
+        valor: this.valorN,
+        tipoTareaTiempo: this.tipoTareaTiempoN,
+      } as unknown as AlarmaEntity)
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
@@ -151,7 +225,7 @@ export class CrearAlarmaComponent {
             }
             this.atrAlarmaIdEdit = this.nombreN;
             this.router.navigate([
-              `/main-page/objetosWorkflow`,
+              `/main-page/alarmas`,
             ]);
           }
         },
@@ -171,13 +245,33 @@ export class CrearAlarmaComponent {
    */
   public edit() {
     this.alarmaService
-      .editarAtributoObjetoWorkflow({
+      .editarAlarma({
+        workflowActual: this.workflowActual ?? '',
         nombre: this.nombreN,
+        nombrelargo: this.nombrelargoN,
+        fechaCreacion: this.fechaCreacionN,
         descripcion: this.descripcionN,
-        identificadorNegocio: this.identificadorNegocioN,
-        nombreWorkflow: this.uc?.workflowActual ?? '',
-        labelId: this.labelIdentificadorNegocioN,
-      } as AtributoAlarmaEntity)
+        estado: this.estadoN,
+        nombreWorkflow: this.nombreWorkflowN,
+        numero: this.numeroN,
+        tipo: this.tipoN,
+        id: this.idN,
+        estadoTarea: this.estadoTareaN,
+        diaAviso: this.diaAvisoN,
+        horaAviso: this.horaAvisoN,
+        minutosAviso: this.minutosAvisoN,
+        segundosAviso: this.segundosAvisoN,
+        diaLimite: this.diaLimiteN,
+        horaLimite: this.horaLimiteN,
+        minutosLimite: this.minutosLimiteN,
+        segundosLimite: this.segundosLimiteN,
+        tareaInmediata: this.tareaInmediataN,
+        estadoNoEjecucion: this.estadoNoEjecucionN,
+        incluirResponsable: this.incluirResponsableN,
+        nombreAtributo: this.nombreAtributoN,
+        valor: this.valorN,
+        tipoTareaTiempo: this.tipoTareaTiempoN,
+      } as unknown as AlarmaEntity)
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
@@ -187,7 +281,7 @@ export class CrearAlarmaComponent {
                   Constants.ATRIBUTO_OBJETO_WORKFLOW_EDITAR_EXITOSO;
               }
             this.router.navigate([
-              `/main-page/objetosWorkflow`,
+              `/main-page/alarmas`,
             ]);
           }
         },
@@ -207,7 +301,7 @@ export class CrearAlarmaComponent {
    */
   public delete() {
     this.alarmaService
-      .eliminarAtributoObjetoWorkflow(this.uc?.workflowActual ?? '', this.nombreN ?? '')
+      .eliminarAlarma(this.uc?.workflowActual ?? '', this.nombreN ?? '')
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
@@ -217,7 +311,7 @@ export class CrearAlarmaComponent {
                   Constants.ATRIBUTO_OBJETO_WORKFLOW_ELIMINAR_EXITOSO;
               }
             this.router.navigate([
-              `/main-page/objetosWorkflow`,
+              `/main-page/alarmas`,
             ]);
           }
         },
@@ -239,22 +333,7 @@ export class CrearAlarmaComponent {
     if (this.uc) {
       this.uc.mensaje = '';
     }
-    this.router.navigate(['/main-page/objetosWorkflow']);
+    this.router.navigate(['/main-page/alarmas']);
   }
 
-  /**
-   * Verifica si el identificador de negocio está marcado como "SI" para habilitar/deshabilitar el campo de label del identificador de negocio.
-   * @returns 
-   */
-  public esIdentificadorNegocioSi(): boolean {
-    return this.identificadorNegocioN === 'SI';   
-  }
-
-  public eventoCambioIdentificadorNegocio() {
-    // Aquí puedes agregar la lógica que deseas ejecutar cuando cambie el valor del identificador de negocio.
-    // Por ejemplo, podrías habilitar o deshabilitar el campo de label del identificador de negocio.
-    if (!this.esIdentificadorNegocioSi()) {
-      this.labelIdentificadorNegocioN = '';
-    }
-  }
 }

@@ -15,7 +15,7 @@
           <label># Instancia WF</label>
           <input
             type="text"
-            [(ngModel)]="instanciaWfF"
+            [(ngModel)]="idInstanciaWorkflowF"
             placeholder="Inserte número de la instancia"
             (keydown.enter)="search()"
           />
@@ -24,10 +24,10 @@
         <div class="campo-lista">
           <label>Nombre proceso</label>
 
-          <select [(ngModel)]="procesoF">
+          <select [(ngModel)]="nombreWorkFlowN">
             <option value="">Seleccione una opción</option>
 
-            @for (company of companiesList; track company) {
+            @for (company of tareasList; track company) {
               <option [ngValue]="company">
                 {{ company.largeName }}
               </option>
@@ -39,7 +39,7 @@
           <label># Tarea</label>
           <input
             type="text"
-            [(ngModel)]="tareaF"
+            [(ngModel)]="numero"
             placeholder="Inserte número de la tarea"
             (keydown.enter)="search()"
           />
@@ -54,7 +54,7 @@
           <label># Instancia WF padre</label>
           <input
             type="text"
-            [(ngModel)]="instanciaPadreF"
+            [(ngModel)]="idInstanciaWorkflowPadreN"
             placeholder="Inserte número de la instancia padre"
             (keydown.enter)="search()"
           />
@@ -63,10 +63,10 @@
         <div class="campo-lista">
           <label>Nombre proceso padre</label>
 
-          <select [(ngModel)]="procesoPadreF">
+          <select [(ngModel)]="nombreWorkFlowPadreN">
             <option value="">Seleccione una opción</option>
 
-            @for (company of companiesList; track company) {
+            @for (company of tareasList; track company) {
               <option [ngValue]="company">
                 {{ company.largeName }}
               </option>
@@ -79,7 +79,7 @@
 
           <input
             type="checkbox"
-            [(ngModel)]="fechaAsignacionF"
+            [(ngModel)]="fechaAsignacionN"
           />
         </div>
 
@@ -92,7 +92,7 @@
           <label>Desde</label>
           <input
             type="date"
-            [(ngModel)]="fechaDesdeF"
+            [(ngModel)]="fechaDesdeN"
           />
         </div>
 
@@ -100,7 +100,7 @@
           <label>Hasta</label>
           <input
             type="date"
-            [(ngModel)]="fechaHastaF"
+            [(ngModel)]="fechaHastaN"
           />
         </div>
 
@@ -108,7 +108,7 @@
           <label>ID negocio</label>
           <input
             type="text"
-            [(ngModel)]="idNegocioF"
+            [(ngModel)]="idNegocioN"
             placeholder="Inserte ID negocio"
             (keydown.enter)="search()"
           />

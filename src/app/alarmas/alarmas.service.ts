@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environment';
-import { AlarmaEntity } from './alarma.entity';
-import { AtributoAlarmaEntity } from './alarmas.entity';
+import { AlarmaEntity } from './alarmas.entity';
+
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +17,9 @@ import { AtributoAlarmaEntity } from './alarmas.entity';
  * Incluye búsquedas, CRUD y gestión de permisos/restricciones.
  */
 export class AlarmaService {
+  obtenerObjetoWorkflow(workflowActual: string) {
+    throw new Error('Method not implemented.');
+  }
   constructor(
     private http: HttpClient,
     private cookieService: CookieService,
@@ -58,9 +61,9 @@ export class AlarmaService {
    * @param nombreWorkflow El nombre del workflow al que pertenecen los atributos de objeto workflow a obtener.
    * @returns Observable con la respuesta del servidor y la lista de atributos de objeto workflow.
    */
-  public obtenerAtributosAlarma(nombreWorkflow: string): Observable<FsResponseEntity<AtributoAlarmaEntity[]>> {
+  public obtenerAlarmas(nombreWorkflow: string): Observable<FsResponseEntity<AlarmaEntity[]>> {
     let ip: string = this.cookieService.get('ip');
-    return this.http.get<FsResponseEntity<AtributoAlarmaEntity[]>>(
+    return this.http.get<FsResponseEntity<AlarmaEntity[]>>(
       environment.workflowApiUrl + 
         `/Alarm/getAlarms=${nombreWorkflow}`,
     );

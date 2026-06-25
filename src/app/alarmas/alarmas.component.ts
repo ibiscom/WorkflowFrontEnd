@@ -8,26 +8,26 @@ import { Constants } from '../utils/constants';
 import { CompanyEntity } from '../entities/companies/company.entity';
 import { CompaniasService } from '../companias/companias.service';
 import { AccionesAlarmaComponent } from './acciones-alarmas/acciones-alarmas.component';
-import { AlarmasEntity } from './alarmas.entity';
-import { AlarmasService } from './alarmas.service';
+import { AlarmaEntity } from './alarmas.entity';
+import { AlarmaService } from './alarmas.service';
 import { AlarmaComponentInstanceService } from './alarmas-component-instance.service';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
-  selector: 'ibpm-alarma',
+  selector: 'ibpm-alarmas',
   imports: [MatCardModule, RouterModule, AccionesAlarmaComponent],
-  templateUrl: './alarma.component.html',
-  styleUrl: './alarma.component.scss',
+  templateUrl: './alarmas.component.html',
+  styleUrl: './alarmas.component.scss',
 })
 export class AlarmaComponent {
   public loggedUser: LoginEntity | undefined;
-  public objetoW: AlarmasEntity | undefined;
+  public workflow: AlarmaEntity[] | undefined;
   public companias: CompanyEntity[] = [];
   public mensaje: string = '';
   public workflowActual: string = '';
 
   constructor(
-    private alarmasService: AlarmasService,
+    private alarmaService: AlarmaService,
     private alarmaComponentInstanceService: AlarmaComponentInstanceService,
     private loginService: LoginService,
     public router: Router,
@@ -39,7 +39,7 @@ export class AlarmaComponent {
     this.alarmaComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
     if(this.hayWorkflowActual()) {
-      this.buscarObjetoWorkflow();
+      this.buscarAlarma();
     }
   }
 
@@ -52,15 +52,15 @@ export class AlarmaComponent {
     return true;
   }
 
-  public buscarObjetoWorkflow(): void {
-    this.alarmasService.obtenerObjetoWorkflow(this.workflowActual).subscribe({
+  public buscarAlarma(): void {
+    this.alarmaService.obtenerAlarmas(this.workflowActual).subscribe({
       next: (response) => {
-        this.objetoW = response.respuesta;
-        console.log('Objeto workflow obtenido:', this.objetoW);
+        this.workflow = response.respuesta;
+        console.log('Alarma obtenida:', this.workflow);
       },
       error: (err) => {
         this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-          Constants.ERR_BUSCAR_OBJETOW,
+          Constants.ERR_BUSCAR_ALARMA,
           err,
         );
       },

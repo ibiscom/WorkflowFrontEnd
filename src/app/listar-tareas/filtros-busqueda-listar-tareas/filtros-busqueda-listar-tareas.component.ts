@@ -11,10 +11,22 @@ import { EstadoListarTareaEntity } from '../estado-listar-tareas.entity';
 @Component({
   selector: 'ibpm-filtros-busqueda-listartarea',
   imports: [FormsModule],
-  templateUrl: './filtros-busqueda-listartarea.component.html',
-  styleUrl: './filtros-busqueda-listartarea.component.scss',
+  templateUrl: './filtros-busqueda-listar-tareas.component.html',
+  styleUrl: './filtros-busqueda-listar-tareas.component.scss',
 })
 export class FiltrosBusquedaListarTareaComponent {
+nombreWorkFlowPadreN: any;
+numero: any;
+idInstanciaWorkflowPadreF: any;
+idInstanciaWorkflowPadreN: any;
+fechaAsignacionN: any;
+fechaDesdeN: any;
+fechaHastaN: any;
+idNegocioN: any;
+tareasList: any;
+search() {
+throw new Error('Method not implemented.');
+}
   public nombreWorkFlowB: string = '';
   public nombreLargoWorkFlowB: string = '';
 
@@ -26,38 +38,26 @@ export class FiltrosBusquedaListarTareaComponent {
 
   @Input() public uc?: ListarTareaComponent;
   public loggedUser: LoginEntity | undefined;
+  nombreWorkFlowN: string = '';
+  nombreN: string = '';
+  idInstanciaWorkflowF: any;
 
   constructor(private listartareaService: ListarTareaService) {}
 
   ngOnInit(): void {
     this.loggedUser = this.uc?.loggedUser;
 
-    // 🔹 Carga inicial (puedes cambiar la lógica luego)
-    this.loadEstados();
-  }
-
-  // 🔹 Simulación / carga de estados
-  private loadEstados(): void {
-      this.uc?.obtenerEstados();
-  }
-
-
-
-  // Cambio del select
-  public onEstadoChange(value: any): void {
-    this.estadoObjectN = value;
-    console.log('Estado seleccionado:', this.estadoObjectN);
   }
 
   // Ejecuta búsqueda
   public buscar(): void {
     const generateReportBool = this.generateReportF === 'true';
 
-    let filtros: ListarTareaFilterEntity = {
-      nombre: this.nombreWorkFlowB,
-      nombreLargo: this.nombreLargoWorkFlowB,
-      estado: this.estadoObjectN ? this.estadoObjectN.name : undefined,
-    };
+    const filtros = {
+      nombre: this.nombreN,
+      estado: this.estadoObjectN,
+      nombreWorkflow: this.nombreWorkFlowN
+    } as unknown as ListarTareaFilterEntity;
 
     this.uc?.buscarListarTareas(
       filtros
