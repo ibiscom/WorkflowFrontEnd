@@ -1,3 +1,5 @@
+import { AtributoAlarmaEntity } from "./atributo-alarma.entity";
+
 /**
  * Entidad que representa una alarma en el sistema.
  */
@@ -52,5 +54,7 @@ export interface AlarmaEntity {
   valor: string;
   /** Tipo Tarea Tiempo de la alarma */
   tipoTareaTiempo: string;
+  /** Atributos de la alarma */
+  atributos: AtributoAlarmaEntity[];
 }
 

@@ -5,6 +5,7 @@ import { MatTableModule } from '@angular/material/table';
 import { ListarTareasEntity } from '../listar-tareas.entity';
 
 @Component({
+  standalone: true,
   selector: 'ibpm-listado-listar-tarea',
   imports: [MatTableModule, FiltrosBusquedaListarTareaComponent],
   templateUrl: './listado-listar-tareas.component.html',

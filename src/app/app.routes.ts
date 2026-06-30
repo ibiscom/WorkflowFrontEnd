@@ -392,17 +392,13 @@ export const routes: Routes = [
             canActivate: [CanActivateGuard],
           },
           {
-            path: 'crearListarTareas',
-            component: MostrarHerramientaComponent,
-            canActivate: [CanActivateGuard],
-          },
-          {
-            path: 'editarListarTareas/:id',
+            path: 'mostrarHerramienta/:idWorkflowEngine/:idTareaEngine',
             component: MostrarHerramientaComponent,
             canActivate: [CanActivateGuard],
           },
         ],
       },
+      
     ],
   },
   {

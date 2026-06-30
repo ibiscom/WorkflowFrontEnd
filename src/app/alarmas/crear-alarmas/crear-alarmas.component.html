@@ -101,6 +101,7 @@
             </select>
           </div>
 
+        @if(camposDuracionVisible()){
         <!-- TIEMPO DE AVISO -->
 
          <!-- Tarea inmediata -->
@@ -114,6 +115,7 @@
         />
         </div>
 
+        @if(!tareaInmediataN) {
          <div class="grupo-duracion-alerta">
           <div class="campo-texto">
             <label for="diasDuracionEstimada">Días</label>
@@ -126,6 +128,7 @@
               #diasDuracionEstimada="ngModel"
             />
           </div>
+        
 
           <div class="campo-texto">
             <label for="horasDuracionEstimada">Horas</label>
@@ -162,7 +165,10 @@
               #segundosDuracionEstimada="ngModel"
             />
           </div>
-
+          </div>
+          }
+        }
+         <div class="grupo-duracion-alerta">
             <!-- Incluir responsable -->
             <div class="opcion-item">
             <label for="incluirResponsable">Incluir responsable</label>
@@ -174,70 +180,24 @@
             />
             </div>
 
-          <!-- MAIL DESTINO -->
-          <div class="campo-texto">
-            <label for="descripcion">Mails_Destinos</label>
-            <input
-              id="descripcion"
-              name="descripcion"
-              type="text"
-              [(ngModel)]="descripcionN"
-              required
-              #descripcion="ngModel"
-            />
-          </div>
 
-          <!-- DESTINATARIOS -->
-          <div class="campo-texto">
-            <label for="descripcion">Destinatarios</label>
-            <input
-              id="descripcion"
-              name="descripcion"
-              type="text"
-              [(ngModel)]="descripcionN"
-              required
-              #descripcion="ngModel"
-            />
-          </div>
+            <!-- Dias (Solo aplica a Tarea Tiempo)-->
 
-          <!-- REMITENTE -->
-          <div class="campo-texto">
-            <label for="descripcion">Remitente</label>
-            <input
-              id="descripcion"
-              name="descripcion"
-              type="text"
-              [(ngModel)]="descripcionN"
-              required
-              #descripcion="ngModel"
-            />
-          </div>
 
-          <!-- ASUNTO -->
-          <div class="campo-texto">
-            <label for="descripcion">Asunto</label>
-            <input
-              id="descripcion"
-              name="descripcion"
-              type="text"
-              [(ngModel)]="descripcionN"
-              required
-              #descripcion="ngModel"
-            />
-          </div>
-
-          <!-- MAIL -->
-          <div class="campo-texto">
-            <label for="descripcion">Mail</label>
-            <input
-              id="descripcion"
-              name="descripcion"
-              type="text"
-              [(ngModel)]="descripcionN"
-              required
-              #descripcion="ngModel"
-            />
-          </div>
+            <!-- CAMPOS DINAMICOS -->
+            @for (campo of this.atributos; track $index) {
+             <div class="campo-texto">
+              <label for="campo{{ $index }}">{{ campo.nombre }}</label>
+              <textarea
+                id="campo{{ $index }}"
+                name="campo{{ $index }}"
+                type="text"
+                [(ngModel)]="campo.valor"
+                required
+                #campo{{ $index }}="ngModel"
+              ></textarea>
+             </div>
+            }
         </div>
       </div>
     </div>

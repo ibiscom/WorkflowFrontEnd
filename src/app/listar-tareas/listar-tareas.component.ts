@@ -13,6 +13,7 @@ import { EstadoListarTareaEntity } from './estado-listar-tareas.entity';
 
 
 @Component({
+  standalone: true,
   selector: 'ibpm-listar-tareas',
   imports: [MatCardModule, RouterModule],
   templateUrl: './listar-tareas.component.html',

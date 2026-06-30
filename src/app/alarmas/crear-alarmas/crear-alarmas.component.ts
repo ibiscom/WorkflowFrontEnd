@@ -20,6 +20,7 @@ import { AlarmaComponentInstanceService } from '../alarmas-component-instance.se
 import { AlarmaService } from '../alarmas.service';
 import { AlarmaComponent } from '../alarmas.component';
 import { AlarmaEntity } from '../alarmas.entity';
+import { AtributoAlarmaEntity } from '../atributo-alarma.entity';
 
 @Component({
   selector: 'ibpm-crear-alarma',
@@ -45,9 +46,7 @@ throw new Error('Method not implemented.');
 }
 alarmasList: any;
 tareaN: any;
-onAlarmaChange($event: any) {
-throw new Error('Method not implemented.');
-}
+
 onResponsableChange($event: any) {
 throw new Error('Method not implemented.');
 }
@@ -83,6 +82,8 @@ throw new Error('Method not implemented.');
   public incluirResponsableN: boolean | undefined;
   public nombreAtributoN: string | undefined;
   public valorN: string | undefined;
+
+  public atributos: AtributoAlarmaEntity[] = [];
 
 
   public constructor(
@@ -336,4 +337,31 @@ throw new Error('Method not implemented.');
     this.router.navigate(['/main-page/alarmas']);
   }
 
+
+  public onAlarmaChange($event: string) {
+    this.atributos = [];
+    //obteniendo del microservicio de con atributos tarea tiempo
+    switch ($event) {
+      case 'Mail':
+        this.atributos.push({ id: 1, nombre: 'Mails_Destinos', valor: '', tipoTareaTiempo: 'Mail' });
+        this.atributos.push({ id: 2, nombre: 'Destinatarios', valor: '', tipoTareaTiempo: 'Mail' });
+        this.atributos.push({ id: 3, nombre: 'Asunto', valor: '', tipoTareaTiempo: 'Mail' });
+        this.atributos.push({ id: 4, nombre: 'Remitente', valor: '', tipoTareaTiempo: 'Mail' });
+        this.atributos.push({ id: 5, nombre: 'Mail', valor: '', tipoTareaTiempo: 'Mail' });
+      break;        
+      case 'Mail Manual':
+        this.atributos.push({ id: 1, nombre: 'Mails_Destinos', valor: '', tipoTareaTiempo: 'Mail Manual' });
+        this.atributos.push({ id: 2, nombre: 'Destinatarios', valor: '', tipoTareaTiempo: 'Mail Manual' });
+        this.atributos.push({ id: 3, nombre: 'Remitente', valor: '', tipoTareaTiempo: 'Mail Manual' });
+        this.atributos.push({ id: 4, nombre: 'Asunto', valor: '', tipoTareaTiempo: 'Mail Manual' });
+        this.atributos.push({ id: 5, nombre: 'Mail', valor: '', tipoTareaTiempo: 'Mail Manual' });
+      break;  
+      
+
+    }
+  } 
+
+  public camposDuracionVisible():boolean {
+    return !(this.nombreAtributoN === undefined) && !(this.nombreAtributoN==="") && !this.nombreAtributoN?.includes("Mail-Dia") && !this.nombreAtributoN?.includes("Mail-Proceso") && !this.nombreAtributoN?.includes("Tarea Manual");
+  }
 }

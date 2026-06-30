@@ -1,5 +1,5 @@
 /* =======================================
-   TARJETA
+   CONTENEDOR PRINCIPAL
 ======================================= */
 
 .tabla-card {
@@ -12,6 +12,10 @@
   box-shadow: 0px 1px 15.4px 6px rgba(0, 0, 0, 0.07);
 
   overflow: hidden;
+
+  display: flex;
+
+  flex-direction: column;
 }
 
 /* =======================================
@@ -19,41 +23,41 @@
 ======================================= */
 
 .tabla-header-container {
+  width: 100%;
+
+  padding: 16px;
+
   display: flex;
 
   align-items: center;
-
-  justify-content: space-between;
-
-  padding: 20px 24px;
-
-  border-bottom: 1px solid #e7e0ec;
 }
 
 .tabla-titulo {
   color: #1b1b1b;
 
-  font-family: Roboto, sans-serif;
+  font-family: Roboto;
 
-  font-size: 16px;
+  font-size: 14px;
 
   font-weight: 700;
 
-  line-height: 20px;
+  line-height: 16px;
 
   letter-spacing: 0.5px;
 }
 
 /* =======================================
-   TABLA
+   BODY TABLA
 ======================================= */
 
 .tabla-body {
-  display: flex;
-
   width: 100%;
 
-  overflow-x: auto;
+  display: flex;
+
+  background: #ffffff;
+
+  overflow: hidden;
 }
 
 /* =======================================
@@ -61,13 +65,43 @@
 ======================================= */
 
 .tabla-columna {
+  flex: 1;
+
+  min-width: 0;
+
   display: flex;
 
   flex-direction: column;
 
-  min-width: 220px;
+  border-left: 0.5px solid #dcdcdc;
 
-  flex-shrink: 0;
+  border-right: 0.5px solid #dcdcdc;
+
+  border-top: 1px solid #dcdcdc;
+
+  background: #ffffff;
+}
+
+/* Distribución proporcional */
+
+.tabla-columna:nth-child(1) {
+  flex: 0.8;
+}
+
+.tabla-columna:nth-child(2) {
+  flex: 1.3;
+}
+
+.tabla-columna:nth-child(3) {
+  flex: 1.7;
+}
+
+.tabla-columna:nth-child(4) {
+  flex: 1.5;
+}
+
+.tabla-columna:nth-child(5) {
+  flex: 2;
 }
 
 /* =======================================
@@ -75,25 +109,35 @@
 ======================================= */
 
 .tabla-col-header {
-  min-height: 56px;
+  width: 100%;
+
+  background: #fafafa;
+
+  padding: 4px 8px;
 
   display: flex;
 
   align-items: center;
 
-  padding: 16px;
+  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
+}
 
-  background: #f7f2fa;
+.tabla-col-header div {
+  flex: 1;
 
-  border-bottom: 1px solid #e7e0ec;
+  color: #757575;
 
-  font-family: Roboto, sans-serif;
+  font-family: Roboto;
 
-  font-size: 14px;
+  font-size: 12px;
 
-  font-weight: 600;
+  font-weight: 700;
 
-  color: #1c1b1f;
+  line-height: 20px;
+
+  letter-spacing: 0.4px;
+
+  text-align: left;
 }
 
 /* =======================================
@@ -101,93 +145,95 @@
 ======================================= */
 
 .tabla-celda {
-  min-height: 52px;
+  height: 40px;
+
+  min-height: 40px;
+
+  padding: 4px 8px;
 
   display: flex;
 
   align-items: center;
 
-  padding: 12px 16px;
+  background: #ffffff;
 
-  border-bottom: 1px solid #e7e0ec;
-
-  font-family: Roboto, sans-serif;
-
-  font-size: 14px;
-
-  color: #49454f;
-
-  word-break: break-word;
+  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
 }
 
 .tabla-celda div {
   width: 100%;
-}
 
-.tabla-celda:last-child {
-  border-bottom: none;
-}
+  overflow: hidden;
 
-/* =======================================
-   CELDAS CLICKEABLES
-======================================= */
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  font-family: Roboto;
+
+  font-size: 12px;
+
+  font-weight: 400;
+
+  line-height: 20px;
+
+  letter-spacing: 0.25px;
+
+  color: rgba(0, 0, 0, 0.87);
+}
 
 .tabla-celda div[click] {
   cursor: pointer;
 }
 
-.tabla-celda div:hover {
-  color: #6750a4;
+.tabla-celda:hover {
+  background: rgba(103, 80, 164, 0.04);
 }
 
 /* =======================================
-   SCROLL TABLA
-======================================= */
-
-.tabla-body::-webkit-scrollbar {
-  height: 8px;
-}
-
-.tabla-body::-webkit-scrollbar-track {
-  background: #f5f5f5;
-}
-
-.tabla-body::-webkit-scrollbar-thumb {
-  background: #c7c7c7;
-
-  border-radius: 8px;
-}
-
-/* =======================================
-   FOOTER PAGINACIÓN
+   FOOTER
 ======================================= */
 
 .tabla-footer {
+  height: 58px;
+
+  padding: 0 16px;
+
+  background: #ffffff;
+
   display: flex;
 
   justify-content: flex-end;
 
   align-items: center;
 
-  gap: 12px;
-
-  padding: 16px 24px;
-
-  border-top: 1px solid #e7e0ec;
+  gap: 24px;
 }
 
 .tabla-footer-text {
-  font-family: Roboto, sans-serif;
+  font-family: Roboto;
 
-  font-size: 14px;
+  font-size: 12px;
 
-  color: #49454f;
+  font-weight: 400;
+
+  line-height: 20px;
+
+  letter-spacing: 0.4px;
+
+  color: rgba(0, 0, 0, 0.87);
 }
 
-.paginador-boton {
-  width: 36px;
+/* =======================================
+   PAGINADOR
+======================================= */
 
-  height: 36px;
+.paginador-boton {
+  width: 32px;
+
+  height: 32px;
+
+  border-radius: 50%;
 
   display: flex;
 
@@ -195,26 +241,30 @@
 
   justify-content: center;
 
-  border-radius: 50%;
-
   cursor: pointer;
-
-  transition: 0.2s ease;
-}
-
-.paginador-boton:hover {
-  background: rgba(103, 80, 164, 0.08);
 }
 
 .paginador-boton.active {
-  color: #6750a4;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.paginador-boton span {
+  font-family: "Material Icons";
+
+  font-size: 24px;
+
+  line-height: 24px;
 }
 
 /* =======================================
    RESPONSIVE
 ======================================= */
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
+  .tabla-body {
+    overflow-x: auto;
+  }
+
   .tabla-columna {
     min-width: 180px;
   }

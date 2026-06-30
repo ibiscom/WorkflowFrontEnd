@@ -7,10 +7,12 @@ import { Constants } from '../../utils/constants';
 import { MessageUtil } from '../../utils/message.util';
 import { ListarTareaFilterEntity } from '../listar-tareas-filter.entity';
 import { EstadoListarTareaEntity } from '../estado-listar-tareas.entity';
+import { MatIcon } from "@angular/material/icon";
 
 @Component({
+  standalone: true,
   selector: 'ibpm-filtros-busqueda-listartarea',
-  imports: [FormsModule],
+  imports: [FormsModule, MatIcon],
   templateUrl: './filtros-busqueda-listar-tareas.component.html',
   styleUrl: './filtros-busqueda-listar-tareas.component.scss',
 })
@@ -76,7 +78,15 @@ throw new Error('Method not implemented.');
       generateReport,
       this.estadoObjectN
     );
+    }
 
     // Tu lógica actual aquí
-  }
+
+public mostrarFiltros = false;
+
+public toggleFiltros(): void {
+  this.mostrarFiltros = !this.mostrarFiltros;
+}
+
+  
 }

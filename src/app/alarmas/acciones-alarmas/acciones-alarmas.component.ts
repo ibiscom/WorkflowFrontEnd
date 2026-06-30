@@ -32,7 +32,7 @@ export class AccionesAlarmaComponent {
    * Navega a la pantalla de creación de objeto workflow.
    */
   public irACrearAlarma() {
-    this.router.navigate([`/main-page/alarma/crearAlarma`]);
+    this.router.navigate([`/main-page/alarmas/crearAlarma`]);
   }
 }
 

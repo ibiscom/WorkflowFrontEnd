@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ibpm-mostrar-herramienta',
@@ -9,6 +10,8 @@ import { MatTabsModule } from '@angular/material/tabs';
   styleUrl: './mostrar-herramienta.component.scss',
 })
 export class MostrarHerramientaComponent {
+  public identificadorTarea: string = '';
+  public identificadorWorkflow: string = '';
 
   // =====================================
   // INFORMACIÓN DE LA TAREA
@@ -71,6 +74,17 @@ export class MostrarHerramientaComponent {
   // =====================================
   // ACCIONES
   // =====================================
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit() {
+    const idWfEngine = this.route.snapshot.paramMap.get('idWorkflowEngine');
+    const idTareaEngine = this.route.snapshot.paramMap.get('idTareaEngine');
+    console.log('Identificador de workflow recibido:', idWfEngine);
+    console.log('Identificador de tarea recibido:', idTareaEngine);
+    this.identificadorTarea = idTareaEngine ?? '';
+    this.identificadorWorkflow = idWfEngine ?? '';
+    this.consultarTarea();
+  }
 
   anexarDocumento(doc: any): void {
     console.log('Anexar documento', doc);
@@ -79,4 +93,10 @@ export class MostrarHerramientaComponent {
   verDocumento(doc: any): void {
     console.log('Ver documento', doc);
   }
+
+ public consultarTarea() {
+  throw new Error('Function not implemented.');
+ } 
 }
+
+
