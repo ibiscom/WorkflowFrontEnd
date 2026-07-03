@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environment';
 import { AlarmaEntity } from './alarmas.entity';
+import { TipoAlarmaEntity } from './tipo-alarma.entity';
 
 
 @Injectable({

@@ -41,6 +41,14 @@ import { AtributoAlarmaEntity } from '../atributo-alarma.entity';
  * Permite seleccionar compañía, supervisor y administrar permisos/restricciones.
  */
 export class CrearAlarmaComponent {
+tiposalarmasList: any;
+mailsDestinosN: any;
+destinatariosN: any;
+remitenteN: any;
+asuntoN: any;
+mailN: any;
+tipo: any;
+atributoN: any;
 onTareaChange($event: any) {
 throw new Error('Method not implemented.');
 }
@@ -100,21 +108,31 @@ throw new Error('Method not implemented.');
   }
 
   /**
-   * Inicializa el formulario, carga listas y detecta modo de edición.
+   * Tipos de alarmas que se pueden crear. Se inicializan al cargar el componente.
    */
-  public async ngOnInit(): Promise<void> {
-    if (this.uc) {
-      this.uc.mensaje = '';
-    }
-    const id = this.route.snapshot.paramMap.get('id');
-    console.log('Edit Mode On. Group Id:', id);
-    if (id) {
-      this.atrAlarmaIdEdit = id;
-      await this.fillEditFields();
-    } else {
-      this.atrAlarmaIdEdit = undefined;
-    }
+public async ngOnInit(): Promise<void> {
+
+  this.tiposalarmasList = [
+    { id: 1, nombre: 'Mail' },
+    { id: 2, nombre: 'Terminar tarea' },
+    { id: 3, nombre: 'Mail-Manual' },
+    { id: 4, nombre: 'Mail-Proceso' },
+    { id: 5, nombre: 'Mail-Día' }
+  ];
+
+  if (this.uc) {
+    this.uc.mensaje = '';
   }
+
+  const id = this.route.snapshot.paramMap.get('id');
+
+  if (id) {
+    this.atrAlarmaIdEdit = id;
+    await this.fillEditFields();
+  } else {
+    this.atrAlarmaIdEdit = undefined;
+  }
+}
 
   /**
    * Llena los campos del formulario con la información del grupo en edición.
@@ -338,28 +356,103 @@ throw new Error('Method not implemented.');
   }
 
 
-  public onAlarmaChange($event: string) {
-    this.atributos = [];
-    //obteniendo del microservicio de con atributos tarea tiempo
-    switch ($event) {
-      case 'Mail':
-        this.atributos.push({ id: 1, nombre: 'Mails_Destinos', valor: '', tipoTareaTiempo: 'Mail' });
-        this.atributos.push({ id: 2, nombre: 'Destinatarios', valor: '', tipoTareaTiempo: 'Mail' });
-        this.atributos.push({ id: 3, nombre: 'Asunto', valor: '', tipoTareaTiempo: 'Mail' });
-        this.atributos.push({ id: 4, nombre: 'Remitente', valor: '', tipoTareaTiempo: 'Mail' });
-        this.atributos.push({ id: 5, nombre: 'Mail', valor: '', tipoTareaTiempo: 'Mail' });
-      break;        
-      case 'Mail Manual':
-        this.atributos.push({ id: 1, nombre: 'Mails_Destinos', valor: '', tipoTareaTiempo: 'Mail Manual' });
-        this.atributos.push({ id: 2, nombre: 'Destinatarios', valor: '', tipoTareaTiempo: 'Mail Manual' });
-        this.atributos.push({ id: 3, nombre: 'Remitente', valor: '', tipoTareaTiempo: 'Mail Manual' });
-        this.atributos.push({ id: 4, nombre: 'Asunto', valor: '', tipoTareaTiempo: 'Mail Manual' });
-        this.atributos.push({ id: 5, nombre: 'Mail', valor: '', tipoTareaTiempo: 'Mail Manual' });
-      break;  
-      
+/**
+   * TCampos que se visualizan al seleccionar un tipo de alarma
+   */
+  
+public mostrarTarea = true;
+public mostrarEstado = true;
+public mostrarTiempo = true;
+public mostrarResponsable = true;
+public mostrarAtributo = true;
 
-    }
-  } 
+public onAlarmaChange($event: any): void {
+
+  this.atributos = [];
+
+   // Valores por defecto
+  this.mostrarTarea = true;
+  this.mostrarEstado = true;
+  this.mostrarTiempo = true;
+  this.mostrarResponsable = true;
+  this.mostrarAtributo = true;
+
+
+  const tipo = typeof $event === 'string'
+      ? $event
+      : $event.nombre;
+
+  switch (tipo) {
+
+    case 'Mail':
+
+        this.mostrarTarea = true;
+        this.mostrarEstado = true;
+        this.mostrarTiempo = true;
+        this.mostrarResponsable = true;
+        this.mostrarAtributo = false;
+      this.atributos.push(
+        { id: 1, nombre: 'Mails_Destinos', valor: '', tipo: 'input', tipoTareaTiempo: ''},
+        { id: 2, nombre: 'Destinatarios', valor: '', tipo: 'input', tipoTareaTiempo: '' },
+        { id: 3, nombre: 'Asunto', valor: '', tipo: 'input', tipoTareaTiempo: '' },
+        { id: 4, nombre: 'Remitente', valor: '', tipo: 'input', tipoTareaTiempo: '' },
+        { id: 5, nombre: 'Mail', valor: '', tipo: 'input', tipoTareaTiempo: '' }
+      );
+      break;
+
+
+    case 'Mail-Manual':
+        this.mostrarTarea = false;
+        this.mostrarEstado = false;
+        this.mostrarTiempo = false;
+        this.mostrarResponsable = false;
+        this.mostrarAtributo = false;
+
+      this.atributos.push(
+        { id: 1, nombre: 'Mails_Destinos', valor: '', tipo: 'input', tipoTareaTiempo: '' },
+        { id: 2, nombre: 'Destinatarios', valor: '', tipo: 'input', tipoTareaTiempo: '' },
+        { id: 3, nombre: 'Remitente', valor: '', tipo: 'input', tipoTareaTiempo: '' },
+        { id: 4, nombre: 'Asunto', valor: '', tipo: 'input', tipoTareaTiempo: '' },
+        { id: 5, nombre: 'Mail', valor: '', tipo: 'textarea', tipoTareaTiempo: '' }
+      );
+      break;
+
+     case 'Mail-Proceso':
+
+        this.mostrarTarea = false;
+        this.mostrarEstado = false;
+        this.mostrarTiempo = true;
+        this.mostrarResponsable = false;
+      this.atributos.push(
+        { id: 1, nombre: 'Mails_Destinos', valor: '', tipo: 'input', tipoTareaTiempo: ''},
+        { id: 2, nombre: 'Destinatarios', valor: '', tipo: 'input', tipoTareaTiempo: '' },
+        { id: 3, nombre: 'Asunto', valor: '', tipo: 'input', tipoTareaTiempo: '' },
+        { id: 4, nombre: 'Remitente', valor: '', tipo: 'input', tipoTareaTiempo: '' },
+        { id: 5, nombre: 'Mail', valor: '', tipo: 'input', tipoTareaTiempo: '' }
+      );
+      break;
+
+        case 'Mail-Día':
+
+        this.mostrarTarea = true;
+        this.mostrarEstado = false;
+        this.mostrarTiempo = false;
+        this.mostrarResponsable = false;
+
+      this.atributos.push(
+        { id: 1, nombre: 'Mails_Destinos', valor: '', tipo: 'input', tipoTareaTiempo: ''},
+        { id: 2, nombre: 'Destinatarios', valor: '', tipo: 'input', tipoTareaTiempo: '' },
+        { id: 3, nombre: 'Asunto', valor: '', tipo: 'input', tipoTareaTiempo: '' },
+        { id: 4, nombre: 'Remitente', valor: '', tipo: 'input', tipoTareaTiempo: '' },
+        { id: 5, nombre: 'Mail', valor: '', tipo: 'input', tipoTareaTiempo: '' }
+      );
+      break;
+  }
+
+  console.log(this.atributos);
+}
+
+  
 
   public camposDuracionVisible():boolean {
     return !(this.nombreAtributoN === undefined) && !(this.nombreAtributoN==="") && !this.nombreAtributoN?.includes("Mail-Dia") && !this.nombreAtributoN?.includes("Mail-Proceso") && !this.nombreAtributoN?.includes("Tarea Manual");

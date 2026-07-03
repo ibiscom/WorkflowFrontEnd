@@ -2,6 +2,7 @@
  * Entidad que representa una alarma en el sistema.
  */
 export interface AtributoAlarmaEntity {
+tipo: any;
   /** Id de la alarma */
   id: number;
   /** Nombre del atributo de la alarma */

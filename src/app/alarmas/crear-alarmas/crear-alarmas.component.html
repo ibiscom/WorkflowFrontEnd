@@ -1,7 +1,6 @@
 <div class="cont-nuevo-workflow">
   <form #form="ngForm">
 
-    <!-- TARJETA DATOS DEL OBJETO WORKFLOW -->
     <div class="card-nuevo-objetoworkflow-general">
 
       <div class="card-header">
@@ -9,226 +8,310 @@
       </div>
 
       <div class="card-content">
+
         <div class="tbl-nuevo-workflow">
 
-          <!-- TIPO DE ALARMA -->
-           <div class="campo-lista">
-            <label for="company">Tipo de alarma</label>
+          <!-- ================= FILA 1 ================= -->
 
-            <select
-              id="company"
-              name="company"
-              [(ngModel)]="tipoN"
-              required
-              #company="ngModel"
-              (ngModelChange)="onAlarmaChange($event)"
-            >
-              <option value="">Seleccione una opción</option>
+          <div class="fila-formulario">
 
-              @for (alarma of alarmasList; track alarma) {
-                <option [ngValue]="alarma">
-                  {{ alarma.nombre }}
-                </option>
-              }
-            </select>
-          </div>
-    
+            <div class="campo-lista">
 
-          <!-- TAREA -->
-         <div class="campo-lista">
-            <label for="company">Tarea</label>
+              <label>Tipo de alarma</label>
 
-            <select
-              id="company"
-              name="company"
-              [(ngModel)]="tipoTareaTiempoN"
-              required
-              #company="ngModel"
-              (ngModelChange)="onAlarmaChange($event)"
-            >
-              <option value="">Seleccione una opción</option>
+              <select
+                name="tipoN"
+                [(ngModel)]="tipoN"
+                (ngModelChange)="onAlarmaChange($event)">
 
-              @for (alarma of alarmasList; track alarma) {
-                <option [ngValue]="alarma">
-                  {{ alarma.nombre }}
-                </option>
-              }
-            </select>
-          </div>
+                <option value="">Seleccione una opción</option>
 
-          <!-- ACTIVACION ALARMA -->
-         <div class="campo-lista">
-            <label for="company">Se activa la alarma siempre y cuando la tarea no se encuentre en estado</label>
+                @for (tipo of tiposalarmasList; track tipo.id) {
+                  <option [value]="tipo.nombre">
+                    {{ tipo.nombre }}
+                  </option>
+                }
 
-            <select
-              id="company"
-              name="company"
-              [(ngModel)]="nombreAtributoN"
-              required
-              #company="ngModel"
-              (ngModelChange)="onAlarmaChange($event)"
-            >
-              <option value="">Seleccione una opción</option>
+              </select>
 
-              @for (alarma of alarmasList; track alarma) {
-                <option [ngValue]="alarma">
-                  {{ alarma.nombre }}
-                </option>
-              }
-            </select>
-          </div>
-
-          <!-- ESTADO -->
-
-         <div class="campo-lista">
-            <label for="company">Estado</label>
-
-            <select
-              id="company"
-              name="company"
-              [(ngModel)]="estadoNoEjecucionN"
-              required
-              #company="ngModel"
-              (ngModelChange)="onAlarmaChange($event)"
-            >
-              <option value="">Seleccione una opción</option>
-
-              @for (alarma of alarmasList; track alarma) {
-                <option [ngValue]="alarma">
-                  {{ alarma.nombre }}
-                </option>
-              }
-            </select>
-          </div>
-
-        @if(camposDuracionVisible()){
-        <!-- TIEMPO DE AVISO -->
-
-         <!-- Tarea inmediata -->
-        <div class="opcion-item">
-        <label for="tareaInmediata"> Tarea inmediata</label>
-        <input
-        id="tareaInmediata"
-        name="tareaInmediata"
-        type="checkbox"
-        [(ngModel)]="tareaInmediataN"
-        />
-        </div>
-
-        @if(!tareaInmediataN) {
-         <div class="grupo-duracion-alerta">
-          <div class="campo-texto">
-            <label for="diasDuracionEstimada">Días</label>
-            <input
-              id="diasDuracionEstimada"
-              name="diasDuracionEstimada"
-              type="text"
-              [(ngModel)]="diaAvisoN"
-              required
-              #diasDuracionEstimada="ngModel"
-            />
-          </div>
-        
-
-          <div class="campo-texto">
-            <label for="horasDuracionEstimada">Horas</label>
-            <input
-              id="horasDuracionEstimada"
-              name="horasDuracionEstimada"
-              type="text"
-              [(ngModel)]="horaAvisoN"
-              required
-              #horasDuracionEstimada="ngModel"
-            />
-          </div>
-
-          <div class="campo-texto">
-            <label for="minutosDuracionEstimada">Minutos</label>
-            <input
-              id="minutosDuracionEstimada"
-              name="minutosDuracionEstimada"
-              type="text"
-              [(ngModel)]="minutosAvisoN"
-              required
-              #minutosDuracionEstimada="ngModel"
-            />
-          </div>
-
-          <div class="campo-texto">
-            <label for="segundosDuracionEstimada">Segundos</label>
-            <input
-              id="segundosDuracionEstimada"
-              name="segundosDuracionEstimada"
-              type="text"
-              [(ngModel)]="segundosAvisoN"
-              required
-              #segundosDuracionEstimada="ngModel"
-            />
-          </div>
-          </div>
-          }
-        }
-         <div class="grupo-duracion-alerta">
-            <!-- Incluir responsable -->
-            <div class="opcion-item">
-            <label for="incluirResponsable">Incluir responsable</label>
-            <input
-            id="incluirResponsable"
-            name="incluirResponsable"
-            type="checkbox"
-            [(ngModel)]="incluirResponsableN"
-            />
             </div>
 
+            @if (mostrarTarea) {
 
-            <!-- Dias (Solo aplica a Tarea Tiempo)-->
+              <div class="campo-lista">
 
+                <label>Tarea</label>
 
-            <!-- CAMPOS DINAMICOS -->
-            @for (campo of this.atributos; track $index) {
-             <div class="campo-texto">
-              <label for="campo{{ $index }}">{{ campo.nombre }}</label>
-              <textarea
-                id="campo{{ $index }}"
-                name="campo{{ $index }}"
-                type="text"
-                [(ngModel)]="campo.valor"
-                required
-                #campo{{ $index }}="ngModel"
-              ></textarea>
-             </div>
+                <select
+                  name="tipoTareaTiempoN"
+                  [(ngModel)]="tipoTareaTiempoN">
+
+                  <option value="">Seleccione una opción</option>
+
+                  @for (alarma of alarmasList; track alarma) {
+                    <option [ngValue]="alarma">
+                      {{ alarma.nombre }}
+                    </option>
+                  }
+
+                </select>
+
+              </div>
+
             }
+
+          </div>
+
+          <!-- ================= FILA 2 ================= -->
+
+          @if (mostrarEstado) {
+
+            <div class="fila-formulario">
+
+              <div class="campo-lista">
+
+                <label>
+                  Se activa la alarma siempre y cuando la tarea no se encuentre en estado
+                </label>
+
+                <select
+                  name="nombreAtributoN"
+                  [(ngModel)]="nombreAtributoN">
+
+                  <option value="">Seleccione una opción</option>
+
+                  @for (alarma of alarmasList; track alarma) {
+                    <option [ngValue]="alarma">
+                      {{ alarma.nombre }}
+                    </option>
+                  }
+
+                </select>
+
+              </div>
+
+              <div class="campo-lista">
+
+                <label>Estado</label>
+
+                <select
+                  name="estadoNoEjecucionN"
+                  [(ngModel)]="estadoNoEjecucionN">
+
+                  <option value="">Seleccione una opción</option>
+
+                  @for (alarma of alarmasList; track alarma) {
+                    <option [ngValue]="alarma">
+                      {{ alarma.nombre }}
+                    </option>
+                  }
+
+                </select>
+
+              </div>
+
+            </div>
+
+          }
+
+          <!-- ================= FILA 3 ================= -->
+
+          @if (mostrarTiempo) {
+
+            <div class="fila-tiempo">
+
+              <div class="opcion-item">
+
+                <label>Tarea inmediata</label>
+
+                <input
+                  type="checkbox"
+                  name="tareaInmediata"
+                  [(ngModel)]="tareaInmediataN"/>
+
+              </div>
+
+              @if (!tareaInmediataN) {
+
+                <div class="grupo-duracion-alerta">
+
+                  <div class="campo-texto">
+
+                    <label>Días</label>
+
+                    <input
+                      type="text"
+                      name="diaAvisoN"
+                      [(ngModel)]="diaAvisoN"/>
+
+                  </div>
+
+                  <div class="campo-texto">
+
+                    <label>Horas</label>
+
+                    <input
+                      type="text"
+                      name="horaAvisoN"
+                      [(ngModel)]="horaAvisoN"/>
+
+                  </div>
+
+                  <div class="campo-texto">
+
+                    <label>Minutos</label>
+
+                    <input
+                      type="text"
+                      name="minutosAvisoN"
+                      [(ngModel)]="minutosAvisoN"/>
+
+                  </div>
+
+                  <div class="campo-texto">
+
+                    <label>Segundos</label>
+
+                    <input
+                      type="text"
+                      name="segundosAvisoN"
+                      [(ngModel)]="segundosAvisoN"/>
+
+                  </div>
+
+                </div>
+
+              }
+
+            </div>
+
+          }
+
+          <!-- ================= FILA 4 ================= -->
+
+          @if (mostrarResponsable) {
+
+            <div class="opcion-item">
+
+              <label>Incluir responsable</label>
+
+              <input
+                type="checkbox"
+                name="incluirResponsable"
+                [(ngModel)]="incluirResponsableN"/>
+
+            </div>
+
+          }
+
+          <!-- ================= FILA 5 ================= -->
+
+          @if (mostrarAtributo) {
+
+            <div class="fila-formulario">
+
+              <div class="campo-lista">
+
+                <label>Atributo</label>
+
+                <select
+                  name="atributoN"
+                  [(ngModel)]="atributoN">
+
+                  <option value="">Seleccione una opción</option>
+
+                  @for (alarma of alarmasList; track alarma) {
+                    <option [ngValue]="alarma">
+                      {{ alarma.nombre }}
+                    </option>
+                  }
+
+                </select>
+
+              </div>
+
+            </div>
+
+          }
+
+          <!-- ================= FILA 6 ================= -->
+
+          @if (atributos.length > 0) {
+
+            <div class="seccion-campos-correo">
+
+              @for (campo of atributos; track campo.id) {
+
+                <div class="campo-texto">
+
+                  <label>{{ campo.nombre }}</label>
+
+                  <input
+                    type="text"
+                    [name]="'campo'+campo.id"
+                    [(ngModel)]="campo.valor"/>
+
+                </div>
+
+              }
+
+            </div>
+
+          }
+
         </div>
+
       </div>
+
     </div>
 
-          
-
-    <!-- BOTONES FINALES -->
     <div class="botones-nuevo-grupo">
 
-      <button class="btn-figma" type="submit" (click)="save()">
-        <span class="btn-icon">
-      <img src="assets/img/save.svg" alt="Guardar" />
-    </span>
-    Guardar</button>
+      <button
+        class="btn-figma"
+        type="submit"
+        (click)="save()">
 
+        <span class="btn-icon">
+          <img src="assets/img/save.svg" alt="Guardar">
+        </span>
+
+        Guardar
+
+      </button>
 
       @if (editMode()) {
-        <button class="btn-figma" type="button" (click)="delete()">
+
+        <button
+          class="btn-figma"
+          type="button"
+          (click)="delete()">
+
           <span class="btn-icon">
-        <img src="assets/img/trash.svg" alt="Eliminar Alarma" />
-      </span>
-      Eliminar</button>
+            <img src="assets/img/trash.svg" alt="Eliminar">
+          </span>
+
+          Eliminar
+
+        </button>
+
       }
 
-     <button class="btn-figma" type="button" (click)="cancel()">
-        <span class="btn-icon">
-      <img src="assets/img/cancel.svg" alt="Cancelar" />
-    </span>
-    Cancelar</button>
-    </div>
-    </div>
-  </form>
-</div>
+      <button
+        class="btn-figma"
+        type="button"
+        (click)="cancel()">
 
+        <span class="btn-icon">
+          <img src="assets/img/cancel.svg" alt="Cancelar">
+        </span>
+
+        Cancelar
+
+      </button>
+
+    </div>
+
+  </form>
+
+</div>

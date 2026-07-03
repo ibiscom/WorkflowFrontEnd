@@ -345,3 +345,39 @@
     width: 100%;
   }
 }
+
+/* =======================================
+   CAMPOS DE CORREO
+======================================= */
+
+.seccion-campos-correo {
+  width: 100%;
+  margin-top: 24px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.seccion-campos-correo .campo-texto {
+  width: 100%;
+}
+
+.seccion-campos-correo input,
+.seccion-campos-correo textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.fila-formulario {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.fila-tiempo {
+  display: grid;
+  grid-template-columns: 220px repeat(4, 1fr);
+  gap: 24px;
+  align-items: end;
+}
