@@ -80,6 +80,7 @@
   border-top-left-radius: 4px;
 
   border-top-right-radius: 4px;
+  justify-content: flex-end;
 }
 
 .campo-lista label {
@@ -96,6 +97,10 @@
   letter-spacing: 0.5px;
 
   color: #49454f;
+  min-height:52px;
+  display:flex;
+  align-items:flex-end;
+
 }
 
 .campo-lista select {
@@ -369,10 +374,11 @@
   box-sizing: border-box;
 }
 
-.fila-formulario {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+.fila-formulario{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+    align-items:end;
 }
 
 .fila-tiempo {
