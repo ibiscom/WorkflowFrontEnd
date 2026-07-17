@@ -36,7 +36,6 @@ import { FestivoComponent } from './festivos/festivo.component';
 import { EventoInicioComponent } from './eventos-de-inicio/eventoinicio.component';
 import { CrearEventoInicioComponent } from './eventos-de-inicio/crear-eventoinicio/crear-eventoinicio.component';
 import { ListadoEventoInicioComponent } from './eventos-de-inicio/listado-eventoinicio/listado-eventoinicio.component';
-import { CrearResponsableComponent } from './reponsable/crear-responsable/crear-responsable.component';
 import { GrupoComponent } from './grupos/grupo.component';
 import { CrearGrupoComponent } from './grupos/crear-grupo/crear-grupo.component';
 import { ListadoGrupoComponent } from './grupos/listado-grupo/listado-grupo.component';
@@ -46,6 +45,9 @@ import { ListadoAlarmasComponent } from './alarmas/listado-alarmas/listado-alarm
 import { ListarTareaComponent } from './listar-tareas/listar-tareas.component';
 import { MostrarHerramientaComponent } from './listar-tareas/mostrar-herramienta/mostrar-herramienta.component';
 import { ListadoListarTareaComponent } from './listar-tareas/listado-listar-tareas/listado-listar-tareas.component';
+import { CrearPatronComponent } from './patrones/crear-patron/crear-patron.component';
+import { PatronComponent } from './patrones/patron.component';
+import { ListadoPatronComponent } from './patrones/listado-patron/listado-patron.component';
 
 export const CanActivateGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -302,16 +304,6 @@ export const routes: Routes = [
             component: ListadoResponsableComponent,
             canActivate: [CanActivateGuard],
           },
-          {
-            path: 'crearResponsable',
-            component: CrearResponsableComponent,
-            canActivate: [CanActivateGuard],
-          },
-          {
-            path: 'editarResponsable/:id',
-            component: CrearResponsableComponent,
-            canActivate: [CanActivateGuard],
-          },
         ],
       },
       {
@@ -399,6 +391,62 @@ export const routes: Routes = [
         ],
       },
       
+
+      {
+        path: 'tareas',
+        component: TareasComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoTareas',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoTareas',
+            component: ListadoTareasComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'crearTarea',
+            component: CrearTareasComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'editarTarea/:id',
+            component: CrearTareasComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+
+      {
+        path: 'patrones',
+        component: PatronComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoPatrones',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoPatrones',
+            component: ListadoPatronComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'crearPatron',
+            component: CrearPatronComponent,
+            canActivate: [CanActivateGuard],
+          },
+          {
+            path: 'editarPatron/:id',
+            component: CrearPatronComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
     ],
   },
   {

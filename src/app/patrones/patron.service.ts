@@ -30,7 +30,7 @@ export class PatronService {
       let ip: string = this.cookieService.get('ip');
       return this.http.put<FsResponseEntity<any>>(
         environment.workflowApiUrl +
-          `/Tool/create`, herramienta
+          `/Gateway/create`, herramienta
       );
   }
 
@@ -43,7 +43,7 @@ export class PatronService {
       let ip: string = this.cookieService.get('ip');
       return this.http.get<FsResponseEntity<any>>(
         environment.workflowApiUrl +
-          `/Tool/getTools?workflowName=${workflowName}`
+          `/Gateway/getGateways${workflowName}`
       );
   }
 
@@ -56,7 +56,7 @@ export class PatronService {
         let ip: string = this.cookieService.get('ip');
         return this.http.post<FsResponseEntity<any>>(
           environment.workflowApiUrl +
-            `/Tool/edit`, herramienta
+            `/Gateway/edit`, herramienta
         );
     }
 
@@ -69,7 +69,7 @@ export class PatronService {
       let ip: string = this.cookieService.get('ip');
       return this.http.get<FsResponseEntity<any>>(
         environment.workflowApiUrl +
-          `/Tool/getTool?workflowName=${workflowName}&toolName=${ToolName}`
+          `/Gateway/getGateway${workflowName}&toolName=${ToolName}`
       );
   }
 
@@ -81,7 +81,29 @@ export class PatronService {
       let ip: string = this.cookieService.get('ip');
       return this.http.get<FsResponseEntity<any>>(
         environment.workflowApiUrl +
-          `/Tool/types`);
+          `/Gateway/types`);
+  }
+
+   /**
+   * Obtiene el listado de los tipos que puede tener una herramienta.
+   * @returns 
+   */
+  public getDependencies(): Observable<FsResponseEntity<any>> {
+      let ip: string = this.cookieService.get('ip');
+      return this.http.get<FsResponseEntity<any>>(
+        environment.workflowApiUrl +
+          `/Gateway/getDependencies`);
+  }
+
+   /**
+   * Obtiene el listado de los tipos que puede tener una herramienta.
+   * @returns 
+   */
+  public getDependenciesGateway(): Observable<FsResponseEntity<any>> {
+      let ip: string = this.cookieService.get('ip');
+      return this.http.get<FsResponseEntity<any>>(
+        environment.workflowApiUrl +
+          `/Gateway/getDependenciesGateway`);
   }
   /**
    * Elimina un herramienta, dado su identificador
@@ -93,7 +115,7 @@ export class PatronService {
       let ip: string = this.cookieService.get('ip');
       return this.http.delete<FsResponseEntity<any>>(
         environment.workflowApiUrl +
-          `/Tool/delete?workflowName=${workflowName}&toolName=${herramientaName}`);
+          `/Gateway/delete?workflowName=${workflowName}&toolName=${herramientaName}`);
   }
 }
 

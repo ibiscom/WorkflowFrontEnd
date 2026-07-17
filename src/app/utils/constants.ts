@@ -122,6 +122,7 @@ public static ERR_ENTIDAD_DATOS : string =
       'No se pudo obtener el evento de inicio';
     public static ERR_EVENTO_INICIO_LISTAR: string = 
       'No se pudo listar los eventos de inicio';
+
      
 
   

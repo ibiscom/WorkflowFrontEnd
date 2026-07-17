@@ -1,0 +1,120 @@
+<div class="cont-filtro">
+  <div class="usuarios-container">
+    
+    <!-- FILTROS -->
+    <div class="filtros-container">
+
+      <!-- TÍTULO -->
+      <div class="filtros-titulo">Información de búsqueda</div>
+
+      <!-- FILA 1 -->
+      <div class="fila-filtros">
+        
+<!-- NOMBRE DEL PROCESO -->
+        <div class="campo-lista">
+            <label for="company">Nombre del proceso</label>
+
+            <select
+              id="company"
+              name="company"
+              [(ngModel)]="companyObjectN"
+              required
+              #company="ngModel"
+              (ngModelChange)="onCompanyChange($event)"
+            >
+              <option value="">Seleccione una opción</option>
+
+              @for (company of companiesList; track company) {
+                <option [ngValue]="company">
+                  {{ company.largeName }}
+                </option>
+              }
+            </select>
+          </div>
+
+        <!-- NUMERO DE INSTANCIA -->
+        <div class="campo-texto-filtro ">
+          <label for="description">Número de instancia</label>
+          <input
+            type="text"
+            [(ngModel)]="tareasNameF"
+            placeholder="Inserte número de la instancia"
+            (keydown.enter)="search()"
+          />
+        </div>
+
+      </div>
+
+      <!-- FILA 2 -->
+      <div class="fila-filtros-fila2">
+
+        <!-- FECHA INICIAL -->
+        <div class="campo-texto-filtro ">
+          <label for="description">Fecha inicial</label>
+          <input
+            type="text"
+            [(ngModel)]="tareasNameF"
+            placeholder="Inserte fecha inicial"
+            (keydown.enter)="search()"
+          />
+        </div>
+
+        <!-- FECHA FINAL -->
+        <div class="campo-texto-filtro ">
+          <label for="description">Fecha final</label>
+          <input
+            type="text"
+            [(ngModel)]="tareasNameF"
+            placeholder="Inserte fecha final"
+            (keydown.enter)="search()"
+          />
+        </div>
+
+              <!-- FILA 3 -->
+      <div class="fila-filtros-fila3">
+
+        <!-- OBSERVACIONES -->
+        <div class="campo-texto-filtro ">
+          <label for="description">Observaciones</label>
+          <input
+            type="text"
+            [(ngModel)]="tareasNameF"
+            placeholder="Inserte observaciones"
+            (keydown.enter)="search()"
+          />
+        </div>
+
+        <!-- NOMBRE DEL RESPONSABLE -->
+          <div class="campo-lista">
+            <label for="company">Nombre del responsable</label>
+
+            <select
+              id="company"
+              name="company"
+              [(ngModel)]="companyObjectN"
+              required
+              #company="ngModel"
+              (ngModelChange)="onCompanyChange($event)"
+            >
+              <option value="">Seleccione una opción</option>
+
+              @for (company of companiesList; track company) {
+                <option [ngValue]="company">
+                  {{ company.largeName }}
+                </option>
+              }
+            </select>
+          </div>
+
+        <!-- FINALIZAR PROCESO -->
+        <button class="btn-figma" (click)="search()">
+          <span class="btn-icon">
+            <img src="assets/img/search.svg" alt="Finalizar proceso" />
+          </span>
+          <span class="label">Finalizar proceso</span>
+        </button>
+
+      </div>
+    </div>
+  </div>
+  

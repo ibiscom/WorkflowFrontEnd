@@ -1,0 +1,205 @@
+/* =======================================
+   CONTENEDOR PRINCIPAL
+======================================= */
+
+.cont-filtro {
+  width: 100%;
+}
+
+.usuarios-container {
+  width: 100%;
+}
+
+/* =======================================
+   CARD FILTROS
+======================================= */
+
+.filtros-container {
+  background: #fafafa;
+
+  border-radius: 16px;
+
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.13);
+
+  padding: 24px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 24px;
+}
+
+/* =======================================
+   TÍTULO
+======================================= */
+
+.filtros-titulo {
+  font-family: Roboto, sans-serif;
+
+  font-size: 18px;
+
+  font-weight: 700;
+
+  line-height: 24px;
+
+  color: #1b1b1b;
+}
+
+/* =======================================
+   FILA FILTROS
+======================================= */
+
+.fila-filtros {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: 1fr auto;
+
+  gap: 24px;
+
+  align-items: end;
+}
+
+/* =======================================
+   CAMPO TEXTO
+======================================= */
+
+.campo-texto-filtro {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  background: #ffffff;
+
+  border-top-left-radius: 4px;
+
+  border-top-right-radius: 4px;
+}
+
+.campo-texto-filtro label {
+  padding: 4px 16px;
+
+  display: flex;
+
+  align-items: center;
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 400;
+
+  line-height: 24px;
+
+  letter-spacing: 0.5px;
+
+  color: #49454f;
+}
+
+.campo-texto-filtro input {
+  width: 100%;
+
+  padding: 4px 16px 8px 16px;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 16px;
+
+  color: #1c1b1f;
+}
+
+.campo-texto-filtro::after {
+  content: "";
+
+  width: 100%;
+
+  height: 1px;
+
+  background: #49454f;
+}
+
+/* =======================================
+   BOTÓN FIGMA
+======================================= */
+
+.btn-figma {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 6px;
+
+  padding: 8px 18px;
+
+  border: none;
+
+  border-radius: 100px;
+
+  background: #6750a4;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  color: #ffffff;
+
+  white-space: nowrap;
+}
+
+.btn-figma:hover {
+  filter: brightness(0.95);
+}
+
+.btn-figma:active {
+  filter: brightness(0.9);
+}
+
+/* =======================================
+   ICONO
+======================================= */
+
+.btn-icon {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+.btn-icon img {
+  width: 20px;
+
+  height: 20px;
+}
+
+/* =======================================
+   RESPONSIVE
+======================================= */
+
+@media (max-width: 768px) {
+  .fila-filtros {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-figma {
+    justify-self: center;
+  }
+}

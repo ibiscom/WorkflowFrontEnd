@@ -7,7 +7,6 @@ import { ListadoResponsableComponent } from './listado-responsable/listado-respo
 import { ResponsableComponent } from './responsable.component';
 import { ResponsableComponentInstanceService } from './responsable-component-instance.service';
 import { ResponsableService } from './responsable.service';
-import { CrearResponsableComponent } from './crear-responsable/crear-responsable.component';
 
 @NgModule({
   declarations: [],
@@ -15,14 +14,12 @@ import { CrearResponsableComponent } from './crear-responsable/crear-responsable
     CommonModule,
     FormsModule,
     RouterModule,
-    CrearResponsableComponent,
     FiltrosBusquedaResponsableComponent,
     ListadoResponsableComponent,
     ResponsableComponent,
   ],
   providers: [ResponsableComponentInstanceService, ResponsableService],
   exports: [
-    CrearResponsableComponent,
     FiltrosBusquedaResponsableComponent,
     ListadoResponsableComponent,
     ResponsableComponent,

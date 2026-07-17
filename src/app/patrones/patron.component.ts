@@ -66,7 +66,7 @@ export class PatronComponent {
          },
          error: (err) => {
            this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-             Constants.ERR_OBTENIENDO_PATRONES,
+             String(Constants.ERR_OBTENIENDO_PATRONES),
              err,
            );
          },

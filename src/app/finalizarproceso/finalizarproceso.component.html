@@ -1,5 +1,5 @@
 <div class="cont-grupos">
-  <div class="enc-grupos">Responsable</div>
+  <div class="enc-grupos">Tareas</div>
   @if (mensaje) {
     <div>
       <mat-card class="card-msg-grupos">
@@ -12,7 +12,8 @@
       <p></p>
     </div>
   }
-  <ibpm-filtros-busqueda-responsable style="width: 100%"></ibpm-filtros-busqueda-responsable>
+  <div ibpm-filtro-busqueda-finalizarproceso style="width: 100%"></div>
   <br />
   <router-outlet></router-outlet>
 </div>
+

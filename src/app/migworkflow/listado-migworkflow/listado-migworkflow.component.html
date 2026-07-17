@@ -1,0 +1,89 @@
+<!-- FILTROS -->
+<ibpm-filtros-busqueda-migworkflow [uc]="this.parent" style="width: 100%">
+</ibpm-filtros-busqueda-migworkflow>
+
+<!-- TARJETA TABLA -->
+<div class="tabla-card">
+  <!-- HEADER -->
+  <div class="tabla-header-container">
+    <div class="tabla-titulo">Listado de migworkflow</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="tabla-body">
+
+    <!-- COLUMNA: NOMBRE -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Nombre</div>
+      </div>
+
+      @for (element of parent.name; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA:  NOMBRE LARGO -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Nombre largo</div>
+      </div>
+
+      @for (element of parent.largename; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+          </div>
+        </ng-container>
+      }
+    </div>
+
+    <!-- COLUMNA: IMPORTAR -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Importar</div>
+      </div>
+
+      @for (element of parent.migworkflow; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+          </div>
+        </ng-container>
+      }
+    </div>
+
+       <!-- COLUMNA: ES RESPONSABLE -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header">
+        <div>Es responsable</div>
+      </div>
+
+      @for (element of parent.migworkflow; track element) {
+        <ng-container>
+          <div class="tabla-celda">
+            <div (click)="goToEditarMigworkflow(element)">
+              {{ element.esResponsable }}
+            </div>
+          </div>
+        </ng-container>
+      }
+    </div>
+  </div>
+
+  <!-- FOOTER 
+  <div class="tabla-footer">
+    <div class="tabla-footer-text">
+      Página {{ currentPage }} de {{ numberOfPages }}
+    </div>
+
+    <div class="paginador-boton" (click)="previousPage()">
+      <span>chevron_left</span>
+    </div>
+
+    <div class="paginador-boton active" (click)="nextPage()">
+      <span>chevron_right</span>
+    </div>
+  </div>-->
+</div>

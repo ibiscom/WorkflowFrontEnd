@@ -1,0 +1,56 @@
+<div class="cont-filtro">
+  <div class="usuarios-container">
+    
+    <!-- FILTROS -->
+    <div class="filtros-container">
+
+      <!-- TÍTULO -->
+      <div class="filtros-titulo">Filtros de búsqueda</div>
+
+      <!-- FILA 1 -->
+      <div class="fila-filtros">
+        
+        <!-- Nombre proceso -->
+        <div class="campo-texto-filtro ">
+          <label for="description">Nombre proceso</label>
+          <input
+            type="text"
+            [(ngModel)]="userLoguinB"
+            placeholder="Inserte nombre del proceso"
+            (keydown.enter)="search()"
+          />
+        </div>
+
+          <!-- Nombre largo proceso -->
+        <div class="campo-texto-filtro ">
+          <label for="description">Nombre largo proceso</label>
+          <input
+            type="text"
+            [(ngModel)]="userLoguinB"
+            placeholder="Inserte nombre largo del proceso"
+            (keydown.enter)="search()"
+          />
+        </div>
+
+
+        <!-- Botón buscar -->
+        <div class="campo-boton-filtro">
+          <button class="btn-figma" (click)="search()">
+            <span class="btn-icon">
+              <img src="assets/img/search.svg" alt="Buscar proceso" />
+            </span>
+            <span class="label">Buscar</span>
+          </button>
+      </div>
+
+        <!-- Botón importar -->
+        <div class="campo-boton-filtro">
+          <button class="btn-figma" (click)="importProcess()">
+            <span class="btn-icon">
+              <img src="assets/img/search.svg" alt="Importar proceso" />
+            </span>
+            <span class="label">Importar</span>
+          </button>
+      </div>
+    </div>
+  </div>

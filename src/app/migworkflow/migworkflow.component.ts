@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
-import { ResponsableService } from './responsable.service';
-import { ResponsableComponentInstanceService } from './responsable-component-instance.service';
+import { MigworkflowService } from './migworkflow.service';
+import { MigworkflowComponentInstanceService } from './migworkflow-component-instance.service';
 import { LoginEntity } from '../login/login.entity';
 import { GroupEntity } from '../entities/groups/group.entity';
 import { MessageUtil } from '../utils/message.util';
@@ -11,44 +11,47 @@ import { Constants } from '../utils/constants';
 import { GroupSearchFilterEntity } from '../entities/groups/group-search-filter.entity';
 import { CompanyEntity } from '../entities/companies/company.entity';
 import { CompaniasService } from '../companias/companias.service';
-import { ResponsableEntity } from './responsable.entity';
+import { MigworkflowEntity } from './migworkflow.entity';
 import { CookieService } from 'ngx-cookie-service';
-import { ResponsablesFilterEntity } from './reponsable-filter.entity';
-import { FiltrosBusquedaResponsableComponent } from "./filtros-busqueda-responsable/filtros-busqueda-responsable.component";
+import { MigworkflowFilterEntity } from './migworkflow-filter.entity';
+import { FiltrosBusquedaMigworkflowComponent } from "./filtros-busqueda-migworkflow/filtros-busqueda-migworkflow.component";
 
 @Component({
-  selector: 'ibpm-responsable',
-  imports: [MatCardModule, RouterModule, FiltrosBusquedaResponsableComponent],
-  templateUrl: './responsable.component.html',
-  styleUrl: './responsable.component.scss',
+  selector: 'ibpm-migworkflow',
+  imports: [MatCardModule, RouterModule, FiltrosBusquedaMigworkflowComponent],
+  templateUrl: './migworkflow.component.html',
+  styleUrl: './migworkflow.component.scss',
 })
-export class ResponsableComponent {
+export class MigworkflowComponent {
   public loggedUser: LoginEntity | undefined;
-  public responsables: ResponsableEntity[] = [];
+  public migworkflows: MigworkflowEntity[] = [];
   public companias: CompanyEntity[] = [];
   public mensaje: string = '';
+name: any;
+largename: any;
+migworkflow: any;
 
   constructor(
-    private responsableService: ResponsableService,
+    private migworkflowService: MigworkflowService,
     private companiasService: CompaniasService,
-    private responsableComponentInstanceService: ResponsableComponentInstanceService,
+    private migworkflowComponentInstanceService: MigworkflowComponentInstanceService,
     private loginService: LoginService,
     public router: Router,
     private cookieService: CookieService,
   ) {}
 
     ngOnInit(): void {
-      this.responsableComponentInstanceService.setInstance(this);
+      this.migworkflowComponentInstanceService.setInstance(this);
       this.loggedUser = this.loginService.getLoggedUser();
-      this.buscarResponsables();
+      this.buscarMigworkflows();
     }
   
-    public buscarResponsables(filtros?: ResponsablesFilterEntity): void {
-      this.responsableService
+    public buscarMigworkflows(filtros?: MigworkflowFilterEntity): void {
+      this.migworkflowService
         .getUsersRol(filtros?.userLogin || '')
         .subscribe({
           next: (response) => {
-            this.responsables = response.respuesta;
+            this.migworkflows = response.respuesta;
             this.mensaje = '';
           },
           error: (err) => {
@@ -60,12 +63,12 @@ export class ResponsableComponent {
         });
     }
   
-      public obtenerResponsables(): void {
-    this.responsableService
+      public obtenerMigworkflows(): void {
+    this.migworkflowService
       .getUsersRol('')
       .subscribe({
         next: (response) => {
-          this.responsables = response.respuesta;
+          this.migworkflows = response.respuesta;
         },
         error: (err) => {
           this.mensaje = MessageUtil.buildErrorMessageFsResponse(

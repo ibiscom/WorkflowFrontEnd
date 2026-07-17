@@ -44,6 +44,16 @@ import { TipoPatronEntity } from '../tipo-patron.entity';
  * Permite seleccionar compañía, supervisor y administrar permisos/restricciones.
  */
 export class CrearPatronComponent {
+dependenciasWorkflow: any;
+tiposPatronList: any;
+descripcionPatronN: any;
+nombrePatronN: any;
+asignarDependencias() {
+throw new Error('Method not implemented.');
+}
+retirarDependencias() {
+throw new Error('Method not implemented.');
+}
   public workflowActual: string = '';
   public uc?: PatronComponent;
   public loggedUser?: LoginEntity;
@@ -56,6 +66,7 @@ export class CrearPatronComponent {
   public supervisorObjectN?: UserEntity;
   public attributesN: string[] = [];
   public patron: any;
+dependenciasPatron: any;
 
   public constructor(
     private patronService: PatronService,
@@ -170,7 +181,7 @@ export class CrearPatronComponent {
             }
             this.patronIdEdit = this.nombreN; /** Verificar que atributa va aca */
             this.router.navigate([
-              `/main-page/patrons/editarPatron/${this.nombreN}`,
+              `/main-page/Gateway/create/${this.nombreN}`,
             ]);
           }
         },
@@ -205,7 +216,7 @@ export class CrearPatronComponent {
               this.uc.mensaje = Constants.MSG_HERRAMIENTA_EDICION_EXITOSA;
             }
             this.router.navigate([
-               `/main-page/patrons/editarPatron/${this.nombreN}`
+               `/main-page/Gateway/edit/${this.nombreN}`
             ]);
           }
         },
@@ -234,7 +245,7 @@ export class CrearPatronComponent {
               this.uc.buscarPatrones(true);
               this.uc.mensaje = Constants.MSG_HERRAMIENTA_ELIMINACION_EXITOSA;
             }
-            this.router.navigate(['/main-page/patrons']);
+            this.router.navigate(['/main-page/Gateway/delete']);
           }
         },
         error: (e) => {
@@ -256,7 +267,7 @@ export class CrearPatronComponent {
       this.uc.mensaje = '';
       this.uc.buscarPatrones();
     }
-    this.router.navigate(['/main-page/patrones']);
+    this.router.navigate(['/main-page/Patrones']);
   }
 
 
