@@ -269,7 +269,7 @@
   align-items: center;
 }
 
-.serie-title {
+.patron-title {
   font-family: Roboto, sans-serif;
 
   font-size: 18px;
@@ -649,16 +649,16 @@
    CONTENEDOR GENERAL
 ======================================= */
 
-.asignacion-documentos {
-  display: grid;
+.asignacion-documentos{
+    width:100%;
 
-  grid-template-columns: 1fr 120px 1.2fr;
+    display:grid;
 
-  gap: 24px;
+    grid-template-columns:1fr 140px 1fr;
 
-  align-items: center;
+    gap:32px;
 
-  margin-top: 24px;
+    align-items:stretch;
 }
 
 /* =======================================
@@ -757,12 +757,6 @@
 
 }
 
-.asignacion-documentos {
-  display: grid;
-  grid-template-columns: 220px 1fr 120px 1.4fr;
-  gap: 24px;
-  align-items: start;
-}
 
 @media (max-width: 1200px) {
   .grupo-tiempo {
@@ -790,22 +784,28 @@
   gap:24px;
 
   align-items:start;
+
+  width:100%;
+
 }
 
 .tabla-dependencias{
-  background:#fff;
 
-  border-radius:16px;
+    width:100%;
 
-  box-shadow:0 1px 15px rgba(0,0,0,.07);
+    min-height:420px;
 
-  overflow:hidden;
+    background:#fff;
 
-  display:flex;
+    border-radius:16px;
 
-  flex-direction:column;
+    box-shadow:0 1px 15px rgba(0,0,0,.07);
 
-  min-height:360px;
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
 }
 
 .tabla-header{
@@ -861,17 +861,18 @@
 }
 
 .acciones-dependencias{
-  display:flex;
 
-  flex-direction:column;
+    display:flex;
 
-  justify-content:center;
+    flex-direction:column;
 
-  align-items:center;
+    justify-content:center;
 
-  gap:16px;
+    align-items:center;
 
-  height:360px;
+    gap:16px;
+
+    min-height:420px;
 }
 
 .btn-figma-pequeno{
@@ -914,18 +915,5 @@
 
 @media (max-width:1100px){
 
-  .dependencias-container{
-
-    grid-template-columns:1fr;
-
-  }
-
-  .acciones-dependencias{
-
-    height:auto;
-
-    flex-direction:row;
-
-  }
 
 }

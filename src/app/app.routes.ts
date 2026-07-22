@@ -48,6 +48,8 @@ import { ListadoListarTareaComponent } from './listar-tareas/listado-listar-tare
 import { CrearPatronComponent } from './patrones/crear-patron/crear-patron.component';
 import { PatronComponent } from './patrones/patron.component';
 import { ListadoPatronComponent } from './patrones/listado-patron/listado-patron.component';
+import { ListadoMigworkflowComponent } from './migworkflow/listado-migworkflow/listado-migworkflow.component';
+import { MigworkflowComponent } from './migworkflow/migworkflow.component';
 
 export const CanActivateGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -443,6 +445,23 @@ export const routes: Routes = [
           {
             path: 'editarPatron/:id',
             component: CrearPatronComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+          {
+        path: 'migWorkflow',
+        component: MigworkflowComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoMigWorkflow',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoMigWorkflow',
+            component: ListadoMigworkflowComponent,
             canActivate: [CanActivateGuard],
           },
         ],

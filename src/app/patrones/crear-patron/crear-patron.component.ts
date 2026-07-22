@@ -44,10 +44,18 @@ import { TipoPatronEntity } from '../tipo-patron.entity';
  * Permite seleccionar compañía, supervisor y administrar permisos/restricciones.
  */
 export class CrearPatronComponent {
+dependenciasPatronList: any;
+retirar() {
+throw new Error('Method not implemented.');
+}
+asignar() {
+throw new Error('Method not implemented.');
+}
 dependenciasWorkflow: any;
 tiposPatronList: any;
 descripcionPatronN: any;
 nombrePatronN: any;
+dependenciasWorkflowList: any;
 asignarDependencias() {
 throw new Error('Method not implemented.');
 }

@@ -1,266 +1,271 @@
+<form #form="ngForm">
+
 <div class="cont-nuevo-workflow">
-  <form #form="ngForm">
 
-    <div class="card-nuevo-objetoworkflow-general">
+  <!-- =======================================
+       TARJETA DATOS DEL PATRÓN
+  ======================================= -->
 
-      <!-- HEADER -->
-      <div class="card-header">
-        <h3>Datos del patrón</h3>
+  <div class="card-nuevo-workflow-general">
+
+    <div class="card-header">
+      <h3>Datos del patrón</h3>
+    </div>
+
+    <div class="card-content">
+
+      <div class="tbl-nuevo-workflow">
+
+        <!-- NOMBRE -->
+        <div class="campo-texto">
+
+          <label for="nombrePatron">
+            Nombre
+          </label>
+
+          <input
+            id="nombrePatron"
+            name="nombrePatron"
+            type="text"
+            placeholder="Inserte nombre del patrón"
+            [(ngModel)]="nombrePatronN"
+            required
+            #nombrePatron="ngModel"
+          />
+
+          @if (nombrePatron.errors?.['required']) {
+            <div class="error">
+              El nombre es obligatorio.
+            </div>
+          }
+
+        </div>
+
+        <!-- TIPO PATRON -->
+        <div class="campo-lista">
+
+          <label for="tipoPatron">
+            Tipo de patrón
+          </label>
+
+          <select
+            id="tipoPatron"
+            name="tipoPatron"
+            [(ngModel)]="tipoPatronN"
+            required
+            #tipoPatron="ngModel">
+
+            <option value="">
+              Seleccione una opción
+            </option>
+
+            @for (tipo of tiposPatronList; track tipo) {
+
+              <option [ngValue]="tipo">
+                {{ tipo.name }}
+              </option>
+
+            }
+
+          </select>
+
+        </div>
+
+        <!-- BREVE DESCRIPCION -->
+        <div class="campo-texto">
+
+          <label for="descripcionPatron">
+            Breve descripción
+          </label>
+
+          <input
+            id="descripcionPatron"
+            name="descripcionPatron"
+            type="text"
+            placeholder="Inserte una descripción"
+            [(ngModel)]="descripcionPatronN"
+          />
+
+        </div>
+
       </div>
 
-      <div class="card-content">
+    </div>
 
-        <div class="tbl-nuevo-workflow">
+  </div>
 
-          <!-- ===========================
-               FILA 1
-          ============================ -->
+  <!-- =======================================
+       DEPENDENCIAS
+  ======================================= -->
 
-          <div class="fila-doble">
+  <div class="serie-container">
 
-            <!-- Nombre -->
-            <div class="campo-texto">
-              <label>Nombre</label>
+    <div class="serie-content">
 
-              <input
-                type="text"
-                name="nombrePatron"
-                [(ngModel)]="nombrePatronN" />
-            </div>
+      <div class="serie-header">
 
-            <!-- Breve descripción -->
-            <div class="campo-texto">
-              <label>Breve descripción</label>
+        <span class="serie-title">
+          Dependencias
+        </span>
 
-              <input
-                type="text"
-                name="descripcionPatron"
-                [(ngModel)]="descripcionPatronN" />
-            </div>
+      </div>
 
-          </div>
+      <div class="asignacion-documentos">
 
-          <!-- ===========================
-               FILA 2
-          ============================ -->
+        <!-- PANEL IZQUIERDO -->
 
-          <div class="fila-simple">
+        <div class="panel-documentos">
 
-            <div class="campo-lista">
+          <div class="card-header">
 
-              <label>Tipo de patrón</label>
-
-              <select
-                name="tipoPatron"
-                [(ngModel)]="tipoPatronN">
-
-                <option value="">
-                  Seleccione una opción
-                </option>
-
-                @for(tipo of tiposPatronList; track tipo.id){
-
-                  <option [ngValue]="tipo">
-                    {{tipo.nombre}}
-                  </option>
-
-                }
-
-              </select>
-
-            </div>
-
-          </div>
-
-          <!-- ===========================
-               TITULO
-          ============================ -->
-
-          <div class="titulo-seccion">
-
-            <h4>Dependencias</h4>
-
-            <span>
-              Seleccione las dependencias que pertenecerán al patrón.
+            <span class="card-title">
+              Dependencias del Workflow
             </span>
 
           </div>
 
-          <!-- ===========================
-               TABLAS
-          ============================ -->
+          @for (dependencia of dependenciasWorkflowList; track dependencia) {
 
-          <div class="contenedor-dependencias">
+            <div class="check-row">
 
-            <!-- TABLA IZQUIERDA -->
+              <div class="checkbox">
 
-            <div class="tabla-dependencias">
-
-              <div class="tabla-header-container">
-
-                <div class="tabla-titulo">
-                  Dependencias del Workflow
-                </div>
+                <input
+                  type="checkbox"
+                  [(ngModel)]="dependencia.selected"
+                />
 
               </div>
 
-              <div class="tabla-body">
+              <span class="check-label">
 
-                @for(dep of dependenciasWorkflow; track dep.id){
+                {{ dependencia.nombre }}
 
-                  <div class="tabla-fila">
-
-                    <label>
-
-                      <input
-                        type="checkbox"
-                        [value]="dep" />
-
-                      {{dep.nombre}}
-
-                    </label>
-
-                  </div>
-
-                }
-
-              </div>
+              </span>
 
             </div>
 
-            <!-- BOTONES -->
+          }
 
-            <div class="acciones-dependencias">
+        </div>
 
-              <button
-                type="button"
-                class="btn-figma-pequeno"
-                (click)="asignarDependencias()">
+        <!-- BOTONES CENTRALES -->
 
-                <span class="btn-icon-pequeno">
-                  <img src="assets/img/add.svg">
-                </span>
+        <div class="panel-acciones">
 
-                Asignar
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="asignar()">
 
-              </button>
+            Asignar
 
-              <button
-                type="button"
-                class="btn-figma-pequeno"
-                (click)="retirarDependencias()">
+          </button>
 
-                <span class="btn-icon-pequeno">
-                  <img src="assets/img/remove.svg">
-                </span>
+          <button
+            class="btn btn-outline"
+            type="button"
+            (click)="retirar()">
 
-                Retirar
+            Retirar
 
-              </button>
+          </button>
 
-            </div>
+        </div>
+                <!-- PANEL DERECHO -->
 
-            <!-- TABLA DERECHA -->
+        <div class="panel-documentos">
 
-            <div class="tabla-dependencias">
+          <div class="card-header">
 
-              <div class="tabla-header-container">
-
-                <div class="tabla-titulo">
-                  Dependencias del patrón
-                </div>
-
-              </div>
-
-              <div class="tabla-body">
-
-                @for(dep of dependenciasPatron; track dep.id){
-
-                  <div class="tabla-fila">
-
-                    <label>
-
-                      <input
-                        type="checkbox"
-                        [value]="dep" />
-
-                      {{dep.nombre}}
-
-                    </label>
-
-                  </div>
-
-                }
-
-              </div>
-
-            </div>
+            <span class="card-title">
+              Dependencias del Patrón
+            </span>
 
           </div>
 
-                  </div>
+          @for (dependencia of dependenciasPatronList; track dependencia) {
+
+            <div class="check-row">
+
+              <div class="checkbox">
+
+                <input
+                  type="checkbox"
+                  [(ngModel)]="dependencia.selected"
+                />
+
+              </div>
+
+              <span class="check-label">
+
+                {{ dependencia.nombre }}
+
+              </span>
+
+            </div>
+
+          }
+
+        </div>
 
       </div>
 
     </div>
 
-    <!-- =======================================
-         BOTONES FINALES
-    ======================================= -->
+  </div>
 
-    <div class="botones-nuevo-grupo">
+  <!-- =======================================
+       BOTONES
+  ======================================= -->
 
-      <button
-        class="btn-figma"
-        type="submit"
-        (click)="save()">
+  <div class="botones-nuevo-grupo">
 
-        <span class="btn-icon">
-          <img
-            src="assets/img/save.svg"
-            alt="Guardar" />
-        </span>
+    <button
+      class="btn-figma"
+      type="submit"
+      (click)="save()">
 
-        Guardar
+      <span class="btn-icon">
+        <img src="assets/img/save.svg" alt="Guardar" />
+      </span>
 
-      </button>
+      Guardar
 
-      @if (editMode()) {
+    </button>
 
-        <button
-          class="btn-figma"
-          type="button"
-          (click)="delete()">
-
-          <span class="btn-icon">
-            <img
-              src="assets/img/trash.svg"
-              alt="Eliminar" />
-          </span>
-
-          Eliminar
-
-        </button>
-
-      }
+    @if (editMode()) {
 
       <button
         class="btn-figma"
         type="button"
-        (click)="cancel()">
+        (click)="delete()">
 
         <span class="btn-icon">
-          <img
-            src="assets/img/cancel.svg"
-            alt="Cancelar" />
+          <img src="assets/img/trash.svg" alt="Eliminar" />
         </span>
 
-        Cancelar
+        Eliminar
 
       </button>
 
-    </div>
+    }
 
-  </form>
+    <button
+      class="btn-figma"
+      type="button"
+      (click)="cancel()">
+
+      <span class="btn-icon">
+        <img src="assets/img/cancel.svg" alt="Cancelar" />
+      </span>
+
+      Cancelar
+
+    </button>
+
+  </div>
 
 </div>
+
+</form>

@@ -16,6 +16,9 @@ import { MigworkflowEntity } from './migworkflow.entity';
  * Incluye búsquedas, CRUD y gestión de permisos/restricciones.
  */
 export class MigworkflowService {
+  getUsersRol(arg0: string) {
+    throw new Error('Method not implemented.');
+  }
   constructor(
     private http: HttpClient,
     private cookieService: CookieService,

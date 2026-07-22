@@ -720,7 +720,7 @@
           "
           (click)="
             $event.stopPropagation();
-            irA('/main-page/importarworkflow')
+            irA('/main-page/migWorkflow')
           "
         >
           <div class="row">
@@ -2328,11 +2328,11 @@
 
       <!-- SUBMENÚ LOGS -->
       <div class="submenu" *ngIf="isOpenVisibilidad">
-        <!-- Administrar Logs -->
+        <!-- Distribuir tareas -->
         <div
           class="section-white"
-          *ngIf="opcionesPermitidas.includes('Administrar logs')"
-          (click)="$event.stopPropagation(); irA('/main-page/administrarLogs')"
+          *ngIf="opcionesPermitidas.includes('Distribuir tareas')"
+          (click)="$event.stopPropagation(); irA('/main-page/distribuirTareas')"
         >
           <div class="row">
             <div class="row-text">

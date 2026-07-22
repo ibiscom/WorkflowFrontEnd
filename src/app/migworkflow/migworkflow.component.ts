@@ -27,9 +27,9 @@ export class MigworkflowComponent {
   public migworkflows: MigworkflowEntity[] = [];
   public companias: CompanyEntity[] = [];
   public mensaje: string = '';
-name: any;
-largename: any;
-migworkflow: any;
+  public name: any;
+  public largename: any;
+  public migworkflow: any;
 
   constructor(
     private migworkflowService: MigworkflowService,
@@ -47,36 +47,38 @@ migworkflow: any;
     }
   
     public buscarMigworkflows(filtros?: MigworkflowFilterEntity): void {
-      this.migworkflowService
-        .getUsersRol(filtros?.userLogin || '')
-        .subscribe({
-          next: (response) => {
-            this.migworkflows = response.respuesta;
-            this.mensaje = '';
-          },
-          error: (err) => {
-            this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_OBTENIENDO_RESPONSABLES,
-              err,
-            );
-          },
-        });
-    }
-  
-      public obtenerMigworkflows(): void {
-    this.migworkflowService
-      .getUsersRol('')
-      .subscribe({
-        next: (response) => {
+      const response$ = this.migworkflowService.getUsersRol(
+        filtros?.userLogin || '',
+      ) as any;
+
+      response$?.subscribe({
+        next: (response: any) => {
           this.migworkflows = response.respuesta;
+          this.mensaje = '';
         },
-        error: (err) => {
+        error: (err: any) => {
           this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-            Constants.ERR_OBTENIENDO_RESPONSABLESS,
+            Constants.ERR_OBTENIENDO_RESPONSABLES,
             err,
           );
         },
       });
+    }
+  
+      public obtenerMigworkflows(): void {
+    const response$ = this.migworkflowService.getUsersRol('') as any;
+
+    response$?.subscribe({
+      next: (response: any) => {
+        this.migworkflows = response.respuesta;
+      },
+      error: (err: any) => {
+        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          Constants.ERR_OBTENIENDO_RESPONSABLESS,
+          err,
+        );
+      },
+    });
 
   }
 
