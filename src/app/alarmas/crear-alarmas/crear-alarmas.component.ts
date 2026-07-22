@@ -357,7 +357,7 @@ public async ngOnInit(): Promise<void> {
 
 
 /**
-   * TCampos que se visualizan al seleccionar un tipo de alarma
+   * Campos que se visualizan al seleccionar un tipo de alarma
    */
   
 public mostrarTarea = true;

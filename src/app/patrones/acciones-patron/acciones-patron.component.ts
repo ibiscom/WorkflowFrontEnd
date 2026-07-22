@@ -32,7 +32,7 @@ export class AccionesPatronComponent {
    * Navega a la pantalla de creación de patrons.
    */
   public irACrearPatron() {
-    this.router.navigate([`/main-page/patrons/crearPatron`]);
+    this.router.navigate([`/main-page/patrones/crearPatron`]);
   }
 }
 
