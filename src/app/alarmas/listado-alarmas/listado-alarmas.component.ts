@@ -32,9 +32,9 @@ export class ListadoAlarmasComponent {
   /**
    * Navega a la pantalla de edición del atributo de objeto workflow seleccionado.
    */
-  public goToEditarAlarma(atributo: AlarmaEntity) {
+  public goToEditarAlarma(alarma: AlarmaEntity) {
     this.parent.router.navigate([
-      `/main-page/alarmas/editarAlarma/${atributo.nombre}`,
+      `/main-page/alarmas/editarAlarma/${alarma.id}`,
     ]);
   }
 
@@ -52,6 +52,6 @@ export class ListadoAlarmasComponent {
       this.currentPage++;
       this.parent.buscarAlarma(); // ajusta si tu método se llama diferente
     }
-  }
+
 }
 

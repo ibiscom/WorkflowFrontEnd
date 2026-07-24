@@ -144,34 +144,38 @@ public async ngOnInit(): Promise<void> {
         this.alarmaService.obtenerAlarmas(this.uc?.workflowActual  ?? '')
       );
       if (response?.respuesta) {
-        const atributos = response.respuesta as AlarmaEntity[];
-        const atributo = atributos.find(attr => attr.nombre === this.atrAlarmaIdEdit);
+        const alarmas = response.respuesta as AlarmaEntity[];
+        const alarma = alarmas.find(
+          (attr) => String(attr.id) === String(this.atrAlarmaIdEdit),
+        );
        
         this.workflowActual = this.uc?.workflowActual ?? '';
-        this.nombreN = atributo?.nombre ?? '';
-        this.nombrelargoN = atributo?.nombrelargo ?? '';
-        this.fechaCreacionN = atributo?.fechaCreacion ?? '';
-        this.descripcionN = atributo?.descripcion ?? '';
-        this.estadoN = atributo?.estado ?? '';
-        this.nombreWorkflowN = atributo?.nombreWorkflow ?? '';
-        this.numeroN = atributo?.numero ?? '';
-        this.tipoN = atributo?.tipo ?? '';
-        this.idN = atributo?.id ?? 0;
-        this.estadoTareaN = atributo?.estadoTarea ?? '';
-        this.diaAvisoN = atributo?.diaAviso ?? 0;
-        this.horaAvisoN = atributo?.horaAviso ?? 0;
-        this.minutosAvisoN = atributo?.minutosAviso ?? 0;
-        this.segundosAvisoN = atributo?.segundosAviso ?? 0;
-        this.diaLimiteN = atributo?.diaLimite ?? 0;
-        this.horaLimiteN = atributo?.horaLimite ?? 0;
-        this.minutosLimiteN = atributo?.minutosLimite ?? 0;
-        this.segundosLimiteN = atributo?.segundosLimite ?? 0;
-        this.tareaInmediataN = atributo?.tareaInmediata ?? true;
-        this.estadoNoEjecucionN = atributo?.estadoNoEjecucion ?? '';
-        this.incluirResponsableN = atributo?.incluirResponsable ?? true;
-        this.nombreAtributoN = atributo?.nombreAtributo ?? '';
-        this.valorN = atributo?.valor ?? '';
-        this.tipoTareaTiempoN = atributo?.tipoTareaTiempo ?? '';
+        this.nombreN = alarma?.tarea?.nombre ?? '';
+        this.nombrelargoN = alarma?.tarea?.nombreLargo ?? '';
+        this.fechaCreacionN = alarma?.workflow?.fechaCreacion ?? '';
+        this.descripcionN = alarma?.tarea?.descripcion ?? '';
+        this.estadoN = alarma?.workflow?.estado ?? '';
+        this.nombreWorkflowN =
+          alarma?.tarea?.nombreWorkflow ?? alarma?.workflow?.nombre ?? '';
+        this.numeroN = String(alarma?.tarea?.numero ?? '');
+        this.tipoN = alarma?.tipo ?? '';
+        this.idN = alarma?.id ?? 0;
+        this.estadoTareaN = alarma?.estadoTarea ?? '';
+        this.diaAvisoN = alarma?.diaAviso ?? 0;
+        this.horaAvisoN = alarma?.horaAviso ?? 0;
+        this.minutosAvisoN = alarma?.minutosAviso ?? 0;
+        this.segundosAvisoN = alarma?.segundosAviso ?? 0;
+        this.diaLimiteN = alarma?.diaLimite ?? 0;
+        this.horaLimiteN = alarma?.horaLimite ?? 0;
+        this.minutosLimiteN = alarma?.minutosLimite ?? 0;
+        this.segundosLimiteN = alarma?.segundosLimite ?? 0;
+        this.tareaInmediataN = alarma?.tareaInmediata ?? true;
+        this.estadoNoEjecucionN = alarma?.estadoNoEjecucion ?? '';
+        this.incluirResponsableN = alarma?.incluirResponsable ?? true;
+        this.nombreAtributoN = alarma?.nombreAtributo ?? '';
+        this.valorN = alarma?.valorAtributo ?? '';
+        this.tipoTareaTiempoN = alarma?.atributos?.[0]?.tipoTareaTiempo ?? '';
+        this.atributos = alarma?.atributos ?? [];
         
       }
     } catch (e) {

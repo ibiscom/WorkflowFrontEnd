@@ -62,11 +62,11 @@ export class AlarmaService {
    * @param nombreWorkflow El nombre del workflow al que pertenecen los atributos de objeto workflow a obtener.
    * @returns Observable con la respuesta del servidor y la lista de atributos de objeto workflow.
    */
-  public obtenerAlarmas(nombreWorkflow: string): Observable<FsResponseEntity<AlarmaEntity[]>> {
+  public obtenerAlarmas(workflowActual: string): Observable<FsResponseEntity<AlarmaEntity[]>> {
     let ip: string = this.cookieService.get('ip');
     return this.http.get<FsResponseEntity<AlarmaEntity[]>>(
       environment.workflowApiUrl + 
-        `/Alarm/getAlarms=${nombreWorkflow}`,
+        `/Alarm/getAlarms?workflowName=${workflowActual}`,
     );
   }
 
