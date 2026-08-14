@@ -15,9 +15,7 @@ import { ListarTareasEntity } from '../listar-tareas.entity';
  * Listado de listartareas con navegación a la edición y utilidades de presentación.
  */
 export class ListadoListarTareaComponent {
-abrirVentana(_t152: ListarTareasEntity) {
-throw new Error('Method not implemented.');
-}
+
   // 🔹 Variables de paginación
   public currentPage: number = 1;
   public numberOfPages: number = 1;
@@ -53,7 +51,7 @@ throw new Error('Method not implemented.');
   public previousPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
-      this.parent.buscarListarTareas(); // ajusta si tu método se llama diferente
+      this.parent.buscarListarTareas(this.currentPage); // ajusta si tu método se llama diferente
     }
   }
 
@@ -61,7 +59,11 @@ throw new Error('Method not implemented.');
   public nextPage(): void {
     if (this.currentPage < this.numberOfPages) {
       this.currentPage++;
-      this.parent.buscarListarTareas(); // ajusta si tu método se llama diferente
+      this.parent.buscarListarTareas(this.currentPage); // ajusta si tu método se llama diferente
     }
+  }
+
+  public abrirVentana(tarea: ListarTareasEntity) {
+    this.parent.router.navigate([`/main-page/listarTareas/mostrarHerramienta/${tarea.idInstanciaWorkflow}/${tarea.numero}`]);
   }
 }

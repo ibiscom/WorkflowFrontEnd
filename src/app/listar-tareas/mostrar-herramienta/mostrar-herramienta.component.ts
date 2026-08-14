@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ActivatedRoute } from '@angular/router';
+import { VisualizadorHerramientaComponent } from '../visualizador-herramienta/visualizador-herramienta.component';
 
 @Component({
   selector: 'ibpm-mostrar-herramienta',
   standalone: true,
-  imports: [MatTabsModule],
+  imports: [MatTabsModule, VisualizadorHerramientaComponent],
   templateUrl: './mostrar-herramienta.component.html',
   styleUrl: './mostrar-herramienta.component.scss',
 })
@@ -72,6 +73,13 @@ export class MostrarHerramientaComponent {
   ];
 
   // =====================================
+  // INFORMACIÓN DE LA HERRAMIENTA
+  // =====================================
+  public infoHerramienta: any = {};
+  public infoHerramientaCargada: boolean = false;
+    
+
+  // =====================================
   // ACCIONES
   // =====================================
   constructor(private route: ActivatedRoute) {}
@@ -95,8 +103,37 @@ export class MostrarHerramientaComponent {
   }
 
  public consultarTarea() {
-  throw new Error('Function not implemented.');
- } 
-}
+   //TODO: Implementar la lógica para consultar la información de la tarea y del proceso usando los identificadores recibidos.
+   
+   this.invocarHerramienta();
+  }
+
+  public invocarHerramienta() {
+    //TODO : Implementar llamado de los servicios que traen la informacion de la herramienta para que se arme este objeto.
+    //TODO: invocar metodo /rs/v1/taskList/loadTask para traer los datos que armman este JSON. completar este componente para que traiga del listar tareas el nombre del workflow para invcarlo.
+    //para prueba integracion, usar el proceso de Proyectar Documento inicialmente
+    this.infoHerramienta = {
+      idFormulario: "24772",
+      tipoFormulario: "Captura",
+      numHerramienta: 15234,
+      cadenaRepresentacion: "/HTM/InvocarFormulario.iface",
+      objetosWorkflow: {
+        tipoRadicado: "Interno",
+        Clasificado: "",
+        idProyeccion: "260538",
+        municipio: "",
+        "¿Requiere ajustes?": "NO",
+        "¿Requiere trasladar?": "",
+        instancia: "2254098",
+        "¿Documento a radicar?": "NO",
+        Firmado: "",
+        compania: "6",
+        departamento: ""
+      }
+    };
+    this.infoHerramientaCargada = true;
+  }
+
+ }
 
 

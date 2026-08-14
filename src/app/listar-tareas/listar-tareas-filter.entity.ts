@@ -1,44 +1,44 @@
 export interface ListarTareaFilterEntity {
 /** id del workflow */
-  idInstanciaWorkflow: string;
+  idInstanciaWorkflow?: string;
   /** Nombre del workflow */
-  nombreWorkflow: string;
+  nombreWorkflow?: string;
   /** Número */
-  numero: string;
+  numero?: string;
   /** Nombre  */
-  nombre: string;
+  nombre?: string;
   /** Fecha de creación del listartarea */
-  estado: Date;
+  estado?: Date;
   /** Id instancia workflow padre del listartarea */
-  idInstanciaWorkflowPadre: string;
+  idInstanciaWorkflowPadre?: string;
   /** Nombre workflowpadre */
-  nombreWorkflowPadre: string;
+  nombreWorkflowPadre?: string;
   /** fecha asignación */
-  fechaAsignacion: Date;
+  fechaAsignacion?: Date;
   /** nombre largo tarea */
-  nombreLargoTarea: string;
+  nombreLargoTarea?: string;
   /** nombre largo proceso */
-  nombreLargoProceso: string;
+  nombreLargoProceso?: string;
   /** nombre largo proceso padre */
-  nombreLargoProcesoPadre: string;
+  nombreLargoProcesoPadre?: string;
   /** responsable*/
   responsable: string;
   /** valor negocio */
-  valorNegocio: string;
+  valorNegocio?: string;
   /** valor negocio 2 */
-  valorNegocio2: string;
+  valorNegocio2?: string;
   /** valor negocio 3 */
-  valorNegocio3: string;
+  valorNegocio3?: string;
   /** valor negocio 4 */
-  valorNegocio4: string;
+  valorNegocio4?: string;
   /** días vencimiento */
-  diasVencimiento: string;
+  diasVencimiento?: string;
   /** imagenes semaforo */
-  imagenesSemaforo: string[];
+  imagenesSemaforo?: string[];
     /** fecha desde */
-  fechaDesde: string[];
+  fechaDesde?: string[];
     /** fecha hasta */
-  fechaHasta: string[];
+  fechaHasta?: string[];
 }
 
 
