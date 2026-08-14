@@ -58,11 +58,12 @@ throw new Error('Method not implemented.');
     const filtros = {
       nombre: this.nombreN,
       estado: this.estadoObjectN,
-      nombreWorkflow: this.nombreWorkFlowN
-    } as unknown as ListarTareaFilterEntity;
+      nombreWorkflow: this.nombreWorkFlowN,
+      responsable: this.loggedUser?.user_name || '',
+    } as ListarTareaFilterEntity;
 
     this.uc?.buscarListarTareas(
-      filtros
+     1, filtros
     );
   }
 

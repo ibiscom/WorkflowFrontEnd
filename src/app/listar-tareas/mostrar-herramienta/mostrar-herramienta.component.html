@@ -277,3 +277,7 @@
   </mat-tab>
 
 </mat-tab-group>
+@if(infoHerramientaCargada) {
+     <!-- Aquí se invoca el componente ibpm-visualizador-herramienta -->
+    <ibpm-visualizador-herramienta [infoHerramienta]="infoHerramienta"></ibpm-visualizador-herramienta>
+}
