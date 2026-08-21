@@ -1,20 +1,22 @@
 import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { FinalizarprocesoComponent } from '../finalizarproceso.component';
-import { FinalizarprocesoService } from '../finalizarproceso.service';
+import { DistribuirtareaComponent } from '../distribuirtarea.component';
+import { DistribuirtareaService } from '../distribuirtarea.service';
 import { LoginEntity } from '../../login/login.entity';
 
 @Component({
-  selector: 'ibpm-filtros-busqueda-finalizarproceso',
+  selector: 'ibpm-filtros-busqueda-distribuirtarea',
   imports: [FormsModule],
-  templateUrl: './filtros-busqueda-finalizarproceso.component.html',
-  styleUrl: './filtros-busqueda-finalizarproceso.component.scss',
+  templateUrl: './filtros-busqueda-distribuirtarea.component.html',
+  styleUrl: './filtros-busqueda-distribuirtarea.component.scss',
 })
-export class FiltrosBusquedaFinalizarprocesoComponent {
+export class FiltrosBusquedaDistribuirtareaComponent {
+idNegocio: any;
+getListaResponsables($event: any) {
+throw new Error('Method not implemented.');
+}
   public tareasNameF: string = '';
   public supervisorF: string = '';
-  public fechaInicial: string = '';
-fechaFinal: string = '';
 
   // 🔹 Estado seleccionado
   public companyObjectN: any = null;
@@ -25,10 +27,15 @@ fechaFinal: string = '';
   // Manejo del switch
   public generateReportF: string = 'false';
 
-  @Input() public uc?: FinalizarprocesoComponent;
+  @Input() public uc?: DistribuirtareaComponent;
   public loggedUser: LoginEntity | undefined;
+responsableSeleccionado: any;
+responsables: any;
+cuentaUsuario: any;
+instancia: any;
+estado: any;
 
-  constructor(private tareasService: FinalizarprocesoService) {}
+  constructor(private tareasService: DistribuirtareaService) {}
 
   ngOnInit(): void {
     this.loggedUser = this.uc?.loggedUser;
@@ -77,8 +84,6 @@ fechaFinal: string = '';
     );
 
     // Tu lógica actual aquí
-
-    
   }
 }
 

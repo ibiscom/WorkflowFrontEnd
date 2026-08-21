@@ -1,16 +1,19 @@
 import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { FinalizarprocesoComponent } from '../finalizarproceso.component';
-import { FinalizarprocesoService } from '../finalizarproceso.service';
+import { SimulacionComponent } from '../simulacion.component';
+import { SimulacionService } from '../simulacion.service';
 import { LoginEntity } from '../../login/login.entity';
 
 @Component({
-  selector: 'ibpm-filtros-busqueda-finalizarproceso',
+  selector: 'ibpm-filtros-busqueda-simulacion',
   imports: [FormsModule],
-  templateUrl: './filtros-busqueda-finalizarproceso.component.html',
-  styleUrl: './filtros-busqueda-finalizarproceso.component.scss',
+  templateUrl: './filtros-busqueda-simulacion.component.html',
+  styleUrl: './filtros-busqueda-simulacion.component.scss',
 })
-export class FiltrosBusquedaFinalizarprocesoComponent {
+export class FiltrosBusquedaSimulacionComponent {
+onEventoInicioChange($event: any) {
+throw new Error('Method not implemented.');
+}
   public tareasNameF: string = '';
   public supervisorF: string = '';
   public fechaInicial: string = '';
@@ -25,10 +28,10 @@ fechaFinal: string = '';
   // Manejo del switch
   public generateReportF: string = 'false';
 
-  @Input() public uc?: FinalizarprocesoComponent;
+  @Input() public uc?: SimulacionComponent;
   public loggedUser: LoginEntity | undefined;
 
-  constructor(private tareasService: FinalizarprocesoService) {}
+  constructor(private tareasService: SimulacionService) {}
 
   ngOnInit(): void {
     this.loggedUser = this.uc?.loggedUser;
@@ -56,14 +59,14 @@ fechaFinal: string = '';
   public search(): void {
     const generateReportBool = this.generateReportF === 'true';
 
-    this.searchFinalizarproceso(
+    this.searchSimulacion(
       this.tareasNameF,
       this.supervisorF,
       generateReportBool
     );
   }
 
-  public searchFinalizarproceso(
+  public searchSimulacion(
     tareasName: string,
     supervisor: string,
     generateReport: boolean

@@ -8,10 +8,10 @@
   <!-- BODY -->
   <div class="tabla-body">
 
-    <!-- COLUMNA: USERNAME -->
+    <!-- COLUMNA: NOMBRE DE ROL -->
     <div class="tabla-columna">
       <div class="tabla-col-header">
-        <div>userName</div>
+        <div>Nombre de rol</div>
       </div>
 
       @for (element of parent.responsables; track element) {
@@ -25,27 +25,10 @@
       }
     </div>
 
-    <!-- COLUMNA:  NOMBRES -->
+    <!-- COLUMNA: DESCRIPCION -->
     <div class="tabla-columna">
       <div class="tabla-col-header">
-        <div>Nombres</div>
-      </div>
-
-      @for (element of parent.responsables; track element) {
-        <ng-container>
-          <div class="tabla-celda">
-            <div (click)="goToEditarResponsable(element)">
-              {{ element.descripcion }}
-            </div>
-          </div>
-        </ng-container>
-      }
-    </div>
-
-    <!-- COLUMNA: APELLIDOS -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header">
-        <div>Apellidos</div>
+        <div>Descripción</div>
       </div>
 
       @for (element of parent.responsables; track element) {
@@ -59,23 +42,6 @@
       }
     </div>
 
-       <!-- COLUMNA: ES RESPONSABLE -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header">
-        <div>Es responsable</div>
-      </div>
-
-      @for (element of parent.responsables; track element) {
-        <ng-container>
-          <div class="tabla-celda">
-            <div (click)="goToEditarResponsable(element)">
-              {{ element.supervisor }}
-            </div>
-          </div>
-        </ng-container>
-      }
-    </div>
-  </div>
 
   <!-- FOOTER 
   <div class="tabla-footer">

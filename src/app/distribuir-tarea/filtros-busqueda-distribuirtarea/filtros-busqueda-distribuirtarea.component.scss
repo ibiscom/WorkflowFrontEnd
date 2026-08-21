@@ -353,73 +353,28 @@
   margin-top: 24px;
 }
 
-/* =======================================
-   CAMPOS FECHA
-======================================= */
+.fila-filtros-tres {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 24px;
+  align-items: end;
+}
 
-.campo-fecha-filtro {
-  width: 100%;
+.fila-tres-columnas{
+  display:grid;
+  grid-template-columns: 2fr auto 2fr;
+  gap:24px;
+  align-items:end;
+}
 
+.fila-id-negocio {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: end;
+}
+
+.campo-boton-filtro {
   display: flex;
-  flex-direction: column;
-
-  background: #ffffff;
-
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-
-  position: relative;
-}
-
-.campo-fecha-filtro label {
-  padding: 4px 16px;
-
-  display: flex;
-  align-items: center;
-
-  font-family: Roboto, sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0.5px;
-
-  color: #49454F;
-}
-
-.campo-fecha-filtro input {
-  width: 100%;
-
-  padding: 4px 16px 8px;
-
-  border: none;
-  outline: none;
-
-  background: transparent;
-
-  font-family: Roboto, sans-serif;
-  font-size: 16px;
-
-  color: #1B1B1B;
-
-  cursor: pointer;
-}
-
-.campo-fecha-filtro::after {
-  content: "";
-
-  width: 100%;
-  height: 1px;
-
-  background: #49454F;
-}
-
-/* Icono calendario */
-
-.campo-fecha-filtro input::-webkit-calendar-picker-indicator {
-  cursor: pointer;
-  opacity: .8;
-}
-
-.campo-fecha-filtro input::-webkit-calendar-picker-indicator:hover {
-  opacity: 1;
+  align-items: flex-end;
 }

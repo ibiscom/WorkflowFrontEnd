@@ -1,6 +1,6 @@
 <!-- FILTROS -->
-<ibpm-filtros-busqueda-finalizarproceso [uc]="this.parent" style="width: 100%">
-</ibpm-filtros-busqueda-finalizarproceso>
+<ibpm-filtros-busqueda-simulacion [uc]="this.parent" style="width: 100%">
+</ibpm-filtros-busqueda-simulacion>
 
 <!-- TARJETA TABLA -->
 <div class="tabla-card">
@@ -13,7 +13,7 @@
   <div class="tabla-body">
 
 
-<<!-- COLUMNA: TERMINAR -->
+<!-- COLUMNA: TERMINAR -->
 <div class="tabla-columna">
 
   <div class="tabla-col-header">
@@ -28,7 +28,7 @@
 
   </div>
 
-  @for (element of parent.finalizarproceso; track element) {
+  @for (element of parent.simulacion; track element) {
 
     <div class="tabla-celda">
 
@@ -50,7 +50,7 @@
         <div>Instancia</div>
       </div>
 
-      @for (element of parent.finalizarproceso; track element) {
+      @for (element of parent.simulacion; track element) {
         <ng-container>
           <div class="tabla-celda">
              <div>
@@ -67,7 +67,7 @@
         <div>Proceso</div>
       </div>
 
-      @for (element of parent.finalizarproceso; track element) {
+      @for (element of parent.simulacion; track element) {
         <ng-container>
           <div class="tabla-celda">
             <div>
@@ -84,7 +84,7 @@
         <div>Fecha de Inicio</div>
       </div>
 
-      @for (element of parent.finalizarproceso; track element) {
+      @for (element of parent.simulacion; track element) {
         <ng-container>
           <div class="tabla-celda">
             <div>

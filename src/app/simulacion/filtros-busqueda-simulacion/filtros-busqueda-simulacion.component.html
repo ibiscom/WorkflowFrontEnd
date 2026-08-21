@@ -36,9 +36,9 @@
           </select>
         </div>
 
-        <!-- NÚMERO DE INSTANCIA -->
+        <!-- INSTANCIA -->
         <div class="campo-texto-filtro">
-          <label>Número de instancia</label>
+          <label>Instancia</label>
 
           <input
             type="text"
@@ -54,51 +54,17 @@
 <!-- ========================= -->
 <div class="fila-filtros">
 
-  <!-- FECHA INICIAL -->
-  <div class="campo-fecha-filtro">
-    <label>Fecha inicial</label>
-
-    <input
-      type="date"
-      [(ngModel)]="fechaInicial"
-      (keydown.enter)="search()" />
-  </div>
-
-  <!-- FECHA FINAL -->
-  <div class="campo-fecha-filtro">
-    <label>Fecha final</label>
-
-    <input
-      type="date"
-      [(ngModel)]="fechaFinal"
-      (keydown.enter)="search()" />
-  </div>
-
-</div>
-      <!-- ========================= -->
-      <!-- FILA 3 -->
-      <!-- ========================= -->
-      <div class="fila-filtros">
-
-        <!-- OBSERVACIONES -->
-        <div class="campo-texto-filtro">
-          <label>Observaciones</label>
-
-          <input
-            type="text"
-            [(ngModel)]="tareasNameF"
-            placeholder="Inserte observaciones"
-            (keydown.enter)="search()" />
-        </div>
-
-        <!-- NOMBRE DEL RESPONSABLE -->
+  <!-- NOMBRE EVENTO DE INICIO -->
         <div class="campo-lista">
-
-          <label>Nombre del responsable</label>
+          <label>Nombre evento de inicio</label>
 
           <select
-            [(ngModel)]="companyObjectN"
-            (ngModelChange)="onCompanyChange($event)">
+            id="eventoInicio"
+            name="eventoInicio"
+            [(ngModel)]="eventoInicio"
+            required
+            #eventoInicio="ngModel"
+            (ngModelChange)="onEventoInicioChange($event)">
 
             <option value="">Seleccione una opción</option>
 
@@ -109,7 +75,30 @@
             }
 
           </select>
+        </div>
+      <!-- ========================= -->
+      <!-- FILA 3 -->
+      <!-- ========================= -->
+      <div class="fila-filtros">
 
+        <!-- ATRIBUTO -->
+        <div class="campo-texto-filtro">
+          <label>Atributo</label>
+
+          <input
+            type="text"
+            [(ngModel)]="tareasNameF"
+            (keydown.enter)="search()" />
+        </div>
+
+        <!-- VALOR ATRIBUTO -->
+        <div class="campo-texto-filtro">
+          <label>Valor del atributo</label>
+
+          <input
+            type="text"
+            [(ngModel)]="tareasNameF"
+            (keydown.enter)="search()" />
         </div>
 
       </div>
@@ -119,11 +108,11 @@
 
         <button class="btn-figma" (click)="search()">
           <span class="btn-icon">
-            <img src="assets/img/search.svg" alt="Finalizar proceso" />
+            <img src="assets/img/search.svg" alt="Simular proceso" />
           </span>
 
           <span class="label">
-            Finalizar proceso
+            Simular proceso
           </span>
         </button>
 

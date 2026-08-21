@@ -50,6 +50,14 @@ import { PatronComponent } from './patrones/patron.component';
 import { ListadoPatronComponent } from './patrones/listado-patron/listado-patron.component';
 import { ListadoMigworkflowComponent } from './migworkflow/listado-migworkflow/listado-migworkflow.component';
 import { MigworkflowComponent } from './migworkflow/migworkflow.component';
+import { FinalizarprocesoComponent } from './finalizarproceso/finalizarproceso.component';
+import { ListadoFinalizarprocesoComponent } from './finalizarproceso/listado-finalizarproceso/listado-finalizarproceso.component';
+import { ListadoDistribuirtareaComponent } from './distribuir-tarea/listado-distribuirtarea/listado-distribuirtarea.component';
+import { DistribuirtareaComponent } from './distribuir-tarea/distribuirtarea.component';
+import { ConsultarRolResponsableComponent } from './consultarrolresponsable/consultarrolresponsable.component';
+import { ListadoConsultarRolResponsableComponent } from './consultarrolresponsable/listado-consultarrolresponsable/listado-consultarrolresponsable.component';
+import { SimulacionComponent } from './simulacion/simulacion.component';
+import { ListadoSimulacionComponent } from './simulacion/listado-simulacion/listado-simulacion.component';
 
 export const CanActivateGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -462,6 +470,77 @@ export const routes: Routes = [
           {
             path: 'listadoMigWorkflow',
             component: ListadoMigworkflowComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+
+      {
+        path: 'finalizarProceso',
+        component: FinalizarprocesoComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoFinalizarProceso',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoFinalizarProceso',
+            component: ListadoFinalizarprocesoComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+
+      {
+        path: 'distribuirTarea',
+        component: DistribuirtareaComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoDistribuirtarea',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoDistribuirtarea',
+            component: ListadoDistribuirtareaComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+            {
+        path: 'consultarroldelresponsable',
+        component: ConsultarRolResponsableComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoConsultarRolResponsable',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoConsultarRolResponsable',
+            component: ListadoConsultarRolResponsableComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+
+                  {
+        path: 'Simulación',
+        component: SimulacionComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoSimulacion',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoSimulacion',
+            component: ListadoSimulacionComponent,
             canActivate: [CanActivateGuard],
           },
         ],
