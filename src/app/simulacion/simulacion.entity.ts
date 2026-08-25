@@ -2,6 +2,12 @@
  * Entidad que representa una tarea en el sistema.
  */
 export interface SimulacionEntity {
+accion: any;
+fechaAsignacion: any;
+fechaEjecucion: any;
+fechaTerminacion: any;
+oportunidad: any;
+numTarea: any;
 seleccionado: any;
 terminar: any;
 instancia: any;

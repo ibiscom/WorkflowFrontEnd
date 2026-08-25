@@ -1,8 +1,12 @@
+<!-- FILTROS -->
+<ibpm-filtros-busqueda-migworkflow [uc]="this.parent" style="width: 100%">
+</ibpm-filtros-busqueda-migworkflow>
+
 <!-- TARJETA TABLA -->
 <div class="tabla-card">
   <!-- HEADER -->
   <div class="tabla-header-container">
-    <div class="tabla-titulo">Listado de migworkflow</div>
+    <div class="tabla-titulo">Listado de procesos</div>
   </div>
 
   <!-- BODY -->
@@ -50,23 +54,6 @@
       }
     </div>
 
-       <!-- COLUMNA: ES RESPONSABLE -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header">
-        <div>Es responsable</div>
-      </div>
-
-      @for (element of parent.migworkflow; track element) {
-        <ng-container>
-          <div class="tabla-celda">
-            <div (click)="goToEditarMigworkflow(element)">
-              {{ element.esResponsable }}
-            </div>
-          </div>
-        </ng-container>
-      }
-    </div>
-  </div>
 
   <!-- FOOTER 
   <div class="tabla-footer">
