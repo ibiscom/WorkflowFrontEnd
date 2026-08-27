@@ -143,21 +143,18 @@
 .fila-responsable {
   width: 100%;
 
-  display: grid;
+  display: flex;
 
-  grid-template-columns: 1fr auto;
+  align-items: flex-end;
 
   gap: 24px;
-
-  align-items: end;
 }
-
 /* =======================================
    CAMPO LISTA
 ======================================= */
 
 .campo-lista {
-  width: 100%;
+  width: 50%;
 
   min-width: 0;
 
@@ -292,6 +289,8 @@
   white-space: nowrap;
 
   height: fit-content;
+
+  width: fit-content;
 }
 
 .btn-figma:hover {
