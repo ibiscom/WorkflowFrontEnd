@@ -37,7 +37,7 @@
 }
 
 /* =======================================
-   TITULO
+   TÍTULO
 ======================================= */
 
 .filtros-titulo {
@@ -55,69 +55,35 @@
 }
 
 /* =======================================
-   FILAS
+   FILA 1
+   PREGUNTA + RADIO BUTTONS
 ======================================= */
 
 .fila-filtros {
-  display: grid;
-
-  grid-template-columns: repeat(2, 1fr);
-
-  gap: 24px;
-
-  width: 100%;
-}
-
-.fila-filtros-fila3 {
-  display: flex;
-
-  align-items: flex-end;
-
-  gap: 24px;
-
-  flex-wrap: wrap;
-}
-
-/* responsive */
-
-@media (max-width: 900px) {
-
-  .fila-filtros {
-    grid-template-columns: 1fr;
-  }
-
-  .fila-filtros-fila3 {
-    flex-direction: column;
-
-    align-items: stretch;
-  }
-}
-
-/* =======================================
-   CAMPOS TEXTO
-======================================= */
-
-.campo-texto-filtro {
   width: 100%;
 
   display: flex;
 
   flex-direction: column;
 
-  background: var(--Schemes-Surface-Container-Lowest, #ffffff);
-
-  border-top-left-radius: 4px;
-
-  border-top-right-radius: 4px;
+  gap: 12px;
 }
 
-.campo-texto-filtro label {
-  padding: 4px 16px;
+/* =======================================
+   CAMPO RADIO
+======================================= */
+
+.campo-radio {
+  width: 100%;
 
   display: flex;
 
-  align-items: center;
+  flex-direction: column;
 
+  gap: 12px;
+}
+
+.titulo-radio {
   font-family: Roboto, sans-serif;
 
   font-size: 16px;
@@ -128,45 +94,72 @@
 
   letter-spacing: 0.5px;
 
-  color: var(--Schemes-On-Surface-Variant, #49454f);
+  color: #49454f;
 }
 
-.campo-texto-filtro input {
-  width: 100%;
+.radio-opciones {
+  display: flex;
 
-  padding: 4px 16px 8px 16px;
+  align-items: center;
 
-  border: none;
+  gap: 32px;
+}
 
-  outline: none;
+.radio-opcion {
+  display: flex;
 
-  background: transparent;
+  align-items: center;
+
+  gap: 6px;
+
+  cursor: pointer;
 
   font-family: Roboto, sans-serif;
 
   font-size: 16px;
 
-  color: var(--Schemes-On-Surface, #1c1b1f);
+  font-weight: 400;
+
+  color: #49454f;
 }
 
-/* línea inferior */
+.radio-opcion input[type="radio"] {
+  width: 16px;
 
-.campo-texto-filtro::after {
-  content: "";
+  height: 16px;
 
-  width: 100%;
+  margin: 0;
 
-  height: 1px;
+  cursor: pointer;
 
-  background: var(--Schemes-On-Surface-Variant, #49454f);
+  accent-color: #6750a4;
 }
 
 /* =======================================
-   CAMPOS LISTA
+   FILA 2
+   RESPONSABLE + BOTÓN
+======================================= */
+
+.fila-responsable {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: 1fr auto;
+
+  gap: 24px;
+
+  align-items: end;
+}
+
+/* =======================================
+   CAMPO LISTA
 ======================================= */
 
 .campo-lista {
-  min-width: 280px;
+  width: 100%;
+
+  min-width: 0;
 
   display: flex;
 
@@ -174,7 +167,7 @@
 
   position: relative;
 
-  background: var(--Schemes-On-Secondary, #ffffff);
+  background: #ffffff;
 
   border-top-left-radius: 4px;
 
@@ -198,7 +191,7 @@
 
   letter-spacing: 0.5px;
 
-  color: var(--Schemes-On-Surface-Variant, #49454f);
+  color: #49454f;
 }
 
 .campo-lista select {
@@ -220,10 +213,12 @@
 
   font-size: 16px;
 
-  color: var(--Schemes-On-Surface, #1c1b1f);
+  color: #1c1b1f;
 }
 
-/* flecha dropdown */
+/* =======================================
+   FLECHA LISTA DESPLEGABLE
+======================================= */
 
 .campo-lista::before {
   content: "";
@@ -240,12 +235,16 @@
 
   height: 7px;
 
-  background: var(--Schemes-On-Surface-Variant, #49454f);
+  background: #49454f;
 
   clip-path: polygon(0 0, 100% 0, 50% 100%);
+
+  pointer-events: none;
 }
 
-/* línea inferior */
+/* =======================================
+   LÍNEA INFERIOR LISTA
+======================================= */
 
 .campo-lista::after {
   content: "";
@@ -254,19 +253,19 @@
 
   height: 1px;
 
-  background: var(--Schemes-On-Surface-Variant, #49454f);
+  background: #49454f;
 }
 
 /* =======================================
-   BOTONES
+   BOTÓN
 ======================================= */
 
 .btn-figma {
   display: inline-flex;
 
-  justify-content: center;
-
   align-items: center;
+
+  justify-content: center;
 
   gap: 6px;
 
@@ -276,7 +275,7 @@
 
   border-radius: 100px;
 
-  background: var(--Schemes-Primary, #6750a4);
+  background: #6750a4;
 
   cursor: pointer;
 
@@ -290,6 +289,8 @@
 
   color: #ffffff;
 
+  white-space: nowrap;
+
   height: fit-content;
 }
 
@@ -301,7 +302,9 @@
   filter: brightness(0.9);
 }
 
-/* iconos */
+/* =======================================
+   ICONO BOTÓN
+======================================= */
 
 .btn-icon {
   display: flex;
@@ -317,7 +320,9 @@
   height: 20px;
 }
 
-/* texto botón */
+/* =======================================
+   TEXTO BOTÓN
+======================================= */
 
 .btn-figma .label {
   font-family: Roboto, sans-serif;
@@ -334,92 +339,22 @@
 }
 
 /* =======================================
-   MENSAJES ERROR
+   RESPONSIVE
 ======================================= */
 
-.error {
-  padding-left: 16px;
+@media (max-width: 768px) {
 
-  font-family: Roboto, sans-serif;
+  .fila-responsable {
+    grid-template-columns: 1fr;
+  }
 
-  font-size: 12px;
+  .btn-figma {
+    justify-self: center;
+  }
 
-  color: #b3261e;
-}
+  .radio-opciones {
+    flex-wrap: wrap;
 
-.fila-botones {
-  display: flex;
-  justify-content: center;
-  margin-top: 24px;
-}
-
-/* =======================================
-   CAMPOS FECHA
-======================================= */
-
-.campo-fecha-filtro {
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-
-  background: #ffffff;
-
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-
-  position: relative;
-}
-
-.campo-fecha-filtro label {
-  padding: 4px 16px;
-
-  display: flex;
-  align-items: center;
-
-  font-family: Roboto, sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0.5px;
-
-  color: #49454F;
-}
-
-.campo-fecha-filtro input {
-  width: 100%;
-
-  padding: 4px 16px 8px;
-
-  border: none;
-  outline: none;
-
-  background: transparent;
-
-  font-family: Roboto, sans-serif;
-  font-size: 16px;
-
-  color: #1B1B1B;
-
-  cursor: pointer;
-}
-
-.campo-fecha-filtro::after {
-  content: "";
-
-  width: 100%;
-  height: 1px;
-
-  background: #49454F;
-}
-
-/* Icono calendario */
-
-.campo-fecha-filtro input::-webkit-calendar-picker-indicator {
-  cursor: pointer;
-  opacity: .8;
-}
-
-.campo-fecha-filtro input::-webkit-calendar-picker-indicator:hover {
-  opacity: 1;
+    gap: 16px;
+  }
 }

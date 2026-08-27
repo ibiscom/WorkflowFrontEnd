@@ -1,5 +1,5 @@
 <div class="cont-grupos">
-  <div class="enc-grupos">Finalizar Proceso</div>
+  <div class="enc-grupos">Consultar roles del responsable</div>
   @if (mensaje) {
     <div>
       <mat-card class="card-msg-grupos">
@@ -12,8 +12,7 @@
       <p></p>
     </div>
   }
-  <div ibpm-filtro-busqueda-finalizarproceso style="width: 100%"></div>
+  <ibpm-filtros-busqueda-consultarrolresponsable style="width: 100%"></ibpm-filtros-busqueda-consultarrolresponsable>
   <br />
   <router-outlet></router-outlet>
 </div>
-

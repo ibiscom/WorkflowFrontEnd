@@ -4,6 +4,7 @@ import { MatTableModule } from '@angular/material/table';
 import { AlarmaEntity } from '../alarmas.entity';
 import { CrearAlarmaComponent } from '../crear-alarmas/crear-alarmas.component';
 
+
 @Component({
   selector: 'ibpm-listado-alarma',
   standalone: true,

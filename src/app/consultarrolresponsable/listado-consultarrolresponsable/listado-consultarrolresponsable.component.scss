@@ -1,5 +1,5 @@
 /* =======================================
-   CONTENEDOR PRINCIPAL
+   TARJETA TABLA
 ======================================= */
 
 .tabla-card {
@@ -9,7 +9,7 @@
 
   border-radius: 16px;
 
-  box-shadow: 0px 1px 15.4px 6px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.13);
 
   overflow: hidden;
 
@@ -23,9 +23,7 @@
 ======================================= */
 
 .tabla-header-container {
-  width: 100%;
-
-  padding: 16px;
+  padding: 16px 24px;
 
   display: flex;
 
@@ -33,9 +31,7 @@
 }
 
 .tabla-titulo {
-  color: #1b1b1b;
-
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
 
   font-size: 14px;
 
@@ -44,10 +40,12 @@
   line-height: 16px;
 
   letter-spacing: 0.5px;
+
+  color: #1b1b1b;
 }
 
 /* =======================================
-   BODY TABLA
+   BODY
 ======================================= */
 
 .tabla-body {
@@ -56,8 +54,6 @@
   display: flex;
 
   background: #ffffff;
-
-  overflow: hidden;
 }
 
 /* =======================================
@@ -65,13 +61,11 @@
 ======================================= */
 
 .tabla-columna {
-  flex: 1;
-
-  min-width: 0;
-
   display: flex;
 
   flex-direction: column;
+
+  min-width: 0;
 
   border-left: 0.5px solid #dcdcdc;
 
@@ -82,25 +76,23 @@
   background: #ffffff;
 }
 
-/* Distribución proporcional */
-
+/* UserName */
 .tabla-columna:nth-child(1) {
-  flex: 0.8;
+  flex: 1;
 }
 
+/* Nombres */
 .tabla-columna:nth-child(2) {
-  flex: 1.2;
+  flex: 1.5;
 }
 
+/* Apellidos */
 .tabla-columna:nth-child(3) {
   flex: 1.5;
 }
 
+/* Es responsable */
 .tabla-columna:nth-child(4) {
-  flex: 2;
-}
-
-.tabla-columna:nth-child(5) {
   flex: 1;
 }
 
@@ -109,8 +101,6 @@
 ======================================= */
 
 .tabla-col-header {
-  width: 100%;
-
   background: #fafafa;
 
   padding: 4px 8px;
@@ -119,15 +109,15 @@
 
   align-items: center;
 
-  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.12);
 }
 
 .tabla-col-header div {
-  flex: 1;
+  width: 100%;
 
-  color: #757575;
+  text-align: left;
 
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
 
   font-size: 12px;
 
@@ -137,7 +127,7 @@
 
   letter-spacing: 0.4px;
 
-  text-align: left;
+  color: #757575;
 }
 
 /* =======================================
@@ -157,7 +147,13 @@
 
   background: #ffffff;
 
-  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.12);
+
+  cursor: pointer;
+}
+
+.tabla-celda:hover {
+  background: rgba(103, 80, 164, 0.04);
 }
 
 .tabla-celda div {
@@ -169,7 +165,7 @@
 
   white-space: nowrap;
 
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
 
   font-size: 12px;
 
@@ -182,123 +178,16 @@
   color: rgba(0, 0, 0, 0.87);
 }
 
-.tabla-celda div[click] {
-  cursor: pointer;
-}
-
-.tabla-celda:hover {
-  background: rgba(103, 80, 164, 0.04);
-}
-
-/* =======================================
-   FOOTER
-======================================= */
-
-.tabla-footer {
-  height: 58px;
-
-  padding: 0 16px;
-
-  background: #ffffff;
-
-  display: flex;
-
-  justify-content: flex-end;
-
-  align-items: center;
-
-  gap: 24px;
-}
-
-.tabla-footer-text {
-  font-family: Roboto;
-
-  font-size: 12px;
-
-  font-weight: 400;
-
-  line-height: 20px;
-
-  letter-spacing: 0.4px;
-
-  color: rgba(0, 0, 0, 0.87);
-}
-
-/* =======================================
-   PAGINADOR
-======================================= */
-
-.paginador-boton {
-  width: 32px;
-
-  height: 32px;
-
-  border-radius: 50%;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  cursor: pointer;
-}
-
-.paginador-boton.active {
-  color: rgba(0, 0, 0, 0.54);
-}
-
-.paginador-boton span {
-  font-family: "Material Icons";
-
-  font-size: 24px;
-
-  line-height: 24px;
-}
-
 /* =======================================
    RESPONSIVE
 ======================================= */
 
-@media (max-width: 1024px) {
+@media (max-width: 900px) {
   .tabla-body {
     overflow-x: auto;
   }
 
   .tabla-columna {
-    min-width: 180px;
+    min-width: 220px;
   }
-}
-
-.check-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-
-  width: 100%;
-  height: 100%;
-
-  font: inherit;
-  color: inherit;
-}
-
-.check-header input {
-  width: 16px;
-  height: 16px;
-  cursor: pointer;
-}
-
-.check-tabla {
-  width: 16px;
-  height: 16px;
-  cursor: pointer;
-  margin-right: 8px;
-  accent-color: #6750A4;
-}
-
-.tabla-celda {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

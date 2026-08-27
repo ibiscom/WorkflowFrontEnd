@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environment';
-import { FinalizarprocesoEntity } from './finalizarproceso.entity';
-import { FinalizarprocesoFilterEntity } from './finalizarprocesoFilterEntity';
+import { DistribuirtareaEntity } from './distribuirtarea.entity';
+import { DistribuirTareaFilterEntity } from './distribuirtareaFilterEntity';
 
 
 @Injectable({
@@ -17,7 +17,7 @@ import { FinalizarprocesoFilterEntity } from './finalizarprocesoFilterEntity';
  * Servicio para la administración de grupos.
  * Incluye búsquedas, CRUD y gestión de permisos/restricciones.
  */
-export class FinalizarprocesoService {
+export class DistribuirtareaService {
   constructor(
     private http: HttpClient,
     private cookieService: CookieService,
@@ -25,62 +25,62 @@ export class FinalizarprocesoService {
 
   
      /**
-       * Obtiene el listado de procesos según los filtros proporcionados.
-       * @param filtros Los filtros para la búsqueda de procesos.
+       * Obtiene el listado de dependencias según los filtros proporcionados.
+       * @param filtros Los filtros para la búsqueda de dependencias.
        * @returns 
        */
   
      
-      public getConsultarproceso(filtros: FinalizarprocesoFilterEntity): Observable<FsResponseEntity<any>> {
-          let ip: string = this.cookieService.get('ip');
-          return this.http.post<FsResponseEntity<any>>(
-            environment.workflowApiUrl +
-              `/workflow/getWorkflowsName`, filtros
-          );
-      }
-        
-
-          /**
-       * Obtiene el listado de procesos instanciados según los filtros proporcionados.
-       * @param filtros Los filtros para la búsqueda de procesos instanciados.
-       * @returns 
-       */
-  
-     
-      public getProcesosInstanciados(filtros: FinalizarprocesoFilterEntity): Observable<FsResponseEntity<any>> {
+      public getDistribuirtareas(filtros: DistribuirTareaFilterEntity): Observable<FsResponseEntity<any>> {
           let ip: string = this.cookieService.get('ip');
           return this.http.post<FsResponseEntity<any>>(
             environment.workflowApiUrl +
               `/workflowEngine/getWorkflowsEngine`, filtros
           );
       }
-    
 
-          /**
-       * Permite finalizar procesos finalizados
+         /**
+       * Obtiene el listado de dependencias según los filtros proporcionados.
        * @param filtros Los filtros para la búsqueda de dependencias.
        * @returns 
        */
   
      
-      public getFinalizarproceso(filtros: FinalizarprocesoFilterEntity): Observable<FsResponseEntity<any>> {
+      public getEstadotareas(filtros: DistribuirTareaFilterEntity): Observable<FsResponseEntity<any>> {
           let ip: string = this.cookieService.get('ip');
           return this.http.post<FsResponseEntity<any>>(
             environment.workflowApiUrl +
-              `/workflowEngine/end`, filtros
+              `/taskList/status`, filtros
+          );
+      }
+       /**
+       * Obtiene la lista de tareas instantiadas.
+       * @param list Los filtros para la búsqueda de tareas.
+       * @returns 
+       */
+
+      public getTareasInstanciadas(list: DistribuirTareaFilterEntity): Observable<FsResponseEntity<any>> {
+          let ip: string = this.cookieService.get('ip');
+          return this.http.post<FsResponseEntity<any>>(
+            environment.workflowApiUrl +
+              `/taskList/getInstantiatedTasks`, list
+          );
+      }
+
+      
+       /**
+       * Obtiene la lista de tareas instantiadas.
+       * @param list Los filtros para la búsqueda de tareas.
+       * @returns 
+       */
+
+      public getListaResponsables(list: DistribuirTareaFilterEntity): Observable<FsResponseEntity<any>> {
+          let ip: string = this.cookieService.get('ip');
+          return this.http.post<FsResponseEntity<any>>(
+            environment.workflowApiUrl +
+              `/UserRol/getResponsibleUsers`, list
           );
       }
     
-      /**
-       * Elimina un proceso
-       * @param tareaName Nombre del proceso a eliminar
-       * @returns 
-       */
-      public deleteFinalizarproceso(tareaName: string): Observable<FsResponseEntity<any>> {
-          let ip: string = this.cookieService.get('ip');
-          return this.http.delete<FsResponseEntity<any>>(
-            environment.workflowApiUrl +
-              `/workflowEngine/endWorkflow/${tareaName}`);
-      }
 }
     

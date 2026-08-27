@@ -1,7 +1,13 @@
 /**
  * Entidad que representa una tarea en el sistema.
  */
-export interface FinalizarprocesoEntity {
+export interface SimulacionEntity {
+accion: any;
+fechaAsignacion: any;
+fechaEjecucion: any;
+fechaTerminacion: any;
+oportunidad: any;
+numTarea: any;
 seleccionado: any;
 terminar: any;
 instancia: any;
@@ -31,6 +37,6 @@ fechaInicio: any;
     minutosAlarmaAmarilla: number;
     segundosAlarmaAmarilla: number;
     editarDocProceso: boolean;
-    docModels?: FinalizarprocesoEntity[];
+    docModels?: SimulacionEntity[];
 }
 

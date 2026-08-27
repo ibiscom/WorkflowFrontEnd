@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environment';
-import { FinalizarprocesoEntity } from './finalizarproceso.entity';
-import { FinalizarprocesoFilterEntity } from './finalizarprocesoFilterEntity';
+import { SimulacionEntity } from './simulacion.entity';
+import { SimulacionFilterEntity } from './simulacionFilterEntity';
 
 
 @Injectable({
@@ -17,7 +17,7 @@ import { FinalizarprocesoFilterEntity } from './finalizarprocesoFilterEntity';
  * Servicio para la administración de grupos.
  * Incluye búsquedas, CRUD y gestión de permisos/restricciones.
  */
-export class FinalizarprocesoService {
+export class SimulacionService {
   constructor(
     private http: HttpClient,
     private cookieService: CookieService,
@@ -31,7 +31,7 @@ export class FinalizarprocesoService {
        */
   
      
-      public getConsultarproceso(filtros: FinalizarprocesoFilterEntity): Observable<FsResponseEntity<any>> {
+      public getConsultarproceso(filtros: SimulacionFilterEntity): Observable<FsResponseEntity<any>> {
           let ip: string = this.cookieService.get('ip');
           return this.http.post<FsResponseEntity<any>>(
             environment.workflowApiUrl +
@@ -47,7 +47,7 @@ export class FinalizarprocesoService {
        */
   
      
-      public getProcesosInstanciados(filtros: FinalizarprocesoFilterEntity): Observable<FsResponseEntity<any>> {
+      public getProcesosInstanciados(filtros: SimulacionFilterEntity): Observable<FsResponseEntity<any>> {
           let ip: string = this.cookieService.get('ip');
           return this.http.post<FsResponseEntity<any>>(
             environment.workflowApiUrl +
@@ -63,7 +63,7 @@ export class FinalizarprocesoService {
        */
   
      
-      public getFinalizarproceso(filtros: FinalizarprocesoFilterEntity): Observable<FsResponseEntity<any>> {
+      public getSimulacion(filtros: SimulacionFilterEntity): Observable<FsResponseEntity<any>> {
           let ip: string = this.cookieService.get('ip');
           return this.http.post<FsResponseEntity<any>>(
             environment.workflowApiUrl +
@@ -76,7 +76,7 @@ export class FinalizarprocesoService {
        * @param tareaName Nombre del proceso a eliminar
        * @returns 
        */
-      public deleteFinalizarproceso(tareaName: string): Observable<FsResponseEntity<any>> {
+      public deleteSimulacion(tareaName: string): Observable<FsResponseEntity<any>> {
           let ip: string = this.cookieService.get('ip');
           return this.http.delete<FsResponseEntity<any>>(
             environment.workflowApiUrl +

@@ -1,7 +1,11 @@
 /**
  * Entidad que representa una tarea en el sistema.
  */
-export interface FinalizarprocesoEntity {
+export interface DistribuirtareaEntity {
+diasAsignada: any;
+identificadortarea: any;
+identificador1: any;
+identificador: any;
 seleccionado: any;
 terminar: any;
 instancia: any;
@@ -31,6 +35,6 @@ fechaInicio: any;
     minutosAlarmaAmarilla: number;
     segundosAlarmaAmarilla: number;
     editarDocProceso: boolean;
-    docModels?: FinalizarprocesoEntity[];
+    docModels?: DistribuirtareaEntity[];
 }
 

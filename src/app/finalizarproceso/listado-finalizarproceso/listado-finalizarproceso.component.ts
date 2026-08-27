@@ -68,5 +68,13 @@ export class ListadoFinalizarprocesoComponent {
       this.parent.buscarFinalizarproceso(); // ajusta si tu método se llama diferente
     }
   }
+
+  seleccionarTodos = false;
+
+seleccionarTodosRegistros(): void {
+  this.parent.finalizarproceso.forEach((item: any) => {
+    item.seleccionado = this.seleccionarTodos;
+  });
+}
 }
 
