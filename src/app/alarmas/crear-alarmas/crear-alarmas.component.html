@@ -1,29 +1,21 @@
 <div class="cont-nuevo-workflow">
   <form #form="ngForm">
-
     <div class="card-nuevo-objetoworkflow-general">
-
       <div class="card-header">
         <h3>Datos del objeto workflow</h3>
       </div>
-
       <div class="card-content">
-
         <div class="tbl-nuevo-workflow">
 
           <!-- ================= FILA 1 ================= -->
 
           <div class="fila-formulario">
-
             <div class="campo-lista">
-
               <label>Tipo de alarma</label>
-
               <select
                 name="tipoN"
                 [(ngModel)]="tipoN"
                 (ngModelChange)="onAlarmaChange($event)">
-
                 <option value="">Seleccione una opción</option>
 
                 @for (tipo of tiposalarmasList; track tipo.id) {
@@ -37,234 +29,153 @@
             </div>
 
             @if (mostrarTarea) {
-
               <div class="campo-lista">
-
                 <label>Tarea</label>
-
                 <select
                   name="tipoTareaTiempoN"
-                  [(ngModel)]="tipoTareaTiempoN">
-
+                  [(ngModel)]="tareaN">
                   <option value="">Seleccione una opción</option>
-
-                  @for (alarma of alarmasList; track alarma) {
-                    <option [ngValue]="alarma">
-                      {{ alarma.nombre }}
+                  @for (tarea of tareasList; track $index) {
+                    <option [value]="nombreOpcion(tarea)">
+                      {{ nombreOpcion(tarea) }}
                     </option>
                   }
-
                 </select>
-
               </div>
-
             }
-
           </div>
 
           <!-- ================= FILA 2 ================= -->
 
           @if (mostrarEstado) {
-
             <div class="fila-formulario">
-
               <div class="campo-lista">
-
                 <label>
                   Se activa la alarma siempre y cuando la tarea no se encuentre en estado
                 </label>
-
                 <select
-                  name="nombreAtributoN"
-                  [(ngModel)]="nombreAtributoN">
-
+                  name="estadoTareaN"
+                  [(ngModel)]="estadoTareaN">
                   <option value="">Seleccione una opción</option>
-
-                  @for (alarma of alarmasList; track alarma) {
-                    <option [ngValue]="alarma">
-                      {{ alarma.nombre }}
+                  @for (estado of estadosList; track estado) {
+                    <option [value]="estado">
+                      {{ estado }}
                     </option>
                   }
-
                 </select>
-
               </div>
-
               <div class="campo-lista">
-
                 <label>Estado</label>
-
                 <select
                   name="estadoNoEjecucionN"
                   [(ngModel)]="estadoNoEjecucionN">
-
                   <option value="">Seleccione una opción</option>
-
-                  @for (alarma of alarmasList; track alarma) {
-                    <option [ngValue]="alarma">
-                      {{ alarma.nombre }}
+                  @for (estado of estadosList; track estado) {
+                    <option [value]="estado">
+                      {{ estado }}
                     </option>
                   }
-
                 </select>
-
               </div>
-
             </div>
-
           }
 
           <!-- ================= FILA 3 ================= -->
 
           @if (mostrarTiempo) {
-
             <div class="fila-tiempo">
-
               <div class="opcion-item">
-
                 <label>Tarea inmediata</label>
-
                 <input
                   type="checkbox"
                   name="tareaInmediata"
                   [(ngModel)]="tareaInmediataN"/>
-
               </div>
-
               @if (!tareaInmediataN) {
-
                 <div class="grupo-duracion-alerta">
-
                   <div class="campo-texto">
-
                     <label>Días</label>
-
                     <input
                       type="text"
                       name="diaAvisoN"
                       [(ngModel)]="diaAvisoN"/>
-
                   </div>
-
                   <div class="campo-texto">
-
                     <label>Horas</label>
-
                     <input
                       type="text"
                       name="horaAvisoN"
                       [(ngModel)]="horaAvisoN"/>
-
                   </div>
-
                   <div class="campo-texto">
-
                     <label>Minutos</label>
-
                     <input
                       type="text"
                       name="minutosAvisoN"
                       [(ngModel)]="minutosAvisoN"/>
-
                   </div>
-
                   <div class="campo-texto">
-
                     <label>Segundos</label>
-
                     <input
                       type="text"
                       name="segundosAvisoN"
                       [(ngModel)]="segundosAvisoN"/>
-
                   </div>
-
                 </div>
-
               }
-
             </div>
-
           }
 
           <!-- ================= FILA 4 ================= -->
 
           @if (mostrarResponsable) {
-
             <div class="opcion-item">
-
               <label>Incluir responsable</label>
-
               <input
                 type="checkbox"
                 name="incluirResponsable"
                 [(ngModel)]="incluirResponsableN"/>
-
             </div>
-
           }
 
           <!-- ================= FILA 5 ================= -->
 
           @if (mostrarAtributo) {
-
             <div class="fila-formulario">
-
               <div class="campo-lista">
-
                 <label>Atributo</label>
-
                 <select
                   name="atributoN"
-                  [(ngModel)]="atributoN">
-
+                  [(ngModel)]="nombreAtributoN">
                   <option value="">Seleccione una opción</option>
-
-                  @for (alarma of alarmasList; track alarma) {
-                    <option [ngValue]="alarma">
-                      {{ alarma.nombre }}
+                  @for (atributo of atributosWorkflowList; track $index) {
+                    <option [value]="nombreOpcion(atributo)">
+                      {{ nombreOpcion(atributo) }}
                     </option>
                   }
-
                 </select>
-
               </div>
-
             </div>
-
           }
 
           <!-- ================= FILA 6 ================= -->
 
           @if (atributos.length > 0) {
-
             <div class="seccion-campos-correo">
-
               @for (campo of atributos; track campo.id) {
-
                 <div class="campo-texto">
-
                   <label>{{ campo.nombre }}</label>
-
                   <input
                     type="text"
                     [name]="'campo'+campo.id"
                     [(ngModel)]="campo.valor"/>
-
                 </div>
-
               }
-
             </div>
-
           }
-
         </div>
-
       </div>
-
     </div>
-
     <div class="botones-nuevo-grupo">
 
       <button
@@ -277,11 +188,9 @@
         </span>
 
         Guardar
-
       </button>
 
       @if (editMode()) {
-
         <button
           class="btn-figma"
           type="button"
@@ -309,9 +218,6 @@
         Cancelar
 
       </button>
-
     </div>
-
   </form>
-
 </div>

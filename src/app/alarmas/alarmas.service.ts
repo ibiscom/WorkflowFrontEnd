@@ -42,8 +42,8 @@ export class AlarmaService {
   }
 
   /**
-   * Edita un objeto workflow en el sistema.
-   * @param alarma El objeto workflow a modificar, con su nombre, descripción y atributos.
+   * Edita una alarma existente en el sistema.
+   * @param alarma La alarma a modificar.
    * @returns Observable con la respuesta del servidor.
    */
   public editarAlarma(alarma: AlarmaEntity): Observable<FsResponseEntity<any>> {
@@ -55,12 +55,34 @@ export class AlarmaService {
     );
   }
 
-
+  /**
+   * Obtiene una alarma específica por id.
+   * @param workflowName Nombre del workflow.
+   * @param id Identificador de la alarma.
+   * @returns Observable con la alarma consultada.
+   */
+  public obtenerAlarma(
+   idAlarma: string | number,
+  ): Observable<FsResponseEntity<AlarmaEntity>> {
+    return this.http.get<FsResponseEntity<AlarmaEntity>>(
+      environment.workflowApiUrl +
+        `/Alarm/getAlarm?alarmIde=${idAlarma}`
+    );
+  }
 
   /**
-   * Obtiene los atributos de un objeto workflow por el nombre del workflow al que pertenecen.
-   * @param nombreWorkflow El nombre del workflow al que pertenecen los atributos de objeto workflow a obtener.
-   * @returns Observable con la respuesta del servidor y la lista de atributos de objeto workflow.
+   * Obtiene los tipos de alarma disponibles.
+   */
+  public getTiposAlarma(): Observable<FsResponseEntity<TipoAlarmaEntity[]>> {
+    return this.http.get<FsResponseEntity<TipoAlarmaEntity[]>>(
+      environment.workflowApiUrl + `/Alarm/getAlarmTypes`,
+    );
+  }
+
+  /**
+   * Obtiene las alarmas del workflow indicado.
+   * @param workflowActual Nombre del workflow.
+   * @returns Observable con la lista de alarmas.
    */
   public obtenerAlarmas(workflowActual: string): Observable<FsResponseEntity<AlarmaEntity[]>> {
     let ip: string = this.cookieService.get('ip');

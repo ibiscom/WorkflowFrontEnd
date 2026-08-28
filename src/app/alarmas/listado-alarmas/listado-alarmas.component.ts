@@ -53,6 +53,6 @@ export class ListadoAlarmasComponent {
       this.currentPage++;
       this.parent.buscarAlarma(); // ajusta si tu método se llama diferente
     }
-
+  }
 }
 

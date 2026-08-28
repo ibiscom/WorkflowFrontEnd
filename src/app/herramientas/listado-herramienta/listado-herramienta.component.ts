@@ -11,7 +11,7 @@ import { HerramientaEntity } from '../herramienta.entity';
   styleUrl: './listado-herramienta.component.scss',
 })
 /**
- * Listado de grupos con navegación a la edición y utilidades de presentación.
+ * Listado de herramientas con navegación a la edición y utilidades de presentación.
  */
 export class ListadoHerramientaComponent {
   // 🔹 Variables de paginación
