@@ -28,6 +28,7 @@ import { TareaEntity } from '../../tareas/tarea.entity';
 import { DependenciaService } from '../../dependencias/dependencia.service';
 import { ObjetowService } from '../../objetosw/objetow.service';
 import { AtributoObjetowEntity } from '../../objetosw/atributo-objetow.entity';
+import { EstadoTareaAlarmaEntity } from '../estado-tarea-alarma.entity';
 
 @Component({
   selector: 'ibpm-crear-alarma',
@@ -50,7 +51,7 @@ import { AtributoObjetowEntity } from '../../objetosw/atributo-objetow.entity';
 export class CrearAlarmaComponent {
 tiposalarmasList: TipoAlarmaEntity[] = [];
 tareasList: TareaEntity[] = [];
-estadosList: string[] = [];
+estadosList: EstadoTareaAlarmaEntity[] = [];
 atributosWorkflowList: AtributoObjetowEntity[] = [];
 mailsDestinosN: any;
 destinatariosN: any;
@@ -212,11 +213,12 @@ public async ngOnInit(): Promise<void> {
   private async cargarEstados(): Promise<void> {
     this.estadosList = [];
     try {
-      const response = await firstValueFrom(this.dependenciaService.getEstado());
+      const response = await firstValueFrom(this.alarmaService.getEstadosTareasAlarma());
       const estados = Array.isArray(response?.respuesta) ? response.respuesta : [];
-      this.estadosList = estados
-        .map((estado: any) => this.nombreOpcion(estado))
-        .filter((estado) => estado);
+      this.estadosList = estados.map((e: any, index: number) => ({
+        code: String(e.code ?? e.id ?? index),
+        name: this.nombreOpcion(e),
+      } as EstadoTareaAlarmaEntity));
     } catch (e) {
       if (this.uc) {
         this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
@@ -291,7 +293,7 @@ public async ngOnInit(): Promise<void> {
         this.nombreAtributoN = alarma?.nombreAtributo ?? '';
         this.valorN = alarma?.valorAtributo ?? '';
         this.tipoTareaTiempoN = alarma?.atributos?.[0]?.tipoTareaTiempo ?? '';
-        this.tareaN = alarma?.tarea?.nombre ?? '';
+        this.tareaN = alarma?.tarea?.nombreLargo ?? '';
         this.onAlarmaChange(this.tipoN);
         this.atributos = alarma?.atributos ?? [];
         

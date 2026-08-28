@@ -8,6 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environment';
 import { AlarmaEntity } from './alarmas.entity';
 import { TipoAlarmaEntity } from './tipo-alarma.entity';
+import { EstadoTareaAlarmaEntity } from './estado-tarea-alarma.entity';
 
 
 @Injectable({
@@ -104,6 +105,18 @@ export class AlarmaService {
       environment.workflowApiUrl + 
         `/Alarm/deleteAlarm?workflowName=${nombreWorkflow}&attributeName=${nombreAtributo}`,
     );
+  }
+
+  /**
+   * Obtiene el listado de estados de tarea para alarmas.
+   * @returns Observable con la lista de estados de tarea.
+   */
+   public getEstadosTareasAlarma(): Observable<FsResponseEntity<EstadoTareaAlarmaEntity[]>> {
+    let ip: string = this.cookieService.get('ip');
+    return this.http.get<FsResponseEntity<EstadoTareaAlarmaEntity[]>>(
+      environment.workflowApiUrl +
+        `/Alarm/getTaskStates`);
+  
   }
 
 
