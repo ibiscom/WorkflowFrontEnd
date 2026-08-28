@@ -1,5 +1,6 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'ibpm-visualizador-herramienta',
@@ -19,7 +20,7 @@ export class VisualizadorHerramientaComponent implements OnInit {
 
   public ngOnInit() {
     this.codificarInfoHerramienta();
-    const urlDinamicaRecibida = `http://localhost:63417/htm/invocar-componente-captura/${this.infoHerramientaCodificada}`;
+    const urlDinamicaRecibida = `${environment.htmFrontendUrl}/invocar-componente-captura/${this.infoHerramientaCodificada}`;
     this.urlSegura = this.sanitizer.bypassSecurityTrustResourceUrl(urlDinamicaRecibida);
   }
 private lastAppliedHeight = 0;
