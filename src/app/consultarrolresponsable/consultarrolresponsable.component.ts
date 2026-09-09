@@ -17,7 +17,7 @@ import { ConsultarRolResponsablesFilterEntity } from './consultarrolreponsable-f
 import { FiltrosBusquedaConsultarRolResponsableComponent } from "./filtros-busqueda-consultarrolresponsable/filtros-busqueda-consultarrolresponsable.component";
 
 @Component({
-  selector: 'ibpm-responsable',
+  selector: 'ibpm-consultarrolresponsable',
   imports: [MatCardModule, RouterModule, FiltrosBusquedaConsultarRolResponsableComponent],
   templateUrl: './consultarrolresponsable.component.html',
   styleUrl: './consultarrolresponsable.component.scss',

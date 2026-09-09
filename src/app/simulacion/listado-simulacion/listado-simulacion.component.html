@@ -1,203 +1,128 @@
-<!-- FILTROS -->
+<!-- PARÁMETROS -->
 <ibpm-filtros-busqueda-simulacion [uc]="this.parent" style="width: 100%">
 </ibpm-filtros-busqueda-simulacion>
 
 <!-- TARJETA TABLA -->
 <div class="tabla-card">
-  <!-- HEADER -->
   <div class="tabla-header-container">
     <div class="tabla-titulo">Listado de tareas del proceso</div>
   </div>
 
-  <!-- BODY -->
   <div class="tabla-body">
 
-    <!-- COLUMNA: INSTANCIA -->
+    <!-- INSTANCIA -->
     <div class="tabla-columna">
-      <div class="tabla-col-header">
-        <div>Instancia</div>
-      </div>
-
-      @for (element of parent.simulacion; track element) {
-        <ng-container>
-          <div class="tabla-celda">
-             <div>
-              {{ element.instancia }}
-            </div>
-          </div>
-        </ng-container>
+      <div class="tabla-col-header"><div>Instancia</div></div>
+      @for (element of parent.simulacion; track trackByTarea($index, element)) {
+        <div class="tabla-celda"><div>{{ element.instancia }}</div></div>
       }
     </div>
 
-        <!-- COLUMNA: NUM TAREA -->
+    <!-- NÚM TAREA -->
     <div class="tabla-columna">
-      <div class="tabla-col-header">
-        <div>Num Tarea</div>
-      </div>
-
-      @for (element of parent.simulacion; track element) {
-        <ng-container>
-          <div class="tabla-celda">
-             <div>
-              {{ element.numTarea }}
-            </div>
-          </div>
-        </ng-container>
+      <div class="tabla-col-header"><div>Núm tarea</div></div>
+      @for (element of parent.simulacion; track trackByTarea($index, element)) {
+        <div class="tabla-celda"><div>{{ element.numTarea }}</div></div>
       }
     </div>
 
-    <!-- COLUMNA: NOMBRE DE LA TAREA-->
+    <!-- NOMBRE DE LA TAREA -->
     <div class="tabla-columna">
-      <div class="tabla-col-header">
-        <div>Nombre de la tarea</div>
-      </div>
-
-      @for (element of parent.simulacion; track element) {
-        <ng-container>
-          <div class="tabla-celda">
-            <div>
-              {{ element.nombre }}
-            </div>
-          </div>
-        </ng-container>
+      <div class="tabla-col-header"><div>Nombre de la Tarea</div></div>
+      @for (element of parent.simulacion; track trackByTarea($index, element)) {
+        <div class="tabla-celda"><div>{{ element.nombre }}</div></div>
       }
     </div>
 
-    <!-- COLUMNA: FECHA DE ASIGNACIÓN -->
+    <!-- FECHA DE ASIGNACIÓN -->
     <div class="tabla-columna">
-      <div class="tabla-col-header">
-        <div>Fecha de Asignación</div>
-      </div>
+      <div class="tabla-col-header"><div>Fecha de Asignación</div></div>
+      @for (element of parent.simulacion; track trackByTarea($index, element)) {
+        <div class="tabla-celda"><div>{{ element.fechaAsignacion }}</div></div>
+      }
+    </div>
 
-      @for (element of parent.simulacion; track element) {
-        <ng-container>
-          <div class="tabla-celda">
-            <div>
-              {{ element.fechaAsignacion }}
-            </div>
-          </div>
-        </ng-container>
+    <!-- FECHA DE EJECUCIÓN -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header"><div>Fecha de Ejecución</div></div>
+      @for (element of parent.simulacion; track trackByTarea($index, element)) {
+        <div class="tabla-celda"><div>{{ element.fechaEjecucion }}</div></div>
+      }
+    </div>
+
+    <!-- FECHA DE TERMINACIÓN -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header"><div>Fecha de Terminación</div></div>
+      @for (element of parent.simulacion; track trackByTarea($index, element)) {
+        <div class="tabla-celda"><div>{{ element.fechaTerminacion }}</div></div>
+      }
+    </div>
+
+    <!-- ESTADO -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header"><div>Estado</div></div>
+      @for (element of parent.simulacion; track trackByTarea($index, element)) {
+        <div class="tabla-celda"><div>{{ element.estadoTarea }}</div></div>
+      }
+    </div>
+
+    <!-- RESPONSABLE -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header"><div>Responsable</div></div>
+      @for (element of parent.simulacion; track trackByTarea($index, element)) {
+        <div class="tabla-celda"><div>{{ element.responsable }}</div></div>
+      }
+    </div>
+
+    <!-- OPORTUNIDAD -->
+    <div class="tabla-columna">
+      <div class="tabla-col-header"><div>Oportunidad</div></div>
+      @for (element of parent.simulacion; track trackByTarea($index, element)) {
+        <div class="tabla-celda"><div>{{ element.oportunidad }}</div></div>
+      }
+    </div>
+
+    <!-- ACCIÓN -->
+    <div class="tabla-columna tabla-columna-accion">
+      <div class="tabla-col-header"><div>Acción</div></div>
+      @for (element of parent.simulacion; track trackByTarea($index, element)) {
+        <div class="tabla-celda tabla-celda-accion">
+          <button
+            type="button"
+            class="btn-accion-sim"
+            title="Ejecutar tarea"
+            (click)="ejecutarTarea(element)">
+            <img src="assets/img/check.svg" alt="Ejecutar tarea" />
+          </button>
+          <button
+            type="button"
+            class="btn-accion-sim"
+            title="Ver expediente"
+            (click)="verExpediente(element)">
+            <img src="assets/img/folder.svg" alt="Ver expediente" />
+          </button>
+          <button
+            type="button"
+            class="btn-accion-sim"
+            title="Ver detalle"
+            (click)="verDetalle(element)">
+            <img src="assets/img/consulta.svg" alt="Ver detalle" />
+          </button>
+        </div>
       }
     </div>
 
   </div>
 
-     <!-- COLUMNA: FECHA DE EJECUCIÓN -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header">
-        <div>Fecha de Ejecución</div>
-      </div>
-
-      @for (element of parent.simulacion; track element) {
-        <ng-container>
-          <div class="tabla-celda">
-            <div>
-              {{ element.fechaEjecucion }}
-            </div>
-          </div>
-        </ng-container>
-      }
-    </div>
-
-       <!-- COLUMNA: FECHA DE TERMINACIÓN -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header">
-        <div>Fecha de Terminación</div>
-      </div>
-
-      @for (element of parent.simulacion; track element) {
-        <ng-container>
-          <div class="tabla-celda">
-            <div>
-              {{ element.fechaTerminacion }}
-            </div>
-          </div>
-        </ng-container>
-      }
-    </div>
-
-       <!-- COLUMNA: ESTADO -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header">
-        <div>Estado</div>
-      </div>
-
-      @for (element of parent.simulacion; track element) {
-        <ng-container>
-          <div class="tabla-celda">
-            <div>
-              {{ element.estadoTarea }}
-            </div>
-          </div>
-        </ng-container>
-      }
-    </div>
-
-   <!-- COLUMNA: RESPONSABLE -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header">
-        <div>Responsable</div>
-      </div>
-
-      @for (element of parent.simulacion; track element) {
-        <ng-container>
-          <div class="tabla-celda">
-            <div>
-              {{ element.responsable }}
-            </div>
-          </div>
-        </ng-container>
-      }
-    </div>
-
-       <!-- COLUMNA: OPORTUNIDAD -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header">
-        <div>Oportunidad</div>
-      </div>
-
-      @for (element of parent.simulacion; track element) {
-        <ng-container>
-          <div class="tabla-celda">
-            <div>
-              {{ element.oportunidad }}
-            </div>
-          </div>
-        </ng-container>
-      }
-    </div>
-
-       <!-- COLUMNA: ACCIÓN -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header">
-        <div>Acción</div>
-      </div>
-
-      @for (element of parent.simulacion; track element) {
-        <ng-container>
-          <div class="tabla-celda">
-            <div>
-              {{ element.accion }}
-            </div>
-          </div>
-        </ng-container>
-      }
-    </div>
-  
-
-  <!-- FOOTER -->
   <div class="tabla-footer">
     <div class="tabla-footer-text">
       Página {{ currentPage }} de {{ numberOfPages }}
     </div>
-
     <div class="paginador-boton" (click)="previousPage()">
       <span>chevron_left</span>
     </div>
-
     <div class="paginador-boton active" (click)="nextPage()">
       <span>chevron_right</span>
     </div>
   </div>
 </div>
-

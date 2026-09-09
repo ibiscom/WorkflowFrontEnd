@@ -11,77 +11,107 @@ import { LoginEntity } from '../../login/login.entity';
   styleUrl: './filtros-busqueda-simulacion.component.scss',
 })
 export class FiltrosBusquedaSimulacionComponent {
-onEventoInicioChange($event: any) {
-throw new Error('Method not implemented.');
-}
-  public tareasNameF: string = '';
-  public supervisorF: string = '';
-  public fechaInicial: string = '';
-fechaFinal: string = '';
+  /** Proceso seleccionado (code del workflow) */
+  public procesoSeleccionadoF: string = '';
 
-  // 🔹 Estado seleccionado
-  public companyObjectN: any = null;
+  /** Lista de procesos */
+  public procesosList: { code: string; name: string }[] = [];
 
-  // 🔹 LISTA PARA EL SELECT (SOLUCIÓN AL ERROR)
-  public companiesList: any[] = [];
+  /** Evento de inicio seleccionado */
+  public eventoInicioSeleccionadoF: string = '';
 
-  // Manejo del switch
-  public generateReportF: string = 'false';
+  /** Lista de eventos de inicio del proceso seleccionado */
+  public eventosInicioList: { code: string; name: string }[] = [];
 
   @Input() public uc?: SimulacionComponent;
   public loggedUser: LoginEntity | undefined;
 
-  constructor(private tareasService: SimulacionService) {}
+  constructor(private simulacionService: SimulacionService) {}
 
   ngOnInit(): void {
     this.loggedUser = this.uc?.loggedUser;
-
-    // 🔹 Carga inicial (puedes cambiar la lógica luego)
-    this.loadCompanies();
+    this.loadProcesos();
   }
 
-  // 🔹 Simulación / carga de estados
-  private loadCompanies(): void {
-    // Si luego viene de servicio, aquí se reemplaza
-    this.companiesList = [
-      { id: 1, largeName: 'Activo' },
-      { id: 2, largeName: 'Inactivo' }
-    ];
+  /** Usuario en sesión (solo lectura en pantalla) */
+  public get usuarioActual(): string {
+    return (
+      this.loggedUser?.user_name ??
+      this.uc?.loggedUser?.user_name ??
+      ''
+    );
   }
 
-  // Cambio del select
-  public onCompanyChange(value: any): void {
-    this.companyObjectN = value;
-    console.log('Estado seleccionado:', this.companyObjectN);
+  private loadProcesos(): void {
+    this.simulacionService.getWorkflowsName(true).subscribe({
+      next: (response) => {
+        this.procesosList = response.respuesta ?? [];
+      },
+      error: () => {
+        this.procesosList = [];
+      },
+    });
   }
 
-  // Ejecuta búsqueda
+  public onProcesoChange(value: string): void {
+    this.procesoSeleccionadoF = value;
+    this.eventoInicioSeleccionadoF = '';
+    this.loadEventosInicio(value);
+  }
+
+  public onEventoInicioChange(value: string): void {
+    this.eventoInicioSeleccionadoF = value;
+  }
+
+  private loadEventosInicio(workflowName: string): void {
+    if (!workflowName) {
+      this.eventosInicioList = [];
+      return;
+    }
+
+    this.simulacionService.getStartEventsName(workflowName, true).subscribe({
+      next: (response) => {
+        this.eventosInicioList = (response.respuesta ?? []).map((item: any) => ({
+          code: item.code ?? item.codigo ?? item.nombreEvento ?? '',
+          name: item.name ?? item.nombre ?? item.nombreLargo ?? '',
+        }));
+      },
+      error: () => {
+        this.eventosInicioList = [];
+      },
+    });
+  }
+
+  /** Ejecuta la simulación con los tres parámetros */
+  public simular(): void {
+    const workflowName = this.procesoSeleccionadoF?.trim() ?? '';
+    const eventInicio = this.eventoInicioSeleccionadoF?.trim() ?? '';
+    const userName = this.usuarioActual;
+
+    if (!this.uc) {
+      return;
+    }
+
+    if (!workflowName) {
+      this.uc.mensaje = 'Debe seleccionar un nombre de proceso.';
+      return;
+    }
+
+    if (!eventInicio) {
+      this.uc.mensaje = 'Debe seleccionar un evento de inicio.';
+      return;
+    }
+
+    if (!userName) {
+      this.uc.mensaje = 'No se pudo obtener el usuario en sesión.';
+      return;
+    }
+
+    this.uc.simularProceso(workflowName, eventInicio, userName);
+  }
+
+  /** Alias por compatibilidad con plantillas en caché */
   public search(): void {
-    const generateReportBool = this.generateReportF === 'true';
-
-    this.searchSimulacion(
-      this.tareasNameF,
-      this.supervisorF,
-      generateReportBool
-    );
-  }
-
-  public searchSimulacion(
-    tareasName: string,
-    supervisor: string,
-    generateReport: boolean
-  ): void {
-    console.log(
-      'Filtros recibidos:',
-      tareasName,
-      supervisor,
-      generateReport,
-      this.companyObjectN
-    );
-
-    // Tu lógica actual aquí
-
-    
+    this.simular();
   }
 }
-

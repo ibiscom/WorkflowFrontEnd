@@ -1,95 +1,153 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
 import { SimulacionComponentInstanceService } from './simulacion-component-instance.service';
 import { LoginEntity } from '../login/login.entity';
-import { GroupEntity } from '../entities/groups/group.entity';
 import { MessageUtil } from '../utils/message.util';
-import { Constants } from '../utils/constants';
-import { GroupSearchFilterEntity } from '../entities/groups/group-search-filter.entity';
-import { CompanyEntity } from '../entities/companies/company.entity';
-import { CompaniasService } from '../companias/companias.service';
-import { SimulacionEntity } from './simulacion.entity';
+import {
+  GetSimulateWorkflowRequest,
+  InitSimulateRespuesta,
+  mapSimulateWorkflowAFilas,
+  SimulacionEntity,
+} from './simulacion.entity';
 import { SimulacionService } from './simulacion.service';
-import { CookieService } from 'ngx-cookie-service';
-import { SimulacionFilterEntity } from './simulacionFilterEntity';
 
 @Component({
   selector: 'ibpm-simulacion',
-  imports: [MatCardModule, RouterModule,],
+  imports: [MatCardModule, RouterModule],
   templateUrl: './simulacion.component.html',
   styleUrl: './simulacion.component.scss',
 })
-export class SimulacionComponent {
+/**
+ * Pantalla de simulación: solo orquesta llamadas al backend y muestra resultados.
+ * La ejecución de tareas la realiza el backend vía servicios web.
+ */
+export class SimulacionComponent implements OnInit, OnDestroy {
   public loggedUser: LoginEntity | undefined;
   public simulacion: SimulacionEntity[] = [];
-  public companias: CompanyEntity[] = [];
   public mensaje: string = '';
-  public workflowActual: string = '';
+
+  public procesoActual: string = '';
+  public instanciaActual: string = '';
 
   constructor(
     private simulacionService: SimulacionService,
-    private companiasService: CompaniasService,
     private simulacionComponentInstanceService: SimulacionComponentInstanceService,
     private loginService: LoginService,
     public router: Router,
-    private cookieService: CookieService,
   ) {}
 
   ngOnInit(): void {
-    console.log('ENTRO ngOnInit');
     this.simulacionComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-   console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
-    if(this.hayWorkflowActual()) {
-      console.log('SI hay workflow → voy a buscar');
-        this.buscarSimulacion();
-    }
-    else {
-    console.log('NO hay workflow');
-         }
-
-      }
-
-    public hayWorkflowActual(): boolean {
-    this.workflowActual = this.cookieService.get("workflowActual");
-    if (this.workflowActual === '') { 
-      this.mensaje = Constants.ERR_WORKFLOW_NO_SELECCIONADO;
-      return false;
-    }
-    return true;
+    this.simulacion = [];
   }
 
-   public buscarSimulacion(filtros?: SimulacionFilterEntity): void {
-    console.log("FILTROS RECIBIDOS EN PADRE:", filtros);
-      const workflowActual = this.cookieService.get('workflowActual');
-      const body: SimulacionFilterEntity = {
-      nombreWorkflow: workflowActual,
-      nombre: filtros?.nombre ?? '',
-      estado: filtros?.estado ?? '',
-      primitiva: filtros?.primitiva ?? '',
-      expresion: filtros?.expresion ?? '',
-      descripcion: filtros?.descripcion ?? ''
-    };
-   console.log("BODY FINAL:", body);
-      console.log('BODY ENVIADO AL BACKEND:', body);
-  
-      this.simulacionService
-        .getSimulacion(body)
-        .subscribe({
-          next: (response) => {
-            this.simulacion = response.respuesta;
-            this.mensaje = '';
-          },
-          error: (err) => {
-            this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_OBTENIENDO_TAREAS,
-              err,
-            );
-          },
-        });
+  ngOnDestroy(): void {
+    this.simulacionComponentInstanceService.clearInstance();
+  }
+
+  /**
+   * Llama al backend para iniciar la simulación y luego consulta el estado.
+   */
+  public simularProceso(
+    workflowName: string,
+    eventInicio: string,
+    userName: string
+  ): void {
+    this.simulacionService
+      .initSimulateWorkflow(workflowName, eventInicio, userName)
+      .subscribe({
+        next: (response) => {
+          const resultado = response.respuesta as InitSimulateRespuesta;
+
+          if (resultado?.exitoso === false) {
+            this.mensaje =
+              resultado?.mensaje ||
+              response.mensaje ||
+              'No se pudo iniciar la simulación.';
+            this.simulacion = [];
+            return;
+          }
+
+          this.procesoActual = workflowName;
+          this.instanciaActual = String(resultado?.instancia ?? '');
+          this.mensaje =
+            resultado?.mensaje ||
+            response.mensaje ||
+            'Proceso iniciado correctamente';
+
+          this.consultarSimulacion(userName);
+        },
+        error: (err) => {
+          this.simulacion = [];
+          this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+            'Error al iniciar la simulación del proceso',
+            err
+          );
+        },
+      });
+  }
+
+  /**
+   * Consulta al backend el estado de la simulación y pinta la tabla.
+   */
+  public consultarSimulacion(userName?: string): void {
+    const usuario = userName || this.loggedUser?.user_name || '';
+    if (!usuario) {
+      this.mensaje = 'No se pudo obtener el usuario en sesión.';
+      return;
     }
 
-}
+    const body: GetSimulateWorkflowRequest = {
+      idInstancia: this.instanciaActual,
+      nombreW: this.procesoActual,
+      nombreLargo: '',
+      fechaCreacion: '',
+      fechaTerminacion: '',
+      estadoW: '',
+      porcentaje: '',
+      observaciones: '',
+      codigosInstanciasHijasString: '',
+      codigoInstanciaPadreString: '',
+      esSimulacion: 'true',
+      fechaI: '',
+      fechaF: '',
+      usuario,
+      seleccionado: false,
+    };
 
+    this.simulacionService.getSimulateWorkflow(usuario, body).subscribe({
+      next: (response) => {
+        this.simulacion = mapSimulateWorkflowAFilas(response.respuesta);
+      },
+      error: (err) => {
+        this.simulacion = [];
+        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          'Error al consultar la simulación',
+          err
+        );
+      },
+    });
+  }
+
+  /**
+   * Icono Ejecutar tarea: se cableará al servicio web de ejecución del backend.
+   * Tras ejecutarse en el back, se vuelve a consultar getSimulateWorkflow.
+   */
+  public ejecutarTarea(_tarea: SimulacionEntity): void {
+    this.mensaje =
+      'Pendiente: indicar el servicio web del backend para ejecutar la tarea.';
+  }
+
+  public verExpediente(_tarea: SimulacionEntity): void {
+    this.mensaje =
+      'Pendiente: indicar el servicio web del backend para ver expediente.';
+  }
+
+  public verDetalle(_tarea: SimulacionEntity): void {
+    this.mensaje =
+      'Pendiente: indicar el servicio web del backend para ver detalle.';
+  }
+}

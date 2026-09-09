@@ -1,10 +1,10 @@
+/**
+ * Filtros / parámetros para consultar tareas de una simulación.
+ */
 export interface SimulacionFilterEntity {
   nombreWorkflow?: string;
+  instancia?: string;
+  usuario?: string;
   nombre?: string;
-  nombreTareaCabeza?: string;
-  nombreTareaCola?: string;
   estado?: string;
-  primitiva?: string;
-  expresion?: string;
-  descripcion?: string;
 }

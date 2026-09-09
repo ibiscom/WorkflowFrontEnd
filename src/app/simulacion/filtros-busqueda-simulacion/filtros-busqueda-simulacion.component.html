@@ -1,124 +1,68 @@
 <div class="cont-filtro">
   <div class="usuarios-container">
-
     <div class="filtros-container">
 
-      <!-- TÍTULO -->
       <div class="filtros-titulo">
-        Información de búsqueda
+        Parámetros de simulación
       </div>
 
-      <!-- ========================= -->
-      <!-- FILA 1 -->
-      <!-- ========================= -->
       <div class="fila-filtros">
-
         <!-- NOMBRE DEL PROCESO -->
         <div class="campo-lista">
-          <label>Nombre del proceso</label>
-
+          <label>Nombre del proceso1</label>
           <select
-            id="company"
-            name="company"
-            [(ngModel)]="companyObjectN"
-            required
-            #company="ngModel"
-            (ngModelChange)="onCompanyChange($event)">
-
+            id="proceso"
+            name="proceso"
+            [(ngModel)]="procesoSeleccionadoF"
+            (ngModelChange)="onProcesoChange($event)">
             <option value="">Seleccione una opción</option>
-
-            @for (company of companiesList; track company) {
-              <option [ngValue]="company">
-                {{ company.largeName }}
+            @for (proceso of procesosList; track proceso.code) {
+              <option [value]="proceso.code">
+                {{ proceso.code }} - {{ proceso.name }}
               </option>
             }
-
           </select>
         </div>
 
-        <!-- INSTANCIA -->
-        <div class="campo-texto-filtro">
-          <label>Instancia</label>
-
-          <input
-            type="text"
-            [(ngModel)]="tareasNameF"
-            placeholder="Inserte número de la instancia"
-            (keydown.enter)="search()" />
-        </div>
-
-      </div>
-
-<!-- ========================= -->
-<!-- FILA 2 -->
-<!-- ========================= -->
-<div class="fila-filtros">
-
-  <!-- NOMBRE EVENTO DE INICIO -->
+        <!-- NOMBRE EVENTO DE INICIO -->
         <div class="campo-lista">
           <label>Nombre evento de inicio</label>
-
           <select
             id="eventoInicio"
             name="eventoInicio"
-            [(ngModel)]="eventoInicio"
-            required
-            #eventoInicio="ngModel"
+            [(ngModel)]="eventoInicioSeleccionadoF"
             (ngModelChange)="onEventoInicioChange($event)">
-
             <option value="">Seleccione una opción</option>
-
-            @for (company of companiesList; track company) {
-              <option [ngValue]="company">
-                {{ company.largeName }}
+            @for (evento of eventosInicioList; track evento.code) {
+              <option [value]="evento.code">
+                {{ evento.code }} - {{ evento.name }}
               </option>
             }
-
           </select>
         </div>
-      <!-- ========================= -->
-      <!-- FILA 3 -->
-      <!-- ========================= -->
-      <div class="fila-filtros">
-
-        <!-- ATRIBUTO -->
-        <div class="campo-texto-filtro">
-          <label>Atributo</label>
-
-          <input
-            type="text"
-            [(ngModel)]="tareasNameF"
-            (keydown.enter)="search()" />
-        </div>
-
-        <!-- VALOR ATRIBUTO -->
-        <div class="campo-texto-filtro">
-          <label>Valor del atributo</label>
-
-          <input
-            type="text"
-            [(ngModel)]="tareasNameF"
-            (keydown.enter)="search()" />
-        </div>
-
       </div>
 
-      <!-- BOTÓN -->
-      <div class="fila-botones">
+      <div class="fila-filtros">
+        <!-- USUARIO -->
+        <div class="campo-texto-filtro">
+          <label>Usuario</label>
+          <input
+            type="text"
+            [ngModel]="usuarioActual"
+            name="usuario"
+            readonly />
+        </div>
+      </div>
 
-        <button class="btn-figma" (click)="search()">
+      <div class="fila-botones">
+        <button class="btn-figma" type="button" (click)="simular()">
           <span class="btn-icon">
             <img src="assets/img/search.svg" alt="Simular proceso" />
           </span>
-
-          <span class="label">
-            Simular proceso
-          </span>
+          <span class="label">Simular proceso</span>
         </button>
-
       </div>
 
     </div>
-
   </div>
 </div>
