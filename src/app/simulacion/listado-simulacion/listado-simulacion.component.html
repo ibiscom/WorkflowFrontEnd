@@ -1,128 +1,294 @@
-<!-- PARÁMETROS -->
-<ibpm-filtros-busqueda-simulacion [uc]="this.parent" style="width: 100%">
+<!-- =========================================================
+     FILTROS
+========================================================= -->
+
+<ibpm-filtros-busqueda-simulacion
+  [uc]="this.parent"
+  style="width: 100%">
 </ibpm-filtros-busqueda-simulacion>
 
-<!-- TARJETA TABLA -->
-<div class="tabla-card">
-  <div class="tabla-header-container">
-    <div class="tabla-titulo">Listado de tareas del proceso</div>
-  </div>
 
-  <div class="tabla-body">
+<!-- =========================================================
+     INFORMACIÓN DEL PROCESO
+     Se muestra cuando existe una instancia
+========================================================= -->
 
-    <!-- INSTANCIA -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header"><div>Instancia</div></div>
-      @for (element of parent.simulacion; track trackByTarea($index, element)) {
-        <div class="tabla-celda"><div>{{ element.instancia }}</div></div>
-      }
+@if (parent.informacionProceso && parent.informacionProceso.length > 0) {
+
+  <div class="tabla-card">
+
+    <!-- HEADER -->
+    <div class="tabla-header-container">
+      <div class="tabla-titulo">
+        Información del proceso
+      </div>
     </div>
 
-    <!-- NÚM TAREA -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header"><div>Núm tarea</div></div>
-      @for (element of parent.simulacion; track trackByTarea($index, element)) {
-        <div class="tabla-celda"><div>{{ element.numTarea }}</div></div>
-      }
-    </div>
+    <!-- TABLA -->
+    <div class="tabla-body">
 
-    <!-- NOMBRE DE LA TAREA -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header"><div>Nombre de la Tarea</div></div>
-      @for (element of parent.simulacion; track trackByTarea($index, element)) {
-        <div class="tabla-celda"><div>{{ element.nombre }}</div></div>
-      }
-    </div>
+      <!-- ENCABEZADOS -->
+      <div class="tabla-columna tabla-header">
 
-    <!-- FECHA DE ASIGNACIÓN -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header"><div>Fecha de Asignación</div></div>
-      @for (element of parent.simulacion; track trackByTarea($index, element)) {
-        <div class="tabla-celda"><div>{{ element.fechaAsignacion }}</div></div>
-      }
-    </div>
-
-    <!-- FECHA DE EJECUCIÓN -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header"><div>Fecha de Ejecución</div></div>
-      @for (element of parent.simulacion; track trackByTarea($index, element)) {
-        <div class="tabla-celda"><div>{{ element.fechaEjecucion }}</div></div>
-      }
-    </div>
-
-    <!-- FECHA DE TERMINACIÓN -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header"><div>Fecha de Terminación</div></div>
-      @for (element of parent.simulacion; track trackByTarea($index, element)) {
-        <div class="tabla-celda"><div>{{ element.fechaTerminacion }}</div></div>
-      }
-    </div>
-
-    <!-- ESTADO -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header"><div>Estado</div></div>
-      @for (element of parent.simulacion; track trackByTarea($index, element)) {
-        <div class="tabla-celda"><div>{{ element.estadoTarea }}</div></div>
-      }
-    </div>
-
-    <!-- RESPONSABLE -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header"><div>Responsable</div></div>
-      @for (element of parent.simulacion; track trackByTarea($index, element)) {
-        <div class="tabla-celda"><div>{{ element.responsable }}</div></div>
-      }
-    </div>
-
-    <!-- OPORTUNIDAD -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header"><div>Oportunidad</div></div>
-      @for (element of parent.simulacion; track trackByTarea($index, element)) {
-        <div class="tabla-celda"><div>{{ element.oportunidad }}</div></div>
-      }
-    </div>
-
-    <!-- ACCIÓN -->
-    <div class="tabla-columna tabla-columna-accion">
-      <div class="tabla-col-header"><div>Acción</div></div>
-      @for (element of parent.simulacion; track trackByTarea($index, element)) {
-        <div class="tabla-celda tabla-celda-accion">
-          <button
-            type="button"
-            class="btn-accion-sim"
-            title="Ejecutar tarea"
-            (click)="ejecutarTarea(element)">
-            <img src="assets/img/check.svg" alt="Ejecutar tarea" />
-          </button>
-          <button
-            type="button"
-            class="btn-accion-sim"
-            title="Ver expediente"
-            (click)="verExpediente(element)">
-            <img src="assets/img/folder.svg" alt="Ver expediente" />
-          </button>
-          <button
-            type="button"
-            class="btn-accion-sim"
-            title="Ver detalle"
-            (click)="verDetalle(element)">
-            <img src="assets/img/consulta.svg" alt="Ver detalle" />
-          </button>
+        <div class="tabla-col-header">
+          Estado
         </div>
+
+        <div class="tabla-col-header">
+          Simulación
+        </div>
+
+        <div class="tabla-col-header">
+          Fecha de Inicio
+        </div>
+
+        <div class="tabla-col-header">
+          Fecha de Terminación
+        </div>
+
+        <div class="tabla-col-header">
+          Instancia padre
+        </div>
+
+        <div class="tabla-col-header">
+          Instancias hijas
+        </div>
+
+        <div class="tabla-col-header">
+          Observaciones
+        </div>
+
+      </div>
+
+
+      <!-- REGISTROS -->
+      @for (
+        proceso of parent.informacionProceso;
+        track proceso
+      ) {
+
+        <div class="tabla-columna">
+
+          <div class="tabla-celda">
+            {{ proceso.estado }}
+          </div>
+
+          <div class="tabla-celda">
+            {{ proceso.simulacion }}
+          </div>
+
+          <div class="tabla-celda">
+            {{ proceso.fechaInicio }}
+          </div>
+
+          <div class="tabla-celda">
+            {{ proceso.fechaTerminacion }}
+          </div>
+
+          <div class="tabla-celda">
+            {{ proceso.instanciaPadre }}
+          </div>
+
+          <div class="tabla-celda">
+            {{ proceso.instanciasHijas }}
+          </div>
+
+          <div class="tabla-celda">
+            {{ proceso.observaciones }}
+          </div>
+
+        </div>
+
       }
+
     </div>
 
   </div>
 
-  <div class="tabla-footer">
-    <div class="tabla-footer-text">
-      Página {{ currentPage }} de {{ numberOfPages }}
+}
+
+
+<!-- =========================================================
+     LISTA DE TAREAS DEL PROCESO
+     Se muestra cuando existen tareas para la simulación
+========================================================= -->
+
+@if (parent.simulacion && parent.simulacion.length > 0) {
+
+  <div class="tabla-card">
+
+    <!-- HEADER -->
+    <div class="tabla-header-container">
+      <div class="tabla-titulo">
+        Lista de tareas del proceso
+      </div>
     </div>
-    <div class="paginador-boton" (click)="previousPage()">
-      <span>chevron_left</span>
+
+
+    <!-- TABLA -->
+    <div class="tabla-body">
+
+      <!-- ENCABEZADOS -->
+      <div class="tabla-columna tabla-header">
+
+        <div class="tabla-col-header">
+          Instancia
+        </div>
+
+        <div class="tabla-col-header">
+          Num Tarea
+        </div>
+
+        <div class="tabla-col-header">
+          Nombre de la tarea
+        </div>
+
+        <div class="tabla-col-header">
+          Fecha de Asignación
+        </div>
+
+        <div class="tabla-col-header">
+          Fecha de Ejecución
+        </div>
+
+        <div class="tabla-col-header">
+          Fecha de Terminación
+        </div>
+
+        <div class="tabla-col-header">
+          Estado
+        </div>
+
+        <div class="tabla-col-header">
+          Responsable
+        </div>
+
+        <div class="tabla-col-header">
+          Oportunidad
+        </div>
+
+        <div class="tabla-col-header">
+          Acción
+        </div>
+
+      </div>
+
+
+      <!-- REGISTROS -->
+      @for (
+        element of parent.simulacion;
+        track element
+      ) {
+
+        <div class="tabla-columna">
+
+          <div class="tabla-celda">
+            {{ element.instancia }}
+          </div>
+
+          <div class="tabla-celda">
+            {{ element.numTarea }}
+          </div>
+
+          <div class="tabla-celda">
+            {{ element.nombre }}
+          </div>
+
+          <div class="tabla-celda">
+            {{ element.fechaAsignacion }}
+          </div>
+
+          <div class="tabla-celda">
+            {{ element.fechaEjecucion }}
+          </div>
+
+          <div class="tabla-celda">
+            {{ element.fechaTerminacion }}
+          </div>
+
+          <div class="tabla-celda">
+            {{ element.estadoTarea }}
+          </div>
+
+          <div class="tabla-celda">
+            {{ element.responsable }}
+          </div>
+
+
+          <!-- OPORTUNIDAD -->
+          <div class="tabla-celda">
+            <span class="indicador-oportunidad">
+              {{ element.oportunidad }}
+            </span>
+          </div>
+
+
+          <!-- ACCIÓN -->
+          <div class="tabla-celda acciones">
+
+            <!-- Ejecutar tarea -->
+            <button
+              type="button"
+              class="btn-accion"
+              title="Ejecutar tarea"
+              (click)="ejecutarTarea(element)">
+              <img
+                src="assets/img/ejecutar.svg"
+                alt="Ejecutar tarea">
+            </button>
+
+            <!-- Ver expediente de tarea -->
+            <button
+              type="button"
+              class="btn-accion"
+              title="Ver expediente de tarea"
+              (click)="verExpedienteTarea(element)">
+              <img
+                src="assets/img/carpeta.svg"
+                alt="Ver expediente de tarea">
+            </button>
+
+            <!-- Ver detalle -->
+            <button
+              type="button"
+              class="btn-accion"
+              title="Ver detalle"
+              (click)="verDetalle(element)">
+              <img
+                src="assets/img/detalle.svg"
+                alt="Ver detalle">
+            </button>
+
+          </div>
+
+        </div>
+
+      }
+
     </div>
-    <div class="paginador-boton active" (click)="nextPage()">
-      <span>chevron_right</span>
+
+
+    <!-- PAGINACIÓN -->
+    <div class="tabla-footer">
+
+      <button
+        type="button"
+        (click)="previousPage()">
+        Anterior
+      </button>
+
+      <span>
+        Página {{ currentPage }} de {{ numberOfPages }}
+      </span>
+
+      <button
+        type="button"
+        (click)="nextPage()">
+        Siguiente
+      </button>
+
     </div>
+
   </div>
-</div>
+
+}

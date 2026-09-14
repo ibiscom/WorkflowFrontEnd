@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
-import { SimulacionComponentInstanceService } from './simulacion-component-instance.service';
+import { ConsultarPorTareaComponentInstanceService } from './consultarportarea-component-instance.service';
 import { LoginEntity } from '../login/login.entity';
 import { GroupEntity } from '../entities/groups/group.entity';
 import { MessageUtil } from '../utils/message.util';
@@ -10,29 +10,27 @@ import { Constants } from '../utils/constants';
 import { GroupSearchFilterEntity } from '../entities/groups/group-search-filter.entity';
 import { CompanyEntity } from '../entities/companies/company.entity';
 import { CompaniasService } from '../companias/companias.service';
-import { SimulacionEntity } from './simulacion.entity';
-import { SimulacionService } from './simulacion.service';
+import { ConsultarporTareaService } from './consultarportarea.service';
 import { CookieService } from 'ngx-cookie-service';
-import { SimulacionFilterEntity } from './simulacionFilterEntity';
+import { ConsultarPorTareaFilterEntity } from './consultarportareaFilterEntity';
 
 @Component({
-  selector: 'ibpm-simulacion',
+  selector: 'ibpm-consultarportarea',
   imports: [MatCardModule, RouterModule,],
-  templateUrl: './simulacion.component.html',
-  styleUrl: './simulacion.component.scss',
+  templateUrl: './consultarportarea.component.html',
+  styleUrl: './consultarportarea.component.scss',
 })
-export class SimulacionComponent {
+export class ConsultarPorTareaComponent {
   public loggedUser: LoginEntity | undefined;
-  public simulacion: SimulacionEntity[] = [];
+  public consultarportarea: ConsultarPorTareaEntity[] = [];
   public companias: CompanyEntity[] = [];
   public mensaje: string = '';
   public workflowActual: string = '';
-informacionProceso: any;
 
   constructor(
-    private simulacionService: SimulacionService,
+    private consultarportareaService: ConsultarporTareaService,
     private companiasService: CompaniasService,
-    private simulacionComponentInstanceService: SimulacionComponentInstanceService,
+    private consultarportareaComponentInstanceService: ConsultarPorTareaComponentInstanceService ,
     private loginService: LoginService,
     public router: Router,
     private cookieService: CookieService,
@@ -40,12 +38,12 @@ informacionProceso: any;
 
   ngOnInit(): void {
     console.log('ENTRO ngOnInit');
-    this.simulacionComponentInstanceService.setInstance(this);
+    this.consultarportareaComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
    console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
     if(this.hayWorkflowActual()) {
       console.log('SI hay workflow → voy a buscar');
-        this.buscarSimulacion();
+        this.buscarConsultarPorTarea();
     }
     else {
     console.log('NO hay workflow');
@@ -62,10 +60,10 @@ informacionProceso: any;
     return true;
   }
 
-   public buscarSimulacion(filtros?: SimulacionFilterEntity): void {
+   public buscarConsultarPorTarea(filtros?: ConsultarPorTareaFilterEntity): void {
     console.log("FILTROS RECIBIDOS EN PADRE:", filtros);
       const workflowActual = this.cookieService.get('workflowActual');
-      const body: SimulacionFilterEntity = {
+      const body: ConsultarPorTareaFilterEntity = {
       nombreWorkflow: workflowActual,
       nombre: filtros?.nombre ?? '',
       estado: filtros?.estado ?? '',
@@ -76,11 +74,11 @@ informacionProceso: any;
    console.log("BODY FINAL:", body);
       console.log('BODY ENVIADO AL BACKEND:', body);
   
-      this.simulacionService
-        .getSimulacion(body)
+      this.consultarportareaService
+        .getConsultarPorTarea(body)
         .subscribe({
           next: (response) => {
-            this.simulacion = response.respuesta;
+            this.consultarportarea = response.respuesta;
             this.mensaje = '';
           },
           error: (err) => {
