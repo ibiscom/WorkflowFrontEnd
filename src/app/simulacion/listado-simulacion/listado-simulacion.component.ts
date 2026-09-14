@@ -14,6 +14,15 @@ import { SimulacionEntity } from '../simulacion.entity';
  * Listado de simulacion con navegación a la edición y utilidades de presentación.
  */
 export class ListadoSimulacionComponent {
+ejecutarTarea(_t45: SimulacionEntity) {
+throw new Error('Method not implemented.');
+}
+verExpedienteTarea(_t45: SimulacionEntity) {
+throw new Error('Method not implemented.');
+}
+verDetalle(_t45: SimulacionEntity) {
+throw new Error('Method not implemented.');
+}
   // 🔹 Variables de paginación
   public currentPage: number = 1;
   public numberOfPages: number = 1;

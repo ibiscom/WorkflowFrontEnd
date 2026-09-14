@@ -1,33 +1,16 @@
 import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SimulacionComponent } from '../simulacion.component';
-import { SimulacionService } from '../simulacion.service';
+import { ConsultarPorTareaComponent } from '../consultarportarea.component';
+import { ConsultarPorTareaService } from '../consultarportarea.service';
 import { LoginEntity } from '../../login/login.entity';
 
 @Component({
-  selector: 'ibpm-filtros-busqueda-simulacion',
+  selector: 'ibpm-filtros-busqueda-consultarportarea',
   imports: [FormsModule],
-  templateUrl: './filtros-busqueda-simulacion.component.html',
-  styleUrl: './filtros-busqueda-simulacion.component.scss',
+  templateUrl: './filtros-busqueda-consultarportarea.component.html',
+  styleUrl: './filtros-busqueda-consultarportarea.component.scss',
 })
-export class FiltrosBusquedaSimulacionComponent {
-valorAtributoF: any;
-atributoF: any;
-eventosInicioList: any;
-eventoInicio: any;
-iniciar() {
-throw new Error('Method not implemented.');
-}
-existeInstancia: any;
-verModelo() {
-throw new Error('Method not implemented.');
-}
-verExpediente() {
-throw new Error('Method not implemented.');
-}
-terminar() {
-throw new Error('Method not implemented.');
-}
+export class FiltrosBusquedaConsultarPorTareaComponent {
 onEventoInicioChange($event: any) {
 throw new Error('Method not implemented.');
 }
@@ -45,10 +28,10 @@ fechaFinal: string = '';
   // Manejo del switch
   public generateReportF: string = 'false';
 
-  @Input() public uc?: SimulacionComponent;
+  @Input() public uc?: ConsultarPorTareaComponent;
   public loggedUser: LoginEntity | undefined;
 
-  constructor(private tareasService: SimulacionService) {}
+  constructor(private tareasService: ConsultarPorTareaService) {}
 
   ngOnInit(): void {
     this.loggedUser = this.uc?.loggedUser;
@@ -76,14 +59,14 @@ fechaFinal: string = '';
   public search(): void {
     const generateReportBool = this.generateReportF === 'true';
 
-    this.searchSimulacion(
+    this.searchConsultarPorTarea(
       this.tareasNameF,
       this.supervisorF,
       generateReportBool
     );
   }
 
-  public searchSimulacion(
+  public searchConsultarPorTarea(
     tareasName: string,
     supervisor: string,
     generateReport: boolean
