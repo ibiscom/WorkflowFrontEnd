@@ -1,135 +1,120 @@
 <div class="cont-filtro">
   <div class="usuarios-container">
-
+    
+    <!-- FILTROS -->
     <div class="filtros-container">
 
       <!-- TÍTULO -->
-      <div class="filtros-titulo">
-        Información de búsqueda
-      </div>
+      <div class="filtros-titulo">Información de búsqueda</div>
 
-      <!-- ========================= -->
       <!-- FILA 1 -->
-      <!-- ========================= -->
       <div class="fila-filtros">
-
-        <!-- NOMBRE DEL PROCESO -->
+        
+<!-- NOMBRE DEL PROCESO -->
         <div class="campo-lista">
-          <label>Nombre del proceso</label>
+            <label for="company">Nombre del proceso</label>
 
-          <select
-            id="company"
-            name="company"
-            [(ngModel)]="companyObjectN"
-            required
-            #company="ngModel"
-            (ngModelChange)="onCompanyChange($event)">
+            <select
+              id="company"
+              name="company"
+              [(ngModel)]="companyObjectN"
+              required
+              #company="ngModel"
+              (ngModelChange)="onCompanyChange($event)"
+            >
+              <option value="">Seleccione una opción</option>
 
-            <option value="">Seleccione una opción</option>
+              @for (company of companiesList; track company) {
+                <option [ngValue]="company">
+                  {{ company.largeName }}
+                </option>
+              }
+            </select>
+          </div>
 
-            @for (company of companiesList; track company) {
-              <option [ngValue]="company">
-                {{ company.largeName }}
-              </option>
-            }
-
-          </select>
-        </div>
-
-        <!-- NÚMERO DE INSTANCIA -->
-        <div class="campo-texto-filtro">
-          <label>Número de instancia</label>
-
+        <!-- NUMERO DE INSTANCIA -->
+        <div class="campo-texto-filtro ">
+          <label for="description">Número de instancia</label>
           <input
             type="text"
             [(ngModel)]="tareasNameF"
             placeholder="Inserte número de la instancia"
-            (keydown.enter)="search()" />
+            (keydown.enter)="search()"
+          />
         </div>
 
       </div>
 
-<!-- ========================= -->
-<!-- FILA 2 -->
-<!-- ========================= -->
-<div class="fila-filtros">
+      <!-- FILA 2 -->
+      <div class="fila-filtros-fila2">
 
-  <!-- FECHA INICIAL -->
-  <div class="campo-fecha-filtro">
-    <label>Fecha inicial</label>
+        <!-- FECHA INICIAL -->
+        <div class="campo-texto-filtro ">
+          <label for="description">Fecha inicial</label>
+          <input
+            type="text"
+            [(ngModel)]="tareasNameF"
+            placeholder="Inserte fecha inicial"
+            (keydown.enter)="search()"
+          />
+        </div>
 
-    <input
-      type="date"
-      [(ngModel)]="fechaInicial"
-      (keydown.enter)="search()" />
-  </div>
+        <!-- FECHA FINAL -->
+        <div class="campo-texto-filtro ">
+          <label for="description">Fecha final</label>
+          <input
+            type="text"
+            [(ngModel)]="tareasNameF"
+            placeholder="Inserte fecha final"
+            (keydown.enter)="search()"
+          />
+        </div>
 
-  <!-- FECHA FINAL -->
-  <div class="campo-fecha-filtro">
-    <label>Fecha final</label>
-
-    <input
-      type="date"
-      [(ngModel)]="fechaFinal"
-      (keydown.enter)="search()" />
-  </div>
-
-</div>
-      <!-- ========================= -->
-      <!-- FILA 3 -->
-      <!-- ========================= -->
-      <div class="fila-filtros">
+              <!-- FILA 3 -->
+      <div class="fila-filtros-fila3">
 
         <!-- OBSERVACIONES -->
-        <div class="campo-texto-filtro">
-          <label>Observaciones</label>
-
+        <div class="campo-texto-filtro ">
+          <label for="description">Observaciones</label>
           <input
             type="text"
             [(ngModel)]="tareasNameF"
             placeholder="Inserte observaciones"
-            (keydown.enter)="search()" />
+            (keydown.enter)="search()"
+          />
         </div>
 
         <!-- NOMBRE DEL RESPONSABLE -->
-        <div class="campo-lista">
+          <div class="campo-lista">
+            <label for="company">Nombre del responsable</label>
 
-          <label>Nombre del responsable</label>
+            <select
+              id="company"
+              name="company"
+              [(ngModel)]="companyObjectN"
+              required
+              #company="ngModel"
+              (ngModelChange)="onCompanyChange($event)"
+            >
+              <option value="">Seleccione una opción</option>
 
-          <select
-            [(ngModel)]="companyObjectN"
-            (ngModelChange)="onCompanyChange($event)">
+              @for (company of companiesList; track company) {
+                <option [ngValue]="company">
+                  {{ company.largeName }}
+                </option>
+              }
+            </select>
+          </div>
 
-            <option value="">Seleccione una opción</option>
-
-            @for (company of companiesList; track company) {
-              <option [ngValue]="company">
-                {{ company.largeName }}
-              </option>
-            }
-
-          </select>
-
-        </div>
-
-      </div>
-
-      <!-- BOTÓN -->
-      <div class="fila-botones">
-
+        <!-- FINALIZAR PROCESO -->
         <button class="btn-figma" (click)="search()">
           <span class="btn-icon">
             <img src="assets/img/search.svg" alt="Finalizar proceso" />
           </span>
-
-          <span class="label">
-            Finalizar proceso
-          </span>
+          <span class="label">Finalizar proceso</span>
         </button>
 
       </div>
-
     </div>
-
   </div>
-</div>
+  

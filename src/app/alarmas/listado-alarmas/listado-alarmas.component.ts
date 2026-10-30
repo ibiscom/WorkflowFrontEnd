@@ -4,7 +4,6 @@ import { MatTableModule } from '@angular/material/table';
 import { AlarmaEntity } from '../alarmas.entity';
 import { CrearAlarmaComponent } from '../crear-alarmas/crear-alarmas.component';
 
-
 @Component({
   selector: 'ibpm-listado-alarma',
   standalone: true,
@@ -31,11 +30,11 @@ export class ListadoAlarmasComponent {
   }
 
   /**
-   * Navega a la pantalla de edición de la alarma.
+   * Navega a la pantalla de edición del atributo de objeto workflow seleccionado.
    */
   public goToEditarAlarma(alarma: AlarmaEntity) {
     this.parent.router.navigate([
-      `/main-page/alarmas/editarAlarma/${alarma.nombre}`,
+      `/main-page/alarmas/editarAlarma/${alarma.id}`,
     ]);
   }
 
@@ -53,7 +52,7 @@ export class ListadoAlarmasComponent {
       this.currentPage++;
       this.parent.buscarAlarma(); // ajusta si tu método se llama diferente
     }
-  }
+
 }
 
 }

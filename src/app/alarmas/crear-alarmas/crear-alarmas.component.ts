@@ -21,14 +21,6 @@ import { AlarmaService } from '../alarmas.service';
 import { AlarmaComponent } from '../alarmas.component';
 import { AlarmaEntity } from '../alarmas.entity';
 import { AtributoAlarmaEntity } from '../atributo-alarma.entity';
-import { TipoAlarmaEntity } from '../tipo-alarma.entity';
-import { CookieService } from 'ngx-cookie-service';
-import { TareasService } from '../../tareas/tareas.service';
-import { TareaEntity } from '../../tareas/tarea.entity';
-import { DependenciaService } from '../../dependencias/dependencia.service';
-import { ObjetowService } from '../../objetosw/objetow.service';
-import { AtributoObjetowEntity } from '../../objetosw/atributo-objetow.entity';
-import { EstadoTareaAlarmaEntity } from '../estado-tarea-alarma.entity';
 
 @Component({
   selector: 'ibpm-crear-alarma',
@@ -49,10 +41,7 @@ import { EstadoTareaAlarmaEntity } from '../estado-tarea-alarma.entity';
  * Permite seleccionar compañía, supervisor y administrar permisos/restricciones.
  */
 export class CrearAlarmaComponent {
-tiposalarmasList: TipoAlarmaEntity[] = [];
-tareasList: TareaEntity[] = [];
-estadosList: EstadoTareaAlarmaEntity[] = [];
-atributosWorkflowList: AtributoObjetowEntity[] = [];
+tiposalarmasList: any;
 mailsDestinosN: any;
 destinatariosN: any;
 remitenteN: any;
@@ -63,7 +52,8 @@ atributoN: any;
 onTareaChange($event: any) {
 throw new Error('Method not implemented.');
 }
-tareaN: string = '';
+alarmasList: any;
+tareaN: any;
 
 onResponsableChange($event: any) {
 throw new Error('Method not implemented.');
@@ -112,10 +102,6 @@ throw new Error('Method not implemented.');
     private alarmaComponentInstanceService: AlarmaComponentInstanceService,
     private router: Router,
     private route: ActivatedRoute,
-    private cookieService: CookieService,
-    private tareasService: TareasService,
-    private dependenciaService: DependenciaService,
-    private objetowService: ObjetowService,
   ) {
     this.loggedUser = this.loginService.getLoggedUser();
     this.uc = this.alarmaComponentInstanceService.getInstance();
@@ -125,22 +111,21 @@ throw new Error('Method not implemented.');
    * Tipos de alarmas que se pueden crear. Se inicializan al cargar el componente.
    */
 public async ngOnInit(): Promise<void> {
-  this.workflowActual =
-    this.uc?.workflowActual || this.cookieService.get('workflowActual');
+
+  this.tiposalarmasList = [
+    { id: 1, nombre: 'Mail' },
+    { id: 2, nombre: 'Terminar tarea' },
+    { id: 3, nombre: 'Mail-Manual' },
+    { id: 4, nombre: 'Mail-Proceso' },
+    { id: 5, nombre: 'Mail-Día' }
+  ];
 
   if (this.uc) {
     this.uc.mensaje = '';
   }
 
-  await Promise.all([
-    this.cargarTiposAlarma(),
-    this.cargarTareas(),
-    this.cargarEstados(),
-    this.cargarAtributos(),
-  ]);
-
   const id = this.route.snapshot.paramMap.get('id');
-  console.log('ENTRO ngOnInit',id);
+
   if (id) {
     this.atrAlarmaIdEdit = id;
     await this.fillEditFields();
@@ -149,123 +134,20 @@ public async ngOnInit(): Promise<void> {
   }
 }
 
-  private tiposAlarmaPorDefecto(): TipoAlarmaEntity[] {
-    return [
-      { id: '1', nombre: 'Mail', tipotareatiempo: '' },
-      { id: '2', nombre: 'Terminar tarea', tipotareatiempo: '' },
-      { id: '3', nombre: 'Mail-Manual', tipotareatiempo: '' },
-      { id: '4', nombre: 'Mail-Proceso', tipotareatiempo: '' },
-      { id: '5', nombre: 'Mail-Día', tipotareatiempo: '' },
-    ];
-  }
-
-  public nombreOpcion(item: any): string {
-    if (item == null) {
-      return '';
-    }
-    if (typeof item === 'string') {
-      return item;
-    }
-    return item.nombre ?? item.name ?? item.code ?? '';
-  }
-
-  private async cargarTiposAlarma(): Promise<void> {
-    try {
-      const response = await firstValueFrom(this.alarmaService.getTiposAlarma());
-      const tipos = Array.isArray(response?.respuesta) ? response.respuesta : [];
-      this.tiposalarmasList = tipos
-        .map((tipo: any, index: number) => ({
-          id: String(tipo.id ?? tipo.code ?? index),
-          nombre: this.nombreOpcion(tipo),
-          tipotareatiempo: tipo.tipotareatiempo ?? tipo.tipoTareaTiempo ?? '',
-        }))
-        .filter((tipo) => tipo.nombre);
-      if (this.tiposalarmasList.length === 0) {
-        this.tiposalarmasList = this.tiposAlarmaPorDefecto();
-      }
-    } catch {
-      this.tiposalarmasList = this.tiposAlarmaPorDefecto();
-    }
-  }
-
-  private async cargarTareas(): Promise<void> {
-    this.tareasList = [];
-    if (!this.workflowActual) {
-      return;
-    }
-    try {
-      const response = await firstValueFrom(
-        this.tareasService.getTareas({ nombreWorkflow: this.workflowActual }),
-      );
-      this.tareasList = Array.isArray(response?.respuesta)
-        ? response.respuesta
-        : [];
-    } catch (e) {
-      if (this.uc) {
-        this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-          Constants.ERR_OBTENIENDO_TAREAS,
-          e,
-        );
-      }
-    }
-  }
-
-  private async cargarEstados(): Promise<void> {
-    this.estadosList = [];
-    try {
-      const response = await firstValueFrom(this.alarmaService.getEstadosTareasAlarma());
-      const estados = Array.isArray(response?.respuesta) ? response.respuesta : [];
-      this.estadosList = estados.map((e: any, index: number) => ({
-        code: String(e.code ?? e.id ?? index),
-        name: this.nombreOpcion(e),
-      } as EstadoTareaAlarmaEntity));
-    } catch (e) {
-      if (this.uc) {
-        this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-          Constants.ERR_OBTENIENDO_ESTADO_DEPENDENCIA,
-          e,
-        );
-      }
-    }
-  }
-
-  private async cargarAtributos(): Promise<void> {
-    this.atributosWorkflowList = [];
-    if (!this.workflowActual) {
-      return;
-    }
-    try {
-      const response = await firstValueFrom(
-        this.objetowService.obtenerAtributosObjetoWorkflow(this.workflowActual),
-      );
-      this.atributosWorkflowList = Array.isArray(response?.respuesta)
-        ? response.respuesta
-        : [];
-    } catch (e) {
-      if (this.uc) {
-        this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-          Constants.ERR_BUSCAR_OBJETOW,
-          e,
-        );
-      }
-    }
-  }
-
   /**
-   * Llena los campos del formulario con la información de la alarma seleccionada en edición.
+   * Llena los campos del formulario con la información del grupo en edición.
    */
   public async fillEditFields(): Promise<void> {
     
     try {
       const response = await firstValueFrom(
-        this.alarmaService.obtenerAlarma(
-      /*    this.uc?.workflowActual ?? '',*/
-          this.atrAlarmaIdEdit ?? '',
-        ),
+        this.alarmaService.obtenerAlarmas(this.uc?.workflowActual  ?? '')
       );
       if (response?.respuesta) {
-        console.log('response', response);
-        const alarma = response.respuesta as AlarmaEntity;
+        const alarmas = response.respuesta as AlarmaEntity[];
+        const alarma = alarmas.find(
+          (attr) => String(attr.id) === String(this.atrAlarmaIdEdit),
+        );
        
         this.workflowActual = this.uc?.workflowActual ?? '';
         this.nombreN = alarma?.tarea?.nombre ?? '';
@@ -293,8 +175,6 @@ public async ngOnInit(): Promise<void> {
         this.nombreAtributoN = alarma?.nombreAtributo ?? '';
         this.valorN = alarma?.valorAtributo ?? '';
         this.tipoTareaTiempoN = alarma?.atributos?.[0]?.tipoTareaTiempo ?? '';
-        this.tareaN = alarma?.tarea?.nombreLargo ?? '';
-        this.onAlarmaChange(this.tipoN);
         this.atributos = alarma?.atributos ?? [];
         
       }
@@ -484,11 +364,11 @@ public async ngOnInit(): Promise<void> {
    * Campos que se visualizan al seleccionar un tipo de alarma
    */
   
-public mostrarTarea = false;
-public mostrarEstado = false;
-public mostrarTiempo = false;
-public mostrarResponsable = false;
-public mostrarAtributo = false;
+public mostrarTarea = true;
+public mostrarEstado = true;
+public mostrarTiempo = true;
+public mostrarResponsable = true;
+public mostrarAtributo = true;
 
 public onAlarmaChange($event: any): void {
 
