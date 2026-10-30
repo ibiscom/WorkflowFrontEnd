@@ -1,0 +1,323 @@
+
+/* =======================================
+   CONTENEDOR PRINCIPAL DEL REPORTE
+======================================= */
+
+.reporte-resultados {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-sizing: border-box;
+  font-family: Roboto, sans-serif;
+  color: #1b1b1b;
+}
+
+/* =======================================
+   INFORMACIÓN DEL REPORTE
+======================================= */
+
+.reporte-metadatos {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 24px;
+  row-gap: 8px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border-top: 6px solid #005b96;
+  background: #ffffff;
+}
+
+.reporte-dato {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  align-items: start;
+  column-gap: 8px;
+  min-width: 0;
+}
+
+.reporte-dato-label {
+  font-family: Roboto, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 16px;
+  color: #111111;
+  white-space: nowrap;
+}
+
+.reporte-dato-valor {
+  min-width: 0;
+  font-family: Roboto, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #111111;
+  overflow-wrap: anywhere;
+}
+
+.reporte-dato-proceso {
+  grid-column: 1 / -1;
+}
+
+/* =======================================
+   CONTENEDOR DE LA GRÁFICA
+======================================= */
+
+.grafica-container {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.grafica-titulo {
+  width: 100%;
+  padding: 0 16px 8px;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: Roboto, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #111111;
+}
+
+.grafica-contenido {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  height: 250px;
+  padding: 8px 16px 16px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+/* Canvas de la gráfica */
+
+#graficaPendientesResponsable {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+}
+
+/*
+  Si utilizas Chart.js, configura también en el TypeScript:
+  - color de las barras: #ff5252
+  - borde superior de las barras: #b83a3a
+  - valores visibles sobre las barras
+  - leyenda: Responsables
+  - etiquetas de responsables en el eje horizontal
+*/
+
+/* =======================================
+   TARJETA DE LA TABLA
+======================================= */
+
+.tabla-card {
+  width: 100%;
+  min-width: 0;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0px 1px 15.4px 6px rgba(0, 0, 0, 0.07);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.tabla-reporte-card {
+  width: 100%;
+}
+
+/* =======================================
+   ENCABEZADO DE LA TABLA
+======================================= */
+
+.tabla-header-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 16px 24px;
+  box-sizing: border-box;
+}
+
+.tabla-titulo {
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  color: #1b1b1b;
+}
+
+/* =======================================
+   CUERPO DE LA TABLA
+======================================= */
+
+.tabla-body {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+  box-sizing: border-box;
+}
+
+/* =======================================
+   COLUMNAS
+======================================= */
+
+.tabla-columna {
+  flex: 1 0 0;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* =======================================
+   ENCABEZADOS DE COLUMNAS
+======================================= */
+
+.tabla-col-header {
+  min-height: 52px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  background: #f2f2f7;
+  border-bottom: 1px solid #e0e0e0;
+  color: #49454f;
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  overflow-wrap: anywhere;
+}
+
+/* =======================================
+   CELDAS
+======================================= */
+
+.tabla-celda {
+  min-height: 52px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  border-bottom: 1px solid #e0e0e0;
+  background: #ffffff;
+  color: #1b1b1b;
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  overflow-wrap: anywhere;
+}
+
+.tabla-celda > div {
+  width: 100%;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* =======================================
+   ÚLTIMA FILA
+======================================= */
+
+.tabla-columna .tabla-celda:last-child {
+  border-bottom: none;
+}
+
+/* =======================================
+   RESPONSIVE
+======================================= */
+
+@media (max-width: 900px) {
+  .reporte-metadatos {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 12px 16px;
+  }
+
+  .reporte-dato-proceso {
+    grid-column: auto;
+  }
+
+  .grafica-contenido {
+    height: 230px;
+    padding: 8px;
+  }
+
+  .tabla-header-container {
+    padding: 16px;
+  }
+
+  .tabla-columna {
+    flex-basis: 180px;
+  }
+}
+
+@media (max-width: 600px) {
+  .reporte-resultados {
+    gap: 16px;
+  }
+
+  .reporte-dato {
+    grid-template-columns: 105px minmax(0, 1fr);
+  }
+
+  .grafica-contenido {
+    height: 210px;
+  }
+
+  .tabla-titulo {
+    font-size: 14px;
+  }
+
+  .tabla-col-header,
+  .tabla-celda {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+}
+
+
+/* =======================================
+   ENCABEZADO AZUL DEL REPORTE
+======================================= */
+
+.reporte-encabezado {
+  width: 100%;
+  min-height: 65px;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+
+  background-color: #006699;
+  color: #ffffff;
+
+  font-family: Roboto, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  text-align: center;
+}
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 600px) {
+  .reporte-encabezado {
+    min-height: 56px;
+    padding: 12px 16px;
+    font-size: 20px;
+    line-height: 28px;
+  }
+}
+

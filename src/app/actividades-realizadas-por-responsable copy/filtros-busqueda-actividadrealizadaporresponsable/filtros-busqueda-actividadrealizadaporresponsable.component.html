@@ -1,0 +1,244 @@
+
+<!-- ======================================= -->
+<!-- CONTENEDOR PRINCIPAL -->
+<!-- ======================================= -->
+
+<div class="cont-filtro">
+
+  <div class="usuarios-container">
+
+    <!-- =================================== -->
+    <!-- TARJETA DE FILTROS -->
+    <!-- =================================== -->
+
+    <div class="filtros-container">
+
+      <!-- TÍTULO -->
+      <div class="filtros-titulo">
+        Información
+      </div>
+
+      <!-- ================================= -->
+      <!-- FILTROS -->
+      <!-- ================================= -->
+
+      <div class="filtros-reporte">
+
+        <!-- FILA 1: FECHAS -->
+        <div class="fila-filtros">
+
+          <!-- FECHA INICIAL -->
+          <div class="campo-fecha-filtro">
+            <label for="fechaInicial">
+              Fecha inicial
+            </label>
+
+            <input
+              id="fechaInicial"
+              name="fechaInicial"
+              type="date"
+              [(ngModel)]="fechaInicial"
+            />
+          </div>
+
+          <!-- FECHA FINAL -->
+          <div class="campo-fecha-filtro">
+            <label for="fechaFinal">
+              Fecha final
+            </label>
+
+            <input
+              id="fechaFinal"
+              name="fechaFinal"
+              type="date"
+              [(ngModel)]="fechaFinal"
+            />
+          </div>
+
+        </div>
+
+        <!-- FILA 2: PROCESO Y TAREA -->
+        <div class="fila-filtros">
+
+          <!-- PROCESO -->
+          <div class="campo-lista">
+            <label for="proceso">
+              Proceso
+            </label>
+
+            <select
+              id="proceso"
+              name="proceso"
+              [(ngModel)]="procesoSeleccionado"
+              (ngModelChange)="onProcesoChange($event)"
+            >
+              <option value="">
+                Todos
+              </option>
+
+              @for (proceso of procesosList; track proceso) {
+                <option [ngValue]="proceso">
+                  {{ proceso.largeName }}
+                </option>
+              }
+            </select>
+          </div>
+
+          <!-- TAREA -->
+          <div class="campo-lista">
+            <label for="tarea">
+              Tarea
+            </label>
+
+            <select
+              id="tarea"
+              name="tarea"
+              [(ngModel)]="tareaSeleccionada"
+            >
+              <option value="">
+                Todos
+              </option>
+
+              @for (tarea of tareasList; track tarea) {
+                <option [ngValue]="tarea">
+                  {{ tarea.nombre }}
+                </option>
+              }
+            </select>
+          </div>
+
+        </div>
+
+        <!-- FILA 3: ÁREA Y RESPONSABLE -->
+        <div class="fila-filtros">
+
+          <!-- ÁREA -->
+          <div class="campo-lista">
+            <label for="area">
+              Área
+            </label>
+
+            <select
+              id="area"
+              name="area"
+              [(ngModel)]="areaSeleccionada"
+            >
+              <option value="">
+                Todas
+              </option>
+
+              @for (area of areasList; track area) {
+                <option [ngValue]="area">
+                  {{ area.nombre }}
+                </option>
+              }
+            </select>
+          </div>
+
+          <!-- RESPONSABLE -->
+          <div class="campo-lista">
+            <label for="responsable">
+              Responsable
+            </label>
+
+            <select
+              id="responsable"
+              name="responsable"
+              [(ngModel)]="responsableSeleccionado"
+            >
+              <option value="">
+                Todos
+              </option>
+
+              @for (responsable of responsablesList; track responsable) {
+                <option [ngValue]="responsable">
+                  {{ responsable.nombre }}
+                </option>
+              }
+            </select>
+          </div>
+
+        </div>
+
+        <!-- FILA 4: TIPO DE ALARMA E ÍTEMS -->
+        <div class="fila-filtros">
+
+          <!-- TIPO DE ALARMA -->
+          <div class="campo-lista">
+            <label for="tipoAlarma">
+              Tipo alarma
+            </label>
+
+            <select
+              id="tipoAlarma"
+              name="tipoAlarma"
+              [(ngModel)]="tipoAlarmaSeleccionado"
+            >
+              <option value="">
+                Todas
+              </option>
+
+              @for (alarma of tiposAlarmaList; track alarma) {
+                <option [ngValue]="alarma">
+                  {{ alarma.nombre }}
+                </option>
+              }
+            </select>
+          </div>
+
+          <!-- ÍTEMS DE GRÁFICA -->
+          <div class="campo-texto-filtro">
+            <label for="itemsGrafica">
+              Ítems Gráfica
+            </label>
+
+            <input
+              id="itemsGrafica"
+              name="itemsGrafica"
+              type="number"
+              min="1"
+              [(ngModel)]="itemsGrafica"
+            />
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ================================= -->
+      <!-- BOTONES -->
+      <!-- ================================= -->
+
+      <div class="fila-botones">
+
+        <button
+          type="button"
+          class="btn-figma"
+          (click)="consultarReporte()"
+        >
+          <span class="label">Ver</span>
+        </button>
+
+        <button
+          type="button"
+          class="btn-figma"
+          (click)="generarPDF()"
+        >
+          <span class="label">Generar PDF</span>
+        </button>
+
+        <button
+          type="button"
+          class="btn-figma"
+          (click)="generarExcel()"
+        >
+          <span class="label">Generar EXCEL</span>
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,318 @@
+<!-- FILTROS -->
+<ibpm-filtros-busqueda-indicadordetarea
+  [uc]="this.parent"
+  style="width: 100%">
+</ibpm-filtros-busqueda-indicadordetarea>
+
+
+<!-- =========================================================
+     TARJETA TABLA
+========================================================= -->
+
+@if (mostrarResultados) {
+
+  <div class="tabla-card">
+
+    <!-- HEADER -->
+    <div class="tabla-header-container">
+
+      <div class="tabla-titulo">
+        Listado de tareas
+      </div>
+
+    </div>
+
+
+    <!-- BODY -->
+    <div class="tabla-body">
+
+      <!-- =========================================
+           COLUMNA: INSTANCIA
+      ========================================== -->
+
+      <div class="tabla-columna">
+
+        <div class="tabla-col-header">
+          <div>Instancia</div>
+        </div>
+
+        @for (element of tareas; track element) {
+
+          <ng-container>
+
+            <div class="tabla-celda">
+              <div>
+                {{ element.instancia }}
+              </div>
+            </div>
+
+          </ng-container>
+
+        }
+
+      </div>
+
+
+      <!-- =========================================
+           COLUMNA: PROCESO
+      ========================================== -->
+
+      <div class="tabla-columna">
+
+        <div class="tabla-col-header">
+          <div>Proceso</div>
+        </div>
+
+        @for (element of tareas; track element) {
+
+          <ng-container>
+
+            <div class="tabla-celda">
+              <div>
+                {{ element.proceso }}
+              </div>
+            </div>
+
+          </ng-container>
+
+        }
+
+      </div>
+
+
+      <!-- =========================================
+           COLUMNA: TAREA
+      ========================================== -->
+
+      <div class="tabla-columna">
+
+        <div class="tabla-col-header">
+          <div>Tarea</div>
+        </div>
+
+        @for (element of tareas; track element) {
+
+          <ng-container>
+
+            <div class="tabla-celda">
+              <div>
+                {{ element.nombre }}
+              </div>
+            </div>
+
+          </ng-container>
+
+        }
+
+      </div>
+
+
+      <!-- =========================================
+           COLUMNA: ESTADO
+      ========================================== -->
+
+      <div class="tabla-columna">
+
+        <div class="tabla-col-header">
+          <div>Estado</div>
+        </div>
+
+        @for (element of tareas; track element) {
+
+          <ng-container>
+
+            <div class="tabla-celda">
+              <div>
+                {{ element.estado }}
+              </div>
+            </div>
+
+          </ng-container>
+
+        }
+
+      </div>
+
+
+      <!-- =========================================
+           COLUMNA: FECHA DE ASIGNACIÓN
+      ========================================== -->
+
+      <div class="tabla-columna">
+
+        <div class="tabla-col-header">
+          <div>Fecha de asignación</div>
+        </div>
+
+        @for (element of tareas; track element) {
+
+          <ng-container>
+
+            <div class="tabla-celda">
+              <div>
+                {{ element.fechaAsignacion }}
+              </div>
+            </div>
+
+          </ng-container>
+
+        }
+
+      </div>
+
+
+      <!-- =========================================
+           COLUMNA: RESPONSABLE
+      ========================================== -->
+
+      <div class="tabla-columna">
+
+        <div class="tabla-col-header">
+          <div>Responsable</div>
+        </div>
+
+        @for (element of tareas; track element) {
+
+          <ng-container>
+
+            <div class="tabla-celda">
+              <div>
+                {{ element.responsable }}
+              </div>
+            </div>
+
+          </ng-container>
+
+        }
+
+      </div>
+
+
+      <!-- =========================================
+           COLUMNA: OPORTUNIDAD
+      ========================================== -->
+
+      <div class="tabla-columna">
+
+        <div class="tabla-col-header">
+          <div>Oportunidad</div>
+        </div>
+
+        @for (element of tareas; track element) {
+
+          <ng-container>
+
+            <div class="tabla-celda">
+              <div>
+                {{ element.oportunidad }}
+              </div>
+            </div>
+
+          </ng-container>
+
+        }
+
+      </div>
+
+
+      <!-- =========================================
+           COLUMNA: ACCIÓN
+      ========================================== -->
+
+      <div class="tabla-columna">
+
+        <div class="tabla-col-header">
+          <div>Acción</div>
+        </div>
+
+        @for (element of tareas; track element) {
+
+          <ng-container>
+
+            <div class="tabla-celda acciones">
+
+              <!-- EJECUTAR TAREA -->
+              <button
+                type="button"
+                class="btn-accion"
+                title="Ejecutar tarea"
+                (click)="ejecutarTarea(element)">
+
+                <img
+                  src="assets/img/ejecutar.svg"
+                  alt="Ejecutar tarea" />
+
+              </button>
+
+
+              <!-- VER EXPEDIENTE -->
+              <button
+                type="button"
+                class="btn-accion"
+                title="Ver expediente de tarea"
+                (click)="verExpedienteTarea(element)">
+
+                <img
+                  src="assets/img/carpeta.svg"
+                  alt="Ver expediente" />
+
+              </button>
+
+
+              <!-- VER DETALLE -->
+              <button
+                type="button"
+                class="btn-accion"
+                title="Ver detalle"
+                (click)="verDetalle(element)">
+
+                <img
+                  src="assets/img/detalle.svg"
+                  alt="Ver detalle" />
+
+              </button>
+
+            </div>
+
+          </ng-container>
+
+        }
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================================
+         FOOTER / PAGINACIÓN
+    ========================================== -->
+
+    <div class="tabla-footer">
+
+      <div class="tabla-footer-text">
+        Página {{ currentPage }} de {{ numberOfPages }}
+      </div>
+
+
+      <div
+        class="paginador-boton"
+        (click)="previousPage()">
+
+        <span>chevron_left</span>
+
+      </div>
+
+
+      <div
+        class="paginador-boton active"
+        (click)="nextPage()">
+
+        <span>chevron_right</span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+}
