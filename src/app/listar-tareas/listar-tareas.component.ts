@@ -35,12 +35,15 @@ export class ListarTareaComponent {
   ngOnInit(): void {
     this.listartareaComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-    this.buscarListarTareas();
+    let filtros: ListarTareaFilterEntity = {
+      responsable: this.loggedUser?.user_name || '',
+    }
+    this.buscarListarTareas(1, filtros);
   }
 
-  public buscarListarTareas(filtros?: ListarTareaFilterEntity): void {
+  public buscarListarTareas(numeroPagina: number,filtros?: ListarTareaFilterEntity): void {
     this.listartareaService
-      .getListarTarea(filtros || ({} as ListarTareaFilterEntity))
+      .getListarTarea(numeroPagina, filtros || ({responsable: this.loggedUser?.user_name || '',} as ListarTareaFilterEntity))
       .subscribe({
         next: (response) => {
           this.listartareas = response.respuesta;

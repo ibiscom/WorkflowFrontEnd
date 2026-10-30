@@ -1,0 +1,14 @@
+  <!-- Contenedor del Iframe Emulado -->
+  @if(urlSegura){
+  <div class="iframe-wrapper">
+    <iframe
+      [src]="urlSegura"
+      [style.height]="iframeHeight"
+      width="100%"
+      frameborder="0"
+      scrolling="no"
+      sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+      (load)="onIframeLoad()">
+    </iframe>
+  </div>
+  }

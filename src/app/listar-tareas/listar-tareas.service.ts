@@ -49,11 +49,11 @@ export class ListarTareaService {
    * @param filtros Los filtros para la búsqueda de listartarea.
    * @returns 
    */
-  public getListarTarea(filtros: ListarTareaFilterEntity): Observable<FsResponseEntity<any>> {
+  public getListarTarea(numeroPagina: number, filtros?: ListarTareaFilterEntity): Observable<FsResponseEntity<any>> {
       let ip: string = this.cookieService.get('ip');
       return this.http.post<FsResponseEntity<any>>(
         environment.workflowApiUrl +
-          `/taskList/getAssignedTasks`, filtros
+          `/taskList/getAssignedTasks?numeroPagina=${numeroPagina}`, filtros
       );
   }
 
@@ -68,7 +68,7 @@ export class ListarTareaService {
       environment.workflowApiUrl +
         `/taskList/getInfoWorkflow${atributoListarTareas}`,
     );
-  }
+  } 
 
     /**
    * Obtiene los atributos del proceso.

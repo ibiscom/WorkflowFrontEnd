@@ -1,0 +1,32 @@
+.vista-container {
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.iframe-wrapper {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border: 2px solid #3f51b5;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  display: block;
+}
+
+iframe {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-height: 0;
+  height: auto;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
