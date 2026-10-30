@@ -5,14 +5,16 @@ import { FinalizarprocesoService } from '../finalizarproceso.service';
 import { LoginEntity } from '../../login/login.entity';
 
 @Component({
-  selector: 'ibpm-filtros-busqueda-tareas',
+  selector: 'ibpm-filtros-busqueda-finalizarproceso',
   imports: [FormsModule],
-  templateUrl: './filtros-busqueda-tareas.component.html',
-  styleUrl: './filtros-busqueda-tareas.component.scss',
+  templateUrl: './filtros-busqueda-finalizarproceso.component.html',
+  styleUrl: './filtros-busqueda-finalizarproceso.component.scss',
 })
 export class FiltrosBusquedaFinalizarprocesoComponent {
   public tareasNameF: string = '';
   public supervisorF: string = '';
+  public fechaInicial: string = '';
+fechaFinal: string = '';
 
   // 🔹 Estado seleccionado
   public companyObjectN: any = null;
@@ -75,6 +77,8 @@ export class FiltrosBusquedaFinalizarprocesoComponent {
     );
 
     // Tu lógica actual aquí
+
+    
   }
 }
 

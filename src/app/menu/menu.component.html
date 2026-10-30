@@ -890,7 +890,7 @@
           "
           (click)="
             $event.stopPropagation();
-            irA('/main-page/simulación')
+            irA('/main-page/Simulación')
           "
         >
           <div class="row">
@@ -2332,7 +2332,7 @@
         <div
           class="section-white"
           *ngIf="opcionesPermitidas.includes('Distribuir tareas')"
-          (click)="$event.stopPropagation(); irA('/main-page/distribuirTareas')"
+          (click)="$event.stopPropagation(); irA('/main-page/distribuirTarea')"
         >
           <div class="row">
             <div class="row-text">
@@ -2341,11 +2341,29 @@
           </div>
         </div>
 
-        <!-- Administrar Logs -->
+        <!-- Consultar Roles de Responsables -->
         <div
           class="section-white"
-          *ngIf="opcionesPermitidas.includes('Administrar logs')"
-          (click)="$event.stopPropagation(); irA('/main-page/administrarLogs')"
+          *ngIf="
+            opcionesPermitidas.includes('Consultar roles del responsable')
+          "
+          (click)="
+            $event.stopPropagation();
+            irA('/main-page/consultarroldelresponsable')
+          "
+        >
+          <div class="row">
+            <div class="row-text">
+              <div class="text">Consultar roles del responsables</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Finalizar Proceso -->
+        <div
+          class="section-white"
+          *ngIf="opcionesPermitidas.includes('Finalizar proceso')"
+          (click)="$event.stopPropagation(); irA('/main-page/finalizarProceso')"
         >
           <div class="row">
             <div class="row-text">

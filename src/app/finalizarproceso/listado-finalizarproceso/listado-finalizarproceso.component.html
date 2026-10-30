@@ -1,6 +1,6 @@
 <!-- FILTROS -->
-<ibpm-filtros-busqueda-tareas [uc]="this.parent" style="width: 100%">
-</ibpm-filtros-busqueda-tareas>
+<ibpm-filtros-busqueda-finalizarproceso [uc]="this.parent" style="width: 100%">
+</ibpm-filtros-busqueda-finalizarproceso>
 
 <!-- TARJETA TABLA -->
 <div class="tabla-card">
@@ -13,22 +13,36 @@
   <div class="tabla-body">
 
 
-    <!-- COLUMNA:  TERMINAR -->
-    <div class="tabla-columna">
-      <div class="tabla-col-header">
-        <div>Terminar</div>
-      </div>
+<<!-- COLUMNA: TERMINAR -->
+<div class="tabla-columna">
 
-      @for (element of parent.finalizarproceso; track element) {
-        <ng-container>
-          <div class="tabla-celda">
-             <div>
-              {{ element.terminar }}
-            </div>
-          </div>
-        </ng-container>
-      }
+  <div class="tabla-col-header">
+
+    <input
+      class="check-tabla"
+      type="checkbox"
+      [checked]="seleccionarTodos"
+      (change)="seleccionarTodos = $any($event.target).checked; seleccionarTodosRegistros()" />
+
+    <div>Terminar</div>
+
+  </div>
+
+  @for (element of parent.finalizarproceso; track element) {
+
+    <div class="tabla-celda">
+
+      <input
+        class="check-tabla"
+        type="checkbox"
+        [checked]="element.seleccionado"
+        (change)="element.seleccionado = $any($event.target).checked" />
+
     </div>
+
+  }
+
+</div>
 
     <!-- COLUMNA: INSTANCIA -->
     <div class="tabla-columna">
