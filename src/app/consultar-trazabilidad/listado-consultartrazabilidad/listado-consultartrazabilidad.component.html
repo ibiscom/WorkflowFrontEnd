@@ -1,0 +1,675 @@
+<!-- =========================================================
+     FILTROS
+========================================================= -->
+
+<ibpm-filtros-busqueda-consultartrazabilidad
+  [uc]="this.parent"
+  style="width: 100%">
+</ibpm-filtros-busqueda-consultartrazabilidad>
+
+
+<!-- =========================================================
+     INFORMACIÓN DEL PROCESO
+========================================================= -->
+
+@if (mostrarInformacionProceso) {
+
+  <div class="tabla-card tabla-informacion-proceso">
+
+    <!-- HEADER -->
+
+    <div class="tabla-header-container">
+
+      <div class="tabla-titulo">
+        Información del proceso
+      </div>
+
+    </div>
+
+
+    <!-- BODY -->
+
+    <div class="tabla-body">
+
+
+      <!-- =====================================================
+           COLUMNA INSTANCIA
+      ====================================================== -->
+
+      <div class="tabla-columna">
+
+        <div class="tabla-col-header">
+          <div>Instancia</div>
+        </div>
+
+        @if (informacionProceso) {
+
+          <div class="tabla-celda">
+            <div>
+              {{ informacionProceso.instancia }}
+            </div>
+          </div>
+
+        }
+
+      </div>
+
+
+      <!-- =====================================================
+           COLUMNA ESTADO
+      ====================================================== -->
+
+      <div class="tabla-columna">
+
+        <div class="tabla-col-header">
+          <div>Estado</div>
+        </div>
+
+        @if (informacionProceso) {
+
+          <div class="tabla-celda">
+            <div>
+              {{ informacionProceso.estado }}
+            </div>
+          </div>
+
+        }
+
+      </div>
+
+
+      <!-- =====================================================
+           COLUMNA SIMULACIÓN
+      ====================================================== -->
+
+      <div class="tabla-columna">
+
+        <div class="tabla-col-header">
+          <div>Simulación</div>
+        </div>
+
+        @if (informacionProceso) {
+
+          <div class="tabla-celda">
+            <div>
+              {{ informacionProceso.simulacion }}
+            </div>
+          </div>
+
+        }
+
+      </div>
+
+
+      <!-- =====================================================
+           COLUMNA FECHA DE INICIO
+      ====================================================== -->
+
+      <div class="tabla-columna">
+
+        <div class="tabla-col-header">
+          <div>Fecha de inicio</div>
+        </div>
+
+        @if (informacionProceso) {
+
+          <div class="tabla-celda">
+            <div>
+              {{ informacionProceso.fechaInicio }}
+            </div>
+          </div>
+
+        }
+
+      </div>
+
+
+      <!-- =====================================================
+           COLUMNA FECHA DE TERMINACIÓN
+      ====================================================== -->
+
+      <div class="tabla-columna">
+
+        <div class="tabla-col-header">
+          <div>Fecha de terminación</div>
+        </div>
+
+        @if (informacionProceso) {
+
+          <div class="tabla-celda">
+            <div>
+              {{ informacionProceso.fechaTerminacion }}
+            </div>
+          </div>
+
+        }
+
+      </div>
+
+
+      <!-- =====================================================
+           COLUMNA INSTANCIA PADRE
+      ====================================================== -->
+
+      <div class="tabla-columna">
+
+        <div class="tabla-col-header">
+          <div>Instancia padre</div>
+        </div>
+
+        @if (informacionProceso) {
+
+          <div class="tabla-celda">
+            <div>
+              {{ informacionProceso.instanciaPadre }}
+            </div>
+          </div>
+
+        }
+
+      </div>
+
+
+      <!-- =====================================================
+           COLUMNA INSTANCIAS HIJAS
+      ====================================================== -->
+
+      <div class="tabla-columna">
+
+        <div class="tabla-col-header">
+          <div>Instancias hijas</div>
+        </div>
+
+        @if (informacionProceso) {
+
+          <div class="tabla-celda">
+            <div>
+              {{ informacionProceso.instanciasHijas }}
+            </div>
+          </div>
+
+        }
+
+      </div>
+
+
+      <!-- =====================================================
+           COLUMNA OBSERVACIONES
+      ====================================================== -->
+
+      <div class="tabla-columna">
+
+        <div class="tabla-col-header">
+          <div>Observaciones</div>
+        </div>
+
+        @if (informacionProceso) {
+
+          <div class="tabla-celda">
+            <div>
+              {{ informacionProceso.observaciones }}
+            </div>
+          </div>
+
+        }
+
+      </div>
+
+    </div>
+
+  </div>
+
+}
+
+
+<!-- =========================================================
+     LISTA DE TAREAS DEL PROCESO
+
+     ESTA TARJETA SIEMPRE SE MUESTRA
+========================================================= -->
+
+<div class="tabla-card tabla-lista-tareas">
+
+  <!-- HEADER -->
+
+  <div class="tabla-header-container">
+
+    <div class="tabla-titulo">
+      Lista de tareas del proceso
+    </div>
+
+  </div>
+
+
+  <!-- BODY -->
+
+  <div class="tabla-body">
+
+
+    <!-- =====================================================
+         COLUMNA INSTANCIA
+    ====================================================== -->
+
+    <div class="tabla-columna">
+
+      <div class="tabla-col-header">
+        <div>Instancia</div>
+      </div>
+
+      @if (mostrarResultados) {
+
+        @for (element of tareas; track element) {
+
+          <ng-container>
+
+            <div class="tabla-celda">
+              <div>
+                {{ element.instancia }}
+              </div>
+            </div>
+
+          </ng-container>
+
+        }
+
+      }
+
+    </div>
+
+
+    <!-- =====================================================
+         COLUMNA NÚM TAREA
+    ====================================================== -->
+
+    <div class="tabla-columna">
+
+      <div class="tabla-col-header">
+        <div>Núm tarea</div>
+      </div>
+
+      @if (mostrarResultados) {
+
+        @for (element of tareas; track element) {
+
+          <ng-container>
+
+            <div class="tabla-celda">
+              <div>
+                {{ element.numeroTarea }}
+              </div>
+            </div>
+
+          </ng-container>
+
+        }
+
+      }
+
+    </div>
+
+
+    <!-- =====================================================
+         COLUMNA NOMBRE DE LA TAREA
+    ====================================================== -->
+
+    <div class="tabla-columna">
+
+      <div class="tabla-col-header">
+        <div>Nombre de la tarea</div>
+      </div>
+
+      @if (mostrarResultados) {
+
+        @for (element of tareas; track element) {
+
+          <ng-container>
+
+            <div class="tabla-celda">
+              <div>
+                {{ element.nombre }}
+              </div>
+            </div>
+
+          </ng-container>
+
+        }
+
+      }
+
+    </div>
+
+
+    <!-- =====================================================
+         COLUMNA FECHA DE ASIGNACIÓN
+    ====================================================== -->
+
+    <div class="tabla-columna">
+
+      <div class="tabla-col-header">
+        <div>Fecha de asignación</div>
+      </div>
+
+      @if (mostrarResultados) {
+
+        @for (element of tareas; track element) {
+
+          <ng-container>
+
+            <div class="tabla-celda">
+              <div>
+                {{ element.fechaAsignacion }}
+              </div>
+            </div>
+
+          </ng-container>
+
+        }
+
+      }
+
+    </div>
+
+
+    <!-- =====================================================
+         COLUMNA FECHA DE EJECUCIÓN
+    ====================================================== -->
+
+    <div class="tabla-columna">
+
+      <div class="tabla-col-header">
+        <div>Fecha de ejecución</div>
+      </div>
+
+      @if (mostrarResultados) {
+
+        @for (element of tareas; track element) {
+
+          <ng-container>
+
+            <div class="tabla-celda">
+              <div>
+                {{ element.fechaEjecucion }}
+              </div>
+            </div>
+
+          </ng-container>
+
+        }
+
+      }
+
+    </div>
+
+
+    <!-- =====================================================
+         COLUMNA FECHA DE TERMINACIÓN
+    ====================================================== -->
+
+    <div class="tabla-columna">
+
+      <div class="tabla-col-header">
+        <div>Fecha de terminación</div>
+      </div>
+
+      @if (mostrarResultados) {
+
+        @for (element of tareas; track element) {
+
+          <ng-container>
+
+            <div class="tabla-celda">
+              <div>
+                {{ element.fechaTerminacion }}
+              </div>
+            </div>
+
+          </ng-container>
+
+        }
+
+      }
+
+    </div>
+
+
+    <!-- =====================================================
+         COLUMNA ESTADO
+    ====================================================== -->
+
+    <div class="tabla-columna">
+
+      <div class="tabla-col-header">
+        <div>Estado</div>
+      </div>
+
+      @if (mostrarResultados) {
+
+        @for (element of tareas; track element) {
+
+          <ng-container>
+
+            <div class="tabla-celda">
+              <div>
+                {{ element.estado }}
+              </div>
+            </div>
+
+          </ng-container>
+
+        }
+
+      }
+
+    </div>
+
+
+    <!-- =====================================================
+         COLUMNA RESPONSABLE
+    ====================================================== -->
+
+    <div class="tabla-columna">
+
+      <div class="tabla-col-header">
+        <div>Responsable</div>
+      </div>
+
+      @if (mostrarResultados) {
+
+        @for (element of tareas; track element) {
+
+          <ng-container>
+
+            <div class="tabla-celda">
+              <div>
+                {{ element.responsable }}
+              </div>
+            </div>
+
+          </ng-container>
+
+        }
+
+      }
+
+    </div>
+
+
+    <!-- =====================================================
+         COLUMNA FECHA VENCIMIENTO
+    ====================================================== -->
+
+    <div class="tabla-columna">
+
+      <div class="tabla-col-header">
+        <div>Fecha vencimiento</div>
+      </div>
+
+      @if (mostrarResultados) {
+
+        @for (element of tareas; track element) {
+
+          <ng-container>
+
+            <div class="tabla-celda">
+              <div>
+                {{ element.fechaVencimiento }}
+              </div>
+            </div>
+
+          </ng-container>
+
+        }
+
+      }
+
+    </div>
+
+
+    <!-- =====================================================
+         COLUMNA OPORTUNIDAD
+    ====================================================== -->
+
+    <div class="tabla-columna">
+
+      <div class="tabla-col-header">
+        <div>Oportunidad</div>
+      </div>
+
+      @if (mostrarResultados) {
+
+        @for (element of tareas; track element) {
+
+          <ng-container>
+
+            <div class="tabla-celda oportunidad">
+              <div>
+                {{ element.oportunidad }}
+              </div>
+            </div>
+
+          </ng-container>
+
+        }
+
+      }
+
+    </div>
+
+
+    <!-- =====================================================
+         COLUMNA ACCIÓN
+    ====================================================== -->
+
+    <div class="tabla-columna">
+
+      <div class="tabla-col-header">
+        <div>Acción</div>
+      </div>
+
+      @if (mostrarResultados) {
+
+        @for (element of tareas; track element) {
+
+          <ng-container>
+
+            <div class="tabla-celda acciones">
+
+
+              <!-- EJECUTAR TAREA -->
+
+              <button
+                type="button"
+                class="btn-accion"
+                title="Ejecutar tarea"
+                (click)="ejecutarTarea(element)">
+
+                <img
+                  src="assets/img/ejecutar.svg"
+                  alt="Ejecutar tarea" />
+
+              </button>
+
+
+              <!-- VER EXPEDIENTE -->
+
+              <button
+                type="button"
+                class="btn-accion"
+                title="Ver expediente de tarea"
+                (click)="verExpedienteTarea(element)">
+
+                <img
+                  src="assets/img/carpeta.svg"
+                  alt="Ver expediente" />
+
+              </button>
+
+
+              <!-- VER DETALLE -->
+
+              <button
+                type="button"
+                class="btn-accion"
+                title="Ver detalle"
+                (click)="verDetalle(element)">
+
+                <img
+                  src="assets/img/detalle.svg"
+                  alt="Ver detalle" />
+
+              </button>
+
+            </div>
+
+          </ng-container>
+
+        }
+
+      }
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       PAGINACIÓN
+       
+       SOLO CUANDO HAY RESULTADOS
+  ====================================================== -->
+
+  @if (mostrarResultados) {
+
+    <div class="tabla-footer">
+
+      <div
+        class="paginador-boton"
+        (click)="previousPage()">
+
+        <span>
+          chevron_left
+        </span>
+
+      </div>
+
+
+      <div class="tabla-footer-text">
+        Página {{ currentPage }} de {{ numberOfPages }}
+      </div>
+
+
+      <div
+        class="paginador-boton active"
+        (click)="nextPage()">
+
+        <span>
+          chevron_right
+        </span>
+
+      </div>
+
+    </div>
+
+  }
+
+</div>

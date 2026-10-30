@@ -9,7 +9,7 @@
 
   border-radius: 16px;
 
-  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.13);
+  box-shadow: 0px 1px 15.4px 6px rgba(0, 0, 0, 0.07);
 
   overflow: hidden;
 
@@ -18,20 +18,26 @@
   flex-direction: column;
 }
 
+
 /* =======================================
-   HEADER
+   HEADER DE LA TABLA
 ======================================= */
 
 .tabla-header-container {
-  padding: 16px 24px;
+  width: 100%;
+
+  padding: 16px;
 
   display: flex;
 
   align-items: center;
 }
 
+
 .tabla-titulo {
-  font-family: Roboto, sans-serif;
+  color: #1b1b1b;
+
+  font-family: Roboto;
 
   font-size: 14px;
 
@@ -40,12 +46,11 @@
   line-height: 16px;
 
   letter-spacing: 0.5px;
-
-  color: #1b1b1b;
 }
 
+
 /* =======================================
-   BODY
+   CUERPO DE LA TABLA
 ======================================= */
 
 .tabla-body {
@@ -54,18 +59,23 @@
   display: flex;
 
   background: #ffffff;
+
+  overflow: hidden;
 }
+
 
 /* =======================================
    COLUMNAS
 ======================================= */
 
 .tabla-columna {
+  flex: 1;
+
+  min-width: 0;
+
   display: flex;
 
   flex-direction: column;
-
-  min-width: 0;
 
   border-left: 0.5px solid #dcdcdc;
 
@@ -76,31 +86,30 @@
   background: #ffffff;
 }
 
-/* UserName */
+
+/* =======================================
+   ANCHO DE LAS COLUMNAS
+======================================= */
+
+/* Nombre de rol */
 .tabla-columna:nth-child(1) {
   flex: 1;
 }
 
-/* Nombres */
+
+/* Descripción */
 .tabla-columna:nth-child(2) {
-  flex: 1.5;
+  flex: 2;
 }
 
-/* Apellidos */
-.tabla-columna:nth-child(3) {
-  flex: 1.5;
-}
-
-/* Es responsable */
-.tabla-columna:nth-child(4) {
-  flex: 1;
-}
 
 /* =======================================
-   HEADER COLUMNAS
+   ENCABEZADO DE CADA COLUMNA
 ======================================= */
 
 .tabla-col-header {
+  width: 100%;
+
   background: #fafafa;
 
   padding: 4px 8px;
@@ -109,15 +118,16 @@
 
   align-items: center;
 
-  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
 }
 
+
 .tabla-col-header div {
-  width: 100%;
+  flex: 1;
 
-  text-align: left;
+  color: #757575;
 
-  font-family: Roboto, sans-serif;
+  font-family: Roboto;
 
   font-size: 12px;
 
@@ -127,8 +137,9 @@
 
   letter-spacing: 0.4px;
 
-  color: #757575;
+  text-align: left;
 }
+
 
 /* =======================================
    CELDAS
@@ -147,14 +158,9 @@
 
   background: #ffffff;
 
-  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.12);
-
-  cursor: pointer;
+  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
 }
 
-.tabla-celda:hover {
-  background: rgba(103, 80, 164, 0.04);
-}
 
 .tabla-celda div {
   width: 100%;
@@ -165,7 +171,7 @@
 
   white-space: nowrap;
 
-  font-family: Roboto, sans-serif;
+  font-family: Roboto;
 
   font-size: 12px;
 
@@ -178,16 +184,117 @@
   color: rgba(0, 0, 0, 0.87);
 }
 
+
+/* =======================================
+   CELDAS CLICKEABLES
+======================================= */
+
+.celda-clickable {
+  cursor: pointer;
+}
+
+
+.celda-clickable:hover {
+  color: #6750A4;
+}
+
+
+/* =======================================
+   EFECTO HOVER DE LA CELDA
+======================================= */
+
+.tabla-celda:hover {
+  background: rgba(103, 80, 164, 0.04);
+}
+
+
+/* =======================================
+   FOOTER DE LA TABLA
+======================================= */
+
+.tabla-footer {
+  height: 58px;
+
+  padding: 0 16px;
+
+  background: #ffffff;
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  align-items: center;
+
+  gap: 24px;
+}
+
+
+/* =======================================
+   TEXTO DE PAGINACIÓN
+======================================= */
+
+.tabla-footer-text {
+  font-family: Roboto;
+
+  font-size: 12px;
+
+  font-weight: 400;
+
+  line-height: 20px;
+
+  letter-spacing: 0.4px;
+
+  color: rgba(0, 0, 0, 0.87);
+}
+
+
+/* =======================================
+   BOTONES DE PAGINACIÓN
+======================================= */
+
+.paginador-boton {
+  width: 32px;
+
+  height: 32px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+
+.paginador-boton.active {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+
+.paginador-boton span {
+  font-family: "Material Icons";
+
+  font-size: 24px;
+
+  line-height: 24px;
+}
+
+
 /* =======================================
    RESPONSIVE
 ======================================= */
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
+
   .tabla-body {
     overflow-x: auto;
   }
 
   .tabla-columna {
-    min-width: 220px;
+    min-width: 180px;
   }
+
 }

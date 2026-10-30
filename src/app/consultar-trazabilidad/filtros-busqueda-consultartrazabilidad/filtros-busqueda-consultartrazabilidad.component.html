@@ -1,0 +1,200 @@
+
+<!-- =========================================================
+     SECCIÓN FILTROS
+========================================================= -->
+
+<div class="cont-filtro">
+
+  <div class="usuarios-container">
+
+    <!-- =========================================
+         INFORMACIÓN DE BÚSQUEDA
+    ========================================== -->
+
+    <div class="filtros-container">
+
+      <div class="filtros-titulo">
+        Información de búsqueda
+      </div>
+
+
+      <!-- =========================================
+           FILA 1
+      ========================================== -->
+
+      <div class="fila-filtros">
+
+        <!-- NOMBRE DEL PROCESO -->
+
+        <div class="campo-lista">
+
+          <label>
+            Nombre del proceso
+          </label>
+
+          <select
+            id="company"
+            name="company"
+            [(ngModel)]="companyObjectN"
+            (ngModelChange)="onCompanyChange($event)">
+
+            <option value="">
+              Todos
+            </option>
+
+            @for (company of companiesList; track company) {
+
+              <option [ngValue]="company">
+                {{ company.largeName }}
+              </option>
+
+            }
+
+          </select>
+
+        </div>
+
+
+         <!-- INSTANCIA -->
+
+        <div class="campo-texto-filtro">
+
+          <label>
+            Instancia
+          </label>
+
+          <input
+            type="text"
+            [(ngModel)]="idProcesoF" />
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================================
+           FILA 2
+      ========================================== -->
+
+      <div class="fila-filtros">
+
+        <!-- NOMBRE DE LA TAREA -->
+
+        <div class="campo-lista">
+
+          <label>
+            Nombre de la tarea
+          </label>
+
+          <select
+            id="tareaname"
+            name="tareaname"
+            [(ngModel)]="tareasNameF"
+            (ngModelChange)="onTareaNameChange($event)">
+
+            <option value="">
+              Todos
+            </option>
+
+            @for (tarea of tareasList; track tarea) {
+
+              <option [ngValue]="tarea">
+                {{ tarea }}
+              </option>
+
+            }
+
+          </select>
+
+        </div>
+
+        <div></div>
+
+      </div>
+
+
+      <!-- =========================================
+           FILA 3
+      ========================================== -->
+
+      <div class="fila-filtros">
+
+        <!-- ATRIBUTO -->
+
+        <div class="campo-lista">
+
+          <label>
+            Atributo
+          </label>
+
+          <select
+            id="atributo"
+            name="atributo"
+            [(ngModel)]="atributo"
+            (ngModelChange)="onAtributoChange($event)">
+
+            <option value="">
+              Todos
+            </option>
+
+            @for (atributo of atributosList; track atributo) {
+
+              <option [ngValue]="atributo">
+                {{ atributo }}
+              </option>
+
+            }
+
+          </select>
+
+        </div>
+
+
+         <!-- VALOR ATRIBUTO -->
+
+        <div class="campo-texto-filtro">
+
+          <label>
+            Valor del atributo
+          </label>
+
+          <input
+            type="text"
+            [(ngModel)]="valorAtributoF" />
+
+        </div>
+
+      </div>
+
+      <!-- =========================================
+           BOTÓN CONSULTAR
+      ========================================== -->
+
+      <div class="fila-botones">
+
+        <button
+          type="button"
+          class="btn-figma"
+          (click)="search()">
+
+          <span class="btn-icon">
+
+            <img
+              src="assets/img/search.svg"
+              alt="Consultar" />
+
+          </span>
+
+          <span class="label">
+            Consultar
+          </span>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

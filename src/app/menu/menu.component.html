@@ -25,21 +25,19 @@
         </div>
       </div>
 
-      <!-- Actividades pendientes -->
+      <!-- Actividades pendientes por responsable-->
        @if (isOpenConsulta) {
       <div class="submenu">
-        @if(opcionesPermitidas.includes('Actividades pendientes')) {
-          <p>prueba menu</p>
-          
+        @if(opcionesPermitidas.includes('Actividades pendientes por responsable')) {
         <div
           class="section-white"
             (click)="
-            $event.stopPropagation(); irA('/main-page/activiadesPendientes')
+            $event.stopPropagation(); irA('/main-page/actividadespendientesporresponsable')
           "
         >
           <div class="row">
             <div class="row-text">
-              <div class="text">Actividades pendientes</div>
+              <div class="text">Actividades pendientes por responsable</div>
             </div>
           </div>
         </div>
@@ -60,17 +58,32 @@
           </div>
         </div>
 
-        <!-- Actividades realizadas -->
+        <!-- Actividades realizadas por responsable-->
         <div
           class="section-white"
-          *ngIf="opcionesPermitidas.includes('Actividades realizadas')"
+          *ngIf="opcionesPermitidas.includes('Actividades realizadas por responsable')"
           (click)="
-            $event.stopPropagation(); irA('/main-page/actividadesRealizadas')
+            $event.stopPropagation(); irA('/main-page/actividadesrealizadasporresponsable')
           "
         >
           <div class="row">
             <div class="row-text">
-              <div class="text">Actividades realizadas</div>
+              <div class="text">Actividades realizadas por responsable</div>
+            </div>
+          </div>
+        </div>
+
+         <!-- Actividades realizadas por tarea-->
+        <div
+          class="section-white"
+          *ngIf="opcionesPermitidas.includes('Actividades realizadas por tarea')"
+          (click)="
+            $event.stopPropagation(); irA('/main-page/actividadesrealizadasportarea')
+          "
+        >
+          <div class="row">
+            <div class="row-text">
+              <div class="text">Actividades realizadas por tarea</div>
             </div>
           </div>
         </div>
@@ -1682,7 +1695,7 @@
         <div
           class="section-white"
           *ngIf="opcionesPermitidas.includes('Indicadores de Flujo')"
-          (click)="$event.stopPropagation(); irA('/main-page/indicadoresdeflujo')"
+          (click)="$event.stopPropagation(); irA('/main-page/indicadordeflujo')"
         >
           <div class="row">
             <div class="row-text">
@@ -1695,7 +1708,7 @@
         <div
           class="section-white"
           *ngIf="opcionesPermitidas.includes('Indicadores de tareas')"
-          (click)="$event.stopPropagation(); irA('/main-page/indicadoresdetareas')"
+          (click)="$event.stopPropagation(); irA('/main-page/indicadordetarea')"
         >
           <div class="row">
             <div class="row-text">

@@ -58,6 +58,26 @@ import { ConsultarRolResponsableComponent } from './consultarrolresponsable/cons
 import { ListadoConsultarRolResponsableComponent } from './consultarrolresponsable/listado-consultarrolresponsable/listado-consultarrolresponsable.component';
 import { SimulacionComponent } from './simulacion/simulacion.component';
 import { ListadoSimulacionComponent } from './simulacion/listado-simulacion/listado-simulacion.component';
+import { ConsultarPorTareaComponent } from './consultar-por-tarea/consultarportarea.component';
+import { ListadoConsultarPorTareaComponent } from './consultar-por-tarea/listado-consultarportarea/listado-consultarportarea.component';
+import { ListadoConsultarTrazabilidadComponent } from './consultar-trazabilidad/listado-consultartrazabilidad/listado-consultartrazabilidad.component';
+import { ConsultarTrazabilidadComponent } from './consultar-trazabilidad/consultartrazabilidad.component';
+import { ConsultarPorObjetoComponent } from './consultar-por-objeto/consultarporobjeto.component';
+import { ListadoConsultarPorObjetoComponent } from './consultar-por-objeto/listado-consultarporobjeto/listado-consultarporobjeto.component';
+import { ListadoConsultarPorResponsableComponent } from './consultar-por-responsable/listado-consultarporresponsable/listado-consultarportarea.component';
+import { ConsultarPorResponsableComponent } from './consultar-por-responsable/consultarporresponsable.component';
+import { ListadoConsultarPorFlujoComponent } from './consultar-por-flujo/listado-consultarporflujo/listado-consultarporflujo.component';
+import { ConsultarPorFlujoComponent } from './consultar-por-flujo/consultarporflujo.component';
+import { ListadoIndicadorDeFlujoComponent } from './indicador-de-flujo/listado-indicadordeflujo/listado-indicadordeflujo.component';
+import { IndicadorDeFlujoComponent } from './indicador-de-flujo/indicadordeflujo.component';
+import { ListadoIndicadorDeTareaComponent } from './indicador-de-tarea/listado-indicadordetarea/listado-indicadordetarea.component';
+import { IndicadorDeTareaComponent } from './indicador-de-tarea/indicadordetarea.component';
+import { ListadoActividadPendientePorResponsableComponent } from './actividades-pendientes-por-responsable/listado-actividadpendienteporresponsable/listado-actividadpendienteporresponsable.component';
+import { ActividadPendientePorResponsableComponent } from './actividades-pendientes-por-responsable/actividadpendienteporresponsable.component';
+import { ActividadRealizadaPorResponsableComponent } from './actividades-realizadas-por-responsable copy/actividadrealizadaporresponsable.component';
+import { ListadoActividadRealizadaPorResponsableComponent } from './actividades-realizadas-por-responsable copy/listado-actividadrealizadaporresponsable/listado-actividadrealizadaporresponsable.component';
+import { ActividadRealizadaPorTareaComponent } from './actividades-realizadas-por-tarea/actividadrealizadaportarea.component';
+import { ListadoActividadRealizadaPorTareaComponent } from './actividades-realizadas-por-tarea/listado-actividadrealizadaportarea/listado-actividadrealizadaportarea.component';
 
 export const CanActivateGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -545,6 +565,186 @@ export const routes: Routes = [
           },
         ],
       },
+            {
+        path: 'consultarportarea',
+        component: ConsultarPorTareaComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoConsultarPorTarea',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoConsultarPorTarea',
+            component: ListadoConsultarPorTareaComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+
+        {
+        path: 'consultartrazabilidad',
+        component: ConsultarTrazabilidadComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoConsultarTrazabilidad',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoConsultarTrazabilidad',
+            component: ListadoConsultarTrazabilidadComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+
+        {
+        path: 'consultarporobjeto',
+        component: ConsultarPorObjetoComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoConsultarPorObjeto',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoConsultarPorObjeto',
+            component: ListadoConsultarPorObjetoComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+
+              {
+        path: 'consultarporresponsables',
+        component: ConsultarPorResponsableComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoConsultarPorResponsables',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoConsultarPorResponsables',
+            component: ListadoConsultarPorResponsableComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+
+      {
+        path: 'consultarporflujo',
+        component: ConsultarPorFlujoComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoConsultarPorFlujo',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoConsultarPorFlujo',
+            component: ListadoConsultarPorFlujoComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+
+      {
+        path: 'indicadordeflujo',
+        component: IndicadorDeFlujoComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoIndicadorDeFlujo',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoIndicadorDeFlujo',
+            component: ListadoIndicadorDeFlujoComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+
+      {
+        path: 'indicadordetarea',
+        component: IndicadorDeTareaComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoIndicadorDeTarea',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoIndicadorDeTarea',
+            component: ListadoIndicadorDeTareaComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+
+      {
+        path: 'actividadespendientesporresponsable',
+        component: ActividadPendientePorResponsableComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoActividadPendientePorResponsable',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoActividadPendientePorResponsable',
+            component: ListadoActividadPendientePorResponsableComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+
+            {
+        path: 'actividadesrealizadasporresponsable',
+        component: ActividadRealizadaPorResponsableComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoActividadRealizadaPorResponsable',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoActividadRealizadaPorResponsable',
+            component: ListadoActividadRealizadaPorResponsableComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+
+              {
+        path: 'actividadesrealizadasportarea',
+        component: ActividadRealizadaPorTareaComponent,
+        canActivate: [CanActivateGuard],
+        children: [
+          {
+            path: '',
+            redirectTo: 'listadoActividadRealizadaPorTarea',
+            pathMatch: 'full',
+          },
+          {
+            path: 'listadoActividadRealizadaPorTarea',
+            component: ListadoActividadRealizadaPorTareaComponent,
+            canActivate: [CanActivateGuard],
+          },
+        ],
+      },
+
     ],
   },
   {

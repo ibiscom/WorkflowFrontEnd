@@ -11,6 +11,34 @@ import { LoginEntity } from '../../login/login.entity';
   styleUrl: './filtros-busqueda-consultarportarea.component.scss',
 })
 export class FiltrosBusquedaConsultarPorTareaComponent {
+tiposAlarmaList: any;
+alarma: any;
+responsablesList: any;
+responsable: any;
+estadosTareaList: any;
+estadotarea: any;
+tareasList: any;
+idProcesoF: any;
+estadosProcesoList: any;
+onAlarmaChange($event: any) {
+throw new Error('Method not implemented.');
+}
+onResponsableChange($event: any) {
+throw new Error('Method not implemented.');
+}
+onEstadoTareaChange($event: any) {
+throw new Error('Method not implemented.');
+}
+onEstadoProcesoChange($event: any) {
+throw new Error('Method not implemented.');
+}
+estadoproceso: any;
+onTareaNameChange($event: any) {
+throw new Error('Method not implemented.');
+}
+onEstadoChange($event: any) {
+throw new Error('Method not implemented.');
+}
 onEventoInicioChange($event: any) {
 throw new Error('Method not implemented.');
 }

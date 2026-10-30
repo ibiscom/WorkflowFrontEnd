@@ -10,9 +10,10 @@ import { Constants } from '../utils/constants';
 import { GroupSearchFilterEntity } from '../entities/groups/group-search-filter.entity';
 import { CompanyEntity } from '../entities/companies/company.entity';
 import { CompaniasService } from '../companias/companias.service';
-import { ConsultarporTareaService } from './consultarportarea.service';
+import { ConsultarPorTareaService } from './consultarportarea.service';
 import { CookieService } from 'ngx-cookie-service';
 import { ConsultarPorTareaFilterEntity } from './consultarportareaFilterEntity';
+import { ConsultarPorTareaEntity } from './consultarportarea.entity';
 
 @Component({
   selector: 'ibpm-consultarportarea',
@@ -28,7 +29,7 @@ export class ConsultarPorTareaComponent {
   public workflowActual: string = '';
 
   constructor(
-    private consultarportareaService: ConsultarporTareaService,
+    private consultarportareaService: ConsultarPorTareaService,
     private companiasService: CompaniasService,
     private consultarportareaComponentInstanceService: ConsultarPorTareaComponentInstanceService ,
     private loginService: LoginService,

@@ -6,7 +6,7 @@ import { ResponsableEntity } from '../responsable.entity';
 
 @Component({
   selector: 'ibpm-listado-responsable',
-  imports: [MatTableModule, FiltrosBusquedaResponsableComponent],
+  imports: [FiltrosBusquedaResponsableComponent],
   templateUrl: './listado-responsable.component.html',
   styleUrl: './listado-responsable.component.scss',
 })
