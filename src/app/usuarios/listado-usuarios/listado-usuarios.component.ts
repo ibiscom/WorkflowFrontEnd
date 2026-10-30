@@ -5,12 +5,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { UsuariosComponent } from '../usuarios.component';
 import { FiltrosBusquedaUsuariosComponent } from '../filtros-busqueda-usuarios/filtros-busqueda-usuarios.component';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'fs-listado-usuarios',
   imports: [
-    CommonModule,
     MatTableModule,
     FiltrosBusquedaUsuariosComponent,
     MatCheckboxModule,

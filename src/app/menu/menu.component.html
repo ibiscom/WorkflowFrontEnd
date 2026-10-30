@@ -21,317 +21,339 @@
               [class.open]="isOpenConsulta"
             />
           </div>
-
         </div>
       </div>
 
       <!-- Actividades pendientes por responsable-->
-       @if (isOpenConsulta) {
-      <div class="submenu">
-        @if(opcionesPermitidas.includes('Actividades pendientes por responsable')) {
-        <div
-          class="section-white"
-            (click)="
-            $event.stopPropagation(); irA('/main-page/actividadespendientesporresponsable')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Actividades pendientes por responsable</div>
+      @if (isOpenConsulta) {
+        <div class="submenu">
+          @if (
+            opcionesPermitidas.includes(
+              "Actividades pendientes por responsable"
+            )
+          ) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/actividadespendientesporresponsable')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Actividades pendientes por responsable</div>
+                </div>
+              </div>
             </div>
-          </div>
+          }
+
+          <!-- Actividades por proceso -->
+          @if (opcionesPermitidas.includes("Actividades por proceso")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/actividadesporproceso')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Actividades por proceso</div>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- Actividades realizadas por responsable-->
+          @if (
+            opcionesPermitidas.includes(
+              "Actividades realizadas por responsable"
+            )
+          ) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/actividadesrealizadasporresponsable')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Actividades realizadas por responsable</div>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- Actividades realizadas por tarea-->
+          @if (
+            opcionesPermitidas.includes("Actividades realizadas por tarea")
+          ) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/actividadesrealizadasportarea')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Actividades realizadas por tarea</div>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- Capacidad y ocupación del archivo fisico -->
+          @if (
+            opcionesPermitidas.includes(
+              "Capacidad y ocupación del archivo fisico"
+            )
+          ) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/Capacidadyocupacióndelarchivofisico')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">
+                    Capacidad y ocupación del archivo fisico
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- Digitales -->
+          @if (opcionesPermitidas.includes("Digital")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/digitales')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Digitales</div>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- Documento -->
+
+          @if (opcionesPermitidas.includes("Documento")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/documento')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Documento</div>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- Documentos -->
+
+          @if (opcionesPermitidas.includes("Documentos")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/documentos')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Documentos</div>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- Expedientes -->
+
+          @if (opcionesPermitidas.includes("Expedientes")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/expedientes')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Expedientes</div>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- Expedientes históricos -->
+          @if (opcionesPermitidas.includes("Expedientes historicos")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/expedientesHistoricos')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Expedientes históricos</div>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- Expedientes prestados -->
+          @if (opcionesPermitidas.includes("Expedientes prestados")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/expedientesPrestados')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Expedientes prestados</div>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- Logs -->
+          @if (opcionesPermitidas.includes("Logs")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/logs')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Logs</div>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- Préstamos -->
+          @if (opcionesPermitidas.includes("Prestamos")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/prestamos')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Préstamos</div>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- Propietarios -->
+          @if (opcionesPermitidas.includes("Propietarios")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/propietarios')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Propietarios</div>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- Series -->
+          @if (opcionesPermitidas.includes("Series")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/series')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Series</div>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- Tareas -->
+          @if (opcionesPermitidas.includes("Tareas")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/tareas')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Tareas</div>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- Tiempos de ejecución -->
+          @if (opcionesPermitidas.includes("Tiempos de ejecución")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/tiemposdeEjecucion')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Tiempos de ejecución</div>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- Tipos de documento -->
+          @if (opcionesPermitidas.includes("Tipos de documento")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/tiposdeDocumento')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Tipos de documento</div>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- Transferencias -->
+          @if (opcionesPermitidas.includes("Transferencias")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/transferencias')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Transferencias</div>
+                </div>
+              </div>
+            </div>
+          }
+
+          <!-- Ubicación expedientes -->
+          @if (opcionesPermitidas.includes("Ubicación expedientes")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/ubicacionExpedientes')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Ubicación expedientes</div>
+                </div>
+              </div>
+            </div>
+          }
         </div>
       }
-
-        <!-- Actividades por proceso -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Actividades por proceso')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/actividadesporproceso')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Actividades por proceso</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Actividades realizadas por responsable-->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Actividades realizadas por responsable')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/actividadesrealizadasporresponsable')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Actividades realizadas por responsable</div>
-            </div>
-          </div>
-        </div>
-
-         <!-- Actividades realizadas por tarea-->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Actividades realizadas por tarea')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/actividadesrealizadasportarea')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Actividades realizadas por tarea</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Capacidad y ocupación del archivo fisico -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Capacidad y ocupación del archivo fisico')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/Capacidadyocupacióndelarchivofisico')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Capacidad y ocupación del archivo fisico</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Digitales -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Digital')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/digitales')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Digitales</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Documento -->
-
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Documento')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/documento')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Documento</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Documentos -->
-
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Documentos')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/documentos')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Documentos</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Expedientes -->
-
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Expedientes')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/expedientes')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Expedientes</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Expedientes históricos -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Expedientes historicos')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/expedientesHistoricos')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Expedientes históricos</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Expedientes prestados -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Expedientes prestados')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/expedientesPrestados')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Expedientes prestados</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Logs -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Logs')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/logs')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Logs</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Préstamos -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Prestamos')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/prestamos')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Préstamos</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Propietarios -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Propietarios')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/propietarios')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Propietarios</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Series -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Series')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/series')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Series</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tareas -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Tareas')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/tareas')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Tareas</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tiempos de ejecución -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Tiempos de ejecución')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/tiemposdeEjecucion')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Tiempos de ejecución</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tipos de documento -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Tipos de documento')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/tiposdeDocumento')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Tipos de documento</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Transferencias -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Transferencias')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/transferencias')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Transferencias</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Ubicación expedientes -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Ubicación expedientes')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/ubicacionExpedientes')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Ubicación expedientes</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    }
 
       <!-- CONSTRUCTOR DE PROCESOS -->
       <div class="section">
@@ -357,615 +379,510 @@
       </div>
 
       <!-- SUBMENÚ CONSTRUCTOR DE PROCESOS -->
-      <div class="submenu" *ngIf="isOpenConstructor">
-        <!-- Alarmas -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Alarmas')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/alarmas')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Alarmas</div>
+      @if (isOpenConstructor) {
+        <div class="submenu">
+          <!-- Alarmas -->
+          @if (opcionesPermitidas.includes("Alarmas")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/alarmas')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Alarmas</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Asociar evento de inicio a formulario -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Asociar evento de inicio a formulario')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/asociareventodeinicioaformulario')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Asociar evento de inicio a formulario</div>
+          }
+          <!-- Asociar evento de inicio a formulario -->
+          @if (
+            opcionesPermitidas.includes("Asociar evento de inicio a formulario")
+          ) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/asociareventodeinicioaformulario')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Asociar evento de inicio a formulario</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Asociar herramienta a formulario -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Asociar herramienta a formulario')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/asociarherramientaaformulario')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Asociar herramienta a formulario</div>
+          }
+          <!-- Asociar herramienta a formulario -->
+          @if (
+            opcionesPermitidas.includes("Asociar herramienta a formulario")
+          ) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/asociarherramientaaformulario')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Asociar herramienta a formulario</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Ayuda -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Ayuda')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/ayuda')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Ayuda</div>
+          }
+          <!-- Ayuda -->
+          @if (opcionesPermitidas.includes("Ayuda")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/ayuda')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Ayuda</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Cargar firma mecanica -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Cargar firma mecanica')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/cargarfirmamecanica')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Cargar firma mecanica</div>
+          }
+          <!-- Cargar firma mecanica -->
+          @if (opcionesPermitidas.includes("Cargar firma mecanica")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/cargarfirmamecanica')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Cargar firma mecanica</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Cargar plantilla -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Cargar plantilla')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/cargarplantilla')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Cargar plantilla</div>
+          }
+          <!-- Cargar plantilla -->
+          @if (opcionesPermitidas.includes("Cargar plantilla")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/cargarplantilla')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Cargar plantilla</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Crear flujo desde modelador -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Crear flujo desde modelador')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/crearflujodesdemodelador')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Crear flujo desde modelador</div>
+          }
+          <!-- Crear flujo desde modelador -->
+          @if (opcionesPermitidas.includes("Crear flujo desde modelador")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/crearflujodesdemodelador')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Crear flujo desde modelador</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Crear formulario -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Crear formulario')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/crearformulario')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Crear formulario</div>
+          }
+          <!-- Crear formulario -->
+          @if (opcionesPermitidas.includes("Crear formulario")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/crearformulario')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Crear formulario</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Crear mapa procesos -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Crear mapa procesos')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/crearmapaprocesos')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Crear mapa procesos</div>
+          }
+          <!-- Crear mapa procesos -->
+          @if (opcionesPermitidas.includes("Crear mapa procesos")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/crearmapaprocesos')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Crear mapa procesos</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Dependencias -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Dependencias')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/dependencias')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Dependencias</div>
+          }
+          <!-- Dependencias -->
+          @if (opcionesPermitidas.includes("Dependencias")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/dependencias')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Dependencias</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Descargar plantilla -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Descargar plantilla')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/descargarplantilla')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Descargar plantilla</div>
+          }
+          <!-- Descargar plantilla -->
+          @if (opcionesPermitidas.includes("Descargar plantilla")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/descargarplantilla')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Descargar plantilla</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Eventos de inicio -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Eventos de Inicio')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/eventoinicio')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Eventos de inicio</div>
+          }
+          <!-- Eventos de inicio -->
+          @if (opcionesPermitidas.includes("Eventos de Inicio")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/eventoinicio')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Eventos de inicio</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-
-        <!-- Festivos -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Festivos')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/festivos')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Festivos</div>
+          }
+          <!-- Festivos -->
+          @if (opcionesPermitidas.includes("Festivos")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/festivos')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Festivos</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Gestionar entidades basicas -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Gestionar entidades basicas')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/gestionarentidadesbasicas')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Gestionar entidades basicas</div>
+          }
+          <!-- Gestionar entidades basicas -->
+          @if (opcionesPermitidas.includes("Gestionar entidades basicas")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/gestionarentidadesbasicas')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Gestionar entidades basicas</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Gestionar entidades plus -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Gestionar entidades plus')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/gestionarentidadesplus')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Gestionar entidades plus</div>
+          }
+          <!-- Gestionar entidades plus -->
+          @if (opcionesPermitidas.includes("Gestionar entidades plus")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/gestionarentidadesplus')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Gestionar entidades plus</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Gestionar formularios captura -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Gestionar formularios captura')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/gestionarformularioscaptura')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Gestionar formularios captura</div>
+          }
+          <!-- Gestionar formularios captura -->
+          @if (opcionesPermitidas.includes("Gestionar formularios captura")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/gestionarformularioscaptura')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Gestionar formularios captura</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Gestionar formularios consulta -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Gestionar formularios consulta')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/gestionarformulariosconsulta')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Gestionar formularios consulta</div>
+          }
+          <!-- Gestionar formularios consulta -->
+          @if (opcionesPermitidas.includes("Gestionar formularios consulta")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/gestionarformulariosconsulta')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Gestionar formularios consulta</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Gestionar funciones -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Gestionar funciones')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/gestionarfunciones')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Gestionar funciones</div>
+          }
+          <!-- Gestionar funciones -->
+          @if (opcionesPermitidas.includes("Gestionar funciones")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/gestionarfunciones')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Gestionar funciones</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Grupos -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Grupos')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/grupos')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Grupos</div>
+          }
+          <!-- Grupos -->
+          @if (opcionesPermitidas.includes("Grupos")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/grupos')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Grupos</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Herramientas -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Herramientas')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/herramientas')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Herramientas</div>
+          }
+          <!-- Herramientas -->
+          @if (opcionesPermitidas.includes("Herramientas")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/herramientas')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Herramientas</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Importar Formularios -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Importar Formularios')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/importarformularios')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Importar Formularios</div>
+          }
+          <!-- Importar Formularios -->
+          @if (opcionesPermitidas.includes("Importar Formularios")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/importarformularios')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Importar Formularios</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Importar workflow -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Importar workflow')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/migWorkflow')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Importar workflow</div>
+          }
+          <!-- Importar workflow -->
+          @if (opcionesPermitidas.includes("Importar workflow")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/migWorkflow')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Importar workflow</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Mapa de procesos -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Mapa de procesos')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/main-page')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Mapa de procesos</div>
+          }
+          <!-- Mapa de procesos -->
+          @if (opcionesPermitidas.includes("Mapa de procesos")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/main-page')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Mapa de procesos</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Modelador Workflows -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Modelador Workflows')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/modeladorworkflows')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Modelador Workflows</div>
+          }
+          <!-- Modelador Workflows -->
+          @if (opcionesPermitidas.includes("Modelador Workflows")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/modeladorworkflows')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Modelador Workflows</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Objetos workflow -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Objetos workflow')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/objetosWorkflow')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Objetos workflow</div>
+          }
+          <!-- Objetos workflow -->
+          @if (opcionesPermitidas.includes("Objetos workflow")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/objetosWorkflow')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Objetos workflow</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Patrones -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Patrones')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/patrones')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Patrones</div>
+          }
+          <!-- Patrones -->
+          @if (opcionesPermitidas.includes("Patrones")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/patrones')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Patrones</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Procesos -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Procesos')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/procesos')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Procesos</div>
+          }
+          <!-- Procesos -->
+          @if (opcionesPermitidas.includes("Procesos")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/procesos')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Procesos</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Reglas de negocio -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Reglas de negocio')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/reglasdenegocio')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Reglas de negocio</div>
+          }
+          <!-- Reglas de negocio -->
+          @if (opcionesPermitidas.includes("Reglas de negocio")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/reglasdenegocio')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Reglas de negocio</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-                <!-- Responsables -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Reponsables')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/responsable')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Responsables</div>
+          }
+          <!-- Responsables -->
+          @if (opcionesPermitidas.includes("Reponsables")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/responsable')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Responsables</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-         <!-- Roles -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Roles')"
-          (click)="$event.stopPropagation(); irA('/main-page/roles')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Roles</div>
+          }
+          <!-- Roles -->
+          @if (opcionesPermitidas.includes("Roles")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/roles')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Roles</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Entidad -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Entidades')"
-          (click)="$event.stopPropagation(); irA('/main-page/entidades')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Entidades</div>
+          }
+          <!-- Entidad -->
+          @if (opcionesPermitidas.includes("Entidades")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/entidades')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Entidades</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Simulación -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Simulación')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/Simulación')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Simulación</div>
+          }
+          <!-- Simulación -->
+          @if (opcionesPermitidas.includes("Simulación")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/Simulación')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Simulación</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Tareas -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Tareas')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/tareas')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Tareas</div>
+          }
+          <!-- Tareas -->
+          @if (opcionesPermitidas.includes("Tareas")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/tareas')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Tareas</div>
+                </div>
+              </div>
             </div>
-          </div>
-          </div>
-
-           <!-- Tooltip -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Tooltip')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/tooltip')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Tooltip</div>
+          }
+          <!-- Tooltip -->
+          @if (opcionesPermitidas.includes("Tooltip")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/tooltip')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Tooltip</div>
+                </div>
+              </div>
             </div>
-          </div>
-          </div>
-
-           <!-- Workflows -->
-        @if(opcionesPermitidas.includes('WorkFlows')) {
-           <div
-          class="section-white"
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/workflow')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Workflows</div>
+          }
+          <!-- Workflows -->
+          @if (opcionesPermitidas.includes("WorkFlows")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/workflow')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Workflows</div>
+                </div>
+              </div>
             </div>
-          </div>
+          }
         </div>
       }
-      </div>
 
       <!-- CORRESPONDENCIA -->
       <div class="section">
@@ -991,484 +908,414 @@
       </div>
 
       <!-- SUBMENÚ OPCIONES -->
-      <div class="submenu" *ngIf="isOpenCorrespondencia">
-        <!-- Anulación masiva radicados -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Anulación masiva radicados')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/anulaciónmasivaradicados')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Anulación masiva radicados</div>
+      @if (isOpenCorrespondencia) {
+        <div class="submenu">
+          <!-- Anulación masiva radicados -->
+          @if (opcionesPermitidas.includes("Anulación masiva radicados")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/anulaciónmasivaradicados')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Anulación masiva radicados</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Anular radicado -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Anular radicado')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/anularradicado')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Anular radicado</div>
+          }
+          <!-- Anular radicado -->
+          @if (opcionesPermitidas.includes("Anular radicado")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/anularradicado')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Anular radicado</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Area destino -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Area destino')"
-          (click)="
-            $event.stopPropagation(); irA('/main-page/acceso')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Area destino</div>
+          }
+          <!-- Area destino -->
+          @if (opcionesPermitidas.includes("Area destino")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/acceso')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Area destino</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Busqueda Radicados -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Busqueda Radicados')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/busquedaradicados')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Busqueda Radicados</div>
+          }
+          <!-- Busqueda Radicados -->
+          @if (opcionesPermitidas.includes("Busqueda Radicados")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/busquedaradicados')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Busqueda Radicados</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Busqueda radicados -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Busqueda radicados')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/busquedaradicados')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Busqueda radicados</div>
+          }
+          <!-- Busqueda radicados -->
+          @if (opcionesPermitidas.includes("Busqueda radicados")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/busquedaradicados')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Busqueda radicados</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Consultar radicado externo -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Consultar radicado externo')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/consultarradicadoexterno')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Consultar radicado externo</div>
+          }
+          <!-- Consultar radicado externo -->
+          @if (opcionesPermitidas.includes("Consultar radicado externo")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/consultarradicadoexterno')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Consultar radicado externo</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Correo -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Correo')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/correo')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Correo</div>
+          }
+          <!-- Correo -->
+          @if (opcionesPermitidas.includes("Correo")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/correo')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Correo</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Courier -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Courier')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/courier')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Courier</div>
+          }
+          <!-- Courier -->
+          @if (opcionesPermitidas.includes("Courier")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/courier')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Courier</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Escanear radicados -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Escanear radicados')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/escanearradicados')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Escanear radicados</div>
+          }
+          <!-- Escanear radicados -->
+          @if (opcionesPermitidas.includes("Escanear radicados")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/escanearradicados')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Escanear radicados</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Indexar Archivos -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Indexar Archivos')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/indexararchivos')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Indexar Archivos</div>
+          }
+          <!-- Indexar Archivos -->
+          @if (opcionesPermitidas.includes("Indexar Archivos")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/indexararchivos')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Indexar Archivos</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Indexar radicados -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Indexar radicados')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/indexarradicados')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Indexar radicados</div>
+          }
+          <!-- Indexar radicados -->
+          @if (opcionesPermitidas.includes("Indexar radicados")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/indexarradicados')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Indexar radicados</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Motivos devolución -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Motivos devolución')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/motivosdevolución')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Motivos devolución</div>
+          }
+          <!-- Motivos devolución -->
+          @if (opcionesPermitidas.includes("Motivos devolución")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/motivosdevolución')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Motivos devolución</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Opciones -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Opciones')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/opciones')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Opciones</div>
+          }
+          <!-- Opciones -->
+          @if (opcionesPermitidas.includes("Opciones")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/opciones')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Opciones</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Radicación masiva -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Radicación masiva')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/radicaciónmasiva')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Radicación masiva</div>
+          }
+          <!-- Radicación masiva -->
+          @if (opcionesPermitidas.includes("Radicación masiva")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/radicaciónmasiva')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Radicación masiva</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Radicación masiva de digitales -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Radicación masiva de digitales')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/radicaciónmasivadedigitales')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Radicación masiva de digitales</div>
+          }
+          <!-- Radicación masiva de digitales -->
+          @if (opcionesPermitidas.includes("Radicación masiva de digitales")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/radicaciónmasivadedigitales')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Radicación masiva de digitales</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Radicados externos -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Radicados externos')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/radicadosexternos')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Radicados externos</div>
+          }
+          <!-- Radicados externos -->
+          @if (opcionesPermitidas.includes("Radicados externos")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/radicadosexternos')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Radicados externos</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Radicar documento -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Radicar documento')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/radicardocumento')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Radicar documento</div>
+          }
+          <!-- Radicar documento -->
+          @if (opcionesPermitidas.includes("Radicar documento")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/radicardocumento')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Radicar documento</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Radicar Documento Digital de entrada -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Radicar Documento Digital de entrada')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/radicardocumentodigitaldeentrada')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Radicar Documento Digital de entrada</div>
+          }
+          <!-- Radicar Documento Digital de entrada -->
+          @if (
+            opcionesPermitidas.includes("Radicar Documento Digital de entrada")
+          ) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/radicardocumentodigitaldeentrada')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Radicar Documento Digital de entrada</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Radicar Interna -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Radicar Interna')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/radicarinterna')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Radicar Interna</div>
+          }
+          <!-- Radicar Interna -->
+          @if (opcionesPermitidas.includes("Radicar Interna")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/radicarinterna')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Radicar Interna</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Radicar salida -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Radicar salida')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/radicarsalida')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Radicar salida</div>
+          }
+          <!-- Radicar salida -->
+          @if (opcionesPermitidas.includes("Radicar salida")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/radicarsalida')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Radicar salida</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Recorrido -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Recorrido')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/recorrido')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Recorrido</div>
+          }
+          <!-- Recorrido -->
+          @if (opcionesPermitidas.includes("Recorrido")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/recorrido')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Recorrido</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Reemplazar imagenes -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Reemplazar imagenes')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/reemplazarimagenes')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Reemplazar imagenes</div>
+          }
+          <!-- Reemplazar imagenes -->
+          @if (opcionesPermitidas.includes("Reemplazar imagenes")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/reemplazarimagenes')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Reemplazar imagenes</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Reimprimir Rotulo -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Reimprimir Rotulo')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/reimprimirrotulo')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Reimprimir Rotulo</div>
+          }
+          <!-- Reimprimir Rotulo -->
+          @if (opcionesPermitidas.includes("Reimprimir Rotulo")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/reimprimirrotulo')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Reimprimir Rotulo</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Seleccionar Courier salida -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Seleccionar Courier salida')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/seleccionarcouriersalida')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Seleccionar Courier salida</div>
+          }
+          <!-- Seleccionar Courier salida -->
+          @if (opcionesPermitidas.includes("Seleccionar Courier salida")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/seleccionarcouriersalida')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Seleccionar Courier salida</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Tipo documento radicado -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Tipo documento radicado')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/tipodocumentoradicado')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Tipo documento radicado</div>
+          }
+          <!-- Tipo documento radicado -->
+          @if (opcionesPermitidas.includes("Tipo documento radicado")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/tipodocumentoradicado')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Tipo documento radicado</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Unidad conservación -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Unidad conservación')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/unidadconservación')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Unidad conservación</div>
+          }
+          <!-- Unidad conservación -->
+          @if (opcionesPermitidas.includes("Unidad conservación")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/unidadconservación')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Unidad conservación</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Usuarios autorizados firma -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Usuarios autorizados firma')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/usuariosautorizadosfirma')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Usuarios autorizados firma</div>
+          }
+          <!-- Usuarios autorizados firma -->
+          @if (opcionesPermitidas.includes("Usuarios autorizados firma")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/usuariosautorizadosfirma')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Usuarios autorizados firma</div>
+                </div>
+              </div>
             </div>
-          </div>
+          }
         </div>
-      </div>
+      }
 
       <!-- ESTRUCTURA DOCUMENTAL -->
       <div class="section">
@@ -1494,114 +1341,124 @@
       </div>
 
       <!-- SUBMENÚ LOGS -->
-      <div class="submenu" *ngIf="isOpenEstructura">
-        <!-- Entidades1 -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Entidades1')"
-          (click)="$event.stopPropagation(); irA('/main-page/entidades1')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Entidades1</div>
+      @if (isOpenEstructura) {
+        <div class="submenu">
+          <!-- Entidades1 -->
+          @if (opcionesPermitidas.includes("Entidades1")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/entidades1')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Entidades1</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Propietarios -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Propietarios')"
-          (click)="$event.stopPropagation(); irA('/main-page/propietarios')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Propietarios</div>
+          }
+          <!-- Propietarios -->
+          @if (opcionesPermitidas.includes("Propietarios")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/propietarios')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Propietarios</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-
-        <!-- Serie - subseries -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Serie - subseries')"
-          (click)="$event.stopPropagation(); irA('/main-page/Seriesubseries')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Serie - subseries</div>
+          }
+          <!-- Serie - subseries -->
+          @if (opcionesPermitidas.includes("Serie - subseries")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/Seriesubseries')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Serie - subseries</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Serie - tipos documento -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Serie tipos documento')"
-          (click)="$event.stopPropagation(); irA('/main-page/serietipos documento')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Serie - tipos documento</div>
+          }
+          <!-- Serie - tipos documento -->
+          @if (opcionesPermitidas.includes("Serie tipos documento")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/serietipos documento')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Serie - tipos documento</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Series -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Series')"
-          (click)="$event.stopPropagation(); irA('/main-page/series')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Series</div>
+          }
+          <!-- Series -->
+          @if (opcionesPermitidas.includes("Series")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/series')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Series</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Tiempos de retención -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Tiempos de retención')"
-          (click)="$event.stopPropagation(); irA('/main-page/tiemposderetención')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Tiempos de retención</div>
+          }
+          <!-- Tiempos de retención -->
+          @if (opcionesPermitidas.includes("Tiempos de retención")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/tiemposderetención')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Tiempos de retención</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Tipos de documento -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Tipos de documento')"
-          (click)="$event.stopPropagation(); irA('/main-page/tiposdedocumento')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Tipos de documento</div>
+          }
+          <!-- Tipos de documento -->
+          @if (opcionesPermitidas.includes("Tipos de documento")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/tiposdedocumento')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Tipos de documento</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Ubicaciones -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Ubicaciones')"
-          (click)="$event.stopPropagation(); irA('/main-page/ubicaciones')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Ubicaciones</div>
+          }
+          <!-- Ubicaciones -->
+          @if (opcionesPermitidas.includes("Ubicaciones")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/ubicaciones')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Ubicaciones</div>
+                </div>
+              </div>
             </div>
-          </div>
+          }
         </div>
-</div>
-      
-<!-- FLUJO Y TRAZABILIDAD -->
+      }
+
+      <!-- FLUJO Y TRAZABILIDAD -->
       <div class="section">
         <div class="row" (click)="toggleFlujo()">
           <div class="icon">
@@ -1625,98 +1482,117 @@
       </div>
 
       <!-- SUBMENÚ LOGS -->
-      <div class="submenu" *ngIf="isOpenFlujo">
-        <!-- Consultar por flujo -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Consultar por flujo')"
-          (click)="$event.stopPropagation(); irA('/main-page/consultarporflujo')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Consultar por flujo</div>
+      @if (isOpenFlujo) {
+        <div class="submenu">
+          <!-- Consultar por flujo -->
+          @if (opcionesPermitidas.includes("Consultar por flujo")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/consultarporflujo')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Consultar por flujo</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Consultar por objeto -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Consultar por objeto')"
-          (click)="$event.stopPropagation(); irA('/main-page/consultarporobjeto')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Consultar por objeto</div>
+          }
+          <!-- Consultar por objeto -->
+          @if (opcionesPermitidas.includes("Consultar por objeto")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/consultarporobjeto')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Consultar por objeto</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Consultar por responsables -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Consultar por responsables')"
-          (click)="$event.stopPropagation(); irA('/main-page/consultarporresponsables')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Consultar por responsables</div>
+          }
+          <!-- Consultar por responsables -->
+          @if (opcionesPermitidas.includes("Consultar por responsables")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/consultarporresponsables')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Consultar por responsables</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Consultar por tarea -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Consultar por tarea')"
-          (click)="$event.stopPropagation(); irA('/main-page/consultarportarea')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Consultar por tarea</div>
+          }
+          <!-- Consultar por tarea -->
+          @if (opcionesPermitidas.includes("Consultar por tarea")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/consultarportarea')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Consultar por tarea</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Consultar trazabilidad -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Consultar trazabilidad')"
-          (click)="$event.stopPropagation(); irA('/main-page/consultartrazabilidad')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Consultar trazabilidad</div>
+          }
+          <!-- Consultar trazabilidad -->
+          @if (opcionesPermitidas.includes("Consultar trazabilidad")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/consultartrazabilidad')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Consultar trazabilidad</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Indicadores de Flujo -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Indicadores de Flujo')"
-          (click)="$event.stopPropagation(); irA('/main-page/indicadordeflujo')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Indicadores de Flujo</div>
+          }
+          <!-- Indicadores de Flujo -->
+          @if (opcionesPermitidas.includes("Indicadores de Flujo")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/indicadordeflujo')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Indicadores de Flujo</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Indicadores de tareas -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Indicadores de tareas')"
-          (click)="$event.stopPropagation(); irA('/main-page/indicadordetarea')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Indicadores de tareas</div>
+          }
+          <!-- Indicadores de tareas -->
+          @if (opcionesPermitidas.includes("Indicadores de tareas")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/indicadordetarea')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Indicadores de tareas</div>
+                </div>
+              </div>
             </div>
-          </div>
+          }
         </div>
-      </div>
+      }
 
       <!-- GESTIÓN DOCUMENTAL -->
       <div class="section">
@@ -1742,228 +1618,268 @@
       </div>
 
       <!-- SUBMENÚ LOGS -->
-      <div class="submenu" *ngIf="isOpenGestion">
-        <!-- Asignar ubicacion caja -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Asignar ubicacion caja')"
-          (click)="$event.stopPropagation(); irA('/main-page/asignarubicacioncaja')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Asignar ubicacion caja</div>
+      @if (isOpenGestion) {
+        <div class="submenu">
+          <!-- Asignar ubicacion caja -->
+          @if (opcionesPermitidas.includes("Asignar ubicacion caja")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/asignarubicacioncaja')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Asignar ubicacion caja</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Carga masiva de documentos -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Carga masiva de documentos')"
-          (click)="$event.stopPropagation(); irA('/main-page/cargamasivadedocumentos')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Carga masiva de documentos</div>
+          }
+          <!-- Carga masiva de documentos -->
+          @if (opcionesPermitidas.includes("Carga masiva de documentos")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/cargamasivadedocumentos')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Carga masiva de documentos</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Carga masiva expedientes -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Carga masiva expedientes')"
-          (click)="$event.stopPropagation(); irA('/main-page/cargamasivaexpedientes')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Carga masiva expedientes</div>
+          }
+          <!-- Carga masiva expedientes -->
+          @if (opcionesPermitidas.includes("Carga masiva expedientes")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/cargamasivaexpedientes')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Carga masiva expedientes</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Cargar Expedientes -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('cargarexpedientes')"
-          (click)="$event.stopPropagation(); irA('/main-page/cargarexpedientes')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Cargar Expedientes</div>
+          }
+          <!-- Cargar Expedientes -->
+          @if (opcionesPermitidas.includes("cargarexpedientes")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/cargarexpedientes')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Cargar Expedientes</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Comunicaciones -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Comunicaciones')"
-          (click)="$event.stopPropagation(); irA('/main-page/comunicaciones')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Comunicaciones</div>
+          }
+          <!-- Comunicaciones -->
+          @if (opcionesPermitidas.includes("Comunicaciones")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/comunicaciones')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Comunicaciones</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Crear expediente -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Crear expediente')"
-          (click)="$event.stopPropagation(); irA('/main-page/crearexpediente')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Crear expediente</div>
+          }
+          <!-- Crear expediente -->
+          @if (opcionesPermitidas.includes("Crear expediente")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/crearexpediente')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Crear expediente</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Editar documentos -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Editar documentos')"
-          (click)="$event.stopPropagation(); irA('/main-page/editardocumentos')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Editar documentos</div>
+          }
+          <!-- Editar documentos -->
+          @if (opcionesPermitidas.includes("Editar documentos")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/editardocumentos')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Editar documentos</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Crear expediente -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Crear expediente')"
-          (click)="$event.stopPropagation(); irA('/main-page/crearexpediente')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Crear expediente</div>
+          }
+          <!-- Crear expediente -->
+          @if (opcionesPermitidas.includes("Crear expediente")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/crearexpediente')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Crear expediente</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Editar expedientes -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Editar expedientes')"
-          (click)="$event.stopPropagation(); irA('/main-page/editarexpedientes')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Editar expedientes</div>
+          }
+          <!-- Editar expedientes -->
+          @if (opcionesPermitidas.includes("Editar expedientes")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/editarexpedientes')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Editar expedientes</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Eliminar expedientes -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Eliminar expedientes')"
-          (click)="$event.stopPropagation(); irA('/main-page/eliminarexpedientes')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Eliminar expedientes</div>
+          }
+          <!-- Eliminar expedientes -->
+          @if (opcionesPermitidas.includes("Eliminar expedientes")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/eliminarexpedientes')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Eliminar expedientes</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Generar comunicado -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Generar comunicado')"
-          (click)="$event.stopPropagation(); irA('/main-page/generarcomunicado')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Generar comunicado</div>
+          }
+          <!-- Generar comunicado -->
+          @if (opcionesPermitidas.includes("Generar comunicado")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/generarcomunicado')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Generar comunicado</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Generar memorando -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Generar memorando')"
-          (click)="$event.stopPropagation(); irA('/main-page/generarmemorando')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Generar memorando</div>
+          }
+          <!-- Generar memorando -->
+          @if (opcionesPermitidas.includes("Generar memorando")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/generarmemorando')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Generar memorando</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Proyectar documento -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Proyectar documento')"
-          (click)="$event.stopPropagation(); irA('/main-page/proyectardocumento')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Proyectar documento</div>
+          }
+          <!-- Proyectar documento -->
+          @if (opcionesPermitidas.includes("Proyectar documento")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/proyectardocumento')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Proyectar documento</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Registrar devolución -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Registrar devolución')"
-          (click)="$event.stopPropagation(); irA('/main-page/registrardevolución')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Registrar devolución</div>
+          }
+          <!-- Registrar devolución -->
+          @if (opcionesPermitidas.includes("Registrar devolución")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/registrardevolución')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Registrar devolución</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Registrar documento historico -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Registrar documento historico')"
-          (click)="$event.stopPropagation(); irA('/main-page/registrardocumentohistorico')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Registrar documento historico</div>
+          }
+          <!-- Registrar documento historico -->
+          @if (opcionesPermitidas.includes("Registrar documento historico")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/registrardocumentohistorico')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Registrar documento historico</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!--Registrar documentos -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Registrar documentos')"
-          (click)="$event.stopPropagation(); irA('/main-page/registrardocumentos')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Registrar documentos</div>
+          }
+          <!--Registrar documentos -->
+          @if (opcionesPermitidas.includes("Registrar documentos")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/registrardocumentos')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Registrar documentos</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Solicitar prestamo -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Solicitar prestamo')"
-          (click)="$event.stopPropagation(); irA('/main-page/solicitarprestamo')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Solicitar prestamo</div>
+          }
+          <!-- Solicitar prestamo -->
+          @if (opcionesPermitidas.includes("Solicitar prestamo")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/solicitarprestamo')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Solicitar prestamo</div>
+                </div>
+              </div>
             </div>
-          </div>
+          }
         </div>
-      </div>
+      }
 
       <!-- INSTRUMENTOS ARCHIVISTICOS -->
       <div class="section">
@@ -1989,189 +1905,216 @@
       </div>
 
       <!-- SUBMENÚ LOGS -->
-      <div class="submenu" *ngIf="isOpenInstrumentos">
-        <!-- Carga masiva expedientes TVD -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Carga masiva expedientes TVD')"
-          (click)="$event.stopPropagation(); irA('/main-page/cargamasivaexpedientesTVD')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Carga masiva expedientes TVD</div>
+      @if (isOpenInstrumentos) {
+        <div class="submenu">
+          <!-- Carga masiva expedientes TVD -->
+          @if (opcionesPermitidas.includes("Carga masiva expedientes TVD")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/cargamasivaexpedientesTVD')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Carga masiva expedientes TVD</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Cargar metadatos -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Cargar metadatos')"
-          (click)="$event.stopPropagation(); irA('/main-page/cargarmetadatos')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Cargar metadatos</div>
+          }
+          <!-- Cargar metadatos -->
+          @if (opcionesPermitidas.includes("Cargar metadatos")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/cargarmetadatos')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Cargar metadatos</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Cargar TRD -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Cargar TRD')"
-          (click)="$event.stopPropagation(); irA('/main-page/cargarTRD')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Cargar TRD</div>
+          }
+          <!-- Cargar TRD -->
+          @if (opcionesPermitidas.includes("Cargar TRD")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/cargarTRD')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Cargar TRD</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Cargar TVD -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Cargar TVD')"
-          (click)="$event.stopPropagation(); irA('/main-page/cargarTVD')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Cargar TVD</div>
+          }
+          <!-- Cargar TVD -->
+          @if (opcionesPermitidas.includes("Cargar TVD")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/cargarTVD')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Cargar TVD</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Consultar expediente TVD -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Consultar expediente TVD')"
-          (click)="$event.stopPropagation(); irA('/main-page/consultarexpedienteTVD')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Consultar expediente TVD</div>
+          }
+          <!-- Consultar expediente TVD -->
+          @if (opcionesPermitidas.includes("Consultar expediente TVD")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/consultarexpedienteTVD')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Consultar expediente TVD</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Datos area -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Datos area')"
-          (click)="$event.stopPropagation(); irA('/main-page/datosarea')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Datos area</div>
+          }
+          <!-- Datos area -->
+          @if (opcionesPermitidas.includes("Datos area")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/datosarea')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Datos area</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Datos compañia -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Datos compañia')"
-          (click)="$event.stopPropagation(); irA('/main-page/datoscompañia')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Datos compañia</div>
+          }
+          <!-- Datos compañia -->
+          @if (opcionesPermitidas.includes("Datos compañia")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/datoscompañia')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Datos compañia</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Log de acceso -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Ver logs de acceso')"
-          (click)="$event.stopPropagation(); irA('/main-page/verLogsDeAcceso')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Registro nueva TRD</div>
+          }
+          <!-- Log de acceso -->
+          @if (opcionesPermitidas.includes("Ver logs de acceso")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/verLogsDeAcceso')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Registro nueva TRD</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Log de acceso -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Ver logs de acceso')"
-          (click)="$event.stopPropagation(); irA('/main-page/verLogsDeAcceso')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Registro nueva TVD</div>
+          }
+          <!-- Log de acceso -->
+          @if (opcionesPermitidas.includes("Ver logs de acceso")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/verLogsDeAcceso')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Registro nueva TVD</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Log de acceso -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Ver logs de acceso')"
-          (click)="$event.stopPropagation(); irA('/main-page/verLogsDeAcceso')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Ver CCD</div>
+          }
+          <!-- Log de acceso -->
+          @if (opcionesPermitidas.includes("Ver logs de acceso")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/verLogsDeAcceso')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Ver CCD</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Log de acceso -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Ver logs de acceso')"
-          (click)="$event.stopPropagation(); irA('/main-page/verLogsDeAcceso')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Ver FUID</div>
+          }
+          <!-- Log de acceso -->
+          @if (opcionesPermitidas.includes("Ver logs de acceso")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/verLogsDeAcceso')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Ver FUID</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Log de acceso -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Ver logs de acceso')"
-          (click)="$event.stopPropagation(); irA('/main-page/verLogsDeAcceso')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Ver TRD</div>
+          }
+          <!-- Log de acceso -->
+          @if (opcionesPermitidas.includes("Ver logs de acceso")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/verLogsDeAcceso')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Ver TRD</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Log de acceso -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Ver logs de acceso')"
-          (click)="$event.stopPropagation(); irA('/main-page/verLogsDeAcceso')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Ver TRD historica</div>
+          }
+          <!-- Log de acceso -->
+          @if (opcionesPermitidas.includes("Ver logs de acceso")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/verLogsDeAcceso')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Ver TRD historica</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Log de acceso -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Ver logs de acceso')"
-          (click)="$event.stopPropagation(); irA('/main-page/verLogsDeAcceso')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Ver TVD</div>
+          }
+          <!-- Log de acceso -->
+          @if (opcionesPermitidas.includes("Ver logs de acceso")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/verLogsDeAcceso')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Ver TVD</div>
+                </div>
+              </div>
             </div>
-          </div>
+          }
         </div>
-      </div>
+      }
 
       <!-- PROCESOS -->
       <div class="section">
@@ -2197,85 +2140,100 @@
       </div>
 
       <!-- SUBMENÚ LOGS -->
-      <div class="submenu" *ngIf="isOpenProcesos">
-        <!-- Administrar Logs -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Administrar logs')"
-          (click)="$event.stopPropagation(); irA('/main-page/administrarLogs')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Acto administrativo</div>
+      @if (isOpenProcesos) {
+        <div class="submenu">
+          <!-- Administrar Logs -->
+          @if (opcionesPermitidas.includes("Administrar logs")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/administrarLogs')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Acto administrativo</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Log de auditoría -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Ver log de auditoria')"
-          (click)="$event.stopPropagation(); irA('/main-page/verLogAuditoria')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Administrar firma digital</div>
+          }
+          <!-- Log de auditoría -->
+          @if (opcionesPermitidas.includes("Ver log de auditoria")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/verLogAuditoria')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Administrar firma digital</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Log de acceso -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Ver logs de acceso')"
-          (click)="$event.stopPropagation(); irA('/main-page/verLogsDeAcceso')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Consulta de solicitudes EVE</div>
+          }
+          <!-- Log de acceso -->
+          @if (opcionesPermitidas.includes("Ver logs de acceso")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/verLogsDeAcceso')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Consulta de solicitudes EVE</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Log de acceso -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Ver logs de acceso')"
-          (click)="$event.stopPropagation(); irA('/main-page/verLogsDeAcceso')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Obtener certificado</div>
+          }
+          <!-- Log de acceso -->
+          @if (opcionesPermitidas.includes("Ver logs de acceso")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/verLogsDeAcceso')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Obtener certificado</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Log de acceso -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Ver logs de acceso')"
-          (click)="$event.stopPropagation(); irA('/main-page/verLogsDeAcceso')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Registro solicitudes de estudio</div>
+          }
+          <!-- Log de acceso -->
+          @if (opcionesPermitidas.includes("Ver logs de acceso")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/verLogsDeAcceso')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Registro solicitudes de estudio</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Log de acceso -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Ver logs de acceso')"
-          (click)="$event.stopPropagation(); irA('/main-page/verLogsDeAcceso')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Solicitar firma digital</div>
+          }
+          <!-- Log de acceso -->
+          @if (opcionesPermitidas.includes("Ver logs de acceso")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/verLogsDeAcceso')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Solicitar firma digital</div>
+                </div>
+              </div>
             </div>
-          </div>
+          }
         </div>
-      </div>
+      }
 
       <!-- RETENCION Y DISPOSICION -->
       <div class="section">
@@ -2301,20 +2259,25 @@
       </div>
 
       <!-- SUBMENÚ LOGS -->
-      <div class="submenu" *ngIf="isOpenRetencion">
-        <!-- Administrar Logs -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Administrar logs')"
-          (click)="$event.stopPropagation(); irA('/main-page/administrarLogs')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Solicitar transferencia</div>
+      @if (isOpenRetencion) {
+        <div class="submenu">
+          <!-- Administrar Logs -->
+          @if (opcionesPermitidas.includes("Administrar logs")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/administrarLogs')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Solicitar transferencia</div>
+                </div>
+              </div>
             </div>
-          </div>
+          }
         </div>
-      </div>
+      }
 
       <!-- VISIBILIDAD Y GESTIÓN -->
       <div class="section">
@@ -2340,64 +2303,69 @@
       </div>
 
       <!-- SUBMENÚ LOGS -->
-      <div class="submenu" *ngIf="isOpenVisibilidad">
-        <!-- Distribuir tareas -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Distribuir tareas')"
-          (click)="$event.stopPropagation(); irA('/main-page/distribuirTarea')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Distribuir tareas</div>
+      @if (isOpenVisibilidad) {
+        <div class="submenu">
+          <!-- Distribuir tareas -->
+          @if (opcionesPermitidas.includes("Distribuir tareas")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/distribuirTarea')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Distribuir tareas</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Consultar Roles de Responsables -->
-        <div
-          class="section-white"
-          *ngIf="
-            opcionesPermitidas.includes('Consultar roles del responsable')
-          "
-          (click)="
-            $event.stopPropagation();
-            irA('/main-page/consultarroldelresponsable')
-          "
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Consultar roles del responsables</div>
+          }
+          <!-- Consultar Roles de Responsables -->
+          @if (opcionesPermitidas.includes("Consultar roles del responsable")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation();
+                irA('/main-page/consultarroldelresponsable')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Consultar roles del responsables</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Finalizar Proceso -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Finalizar proceso')"
-          (click)="$event.stopPropagation(); irA('/main-page/finalizarProceso')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Finalizar proceso</div>
+          }
+          <!-- Finalizar Proceso -->
+          @if (opcionesPermitidas.includes("Finalizar proceso")) {
+            <div
+              class="section-white"
+              (click)="
+                $event.stopPropagation(); irA('/main-page/finalizarProceso')
+              "
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Finalizar proceso</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Listar Tareas -->
-        <div
-          class="section-white"
-          *ngIf="opcionesPermitidas.includes('Listar tareas')"
-          (click)="$event.stopPropagation(); irA('/main-page/listarTareas')"
-        >
-          <div class="row">
-            <div class="row-text">
-              <div class="text">Listar tareas</div>
+          }
+          <!-- Listar Tareas -->
+          @if (opcionesPermitidas.includes("Listar tareas")) {
+            <div
+              class="section-white"
+              (click)="$event.stopPropagation(); irA('/main-page/listarTareas')"
+            >
+              <div class="row">
+                <div class="row-text">
+                  <div class="text">Listar tareas</div>
+                </div>
+              </div>
             </div>
-          </div>
+          }
         </div>
-      </div>
+      }
     </li>
   </ul>
 </nav>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { MenuComponent } from '../menu/menu.component';
 import { RouterOutlet } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -26,7 +26,6 @@ import { MatIconModule } from '@angular/material/icon';
     MatFormFieldModule,
     MatButtonModule,
     MatIconModule,
-    CommonModule,
   ],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss',

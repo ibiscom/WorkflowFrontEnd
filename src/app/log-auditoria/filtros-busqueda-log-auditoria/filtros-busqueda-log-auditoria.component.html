@@ -1,20 +1,20 @@
 <div class="cont-filtro">
   <div class="usuarios-container">
-
     <!-- CONTENEDOR PRINCIPAL -->
     <div class="filtros-container">
       <div class="filtros-titulo">Filtros de búsqueda</div>
 
       <!-- FILA 1 -->
       <div class="fila-filtros">
-
         <!-- Cuenta de usuario -->
         <div class="campo-lista-filtro">
           <select [(ngModel)]="userF" name="userF">
             <option value="">Seleccione una opción</option>
-            <option *ngFor="let user of usersList" [value]="user">
-              {{ user }}
-            </option>
+            @for (user of usersList; track user) {
+              <option [value]="user">
+                {{ user }}
+              </option>
+            }
           </select>
         </div>
 
@@ -37,9 +37,11 @@
             (change)="loadActions($event)"
           >
             <option value="">Seleccione una opción</option>
-            <option *ngFor="let operation of operationsList" [value]="operation">
-              {{ operation }}
-            </option>
+            @for (operation of operationsList; track operation) {
+              <option [value]="operation">
+                {{ operation }}
+              </option>
+            }
           </select>
         </div>
 
@@ -47,40 +49,30 @@
         <div class="campo-lista-filtro">
           <select [(ngModel)]="actionF" name="actionF">
             <option value="">Seleccione una opción</option>
-            <option *ngFor="let action of actionsList" [value]="action">
-              {{ action }}
-            </option>
+            @for (action of actionsList; track action) {
+              <option [value]="action">
+                {{ action }}
+              </option>
+            }
           </select>
         </div>
-
       </div>
 
       <!-- FILA 2 -->
       <div class="fila-filtros">
-
         <!-- Fecha inicial -->
         <div class="campo-texto-filtro">
-          <input
-            type="date"
-            [(ngModel)]="startDateF"
-            name="startDateF"
-          />
+          <input type="date" [(ngModel)]="startDateF" name="startDateF" />
         </div>
 
         <!-- Fecha final -->
         <div class="campo-texto-filtro">
-          <input
-            type="date"
-            [(ngModel)]="endDateF"
-            name="endDateF"
-          />
+          <input type="date" [(ngModel)]="endDateF" name="endDateF" />
         </div>
-
       </div>
 
       <!-- FILA DE BOTONES -->
       <div class="fila-filtros-fila3">
-
         <!-- Buscar -->
         <button class="btn-figma" (click)="search()">
           <span class="btn-icon">
@@ -90,19 +82,15 @@
         </button>
 
         <!-- Descargar (solo si hay filtros) -->
-        <button
-          class="btn-figma"
-          *ngIf="showDownloadButton()"
-          (click)="download()"
-        >
-          <span class="btn-icon">
-            <img src="assets/img/download.svg" alt="Descargar" />
-          </span>
-          <span class="label">Descargar</span>
-        </button>
-
+        @if (showDownloadButton()) {
+          <button class="btn-figma" (click)="download()">
+            <span class="btn-icon">
+              <img src="assets/img/download.svg" alt="Descargar" />
+            </span>
+            <span class="label">Descargar</span>
+          </button>
+        }
       </div>
-
     </div>
   </div>
 </div>
