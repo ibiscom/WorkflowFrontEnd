@@ -52,7 +52,10 @@ import { ListadoMigworkflowComponent } from './migworkflow/listado-migworkflow/l
 import { MigworkflowComponent } from './migworkflow/migworkflow.component';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 =======
 >>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 import { FinalizarprocesoComponent } from './finalizarproceso/finalizarproceso.component';
@@ -63,6 +66,7 @@ import { ConsultarRolResponsableComponent } from './consultarrolresponsable/cons
 import { ListadoConsultarRolResponsableComponent } from './consultarrolresponsable/listado-consultarrolresponsable/listado-consultarrolresponsable.component';
 import { SimulacionComponent } from './simulacion/simulacion.component';
 import { ListadoSimulacionComponent } from './simulacion/listado-simulacion/listado-simulacion.component';
+<<<<<<< HEAD
 <<<<<<< HEAD
 import { ConsultarPorTareaComponent } from './consultar-por-tarea/consultarportarea.component';
 import { ListadoConsultarPorTareaComponent } from './consultar-por-tarea/listado-consultarportarea/listado-consultarportarea.component';
@@ -85,6 +89,8 @@ import { ListadoActividadRealizadaPorResponsableComponent } from './actividades-
 import { ActividadRealizadaPorTareaComponent } from './actividades-realizadas-por-tarea/actividadrealizadaportarea.component';
 import { ListadoActividadRealizadaPorTareaComponent } from './actividades-realizadas-por-tarea/listado-actividadrealizadaportarea/listado-actividadrealizadaportarea.component';
 >>>>>>> 1ac0d68672a2766965ed7bff1d4587c6b5a358e8
+=======
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 =======
 >>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 
@@ -505,7 +511,10 @@ export const routes: Routes = [
       },
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 =======
 >>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 
@@ -579,6 +588,7 @@ export const routes: Routes = [
           },
         ],
       },
+<<<<<<< HEAD
 <<<<<<< HEAD
             {
         path: 'consultarportarea',
@@ -761,6 +771,8 @@ export const routes: Routes = [
       },
 
 >>>>>>> 1ac0d68672a2766965ed7bff1d4587c6b5a358e8
+=======
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 =======
 >>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
     ],

@@ -15,6 +15,7 @@ import { ConsultarPorTareaEntity } from '../consultarportarea.entity';
  */
 export class ListadoConsultarPorTareaComponent {
 <<<<<<< HEAD
+<<<<<<< HEAD
 tareas: any;
 mostrarResultados: any;
 ejecutarTarea(_t14: any) {
@@ -26,6 +27,8 @@ throw new Error('Method not implemented.');
 verDetalle(_t14: any) {
 throw new Error('Method not implemented.');
 }
+=======
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 =======
 >>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
   // 🔹 Variables de paginación

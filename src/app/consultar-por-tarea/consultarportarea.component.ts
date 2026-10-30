@@ -11,10 +11,16 @@ import { GroupSearchFilterEntity } from '../entities/groups/group-search-filter.
 import { CompanyEntity } from '../entities/companies/company.entity';
 import { CompaniasService } from '../companias/companias.service';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { ConsultarPorTareaService } from './consultarportarea.service';
 import { CookieService } from 'ngx-cookie-service';
 import { ConsultarPorTareaFilterEntity } from './consultarportareaFilterEntity';
 import { ConsultarPorTareaEntity } from './consultarportarea.entity';
+=======
+import { ConsultarporTareaService } from './consultarportarea.service';
+import { CookieService } from 'ngx-cookie-service';
+import { ConsultarPorTareaFilterEntity } from './consultarportareaFilterEntity';
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 =======
 import { ConsultarporTareaService } from './consultarportarea.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -36,7 +42,11 @@ export class ConsultarPorTareaComponent {
 
   constructor(
 <<<<<<< HEAD
+<<<<<<< HEAD
     private consultarportareaService: ConsultarPorTareaService,
+=======
+    private consultarportareaService: ConsultarporTareaService,
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 =======
     private consultarportareaService: ConsultarporTareaService,
 >>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
