@@ -1,0 +1,146 @@
+
+<!-- ======================================= -->
+<!-- FILTROS -->
+<!-- ======================================= -->
+
+<ibpm-filtros-busqueda-actividadpendienteporresponsable
+  [uc]="this.parent"
+  style="width: 100%">
+</ibpm-filtros-busqueda-actividadpendienteporresponsable>
+
+
+<!-- ENCABEZADO AZUL DEL REPORTE -->
+<div class="reporte-encabezado">
+  Pendientes por responsable
+</div>
+
+<!-- ======================================= -->
+<!-- CONTENEDOR PRINCIPAL DEL REPORTE -->
+<!-- ======================================= -->
+
+<div class="reporte-resultados">
+
+  <!-- ===================================== -->
+  <!-- ENCABEZADO E INFORMACIÓN DEL REPORTE -->
+  <!-- ===================================== -->
+
+  <div class="reporte-metadatos">
+
+    <div class="reporte-dato">
+      <div class="reporte-dato-label">FECHA</div>
+      <div class="reporte-dato-valor">
+        {{ fechaReporte }}
+      </div>
+    </div>
+
+    <div class="reporte-dato">
+      <div class="reporte-dato-label">FECHA GENERACIÓN</div>
+      <div class="reporte-dato-valor">
+        {{ fechaGeneracion }}
+      </div>
+    </div>
+
+    <div class="reporte-dato reporte-dato-proceso">
+      <div class="reporte-dato-label">PROCESO</div>
+      <div class="reporte-dato-valor">
+        {{ nombreProcesoReporte }}
+      </div>
+    </div>
+
+    <!-- TAREA DEL REPORTE -->
+    <div class="reporte-dato">
+      <div class="reporte-dato-label">TAREA</div>
+      <div class="reporte-dato-valor">
+        {{ nombreTareaReporte }}
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ======================================= -->
+  <!-- GRÁFICA: PENDIENTES POR RESPONSABLE -->
+  <!-- ======================================= -->
+
+  <div class="grafica-container">
+
+    <div class="grafica-titulo">
+      Pendientes por responsable
+    </div>
+
+    <div class="grafica-contenido">
+
+      <!--
+        Aquí se dibujará la gráfica real.
+
+        La gráfica debe incluir:
+        - Barras rojas.
+        - Valor de pendientes sobre cada barra.
+        - Nombre del responsable en el eje horizontal.
+        - Eje vertical con el número de pendientes.
+        - Leyenda: Responsables.
+
+        El dibujo se conectará con los datos del reporte
+        desde el TypeScript y la librería de gráficas.
+      -->
+
+      <canvas
+        id="graficaPendientesResponsable"
+        aria-label="Gráfica de pendientes por responsable">
+      </canvas>
+
+    </div>
+
+  </div>
+
+
+  <!-- ======================================= -->
+  <!-- TABLA DE RESULTADOS -->
+  <!-- ======================================= -->
+
+  <div class="tabla-card tabla-reporte-card">
+
+    <!-- HEADER -->
+    <div class="tabla-header-container">
+      <div class="tabla-titulo">
+        Pendientes por responsable
+      </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="tabla-body">
+
+      <!--
+        columnasReporte debe actualizarse desde el TypeScript
+        dependiendo de si hay un responsable seleccionado.
+      -->
+
+      @for (columna of columnasReporte; track columna.key) {
+
+        <div class="tabla-columna">
+
+          <!-- ENCABEZADO DE COLUMNA -->
+          <div class="tabla-col-header">
+            <div>{{ columna.label }}</div>
+          </div>
+
+          <!-- FILAS DE DATOS -->
+          @for (fila of datosReporte; track fila) {
+
+            <div class="tabla-celda">
+              <div>
+                {{ fila[columna.key] }}
+              </div>
+            </div>
+
+          }
+
+        </div>
+
+      }
+
+    </div>
+
+  </div>
+
+</div>

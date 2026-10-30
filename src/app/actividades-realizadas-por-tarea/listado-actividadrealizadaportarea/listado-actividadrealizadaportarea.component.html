@@ -1,0 +1,183 @@
+
+<!-- ======================================= -->
+<!-- FILTROS -->
+<!-- ======================================= -->
+
+<ibpm-filtros-busqueda-actividadrealizadaportarea
+  [uc]="this.parent"
+  style="width: 100%">
+</ibpm-filtros-busqueda-actividadrealizadaportarea>
+
+
+<!-- ======================================= -->
+<!-- ENCABEZADO DEL REPORTE -->
+<!-- ======================================= -->
+
+<div class="reporte-encabezado">
+  Actividades realizadas por tareas
+</div>
+
+
+<!-- ======================================= -->
+<!-- CONTENEDOR PRINCIPAL -->
+<!-- ======================================= -->
+
+<div class="reporte-resultados">
+
+  <!-- ===================================== -->
+  <!-- METADATOS DEL REPORTE -->
+  <!-- ===================================== -->
+
+  <div class="reporte-metadatos">
+
+    <div class="reporte-dato">
+      <div class="reporte-dato-label">FECHA INICIAL</div>
+      <div class="reporte-dato-valor">
+        {{ fechaInicial }}
+      </div>
+    </div>
+
+    <div class="reporte-dato">
+      <div class="reporte-dato-label">FECHA FINAL</div>
+      <div class="reporte-dato-valor">
+        {{ fechaFinal }}
+      </div>
+    </div>
+
+    <div class="reporte-dato">
+      <div class="reporte-dato-label">FECHA GENERACIÓN</div>
+      <div class="reporte-dato-valor">
+        {{ fechaGeneracion }}
+      </div>
+    </div>
+
+    <div class="reporte-dato reporte-dato-proceso">
+      <div class="reporte-dato-label">PROCESO</div>
+      <div class="reporte-dato-valor">
+        {{ nombreProcesoReporte }}
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ===================================== -->
+  <!-- GRÁFICA -->
+  <!-- ===================================== -->
+
+  <div class="grafica-container">
+
+    <div class="grafica-titulo">
+      Actividades realizadas por tareas
+    </div>
+
+    <div class="grafica-contenido">
+      <!-- La gráfica se conectará con los datos del reporte -->
+      <canvas
+        id="graficaActividadesRealizadasTareas"
+        aria-label="Gráfica de actividades realizadas por tareas">
+      </canvas>
+    </div>
+
+  </div>
+
+
+  <!-- ===================================== -->
+  <!-- TABLA DE RESULTADOS -->
+  <!-- ===================================== -->
+
+  <div class="tabla-card tabla-reporte-card">
+
+    <!-- HEADER -->
+    <div class="tabla-header-container">
+      <div class="tabla-titulo">
+        Actividades realizadas por tareas
+      </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="tabla-body">
+
+      <!-- NÚMERO TAREA -->
+      <div class="tabla-columna">
+        <div class="tabla-col-header">
+          <div>Número Tarea</div>
+        </div>
+
+        @for (fila of datosReporte; track fila) {
+          <div class="tabla-celda">
+            <div>{{ fila.numeroTarea }}</div>
+          </div>
+        }
+      </div>
+
+      <!-- TAREA -->
+      <div class="tabla-columna">
+        <div class="tabla-col-header">
+          <div>Tarea</div>
+        </div>
+
+        @for (fila of datosReporte; track fila) {
+          <div class="tabla-celda">
+            <div>{{ fila.tarea }}</div>
+          </div>
+        }
+      </div>
+
+      <!-- NOMBRE TAREA -->
+      <div class="tabla-columna">
+        <div class="tabla-col-header">
+          <div>Nombre Tarea</div>
+        </div>
+
+        @for (fila of datosReporte; track fila) {
+          <div class="tabla-celda">
+            <div>{{ fila.nombreTarea }}</div>
+          </div>
+        }
+      </div>
+
+      <!-- EXITOSAS -->
+      <div class="tabla-columna">
+        <div class="tabla-col-header">
+          <div>Exitosas</div>
+        </div>
+
+        @for (fila of datosReporte; track fila) {
+          <div class="tabla-celda">
+            <div>{{ fila.exitosas }}</div>
+          </div>
+        }
+      </div>
+
+      <!-- CERRADAS -->
+      <div class="tabla-columna">
+        <div class="tabla-col-header">
+          <div>Cerradas</div>
+        </div>
+
+        @for (fila of datosReporte; track fila) {
+          <div class="tabla-celda">
+            <div>{{ fila.cerradas }}</div>
+          </div>
+        }
+      </div>
+
+      <!-- PROMEDIO DURACIÓN -->
+      <div class="tabla-columna">
+        <div class="tabla-col-header">
+          <div>Promedio Duración (días)</div>
+        </div>
+
+        @for (fila of datosReporte; track fila) {
+          <div class="tabla-celda">
+            <div>{{ fila.promedioDuracion }}</div>
+          </div>
+        }
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

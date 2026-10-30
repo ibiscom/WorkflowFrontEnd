@@ -1,0 +1,276 @@
+
+<!-- =========================================================
+     SECCIÓN FILTROS
+========================================================= -->
+
+<div class="cont-filtro">
+
+  <div class="usuarios-container">
+
+    <!-- =========================================
+         INFORMACIÓN DE BÚSQUEDA
+    ========================================== -->
+
+    <div class="filtros-container">
+
+      <div class="filtros-titulo">
+        Información de búsqueda
+      </div>
+
+
+      <!-- =========================================
+           FILA 1
+      ========================================== -->
+
+      <div class="fila-filtros">
+
+        <!-- NOMBRE DEL PROCESO -->
+
+        <div class="campo-lista">
+
+          <label>
+            Nombre del proceso
+          </label>
+
+          <select
+            id="company"
+            name="company"
+            [(ngModel)]="companyObjectN"
+            (ngModelChange)="onCompanyChange($event)">
+
+            <option value="">
+              Todos
+            </option>
+
+            @for (company of companiesList; track company) {
+
+              <option [ngValue]="company">
+                {{ company.largeName }}
+              </option>
+
+            }
+
+          </select>
+
+        </div>
+
+
+        <!-- NOMBRE DEL RESPONSABLE -->
+
+        <div class="campo-lista">
+
+          <label>
+            Nombre del responsable
+          </label>
+
+          <select
+            id="responsable"
+            name="responsable"
+            [(ngModel)]="responsable"
+            (ngModelChange)="onResponsableChange($event)">
+
+            <option value="">
+              Todos
+            </option>
+
+            @for (usuario of responsablesList; track usuario) {
+
+              <option [ngValue]="usuario">
+                {{ usuario }}
+              </option>
+
+            }
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================================
+           FILA 2
+      ========================================== -->
+
+      <div class="fila-filtros">
+
+        <!-- FECHA INICIAL -->
+
+        <div class="campo-fecha-filtro">
+
+          <label>
+            Fecha inicial
+          </label>
+
+          <input
+            type="date"
+            [(ngModel)]="fechaInicial" />
+
+        </div>
+
+
+        <!-- FECHA FINAL -->
+
+        <div class="campo-fecha-filtro">
+
+          <label>
+            Fecha final
+          </label>
+
+          <input
+            type="date"
+            [(ngModel)]="fechaFinal" />
+
+        </div>
+
+      </div>
+
+
+
+      <!-- =========================================
+           BOTÓN CONSULTAR
+      ========================================== -->
+
+      <div class="fila-botones">
+
+        <button
+          type="button"
+          class="btn-figma"
+          (click)="search()">
+
+          <span class="btn-icon">
+
+            <img
+              src="assets/img/search.svg"
+              alt="Consultar" />
+
+          </span>
+
+          <span class="label">
+            Consultar
+          </span>
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+<!-- =========================================
+     DATOS INGRESADOS PARA LA BÚSQUEDA
+========================================= -->
+
+<div class="datos-busqueda-container">
+
+  <div class="datos-busqueda-titulo">
+    Datos ingresados para la búsqueda
+  </div>
+
+  <div class="datos-busqueda-body">
+
+    <!-- =========================================
+         FILA 1
+    ========================================== -->
+
+    @if (companyObjectN?.largeName || responsable) {
+
+      <div class="fila-datos-busqueda">
+
+        <!-- NOMBRE DEL PROCESO -->
+
+        @if (companyObjectN?.largeName) {
+
+          <div class="campo-dato">
+
+            <label>
+              Para el flujo con nombre:
+            </label>
+
+            <input
+              type="text"
+              [value]="companyObjectN.largeName"
+              readonly />
+
+          </div>
+
+        }
+
+
+        <!-- NOMBRE DEL RESPONSABLE -->
+
+        @if (responsable) {
+
+          <div class="campo-dato">
+
+            <label>
+              Para el responsable:
+            </label>
+
+            <input
+              type="text"
+              [value]="responsable?.largeName || responsable"
+              readonly />
+
+          </div>
+
+        }
+
+      </div>
+
+    }
+
+
+    <!-- =========================================
+         FILA 2
+    ========================================== -->
+
+    @if (alarma || fechaInicial) {
+
+      <div class="fila-datos-busqueda">
+
+        <!-- FECHA INICIAL -->
+
+        @if (fechaInicial) {
+
+          <div class="campo-dato">
+
+            <label>
+              Fecha inicial:
+            </label>
+
+            <input
+              type="text"
+              [value]="fechaInicial"
+              readonly />
+
+          </div>
+
+        }
+
+      </div>
+
+    }
+
+
+    @if (fechaFinal) {
+
+        <div class="campo-dato">
+
+          <label>
+            Fecha final:
+          </label>
+
+          <input
+            type="text"
+            [value]="fechaFinal"
+            readonly />
+
+        </div>
+
+        <div></div>
+    }
+
+  </div>
+
+</div>

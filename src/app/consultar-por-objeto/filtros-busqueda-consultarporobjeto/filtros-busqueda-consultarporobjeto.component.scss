@@ -1,0 +1,574 @@
+/* =======================================
+   CONTENEDOR PRINCIPAL
+======================================= */
+
+.cont-filtro {
+  width: 100%;
+
+  display: flex;
+
+  justify-content: center;
+}
+
+.usuarios-container {
+  width: 100%;
+}
+
+/* =======================================
+   CONTENEDOR FILTROS
+======================================= */
+
+.filtros-container {
+  width: 100%;
+
+  background: #ffffff;
+
+  border-radius: 16px;
+
+  box-shadow: 0px 1px 15.4px 6px rgba(0, 0, 0, 0.07);
+
+  padding: 24px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 24px;
+}
+
+/* =======================================
+   TITULO
+======================================= */
+
+.filtros-titulo {
+  color: #1b1b1b;
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  line-height: 20px;
+
+  letter-spacing: 0.5px;
+}
+
+/* =======================================
+   FILAS
+======================================= */
+
+.fila-filtros {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 24px;
+
+  width: 100%;
+}
+
+.fila-filtros-fila3 {
+  display: flex;
+
+  align-items: flex-end;
+
+  gap: 24px;
+
+  flex-wrap: wrap;
+}
+
+/* responsive */
+
+@media (max-width: 900px) {
+
+  .fila-filtros {
+    grid-template-columns: 1fr;
+  }
+
+  .fila-filtros-fila3 {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+}
+
+/* =======================================
+   CAMPOS TEXTO
+======================================= */
+
+.campo-texto-filtro {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  background: var(--Schemes-Surface-Container-Lowest, #ffffff);
+
+  border-top-left-radius: 4px;
+
+  border-top-right-radius: 4px;
+}
+
+.campo-texto-filtro label {
+  padding: 4px 16px;
+
+  display: flex;
+
+  align-items: center;
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 400;
+
+  line-height: 24px;
+
+  letter-spacing: 0.5px;
+
+  color: var(--Schemes-On-Surface-Variant, #49454f);
+}
+
+.campo-texto-filtro input {
+  width: 100%;
+
+  padding: 4px 16px 8px 16px;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 16px;
+
+  color: var(--Schemes-On-Surface, #1c1b1f);
+}
+
+/* línea inferior */
+
+.campo-texto-filtro::after {
+  content: "";
+
+  width: 100%;
+
+  height: 1px;
+
+  background: var(--Schemes-On-Surface-Variant, #49454f);
+}
+
+/* =======================================
+   CAMPOS LISTA
+======================================= */
+
+.campo-lista {
+  min-width: 280px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  position: relative;
+
+  background: var(--Schemes-On-Secondary, #ffffff);
+
+  border-top-left-radius: 4px;
+
+  border-top-right-radius: 4px;
+}
+
+.campo-lista label {
+  padding: 4px 16px;
+
+  display: flex;
+
+  align-items: center;
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 400;
+
+  line-height: 24px;
+
+  letter-spacing: 0.5px;
+
+  color: var(--Schemes-On-Surface-Variant, #49454f);
+}
+
+.campo-lista select {
+  width: 100%;
+
+  padding: 4px 40px 8px 16px;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  appearance: none;
+
+  cursor: pointer;
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 16px;
+
+  color: var(--Schemes-On-Surface, #1c1b1f);
+}
+
+/* flecha dropdown */
+
+.campo-lista::before {
+  content: "";
+
+  position: absolute;
+
+  right: 16px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 12px;
+
+  height: 7px;
+
+  background: var(--Schemes-On-Surface-Variant, #49454f);
+
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+/* línea inferior */
+
+.campo-lista::after {
+  content: "";
+
+  width: 100%;
+
+  height: 1px;
+
+  background: var(--Schemes-On-Surface-Variant, #49454f);
+}
+
+/* =======================================
+   BOTONES
+======================================= */
+
+.btn-figma {
+  display: inline-flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 8px 18px;
+
+  border: none;
+
+  border-radius: 100px;
+
+  background: var(--Schemes-Primary, #6750a4);
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  color: #ffffff;
+
+  height: fit-content;
+}
+
+.btn-figma:hover {
+  filter: brightness(0.95);
+}
+
+.btn-figma:active {
+  filter: brightness(0.9);
+}
+
+/* iconos */
+
+.btn-icon {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+.btn-icon img {
+  width: 20px;
+
+  height: 20px;
+}
+
+/* texto botón */
+
+.btn-figma .label {
+  font-family: Roboto, sans-serif;
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  line-height: 20px;
+
+  letter-spacing: 0.1px;
+
+  color: #ffffff;
+}
+
+/* =======================================
+   MENSAJES ERROR
+======================================= */
+
+.error {
+  padding-left: 16px;
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 12px;
+
+  color: #b3261e;
+}
+
+.fila-botones {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+/* =======================================
+   CAMPOS FECHA
+======================================= */
+
+.campo-fecha-filtro {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #ffffff;
+
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+
+  position: relative;
+}
+
+.campo-fecha-filtro label {
+  padding: 4px 16px;
+
+  display: flex;
+  align-items: center;
+
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+
+  color: #49454F;
+}
+
+.campo-fecha-filtro input {
+  width: 100%;
+
+  padding: 4px 16px 8px;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+
+  color: #1B1B1B;
+
+  cursor: pointer;
+}
+
+.campo-fecha-filtro::after {
+  content: "";
+
+  width: 100%;
+  height: 1px;
+
+  background: #49454F;
+}
+
+/* Icono calendario */
+
+.campo-fecha-filtro input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: .8;
+}
+
+.campo-fecha-filtro input::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* =======================================
+   DATOS INGRESADOS PARA LA BÚSQUEDA
+======================================= */
+
+.datos-busqueda-container {
+  width: 100%;
+
+  background: #ffffff;
+
+  border-radius: 16px;
+
+  box-shadow: 0px 1px 15.4px 6px rgba(0, 0, 0, 0.07);
+
+  padding: 24px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 24px;
+
+  box-sizing: border-box;
+}
+
+/* =======================================
+   TITULO DATOS INGRESADOS
+======================================= */
+
+.datos-busqueda-titulo {
+  color: #1b1b1b;
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  line-height: 20px;
+
+  letter-spacing: 0.5px;
+}
+
+/* =======================================
+   FILAS DATOS INGRESADOS
+======================================= */
+
+.datos-busqueda-body {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 24px;
+}
+
+.fila-datos-busqueda {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 24px;
+
+  width: 100%;
+}
+
+/* =======================================
+   CAMPOS DE LECTURA
+   MISMO ESTILO QUE CAMPO-TEXTO-FILTRO
+======================================= */
+
+.campo-dato {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  background: var(--Schemes-Surface-Container-Lowest, #ffffff);
+
+  border-top-left-radius: 4px;
+
+  border-top-right-radius: 4px;
+}
+
+.campo-dato label {
+  padding: 4px 16px;
+
+  display: flex;
+
+  align-items: center;
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 16px;
+
+  font-weight: 400;
+
+  line-height: 24px;
+
+  letter-spacing: 0.5px;
+
+  color: var(--Schemes-On-Surface-Variant, #49454f);
+}
+
+.campo-dato input {
+  width: 100%;
+
+  padding: 4px 16px 8px 16px;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  font-family: Roboto, sans-serif;
+
+  font-size: 16px;
+
+  color: var(--Schemes-On-Surface, #1c1b1f);
+
+  box-sizing: border-box;
+}
+
+/* línea inferior */
+
+.campo-dato::after {
+  content: "";
+
+  width: 100%;
+
+  height: 1px;
+
+  background: var(--Schemes-On-Surface-Variant, #49454f);
+}
+
+/* =======================================
+   RESPONSIVE
+======================================= */
+
+@media (max-width: 900px) {
+
+  .fila-datos-busqueda {
+    grid-template-columns: 1fr;
+  }
+
+}
