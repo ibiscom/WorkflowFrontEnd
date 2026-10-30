@@ -1,0 +1,107 @@
+<div class="cont-filtro">
+  <div class="usuarios-container">
+
+    <div class="filtros-container">
+
+      <!-- TÍTULO -->
+      <div class="filtros-titulo">
+        Información de búsqueda
+      </div>
+
+<!-- FILA 1 -->
+<div class="fila-filtros fila-tres-columnas">
+
+  <!-- Cuenta de usuario -->
+  <div class="campo-texto-filtro">
+    <label>Cuenta de usuario</label>
+    <input
+      type="text"
+      [(ngModel)]="cuentaUsuario"
+      placeholder="Inserte cuenta de usuario"
+      (keydown.enter)="search()" />
+  </div>
+
+  <!-- Botón consultar -->
+  <div class="campo-boton-filtro">
+    <button class="btn-figma" (click)="search()">
+      <span class="btn-icon">
+        <img src="assets/img/search.svg" alt="Consultar" />
+      </span>
+      <span class="label">Consultar</span>
+    </button>
+  </div>
+
+  <!-- Nombre del responsable -->
+  <div class="campo-lista">
+    <label>Nombre del responsable</label>
+
+    <select
+      [(ngModel)]="responsableSeleccionado"
+      (ngModelChange)="getListaResponsables($event)">
+
+      <option value="">Seleccione una opción</option>
+
+      @for (responsable of responsables; track responsable) {
+        <option [ngValue]="responsable">
+          {{ responsable.nombre }}
+        </option>
+      }
+
+    </select>
+  </div>
+
+</div>
+ <!-- FILA 2 -->
+<div class="fila-filtros">
+
+  <div class="campo-texto-filtro">
+    <label># Instancia</label>
+
+    <input
+      type="text"
+      [(ngModel)]="instancia"
+      placeholder="Inserte número de instancia" />
+  </div>
+
+  <div class="campo-lista">
+    <label>Estado tarea</label>
+
+    <select [(ngModel)]="estado">
+      <option value="">Seleccione una opción</option>
+    </select>
+  </div>
+
+</div>
+
+<!-- FILA 3 -->
+<div class="fila-filtros">
+
+  <!-- ID Negocio -->
+<div class="fila-filtros fila-id-negocio">
+
+  <div class="campo-texto-filtro">
+    <label>ID Negocio</label>
+
+    <input
+      type="text"
+      [(ngModel)]="idNegocio"
+      placeholder="Inserte ID negocio" />
+  </div>
+
+  <div class="campo-boton-filtro">
+    <button class="btn-figma" (click)="search()">
+      <span class="btn-icon">
+        <img src="assets/img/search.svg" alt="Consultar" />
+      </span>
+      <span class="label">Consultar</span>
+    </button>
+  </div>
+
+</div>
+
+</div>
+
+    </div>
+
+  </div>
+</div>

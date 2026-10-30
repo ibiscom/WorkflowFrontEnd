@@ -11,6 +11,7 @@ import { LoginEntity } from '../../login/login.entity';
   styleUrl: './filtros-busqueda-consultarportarea.component.scss',
 })
 export class FiltrosBusquedaConsultarPorTareaComponent {
+<<<<<<< HEAD
 tiposAlarmaList: any;
 alarma: any;
 responsablesList: any;
@@ -39,6 +40,8 @@ throw new Error('Method not implemented.');
 onEstadoChange($event: any) {
 throw new Error('Method not implemented.');
 }
+=======
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 onEventoInicioChange($event: any) {
 throw new Error('Method not implemented.');
 }

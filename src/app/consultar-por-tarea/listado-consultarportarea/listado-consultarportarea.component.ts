@@ -14,6 +14,7 @@ import { ConsultarPorTareaEntity } from '../consultarportarea.entity';
  * Listado de consultarportarea con navegación a la edición y utilidades de presentación.
  */
 export class ListadoConsultarPorTareaComponent {
+<<<<<<< HEAD
 tareas: any;
 mostrarResultados: any;
 ejecutarTarea(_t14: any) {
@@ -25,6 +26,8 @@ throw new Error('Method not implemented.');
 verDetalle(_t14: any) {
 throw new Error('Method not implemented.');
 }
+=======
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
   // 🔹 Variables de paginación
   public currentPage: number = 1;
   public numberOfPages: number = 1;

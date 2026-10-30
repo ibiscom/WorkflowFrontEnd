@@ -2,6 +2,7 @@
  * Entidad que representa una tarea en el sistema.
  */
 export interface FinalizarprocesoEntity {
+seleccionado: any;
 terminar: any;
 instancia: any;
 proceso: any;

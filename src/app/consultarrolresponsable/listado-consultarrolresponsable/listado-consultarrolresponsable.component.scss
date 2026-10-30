@@ -9,7 +9,11 @@
 
   border-radius: 16px;
 
+<<<<<<< HEAD
   box-shadow: 0px 1px 15.4px 6px rgba(0, 0, 0, 0.07);
+=======
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.13);
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 
   overflow: hidden;
 
@@ -18,6 +22,7 @@
   flex-direction: column;
 }
 
+<<<<<<< HEAD
 
 /* =======================================
    HEADER DE LA TABLA
@@ -27,17 +32,30 @@
   width: 100%;
 
   padding: 16px;
+=======
+/* =======================================
+   HEADER
+======================================= */
+
+.tabla-header-container {
+  padding: 16px 24px;
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 
   display: flex;
 
   align-items: center;
 }
 
+<<<<<<< HEAD
 
 .tabla-titulo {
   color: #1b1b1b;
 
   font-family: Roboto;
+=======
+.tabla-titulo {
+  font-family: Roboto, sans-serif;
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 
   font-size: 14px;
 
@@ -46,11 +64,20 @@
   line-height: 16px;
 
   letter-spacing: 0.5px;
+<<<<<<< HEAD
 }
 
 
 /* =======================================
    CUERPO DE LA TABLA
+=======
+
+  color: #1b1b1b;
+}
+
+/* =======================================
+   BODY
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 ======================================= */
 
 .tabla-body {
@@ -59,24 +86,37 @@
   display: flex;
 
   background: #ffffff;
+<<<<<<< HEAD
 
   overflow: hidden;
 }
 
 
+=======
+}
+
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 /* =======================================
    COLUMNAS
 ======================================= */
 
 .tabla-columna {
+<<<<<<< HEAD
   flex: 1;
 
   min-width: 0;
 
+=======
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
   display: flex;
 
   flex-direction: column;
 
+<<<<<<< HEAD
+=======
+  min-width: 0;
+
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
   border-left: 0.5px solid #dcdcdc;
 
   border-right: 0.5px solid #dcdcdc;
@@ -86,16 +126,21 @@
   background: #ffffff;
 }
 
+<<<<<<< HEAD
 
 /* =======================================
    ANCHO DE LAS COLUMNAS
 ======================================= */
 
 /* Nombre de rol */
+=======
+/* UserName */
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 .tabla-columna:nth-child(1) {
   flex: 1;
 }
 
+<<<<<<< HEAD
 
 /* Descripción */
 .tabla-columna:nth-child(2) {
@@ -110,6 +155,28 @@
 .tabla-col-header {
   width: 100%;
 
+=======
+/* Nombres */
+.tabla-columna:nth-child(2) {
+  flex: 1.5;
+}
+
+/* Apellidos */
+.tabla-columna:nth-child(3) {
+  flex: 1.5;
+}
+
+/* Es responsable */
+.tabla-columna:nth-child(4) {
+  flex: 1;
+}
+
+/* =======================================
+   HEADER COLUMNAS
+======================================= */
+
+.tabla-col-header {
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
   background: #fafafa;
 
   padding: 4px 8px;
@@ -118,6 +185,7 @@
 
   align-items: center;
 
+<<<<<<< HEAD
   box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
 }
 
@@ -128,6 +196,17 @@
   color: #757575;
 
   font-family: Roboto;
+=======
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.12);
+}
+
+.tabla-col-header div {
+  width: 100%;
+
+  text-align: left;
+
+  font-family: Roboto, sans-serif;
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 
   font-size: 12px;
 
@@ -137,10 +216,16 @@
 
   letter-spacing: 0.4px;
 
+<<<<<<< HEAD
   text-align: left;
 }
 
 
+=======
+  color: #757575;
+}
+
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 /* =======================================
    CELDAS
 ======================================= */
@@ -158,9 +243,20 @@
 
   background: #ffffff;
 
+<<<<<<< HEAD
   box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
 }
 
+=======
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.12);
+
+  cursor: pointer;
+}
+
+.tabla-celda:hover {
+  background: rgba(103, 80, 164, 0.04);
+}
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 
 .tabla-celda div {
   width: 100%;
@@ -171,7 +267,11 @@
 
   white-space: nowrap;
 
+<<<<<<< HEAD
   font-family: Roboto;
+=======
+  font-family: Roboto, sans-serif;
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 
   font-size: 12px;
 
@@ -184,6 +284,7 @@
   color: rgba(0, 0, 0, 0.87);
 }
 
+<<<<<<< HEAD
 
 /* =======================================
    CELDAS CLICKEABLES
@@ -283,18 +384,29 @@
 }
 
 
+=======
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 /* =======================================
    RESPONSIVE
 ======================================= */
 
+<<<<<<< HEAD
 @media (max-width: 1024px) {
 
+=======
+@media (max-width: 900px) {
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
   .tabla-body {
     overflow-x: auto;
   }
 
   .tabla-columna {
+<<<<<<< HEAD
     min-width: 180px;
   }
 
+=======
+    min-width: 220px;
+  }
+>>>>>>> parent of f3ba8df (Revert "Merge branch 'jbeltran' of https://github.com/ibiscom/WorkflowFrontEnd into cdiaz")
 }
