@@ -1,14 +1,11 @@
 /**
- * Entidad que representa una alarma en el sistema.
+ * Entidad que representa un atributo de una alarma.
  */
 export interface AtributoAlarmaEntity {
-tipo: any;
-  /** Id de la alarma */
   id: number;
-  /** Nombre del atributo de la alarma */
   nombre: string;
-  /** Valor del atributo de la alarma */
   valor: string;
-  /** Tipo de tarea tiempo de la alarma */
   tipoTareaTiempo: string;
-}        
+  /** Uso en UI del formulario (no viene del backend). */
+  tipo?: string;
+}

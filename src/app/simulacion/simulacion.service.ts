@@ -1,86 +1,72 @@
 import { Injectable } from '@angular/core';
-import { GroupSearchFilterEntity } from '../entities/groups/group-search-filter.entity';
 import { FsResponseEntity } from '../entities/backend/fs-response.entity';
-import { GroupEntity } from '../entities/groups/group.entity';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environment';
-import { SimulacionEntity } from './simulacion.entity';
-import { SimulacionFilterEntity } from './simulacionFilterEntity';
-
+import {
+  GetSimulateWorkflowItem,
+  GetSimulateWorkflowRequest,
+  InitSimulateRespuesta,
+} from './simulacion.entity';
 
 @Injectable({
   providedIn: 'root',
 })
 /**
- * Servicio para la administración de grupos.
- * Incluye búsquedas, CRUD y gestión de permisos/restricciones.
+ * Cliente HTTP de simulación: solo invoca servicios del backend.
  */
 export class SimulacionService {
-  constructor(
-    private http: HttpClient,
-    private cookieService: CookieService,
-  ) {}
+  constructor(private http: HttpClient) {}
 
-  
-     /**
-       * Obtiene el listado de procesos según los filtros proporcionados.
-       * @param filtros Los filtros para la búsqueda de procesos.
-       * @returns 
-       */
-  
-     
-      public getConsultarproceso(filtros: SimulacionFilterEntity): Observable<FsResponseEntity<any>> {
-          let ip: string = this.cookieService.get('ip');
-          return this.http.post<FsResponseEntity<any>>(
-            environment.workflowApiUrl +
-              `/workflow/getWorkflowsName`, filtros
-          );
-      }
-        
+  public getWorkflowsName(
+    incluirSeleccione: boolean = true
+  ): Observable<FsResponseEntity<{ code: string; name: string }[]>> {
+    return this.http.get<FsResponseEntity<{ code: string; name: string }[]>>(
+      environment.workflowApiUrl +
+        `/workflow/getWorkflowsName?incluirSeleccione=${incluirSeleccione}`
+    );
+  }
 
-          /**
-       * Obtiene el listado de procesos instanciados según los filtros proporcionados.
-       * @param filtros Los filtros para la búsqueda de procesos instanciados.
-       * @returns 
-       */
-  
-     
-      public getProcesosInstanciados(filtros: SimulacionFilterEntity): Observable<FsResponseEntity<any>> {
-          let ip: string = this.cookieService.get('ip');
-          return this.http.post<FsResponseEntity<any>>(
-            environment.workflowApiUrl +
-              `/workflowEngine/getWorkflowsEngine`, filtros
-          );
-      }
-    
+  public getStartEventsName(
+    workflowName: string,
+    incluirSeleccione: boolean = true
+  ): Observable<FsResponseEntity<{ code: string; name: string }[]>> {
+    return this.http.get<FsResponseEntity<{ code: string; name: string }[]>>(
+      environment.workflowApiUrl +
+        `/startEvent/getStartEventsName?incluirSeleccione=${incluirSeleccione}` +
+        `&workflowName=${encodeURIComponent(workflowName)}`
+    );
+  }
 
-          /**
-       * Permite finalizar procesos finalizados
-       * @param filtros Los filtros para la búsqueda de dependencias.
-       * @returns 
-       */
-  
-     
-      public getSimulacion(filtros: SimulacionFilterEntity): Observable<FsResponseEntity<any>> {
-          let ip: string = this.cookieService.get('ip');
-          return this.http.post<FsResponseEntity<any>>(
-            environment.workflowApiUrl +
-              `/workflowEngine/end`, filtros
-          );
-      }
-    
-      /**
-       * Elimina un proceso
-       * @param tareaName Nombre del proceso a eliminar
-       * @returns 
-       */
-      public deleteSimulacion(tareaName: string): Observable<FsResponseEntity<any>> {
-          let ip: string = this.cookieService.get('ip');
-          return this.http.delete<FsResponseEntity<any>>(
-            environment.workflowApiUrl +
-              `/workflowEngine/endWorkflow/${tareaName}`);
-      }
+  /** Backend inicia la ejecución del proceso (evento de inicio). */
+  public initSimulateWorkflow(
+    workflowName: string,
+    eventInicio: string,
+    userName: string
+  ): Observable<FsResponseEntity<InitSimulateRespuesta>> {
+    return this.http.post<FsResponseEntity<InitSimulateRespuesta>>(
+      environment.workflowApiUrl +
+        `/workflowEngine/initSimulateWorkflow` +
+        `?workflowName=${encodeURIComponent(workflowName)}` +
+        `&eventInicio=${encodeURIComponent(eventInicio)}` +
+        `&userName=${encodeURIComponent(userName)}`,
+      {}
+    );
+  }
+
+  /** Backend retorna el estado/tareas de la simulación. */
+  public getSimulateWorkflow(
+    userName: string,
+    body: GetSimulateWorkflowRequest
+  ): Observable<
+    FsResponseEntity<GetSimulateWorkflowItem | GetSimulateWorkflowItem[]>
+  > {
+    return this.http.post<
+      FsResponseEntity<GetSimulateWorkflowItem | GetSimulateWorkflowItem[]>
+    >(
+      environment.workflowApiUrl +
+        `/workflowEngine/getSimulateWorkflow?userName=${encodeURIComponent(userName)}`,
+      body
+    );
+  }
 }
-    

@@ -21,7 +21,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class AlarmaComponent {
   public loggedUser: LoginEntity | undefined;
-  public workflow: AlarmaEntity[] | undefined;
+  public alarmas: AlarmaEntity[] = [];
   public companias: CompanyEntity[] = [];
   public mensaje: string = '';
   public workflowActual: string = '';
@@ -53,12 +53,16 @@ export class AlarmaComponent {
   }
 
   public buscarAlarma(): void {
-    this.alarmaService.obtenerAlarmas(this.workflowActual).subscribe({
+    console.log('ENTRO buscarAlarmas',this.workflowActual);
+    this.alarmaService
+    .obtenerAlarmas(this.workflowActual)
+    .subscribe({
       next: (response) => {
-        this.workflow = response.respuesta;
-        console.log('Alarma obtenida:', this.workflow);
+        this.alarmas = response.respuesta;
+        
+        console.log('Alarma obtenida:', this.alarmas);
       },
-      error: (err) => {
+      error: (err: any) => {
         this.mensaje = MessageUtil.buildErrorMessageFsResponse(
           Constants.ERR_BUSCAR_ALARMA,
           err,

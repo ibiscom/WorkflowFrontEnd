@@ -8,6 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { environment } from '../../environments/environment';
 import { AlarmaEntity } from './alarmas.entity';
 import { TipoAlarmaEntity } from './tipo-alarma.entity';
+import { EstadoTareaAlarmaEntity } from './estado-tarea-alarma.entity';
 
 
 @Injectable({
@@ -42,8 +43,8 @@ export class AlarmaService {
   }
 
   /**
-   * Edita un objeto workflow en el sistema.
-   * @param alarma El objeto workflow a modificar, con su nombre, descripción y atributos.
+   * Edita una alarma existente en el sistema.
+   * @param alarma La alarma a modificar.
    * @returns Observable con la respuesta del servidor.
    */
   public editarAlarma(alarma: AlarmaEntity): Observable<FsResponseEntity<any>> {
@@ -55,18 +56,40 @@ export class AlarmaService {
     );
   }
 
-
+  /**
+   * Obtiene una alarma específica por id.
+   * @param workflowName Nombre del workflow.
+   * @param id Identificador de la alarma.
+   * @returns Observable con la alarma consultada.
+   */
+  public obtenerAlarma(
+   idAlarma: string | number,
+  ): Observable<FsResponseEntity<AlarmaEntity>> {
+    return this.http.get<FsResponseEntity<AlarmaEntity>>(
+      environment.workflowApiUrl +
+        `/Alarm/getAlarm?alarmIde=${idAlarma}`
+    );
+  }
 
   /**
-   * Obtiene los atributos de un objeto workflow por el nombre del workflow al que pertenecen.
-   * @param nombreWorkflow El nombre del workflow al que pertenecen los atributos de objeto workflow a obtener.
-   * @returns Observable con la respuesta del servidor y la lista de atributos de objeto workflow.
+   * Obtiene los tipos de alarma disponibles.
    */
-  public obtenerAlarmas(nombreWorkflow: string): Observable<FsResponseEntity<AlarmaEntity[]>> {
+  public getTiposAlarma(): Observable<FsResponseEntity<TipoAlarmaEntity[]>> {
+    return this.http.get<FsResponseEntity<TipoAlarmaEntity[]>>(
+      environment.workflowApiUrl + `/Alarm/getAlarmTypes`,
+    );
+  }
+
+  /**
+   * Obtiene las alarmas del workflow indicado.
+   * @param workflowActual Nombre del workflow.
+   * @returns Observable con la lista de alarmas.
+   */
+  public obtenerAlarmas(workflowActual: string): Observable<FsResponseEntity<AlarmaEntity[]>> {
     let ip: string = this.cookieService.get('ip');
     return this.http.get<FsResponseEntity<AlarmaEntity[]>>(
       environment.workflowApiUrl + 
-        `/Alarm/getAlarms=${nombreWorkflow}`,
+        `/Alarm/getAlarms?workflowName=${workflowActual}`,
     );
   }
 
@@ -82,6 +105,18 @@ export class AlarmaService {
       environment.workflowApiUrl + 
         `/Alarm/deleteAlarm?workflowName=${nombreWorkflow}&attributeName=${nombreAtributo}`,
     );
+  }
+
+  /**
+   * Obtiene el listado de estados de tarea para alarmas.
+   * @returns Observable con la lista de estados de tarea.
+   */
+   public getEstadosTareasAlarma(): Observable<FsResponseEntity<EstadoTareaAlarmaEntity[]>> {
+    let ip: string = this.cookieService.get('ip');
+    return this.http.get<FsResponseEntity<EstadoTareaAlarmaEntity[]>>(
+      environment.workflowApiUrl +
+        `/Alarm/getTaskStates`);
+  
   }
 
 

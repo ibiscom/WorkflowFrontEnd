@@ -12,7 +12,7 @@
 
   <!-- BODY -->
   <div class="tabla-body">
-   @let atributos = parent.workflow;
+   @let atributos = parent.alarmas;
     <!-- COLUMNA: IDENTIFICADOR -->
     <div class="tabla-columna">
       <div class="tabla-col-header">
@@ -40,7 +40,7 @@
         <ng-container>
           <div class="tabla-celda">
             <div (click)="goToEditarAlarma(element)">
-              {{ element.tipoTareaTiempo }}
+              {{ element.tipo }}
             </div>
           </div>
         </ng-container>
@@ -57,7 +57,7 @@
         <ng-container>
           <div class="tabla-celda">
             <div (click)="goToEditarAlarma(element)">
-              {{ element.workflow }}
+              {{ element.workflow?.nombre }}
             </div>
           </div>
         </ng-container>

@@ -1,60 +1,49 @@
-import { AtributoAlarmaEntity } from "./atributo-alarma.entity";
+import { AtributoAlarmaEntity } from './atributo-alarma.entity';
+
+/**
+ * Workflow asociado a una alarma (respuesta del backend).
+ */
+export interface AlarmaWorkflowEntity {
+  nombre: string;
+  nombreLargo: string;
+  fechaCreacion: string;
+  descripcion: string;
+  estado: string;
+}
+
+/**
+ * Tarea asociada a una alarma (respuesta del backend).
+ */
+export interface AlarmaTareaEntity {
+  nombreWorkflow: string;
+  numero: number;
+  nombre: string;
+  nombreLargo: string;
+  descripcion: string;
+  tipo: string;
+}
 
 /**
  * Entidad que representa una alarma en el sistema.
  */
 export interface AlarmaEntity {
-  /** Nombre del workflow */
-  workflow: string;
-  /** Nombre de la alarma */
-  nombre: string;
-   /** Nombre largo de la alarma */
-  nombrelargo: string;
-  /** Fecha creación de la alarma */
-  fechaCreacion: string;
-  /** Descripción de la alarma */
-  descripcion: string;
-  /** Estado de la alarma */
-  estado: string;
-  /** Nombre workflow de la alarma */
-  nombreWorkflow: string;
-  /** Numero de la alarma */
-  numero: string;
-  /** Tipo de la alarma */
+  workflow: AlarmaWorkflowEntity;
+  tarea: AlarmaTareaEntity;
+  id: number;
   tipo: string;
-  /** Id de la alarma */
-  id: 0;
-  /** Estado tarea de la alarma */
   estadoTarea: string;
-  /** Dia aviso de la alarma */
-  diaAviso: 0;
-    /** Hora aviso de la alarma */
-  horaAviso: 0;
-   /** Minuto aviso de la alarma */
-  minutosAviso: 0;
-    /** Segundo aviso de la alarma */
-  segundosAviso: 0;
-    /** Dia limite de la alarma */
-  diaLimite: 0;
-    /** Hora limite de la alarma */
-  horaLimite: 0;
-    /** Minuto limite de la alarma */
-  minutosLimite: 0;
-    /** Segundo limite de la alarma */
-  segundosLimite: 0;
-    /** Tarea inmediata a la alarma */
-  tareaInmediata: true;
-    /** EstadoNoEjecucion a la alarma */
+  diaAviso: number;
+  horaAviso: number;
+  minutosAviso: number;
+  segundosAviso: number;
+  diaLimite: number;
+  horaLimite: number;
+  minutosLimite: number;
+  segundosLimite: number;
+  tareaInmediata: boolean;
   estadoNoEjecucion: string;
-    /** Incluir Responsable a la alarma */
-  incluirResponsable: true;
-    /** Nombre Atributo a la alarma */
+  incluirResponsable: boolean;
   nombreAtributo: string;
-  /** valor de la alarma */
-  valor: string;
-  /** Tipo Tarea Tiempo de la alarma */
-  tipoTareaTiempo: string;
-  /** Atributos de la alarma */
+  valorAtributo: string;
   atributos: AtributoAlarmaEntity[];
 }
-
