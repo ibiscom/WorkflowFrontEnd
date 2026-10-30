@@ -8,6 +8,7 @@ import {
   GetSimulateWorkflowRequest,
   InitSimulateRespuesta,
 } from './simulacion.entity';
+import { SimulacionFilterEntity } from './simulacionFilterEntity';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,10 @@ import {
  * Cliente HTTP de simulación: solo invoca servicios del backend.
  */
 export class SimulacionService {
+  public getSimulacion(body: SimulacionFilterEntity): Observable<FsResponseEntity<GetSimulateWorkflowItem[]>> {
+    //TODO Sincronizar con cambios de Javier
+    throw new Error('Method not implemented.');
+  }
   constructor(private http: HttpClient) {}
 
   public getWorkflowsName(

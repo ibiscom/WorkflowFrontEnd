@@ -7,4 +7,7 @@ export interface SimulacionFilterEntity {
   usuario?: string;
   nombre?: string;
   estado?: string;
+  expresion?: string;
+  primitiva?: string;
+  descripcion?: string;
 }

@@ -35,7 +35,7 @@ export class ListadoAlarmasComponent {
    */
   public goToEditarAlarma(alarma: AlarmaEntity) {
     this.parent.router.navigate([
-      `/main-page/alarmas/editarAlarma/${alarma.nombre}`,
+      `/main-page/alarmas/editarAlarma/${alarma.id}`,
     ]);
   }
 
@@ -54,6 +54,4 @@ export class ListadoAlarmasComponent {
       this.parent.buscarAlarma(); // ajusta si tu método se llama diferente
     }
   }
-}
-
 }
