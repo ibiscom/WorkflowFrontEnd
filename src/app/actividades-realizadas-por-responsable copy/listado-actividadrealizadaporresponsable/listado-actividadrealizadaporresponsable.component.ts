@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ActividadRealizadaPorResponsableComponent } from '../actividadrealizadaporresponsable.component';
 import { FiltrosBusquedaActividadRealizadaPorResponsableComponent } from '../filtros-busqueda-actividadrealizadaporresponsable/filtros-busqueda-actividadrealizadaporresponsable.component';
 import { MatTableModule } from '@angular/material/table';
@@ -6,34 +6,38 @@ import { ActividadRealizadaPorResponsableEntity } from '../actividadrealizadapor
 
 @Component({
   selector: 'ibpm-listado-actividadrealizadaporresponsable',
-  imports: [MatTableModule, FiltrosBusquedaActividadRealizadaPorResponsableComponent],
+  imports: [
+    MatTableModule,
+    FiltrosBusquedaActividadRealizadaPorResponsableComponent,
+  ],
   templateUrl: './listado-actividadrealizadaporresponsable.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-actividadrealizadaporresponsable.component.scss',
 })
 /**
  * Listado de actividadrealizadaporresponsable con navegación a la edición y utilidades de presentación.
  */
 export class ListadoActividadRealizadaPorResponsableComponent {
-tareas: any;
-mostrarResultados: any;
-fechaReporte: any;
-fechaGeneracion: any;
-nombreProcesoReporte: any;
-columnasReporte: any;
-datosReporte: any;
-nombreTareaReporte: any;
-fechaInicial: any;
-fechaFinal: any;
-responsableSeleccionado: any;
-ejecutarTarea(_t14: any) {
-throw new Error('Method not implemented.');
-}
-verExpedienteTarea(_t14: any) {
-throw new Error('Method not implemented.');
-}
-verDetalle(_t14: any) {
-throw new Error('Method not implemented.');
-}
+  tareas: any;
+  mostrarResultados: any;
+  fechaReporte: any;
+  fechaGeneracion: any;
+  nombreProcesoReporte: any;
+  columnasReporte: any;
+  datosReporte: any;
+  nombreTareaReporte: any;
+  fechaInicial: any;
+  fechaFinal: any;
+  responsableSeleccionado: any;
+  ejecutarTarea(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
+  verExpedienteTarea(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
+  verDetalle(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
   // 🔹 Variables de paginación
   public currentPage: number = 1;
   public numberOfPages: number = 1;
@@ -51,18 +55,28 @@ throw new Error('Method not implemented.');
   /**
    * Navega a la pantalla de edición de la tarea seleccionada.
    */
-  public goToEditarActividadRealizadaPorResponsable(actividadrealizadaporresponsable: ActividadRealizadaPorResponsableEntity) {
+  public goToEditarActividadRealizadaPorResponsable(
+    actividadrealizadaporresponsable: ActividadRealizadaPorResponsableEntity,
+  ) {
     this.parent.router.navigate([
       `/main-page/actividadrealizadaporresponsable/editarActividadRealizadaPorResponsable/${actividadrealizadaporresponsable.nombre}`,
     ]);
   }
 
-   /**
+  /**
    * Obtiene el nombre legible de la herramienta a partir del identificador.
    */
-  public getActividadRealizadaPorResponsableName(actividadrealizadaporresponsableName: any) {
-    const actividadrealizadaporresponsable = this.parent.actividadrealizadaporresponsable.find((c: { nombre: any; }) => c.nombre === actividadrealizadaporresponsableName);
-    return actividadrealizadaporresponsable ? actividadrealizadaporresponsable.nombre : '';
+  public getActividadRealizadaPorResponsableName(
+    actividadrealizadaporresponsableName: any,
+  ) {
+    const actividadrealizadaporresponsable =
+      this.parent.actividadrealizadaporresponsable.find(
+        (c: { nombre: any }) =>
+          c.nombre === actividadrealizadaporresponsableName,
+      );
+    return actividadrealizadaporresponsable
+      ? actividadrealizadaporresponsable.nombre
+      : '';
   }
 
   /**
@@ -91,10 +105,9 @@ throw new Error('Method not implemented.');
 
   seleccionarTodos = false;
 
-seleccionarTodosRegistros(): void {
-  this.parent.actividadrealizadaporresponsable.forEach((item: any) => {
-    item.seleccionado = this.seleccionarTodos;
-  });
+  seleccionarTodosRegistros(): void {
+    this.parent.actividadrealizadaporresponsable.forEach((item: any) => {
+      item.seleccionado = this.seleccionarTodos;
+    });
+  }
 }
-}
-

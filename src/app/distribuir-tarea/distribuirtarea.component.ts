@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -13,12 +13,13 @@ import { CompaniasService } from '../companias/companias.service';
 import { DistribuirtareaEntity } from './distribuirtarea.entity';
 import { DistribuirtareaService } from './distribuirtarea.service';
 import { CookieService } from 'ngx-cookie-service';
-import { DistribuirTareaFilterEntity} from './distribuirtareaFilterEntity';
+import { DistribuirTareaFilterEntity } from './distribuirtareaFilterEntity';
 
 @Component({
   selector: 'ibpm-distribuirtarea',
-  imports: [MatCardModule, RouterModule,],
+  imports: [MatCardModule, RouterModule],
   templateUrl: './distribuirtarea.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './distribuirtarea.component.scss',
 })
 export class DistribuirtareaComponent {
@@ -41,55 +42,49 @@ export class DistribuirtareaComponent {
     console.log('ENTRO ngOnInit');
     this.distribuirtareaComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-   console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
-    if(this.hayWorkflowActual()) {
+    console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
+    if (this.hayWorkflowActual()) {
       console.log('SI hay workflow → voy a buscar');
-        this.buscarDistribuirtarea();
+      this.buscarDistribuirtarea();
+    } else {
+      console.log('NO hay workflow');
     }
-    else {
-    console.log('NO hay workflow');
-         }
+  }
 
-      }
-
-    public hayWorkflowActual(): boolean {
-    this.workflowActual = this.cookieService.get("workflowActual");
-    if (this.workflowActual === '') { 
+  public hayWorkflowActual(): boolean {
+    this.workflowActual = this.cookieService.get('workflowActual');
+    if (this.workflowActual === '') {
       this.mensaje = Constants.ERR_WORKFLOW_NO_SELECCIONADO;
       return false;
     }
     return true;
   }
 
-   public buscarDistribuirtarea(filtros?: DistribuirTareaFilterEntity): void {
-    console.log("FILTROS RECIBIDOS EN PADRE:", filtros);
-      const workflowActual = this.cookieService.get('workflowActual');
-      const body: DistribuirTareaFilterEntity = {
+  public buscarDistribuirtarea(filtros?: DistribuirTareaFilterEntity): void {
+    console.log('FILTROS RECIBIDOS EN PADRE:', filtros);
+    const workflowActual = this.cookieService.get('workflowActual');
+    const body: DistribuirTareaFilterEntity = {
       nombreWorkflow: workflowActual,
       nombre: filtros?.nombre ?? '',
       estado: filtros?.estado ?? '',
       primitiva: filtros?.primitiva ?? '',
       expresion: filtros?.expresion ?? '',
-      descripcion: filtros?.descripcion ?? ''
+      descripcion: filtros?.descripcion ?? '',
     };
-   console.log("BODY FINAL:", body);
-      console.log('BODY ENVIADO AL BACKEND:', body);
-  
-      this.distribuirtareaService
-        .getDistribuirtareas(body)
-        .subscribe({
-          next: (response) => {
-            this.distribuirtareas = response.respuesta;
-            this.mensaje = '';
-          },
-          error: (err) => {
-            this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_OBTENIENDO_TAREAS,
-              err,
-            );
-          },
-        });
-    }
+    console.log('BODY FINAL:', body);
+    console.log('BODY ENVIADO AL BACKEND:', body);
 
+    this.distribuirtareaService.getDistribuirtareas(body).subscribe({
+      next: (response) => {
+        this.distribuirtareas = response.respuesta;
+        this.mensaje = '';
+      },
+      error: (err) => {
+        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          Constants.ERR_OBTENIENDO_TAREAS,
+          err,
+        );
+      },
+    });
+  }
 }
-

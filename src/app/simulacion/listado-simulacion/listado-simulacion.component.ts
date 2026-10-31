@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { SimulacionComponent } from '../simulacion.component';
 import { FiltrosBusquedaSimulacionComponent } from '../filtros-busqueda-simulacion/filtros-busqueda-simulacion.component';
 import { MatTableModule } from '@angular/material/table';
@@ -8,21 +8,22 @@ import { SimulacionEntity } from '../simulacion.entity';
   selector: 'ibpm-listado-simulacion',
   imports: [MatTableModule, FiltrosBusquedaSimulacionComponent],
   templateUrl: './listado-simulacion.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-simulacion.component.scss',
 })
 /**
  * Listado de simulacion con navegación a la edición y utilidades de presentación.
  */
 export class ListadoSimulacionComponent {
-ejecutarTarea(_t45: SimulacionEntity) {
-throw new Error('Method not implemented.');
-}
-verExpedienteTarea(_t45: SimulacionEntity) {
-throw new Error('Method not implemented.');
-}
-verDetalle(_t45: SimulacionEntity) {
-throw new Error('Method not implemented.');
-}
+  ejecutarTarea(_t45: SimulacionEntity) {
+    throw new Error('Method not implemented.');
+  }
+  verExpedienteTarea(_t45: SimulacionEntity) {
+    throw new Error('Method not implemented.');
+  }
+  verDetalle(_t45: SimulacionEntity) {
+    throw new Error('Method not implemented.');
+  }
   // 🔹 Variables de paginación
   public currentPage: number = 1;
   public numberOfPages: number = 1;
@@ -46,11 +47,13 @@ throw new Error('Method not implemented.');
     ]);
   }
 
-   /**
+  /**
    * Obtiene el nombre legible de la herramienta a partir del identificador.
    */
   public getSimulacionName(simulacionName: any) {
-    const simulacion = this.parent.simulacion.find((c) => c.nombre === simulacionName);
+    const simulacion = this.parent.simulacion.find(
+      (c) => c.nombre === simulacionName,
+    );
     return simulacion ? simulacion.nombre : '';
   }
 
@@ -80,10 +83,9 @@ throw new Error('Method not implemented.');
 
   seleccionarTodos = false;
 
-seleccionarTodosRegistros(): void {
-  this.parent.simulacion.forEach((item: any) => {
-    item.seleccionado = this.seleccionarTodos;
-  });
+  seleccionarTodosRegistros(): void {
+    this.parent.simulacion.forEach((item: any) => {
+      item.seleccionado = this.seleccionarTodos;
+    });
+  }
 }
-}
-

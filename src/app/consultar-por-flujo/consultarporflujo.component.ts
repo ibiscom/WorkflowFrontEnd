@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -17,8 +17,9 @@ import { ConsultarPorFlujoEntity } from './consultarporflujo.entity';
 
 @Component({
   selector: 'ibpm-consultarporflujo',
-  imports: [MatCardModule, RouterModule,],
+  imports: [MatCardModule, RouterModule],
   templateUrl: './consultarporflujo.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './consultarporflujo.component.scss',
 })
 export class ConsultarPorFlujoComponent {
@@ -31,7 +32,7 @@ export class ConsultarPorFlujoComponent {
   constructor(
     private consultarporflujoService: ConsultarPorFlujoService,
     private companiasService: CompaniasService,
-    private consultarporflujoComponentInstanceService: ConsultarPorFlujoComponentInstanceService ,
+    private consultarporflujoComponentInstanceService: ConsultarPorFlujoComponentInstanceService,
     private loginService: LoginService,
     public router: Router,
     private cookieService: CookieService,
@@ -41,55 +42,51 @@ export class ConsultarPorFlujoComponent {
     console.log('ENTRO ngOnInit');
     this.consultarporflujoComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-   console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
-    if(this.hayWorkflowActual()) {
+    console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
+    if (this.hayWorkflowActual()) {
       console.log('SI hay workflow → voy a buscar');
-        this.buscarConsultarPorFlujo();
+      this.buscarConsultarPorFlujo();
+    } else {
+      console.log('NO hay workflow');
     }
-    else {
-    console.log('NO hay workflow');
-         }
+  }
 
-      }
-
-    public hayWorkflowActual(): boolean {
-    this.workflowActual = this.cookieService.get("workflowActual");
-    if (this.workflowActual === '') { 
+  public hayWorkflowActual(): boolean {
+    this.workflowActual = this.cookieService.get('workflowActual');
+    if (this.workflowActual === '') {
       this.mensaje = Constants.ERR_WORKFLOW_NO_SELECCIONADO;
       return false;
     }
     return true;
   }
 
-   public buscarConsultarPorFlujo(filtros?: ConsultarPorFlujoFilterEntity): void {
-    console.log("FILTROS RECIBIDOS EN PADRE:", filtros);
-      const workflowActual = this.cookieService.get('workflowActual');
-      const body: ConsultarPorFlujoFilterEntity = {
+  public buscarConsultarPorFlujo(
+    filtros?: ConsultarPorFlujoFilterEntity,
+  ): void {
+    console.log('FILTROS RECIBIDOS EN PADRE:', filtros);
+    const workflowActual = this.cookieService.get('workflowActual');
+    const body: ConsultarPorFlujoFilterEntity = {
       nombreWorkflow: workflowActual,
       nombre: filtros?.nombre ?? '',
       estado: filtros?.estado ?? '',
       primitiva: filtros?.primitiva ?? '',
       expresion: filtros?.expresion ?? '',
-      descripcion: filtros?.descripcion ?? ''
+      descripcion: filtros?.descripcion ?? '',
     };
-   console.log("BODY FINAL:", body);
-      console.log('BODY ENVIADO AL BACKEND:', body);
-  
-      this.consultarporflujoService
-        .getConsultarPorFlujo(body)
-        .subscribe({
-          next: (response) => {
-            this.consultarporflujo = response.respuesta;
-            this.mensaje = '';
-          },
-          error: (err) => {
-            this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_OBTENIENDO_TAREAS,
-              err,
-            );
-          },
-        });
-    }
+    console.log('BODY FINAL:', body);
+    console.log('BODY ENVIADO AL BACKEND:', body);
 
+    this.consultarporflujoService.getConsultarPorFlujo(body).subscribe({
+      next: (response) => {
+        this.consultarporflujo = response.respuesta;
+        this.mensaje = '';
+      },
+      error: (err) => {
+        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          Constants.ERR_OBTENIENDO_TAREAS,
+          err,
+        );
+      },
+    });
+  }
 }
-

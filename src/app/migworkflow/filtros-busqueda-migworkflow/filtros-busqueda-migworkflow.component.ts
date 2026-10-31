@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MigworkflowComponent } from '../migworkflow.component';
 import { MigworkflowService } from '../migworkflow.service';
@@ -9,12 +9,13 @@ import { MigworkflowEntity } from '../migworkflow.entity';
   selector: 'ibpm-filtros-busqueda-migworkflow',
   imports: [FormsModule],
   templateUrl: './filtros-busqueda-migworkflow.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './filtros-busqueda-migworkflow.component.scss',
 })
 export class FiltrosBusquedaMigworkflowComponent {
-search() {
-throw new Error('Method not implemented.');
-}
+  search() {
+    throw new Error('Method not implemented.');
+  }
 
   public userLoguinB: string = '';
   public userRolNameB: string = '';
@@ -39,10 +40,8 @@ throw new Error('Method not implemented.');
 
   // 🔹 Simulación / carga de mig-workflows
   private loadMigworkflow(): void {
-      this.uc?.obtenerMigworkflows();
+    this.uc?.obtenerMigworkflows();
   }
-
-
 
   // Cambio del select
   public onMigworkflowChange(value: any): void {
@@ -52,15 +51,12 @@ throw new Error('Method not implemented.');
 
   // Ejecuta búsqueda
 
-  public searchMigworkflow(
-    userLoguin: string,
-    userRolName: string,
-  ): void {
+  public searchMigworkflow(userLoguin: string, userRolName: string): void {
     console.log(
       'Filtros recibidos:',
       userLoguin,
       userRolName,
-      this.migworkflowObjectN
+      this.migworkflowObjectN,
     );
 
     // Tu lógica actual aquí

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { HerramientaComponent } from '../herramienta.component';
 import { FiltrosBusquedaHerramientaComponent } from '../filtros-busqueda-herramienta/filtros-busqueda-herramienta.component';
 import { MatTableModule } from '@angular/material/table';
@@ -8,6 +8,7 @@ import { HerramientaEntity } from '../herramienta.entity';
   selector: 'ibpm-listado-herramienta',
   imports: [MatTableModule],
   templateUrl: './listado-herramienta.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-herramienta.component.scss',
 })
 /**
@@ -40,7 +41,9 @@ export class ListadoHerramientaComponent {
    * Obtiene el nombre legible de la herramienta a partir del identificador.
    */
   public getHerramientaName(herramientaName: any) {
-    const herramienta = this.parent.herramientas.find((c) => c.nombre === herramientaName);
+    const herramienta = this.parent.herramientas.find(
+      (c) => c.nombre === herramientaName,
+    );
     return herramienta ? herramienta.nombre : '';
   }
 
@@ -64,4 +67,3 @@ export class ListadoHerramientaComponent {
   }
     */
 }
-

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AccionesTiposIdentificacionComponent } from './acciones-tipos-identificacion/acciones-tipos-identificacion.component';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
@@ -14,6 +14,7 @@ import { Constants } from '../utils/constants';
   selector: 'fs-tipos-identificacion',
   imports: [MatCardModule, RouterModule, AccionesTiposIdentificacionComponent],
   templateUrl: './tipos-identificacion.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './tipos-identificacion.component.scss',
 })
 export class TiposIdentificacionComponent {

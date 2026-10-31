@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 
 import { MenuService } from './menu.service';
@@ -8,6 +8,7 @@ import { MenuService } from './menu.service';
   standalone: true,
   imports: [RouterModule],
   templateUrl: './menu.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './menu.component.scss',
 })
 export class MenuComponent {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -17,6 +17,7 @@ import { CookieService } from 'ngx-cookie-service';
   selector: 'ibpm-objetow',
   imports: [MatCardModule, RouterModule, AccionesObjetowComponent],
   templateUrl: './objetow.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './objetow.component.scss',
 })
 export class ObjetowComponent {
@@ -38,14 +39,14 @@ export class ObjetowComponent {
     console.log('ENTRO ngOnInit');
     this.objetowComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-    if(this.hayWorkflowActual()) {
+    if (this.hayWorkflowActual()) {
       this.buscarObjetoWorkflow();
     }
   }
 
   public hayWorkflowActual(): boolean {
-    this.workflowActual = this.cookieService.get("workflowActual");
-    if (!this.workflowActual || this.workflowActual === '') { 
+    this.workflowActual = this.cookieService.get('workflowActual');
+    if (!this.workflowActual || this.workflowActual === '') {
       this.mensaje = Constants.ERR_WORKFLOW_NO_SELECCIONADO;
       return false;
     }
@@ -67,4 +68,3 @@ export class ObjetowComponent {
     });
   }
 }
-

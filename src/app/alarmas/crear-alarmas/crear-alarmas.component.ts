@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { LoginEntity } from '../../login/login.entity';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -42,6 +42,7 @@ import { EstadoTareaAlarmaEntity } from '../estado-tarea-alarma.entity';
     MatSelectModule,
   ],
   templateUrl: './crear-alarmas.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './crear-alarmas.component.scss',
 })
 /**
@@ -49,32 +50,32 @@ import { EstadoTareaAlarmaEntity } from '../estado-tarea-alarma.entity';
  * Permite seleccionar compañía, supervisor y administrar permisos/restricciones.
  */
 export class CrearAlarmaComponent {
-tiposalarmasList: TipoAlarmaEntity[] = [];
-tareasList: TareaEntity[] = [];
-estadosList: EstadoTareaAlarmaEntity[] = [];
-atributosWorkflowList: AtributoObjetowEntity[] = [];
-mailsDestinosN: any;
-destinatariosN: any;
-remitenteN: any;
-asuntoN: any;
-mailN: any;
-tipo: any;
-atributoN: any;
-onTareaChange($event: any) {
-throw new Error('Method not implemented.');
-}
-tareaN: string = '';
+  tiposalarmasList: TipoAlarmaEntity[] = [];
+  tareasList: TareaEntity[] = [];
+  estadosList: EstadoTareaAlarmaEntity[] = [];
+  atributosWorkflowList: AtributoObjetowEntity[] = [];
+  mailsDestinosN: any;
+  destinatariosN: any;
+  remitenteN: any;
+  asuntoN: any;
+  mailN: any;
+  tipo: any;
+  atributoN: any;
+  onTareaChange($event: any) {
+    throw new Error('Method not implemented.');
+  }
+  tareaN: string = '';
 
-onResponsableChange($event: any) {
-throw new Error('Method not implemented.');
-}
+  onResponsableChange($event: any) {
+    throw new Error('Method not implemented.');
+  }
 
   public uc?: AlarmaComponent;
   public loggedUser?: LoginEntity;
-  public nombreN: string= '';
-  public descripcionN: string= '';
-  public identificadorNegocioN: string= '';
-  public labelIdentificadorNegocioN: string= '';
+  public nombreN: string = '';
+  public descripcionN: string = '';
+  public identificadorNegocioN: string = '';
+  public labelIdentificadorNegocioN: string = '';
   public atrAlarmaIdEdit?: string;
   public supervisorObjectN?: UserEntity;
   public workflowActual: string | undefined;
@@ -103,7 +104,6 @@ throw new Error('Method not implemented.');
 
   public atributos: AtributoAlarmaEntity[] = [];
 
-
   public constructor(
     private alarmaService: AlarmaService,
     private companiasService: CompaniasService,
@@ -124,30 +124,30 @@ throw new Error('Method not implemented.');
   /**
    * Tipos de alarmas que se pueden crear. Se inicializan al cargar el componente.
    */
-public async ngOnInit(): Promise<void> {
-  this.workflowActual =
-    this.uc?.workflowActual || this.cookieService.get('workflowActual');
+  public async ngOnInit(): Promise<void> {
+    this.workflowActual =
+      this.uc?.workflowActual || this.cookieService.get('workflowActual');
 
-  if (this.uc) {
-    this.uc.mensaje = '';
+    if (this.uc) {
+      this.uc.mensaje = '';
+    }
+
+    await Promise.all([
+      this.cargarTiposAlarma(),
+      this.cargarTareas(),
+      this.cargarEstados(),
+      this.cargarAtributos(),
+    ]);
+
+    const id = this.route.snapshot.paramMap.get('id');
+    console.log('ENTRO ngOnInit', id);
+    if (id) {
+      this.atrAlarmaIdEdit = id;
+      await this.fillEditFields();
+    } else {
+      this.atrAlarmaIdEdit = undefined;
+    }
   }
-
-  await Promise.all([
-    this.cargarTiposAlarma(),
-    this.cargarTareas(),
-    this.cargarEstados(),
-    this.cargarAtributos(),
-  ]);
-
-  const id = this.route.snapshot.paramMap.get('id');
-  console.log('ENTRO ngOnInit',id);
-  if (id) {
-    this.atrAlarmaIdEdit = id;
-    await this.fillEditFields();
-  } else {
-    this.atrAlarmaIdEdit = undefined;
-  }
-}
 
   private tiposAlarmaPorDefecto(): TipoAlarmaEntity[] {
     return [
@@ -171,8 +171,12 @@ public async ngOnInit(): Promise<void> {
 
   private async cargarTiposAlarma(): Promise<void> {
     try {
-      const response = await firstValueFrom(this.alarmaService.getTiposAlarma());
-      const tipos = Array.isArray(response?.respuesta) ? response.respuesta : [];
+      const response = await firstValueFrom(
+        this.alarmaService.getTiposAlarma(),
+      );
+      const tipos = Array.isArray(response?.respuesta)
+        ? response.respuesta
+        : [];
       this.tiposalarmasList = tipos
         .map((tipo: any, index: number) => ({
           id: String(tipo.id ?? tipo.code ?? index),
@@ -213,12 +217,19 @@ public async ngOnInit(): Promise<void> {
   private async cargarEstados(): Promise<void> {
     this.estadosList = [];
     try {
-      const response = await firstValueFrom(this.alarmaService.getEstadosTareasAlarma());
-      const estados = Array.isArray(response?.respuesta) ? response.respuesta : [];
-      this.estadosList = estados.map((e: any, index: number) => ({
-        code: String(e.code ?? e.id ?? index),
-        name: this.nombreOpcion(e),
-      } as EstadoTareaAlarmaEntity));
+      const response = await firstValueFrom(
+        this.alarmaService.getEstadosTareasAlarma(),
+      );
+      const estados = Array.isArray(response?.respuesta)
+        ? response.respuesta
+        : [];
+      this.estadosList = estados.map(
+        (e: any, index: number) =>
+          ({
+            code: String(e.code ?? e.id ?? index),
+            name: this.nombreOpcion(e),
+          }) as EstadoTareaAlarmaEntity,
+      );
     } catch (e) {
       if (this.uc) {
         this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
@@ -255,18 +266,17 @@ public async ngOnInit(): Promise<void> {
    * Llena los campos del formulario con la información de la alarma seleccionada en edición.
    */
   public async fillEditFields(): Promise<void> {
-    
     try {
       const response = await firstValueFrom(
         this.alarmaService.obtenerAlarma(
-      /*    this.uc?.workflowActual ?? '',*/
+          /*    this.uc?.workflowActual ?? '',*/
           this.atrAlarmaIdEdit ?? '',
         ),
       );
       if (response?.respuesta) {
         console.log('response', response);
         const alarma = response.respuesta as AlarmaEntity;
-       
+
         this.workflowActual = this.uc?.workflowActual ?? '';
         this.nombreN = alarma?.tarea?.nombre ?? '';
         this.nombrelargoN = alarma?.tarea?.nombreLargo ?? '';
@@ -296,7 +306,6 @@ public async ngOnInit(): Promise<void> {
         this.tareaN = alarma?.tarea?.nombreLargo ?? '';
         this.onAlarmaChange(this.tipoN);
         this.atributos = alarma?.atributos ?? [];
-        
       }
     } catch (e) {
       if (this.uc) {
@@ -306,7 +315,6 @@ public async ngOnInit(): Promise<void> {
         );
       }
     }
-    
   }
 
   /**
@@ -364,12 +372,11 @@ public async ngOnInit(): Promise<void> {
           if (response && response.respuesta) {
             if (this.uc) {
               this.ngOnInit();
-              this.uc.mensaje = Constants.ATRIBUTO_OBJETO_WORKFLOW_CREAR_EXITOSO;
+              this.uc.mensaje =
+                Constants.ATRIBUTO_OBJETO_WORKFLOW_CREAR_EXITOSO;
             }
             this.atrAlarmaIdEdit = this.nombreN;
-            this.router.navigate([
-              `/main-page/alarmas`,
-            ]);
+            this.router.navigate([`/main-page/alarmas`]);
           }
         },
         error: (e) => {
@@ -418,14 +425,12 @@ public async ngOnInit(): Promise<void> {
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
-              if (this.uc) {
-                this.uc.ngOnInit();
-                this.uc.mensaje =
-                  Constants.ATRIBUTO_OBJETO_WORKFLOW_EDITAR_EXITOSO;
-              }
-            this.router.navigate([
-              `/main-page/alarmas`,
-            ]);
+            if (this.uc) {
+              this.uc.ngOnInit();
+              this.uc.mensaje =
+                Constants.ATRIBUTO_OBJETO_WORKFLOW_EDITAR_EXITOSO;
+            }
+            this.router.navigate([`/main-page/alarmas`]);
           }
         },
         error: (e) => {
@@ -449,13 +454,11 @@ public async ngOnInit(): Promise<void> {
         next: (response) => {
           if (response && response.respuesta) {
             if (this.uc) {
-                this.uc.ngOnInit();
-                this.uc.mensaje =
-                  Constants.ATRIBUTO_OBJETO_WORKFLOW_ELIMINAR_EXITOSO;
-              }
-            this.router.navigate([
-              `/main-page/alarmas`,
-            ]);
+              this.uc.ngOnInit();
+              this.uc.mensaje =
+                Constants.ATRIBUTO_OBJETO_WORKFLOW_ELIMINAR_EXITOSO;
+            }
+            this.router.navigate([`/main-page/alarmas`]);
           }
         },
         error: (e) => {
@@ -479,106 +482,220 @@ public async ngOnInit(): Promise<void> {
     this.router.navigate(['/main-page/alarmas']);
   }
 
-
-/**
+  /**
    * Campos que se visualizan al seleccionar un tipo de alarma
    */
-  
-public mostrarTarea = false;
-public mostrarEstado = false;
-public mostrarTiempo = false;
-public mostrarResponsable = false;
-public mostrarAtributo = false;
 
-public onAlarmaChange($event: any): void {
+  public mostrarTarea = false;
+  public mostrarEstado = false;
+  public mostrarTiempo = false;
+  public mostrarResponsable = false;
+  public mostrarAtributo = false;
 
-  this.atributos = [];
+  public onAlarmaChange($event: any): void {
+    this.atributos = [];
 
-   // Valores por defecto
-  this.mostrarTarea = true;
-  this.mostrarEstado = true;
-  this.mostrarTiempo = true;
-  this.mostrarResponsable = true;
-  this.mostrarAtributo = true;
+    // Valores por defecto
+    this.mostrarTarea = true;
+    this.mostrarEstado = true;
+    this.mostrarTiempo = true;
+    this.mostrarResponsable = true;
+    this.mostrarAtributo = true;
 
+    const tipo = typeof $event === 'string' ? $event : $event.nombre;
 
-  const tipo = typeof $event === 'string'
-      ? $event
-      : $event.nombre;
-
-  switch (tipo) {
-
-    case 'Mail':
-
+    switch (tipo) {
+      case 'Mail':
         this.mostrarTarea = true;
         this.mostrarEstado = true;
         this.mostrarTiempo = true;
         this.mostrarResponsable = true;
         this.mostrarAtributo = false;
-      this.atributos.push(
-        { id: 1, nombre: 'Mails_Destinos', valor: '', tipo: 'input', tipoTareaTiempo: ''},
-        { id: 2, nombre: 'Destinatarios', valor: '', tipo: 'input', tipoTareaTiempo: '' },
-        { id: 3, nombre: 'Asunto', valor: '', tipo: 'input', tipoTareaTiempo: '' },
-        { id: 4, nombre: 'Remitente', valor: '', tipo: 'input', tipoTareaTiempo: '' },
-        { id: 5, nombre: 'Mail', valor: '', tipo: 'input', tipoTareaTiempo: '' }
-      );
-      break;
+        this.atributos.push(
+          {
+            id: 1,
+            nombre: 'Mails_Destinos',
+            valor: '',
+            tipo: 'input',
+            tipoTareaTiempo: '',
+          },
+          {
+            id: 2,
+            nombre: 'Destinatarios',
+            valor: '',
+            tipo: 'input',
+            tipoTareaTiempo: '',
+          },
+          {
+            id: 3,
+            nombre: 'Asunto',
+            valor: '',
+            tipo: 'input',
+            tipoTareaTiempo: '',
+          },
+          {
+            id: 4,
+            nombre: 'Remitente',
+            valor: '',
+            tipo: 'input',
+            tipoTareaTiempo: '',
+          },
+          {
+            id: 5,
+            nombre: 'Mail',
+            valor: '',
+            tipo: 'input',
+            tipoTareaTiempo: '',
+          },
+        );
+        break;
 
-
-    case 'Mail-Manual':
+      case 'Mail-Manual':
         this.mostrarTarea = false;
         this.mostrarEstado = false;
         this.mostrarTiempo = false;
         this.mostrarResponsable = false;
         this.mostrarAtributo = false;
 
-      this.atributos.push(
-        { id: 1, nombre: 'Mails_Destinos', valor: '', tipo: 'input', tipoTareaTiempo: '' },
-        { id: 2, nombre: 'Destinatarios', valor: '', tipo: 'input', tipoTareaTiempo: '' },
-        { id: 3, nombre: 'Remitente', valor: '', tipo: 'input', tipoTareaTiempo: '' },
-        { id: 4, nombre: 'Asunto', valor: '', tipo: 'input', tipoTareaTiempo: '' },
-        { id: 5, nombre: 'Mail', valor: '', tipo: 'textarea', tipoTareaTiempo: '' }
-      );
-      break;
+        this.atributos.push(
+          {
+            id: 1,
+            nombre: 'Mails_Destinos',
+            valor: '',
+            tipo: 'input',
+            tipoTareaTiempo: '',
+          },
+          {
+            id: 2,
+            nombre: 'Destinatarios',
+            valor: '',
+            tipo: 'input',
+            tipoTareaTiempo: '',
+          },
+          {
+            id: 3,
+            nombre: 'Remitente',
+            valor: '',
+            tipo: 'input',
+            tipoTareaTiempo: '',
+          },
+          {
+            id: 4,
+            nombre: 'Asunto',
+            valor: '',
+            tipo: 'input',
+            tipoTareaTiempo: '',
+          },
+          {
+            id: 5,
+            nombre: 'Mail',
+            valor: '',
+            tipo: 'textarea',
+            tipoTareaTiempo: '',
+          },
+        );
+        break;
 
-     case 'Mail-Proceso':
-
+      case 'Mail-Proceso':
         this.mostrarTarea = false;
         this.mostrarEstado = false;
         this.mostrarTiempo = true;
         this.mostrarResponsable = false;
-      this.atributos.push(
-        { id: 1, nombre: 'Mails_Destinos', valor: '', tipo: 'input', tipoTareaTiempo: ''},
-        { id: 2, nombre: 'Destinatarios', valor: '', tipo: 'input', tipoTareaTiempo: '' },
-        { id: 3, nombre: 'Asunto', valor: '', tipo: 'input', tipoTareaTiempo: '' },
-        { id: 4, nombre: 'Remitente', valor: '', tipo: 'input', tipoTareaTiempo: '' },
-        { id: 5, nombre: 'Mail', valor: '', tipo: 'input', tipoTareaTiempo: '' }
-      );
-      break;
+        this.atributos.push(
+          {
+            id: 1,
+            nombre: 'Mails_Destinos',
+            valor: '',
+            tipo: 'input',
+            tipoTareaTiempo: '',
+          },
+          {
+            id: 2,
+            nombre: 'Destinatarios',
+            valor: '',
+            tipo: 'input',
+            tipoTareaTiempo: '',
+          },
+          {
+            id: 3,
+            nombre: 'Asunto',
+            valor: '',
+            tipo: 'input',
+            tipoTareaTiempo: '',
+          },
+          {
+            id: 4,
+            nombre: 'Remitente',
+            valor: '',
+            tipo: 'input',
+            tipoTareaTiempo: '',
+          },
+          {
+            id: 5,
+            nombre: 'Mail',
+            valor: '',
+            tipo: 'input',
+            tipoTareaTiempo: '',
+          },
+        );
+        break;
 
-        case 'Mail-Día':
-
+      case 'Mail-Día':
         this.mostrarTarea = true;
         this.mostrarEstado = false;
         this.mostrarTiempo = false;
         this.mostrarResponsable = false;
 
-      this.atributos.push(
-        { id: 1, nombre: 'Mails_Destinos', valor: '', tipo: 'input', tipoTareaTiempo: ''},
-        { id: 2, nombre: 'Destinatarios', valor: '', tipo: 'input', tipoTareaTiempo: '' },
-        { id: 3, nombre: 'Asunto', valor: '', tipo: 'input', tipoTareaTiempo: '' },
-        { id: 4, nombre: 'Remitente', valor: '', tipo: 'input', tipoTareaTiempo: '' },
-        { id: 5, nombre: 'Mail', valor: '', tipo: 'input', tipoTareaTiempo: '' }
-      );
-      break;
+        this.atributos.push(
+          {
+            id: 1,
+            nombre: 'Mails_Destinos',
+            valor: '',
+            tipo: 'input',
+            tipoTareaTiempo: '',
+          },
+          {
+            id: 2,
+            nombre: 'Destinatarios',
+            valor: '',
+            tipo: 'input',
+            tipoTareaTiempo: '',
+          },
+          {
+            id: 3,
+            nombre: 'Asunto',
+            valor: '',
+            tipo: 'input',
+            tipoTareaTiempo: '',
+          },
+          {
+            id: 4,
+            nombre: 'Remitente',
+            valor: '',
+            tipo: 'input',
+            tipoTareaTiempo: '',
+          },
+          {
+            id: 5,
+            nombre: 'Mail',
+            valor: '',
+            tipo: 'input',
+            tipoTareaTiempo: '',
+          },
+        );
+        break;
+    }
+
+    console.log(this.atributos);
   }
 
-  console.log(this.atributos);
-}
-
-  
-
-  public camposDuracionVisible():boolean {
-    return !(this.nombreAtributoN === undefined) && !(this.nombreAtributoN==="") && !this.nombreAtributoN?.includes("Mail-Dia") && !this.nombreAtributoN?.includes("Mail-Proceso") && !this.nombreAtributoN?.includes("Tarea Manual");
+  public camposDuracionVisible(): boolean {
+    return (
+      !(this.nombreAtributoN === undefined) &&
+      !(this.nombreAtributoN === '') &&
+      !this.nombreAtributoN?.includes('Mail-Dia') &&
+      !this.nombreAtributoN?.includes('Mail-Proceso') &&
+      !this.nombreAtributoN?.includes('Tarea Manual')
+    );
   }
 }

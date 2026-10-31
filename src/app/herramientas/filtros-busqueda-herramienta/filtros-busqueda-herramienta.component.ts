@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HerramientaComponent } from '../herramienta.component';
 import { HerramientaService } from '../herramienta.service';
@@ -8,6 +8,7 @@ import { LoginEntity } from '../../login/login.entity';
   selector: 'ibpm-filtros-busqueda-herramienta',
   imports: [FormsModule],
   templateUrl: './filtros-busqueda-herramienta.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './filtros-busqueda-herramienta.component.scss',
 })
 export class FiltrosBusquedaHerramientaComponent {
@@ -40,7 +41,7 @@ export class FiltrosBusquedaHerramientaComponent {
     // Si luego viene de servicio, aquí se reemplaza
     this.companiesList = [
       { id: 1, largeName: 'Activo' },
-      { id: 2, largeName: 'Inactivo' }
+      { id: 2, largeName: 'Inactivo' },
     ];
   }
 
@@ -57,24 +58,23 @@ export class FiltrosBusquedaHerramientaComponent {
     this.searchHerramienta(
       this.herramientaNameF,
       this.supervisorF,
-      generateReportBool
+      generateReportBool,
     );
   }
 
   public searchHerramienta(
     herramientaName: string,
     supervisor: string,
-    generateReport: boolean
+    generateReport: boolean,
   ): void {
     console.log(
       'Filtros recibidos:',
       herramientaName,
       supervisor,
       generateReport,
-      this.companyObjectN
+      this.companyObjectN,
     );
 
     // Tu lógica actual aquí
   }
 }
-

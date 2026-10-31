@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { AccionesCompaniasComponent } from './acciones-companias/acciones-companias.component';
@@ -14,6 +14,7 @@ import { Constants } from '../utils/constants';
   selector: 'fs-companias',
   imports: [MatCardModule, RouterModule, AccionesCompaniasComponent],
   templateUrl: './companias.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './companias.component.scss',
 })
 /**

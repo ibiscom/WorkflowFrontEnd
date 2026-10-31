@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { LoginEntity } from '../../login/login.entity';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -25,9 +25,9 @@ import { RolTareaEntity } from '../rol-tarea.entity';
 import { MetodoAsignacionTareaEntity } from '../metodo-asignacion-tarea.entity';
 import { SerieTareaEntity } from '../serie-tarea.entity';
 import { TipoDocumentoTareaEntity } from '../tipo-documento-tarea.entity';
-import { BrowserModule } from "@angular/platform-browser";
+import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DocumentModelEntity } from '../document-model.entity';
 
 @Component({
@@ -41,9 +41,10 @@ import { DocumentModelEntity } from '../document-model.entity';
     MatIconModule,
     MatSelectModule,
     CommonModule,
-    MatSlideToggleModule
-],
+    MatSlideToggleModule,
+  ],
   templateUrl: './crear-tareas.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './crear-tareas.component.scss',
 })
 /**
@@ -109,7 +110,7 @@ export class CrearTareasComponent {
     if (this.uc) {
       this.uc.mensaje = '';
     }
-    this.workflowActual = this.cookieService.get("workflowActual");
+    this.workflowActual = this.cookieService.get('workflowActual');
     const id = this.route.snapshot.paramMap.get('id');
     console.log('Edit Mode On. Group Id:', id);
     await this.getTiposTareaList();
@@ -120,22 +121,15 @@ export class CrearTareasComponent {
     if (id) {
       this.tareasIdEdit = id;
       await this.fillEditFields();
-
     } else {
       this.tareasIdEdit = undefined;
     }
   }
-  
-  
-
-
-  
 
   /**
    * Llena los campos del formulario con la información de la tarea en edición.
    */
   public async fillEditFields(): Promise<void> {
-   
     try {
       const response = await firstValueFrom(
         this.tareasService.getTarea(
@@ -153,29 +147,53 @@ export class CrearTareasComponent {
         this.modeloCarpetaN = tarea.modeloCarpeta ?? '';
         this.descripcionN = tarea.descripcion ?? '';
         this.nombreTipoN = tarea.tipo ?? '';
-        this.tipoN = this.tiposList.find(t => t.code === this.nombreTipoN) ?? undefined;
+        this.tipoN =
+          this.tiposList.find((t) => t.code === this.nombreTipoN) ?? undefined;
         this.nombreHerramientaN = tarea.herramienta ?? '';
-        this.herramientaN = this.herramientasList.find(h => h.code === this.nombreHerramientaN) ?? undefined;
+        this.herramientaN =
+          this.herramientasList.find(
+            (h) => h.code === this.nombreHerramientaN,
+          ) ?? undefined;
         this.nombreRolN = tarea.rol ?? '';
-        this.rolN = this.rolesList.find(r => r.code === this.nombreRolN) ?? undefined;
+        this.rolN =
+          this.rolesList.find((r) => r.code === this.nombreRolN) ?? undefined;
         this.nombreMetodoAsignacionN = tarea.metodoAsignacion ?? '';
-        this.metodoAsignacionN = this.metodosAsignacionList.find(m => m.code === this.nombreMetodoAsignacionN) ?? undefined;
-        this.diasDuracionEstimadaN = tarea.diasDuracionEstimada ? tarea.diasDuracionEstimada.toString() : '';
-        this.horasDuracionEstimadaN = tarea.horasDuracionEstimada ? tarea.horasDuracionEstimada.toString() : '';
-        this.minutosDuracionEstimadaN = tarea.minutosDuracionEstimada ? tarea.minutosDuracionEstimada.toString() : '';
-        this.segundosDuracionEstimadaN = tarea.segundosDuracionEstimada ? tarea.segundosDuracionEstimada.toString() : '';
-        this.diasAlarmaAmarillaN = tarea.diasAlarmaAmarilla ? tarea.diasAlarmaAmarilla.toString() : '';
-        this.horasAlarmaAmarillaN = tarea.horasAlarmaAmarilla ? tarea.horasAlarmaAmarilla.toString() : '';
-        this.minutosAlarmaAmarillaN = tarea.minutosAlarmaAmarilla ? tarea.minutosAlarmaAmarilla.toString() : '';
-        this.segundosAlarmaAmarillaN = tarea.segundosAlarmaAmarilla ? tarea.segundosAlarmaAmarilla.toString() : '';
+        this.metodoAsignacionN =
+          this.metodosAsignacionList.find(
+            (m) => m.code === this.nombreMetodoAsignacionN,
+          ) ?? undefined;
+        this.diasDuracionEstimadaN = tarea.diasDuracionEstimada
+          ? tarea.diasDuracionEstimada.toString()
+          : '';
+        this.horasDuracionEstimadaN = tarea.horasDuracionEstimada
+          ? tarea.horasDuracionEstimada.toString()
+          : '';
+        this.minutosDuracionEstimadaN = tarea.minutosDuracionEstimada
+          ? tarea.minutosDuracionEstimada.toString()
+          : '';
+        this.segundosDuracionEstimadaN = tarea.segundosDuracionEstimada
+          ? tarea.segundosDuracionEstimada.toString()
+          : '';
+        this.diasAlarmaAmarillaN = tarea.diasAlarmaAmarilla
+          ? tarea.diasAlarmaAmarilla.toString()
+          : '';
+        this.horasAlarmaAmarillaN = tarea.horasAlarmaAmarilla
+          ? tarea.horasAlarmaAmarilla.toString()
+          : '';
+        this.minutosAlarmaAmarillaN = tarea.minutosAlarmaAmarilla
+          ? tarea.minutosAlarmaAmarilla.toString()
+          : '';
+        this.segundosAlarmaAmarillaN = tarea.segundosAlarmaAmarilla
+          ? tarea.segundosAlarmaAmarilla.toString()
+          : '';
         this.editarDocProcesoN = tarea.editarDocProceso ?? false;
         this.idSerieN = tarea.docModels?.[0]?.idSerie ?? '';
-        this.serieN = this.seriesList.find(s => s.code === this.idSerieN) ?? undefined;
+        this.serieN =
+          this.seriesList.find((s) => s.code === this.idSerieN) ?? undefined;
         this.modelosDocumentoTareaE = tarea.docModels ?? [];
         await this.getTiposDocumentoListBySerie();
         await this.diligenciarTiposDocumentoAsignadosTarea();
         await this.diligenciarTiposDocumentoAsignar();
-
       }
     } catch (e) {
       if (this.uc) {
@@ -194,10 +212,7 @@ export class CrearTareasComponent {
     this.tiposList = [];
 
     try {
-      const response = await firstValueFrom(
-      this.tareasService
-        .getTipos()
-      );
+      const response = await firstValueFrom(this.tareasService.getTipos());
 
       if (response && response.respuesta) {
         const ops = response.respuesta as TipoTareaEntity[];
@@ -214,7 +229,6 @@ export class CrearTareasComponent {
               );
       }
     }
-      
   }
 
   /**
@@ -225,13 +239,13 @@ export class CrearTareasComponent {
 
     try {
       const response = await firstValueFrom(
-        this.tareasService
-        .getHerramientas(this.workflowActual ?? ''));
+        this.tareasService.getHerramientas(this.workflowActual ?? ''),
+      );
 
-        if (response && response.respuesta) {
-          const ops = response.respuesta as HerramientaTareaEntity[];
-            this.herramientasList.push(...ops);
-        }
+      if (response && response.respuesta) {
+        const ops = response.respuesta as HerramientaTareaEntity[];
+        this.herramientasList.push(...ops);
+      }
     } catch (error: any) {
       if (this.uc) {
         this.uc.mensaje =
@@ -252,14 +266,12 @@ export class CrearTareasComponent {
     this.rolesList = [];
 
     try {
-      const response = await firstValueFrom(
-        this.tareasService
-        .getRoles());
+      const response = await firstValueFrom(this.tareasService.getRoles());
 
-        if (response && response.respuesta) {
-          const ops = response.respuesta as RolTareaEntity[];
-            this.rolesList.push(...ops);
-        }
+      if (response && response.respuesta) {
+        const ops = response.respuesta as RolTareaEntity[];
+        this.rolesList.push(...ops);
+      }
     } catch (error: any) {
       if (this.uc) {
         this.uc.mensaje =
@@ -281,13 +293,13 @@ export class CrearTareasComponent {
 
     try {
       const response = await firstValueFrom(
-        this.tareasService
-        .getMetodosAsignacion());
+        this.tareasService.getMetodosAsignacion(),
+      );
 
-        if (response && response.respuesta) {
-          const ops = response.respuesta as MetodoAsignacionTareaEntity[];
-            this.metodosAsignacionList.push(...ops);
-        }
+      if (response && response.respuesta) {
+        const ops = response.respuesta as MetodoAsignacionTareaEntity[];
+        this.metodosAsignacionList.push(...ops);
+      }
     } catch (error: any) {
       if (this.uc) {
         this.uc.mensaje =
@@ -308,13 +320,13 @@ export class CrearTareasComponent {
     this.seriesList = [];
     try {
       const response = await firstValueFrom(
-        this.tareasService        
-          .getSeriesTareas(this.loggedUser?.user_name ?? ''));
+        this.tareasService.getSeriesTareas(this.loggedUser?.user_name ?? ''),
+      );
 
-        if (response && response.respuesta) {
-          const ops = response.respuesta as SerieTareaEntity[];
-          this.seriesList.push(...ops);
-        }
+      if (response && response.respuesta) {
+        const ops = response.respuesta as SerieTareaEntity[];
+        this.seriesList.push(...ops);
+      }
     } catch (error: any) {
       if (this.uc) {
         this.uc.mensaje =
@@ -381,14 +393,30 @@ export class CrearTareasComponent {
         subProceso: '',
         sincronico: '',
         responsable: '',
-        diasDuracionEstimada: this.diasDuracionEstimadaN ? parseInt(this.diasDuracionEstimadaN) : undefined,
-        horasDuracionEstimada: this.horasDuracionEstimadaN ? parseInt(this.horasDuracionEstimadaN) : undefined,
-        minutosDuracionEstimada: this.minutosDuracionEstimadaN ? parseInt(this.minutosDuracionEstimadaN) : undefined,
-        segundosDuracionEstimada: this.segundosDuracionEstimadaN ? parseInt(this.segundosDuracionEstimadaN) : undefined,
-        diasAlarmaAmarilla: this.diasAlarmaAmarillaN ? parseInt(this.diasAlarmaAmarillaN) : undefined,
-        horasAlarmaAmarilla: this.horasAlarmaAmarillaN ? parseInt(this.horasAlarmaAmarillaN) : undefined,
-        minutosAlarmaAmarilla: this.minutosAlarmaAmarillaN ? parseInt(this.minutosAlarmaAmarillaN) : undefined,
-        segundosAlarmaAmarilla: this.segundosAlarmaAmarillaN ? parseInt(this.segundosAlarmaAmarillaN) : undefined,
+        diasDuracionEstimada: this.diasDuracionEstimadaN
+          ? parseInt(this.diasDuracionEstimadaN)
+          : undefined,
+        horasDuracionEstimada: this.horasDuracionEstimadaN
+          ? parseInt(this.horasDuracionEstimadaN)
+          : undefined,
+        minutosDuracionEstimada: this.minutosDuracionEstimadaN
+          ? parseInt(this.minutosDuracionEstimadaN)
+          : undefined,
+        segundosDuracionEstimada: this.segundosDuracionEstimadaN
+          ? parseInt(this.segundosDuracionEstimadaN)
+          : undefined,
+        diasAlarmaAmarilla: this.diasAlarmaAmarillaN
+          ? parseInt(this.diasAlarmaAmarillaN)
+          : undefined,
+        horasAlarmaAmarilla: this.horasAlarmaAmarillaN
+          ? parseInt(this.horasAlarmaAmarillaN)
+          : undefined,
+        minutosAlarmaAmarilla: this.minutosAlarmaAmarillaN
+          ? parseInt(this.minutosAlarmaAmarillaN)
+          : undefined,
+        segundosAlarmaAmarilla: this.segundosAlarmaAmarillaN
+          ? parseInt(this.segundosAlarmaAmarillaN)
+          : undefined,
         editarDocProceso: this.editarDocProcesoN,
         docModels: this.mapearModelosDocumentoTarea(),
       } as TareaEntity)
@@ -436,14 +464,30 @@ export class CrearTareasComponent {
         subProceso: '',
         sincronico: '',
         responsable: '',
-        diasDuracionEstimada: this.diasDuracionEstimadaN ? parseInt(this.diasDuracionEstimadaN) : undefined,
-        horasDuracionEstimada: this.horasDuracionEstimadaN ? parseInt(this.horasDuracionEstimadaN) : undefined,
-        minutosDuracionEstimada: this.minutosDuracionEstimadaN ? parseInt(this.minutosDuracionEstimadaN) : undefined,
-        segundosDuracionEstimada: this.segundosDuracionEstimadaN ? parseInt(this.segundosDuracionEstimadaN) : undefined,
-        diasAlarmaAmarilla: this.diasAlarmaAmarillaN ? parseInt(this.diasAlarmaAmarillaN) : undefined,
-        horasAlarmaAmarilla: this.horasAlarmaAmarillaN ? parseInt(this.horasAlarmaAmarillaN) : undefined,
-        minutosAlarmaAmarilla: this.minutosAlarmaAmarillaN ? parseInt(this.minutosAlarmaAmarillaN) : undefined,
-        segundosAlarmaAmarilla: this.segundosAlarmaAmarillaN ? parseInt(this.segundosAlarmaAmarillaN) : undefined,
+        diasDuracionEstimada: this.diasDuracionEstimadaN
+          ? parseInt(this.diasDuracionEstimadaN)
+          : undefined,
+        horasDuracionEstimada: this.horasDuracionEstimadaN
+          ? parseInt(this.horasDuracionEstimadaN)
+          : undefined,
+        minutosDuracionEstimada: this.minutosDuracionEstimadaN
+          ? parseInt(this.minutosDuracionEstimadaN)
+          : undefined,
+        segundosDuracionEstimada: this.segundosDuracionEstimadaN
+          ? parseInt(this.segundosDuracionEstimadaN)
+          : undefined,
+        diasAlarmaAmarilla: this.diasAlarmaAmarillaN
+          ? parseInt(this.diasAlarmaAmarillaN)
+          : undefined,
+        horasAlarmaAmarilla: this.horasAlarmaAmarillaN
+          ? parseInt(this.horasAlarmaAmarillaN)
+          : undefined,
+        minutosAlarmaAmarilla: this.minutosAlarmaAmarillaN
+          ? parseInt(this.minutosAlarmaAmarillaN)
+          : undefined,
+        segundosAlarmaAmarilla: this.segundosAlarmaAmarillaN
+          ? parseInt(this.segundosAlarmaAmarillaN)
+          : undefined,
         editarDocProceso: this.editarDocProcesoN,
         docModels: this.mapearModelosDocumentoTarea(),
       } as TareaEntity)
@@ -464,32 +508,27 @@ export class CrearTareasComponent {
           }
         },
       });
-
-    
   }
 
- 
   /**
    * Elimina la tarea actual.
    */
   public delete() {
-    this.tareasService
-      .deleteTarea( this.tareasIdEdit ?? '')
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
-            this.router.navigate(['/main-page/tareas']);
-          }
-        },
-        error: (e) => {
-          if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_TAREA_ELIMINAR,
-              e,
-            );
-          }
-        },
-      });
+    this.tareasService.deleteTarea(this.tareasIdEdit ?? '').subscribe({
+      next: (response) => {
+        if (response && response.respuesta) {
+          this.router.navigate(['/main-page/tareas']);
+        }
+      },
+      error: (e) => {
+        if (this.uc) {
+          this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
+            Constants.ERR_TAREA_ELIMINAR,
+            e,
+          );
+        }
+      },
+    });
   }
 
   /**
@@ -501,7 +540,6 @@ export class CrearTareasComponent {
     }
     this.router.navigate(['/main-page/tareas']);
   }
-
 
   public onMetodoAsignacionChange($event: any) {
     let metodoAsignacionSeleccionado = $event as MetodoAsignacionTareaEntity;
@@ -519,14 +557,14 @@ export class CrearTareasComponent {
     let herramientaSeleccionada = $event as HerramientaTareaEntity;
     this.herramientaN = herramientaSeleccionada;
     this.nombreHerramientaN = herramientaSeleccionada?.code ?? '';
-  } 
+  }
 
   public onTipoChange(event: any) {
     let tipoSeleccionado = event as TipoTareaEntity;
     this.tipoN = tipoSeleccionado;
     this.nombreTipoN = tipoSeleccionado?.code ?? '';
-  } 
-  
+  }
+
   public async onSerieChange($event: any) {
     let serieSeleccionada = $event as SerieTareaEntity;
     this.serieN = serieSeleccionada;
@@ -534,49 +572,51 @@ export class CrearTareasComponent {
     await this.getTiposDocumentoListBySerie();
     this.diligenciarTiposDocumentoAsignadosTarea();
     this.diligenciarTiposDocumentoAsignar();
-
-  }     
+  }
 
   public diligenciarTiposDocumentoAsignar() {
     this.tiposDocumentoAgregarList = [];
-    if(this.tiposDocumentoList.length > 0 ) {
-        this.tiposDocumentoList.forEach(tipoDoc => {
-          if (!this.tiposDocumentoAsignadosTareaList.some(asignado => asignado.code === tipoDoc.code)) {
-            this.tiposDocumentoAgregarList.push(tipoDoc);
-          }
-        });
-   } 
+    if (this.tiposDocumentoList.length > 0) {
+      this.tiposDocumentoList.forEach((tipoDoc) => {
+        if (
+          !this.tiposDocumentoAsignadosTareaList.some(
+            (asignado) => asignado.code === tipoDoc.code,
+          )
+        ) {
+          this.tiposDocumentoAgregarList.push(tipoDoc);
+        }
+      });
+    }
   }
 
   public diligenciarTiposDocumentoAsignadosTarea() {
     this.tiposDocumentoAsignadosTareaList = [];
-    if(this.editMode()) {
-      this.modelosDocumentoTareaE.forEach(modeloDoc => {
-        if(modeloDoc.idSerie === this.idSerieN) {
+    if (this.editMode()) {
+      this.modelosDocumentoTareaE.forEach((modeloDoc) => {
+        if (modeloDoc.idSerie === this.idSerieN) {
           const tipoDocAsignado: TipoDocumentoTareaEntity = {
             code: modeloDoc.tipoDocumento ?? '',
             name: modeloDoc.tipoDocumento ?? '',
             obligatorio: modeloDoc.obligatoryTypeDocInTask ?? false,
             visible: true,
-            selected: false
+            selected: false,
           };
           this.tiposDocumentoAsignadosTareaList.push(tipoDocAsignado);
         }
-     });
+      });
     }
   }
 
   public async getTiposDocumentoListBySerie() {
-   this.tiposDocumentoList = [];
+    this.tiposDocumentoList = [];
     try {
       const response = await firstValueFrom(
-        this.tareasService
-          .getTiposDocumentoBySerie(this.idSerieN ?? '')
+        this.tareasService.getTiposDocumentoBySerie(this.idSerieN ?? ''),
       );
-        if (response && response.respuesta) {
-          const ops = response.respuesta as TipoDocumentoTareaEntity[];
-          this.tiposDocumentoList.push(...ops);
-        }
+      if (response && response.respuesta) {
+        const ops = response.respuesta as TipoDocumentoTareaEntity[];
+        this.tiposDocumentoList.push(...ops);
+      }
     } catch (error: any) {
       if (this.uc) {
         this.uc.mensaje =
@@ -600,17 +640,32 @@ export class CrearTareasComponent {
       );*/
     }
   }
-  
+
   public retirar() {
-    this.tiposDocumentoAgregarList.push(...this.tiposDocumentoAsignadosTareaList.some(tipo => tipo.visible) ? this.tiposDocumentoAsignadosTareaList.filter(tipo => tipo.visible) : []);
-    this.tiposDocumentoAsignadosTareaList = this.tiposDocumentoAsignadosTareaList.filter(tipo => !tipo.visible);
-    this.tiposDocumentoAgregarList.forEach(tipo => { tipo.visible = false; });
+    this.tiposDocumentoAgregarList.push(
+      ...(this.tiposDocumentoAsignadosTareaList.some((tipo) => tipo.visible)
+        ? this.tiposDocumentoAsignadosTareaList.filter((tipo) => tipo.visible)
+        : []),
+    );
+    this.tiposDocumentoAsignadosTareaList =
+      this.tiposDocumentoAsignadosTareaList.filter((tipo) => !tipo.visible);
+    this.tiposDocumentoAgregarList.forEach((tipo) => {
+      tipo.visible = false;
+    });
   }
 
   public asignar() {
-    this.tiposDocumentoAsignadosTareaList.push(...this.tiposDocumentoAgregarList.some(tipo => tipo.selected) ? this.tiposDocumentoAgregarList.filter(tipo => tipo.selected) : []);
-    this.tiposDocumentoAgregarList = this.tiposDocumentoAgregarList.filter(tipo => !tipo.selected);
-    this.tiposDocumentoAsignadosTareaList.forEach(tipo => { tipo.selected = false; });
+    this.tiposDocumentoAsignadosTareaList.push(
+      ...(this.tiposDocumentoAgregarList.some((tipo) => tipo.selected)
+        ? this.tiposDocumentoAgregarList.filter((tipo) => tipo.selected)
+        : []),
+    );
+    this.tiposDocumentoAgregarList = this.tiposDocumentoAgregarList.filter(
+      (tipo) => !tipo.selected,
+    );
+    this.tiposDocumentoAsignadosTareaList.forEach((tipo) => {
+      tipo.selected = false;
+    });
   }
 
   public toggleObligatorio(tipoDocTarea: TipoDocumentoTareaEntity) {
@@ -618,18 +673,18 @@ export class CrearTareasComponent {
   }
 
   public mapearModelosDocumentoTarea(): DocumentModelEntity[] {
-    if(this.tiposDocumentoAsignadosTareaList.length === 0) {
+    if (this.tiposDocumentoAsignadosTareaList.length === 0) {
       return [];
     }
-    return this.tiposDocumentoAsignadosTareaList.map(tipoDoc => {
+    return this.tiposDocumentoAsignadosTareaList.map((tipoDoc) => {
       const modelo: DocumentModelEntity = {
         tipoDocumento: tipoDoc.code,
         idSerie: this.serieN?.code ?? '',
         nombreSerie: this.serieN?.name ?? '',
         obligatoryTypeDocInTask: tipoDoc.obligatorio ?? false,
-        editableTypeDocInTask: this.editarDocProcesoN
+        editableTypeDocInTask: this.editarDocProcesoN,
       };
       return modelo;
     });
-}
+  }
 }

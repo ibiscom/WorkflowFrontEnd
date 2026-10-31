@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { LoginEntity } from './login.entity';
 import { HttpClient } from '@angular/common/http';
 import { LoginService } from './login.service';
@@ -20,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
   ],
   templateUrl: './login.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './login.component.scss',
 })
 /**

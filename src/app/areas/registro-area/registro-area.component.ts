@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { AreaEntity } from '../../entities/areas/area.entity';
 import { FormsModule } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
@@ -24,6 +24,7 @@ import { AreasComponent } from '../areas.component';
     MatExpansionModule,
   ],
   templateUrl: './registro-area.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './registro-area.component.scss',
 })
 /**

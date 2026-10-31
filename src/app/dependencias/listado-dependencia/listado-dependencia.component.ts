@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DependenciaComponent } from '../dependencia.component';
 import { MatTableModule } from '@angular/material/table';
 import { DependenciaEntity } from '../dependencia.entity';
@@ -8,6 +8,7 @@ import { FiltrosBusquedaDependenciaComponent } from '../filtros-busqueda-depende
   selector: 'ibpm-listado-dependencia',
   imports: [MatTableModule, FiltrosBusquedaDependenciaComponent],
   templateUrl: './listado-dependencia.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-dependencia.component.scss',
 })
 /**
@@ -18,11 +19,7 @@ export class ListadoDependenciaComponent {
   public currentPage: number = 1;
   public numberOfPages: number = 1;
 
-  public displayedColumns: string[] = [
-    'Nombre',
-    'Descripción'
-    
-  ];
+  public displayedColumns: string[] = ['Nombre', 'Descripción'];
 
   constructor(public parent: DependenciaComponent) {}
 
@@ -35,7 +32,6 @@ export class ListadoDependenciaComponent {
       `/main-page/dependencias/editarDependencia/${dependencia.nombre}`,
     ]);
   }
-
 
   /**
    REVISAR!!!!

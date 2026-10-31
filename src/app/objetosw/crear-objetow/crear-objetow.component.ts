@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ObjetowComponent } from '../objetow.component';
 import { ObjetowService } from '../objetow.service';
@@ -12,28 +12,24 @@ import { AtributoObjetowEntity } from '../atributo-objetow.entity';
   selector: 'ibpm-crear-objetow',
   imports: [FormsModule],
   templateUrl: './crear-objetow.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './crear-objetow.component.scss',
 })
 export class CrearObjetowComponent {
-
-
   public nombreObjetoWN: string = '';
   public descripcionObjetoWN: string = '';
   public editMode: boolean = false;
-
 
   @Input() public uc?: ObjetowComponent;
   public loggedUser: LoginEntity | undefined;
   public workflowActual: string = '';
   public atributosW: AtributoObjetowEntity[] = [];
 
-
-  
   constructor(private objetowService: ObjetowService) {}
 
   ngOnInit(): void {
     this.loggedUser = this.uc?.loggedUser;
-    if(this.uc?.hayWorkflowActual()){
+    if (this.uc?.hayWorkflowActual()) {
       this.workflowActual = this.uc?.workflowActual ?? '';
       this.cargarInfoObjetoWorkFlow();
     } else {
@@ -42,8 +38,6 @@ export class CrearObjetowComponent {
       this.descripcionObjetoWN = '';
       this.atributosW = [];
     }
-
-
   }
 
   // 🔹 Simulación / carga de estados
@@ -51,7 +45,7 @@ export class CrearObjetowComponent {
     this.objetowService.obtenerObjetoWorkflow(this.workflowActual).subscribe({
       next: (response) => {
         console.log('Objeto Workflow obtenido:', response?.respuesta);
-        if(response && response.respuesta && response.respuesta.nombre){
+        if (response && response.respuesta && response.respuesta.nombre) {
           this.editMode = true;
           this.nombreObjetoWN = response.respuesta.nombre;
           this.descripcionObjetoWN = response.respuesta.descripcion;
@@ -59,26 +53,24 @@ export class CrearObjetowComponent {
         } else {
           this.editMode = false;
           this.nombreObjetoWN = '';
-          this.descripcionObjetoWN = ''; 
+          this.descripcionObjetoWN = '';
           this.atributosW = [];
         }
       },
       error: (e) => {
         if (this.uc) {
-           this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_OBJETO_WORKFLOW_OBTENER,
-               e,
-            );
+          this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
+            Constants.ERR_OBJETO_WORKFLOW_OBTENER,
+            e,
+          );
         }
-      }
-  });
+      },
+    });
   }
-
- 
 
   // Ejecuta búsqueda
   public save(): void {
-    if(this.isEditMode()){
+    if (this.isEditMode()) {
       this.editarObjetoWorkflow();
     } else {
       this.crearObjetoWorkflow();
@@ -86,28 +78,28 @@ export class CrearObjetowComponent {
   }
 
   private crearObjetoWorkflow(): void {
-    let objetow: ObjetowEntity = {  
+    let objetow: ObjetowEntity = {
       nombre: this.nombreObjetoWN,
       nombreWorkflow: this.workflowActual,
       descripcion: this.descripcionObjetoWN,
-      attributes: []
+      attributes: [],
     };
     this.objetowService.crearObjetoWorkflow(objetow).subscribe({
       next: (response) => {
         console.log('Objeto Workflow creado:', response);
         if (this.uc) {
           this.uc.mensaje = 'Objeto Workflow creado exitosamente';
-          this.editMode = true;              
+          this.editMode = true;
         }
       },
       error: (e) => {
         if (this.uc) {
-           this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_OBJETO_WORKFLOW_CREAR,
-               e,
-            );
+          this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
+            Constants.ERR_OBJETO_WORKFLOW_CREAR,
+            e,
+          );
         }
-      }
+      },
     });
   }
 
@@ -116,7 +108,7 @@ export class CrearObjetowComponent {
       nombre: this.nombreObjetoWN,
       nombreWorkflow: this.workflowActual,
       descripcion: this.descripcionObjetoWN,
-      attributes: this.atributosW
+      attributes: this.atributosW,
     };
     this.objetowService.editarObjetoWorkflow(objetow).subscribe({
       next: (response) => {
@@ -127,18 +119,16 @@ export class CrearObjetowComponent {
       },
       error: (e) => {
         if (this.uc) {
-           this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_OBJETO_WORKFLOW_EDITAR,
-               e,
-            );
+          this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
+            Constants.ERR_OBJETO_WORKFLOW_EDITAR,
+            e,
+          );
         }
-      }
+      },
     });
   }
 
   public isEditMode(): boolean {
     return this.editMode;
   }
-
 }
-

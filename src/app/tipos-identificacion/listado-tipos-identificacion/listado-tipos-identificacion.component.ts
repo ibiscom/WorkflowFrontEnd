@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TiposIdentificacionComponent } from '../tipos-identificacion.component';
 import { DocumentTypeEntity } from '../../entities/domains/document-type.entity';
 
 @Component({
   selector: 'fs-listado-tipos-identificacion',
   templateUrl: './listado-tipos-identificacion.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-tipos-identificacion.component.scss',
 })
 /**

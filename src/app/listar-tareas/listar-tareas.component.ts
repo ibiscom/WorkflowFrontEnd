@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -11,12 +11,12 @@ import { ListarTareasEntity } from './listar-tareas.entity';
 import { ListarTareaFilterEntity } from './listar-tareas-filter.entity';
 import { EstadoListarTareaEntity } from './estado-listar-tareas.entity';
 
-
 @Component({
   standalone: true,
   selector: 'ibpm-listar-tareas',
   imports: [MatCardModule, RouterModule],
   templateUrl: './listar-tareas.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listar-tareas.component.scss',
 })
 export class ListarTareaComponent {
@@ -37,13 +37,22 @@ export class ListarTareaComponent {
     this.loggedUser = this.loginService.getLoggedUser();
     let filtros: ListarTareaFilterEntity = {
       responsable: this.loggedUser?.user_name || '',
-    }
+    };
     this.buscarListarTareas(1, filtros);
   }
 
-  public buscarListarTareas(numeroPagina: number,filtros?: ListarTareaFilterEntity): void {
+  public buscarListarTareas(
+    numeroPagina: number,
+    filtros?: ListarTareaFilterEntity,
+  ): void {
     this.listartareaService
-      .getListarTarea(numeroPagina, filtros || ({responsable: this.loggedUser?.user_name || '',} as ListarTareaFilterEntity))
+      .getListarTarea(
+        numeroPagina,
+        filtros ||
+          ({
+            responsable: this.loggedUser?.user_name || '',
+          } as ListarTareaFilterEntity),
+      )
       .subscribe({
         next: (response) => {
           this.listartareas = response.respuesta;
@@ -57,5 +66,4 @@ export class ListarTareaComponent {
         },
       });
   }
-
 }

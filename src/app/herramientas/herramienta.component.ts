@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -18,6 +18,7 @@ import { CookieService } from 'ngx-cookie-service';
   selector: 'ibpm-herramienta',
   imports: [MatCardModule, RouterModule, AccionesHerramientaComponent],
   templateUrl: './herramienta.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './herramienta.component.scss',
 })
 export class HerramientaComponent {
@@ -38,42 +39,39 @@ export class HerramientaComponent {
   ngOnInit(): void {
     this.herramientaComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-    if(this.hayWorkflowActual()) {
+    if (this.hayWorkflowActual()) {
       this.obtenerTipos();
       this.buscarHerramientas();
     }
   }
 
   public hayWorkflowActual(): boolean {
-    this.workflowActual = this.cookieService.get("workflowActual");
-    if (this.workflowActual === '') { 
+    this.workflowActual = this.cookieService.get('workflowActual');
+    if (this.workflowActual === '') {
       this.mensaje = Constants.ERR_WORKFLOW_NO_SELECCIONADO;
       return false;
     }
     return true;
   }
 
+  public buscarHerramientas(noLimpiar?: boolean): void {
+    this.herramientaService.getHerramientas(this.workflowActual).subscribe({
+      next: (response) => {
+        this.herramientas = response.respuesta;
+        if (!noLimpiar) {
+          this.mensaje = '';
+        }
+      },
+      error: (err) => {
+        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          Constants.ERR_OBTENIENDO_HERRAMIENTAS,
+          err,
+        );
+      },
+    });
+  }
 
- public  buscarHerramientas(noLimpiar?:boolean): void {
-     this.herramientaService
-       .getHerramientas(this.workflowActual)
-       .subscribe({
-         next: (response) => {
-           this.herramientas = response.respuesta;          
-           if(!noLimpiar) {
-             this.mensaje = '';
-           }
-         },
-         error: (err) => {
-           this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-             Constants.ERR_OBTENIENDO_HERRAMIENTAS,
-             err,
-           );
-         },
-       });
-   }
-
-   /**
+  /**
     * REVISIÓN CARLOS!!!
     
    public buscarHerramientas(filtros?: HerramientasFilterEntity): void {
@@ -93,21 +91,17 @@ export class HerramientaComponent {
          });
      }
 */
-    public obtenerTipos(): void {
-    this.herramientaService
-      .getTypes()
-      .subscribe({
-        next: (response) => {
-          this.tipos = response.respuesta;
-        },
-        error: (err) => {
-          this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-            Constants.ERR_OBTENIENDO_TIPOS_HERR,
-            err,
-          );
-        },
-      });
-
+  public obtenerTipos(): void {
+    this.herramientaService.getTypes().subscribe({
+      next: (response) => {
+        this.tipos = response.respuesta;
+      },
+      error: (err) => {
+        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          Constants.ERR_OBTENIENDO_TIPOS_HERR,
+          err,
+        );
+      },
+    });
   }
 }
-

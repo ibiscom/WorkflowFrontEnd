@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -26,6 +26,7 @@ import { Router } from '@angular/router';
     MatSelectModule,
   ],
   templateUrl: './seccion-ver-detalle-la.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './seccion-ver-detalle-la.component.scss',
 })
 /**

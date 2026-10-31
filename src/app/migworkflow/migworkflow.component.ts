@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -14,12 +14,13 @@ import { CompaniasService } from '../companias/companias.service';
 import { MigworkflowEntity } from './migworkflow.entity';
 import { CookieService } from 'ngx-cookie-service';
 import { MigworkflowFilterEntity } from './migworkflow-filter.entity';
-import { FiltrosBusquedaMigworkflowComponent } from "./filtros-busqueda-migworkflow/filtros-busqueda-migworkflow.component";
+import { FiltrosBusquedaMigworkflowComponent } from './filtros-busqueda-migworkflow/filtros-busqueda-migworkflow.component';
 
 @Component({
   selector: 'ibpm-migworkflow',
   imports: [MatCardModule, RouterModule, FiltrosBusquedaMigworkflowComponent],
   templateUrl: './migworkflow.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './migworkflow.component.scss',
 })
 export class MigworkflowComponent {
@@ -40,32 +41,32 @@ export class MigworkflowComponent {
     private cookieService: CookieService,
   ) {}
 
-    ngOnInit(): void {
-      this.migworkflowComponentInstanceService.setInstance(this);
-      this.loggedUser = this.loginService.getLoggedUser();
-      this.buscarMigworkflows();
-    }
-  
-    public buscarMigworkflows(filtros?: MigworkflowFilterEntity): void {
-      const response$ = this.migworkflowService.getUsersRol(
-        filtros?.userLogin || '',
-      ) as any;
+  ngOnInit(): void {
+    this.migworkflowComponentInstanceService.setInstance(this);
+    this.loggedUser = this.loginService.getLoggedUser();
+    this.buscarMigworkflows();
+  }
 
-      response$?.subscribe({
-        next: (response: any) => {
-          this.migworkflows = response.respuesta;
-          this.mensaje = '';
-        },
-        error: (err: any) => {
-          this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-            Constants.ERR_OBTENIENDO_RESPONSABLES,
-            err,
-          );
-        },
-      });
-    }
-  
-      public obtenerMigworkflows(): void {
+  public buscarMigworkflows(filtros?: MigworkflowFilterEntity): void {
+    const response$ = this.migworkflowService.getUsersRol(
+      filtros?.userLogin || '',
+    ) as any;
+
+    response$?.subscribe({
+      next: (response: any) => {
+        this.migworkflows = response.respuesta;
+        this.mensaje = '';
+      },
+      error: (err: any) => {
+        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          Constants.ERR_OBTENIENDO_RESPONSABLES,
+          err,
+        );
+      },
+    });
+  }
+
+  public obtenerMigworkflows(): void {
     const response$ = this.migworkflowService.getUsersRol('') as any;
 
     response$?.subscribe({
@@ -79,7 +80,5 @@ export class MigworkflowComponent {
         );
       },
     });
-
   }
-
-  }
+}

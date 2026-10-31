@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { DependenciaComponent } from '../dependencia.component';
 import { LoginEntity } from '../../login/login.entity';
@@ -39,23 +39,24 @@ import { PrimitivaDependenciaEntity } from '../primitiva-dependencia.entity';
     MatSelectModule,
   ],
   templateUrl: './crear-dependencia.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './crear-dependencia.component.scss',
 })
 /**
  * Componente para la creación y edición de grupos.
- * 
+ *
  */
 export class CrearDependenciaComponent {
   public workflowActual: string = '';
   public uc?: DependenciaComponent;
   public loggedUser?: LoginEntity;
-  public nombreWorkflowN: string =  '';
-  public nombreN: string= '';
+  public nombreWorkflowN: string = '';
+  public nombreN: string = '';
   public nombreTareaCabezaN: string = '';
-  public nombreTareaColaN: string =  '';
+  public nombreTareaColaN: string = '';
   public estadoN: string = '';
-  public primitivaN:  string = '';
-  public expresionN:  string =  '';
+  public primitivaN: string = '';
+  public expresionN: string = '';
   public descripcionN: string = '';
   public nameN: string = '';
   public descriptionN: string = '';
@@ -88,13 +89,13 @@ export class CrearDependenciaComponent {
   /**
    * Inicializa el formulario, carga listas y detecta modo de edición.
    */
-  
+
   public async ngOnInit(): Promise<void> {
-    this.workflowActual = this.cookieService.get("workflowActual");
+    this.workflowActual = this.cookieService.get('workflowActual');
     const id = this.route.snapshot.paramMap.get('id');
     /**  this.obtenerListaEstados(); */
     console.log('Modo de edicion habilitado. Dependencia:', id);
-    console.log("ID recibido:", id);
+    console.log('ID recibido:', id);
     if (id) {
       this.dependenciaIdEdit = id;
       await this.llenarCamposEdicion();
@@ -102,213 +103,210 @@ export class CrearDependenciaComponent {
       this.dependenciaIdEdit = undefined;
       if (this.uc) {
         this.uc.mensaje = '';
-        
       }
     }
   }
-   
-    
-/**
-     * Llena los campos del formulario con la información de la dependencia en edición.
-     */
-    public async llenarCamposEdicion(): Promise<void> {
-      
-      try {
-        const response = await firstValueFrom(
-          this.dependenciaService.getDependencia(
-            this.workflowActual ?? '',
-            this.dependenciaIdEdit ?? '',
-          ),
+
+  /**
+   * Llena los campos del formulario con la información de la dependencia en edición.
+   */
+  public async llenarCamposEdicion(): Promise<void> {
+    try {
+      const response = await firstValueFrom(
+        this.dependenciaService.getDependencia(
+          this.workflowActual ?? '',
+          this.dependenciaIdEdit ?? '',
+        ),
+      );
+      if (response?.respuesta) {
+        const dependencia = response.respuesta as DependenciaEntity;
+        this.nombreWorkflowN = dependencia.nombreWorkflow ?? '';
+        this.nombreN = dependencia.nombre ?? '';
+        this.nombreTareaCabezaN = dependencia.nombreTareaCabeza ?? '';
+        this.nombreTareaColaN = dependencia.nombreTareaCola ?? '';
+        this.estadoN = dependencia.estado ?? '';
+        this.primitivaN = dependencia.primitiva ?? '';
+        this.expresionN = dependencia.expresion ?? '';
+        this.descripcionN = dependencia.descripcion ?? '';
+      }
+    } catch (e) {
+      if (this.uc) {
+        this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          Constants.ERR_OBTENIENDO_HERRAMIENTA,
+          e,
         );
-        if (response?.respuesta) {
-          const dependencia = response.respuesta as DependenciaEntity;
-          this.nombreWorkflowN = dependencia.nombreWorkflow ?? '';
-          this.nombreN = dependencia.nombre ?? '';
-          this.nombreTareaCabezaN = dependencia.nombreTareaCabeza ?? '';
-          this.nombreTareaColaN = dependencia.nombreTareaCola ?? '';
-          this.estadoN = dependencia.estado ?? '';
-          this.primitivaN = dependencia.primitiva ?? '';
-          this.expresionN = dependencia.expresion ?? '';
-          this.descripcionN = dependencia.descripcion ?? '';
-               
+      }
+    }
+  }
+
+  /**
+   * Indica si está en modo edición.
+   */
+  public editMode(): boolean {
+    return (
+      this.dependenciaIdEdit !== undefined && this.dependenciaIdEdit !== ''
+    );
+  }
+
+  /**
+   * Maneja el cambio de Estado de la Tarea seleccionada.
+   */
+  public onEstadoChange(event: any): void {
+    console.log('Estado seleccionado:', event);
+    this.estadoObjectN = event as EstadoDependenciaEntity;
+    this.estadoN = event?.name ?? '';
+  }
+
+  public onTareaChange(event: any): void {
+    console.log('tarea seleccionada:', event);
+    this.TareaObjectN = event as TareaDependenciaEntity;
+    this.TareaN = event?.name ?? '';
+  }
+  public onPrimitivaChange(event: any): void {
+    console.log('primitiva seleccionada:', event);
+    this.primitivaObjectN = event as PrimitivaDependenciaEntity;
+    this.primitivaN = event?.name ?? '';
+  }
+  /**
+   * Guarda los cambios, creando o editando la dependencia  según corresponda.
+   */
+  public save() {
+    if (!this.editMode()) {
+      this.create();
+    } else {
+      this.edit();
+    }
+  }
+
+  /**
+   * Crea una  nueva dependencia con los datos del formulario.
+   */
+  public create() {
+    let dependencia: DependenciaEntity = {
+      nombreWorkflow: this.nombreWorkflowN,
+      nombre: this.nombreN,
+      nombreTareaCabeza: this.nombreTareaCabezaN,
+      nombreTareaCola: this.nombreTareaColaN,
+      estado: this.estadoN,
+      primitiva: this.primitivaN,
+      expresion: this.expresionN,
+      descripcion: this.descripcionN,
+    };
+    this.dependenciaService.createDependencia(dependencia).subscribe({
+      next: (response) => {
+        if (response && response.respuesta) {
+          if (this.uc) {
+            this.uc.mensaje = '';
+          }
+          this.dependenciaIdEdit = this.nombreN;
+          this.router.navigate([
+            `/main-page/dependencias/editardependencia?id=${this.nombreN}`,
+          ]);
         }
-      } catch (e) {
+      },
+      error: (e: any) => {
         if (this.uc) {
           this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-            Constants.ERR_OBTENIENDO_HERRAMIENTA,
+            Constants.ERR_WORKFLOW_CREAR,
             e,
           );
         }
-      }
-     }
-  
-    /**
-     * Indica si está en modo edición.
-     */
-    public editMode(): boolean {
-      return this.dependenciaIdEdit !== undefined && this.dependenciaIdEdit !== '';
-    }
-  
-    /**
-     * Maneja el cambio de Estado de la Tarea seleccionada.
-     */
-    public onEstadoChange(event:any): void {
-      console.log('Estado seleccionado:', event);
-      this.estadoObjectN = event as EstadoDependenciaEntity;
-      this.estadoN = event?.name ?? '';
-    }
-  
+      },
+    });
+  }
 
-      public onTareaChange(event:any): void {
-      console.log('tarea seleccionada:', event);
-      this.TareaObjectN = event as TareaDependenciaEntity;
-      this.TareaN = event?.name ?? '';
-    }
-      public onPrimitivaChange(event:any): void {
-      console.log('primitiva seleccionada:', event);
-      this.primitivaObjectN = event as PrimitivaDependenciaEntity;
-      this.primitivaN = event?.name ?? '';
-    }
-    /**
-     * Guarda los cambios, creando o editando la dependencia  según corresponda.
-     */
-    public save() {
-      if (!this.editMode()) {
-        this.create();
-      } else {
-        this.edit();
-      }
-    }
-  
-    /**
-     * Crea una  nueva dependencia con los datos del formulario.
-     */
-    public create() {
-      let dependencia: DependenciaEntity = {
-          nombreWorkflow: this.nombreWorkflowN, 
-          nombre:  this.nombreN,
-          nombreTareaCabeza: this.nombreTareaCabezaN, 
-          nombreTareaCola:  this.nombreTareaColaN, 
-          estado: this.estadoN, 
-          primitiva:this.primitivaN, 
-          expresion: this.expresionN,
-          descripcion:this.descripcionN, 
-      }
-      this.dependenciaService
-        .createDependencia(dependencia)
-        .subscribe({
-          next: (response) => {
-            if (response && response.respuesta) {
-              if (this.uc) {
-                this.uc.mensaje = '';
-              }
-              this.dependenciaIdEdit = this.nombreN;
-              this.router.navigate([
-                `/main-page/dependencias/editardependencia?id=${this.nombreN}`,
-              ]);
-            }
-          },
-          error: (e: any) => {
-            if (this.uc) {
-              this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-                Constants.ERR_WORKFLOW_CREAR,
-                e,
-              );
-            }
-          },
-        });
-      }
-  
-    /**
-     * Edita una dependencia existente con los datos proporcionados.
-     */
-    public edit() {
-      this.dependenciaService
+  /**
+   * Edita una dependencia existente con los datos proporcionados.
+   */
+  public edit() {
+    this.dependenciaService
       .editDependencia({
-         nombreWorkflow: this.nombreWorkflowN, 
-          nombre:  this.nombreN,
-          nombreTareaCabeza: this.nombreTareaCabezaN, 
-          nombreTareaCola:  this.nombreTareaColaN, 
-          estado: this.estadoN, 
-          primitiva:this.primitivaN, 
-          expresion: this.expresionN,
-          descripcion:this.descripcionN, 
+        nombreWorkflow: this.nombreWorkflowN,
+        nombre: this.nombreN,
+        nombreTareaCabeza: this.nombreTareaCabezaN,
+        nombreTareaCola: this.nombreTareaColaN,
+        estado: this.estadoN,
+        primitiva: this.primitivaN,
+        expresion: this.expresionN,
+        descripcion: this.descripcionN,
       } as DependenciaEntity)
       .subscribe({
-          next: (response) => {
-            if (response && response.respuesta) {
-              this.router.navigate([
-                `/main-page/workflows/editarDependencia?id=${this.nombreN}`,
-              ]);
-            }
-          },
-          error: (e) => {
+        next: (response) => {
+          if (response && response.respuesta) {
+            this.router.navigate([
+              `/main-page/workflows/editarDependencia?id=${this.nombreN}`,
+            ]);
+          }
+        },
+        error: (e) => {
+          if (this.uc) {
+            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
+              Constants.ERR_HERRAMIENTA_EDITAR,
+              e,
+            );
+          }
+        },
+      });
+  }
+
+  /**
+   * Elimina la dependencia actual.
+   */
+  public delete() {
+    this.dependenciaService
+      .deleteDependencia(this.workflowActual ?? '')
+      .subscribe({
+        next: (response) => {
+          if (response && response.respuesta) {
             if (this.uc) {
-              this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-                Constants.ERR_HERRAMIENTA_EDITAR,
-                e,
-              );
-            }
-          },
-        });
-    }
-  
-    /**
-     * Elimina la dependencia actual.
-     */
-    public delete() {
-      this.dependenciaService
-        .deleteDependencia(this.workflowActual ?? '')
-        .subscribe({
-          next: (response) => {
-            if (response && response.respuesta) {
-             if(this.uc) {
               this.uc.buscarDependencias();
               this.uc.mensaje = Constants.MSG_HERRAMIENTA_ELIMINACION_EXITOSA;
             }
-              this.router.navigate(['/main-page/dependencia']);
-            }
-          },
-          error: (e) => {
-            if (this.uc) {
-              this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-                Constants.ERR_HERRAMIENTA_ELIMINAR,
-                e,
-              );
-            }
-          },
-        });
-    }
-  
-and(): void {
-  console.log('AND ejecutado');
-}
-
-
-or(): void {
-  console.log('Or ejecutado');
-}
-NOT(): void {
-  console.log('NOT ejecutado');
-}
-atributo(): void {
-  console.log('atributo ejecutado');
-}
-    /**
-     * Cancela y regresa al listado de dependencias.
-     */
-    public cancel() {
-      if (this.uc) {
-        this.uc.mensaje = '';
-        this.uc.buscarDependencias();
-      }
-      this.router.navigate(['/main-page/dependencias']);
-    }
-  
-    /**
-     * Compara estados en el selector.
-     */
-    public compararEstados(c1: EstadoDependenciaEntity, c2: EstadoDependenciaEntity): boolean {
-      return c1.respuesta  === c2.respuesta;
-    }
+            this.router.navigate(['/main-page/dependencia']);
+          }
+        },
+        error: (e) => {
+          if (this.uc) {
+            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
+              Constants.ERR_HERRAMIENTA_ELIMINAR,
+              e,
+            );
+          }
+        },
+      });
   }
+
+  and(): void {
+    console.log('AND ejecutado');
+  }
+
+  or(): void {
+    console.log('Or ejecutado');
+  }
+  NOT(): void {
+    console.log('NOT ejecutado');
+  }
+  atributo(): void {
+    console.log('atributo ejecutado');
+  }
+  /**
+   * Cancela y regresa al listado de dependencias.
+   */
+  public cancel() {
+    if (this.uc) {
+      this.uc.mensaje = '';
+      this.uc.buscarDependencias();
+    }
+    this.router.navigate(['/main-page/dependencias']);
+  }
+
+  /**
+   * Compara estados en el selector.
+   */
+  public compararEstados(
+    c1: EstadoDependenciaEntity,
+    c2: EstadoDependenciaEntity,
+  ): boolean {
+    return c1.respuesta === c2.respuesta;
+  }
+}

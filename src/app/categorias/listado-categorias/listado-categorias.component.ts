@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { FiltrosBusquedaCategoriasComponent } from '../filtros-busqueda-categorias/filtros-busqueda-categorias.component';
 import { CategoriasComponent } from '../categorias.component';
@@ -7,6 +7,7 @@ import { CategoriasComponent } from '../categorias.component';
   selector: 'fs-listado-categorias',
   imports: [MatTableModule, FiltrosBusquedaCategoriasComponent],
   templateUrl: './listado-categorias.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-categorias.component.scss',
 })
 /**

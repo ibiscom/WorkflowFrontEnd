@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActividadRealizadaPorTareaComponent } from '../actividadrealizadaportarea.component';
 import { ActividadRealizadaPorTareaService } from '../actividadrealizadaportarea.service';
@@ -8,63 +8,64 @@ import { LoginEntity } from '../../login/login.entity';
   selector: 'ibpm-filtros-busqueda-actividadrealizadaportarea',
   imports: [FormsModule],
   templateUrl: './filtros-busqueda-actividadrealizadaportarea.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './filtros-busqueda-actividadrealizadaportarea.component.scss',
 })
 export class FiltrosBusquedaActividadRealizadaPorTareaComponent {
-generarExcel() {
-throw new Error('Method not implemented.');
-}
-generarPDF() {
-throw new Error('Method not implemented.');
-}
-consultarReporte() {
-throw new Error('Method not implemented.');
-}
-areaSeleccionada: any;
-areasList: any;
-tareaSeleccionado: any;
-tipoAlarmaSeleccionado: any;
-itemsGrafica: any;
-onProcesoChange($event: any) {
-throw new Error('Method not implemented.');
-}
-tiposAlarmaList: any;
-alarma: any;
-tareasList: any;
-tarea: any;
-estadosTareaList: any;
-estadotarea: any;
-idProcesoF: any;
-estadosProcesoList: any;
-tareaSeleccionada: any;
-procesosList: any;
-procesoSeleccionado: any;
-onAlarmaChange($event: any) {
-throw new Error('Method not implemented.');
-}
-onTareaChange($event: any) {
-throw new Error('Method not implemented.');
-}
-onEstadoTareaChange($event: any) {
-throw new Error('Method not implemented.');
-}
-onEstadoProcesoChange($event: any) {
-throw new Error('Method not implemented.');
-}
-estadoproceso: any;
-onTareaNameChange($event: any) {
-throw new Error('Method not implemented.');
-}
-onEstadoChange($event: any) {
-throw new Error('Method not implemented.');
-}
-onEventoInicioChange($event: any) {
-throw new Error('Method not implemented.');
-}
+  generarExcel() {
+    throw new Error('Method not implemented.');
+  }
+  generarPDF() {
+    throw new Error('Method not implemented.');
+  }
+  consultarReporte() {
+    throw new Error('Method not implemented.');
+  }
+  areaSeleccionada: any;
+  areasList: any;
+  tareaSeleccionado: any;
+  tipoAlarmaSeleccionado: any;
+  itemsGrafica: any;
+  onProcesoChange($event: any) {
+    throw new Error('Method not implemented.');
+  }
+  tiposAlarmaList: any;
+  alarma: any;
+  tareasList: any;
+  tarea: any;
+  estadosTareaList: any;
+  estadotarea: any;
+  idProcesoF: any;
+  estadosProcesoList: any;
+  tareaSeleccionada: any;
+  procesosList: any;
+  procesoSeleccionado: any;
+  onAlarmaChange($event: any) {
+    throw new Error('Method not implemented.');
+  }
+  onTareaChange($event: any) {
+    throw new Error('Method not implemented.');
+  }
+  onEstadoTareaChange($event: any) {
+    throw new Error('Method not implemented.');
+  }
+  onEstadoProcesoChange($event: any) {
+    throw new Error('Method not implemented.');
+  }
+  estadoproceso: any;
+  onTareaNameChange($event: any) {
+    throw new Error('Method not implemented.');
+  }
+  onEstadoChange($event: any) {
+    throw new Error('Method not implemented.');
+  }
+  onEventoInicioChange($event: any) {
+    throw new Error('Method not implemented.');
+  }
   public tareasNameF: string = '';
   public supervisorF: string = '';
   public fechaInicial: string = '';
-fechaFinal: string = '';
+  fechaFinal: string = '';
 
   // 🔹 Estado seleccionado
   public companyObjectN: any = null;
@@ -92,7 +93,7 @@ fechaFinal: string = '';
     // Si luego viene de servicio, aquí se reemplaza
     this.companiesList = [
       { id: 1, largeName: 'Activo' },
-      { id: 2, largeName: 'Inactivo' }
+      { id: 2, largeName: 'Inactivo' },
     ];
   }
 
@@ -109,26 +110,23 @@ fechaFinal: string = '';
     this.searchActividadRealizadaPorTarea(
       this.tareasNameF,
       this.supervisorF,
-      generateReportBool
+      generateReportBool,
     );
   }
 
   public searchActividadRealizadaPorTarea(
     tareasName: string,
     supervisor: string,
-    generateReport: boolean
+    generateReport: boolean,
   ): void {
     console.log(
       'Filtros recibidos:',
       tareasName,
       supervisor,
       generateReport,
-      this.companyObjectN
+      this.companyObjectN,
     );
 
     // Tu lógica actual aquí
-
-    
   }
 }
-

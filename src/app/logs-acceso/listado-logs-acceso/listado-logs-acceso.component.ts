@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { LogsAccesoComponent } from '../logs-acceso.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -8,10 +8,10 @@ import { SeleccionLogComponent } from '../seleccion-log/seleccion-log.component'
   selector: 'fs-listado-logs-acceso',
   imports: [FormsModule, RouterModule, SeleccionLogComponent],
   templateUrl: './listado-logs-acceso.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-logs-acceso.component.scss',
 })
 export class ListadoLogsAccesoComponent {
-
   public currentPage: number = 1;
   public pageSize: number = 10;
   public numberOfPages: number = 1;

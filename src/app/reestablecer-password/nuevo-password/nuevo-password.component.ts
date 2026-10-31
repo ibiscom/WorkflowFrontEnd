@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -25,6 +25,7 @@ import { ReestablecerPasswordComponent } from '../reestablecer-password.componen
     MatSlideToggleModule,
   ],
   templateUrl: './nuevo-password.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './nuevo-password.component.scss',
 })
 /**
@@ -38,9 +39,9 @@ export class NuevoPasswordComponent {
   constructor() {}
 
   onUniquePasswordChange(event: Event) {
-  const input = event.target as HTMLInputElement;
-  this.assignUniquePasswordN = input.checked;
-}
+    const input = event.target as HTMLInputElement;
+    this.assignUniquePasswordN = input.checked;
+  }
 
   /**
    * Limpia el formulario y mensaje del componente padre.
@@ -58,4 +59,3 @@ export class NuevoPasswordComponent {
     this.uc!.restorePassword(this.assignUniquePasswordN, this.passwordN);
   }
 }
-

@@ -1,4 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { LoginEntity } from '../../login/login.entity';
@@ -20,12 +25,12 @@ import { EntidadesComponentInstanceService } from '../entidades-component-instan
 import { EntidadesService } from '../entidades.service';
 import { EntidadesComponent } from '../entidades.component';
 import { CookieService } from 'ngx-cookie-service';
-import { BrowserModule } from "@angular/platform-browser";
+import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ResponsablesRolEntity } from '../ResponsablesRolEntity';
 import { ResponsableEntity } from '../Responsable.Entity';
-import { RolesEntity } from '../roles.entity'; 
+import { RolesEntity } from '../roles.entity';
 import { FsResponseEntity } from '../../entities/backend/fs-response.entity';
 
 @Component({
@@ -38,9 +43,10 @@ import { FsResponseEntity } from '../../entities/backend/fs-response.entity';
     MatIconModule,
     MatSelectModule,
     CommonModule,
-    MatSlideToggleModule
-],
+    MatSlideToggleModule,
+  ],
   templateUrl: './crear-entidades.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './crear-entidades.component.scss',
 })
 /**
@@ -52,7 +58,7 @@ export class CrearEntidadesComponent implements OnInit, OnDestroy {
   public loggedUser?: LoginEntity;
   public workflowActual: string = '';
   public userNameN: string = '';
-  public idEntidadN: number = 0; 
+  public idEntidadN: number = 0;
   public nombreEntidadN: string = '';
   public descripcionN: string = '';
   public entidadesList: EntidadesEntity[] = [];
@@ -61,18 +67,18 @@ export class CrearEntidadesComponent implements OnInit, OnDestroy {
   public rolesList: RolesEntity[] = [];
   public rolN?: RolesEntity;
   public rolesIdEdit?: string;
-  public userN : string = '';
+  public userN: string = '';
   public groupNameN: string = '';
-  public responsablesN: string [] = [];
+  public responsablesN: string[] = [];
   public uc?: EntidadesComponent;
   public nombreIdEdit?: string;
-  public responsablesRolList: ResponsableEntity [] = [];
+  public responsablesRolList: ResponsableEntity[] = [];
   public responsablesAsignadosList: ResponsableEntity[] = [];
   public responsablesAgregarList: ResponsableEntity[] = [];
   public editarRolesN: boolean = false;
   public responsablesRolE!: ResponsablesRolEntity;
   public respuestaServicio: ResponsablesRolEntity | undefined;
-responsable: any;
+  responsable: any;
 
   public constructor(
     private entidadesService: EntidadesService,
@@ -171,14 +177,12 @@ responsable: any;
       this.entidadesIdEdit = entidad.idEntidad ?? 0;
     }
   }
-      
 
   /**
    * Llena los campos del formulario con la información de la entidad en edición.
    */
-    
+
   public async fillEditFields(): Promise<void> {
-   
     try {
       const response = await firstValueFrom(
         this.entidadesService.getEntidad(
@@ -192,17 +196,19 @@ responsable: any;
         this.descripcionN = entidad.descripcion ?? '';
         this.entidadesIdEdit = entidad.idEntidad ?? 0;
         this.idEntidadN = entidad.idEntidad ?? 0;
-        console.log("FilledEditFields nombreIdEdit**", this.nombreIdEdit,this.responsablesN);
+        console.log(
+          'FilledEditFields nombreIdEdit**',
+          this.nombreIdEdit,
+          this.responsablesN,
+        );
         this.responsablesN = entidad.listaGrupos;
         this.rolesIdEdit = entidad.nombreRol ?? '';
         this.nombreRolN = entidad.nombreRol ?? '';
-        await this.getResponsablesList(); 
+        await this.getResponsablesList();
         await this.diligenciarResponsablesAsignadosEntidad();
         await this.diligenciarResponsablesAsignar();
-      
       }
-    } 
-    catch (e) {
+    } catch (e) {
       if (this.uc) {
         this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
           Constants.ERR_TAREA_DATOS,
@@ -211,33 +217,33 @@ responsable: any;
       }
     }
   }
-/* Consulta los roles  */
+  /* Consulta los roles  */
 
   public async getRolesList() {
-   this.rolesList = [];
-    try {const response:FsResponseEntity<string[]> = await firstValueFrom(
-    this.entidadesService.getRoles()
-    );
-    console.log('getRolesList Roles obtenidos:', response.respuesta);
-    if (response && response.respuesta) {
-      this.rolesList = response.respuesta.map((rol: string) => ({
-        name: rol
-      }));
-    }
-  
-      } catch (error: any) {
-        if (this.uc) {
-          this.uc.mensaje =
-            error.status === 400
-              ? ''
-              : MessageUtil.buildErrorMessageFsResponse(
-                  Constants.ERR_ROL_TAREA_ENCONTRAR,
-                  error,
-                );
-        }
+    this.rolesList = [];
+    try {
+      const response: FsResponseEntity<string[]> = await firstValueFrom(
+        this.entidadesService.getRoles(),
+      );
+      console.log('getRolesList Roles obtenidos:', response.respuesta);
+      if (response && response.respuesta) {
+        this.rolesList = response.respuesta.map((rol: string) => ({
+          name: rol,
+        }));
+      }
+    } catch (error: any) {
+      if (this.uc) {
+        this.uc.mensaje =
+          error.status === 400
+            ? ''
+            : MessageUtil.buildErrorMessageFsResponse(
+                Constants.ERR_ROL_TAREA_ENCONTRAR,
+                error,
+              );
       }
     }
-  
+  }
+
   public async onrolChange($event: any): Promise<void> {
     const rolSeleccionado = $event as RolesEntity | null;
     this.rolN = rolSeleccionado ?? undefined;
@@ -253,28 +259,31 @@ responsable: any;
     }
   }
 
-
   /**
    * Consulta los resonsables del rol entidad.
    */
   public async getResponsablesList() {
     this.responsablesRolList = [];
-    console.log('Edit entre a getresponsablesList:', this.rolesIdEdit ,
-        this.loggedUser?.user_name ,  this.entidadesIdEdit);
+    console.log(
+      'Edit entre a getresponsablesList:',
+      this.rolesIdEdit,
+      this.loggedUser?.user_name,
+      this.entidadesIdEdit,
+    );
     try {
       const response = await firstValueFrom(
-      this.entidadesService.getGroupsRol(
-        this.rolesIdEdit ?? '',
-        this.loggedUser?.user_name ?? ''     )
-    );
+        this.entidadesService.getGroupsRol(
+          this.rolesIdEdit ?? '',
+          this.loggedUser?.user_name ?? '',
+        ),
+      );
 
-   if (response?.respuesta) {
-    this.responsablesRolList = response.respuesta.map(r => ({
-    name: r,
-    selected: false
-  }));
-}
-            
+      if (response?.respuesta) {
+        this.responsablesRolList = response.respuesta.map((r) => ({
+          name: r,
+          selected: false,
+        }));
+      }
     } catch (error: any) {
       if (this.uc) {
         this.uc.mensaje =
@@ -286,7 +295,6 @@ responsable: any;
               );
       }
     }
-      
   }
 
   /**
@@ -297,17 +305,22 @@ responsable: any;
     console.log('Entre a getResponsablesRolList: nombreROLN:', this.nombreRolN);
     try {
       const response = await firstValueFrom(
-      this.entidadesService
-        .getGroupsRol(this.nombreRolN ?? '','')
+        this.entidadesService.getGroupsRol(this.nombreRolN ?? '', ''),
       );
-       console.log('Edit getResponsablesRolList: responsablesasignadoslist1:', this.responsablesRolList);
+      console.log(
+        'Edit getResponsablesRolList: responsablesasignadoslist1:',
+        this.responsablesRolList,
+      );
       if (response?.respuesta) {
-       this.responsablesRolList = response.respuesta.map(r => ({
-        name: r,
-        selected: false
-  }));
-}
-console.log('Edit getResponsablesRolList: responsablesasignadoslist2:', this.responsablesRolList);
+        this.responsablesRolList = response.respuesta.map((r) => ({
+          name: r,
+          selected: false,
+        }));
+      }
+      console.log(
+        'Edit getResponsablesRolList: responsablesasignadoslist2:',
+        this.responsablesRolList,
+      );
     } catch (error: any) {
       if (this.uc) {
         this.uc.mensaje =
@@ -319,15 +332,14 @@ console.log('Edit getResponsablesRolList: responsablesasignadoslist2:', this.res
               );
       }
     }
-   }
+  }
 
-   
   /**
    * Indica si está en modo edición.
    */
   public editMode(): boolean {
     return this.nombreIdEdit !== undefined && this.nombreIdEdit !== '';
-  console.log("rolesIdEdit", this.nombreIdEdit);
+    console.log('rolesIdEdit', this.nombreIdEdit);
   }
 
   /**
@@ -343,7 +355,10 @@ console.log('Edit getResponsablesRolList: responsablesasignadoslist2:', this.res
    */
   public save() {
     if (!this.editMode()) {
-      console.log("dentro de guardar - Save, voy a crear", this.entidadesIdEdit);
+      console.log(
+        'dentro de guardar - Save, voy a crear',
+        this.entidadesIdEdit,
+      );
       this.create();
     } else {
       this.edit();
@@ -437,28 +452,25 @@ console.log('Edit getResponsablesRolList: responsablesasignadoslist2:', this.res
     }
   }
 
- 
   /**
    * Elimina la entidad actual.
    */
   public delete() {
-    this.entidadesService
-      .deleteEntidad( this.nombreIdEdit?? '')
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
-            this.router.navigate(['/main-page/entidades']);
-          }
-        },
-        error: (e) => {
-          if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_TAREA_ELIMINAR,
-              e,
-            );
-          }
-        },
-      });
+    this.entidadesService.deleteEntidad(this.nombreIdEdit ?? '').subscribe({
+      next: (response) => {
+        if (response && response.respuesta) {
+          this.router.navigate(['/main-page/entidades']);
+        }
+      },
+      error: (e) => {
+        if (this.uc) {
+          this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
+            Constants.ERR_TAREA_ELIMINAR,
+            e,
+          );
+        }
+      },
+    });
   }
 
   /**
@@ -471,61 +483,66 @@ console.log('Edit getResponsablesRolList: responsablesasignadoslist2:', this.res
     this.router.navigate(['/main-page/entidades']);
   }
 
-
-    public diligenciarResponsablesAsignar() {
-      console.log('Entre a diligenciarrespasignar');
-      this.responsablesAgregarList = [];
-      if(this.responsablesRolList.length > 0 ) {
-      this.responsablesRolList.forEach(responsable => {
-        if (!this.responsablesAsignadosList.some(asignado => asignado === responsable )){
-            this.responsablesAgregarList.push(responsable);
-          }
-         
-        });
-   } 
+  public diligenciarResponsablesAsignar() {
+    console.log('Entre a diligenciarrespasignar');
+    this.responsablesAgregarList = [];
+    if (this.responsablesRolList.length > 0) {
+      this.responsablesRolList.forEach((responsable) => {
+        if (
+          !this.responsablesAsignadosList.some(
+            (asignado) => asignado === responsable,
+          )
+        ) {
+          this.responsablesAgregarList.push(responsable);
+        }
+      });
+    }
   }
-
- 
 
   public diligenciarResponsablesAsignadosEntidad() {
-   console.log('Entra adiligenciarrespasignadosEntidad',this.editMode());
-   console.log('Responsables asignados:', this.responsablesAsignadosList);
-  
-   if (this.editMode()) {
+    console.log('Entra adiligenciarrespasignadosEntidad', this.editMode());
+    console.log('Responsables asignados:', this.responsablesAsignadosList);
 
-    this.responsablesAsignadosList = this.responsablesN.map( 
-    (responsable: string): ResponsableEntity => ({
-    name: responsable,
-    selected: false
-    })
-   );
-       
-    console.log(
-      'Edit2 diligenciarresponsablesasignados.responsablesasignados:',
-      this.responsablesAsignadosList
-    );
+    if (this.editMode()) {
+      this.responsablesAsignadosList = this.responsablesN.map(
+        (responsable: string): ResponsableEntity => ({
+          name: responsable,
+          selected: false,
+        }),
+      );
+
+      console.log(
+        'Edit2 diligenciarresponsablesasignados.responsablesasignados:',
+        this.responsablesAsignadosList,
+      );
+    }
   }
-}
-
 
   public retirar() {
-  const nuevosAsignados: ResponsableEntity[] = [];
-  this.responsablesAsignadosList = this.responsablesAsignadosList.filter(responsable => {
-    if (responsable.selected) {
-      responsable.selected = false;
-      this.responsablesRolList.push(responsable);
-      return false; // se elimina de la lista de asignados
-    }
-    return true; // permanece en asignados
-  });
-}
-
-  public asignar() {
-    
-    this.responsablesAsignadosList.push(...this.responsablesRolList.some(responsable => responsable.selected) ? this.responsablesRolList.filter(responsable => responsable.selected) : []);
-    this.responsablesRolList = this.responsablesRolList.filter(responsable => !responsable.selected);
-    this.responsablesAsignadosList.forEach(responsable => { responsable.selected = false; });
-  
+    const nuevosAsignados: ResponsableEntity[] = [];
+    this.responsablesAsignadosList = this.responsablesAsignadosList.filter(
+      (responsable) => {
+        if (responsable.selected) {
+          responsable.selected = false;
+          this.responsablesRolList.push(responsable);
+          return false; // se elimina de la lista de asignados
+        }
+        return true; // permanece en asignados
+      },
+    );
   }
 
+  public asignar() {
+    this.responsablesAsignadosList.push(
+      ...(this.responsablesRolList.some((responsable) => responsable.selected)
+        ? this.responsablesRolList.filter((responsable) => responsable.selected)
+        : []),
+    );
+    this.responsablesRolList = this.responsablesRolList.filter(
+      (responsable) => !responsable.selected,
+    );
+    this.responsablesAsignadosList.forEach((responsable) => {
+      responsable.selected = false;
+    });
+  }
 }

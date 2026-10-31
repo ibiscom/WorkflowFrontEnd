@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -15,9 +15,9 @@ import { Router } from '@angular/router';
     MatCardModule,
     MatInputModule,
     MatFormFieldModule,
-
   ],
   templateUrl: './acciones-entidades.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './acciones-entidades.component.scss',
 })
 /**

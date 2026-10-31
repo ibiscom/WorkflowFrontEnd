@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SesionesService } from './sesiones.service';
 import { Router, RouterModule } from '@angular/router';
@@ -15,6 +15,7 @@ import { GetSessionsEntity } from '../entities/sessions/get-sessions.entity';
   selector: 'fs-sesiones',
   imports: [FormsModule, MatCardModule, RouterModule],
   templateUrl: './sesiones.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './sesiones.component.scss',
 })
 /**

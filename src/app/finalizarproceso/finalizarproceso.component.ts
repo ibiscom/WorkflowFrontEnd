@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -17,8 +17,9 @@ import { FinalizarprocesoFilterEntity } from './finalizarprocesoFilterEntity';
 
 @Component({
   selector: 'ibpm-finalizarproceso',
-  imports: [MatCardModule, RouterModule,],
+  imports: [MatCardModule, RouterModule],
   templateUrl: './finalizarproceso.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './finalizarproceso.component.scss',
 })
 export class FinalizarprocesoComponent {
@@ -41,55 +42,49 @@ export class FinalizarprocesoComponent {
     console.log('ENTRO ngOnInit');
     this.finalizarprocesoComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-   console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
-    if(this.hayWorkflowActual()) {
+    console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
+    if (this.hayWorkflowActual()) {
       console.log('SI hay workflow → voy a buscar');
-        this.buscarFinalizarproceso();
+      this.buscarFinalizarproceso();
+    } else {
+      console.log('NO hay workflow');
     }
-    else {
-    console.log('NO hay workflow');
-         }
+  }
 
-      }
-
-    public hayWorkflowActual(): boolean {
-    this.workflowActual = this.cookieService.get("workflowActual");
-    if (this.workflowActual === '') { 
+  public hayWorkflowActual(): boolean {
+    this.workflowActual = this.cookieService.get('workflowActual');
+    if (this.workflowActual === '') {
       this.mensaje = Constants.ERR_WORKFLOW_NO_SELECCIONADO;
       return false;
     }
     return true;
   }
 
-   public buscarFinalizarproceso(filtros?: FinalizarprocesoFilterEntity): void {
-    console.log("FILTROS RECIBIDOS EN PADRE:", filtros);
-      const workflowActual = this.cookieService.get('workflowActual');
-      const body: FinalizarprocesoFilterEntity = {
+  public buscarFinalizarproceso(filtros?: FinalizarprocesoFilterEntity): void {
+    console.log('FILTROS RECIBIDOS EN PADRE:', filtros);
+    const workflowActual = this.cookieService.get('workflowActual');
+    const body: FinalizarprocesoFilterEntity = {
       nombreWorkflow: workflowActual,
       nombre: filtros?.nombre ?? '',
       estado: filtros?.estado ?? '',
       primitiva: filtros?.primitiva ?? '',
       expresion: filtros?.expresion ?? '',
-      descripcion: filtros?.descripcion ?? ''
+      descripcion: filtros?.descripcion ?? '',
     };
-   console.log("BODY FINAL:", body);
-      console.log('BODY ENVIADO AL BACKEND:', body);
-  
-      this.finalizarprocesoService
-        .getFinalizarproceso(body)
-        .subscribe({
-          next: (response) => {
-            this.finalizarproceso = response.respuesta;
-            this.mensaje = '';
-          },
-          error: (err) => {
-            this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_OBTENIENDO_TAREAS,
-              err,
-            );
-          },
-        });
-    }
+    console.log('BODY FINAL:', body);
+    console.log('BODY ENVIADO AL BACKEND:', body);
 
+    this.finalizarprocesoService.getFinalizarproceso(body).subscribe({
+      next: (response) => {
+        this.finalizarproceso = response.respuesta;
+        this.mensaje = '';
+      },
+      error: (err) => {
+        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          Constants.ERR_OBTENIENDO_TAREAS,
+          err,
+        );
+      },
+    });
+  }
 }
-

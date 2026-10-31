@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ActividadPendientePorResponsableComponent } from '../actividadpendienteporresponsable.component';
 import { FiltrosBusquedaActividadPendientePorResponsableComponent } from '../filtros-busqueda-actividadpendienteporresponsable/filtros-busqueda-actividadpendienteporresponsable.component';
 import { MatTableModule } from '@angular/material/table';
@@ -6,31 +6,35 @@ import { ActividadPendientePorResponsableEntity } from '../actividadpendientepor
 
 @Component({
   selector: 'ibpm-listado-actividadpendienteporresponsable',
-  imports: [MatTableModule, FiltrosBusquedaActividadPendientePorResponsableComponent],
+  imports: [
+    MatTableModule,
+    FiltrosBusquedaActividadPendientePorResponsableComponent,
+  ],
   templateUrl: './listado-actividadpendienteporresponsable.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-actividadpendienteporresponsable.component.scss',
 })
 /**
  * Listado de actividadpendienteporresponsable con navegación a la edición y utilidades de presentación.
  */
 export class ListadoActividadPendientePorResponsableComponent {
-tareas: any;
-mostrarResultados: any;
-fechaReporte: any;
-fechaGeneracion: any;
-nombreProcesoReporte: any;
-columnasReporte: any;
-datosReporte: any;
-nombreTareaReporte: any;
-ejecutarTarea(_t14: any) {
-throw new Error('Method not implemented.');
-}
-verExpedienteTarea(_t14: any) {
-throw new Error('Method not implemented.');
-}
-verDetalle(_t14: any) {
-throw new Error('Method not implemented.');
-}
+  tareas: any;
+  mostrarResultados: any;
+  fechaReporte: any;
+  fechaGeneracion: any;
+  nombreProcesoReporte: any;
+  columnasReporte: any;
+  datosReporte: any;
+  nombreTareaReporte: any;
+  ejecutarTarea(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
+  verExpedienteTarea(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
+  verDetalle(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
   // 🔹 Variables de paginación
   public currentPage: number = 1;
   public numberOfPages: number = 1;
@@ -48,18 +52,28 @@ throw new Error('Method not implemented.');
   /**
    * Navega a la pantalla de edición de la tarea seleccionada.
    */
-  public goToEditarActividadPendientePorResponsable(actividadpendienteporresponsable: ActividadPendientePorResponsableEntity) {
+  public goToEditarActividadPendientePorResponsable(
+    actividadpendienteporresponsable: ActividadPendientePorResponsableEntity,
+  ) {
     this.parent.router.navigate([
       `/main-page/actividadpendienteporresponsable/editarActividadPendientePorResponsable/${actividadpendienteporresponsable.nombre}`,
     ]);
   }
 
-   /**
+  /**
    * Obtiene el nombre legible de la herramienta a partir del identificador.
    */
-  public getActividadPendientePorResponsableName(actividadpendienteporresponsableName: any) {
-    const actividadpendienteporresponsable = this.parent.actividadpendienteporresponsable.find((c: { nombre: any; }) => c.nombre === actividadpendienteporresponsableName);
-    return actividadpendienteporresponsable ? actividadpendienteporresponsable.nombre : '';
+  public getActividadPendientePorResponsableName(
+    actividadpendienteporresponsableName: any,
+  ) {
+    const actividadpendienteporresponsable =
+      this.parent.actividadpendienteporresponsable.find(
+        (c: { nombre: any }) =>
+          c.nombre === actividadpendienteporresponsableName,
+      );
+    return actividadpendienteporresponsable
+      ? actividadpendienteporresponsable.nombre
+      : '';
   }
 
   /**
@@ -88,10 +102,9 @@ throw new Error('Method not implemented.');
 
   seleccionarTodos = false;
 
-seleccionarTodosRegistros(): void {
-  this.parent.actividadpendienteporresponsable.forEach((item: any) => {
-    item.seleccionado = this.seleccionarTodos;
-  });
+  seleccionarTodosRegistros(): void {
+    this.parent.actividadpendienteporresponsable.forEach((item: any) => {
+      item.seleccionado = this.seleccionarTodos;
+    });
+  }
 }
-}
-

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { GrupoComponent } from '../grupo.component';
 import { GrupoService } from '../grupo.service';
@@ -8,6 +8,7 @@ import { LoginEntity } from '../../login/login.entity';
   selector: 'ibpm-filtros-busqueda-grupo',
   imports: [FormsModule],
   templateUrl: './filtros-busqueda-grupo.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './filtros-busqueda-grupo.component.scss',
 })
 export class FiltrosBusquedaGrupoComponent {
@@ -40,7 +41,7 @@ export class FiltrosBusquedaGrupoComponent {
     // Si luego viene de servicio, aquí se reemplaza
     this.companiesList = [
       { id: 1, largeName: 'Activo' },
-      { id: 2, largeName: 'Inactivo' }
+      { id: 2, largeName: 'Inactivo' },
     ];
   }
 
@@ -54,27 +55,22 @@ export class FiltrosBusquedaGrupoComponent {
   public search(): void {
     const generateReportBool = this.generateReportF === 'true';
 
-    this.searchGrupo(
-      this.grupoNameF,
-      this.supervisorF,
-      generateReportBool
-    );
+    this.searchGrupo(this.grupoNameF, this.supervisorF, generateReportBool);
   }
 
   public searchGrupo(
     grupoName: string,
     supervisor: string,
-    generateReport: boolean
+    generateReport: boolean,
   ): void {
     console.log(
       'Filtros recibidos:',
       grupoName,
       supervisor,
       generateReport,
-      this.companyObjectN
+      this.companyObjectN,
     );
 
     // Tu lógica actual aquí
   }
 }
-

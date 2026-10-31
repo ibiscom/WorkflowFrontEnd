@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SimulacionComponent } from '../simulacion.component';
 import { SimulacionService } from '../simulacion.service';
@@ -8,33 +8,34 @@ import { LoginEntity } from '../../login/login.entity';
   selector: 'ibpm-filtros-busqueda-simulacion',
   imports: [FormsModule],
   templateUrl: './filtros-busqueda-simulacion.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './filtros-busqueda-simulacion.component.scss',
 })
 export class FiltrosBusquedaSimulacionComponent {
-valorAtributoF: any;
-atributoF: any;
-eventosInicioList: any;
-eventoInicio: any;
-iniciar() {
-throw new Error('Method not implemented.');
-}
-existeInstancia: any;
-verModelo() {
-throw new Error('Method not implemented.');
-}
-verExpediente() {
-throw new Error('Method not implemented.');
-}
-terminar() {
-throw new Error('Method not implemented.');
-}
-onEventoInicioChange($event: any) {
-throw new Error('Method not implemented.');
-}
+  valorAtributoF: any;
+  atributoF: any;
+  eventosInicioList: any;
+  eventoInicio: any;
+  iniciar() {
+    throw new Error('Method not implemented.');
+  }
+  existeInstancia: any;
+  verModelo() {
+    throw new Error('Method not implemented.');
+  }
+  verExpediente() {
+    throw new Error('Method not implemented.');
+  }
+  terminar() {
+    throw new Error('Method not implemented.');
+  }
+  onEventoInicioChange($event: any) {
+    throw new Error('Method not implemented.');
+  }
   public tareasNameF: string = '';
   public supervisorF: string = '';
   public fechaInicial: string = '';
-fechaFinal: string = '';
+  fechaFinal: string = '';
 
   // 🔹 Estado seleccionado
   public companyObjectN: any = null;
@@ -62,7 +63,7 @@ fechaFinal: string = '';
     // Si luego viene de servicio, aquí se reemplaza
     this.companiesList = [
       { id: 1, largeName: 'Activo' },
-      { id: 2, largeName: 'Inactivo' }
+      { id: 2, largeName: 'Inactivo' },
     ];
   }
 
@@ -79,26 +80,23 @@ fechaFinal: string = '';
     this.searchSimulacion(
       this.tareasNameF,
       this.supervisorF,
-      generateReportBool
+      generateReportBool,
     );
   }
 
   public searchSimulacion(
     tareasName: string,
     supervisor: string,
-    generateReport: boolean
+    generateReport: boolean,
   ): void {
     console.log(
       'Filtros recibidos:',
       tareasName,
       supervisor,
       generateReport,
-      this.companyObjectN
+      this.companyObjectN,
     );
 
     // Tu lógica actual aquí
-
-    
   }
 }
-

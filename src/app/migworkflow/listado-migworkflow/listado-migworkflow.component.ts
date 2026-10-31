@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MigworkflowComponent } from '../migworkflow.component';
 import { FiltrosBusquedaMigworkflowComponent } from '../filtros-busqueda-migworkflow/filtros-busqueda-migworkflow.component';
 import { MatTableModule } from '@angular/material/table';
@@ -8,6 +8,7 @@ import { MigworkflowEntity } from '../migworkflow.entity';
   selector: 'ibpm-listado-migworkflow',
   imports: [MatTableModule, FiltrosBusquedaMigworkflowComponent],
   templateUrl: './listado-migworkflow.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-migworkflow.component.scss',
 })
 /**

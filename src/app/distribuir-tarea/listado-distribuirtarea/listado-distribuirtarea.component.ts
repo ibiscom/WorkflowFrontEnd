@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DistribuirtareaComponent } from '../distribuirtarea.component';
 import { FiltrosBusquedaDistribuirtareaComponent } from '../filtros-busqueda-distribuirtarea/filtros-busqueda-distribuirtarea.component';
 import { MatTableModule } from '@angular/material/table';
@@ -8,6 +8,7 @@ import { DistribuirtareaEntity } from '../distribuirtarea.entity';
   selector: 'ibpm-listado-distribuirtarea',
   imports: [MatTableModule, FiltrosBusquedaDistribuirtareaComponent],
   templateUrl: './listado-distribuirtarea.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-distribuirtarea.component.scss',
 })
 /**
@@ -37,11 +38,13 @@ export class ListadoDistribuirtareaComponent {
     ]);
   }
 
-   /**
+  /**
    * Obtiene el nombre legible de la herramienta a partir del identificador.
    */
   public getDistribuirtareaName(distribuirtareaName: any) {
-    const distribuirtarea = this.parent.distribuirtareas.find((c) => c.nombre === distribuirtareaName);
+    const distribuirtarea = this.parent.distribuirtareas.find(
+      (c) => c.nombre === distribuirtareaName,
+    );
     return distribuirtarea ? distribuirtarea.nombre : '';
   }
 
@@ -71,10 +74,9 @@ export class ListadoDistribuirtareaComponent {
 
   seleccionarTodos = false;
 
-seleccionarTodosRegistros(): void {
-  this.parent.distribuirtareas.forEach((item: any) => {
-    item.seleccionado = this.seleccionarTodos;
-  });
+  seleccionarTodosRegistros(): void {
+    this.parent.distribuirtareas.forEach((item: any) => {
+      item.seleccionado = this.seleccionarTodos;
+    });
+  }
 }
-}
-

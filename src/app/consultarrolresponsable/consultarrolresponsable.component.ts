@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -14,12 +14,17 @@ import { CompaniasService } from '../companias/companias.service';
 import { ConsultarRolResponsableEntity } from './consultarrolresponsable.entity';
 import { CookieService } from 'ngx-cookie-service';
 import { ConsultarRolResponsablesFilterEntity } from './consultarrolreponsable-filter.entity';
-import { FiltrosBusquedaConsultarRolResponsableComponent } from "./filtros-busqueda-consultarrolresponsable/filtros-busqueda-consultarrolresponsable.component";
+import { FiltrosBusquedaConsultarRolResponsableComponent } from './filtros-busqueda-consultarrolresponsable/filtros-busqueda-consultarrolresponsable.component';
 
 @Component({
   selector: 'ibpm-consultarrolresponsable',
-  imports: [MatCardModule, RouterModule, FiltrosBusquedaConsultarRolResponsableComponent],
+  imports: [
+    MatCardModule,
+    RouterModule,
+    FiltrosBusquedaConsultarRolResponsableComponent,
+  ],
   templateUrl: './consultarrolresponsable.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './consultarrolresponsable.component.scss',
 })
 export class ConsultarRolResponsableComponent {
@@ -37,44 +42,42 @@ export class ConsultarRolResponsableComponent {
     private cookieService: CookieService,
   ) {}
 
-    ngOnInit(): void {
-      this.consultarRolResponsableComponentInstanceService.setInstance(this);
-      this.loggedUser = this.loginService.getLoggedUser();
-      this.buscarResponsables();
-    }
-  
-    public buscarResponsables(filtros?: ConsultarRolResponsablesFilterEntity): void {
-      this.consultarRolResponsableService
-        .getUsersRol(filtros?.userLogin || '')
-        .subscribe({
-          next: (response) => {
-            this.responsables = response.respuesta;
-            this.mensaje = '';
-          },
-          error: (err) => {
-            this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_OBTENIENDO_RESPONSABLES,
-              err,
-            );
-          },
-        });
-    }
-  
-      public obtenerResponsables(): void {
+  ngOnInit(): void {
+    this.consultarRolResponsableComponentInstanceService.setInstance(this);
+    this.loggedUser = this.loginService.getLoggedUser();
+    this.buscarResponsables();
+  }
+
+  public buscarResponsables(
+    filtros?: ConsultarRolResponsablesFilterEntity,
+  ): void {
     this.consultarRolResponsableService
-      .getUsersRol('')
+      .getUsersRol(filtros?.userLogin || '')
       .subscribe({
         next: (response) => {
           this.responsables = response.respuesta;
+          this.mensaje = '';
         },
         error: (err) => {
           this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-            Constants.ERR_OBTENIENDO_RESPONSABLESS,
+            Constants.ERR_OBTENIENDO_RESPONSABLES,
             err,
           );
         },
       });
-
   }
 
+  public obtenerResponsables(): void {
+    this.consultarRolResponsableService.getUsersRol('').subscribe({
+      next: (response) => {
+        this.responsables = response.respuesta;
+      },
+      error: (err) => {
+        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          Constants.ERR_OBTENIENDO_RESPONSABLESS,
+          err,
+        );
+      },
+    });
   }
+}

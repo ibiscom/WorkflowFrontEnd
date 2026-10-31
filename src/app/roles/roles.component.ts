@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -19,6 +19,7 @@ import { RolesFilterEntity } from './roles-filter.entity';
   selector: 'ibpm-roles',
   imports: [MatCardModule, RouterModule, AccionesRolesComponent],
   templateUrl: './roles.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './roles.component.scss',
 })
 export class RolesComponent {
@@ -26,37 +27,33 @@ export class RolesComponent {
   public roles: RolesEntity[] = [];
   public groups: GroupEntity[] = [];
   public mensaje: string = '';
-  
- 
+
   constructor(
     private rolesService: RolesService,
     private companiasService: CompaniasService,
     private rolesComponentInstanceService: RolesComponentInstanceService,
     private loginService: LoginService,
     public router: Router,
-  ) { 
-     }
+  ) {}
 
   ngOnInit(): void {
     this.rolesComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-        this.buscarRoles();
+    this.buscarRoles();
   }
 
   public buscarRoles(filtros?: RolesFilterEntity): void {
-      this.rolesService
-        .getRols(filtros || {})
-        .subscribe({
-          next: (response) => {
-            this.roles = response.respuesta;
-            this.mensaje = '';
-          },
-          error: (err) => {
-            this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_OBTENIENDO_WORKFLOWS,
-              err,
-            );
-          },
-        });
-    }
+    this.rolesService.getRols(filtros || {}).subscribe({
+      next: (response) => {
+        this.roles = response.respuesta;
+        this.mensaje = '';
+      },
+      error: (err) => {
+        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          Constants.ERR_OBTENIENDO_WORKFLOWS,
+          err,
+        );
+      },
+    });
   }
+}

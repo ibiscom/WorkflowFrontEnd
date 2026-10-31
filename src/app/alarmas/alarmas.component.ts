@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -17,6 +17,7 @@ import { CookieService } from 'ngx-cookie-service';
   selector: 'ibpm-alarmas',
   imports: [MatCardModule, RouterModule, AccionesAlarmaComponent],
   templateUrl: './alarmas.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './alarmas.component.scss',
 })
 export class AlarmaComponent {
@@ -38,14 +39,14 @@ export class AlarmaComponent {
     console.log('ENTRO ngOnInit');
     this.alarmaComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-    if(this.hayWorkflowActual()) {
+    if (this.hayWorkflowActual()) {
       this.buscarAlarma();
     }
   }
 
   public hayWorkflowActual(): boolean {
-    this.workflowActual = this.cookieService.get("workflowActual");
-    if (!this.workflowActual || this.workflowActual === '') { 
+    this.workflowActual = this.cookieService.get('workflowActual');
+    if (!this.workflowActual || this.workflowActual === '') {
       this.mensaje = Constants.ERR_WORKFLOW_NO_SELECCIONADO;
       return false;
     }
@@ -53,13 +54,11 @@ export class AlarmaComponent {
   }
 
   public buscarAlarma(): void {
-    console.log('ENTRO buscarAlarmas',this.workflowActual);
-    this.alarmaService
-    .obtenerAlarmas(this.workflowActual)
-    .subscribe({
+    console.log('ENTRO buscarAlarmas', this.workflowActual);
+    this.alarmaService.obtenerAlarmas(this.workflowActual).subscribe({
       next: (response) => {
         this.alarmas = response.respuesta;
-        
+
         console.log('Alarma obtenida:', this.alarmas);
       },
       error: (err: any) => {
@@ -71,4 +70,3 @@ export class AlarmaComponent {
     });
   }
 }
-

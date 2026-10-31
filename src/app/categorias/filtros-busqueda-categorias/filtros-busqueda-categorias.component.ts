@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CategoriasComponent } from '../categorias.component';
 import { CategoriasService } from '../categorias.service';
@@ -9,6 +9,7 @@ import { LoginEntity } from '../../login/login.entity';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './filtros-busqueda-categorias.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './filtros-busqueda-categorias.component.scss',
 })
 export class FiltrosBusquedaCategoriasComponent {

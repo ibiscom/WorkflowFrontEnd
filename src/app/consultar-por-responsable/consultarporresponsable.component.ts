@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -17,8 +17,9 @@ import { ConsultarPorResponsableEntity } from './consultarporresponsable.entity'
 
 @Component({
   selector: 'ibpm-consultarporresponsable',
-  imports: [MatCardModule, RouterModule,],
+  imports: [MatCardModule, RouterModule],
   templateUrl: './consultarporresponsable.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './consultarporresponsable.component.scss',
 })
 export class ConsultarPorResponsableComponent {
@@ -31,7 +32,7 @@ export class ConsultarPorResponsableComponent {
   constructor(
     private consultarporresponsableService: ConsultarPorResponsableService,
     private companiasService: CompaniasService,
-    private consultarporresponsableComponentInstanceService: ConsultarPorResponsableComponentInstanceService ,
+    private consultarporresponsableComponentInstanceService: ConsultarPorResponsableComponentInstanceService,
     private loginService: LoginService,
     public router: Router,
     private cookieService: CookieService,
@@ -41,55 +42,53 @@ export class ConsultarPorResponsableComponent {
     console.log('ENTRO ngOnInit');
     this.consultarporresponsableComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-   console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
-    if(this.hayWorkflowActual()) {
+    console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
+    if (this.hayWorkflowActual()) {
       console.log('SI hay workflow → voy a buscar');
-        this.buscarConsultarPorResponsable();
+      this.buscarConsultarPorResponsable();
+    } else {
+      console.log('NO hay workflow');
     }
-    else {
-    console.log('NO hay workflow');
-         }
+  }
 
-      }
-
-    public hayWorkflowActual(): boolean {
-    this.workflowActual = this.cookieService.get("workflowActual");
-    if (this.workflowActual === '') { 
+  public hayWorkflowActual(): boolean {
+    this.workflowActual = this.cookieService.get('workflowActual');
+    if (this.workflowActual === '') {
       this.mensaje = Constants.ERR_WORKFLOW_NO_SELECCIONADO;
       return false;
     }
     return true;
   }
 
-   public buscarConsultarPorResponsable(filtros?: ConsultarPorResponsableFilterEntity): void {
-    console.log("FILTROS RECIBIDOS EN PADRE:", filtros);
-      const workflowActual = this.cookieService.get('workflowActual');
-      const body: ConsultarPorResponsableFilterEntity = {
+  public buscarConsultarPorResponsable(
+    filtros?: ConsultarPorResponsableFilterEntity,
+  ): void {
+    console.log('FILTROS RECIBIDOS EN PADRE:', filtros);
+    const workflowActual = this.cookieService.get('workflowActual');
+    const body: ConsultarPorResponsableFilterEntity = {
       nombreWorkflow: workflowActual,
       nombre: filtros?.nombre ?? '',
       estado: filtros?.estado ?? '',
       primitiva: filtros?.primitiva ?? '',
       expresion: filtros?.expresion ?? '',
-      descripcion: filtros?.descripcion ?? ''
+      descripcion: filtros?.descripcion ?? '',
     };
-   console.log("BODY FINAL:", body);
-      console.log('BODY ENVIADO AL BACKEND:', body);
-  
-      this.consultarporresponsableService
-        .getConsultarPorResponsable(body)
-        .subscribe({
-          next: (response) => {
-            this.consultarporresponsable = response.respuesta;
-            this.mensaje = '';
-          },
-          error: (err) => {
-            this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_OBTENIENDO_TAREAS,
-              err,
-            );
-          },
-        });
-    }
+    console.log('BODY FINAL:', body);
+    console.log('BODY ENVIADO AL BACKEND:', body);
 
+    this.consultarporresponsableService
+      .getConsultarPorResponsable(body)
+      .subscribe({
+        next: (response) => {
+          this.consultarporresponsable = response.respuesta;
+          this.mensaje = '';
+        },
+        error: (err) => {
+          this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+            Constants.ERR_OBTENIENDO_TAREAS,
+            err,
+          );
+        },
+      });
+  }
 }
-

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UsuariosService } from '../usuarios/usuarios.service';
 import { LoginService } from '../login/login.service';
@@ -25,6 +25,7 @@ import { Constants } from '../utils/constants';
   selector: 'fs-actualizar-datos',
   imports: [FormsModule],
   templateUrl: './actualizar-datos.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./actualizar-datos.component.scss'],
 })
 /**

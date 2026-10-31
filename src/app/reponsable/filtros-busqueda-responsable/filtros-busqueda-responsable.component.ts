@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ResponsableComponent } from '../responsable.component';
 import { ResponsableService } from '../responsable.service';
@@ -10,12 +10,13 @@ import { ResponsablesFilterEntity } from '../reponsable-filter.entity';
   selector: 'ibpm-filtros-busqueda-responsable',
   imports: [FormsModule],
   templateUrl: './filtros-busqueda-responsable.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './filtros-busqueda-responsable.component.scss',
 })
 export class FiltrosBusquedaResponsableComponent {
-search() {
-throw new Error('Method not implemented.');
-}
+  search() {
+    throw new Error('Method not implemented.');
+  }
   public userLoguinB: string = '';
   public userRolNameB: string = '';
 
@@ -39,10 +40,8 @@ throw new Error('Method not implemented.');
 
   // 🔹 Simulación / carga de responsables
   private loadResponsables(): void {
-      this.uc?.obtenerResponsables();
+    this.uc?.obtenerResponsables();
   }
-
-
 
   // Cambio del select
   public onResponsableChange(value: any): void {
@@ -52,15 +51,12 @@ throw new Error('Method not implemented.');
 
   // Ejecuta búsqueda
 
-  public searchResponsables(
-    userLoguin: string,
-    userRolName: string,
-  ): void {
+  public searchResponsables(userLoguin: string, userRolName: string): void {
     console.log(
       'Filtros recibidos:',
       userLoguin,
       userRolName,
-      this.responsableObjectN
+      this.responsableObjectN,
     );
 
     // Tu lógica actual aquí

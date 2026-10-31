@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { LoginEntity } from '../login/login.entity';
 import { CategoryEntity } from '../entities/categories/category.entity';
 import { LoginService } from '../login/login.service';
@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
   ],
   templateUrl: './categorias.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './categorias.component.scss',
 })
 /**

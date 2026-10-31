@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { WorkflowComponent } from '../workflow.component';
 import { WorkflowService } from '../workflow.service';
@@ -12,6 +12,7 @@ import { EstadoWorkflowEntity } from '../estado-workflow.entity';
   selector: 'ibpm-filtros-busqueda-workflow',
   imports: [FormsModule],
   templateUrl: './filtros-busqueda-workflow.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './filtros-busqueda-workflow.component.scss',
 })
 export class FiltrosBusquedaWorkflowComponent {
@@ -38,10 +39,8 @@ export class FiltrosBusquedaWorkflowComponent {
 
   // 🔹 Simulación / carga de estados
   private loadEstados(): void {
-      this.uc?.obtenerEstados();
+    this.uc?.obtenerEstados();
   }
-
-
 
   // Cambio del select
   public onEstadoChange(value: any): void {
@@ -59,22 +58,20 @@ export class FiltrosBusquedaWorkflowComponent {
       estado: this.estadoObjectN ? this.estadoObjectN.name : undefined,
     };
 
-    this.uc?.buscarWorkflows(
-      filtros
-    );
+    this.uc?.buscarWorkflows(filtros);
   }
 
   public searchWorkflow(
     workflowName: string,
     nombreLargo: string,
-    generateReport: boolean
+    generateReport: boolean,
   ): void {
     console.log(
       'Filtros recibidos:',
       workflowName,
       nombreLargo,
       generateReport,
-      this.estadoObjectN
+      this.estadoObjectN,
     );
 
     // Tu lógica actual aquí

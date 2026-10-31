@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 
 import { AccionesUsuariosComponent } from './acciones-usuarios/acciones-usuarios.component';
@@ -18,6 +18,7 @@ import { FileUtil } from '../utils/file.util';
   selector: 'fs-usuarios',
   imports: [MatCardModule, RouterModule, AccionesUsuariosComponent],
   templateUrl: './usuarios.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './usuarios.component.scss',
 })
 /**

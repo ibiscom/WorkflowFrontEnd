@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { EventoInicioComponent } from '../eventoinicio.component';
 import { MatTableModule } from '@angular/material/table';
 import { EventoInicioEntity } from '../eventoinicio.entity';
@@ -7,6 +7,7 @@ import { EventoInicioEntity } from '../eventoinicio.entity';
   selector: 'ibpm-listado-evento-inicio',
   imports: [MatTableModule],
   templateUrl: './listado-eventoinicio.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-eventoinicio.component.scss',
 })
 /**
@@ -36,15 +37,16 @@ export class ListadoEventoInicioComponent {
     ]);
   }
 
-   /**
+  /**
    * Obtiene el nombre legible de la herramienta a partir del identificador.
    */
   public getEventoInicioName(eventoInicioName: any) {
-    const eventoInicio = this.parent.eventosInicio.find((c: EventoInicioEntity) => c.nombreEvento === eventoInicioName);
+    const eventoInicio = this.parent.eventosInicio.find(
+      (c: EventoInicioEntity) => c.nombreEvento === eventoInicioName,
+    );
     return eventoInicio ? eventoInicio.nombreEvento : '';
   }
 
-  
   // 🔹 Ir a página anterior
   public previousPage(): void {
     if (this.currentPage > 1) {
@@ -61,4 +63,3 @@ export class ListadoEventoInicioComponent {
     }
   }
 }
-

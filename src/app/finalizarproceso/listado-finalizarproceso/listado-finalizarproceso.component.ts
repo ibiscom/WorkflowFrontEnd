@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FinalizarprocesoComponent } from '../finalizarproceso.component';
 import { FiltrosBusquedaFinalizarprocesoComponent } from '../filtros-busqueda-finalizarproceso/filtros-busqueda-finalizarproceso.component';
 import { MatTableModule } from '@angular/material/table';
@@ -8,6 +8,7 @@ import { FinalizarprocesoEntity } from '../finalizarproceso.entity';
   selector: 'ibpm-listado-finalizarproceso',
   imports: [MatTableModule, FiltrosBusquedaFinalizarprocesoComponent],
   templateUrl: './listado-finalizarproceso.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-finalizarproceso.component.scss',
 })
 /**
@@ -37,11 +38,13 @@ export class ListadoFinalizarprocesoComponent {
     ]);
   }
 
-   /**
+  /**
    * Obtiene el nombre legible de la herramienta a partir del identificador.
    */
   public getFinalizarprocesoName(finalizarprocesoName: any) {
-    const finalizarproceso = this.parent.finalizarproceso.find((c) => c.nombre === finalizarprocesoName);
+    const finalizarproceso = this.parent.finalizarproceso.find(
+      (c) => c.nombre === finalizarprocesoName,
+    );
     return finalizarproceso ? finalizarproceso.nombre : '';
   }
 
@@ -71,10 +74,9 @@ export class ListadoFinalizarprocesoComponent {
 
   seleccionarTodos = false;
 
-seleccionarTodosRegistros(): void {
-  this.parent.finalizarproceso.forEach((item: any) => {
-    item.seleccionado = this.seleccionarTodos;
-  });
+  seleccionarTodosRegistros(): void {
+    this.parent.finalizarproceso.forEach((item: any) => {
+      item.seleccionado = this.seleccionarTodos;
+    });
+  }
 }
-}
-

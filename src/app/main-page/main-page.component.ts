@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { MenuComponent } from '../menu/menu.component';
 import { RouterOutlet } from '@angular/router';
@@ -28,6 +28,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
   ],
   templateUrl: './main-page.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './main-page.component.scss',
 })
 /**

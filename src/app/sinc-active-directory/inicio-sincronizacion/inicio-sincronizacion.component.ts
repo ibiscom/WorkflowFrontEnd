@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -21,6 +21,7 @@ import { SincActiveDirectoryComponent } from '../sinc-active-directory.component
     MatSlideToggleModule,
   ],
   templateUrl: './inicio-sincronizacion.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./inicio-sincronizacion.component.scss'],
 })
 export class InicioSincronizacionComponent {

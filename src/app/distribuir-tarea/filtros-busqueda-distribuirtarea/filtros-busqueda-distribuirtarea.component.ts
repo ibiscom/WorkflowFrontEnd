@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DistribuirtareaComponent } from '../distribuirtarea.component';
 import { DistribuirtareaService } from '../distribuirtarea.service';
@@ -8,13 +8,14 @@ import { LoginEntity } from '../../login/login.entity';
   selector: 'ibpm-filtros-busqueda-distribuirtarea',
   imports: [FormsModule],
   templateUrl: './filtros-busqueda-distribuirtarea.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './filtros-busqueda-distribuirtarea.component.scss',
 })
 export class FiltrosBusquedaDistribuirtareaComponent {
-idNegocio: any;
-getListaResponsables($event: any) {
-throw new Error('Method not implemented.');
-}
+  idNegocio: any;
+  getListaResponsables($event: any) {
+    throw new Error('Method not implemented.');
+  }
   public tareasNameF: string = '';
   public supervisorF: string = '';
 
@@ -29,11 +30,11 @@ throw new Error('Method not implemented.');
 
   @Input() public uc?: DistribuirtareaComponent;
   public loggedUser: LoginEntity | undefined;
-responsableSeleccionado: any;
-responsables: any;
-cuentaUsuario: any;
-instancia: any;
-estado: any;
+  responsableSeleccionado: any;
+  responsables: any;
+  cuentaUsuario: any;
+  instancia: any;
+  estado: any;
 
   constructor(private tareasService: DistribuirtareaService) {}
 
@@ -49,7 +50,7 @@ estado: any;
     // Si luego viene de servicio, aquí se reemplaza
     this.companiesList = [
       { id: 1, largeName: 'Activo' },
-      { id: 2, largeName: 'Inactivo' }
+      { id: 2, largeName: 'Inactivo' },
     ];
   }
 
@@ -66,24 +67,23 @@ estado: any;
     this.searchFinalizarproceso(
       this.tareasNameF,
       this.supervisorF,
-      generateReportBool
+      generateReportBool,
     );
   }
 
   public searchFinalizarproceso(
     tareasName: string,
     supervisor: string,
-    generateReport: boolean
+    generateReport: boolean,
   ): void {
     console.log(
       'Filtros recibidos:',
       tareasName,
       supervisor,
       generateReport,
-      this.companyObjectN
+      this.companyObjectN,
     );
 
     // Tu lógica actual aquí
   }
 }
-

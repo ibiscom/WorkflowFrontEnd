@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { GrupoComponent } from '../grupo.component';
 import { FiltrosBusquedaGrupoComponent } from '../filtros-busqueda-grupo/filtros-busqueda-grupo.component';
 import { MatTableModule } from '@angular/material/table';
@@ -8,6 +8,7 @@ import { GrupoEntity } from '../grupo.entity';
   selector: 'ibpm-listado-grupo',
   imports: [MatTableModule],
   templateUrl: './listado-grupo.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-grupo.component.scss',
 })
 /**
@@ -65,4 +66,3 @@ export class ListadoGrupoComponent {
   }
     */
 }
-

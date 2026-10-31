@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -26,6 +26,7 @@ import { Constants } from '../../utils/constants';
     MatSelectModule,
   ],
   templateUrl: './crear-tipo-identificacion.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './crear-tipo-identificacion.component.scss',
 })
 /**

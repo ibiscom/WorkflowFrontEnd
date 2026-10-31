@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ConsultarPorResponsableComponent } from '../consultarporresponsable.component';
 import { ConsultarPorResponsableService } from '../consultarporresponsable.service';
@@ -8,44 +8,45 @@ import { LoginEntity } from '../../login/login.entity';
   selector: 'ibpm-filtros-busqueda-consultarporresponsable',
   imports: [FormsModule],
   templateUrl: './filtros-busqueda-consultarporresponsable.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './filtros-busqueda-consultarporresponsable.component.scss',
 })
 export class FiltrosBusquedaConsultarPorResponsableComponent {
-tiposAlarmaList: any;
-alarma: any;
-responsablesList: any;
-responsable: any;
-estadosTareaList: any;
-estadotarea: any;
-tareasList: any;
-idProcesoF: any;
-estadosProcesoList: any;
-onAlarmaChange($event: any) {
-throw new Error('Method not implemented.');
-}
-onResponsableChange($event: any) {
-throw new Error('Method not implemented.');
-}
-onEstadoTareaChange($event: any) {
-throw new Error('Method not implemented.');
-}
-onEstadoProcesoChange($event: any) {
-throw new Error('Method not implemented.');
-}
-estadoproceso: any;
-onTareaNameChange($event: any) {
-throw new Error('Method not implemented.');
-}
-onEstadoChange($event: any) {
-throw new Error('Method not implemented.');
-}
-onEventoInicioChange($event: any) {
-throw new Error('Method not implemented.');
-}
+  tiposAlarmaList: any;
+  alarma: any;
+  responsablesList: any;
+  responsable: any;
+  estadosTareaList: any;
+  estadotarea: any;
+  tareasList: any;
+  idProcesoF: any;
+  estadosProcesoList: any;
+  onAlarmaChange($event: any) {
+    throw new Error('Method not implemented.');
+  }
+  onResponsableChange($event: any) {
+    throw new Error('Method not implemented.');
+  }
+  onEstadoTareaChange($event: any) {
+    throw new Error('Method not implemented.');
+  }
+  onEstadoProcesoChange($event: any) {
+    throw new Error('Method not implemented.');
+  }
+  estadoproceso: any;
+  onTareaNameChange($event: any) {
+    throw new Error('Method not implemented.');
+  }
+  onEstadoChange($event: any) {
+    throw new Error('Method not implemented.');
+  }
+  onEventoInicioChange($event: any) {
+    throw new Error('Method not implemented.');
+  }
   public tareasNameF: string = '';
   public supervisorF: string = '';
   public fechaInicial: string = '';
-fechaFinal: string = '';
+  fechaFinal: string = '';
 
   // 🔹 Estado seleccionado
   public companyObjectN: any = null;
@@ -73,7 +74,7 @@ fechaFinal: string = '';
     // Si luego viene de servicio, aquí se reemplaza
     this.companiesList = [
       { id: 1, largeName: 'Activo' },
-      { id: 2, largeName: 'Inactivo' }
+      { id: 2, largeName: 'Inactivo' },
     ];
   }
 
@@ -90,26 +91,23 @@ fechaFinal: string = '';
     this.searchConsultarPorResponsable(
       this.tareasNameF,
       this.supervisorF,
-      generateReportBool
+      generateReportBool,
     );
   }
 
   public searchConsultarPorResponsable(
     tareasName: string,
     supervisor: string,
-    generateReport: boolean
+    generateReport: boolean,
   ): void {
     console.log(
       'Filtros recibidos:',
       tareasName,
       supervisor,
       generateReport,
-      this.companyObjectN
+      this.companyObjectN,
     );
 
     // Tu lógica actual aquí
-
-    
   }
 }
-

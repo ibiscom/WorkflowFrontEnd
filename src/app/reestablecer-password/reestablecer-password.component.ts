@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { NuevoPasswordComponent } from './nuevo-password/nuevo-password.component';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
@@ -11,6 +11,7 @@ import { RestorePasswordEntity } from '../entities/passwords/restore-password.en
   selector: 'fs-reestablecer-password',
   imports: [MatCardModule, RouterModule, NuevoPasswordComponent],
   templateUrl: './reestablecer-password.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './reestablecer-password.component.scss',
 })
 /**

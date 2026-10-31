@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -18,6 +18,7 @@ import { GrupoComponentInstanceService } from './grupo-component-instance.servic
   selector: 'ibpm-grupo',
   imports: [MatCardModule, RouterModule, AccionesGrupoComponent],
   templateUrl: './grupo.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './grupo.component.scss',
 })
 export class GrupoComponent {
@@ -38,42 +39,39 @@ export class GrupoComponent {
   ngOnInit(): void {
     this.grupoComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-    if(this.hayWorkflowActual()) {
+    if (this.hayWorkflowActual()) {
       this.obtenerTipos();
       this.buscarGrupos();
     }
   }
 
   public hayWorkflowActual(): boolean {
-    this.workflowActual = this.cookieService.get("workflowActual");
-    if (this.workflowActual === '') { 
+    this.workflowActual = this.cookieService.get('workflowActual');
+    if (this.workflowActual === '') {
       this.mensaje = Constants.ERR_WORKFLOW_NO_SELECCIONADO;
       return false;
     }
     return true;
   }
 
+  public buscarGrupos(noLimpiar?: boolean): void {
+    this.grupoService.getGrupos(this.workflowActual).subscribe({
+      next: (response) => {
+        this.grupos = response.respuesta;
+        if (!noLimpiar) {
+          this.mensaje = '';
+        }
+      },
+      error: (err) => {
+        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          Constants.ERR_OBTENIENDO_HERRAMIENTAS,
+          err,
+        );
+      },
+    });
+  }
 
- public  buscarGrupos(noLimpiar?:boolean): void {
-     this.grupoService
-       .getGrupos(this.workflowActual)
-       .subscribe({
-         next: (response) => {
-           this.grupos = response.respuesta;          
-           if(!noLimpiar) {
-             this.mensaje = '';
-           }
-         },
-         error: (err) => {
-           this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-             Constants.ERR_OBTENIENDO_HERRAMIENTAS,
-             err,
-           );
-         },
-       });
-   }
-
-   /**
+  /**
     * REVISIÓN CARLOS!!!
     
    public buscarGrupos(filtros?: GruposFilterEntity): void {
@@ -93,21 +91,17 @@ export class GrupoComponent {
          });
      }
 */
-    public obtenerTipos(): void {
-    this.grupoService
-      .getTypes()
-      .subscribe({
-        next: (response) => {
-          this.tipos = response.respuesta;
-        },
-        error: (err) => {
-          this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-            Constants.ERR_OBTENIENDO_TIPOS_HERR,
-            err,
-          );
-        },
-      });
-
+  public obtenerTipos(): void {
+    this.grupoService.getTypes().subscribe({
+      next: (response) => {
+        this.tipos = response.respuesta;
+      },
+      error: (err) => {
+        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          Constants.ERR_OBTENIENDO_TIPOS_HERR,
+          err,
+        );
+      },
+    });
   }
 }
-

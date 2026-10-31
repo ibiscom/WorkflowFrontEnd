@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -20,10 +20,11 @@ import { EventoInicioFilterEntity } from './eventoinicio-filter.entity';
   selector: 'ibpm-eventos-de-inicio',
   imports: [MatCardModule, RouterModule, AccionesEventoInicioComponent],
   templateUrl: './eventoinicio.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './eventoinicio.component.scss',
 })
 export class EventoInicioComponent {
-  public loggedUser: LoginEntity | undefined; 
+  public loggedUser: LoginEntity | undefined;
   public eventosInicio: EventoInicioEntity[] = [];
   public companias: CompanyEntity[] = [];
   public mensaje: string = '';
@@ -42,20 +43,18 @@ export class EventoInicioComponent {
     console.log('Evento Inicio ENTRO ngOnInit');
     this.eventoInicioComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-   console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
-    if(this.hayWorkflowActual()) {
+    console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
+    if (this.hayWorkflowActual()) {
       console.log('SI hay workflow → voy a buscar');
-        this.buscarEventosInicio();
+      this.buscarEventosInicio();
+    } else {
+      console.log('NO hay workflow');
     }
-    else {
-    console.log('NO hay workflow');
-         }
+  }
 
-      }
-
-    public hayWorkflowActual(): boolean {
-    this.workflowActual = this.cookieService.get("workflowActual");
-    if (this.workflowActual === '') { 
+  public hayWorkflowActual(): boolean {
+    this.workflowActual = this.cookieService.get('workflowActual');
+    if (this.workflowActual === '') {
       this.mensaje = Constants.ERR_WORKFLOW_NO_SELECCIONADO;
       return false;
     }
@@ -72,24 +71,26 @@ export class EventoInicioComponent {
       idSerie: filtros?.idSerie ?? '',
     };
 
-    console.log('buscando eventos de inicio para el workflow:', workflowActual,body);
+    console.log(
+      'buscando eventos de inicio para el workflow:',
+      workflowActual,
+      body,
+    );
 
-    this.eventoInicioService
-      .getEventoInicioList(body)
-      .subscribe({
-          next: (response) => {
-            this.eventosInicio = response.respuesta;
-            this.mensaje = '';
-          },
-          error: (err) => {
-            this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_EVENTO_INICIO_LISTAR,
-              err,
-            );
-          },
-        });
-        console.log('eventosInicio', Response, 'EI:',this.eventosInicio);
-    }
+    this.eventoInicioService.getEventoInicioList(body).subscribe({
+      next: (response) => {
+        this.eventosInicio = response.respuesta;
+        this.mensaje = '';
+      },
+      error: (err) => {
+        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          Constants.ERR_EVENTO_INICIO_LISTAR,
+          err,
+        );
+      },
+    });
+    console.log('eventosInicio', Response, 'EI:', this.eventosInicio);
+  }
 
   public getAllCompanies() {
     /*
@@ -131,4 +132,3 @@ export class EventoInicioComponent {
     */
   }
 }
-

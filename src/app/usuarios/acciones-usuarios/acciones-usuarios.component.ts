@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -21,6 +21,7 @@ import { UsuariosComponentInstanceService } from '../usuarios-component-instance
     MatButtonModule,
   ],
   templateUrl: './acciones-usuarios.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './acciones-usuarios.component.scss',
 })
 /**

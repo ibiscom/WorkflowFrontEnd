@@ -1,13 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-  import { EventoInicioComponent } from '../eventoinicio.component';
-  import { EventoInicioService } from '../eventoinicio.service';
+import { EventoInicioComponent } from '../eventoinicio.component';
+import { EventoInicioService } from '../eventoinicio.service';
 import { LoginEntity } from '../../login/login.entity';
 
 @Component({
   selector: 'ibpm-filtros-busqueda-tareas',
   imports: [FormsModule],
   templateUrl: './filtros-busqueda-eventoinicio.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './filtros-busqueda-eventoinicio.component.scss',
 })
 export class FiltrosBusquedaEventoInicioComponent {
@@ -21,7 +22,7 @@ export class FiltrosBusquedaEventoInicioComponent {
   public modeloCarpetaObjectN: any = null;
 
   // 🔹 LISTA PARA EL SELECT (SOLUCIÓN AL ERROR)
-    public modelosCarpetaList: any[] = [];
+  public modelosCarpetaList: any[] = [];
 
   // Manejo del switch
   public generateReportF: string = 'false';
@@ -43,7 +44,7 @@ export class FiltrosBusquedaEventoInicioComponent {
     // Si luego viene de servicio, aquí se reemplaza
     this.modelosCarpetaList = [
       { id: 1, largeName: 'Activo' },
-      { id: 2, largeName: 'Inactivo' }
+      { id: 2, largeName: 'Inactivo' },
     ];
   }
 
@@ -64,7 +65,7 @@ export class FiltrosBusquedaEventoInicioComponent {
       this.editarDocProcesoF,
       this.idSerieF,
       this.modeloCarpetaObjectN,
-      generateReportBool
+      generateReportBool,
     );
   }
 
@@ -75,19 +76,18 @@ export class FiltrosBusquedaEventoInicioComponent {
     editarDocProceso: boolean,
     idSerie: string,
     modeloCarpetaObjectN: any,
-    generateReport: boolean
+    generateReport: boolean,
   ): void {
     console.log(
       'Filtros recibidos:',
-      eventoInicioName,        
+      eventoInicioName,
       modeloCarpeta,
       descripcion,
       editarDocProceso,
       idSerie,
-      modeloCarpetaObjectN
+      modeloCarpetaObjectN,
     );
 
     // Tu lógica actual aquí
   }
 }
-

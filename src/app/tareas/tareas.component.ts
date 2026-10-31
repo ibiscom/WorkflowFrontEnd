@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -20,6 +20,7 @@ import { TareasFilterEntity } from './TareasFilterEntity';
   selector: 'ibpm-tareas',
   imports: [MatCardModule, RouterModule, AccionesTareasComponent],
   templateUrl: './tareas.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './tareas.component.scss',
 })
 export class TareasComponent {
@@ -42,30 +43,28 @@ export class TareasComponent {
     console.log('ENTRO ngOnInit');
     this.tareasComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-   console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
-    if(this.hayWorkflowActual()) {
+    console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
+    if (this.hayWorkflowActual()) {
       console.log('SI hay workflow → voy a buscar');
-        this.buscarTareas();
+      this.buscarTareas();
+    } else {
+      console.log('NO hay workflow');
     }
-    else {
-    console.log('NO hay workflow');
-         }
+  }
 
-      }
-
-    public hayWorkflowActual(): boolean {
-    this.workflowActual = this.cookieService.get("workflowActual");
-    if (this.workflowActual === '') { 
+  public hayWorkflowActual(): boolean {
+    this.workflowActual = this.cookieService.get('workflowActual');
+    if (this.workflowActual === '') {
       this.mensaje = Constants.ERR_WORKFLOW_NO_SELECCIONADO;
       return false;
     }
     return true;
   }
 
-   public buscarTareas(filtros?: TareasFilterEntity): void {
-    console.log("FILTROS RECIBIDOS EN PADRE:", filtros);
-      const workflowActual = this.cookieService.get('workflowActual');
-      const body: TareasFilterEntity = {
+  public buscarTareas(filtros?: TareasFilterEntity): void {
+    console.log('FILTROS RECIBIDOS EN PADRE:', filtros);
+    const workflowActual = this.cookieService.get('workflowActual');
+    const body: TareasFilterEntity = {
       nombreWorkflow: workflowActual,
       nombre: filtros?.nombre ?? '',
       nombreTareaCabeza: filtros?.nombreTareaCabeza ?? '',
@@ -73,26 +72,24 @@ export class TareasComponent {
       estado: filtros?.estado ?? '',
       primitiva: filtros?.primitiva ?? '',
       expresion: filtros?.expresion ?? '',
-      descripcion: filtros?.descripcion ?? ''
+      descripcion: filtros?.descripcion ?? '',
     };
-   console.log("BODY FINAL:", body);
-      console.log('BODY ENVIADO AL BACKEND:', body);
-  
-      this.tareasService
-        .getTareas(body)
-        .subscribe({
-          next: (response) => {
-            this.tareas = response.respuesta;
-            this.mensaje = '';
-          },
-          error: (err) => {
-            this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_OBTENIENDO_TAREAS,
-              err,
-            );
-          },
-        });
-    }
+    console.log('BODY FINAL:', body);
+    console.log('BODY ENVIADO AL BACKEND:', body);
+
+    this.tareasService.getTareas(body).subscribe({
+      next: (response) => {
+        this.tareas = response.respuesta;
+        this.mensaje = '';
+      },
+      error: (err) => {
+        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          Constants.ERR_OBTENIENDO_TAREAS,
+          err,
+        );
+      },
+    });
+  }
 
   public getAllCompanies() {
     /*
@@ -134,4 +131,3 @@ export class TareasComponent {
     */
   }
 }
-

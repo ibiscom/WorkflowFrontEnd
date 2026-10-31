@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ResponsableComponent } from '../responsable.component';
 import { FiltrosBusquedaResponsableComponent } from '../filtros-busqueda-responsable/filtros-busqueda-responsable.component';
 import { MatTableModule } from '@angular/material/table';
@@ -8,6 +8,7 @@ import { ResponsableEntity } from '../responsable.entity';
   selector: 'ibpm-listado-responsable',
   imports: [FiltrosBusquedaResponsableComponent],
   templateUrl: './listado-responsable.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-responsable.component.scss',
 })
 /**

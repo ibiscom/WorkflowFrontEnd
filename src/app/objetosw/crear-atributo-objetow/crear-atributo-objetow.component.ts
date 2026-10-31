@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { LoginEntity } from '../../login/login.entity';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -33,6 +33,7 @@ import { AtributoObjetowEntity } from '../atributo-objetow.entity';
     MatSelectModule,
   ],
   templateUrl: './crear-atributo-objetow.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './crear-atributo-objetow.component.scss',
 })
 /**
@@ -40,16 +41,14 @@ import { AtributoObjetowEntity } from '../atributo-objetow.entity';
  * Permite seleccionar compañía, supervisor y administrar permisos/restricciones.
  */
 export class CrearAtributoObjetowComponent {
-
   public uc?: ObjetowComponent;
   public loggedUser?: LoginEntity;
-  public nombreN: string= '';
-  public descripcionN: string= '';
-  public identificadorNegocioN: string= '';
-  public labelIdentificadorNegocioN: string= '';
+  public nombreN: string = '';
+  public descripcionN: string = '';
+  public identificadorNegocioN: string = '';
+  public labelIdentificadorNegocioN: string = '';
   public atrObjetowIdEdit?: string;
   public supervisorObjectN?: UserEntity;
-
 
   public constructor(
     private objetowService: ObjetowService,
@@ -85,21 +84,22 @@ export class CrearAtributoObjetowComponent {
    * Llena los campos del formulario con la información del grupo en edición.
    */
   public async fillEditFields(): Promise<void> {
-    
     try {
       const response = await firstValueFrom(
-        this.objetowService.obtenerAtributosObjetoWorkflow(this.uc?.workflowActual  ?? '')
+        this.objetowService.obtenerAtributosObjetoWorkflow(
+          this.uc?.workflowActual ?? '',
+        ),
       );
       if (response?.respuesta) {
         const atributos = response.respuesta as AtributoObjetowEntity[];
-        const atributo = atributos.find(attr => attr.nombre === this.atrObjetowIdEdit);
-       
+        const atributo = atributos.find(
+          (attr) => attr.nombre === this.atrObjetowIdEdit,
+        );
 
         this.nombreN = atributo?.nombre ?? '';
         this.descripcionN = atributo?.descripcion ?? '';
         this.identificadorNegocioN = atributo?.identificadorNegocio ?? '';
         this.labelIdentificadorNegocioN = atributo?.labelId ?? '';
-        
       }
     } catch (e) {
       if (this.uc) {
@@ -109,7 +109,6 @@ export class CrearAtributoObjetowComponent {
         );
       }
     }
-    
   }
 
   /**
@@ -147,12 +146,11 @@ export class CrearAtributoObjetowComponent {
           if (response && response.respuesta) {
             if (this.uc) {
               this.ngOnInit();
-              this.uc.mensaje = Constants.ATRIBUTO_OBJETO_WORKFLOW_CREAR_EXITOSO;
+              this.uc.mensaje =
+                Constants.ATRIBUTO_OBJETO_WORKFLOW_CREAR_EXITOSO;
             }
             this.atrObjetowIdEdit = this.nombreN;
-            this.router.navigate([
-              `/main-page/objetosWorkflow`,
-            ]);
+            this.router.navigate([`/main-page/objetosWorkflow`]);
           }
         },
         error: (e) => {
@@ -181,14 +179,12 @@ export class CrearAtributoObjetowComponent {
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
-              if (this.uc) {
-                this.uc.ngOnInit();
-                this.uc.mensaje =
-                  Constants.ATRIBUTO_OBJETO_WORKFLOW_EDITAR_EXITOSO;
-              }
-            this.router.navigate([
-              `/main-page/objetosWorkflow`,
-            ]);
+            if (this.uc) {
+              this.uc.ngOnInit();
+              this.uc.mensaje =
+                Constants.ATRIBUTO_OBJETO_WORKFLOW_EDITAR_EXITOSO;
+            }
+            this.router.navigate([`/main-page/objetosWorkflow`]);
           }
         },
         error: (e) => {
@@ -207,18 +203,19 @@ export class CrearAtributoObjetowComponent {
    */
   public delete() {
     this.objetowService
-      .eliminarAtributoObjetoWorkflow(this.uc?.workflowActual ?? '', this.nombreN ?? '')
+      .eliminarAtributoObjetoWorkflow(
+        this.uc?.workflowActual ?? '',
+        this.nombreN ?? '',
+      )
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
             if (this.uc) {
-                this.uc.ngOnInit();
-                this.uc.mensaje =
-                  Constants.ATRIBUTO_OBJETO_WORKFLOW_ELIMINAR_EXITOSO;
-              }
-            this.router.navigate([
-              `/main-page/objetosWorkflow`,
-            ]);
+              this.uc.ngOnInit();
+              this.uc.mensaje =
+                Constants.ATRIBUTO_OBJETO_WORKFLOW_ELIMINAR_EXITOSO;
+            }
+            this.router.navigate([`/main-page/objetosWorkflow`]);
           }
         },
         error: (e) => {
@@ -244,10 +241,10 @@ export class CrearAtributoObjetowComponent {
 
   /**
    * Verifica si el identificador de negocio está marcado como "SI" para habilitar/deshabilitar el campo de label del identificador de negocio.
-   * @returns 
+   * @returns
    */
   public esIdentificadorNegocioSi(): boolean {
-    return this.identificadorNegocioN === 'SI';   
+    return this.identificadorNegocioN === 'SI';
   }
 
   public eventoCambioIdentificadorNegocio() {

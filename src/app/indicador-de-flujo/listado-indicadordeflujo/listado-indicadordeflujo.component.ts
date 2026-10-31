@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { IndicadorDeFlujoComponent } from '../indicadordeflujo.component';
 import { FiltrosBusquedaIndicadorDeFlujoComponent } from '../filtros-busqueda-indicadordeflujo/filtros-busqueda-indicadordeflujo.component';
 import { MatTableModule } from '@angular/material/table';
@@ -8,23 +8,24 @@ import { IndicadorDeFlujoEntity } from '../indicadordeflujo.entity';
   selector: 'ibpm-listado-indicadordeflujo',
   imports: [MatTableModule, FiltrosBusquedaIndicadorDeFlujoComponent],
   templateUrl: './listado-indicadordeflujo.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-indicadordeflujo.component.scss',
 })
 /**
  * Listado de indicadordeflujo con navegación a la edición y utilidades de presentación.
  */
 export class ListadoIndicadorDeFlujoComponent {
-tareas: any;
-mostrarResultados: any;
-ejecutarTarea(_t14: any) {
-throw new Error('Method not implemented.');
-}
-verExpedienteTarea(_t14: any) {
-throw new Error('Method not implemented.');
-}
-verDetalle(_t14: any) {
-throw new Error('Method not implemented.');
-}
+  tareas: any;
+  mostrarResultados: any;
+  ejecutarTarea(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
+  verExpedienteTarea(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
+  verDetalle(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
   // 🔹 Variables de paginación
   public currentPage: number = 1;
   public numberOfPages: number = 1;
@@ -48,11 +49,13 @@ throw new Error('Method not implemented.');
     ]);
   }
 
-   /**
+  /**
    * Obtiene el nombre legible de la herramienta a partir del identificador.
    */
   public getIndicadorDeFlujoName(indicadordeflujoName: any) {
-    const indicadordeflujo = this.parent.indicadordeflujo.find((c) => c.nombre === indicadordeflujoName);
+    const indicadordeflujo = this.parent.indicadordeflujo.find(
+      (c) => c.nombre === indicadordeflujoName,
+    );
     return indicadordeflujo ? indicadordeflujo.nombre : '';
   }
 
@@ -82,10 +85,9 @@ throw new Error('Method not implemented.');
 
   seleccionarTodos = false;
 
-seleccionarTodosRegistros(): void {
-  this.parent.indicadordeflujo.forEach((item: any) => {
-    item.seleccionado = this.seleccionarTodos;
-  });
+  seleccionarTodosRegistros(): void {
+    this.parent.indicadordeflujo.forEach((item: any) => {
+      item.seleccionado = this.seleccionarTodos;
+    });
+  }
 }
-}
-

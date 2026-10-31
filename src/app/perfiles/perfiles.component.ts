@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AccionesPerfilesComponent } from './acciones-perfiles/acciones-perfiles.component';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
@@ -17,6 +17,7 @@ import { CompaniasService } from '../companias/companias.service';
   selector: 'fs-perfiles',
   imports: [MatCardModule, RouterModule, AccionesPerfilesComponent],
   templateUrl: './perfiles.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './perfiles.component.scss',
 })
 /**

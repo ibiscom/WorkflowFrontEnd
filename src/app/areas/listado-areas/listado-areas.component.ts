@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { RegistroAreaComponent } from '../registro-area/registro-area.component';
 import { AreaEntity } from '../../entities/areas/area.entity';
@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
   selector: 'fs-listado-areas',
   imports: [MatTableModule, RegistroAreaComponent, MatButtonModule],
   templateUrl: './listado-areas.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-areas.component.scss',
 })
 /**

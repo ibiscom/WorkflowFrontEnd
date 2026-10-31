@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { LoginEntity } from '../login/login.entity';
@@ -12,6 +12,7 @@ import { response } from 'express';
   selector: 'app-sinc-active-directory',
   imports: [MatCardModule, RouterModule],
   templateUrl: './sinc-active-directory.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './sinc-active-directory.component.scss',
 })
 /**

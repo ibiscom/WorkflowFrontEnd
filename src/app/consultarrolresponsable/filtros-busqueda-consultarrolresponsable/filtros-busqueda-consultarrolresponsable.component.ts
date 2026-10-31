@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ConsultarRolResponsableComponent } from '../consultarrolresponsable.component';
 import { ConsultarRolResponsableService } from '../consultarrolresponsable.service';
@@ -9,18 +9,19 @@ import { ConsultarRolResponsableEntity } from '../consultarrolresponsable.entity
   selector: 'ibpm-filtros-busqueda-consultarrolresponsable',
   imports: [FormsModule],
   templateUrl: './filtros-busqueda-consultarrolresponsable.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './filtros-busqueda-consultarrolresponsable.component.scss',
 })
 export class FiltrosBusquedaConsultarRolResponsableComponent {
-consultarRoles() {
-throw new Error('Method not implemented.');
-}
-conoceCuenta: any;
-responsableSeleccionado: any;
-responsablesList: any;
-search() {
-throw new Error('Method not implemented.');
-}
+  consultarRoles() {
+    throw new Error('Method not implemented.');
+  }
+  conoceCuenta: any;
+  responsableSeleccionado: any;
+  responsablesList: any;
+  search() {
+    throw new Error('Method not implemented.');
+  }
   public userLoguinB: string = '';
   public userRolNameB: string = '';
 
@@ -33,7 +34,9 @@ throw new Error('Method not implemented.');
   @Input() public uc?: ConsultarRolResponsableComponent;
   public loggedUser: LoginEntity | undefined;
 
-  constructor(private consultarRolResponsableService: ConsultarRolResponsableService) {}
+  constructor(
+    private consultarRolResponsableService: ConsultarRolResponsableService,
+  ) {}
 
   ngOnInit(): void {
     this.loggedUser = this.uc?.loggedUser;
@@ -44,10 +47,8 @@ throw new Error('Method not implemented.');
 
   // 🔹 Simulación / carga de responsables
   private loadResponsables(): void {
-      this.uc?.obtenerResponsables();
+    this.uc?.obtenerResponsables();
   }
-
-
 
   // Cambio del select
   public onResponsableChange(value: any): void {
@@ -57,15 +58,12 @@ throw new Error('Method not implemented.');
 
   // Ejecuta búsqueda
 
-  public searchResponsables(
-    userLoguin: string,
-    userRolName: string,
-  ): void {
+  public searchResponsables(userLoguin: string, userRolName: string): void {
     console.log(
       'Filtros recibidos:',
       userLoguin,
       userRolName,
-      this.responsableObjectN
+      this.responsableObjectN,
     );
 
     // Tu lógica actual aquí

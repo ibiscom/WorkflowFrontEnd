@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PerfilesComponent } from '../perfiles.component';
 import { PerfilesService } from '../perfiles.service';
@@ -9,6 +9,7 @@ import { LoginEntity } from '../../login/login.entity';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './filtros-busqueda-perfiles.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './filtros-busqueda-perfiles.component.scss',
 })
 export class FiltrosBusquedaPerfilesComponent {

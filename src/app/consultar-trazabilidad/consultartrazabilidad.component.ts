@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -17,8 +17,9 @@ import { ConsultarTrazabilidadEntity } from './consultartrazabilidad.entity';
 
 @Component({
   selector: 'ibpm-consultartrazabilidad',
-  imports: [MatCardModule, RouterModule,],
+  imports: [MatCardModule, RouterModule],
   templateUrl: './consultartrazabilidad.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './consultartrazabilidad.component.scss',
 })
 export class ConsultarTrazabilidadComponent {
@@ -31,7 +32,7 @@ export class ConsultarTrazabilidadComponent {
   constructor(
     private consultarTrazabilidadService: ConsultarTrazabilidadService,
     private companiasService: CompaniasService,
-    private consultartrazabilidadComponentInstanceService: ConsultarTrazabilidadComponentInstanceService ,
+    private consultartrazabilidadComponentInstanceService: ConsultarTrazabilidadComponentInstanceService,
     private loginService: LoginService,
     public router: Router,
     private cookieService: CookieService,
@@ -41,55 +42,51 @@ export class ConsultarTrazabilidadComponent {
     console.log('ENTRO ngOnInit');
     this.consultartrazabilidadComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-   console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
-    if(this.hayWorkflowActual()) {
+    console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
+    if (this.hayWorkflowActual()) {
       console.log('SI hay workflow → voy a buscar');
-        this.buscarConsultarTrazabilidad();
+      this.buscarConsultarTrazabilidad();
+    } else {
+      console.log('NO hay workflow');
     }
-    else {
-    console.log('NO hay workflow');
-         }
+  }
 
-      }
-
-    public hayWorkflowActual(): boolean {
-    this.workflowActual = this.cookieService.get("workflowActual");
-    if (this.workflowActual === '') { 
+  public hayWorkflowActual(): boolean {
+    this.workflowActual = this.cookieService.get('workflowActual');
+    if (this.workflowActual === '') {
       this.mensaje = Constants.ERR_WORKFLOW_NO_SELECCIONADO;
       return false;
     }
     return true;
   }
 
-   public buscarConsultarTrazabilidad(filtros?: ConsultarTrazabilidadFilterEntity): void {
-    console.log("FILTROS RECIBIDOS EN PADRE:", filtros);
-      const workflowActual = this.cookieService.get('workflowActual');
-      const body: ConsultarTrazabilidadFilterEntity = {
+  public buscarConsultarTrazabilidad(
+    filtros?: ConsultarTrazabilidadFilterEntity,
+  ): void {
+    console.log('FILTROS RECIBIDOS EN PADRE:', filtros);
+    const workflowActual = this.cookieService.get('workflowActual');
+    const body: ConsultarTrazabilidadFilterEntity = {
       nombreWorkflow: workflowActual,
       nombre: filtros?.nombre ?? '',
       estado: filtros?.estado ?? '',
       primitiva: filtros?.primitiva ?? '',
       expresion: filtros?.expresion ?? '',
-      descripcion: filtros?.descripcion ?? ''
+      descripcion: filtros?.descripcion ?? '',
     };
-   console.log("BODY FINAL:", body);
-      console.log('BODY ENVIADO AL BACKEND:', body);
-  
-      this.consultarTrazabilidadService
-        .getConsultarTrazabilidad(body)
-        .subscribe({
-          next: (response) => {
-            this.consultartrazabilidad = response.respuesta;
-            this.mensaje = '';
-          },
-          error: (err) => {
-            this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_OBTENIENDO_TAREAS,
-              err,
-            );
-          },
-        });
-    }
+    console.log('BODY FINAL:', body);
+    console.log('BODY ENVIADO AL BACKEND:', body);
 
+    this.consultarTrazabilidadService.getConsultarTrazabilidad(body).subscribe({
+      next: (response) => {
+        this.consultartrazabilidad = response.respuesta;
+        this.mensaje = '';
+      },
+      error: (err) => {
+        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          Constants.ERR_OBTENIENDO_TAREAS,
+          err,
+        );
+      },
+    });
+  }
 }
-

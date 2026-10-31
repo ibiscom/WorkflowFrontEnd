@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ConsultarRolResponsableComponent } from '../consultarrolresponsable.component';
 import { FiltrosBusquedaConsultarRolResponsableComponent } from '../filtros-busqueda-consultarrolresponsable/filtros-busqueda-consultarrolresponsable.component';
 import { MatTableModule } from '@angular/material/table';
@@ -8,6 +8,7 @@ import { ConsultarRolResponsableEntity } from '../consultarrolresponsable.entity
   selector: 'ibpm-listado-consultarrolresponsable',
   imports: [MatTableModule, FiltrosBusquedaConsultarRolResponsableComponent],
   templateUrl: './listado-consultarrolresponsable.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-consultarrolresponsable.component.scss',
 })
 /**

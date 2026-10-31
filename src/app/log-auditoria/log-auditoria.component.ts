@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { EntityLogEntity } from '../entities/entities/entity-log.entity';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
@@ -16,6 +16,7 @@ import { Constants } from '../utils/constants';
   selector: 'fs-log-auditoria',
   imports: [MatCardModule, RouterModule],
   templateUrl: './log-auditoria.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './log-auditoria.component.scss',
 })
 export class LogAuditoriaComponent {

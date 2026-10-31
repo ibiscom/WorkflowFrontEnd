@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -11,6 +11,7 @@ import { AreasService } from './areas.service';
   selector: 'app-areas',
   imports: [MatCardModule, RouterModule],
   templateUrl: './areas.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './areas.component.scss',
 })
 /**

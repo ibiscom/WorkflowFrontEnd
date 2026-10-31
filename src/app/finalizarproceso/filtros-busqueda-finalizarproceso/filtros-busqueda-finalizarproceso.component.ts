@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FinalizarprocesoComponent } from '../finalizarproceso.component';
 import { FinalizarprocesoService } from '../finalizarproceso.service';
@@ -8,13 +8,14 @@ import { LoginEntity } from '../../login/login.entity';
   selector: 'ibpm-filtros-busqueda-finalizarproceso',
   imports: [FormsModule],
   templateUrl: './filtros-busqueda-finalizarproceso.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './filtros-busqueda-finalizarproceso.component.scss',
 })
 export class FiltrosBusquedaFinalizarprocesoComponent {
   public tareasNameF: string = '';
   public supervisorF: string = '';
   public fechaInicial: string = '';
-fechaFinal: string = '';
+  fechaFinal: string = '';
 
   // 🔹 Estado seleccionado
   public companyObjectN: any = null;
@@ -42,7 +43,7 @@ fechaFinal: string = '';
     // Si luego viene de servicio, aquí se reemplaza
     this.companiesList = [
       { id: 1, largeName: 'Activo' },
-      { id: 2, largeName: 'Inactivo' }
+      { id: 2, largeName: 'Inactivo' },
     ];
   }
 
@@ -59,26 +60,23 @@ fechaFinal: string = '';
     this.searchFinalizarproceso(
       this.tareasNameF,
       this.supervisorF,
-      generateReportBool
+      generateReportBool,
     );
   }
 
   public searchFinalizarproceso(
     tareasName: string,
     supervisor: string,
-    generateReport: boolean
+    generateReport: boolean,
   ): void {
     console.log(
       'Filtros recibidos:',
       tareasName,
       supervisor,
       generateReport,
-      this.companyObjectN
+      this.companyObjectN,
     );
 
     // Tu lógica actual aquí
-
-    
   }
 }
-

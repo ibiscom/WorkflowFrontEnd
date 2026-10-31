@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { HerramientaComponent } from '../herramienta.component';
 import { LoginEntity } from '../../login/login.entity';
@@ -36,6 +36,7 @@ import { TipoHerramientaEntity } from '../tipo-herramienta.entity';
     MatSelectModule,
   ],
   templateUrl: './crear-herramienta.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './crear-herramienta.component.scss',
 })
 /**
@@ -70,13 +71,12 @@ export class CrearHerramientaComponent {
     this.uc = this.herramientaComponentInstanceService.getInstance();
   }
 
-  
   /**
    * Inicializa el formulario, carga listas y detecta modo de edición.
    */
 
   public async ngOnInit(): Promise<void> {
-    this.workflowActual = this.cookieService.get("workflowActual");
+    this.workflowActual = this.cookieService.get('workflowActual');
     const id = this.route.snapshot.paramMap.get('id');
     console.log('Modo Edición Habilitado. Id Herramienta:', id);
     if (id) {
@@ -107,7 +107,9 @@ export class CrearHerramientaComponent {
         this.descripcionN = herramienta.descripcion ?? '';
         this.urlServicioWebN = herramienta.cadenaRepresentacion ?? '';
         this.tipoHerramientaN = herramienta.tipo ?? '';
-        this.tipoHerramientaObjectN = this.uc?.tipos.find(t => t.name === herramienta.tipo);
+        this.tipoHerramientaObjectN = this.uc?.tipos.find(
+          (t) => t.name === herramienta.tipo,
+        );
         this.attributesN = herramienta.attributes ?? [];
       }
     } catch (e) {
@@ -117,14 +119,16 @@ export class CrearHerramientaComponent {
           e,
         );
       }
-    } 
+    }
   }
 
   /**
    * Indica si está en modo edición.
    */
   public editMode(): boolean {
-    return this.herramientaIdEdit !== undefined && this.herramientaIdEdit !== '';
+    return (
+      this.herramientaIdEdit !== undefined && this.herramientaIdEdit !== ''
+    );
   }
 
   /**
@@ -152,27 +156,26 @@ export class CrearHerramientaComponent {
    */
   public create() {
     let herramienta: HerramientaEntity = {
-        nombreWorkflow: this.workflowActual,
-        nombre: this.nombreN,
-        tipo: this.tipoHerramientaN,
-        cadenaRepresentacion: this.urlServicioWebN,
-        descripcion: this.descripcionN,
-        attributes: [],
-    }
-    this.herramientaService
-    .createHerramienta(herramienta)
-    .subscribe({
+      nombreWorkflow: this.workflowActual,
+      nombre: this.nombreN,
+      tipo: this.tipoHerramientaN,
+      cadenaRepresentacion: this.urlServicioWebN,
+      descripcion: this.descripcionN,
+      attributes: [],
+    };
+    this.herramientaService.createHerramienta(herramienta).subscribe({
       next: (response) => {
         if (response && response.respuesta) {
-            if (this.uc) {
-              this.uc.mensaje = Constants.MSG_HERRAMIENTA_CREACION_EXITOSA;
-            }
-            this.herramientaIdEdit = this.nombreN; /** Verificar que atributa va aca */
-            this.router.navigate([
-              `/main-page/herramientas/editarHerramienta/${this.nombreN}`,
-            ]);
+          if (this.uc) {
+            this.uc.mensaje = Constants.MSG_HERRAMIENTA_CREACION_EXITOSA;
           }
-        },
+          this.herramientaIdEdit =
+            this.nombreN; /** Verificar que atributa va aca */
+          this.router.navigate([
+            `/main-page/herramientas/editarHerramienta/${this.nombreN}`,
+          ]);
+        }
+      },
       error: (e) => {
         if (this.uc) {
           this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
@@ -204,7 +207,7 @@ export class CrearHerramientaComponent {
               this.uc.mensaje = Constants.MSG_HERRAMIENTA_EDICION_EXITOSA;
             }
             this.router.navigate([
-               `/main-page/herramientas/editarHerramienta/${this.nombreN}`
+              `/main-page/herramientas/editarHerramienta/${this.nombreN}`,
             ]);
           }
         },
@@ -217,19 +220,21 @@ export class CrearHerramientaComponent {
           }
         },
       });
-    }
-  
+  }
 
   /**
    * Elimina la herramienta actual.
    */
   public delete() {
     this.herramientaService
-      .deleteHerramienta(this.workflowActual ?? '', this.herramientaIdEdit ?? '')
+      .deleteHerramienta(
+        this.workflowActual ?? '',
+        this.herramientaIdEdit ?? '',
+      )
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
-            if(this.uc) {
+            if (this.uc) {
               this.uc.buscarHerramientas(true);
               this.uc.mensaje = Constants.MSG_HERRAMIENTA_ELIMINACION_EXITOSA;
             }
@@ -258,12 +263,13 @@ export class CrearHerramientaComponent {
     this.router.navigate(['/main-page/herramientas']);
   }
 
-
   /**
    * Compara tipos de herramienta en el selector.
    */
-  public compareTiposHerramienta(s1: TipoHerramientaEntity, s2: TipoHerramientaEntity): boolean {
+  public compareTiposHerramienta(
+    s1: TipoHerramientaEntity,
+    s2: TipoHerramientaEntity,
+  ): boolean {
     return s1.name === s2.name;
   }
-
 }

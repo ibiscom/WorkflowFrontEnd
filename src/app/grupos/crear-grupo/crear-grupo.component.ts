@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { GrupoComponent } from '../grupo.component';
 import { LoginEntity } from '../../login/login.entity';
@@ -36,6 +36,7 @@ import { TipoGrupoEntity } from '../tipo-grupo.entity';
     MatSelectModule,
   ],
   templateUrl: './crear-grupo.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './crear-grupo.component.scss',
 })
 /**
@@ -70,13 +71,12 @@ export class CrearGrupoComponent {
     this.uc = this.grupoComponentInstanceService.getInstance();
   }
 
-  
   /**
    * Inicializa el formulario, carga listas y detecta modo de edición.
    */
 
   public async ngOnInit(): Promise<void> {
-    this.workflowActual = this.cookieService.get("workflowActual");
+    this.workflowActual = this.cookieService.get('workflowActual');
     const id = this.route.snapshot.paramMap.get('id');
     console.log('Modo Edición Habilitado. Id Grupo:', id);
     if (id) {
@@ -107,7 +107,9 @@ export class CrearGrupoComponent {
         this.descripcionN = grupo.descripcion ?? '';
         this.urlServicioWebN = grupo.cadenaRepresentacion ?? '';
         this.tipoGrupoN = grupo.tipo ?? '';
-        this.tipoGrupoObjectN = this.uc?.tipos.find(t => t.name === grupo.tipo);
+        this.tipoGrupoObjectN = this.uc?.tipos.find(
+          (t) => t.name === grupo.tipo,
+        );
         this.attributesN = grupo.attributes ?? [];
       }
     } catch (e) {
@@ -117,7 +119,7 @@ export class CrearGrupoComponent {
           e,
         );
       }
-    } 
+    }
   }
 
   /**
@@ -152,27 +154,25 @@ export class CrearGrupoComponent {
    */
   public create() {
     let grupo: GrupoEntity = {
-        nombreWorkflow: this.workflowActual,
-        nombre: this.nombreN,
-        tipo: this.tipoGrupoN,
-        cadenaRepresentacion: this.urlServicioWebN,
-        descripcion: this.descripcionN,
-        attributes: [],
-    }
-    this.grupoService
-    .createGrupo(grupo)
-    .subscribe({
+      nombreWorkflow: this.workflowActual,
+      nombre: this.nombreN,
+      tipo: this.tipoGrupoN,
+      cadenaRepresentacion: this.urlServicioWebN,
+      descripcion: this.descripcionN,
+      attributes: [],
+    };
+    this.grupoService.createGrupo(grupo).subscribe({
       next: (response) => {
         if (response && response.respuesta) {
-            if (this.uc) {
-              this.uc.mensaje = Constants.MSG_HERRAMIENTA_CREACION_EXITOSA;
-            }
-            this.grupoIdEdit = this.nombreN; /** Verificar que atributa va aca */
-            this.router.navigate([
-              `/main-page/grupos/editarGrupo/${this.nombreN}`,
-            ]);
+          if (this.uc) {
+            this.uc.mensaje = Constants.MSG_HERRAMIENTA_CREACION_EXITOSA;
           }
-        },
+          this.grupoIdEdit = this.nombreN; /** Verificar que atributa va aca */
+          this.router.navigate([
+            `/main-page/grupos/editarGrupo/${this.nombreN}`,
+          ]);
+        }
+      },
       error: (e) => {
         if (this.uc) {
           this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
@@ -204,7 +204,7 @@ export class CrearGrupoComponent {
               this.uc.mensaje = Constants.MSG_HERRAMIENTA_EDICION_EXITOSA;
             }
             this.router.navigate([
-               `/main-page/grupos/editarGrupo/${this.nombreN}`
+              `/main-page/grupos/editarGrupo/${this.nombreN}`,
             ]);
           }
         },
@@ -217,8 +217,7 @@ export class CrearGrupoComponent {
           }
         },
       });
-    }
-  
+  }
 
   /**
    * Elimina la grupo actual.
@@ -229,7 +228,7 @@ export class CrearGrupoComponent {
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
-            if(this.uc) {
+            if (this.uc) {
               this.uc.buscarGrupos(true);
               this.uc.mensaje = Constants.MSG_HERRAMIENTA_ELIMINACION_EXITOSA;
             }
@@ -258,12 +257,10 @@ export class CrearGrupoComponent {
     this.router.navigate(['/main-page/grupos']);
   }
 
-
   /**
    * Compara tipos de grupo en el selector.
    */
   public compareTiposGrupo(s1: TipoGrupoEntity, s2: TipoGrupoEntity): boolean {
     return s1.name === s2.name;
   }
-
 }

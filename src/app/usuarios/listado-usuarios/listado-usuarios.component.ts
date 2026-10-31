@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -14,6 +14,7 @@ import { FiltrosBusquedaUsuariosComponent } from '../filtros-busqueda-usuarios/f
     MatCheckboxModule,
   ],
   templateUrl: './listado-usuarios.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-usuarios.component.scss',
 })
 /**
