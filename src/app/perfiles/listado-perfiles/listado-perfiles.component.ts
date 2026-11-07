@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { PerfilesComponent } from '../perfiles.component';
 import { ProfileEntity } from '../../entities/profiles/profile.entity';
 import { FiltrosBusquedaPerfilesComponent } from '../filtros-busqueda-perfil/filtros-busqueda-perfiles.component';
@@ -9,6 +9,7 @@ import { PerfilesComponentInstanceService } from '../perfiles-component-instance
   selector: 'fs-listado-perfiles',
   imports: [MatTableModule, FiltrosBusquedaPerfilesComponent],
   templateUrl: './listado-perfiles.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-perfiles.component.scss',
 })
 /**

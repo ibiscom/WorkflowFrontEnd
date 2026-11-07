@@ -1,4 +1,10 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  Input,
+  OnInit,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { environment } from '../../../environments/environment';
 
@@ -6,57 +12,56 @@ import { environment } from '../../../environments/environment';
   selector: 'ibpm-visualizador-herramienta',
   imports: [],
   templateUrl: './visualizador-herramienta.component.html',
-  styleUrl: './visualizador-herramienta.component.scss'
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './visualizador-herramienta.component.scss',
 })
 export class VisualizadorHerramientaComponent implements OnInit {
-
   @Input() infoHerramienta: any;
   public urlSegura?: SafeResourceUrl;
   public iframeHeight: string = '400px';
   private infoHerramientaCodificada: string = '';
 
-  constructor(private sanitizer: DomSanitizer) {
-  }
+  constructor(private sanitizer: DomSanitizer) {}
 
   public ngOnInit() {
     this.codificarInfoHerramienta();
     const urlDinamicaRecibida = `${environment.htmFrontendUrl}/invocar-componente-captura/${this.infoHerramientaCodificada}`;
-    this.urlSegura = this.sanitizer.bypassSecurityTrustResourceUrl(urlDinamicaRecibida);
+    this.urlSegura =
+      this.sanitizer.bypassSecurityTrustResourceUrl(urlDinamicaRecibida);
   }
-private lastAppliedHeight = 0;
+  private lastAppliedHeight = 0;
 
-@HostListener('window:message', ['$event'])
-public onWindowMessage(event: MessageEvent): void {
-  const originHostname = event.origin ? new URL(event.origin).hostname : '';
-  const isLocalhost =
-    originHostname === 'localhost' ||
-    originHostname === '127.0.0.1' ||
-    originHostname === '0.0.0.0';
+  @HostListener('window:message', ['$event'])
+  public onWindowMessage(event: MessageEvent): void {
+    const originHostname = event.origin ? new URL(event.origin).hostname : '';
+    const isLocalhost =
+      originHostname === 'localhost' ||
+      originHostname === '127.0.0.1' ||
+      originHostname === '0.0.0.0';
 
-  if (!isLocalhost || !event.data || typeof event.data !== 'object') {
-    return;
+    if (!isLocalhost || !event.data || typeof event.data !== 'object') {
+      return;
+    }
+
+    if (event.data.type !== 'iframe-height') {
+      return;
+    }
+
+    const height = Number(event.data.height);
+
+    if (!Number.isFinite(height)) {
+      return;
+    }
+
+    const next = Math.max(height, 220);
+
+    if (Math.abs(next - this.lastAppliedHeight) < 5) {
+      return;
+    }
+
+    this.lastAppliedHeight = next;
+    this.iframeHeight = `${next}px`;
   }
-
-  if (event.data.type !== 'iframe-height') {
-    return;
-  }
-
-  const height = Number(event.data.height);
-
-  if (!Number.isFinite(height)) {
-    return;
-  }
-
-  const next = Math.max(height, 220);
-
-  if (Math.abs(next - this.lastAppliedHeight) < 5) {
-    return;
-  }
-
-  this.lastAppliedHeight = next;
-  this.iframeHeight = `${next}px`;
-}
-
 
   @HostListener('window:resize')
   public onWindowResize(): void {
@@ -75,7 +80,8 @@ public onWindowMessage(event: MessageEvent): void {
     }
 
     try {
-      const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+      const iframeDoc =
+        iframe.contentDocument || iframe.contentWindow?.document;
       if (!iframeDoc) {
         return;
       }
@@ -85,7 +91,7 @@ public onWindowMessage(event: MessageEvent): void {
         iframeDoc.documentElement?.scrollHeight ?? 0,
         iframeDoc.body?.offsetHeight ?? 0,
         iframeDoc.documentElement?.offsetHeight ?? 0,
-        400
+        400,
       );
 
       this.iframeHeight = `${alturaContenido}px`;

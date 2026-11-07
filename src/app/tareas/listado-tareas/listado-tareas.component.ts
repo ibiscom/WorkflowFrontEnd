@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TareasComponent } from '../tareas.component';
 import { FiltrosBusquedaTareasComponent } from '../filtros-busqueda-tareas/filtros-busqueda-tareas.component';
 import { MatTableModule } from '@angular/material/table';
@@ -8,6 +8,7 @@ import { TareaEntity } from '../tarea.entity';
   selector: 'ibpm-listado-tareas',
   imports: [MatTableModule, FiltrosBusquedaTareasComponent],
   templateUrl: './listado-tareas.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-tareas.component.scss',
 })
 /**
@@ -37,7 +38,7 @@ export class ListadoTareasComponent {
     ]);
   }
 
-   /**
+  /**
    * Obtiene el nombre legible de la herramienta a partir del identificador.
    */
   public getTareasName(tareasName: any) {
@@ -69,4 +70,3 @@ export class ListadoTareasComponent {
     }
   }
 }
-

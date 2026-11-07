@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -36,6 +36,7 @@ import { FileUtil } from '../../utils/file.util';
     MatSelectModule,
   ],
   templateUrl: './crear-compania.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './crear-compania.component.scss',
 })
 /**
@@ -355,43 +356,40 @@ export class CrearCompaniaComponent {
    * Maneja el cambio de país y recarga los departamentos.
    */
   public async onCountryChangeEvent(event: Event) {
-  const selectElement = event.target as HTMLSelectElement;
-  const selectedCountry = this.countryObjectN;
+    const selectElement = event.target as HTMLSelectElement;
+    const selectedCountry = this.countryObjectN;
 
-  if (selectedCountry) {
-    this.countryN = selectedCountry.name ?? '';
-    this.codeCountryN = selectedCountry.code ?? '';
-    this.countryObjectN = selectedCountry;
-    await this.getStatesList();
+    if (selectedCountry) {
+      this.countryN = selectedCountry.name ?? '';
+      this.codeCountryN = selectedCountry.code ?? '';
+      this.countryObjectN = selectedCountry;
+      await this.getStatesList();
+    }
   }
-}
 
   /**
    * Maneja el cambio de departamento y recarga las ciudades.
    */
- public async onStateChangeEvent(event: Event) {
+  public async onStateChangeEvent(event: Event) {
+    if (this.stateObjectN && this.stateObjectN.name) {
+      this.stateN = this.stateObjectN.name;
+    } else {
+      this.stateN = '';
+    }
 
-  if (this.stateObjectN && this.stateObjectN.name) {
-    this.stateN = this.stateObjectN.name;
-  } else {
-    this.stateN = '';
+    await this.getCitiesList();
   }
-
-  await this.getCitiesList();
-}
   /**
    * Maneja el cambio de ciudad.
    */
   public async onCityChangeEvent(event: Event) {
-
-  // this.cityObjectN ya está actualizado gracias al [(ngModel)]
-  if (this.cityObjectN && this.cityObjectN.name) {
-    this.cityN = this.cityObjectN.name;
-  } else {
-    this.cityN = '';
+    // this.cityObjectN ya está actualizado gracias al [(ngModel)]
+    if (this.cityObjectN && this.cityObjectN.name) {
+      this.cityN = this.cityObjectN.name;
+    } else {
+      this.cityN = '';
+    }
   }
-
-}
 
   /**
    * Carga la imagen principal como base64.
@@ -449,15 +447,13 @@ export class CrearCompaniaComponent {
    * Selecciona el tamaño de rótulo.
    */
   public onLabelSizeChangeEvent(event: Event) {
-
-  // Como usas [(ngModel)], el objeto ya está actualizado
-  if (this.labelSizeObjectN) {
-    this.labelSizeN = this.labelSizeObjectN.name ?? '';
-  } else {
-    this.labelSizeN = '';
+    // Como usas [(ngModel)], el objeto ya está actualizado
+    if (this.labelSizeObjectN) {
+      this.labelSizeN = this.labelSizeObjectN.name ?? '';
+    } else {
+      this.labelSizeN = '';
+    }
   }
-
-}
 
   /**
    * Indica si el formulario está en modo edición.
@@ -470,48 +466,46 @@ export class CrearCompaniaComponent {
    * Asocia un permiso a la compañía.
    */
   public addPermissionToCompany(event: Event) {
-  try {
+    try {
+      if (!this.operationE) {
+        return; // No hace nada si no hay operación seleccionada
+      }
 
-    if (!this.operationE) {
-      return; // No hace nada si no hay operación seleccionada
-    }
+      const selectedOperation = this.operationE;
 
-    const selectedOperation = this.operationE;
+      this.companiasService
+        .addPermissionToCompany(
+          this.loggedUser?.user_name ?? '',
+          this.companyIdEdit ?? '',
+          selectedOperation,
+        )
+        .subscribe({
+          next: (response) => {
+            if (response && response.respuesta) {
+              this.ngOnInit();
 
-    this.companiasService
-      .addPermissionToCompany(
-        this.loggedUser?.user_name ?? '',
-        this.companyIdEdit ?? '',
-        selectedOperation
-      )
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
-            this.ngOnInit();
-
-            // Limpia el select después de agregar
-            this.operationE = '';
-          }
-        },
-        error: (e: any) => {
-          if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_COMPANIA_ASOCIAR_PERMISO,
-              e,
-            );
-          }
-        },
-      });
-
-  } catch (e) {
-    if (this.uc) {
-      this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-        Constants.ERR_COMPANIA_ASOCIAR_PERMISO,
-        e,
-      );
+              // Limpia el select después de agregar
+              this.operationE = '';
+            }
+          },
+          error: (e: any) => {
+            if (this.uc) {
+              this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
+                Constants.ERR_COMPANIA_ASOCIAR_PERMISO,
+                e,
+              );
+            }
+          },
+        });
+    } catch (e) {
+      if (this.uc) {
+        this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          Constants.ERR_COMPANIA_ASOCIAR_PERMISO,
+          e,
+        );
+      }
     }
   }
-}
 
   /**
    * Agrega una restricción de operación a la compañía.

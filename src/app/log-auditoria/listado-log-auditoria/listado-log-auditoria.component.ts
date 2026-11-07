@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { LogAuditoriaComponent } from '../log-auditoria.component';
 import { EntityLogEntity } from '../../entities/entities/entity-log.entity';
@@ -6,14 +6,18 @@ import { FiltrosBusquedaLogAuditoriaComponent } from '../filtros-busqueda-log-au
 
 @Component({
   selector: 'fs-listado-log-auditoria',
-  imports: [MatTableModule, FiltrosBusquedaLogAuditoriaComponent, LogAuditoriaComponent],
+  imports: [
+    MatTableModule,
+    FiltrosBusquedaLogAuditoriaComponent,
+    LogAuditoriaComponent,
+  ],
   templateUrl: './listado-log-auditoria.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-log-auditoria.component.scss',
 })
 export class ListadoLogAuditoriaComponent {
-
   public currentPage: number = 1;
-  public pageSize: number = 10;   // <-- cantidad de filas por página
+  public pageSize: number = 10; // <-- cantidad de filas por página
   public numberOfPages: number = 1;
 
   public displayedColumns: string[] = [

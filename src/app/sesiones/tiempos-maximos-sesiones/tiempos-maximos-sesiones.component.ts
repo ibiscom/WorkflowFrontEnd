@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SesionesComponent } from '../sesiones.component';
 import { LoginService } from '../../login/login.service';
@@ -25,6 +25,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatExpansionModule,
   ],
   templateUrl: './tiempos-maximos-sesiones.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './tiempos-maximos-sesiones.component.scss',
 })
 /**

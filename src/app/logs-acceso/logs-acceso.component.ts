@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { LoginEntity } from '../login/login.entity';
 import { AccessLogEntity } from '../entities/logs/access-log,entity';
 import { LogsAccesoService } from './logs-acceso.service';
@@ -15,6 +15,7 @@ import { AuthorizationStateEntity } from '../entities/authorization-states/autho
   selector: 'fs-logs-acceso',
   imports: [FormsModule, MatCardModule, RouterModule],
   templateUrl: './logs-acceso.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './logs-acceso.component.scss',
 })
 /**

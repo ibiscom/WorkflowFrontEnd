@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import {
   MAT_DATE_LOCALE,
   provideNativeDateAdapter,
@@ -33,8 +33,9 @@ import { MessageUtil } from '../../utils/message.util';
     MatCardModule,
     MatExpansionModule,
     MatSelectModule,
-    LogAuditoriaComponent
-],
+    LogAuditoriaComponent,
+  ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   providers: [
     provideNativeDateAdapter(),
     { provide: MAT_DATE_LOCALE, useValue: environment.dateLocale },
@@ -100,21 +101,21 @@ export class FiltrosBusquedaLogAuditoriaComponent {
    * Carga las acciones de acuerdo a la operación seleccionada.
    */
   public loadActions(event?: Event) {
-  if (event) {
-    const select = event.target as HTMLSelectElement;
-    this.operationF = select.value;
-  }
-  if (this.operationF && this.operationF !== '') {
-    this.actionsList = [];
-    this.logAuditoriaService.getLogActions(this.operationF).subscribe({
-      next: (response) => {
-        this.actionsList = response.respuesta;
-      },
-      error: (error) => {
-        console.error('Error cargando acciones', error);
-      },
-    });
-  }
+    if (event) {
+      const select = event.target as HTMLSelectElement;
+      this.operationF = select.value;
+    }
+    if (this.operationF && this.operationF !== '') {
+      this.actionsList = [];
+      this.logAuditoriaService.getLogActions(this.operationF).subscribe({
+        next: (response) => {
+          this.actionsList = response.respuesta;
+        },
+        error: (error) => {
+          console.error('Error cargando acciones', error);
+        },
+      });
+    }
   }
 
   /**

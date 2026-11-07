@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+
 import { MenuComponent } from '../menu/menu.component';
 import { RouterOutlet } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -26,9 +26,9 @@ import { MatIconModule } from '@angular/material/icon';
     MatFormFieldModule,
     MatButtonModule,
     MatIconModule,
-    CommonModule,
   ],
   templateUrl: './main-page.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './main-page.component.scss',
 })
 /**

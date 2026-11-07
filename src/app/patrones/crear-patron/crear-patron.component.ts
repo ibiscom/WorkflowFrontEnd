@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { PatronComponent } from '../patron.component';
 import { LoginEntity } from '../../login/login.entity';
@@ -24,7 +24,6 @@ import { PatronEntity } from '../patron.entity';
 import { CookieService } from 'ngx-cookie-service';
 import { TipoPatronEntity } from '../tipo-patron.entity';
 
-
 @Component({
   selector: 'ibpm-crear-patron',
   imports: [
@@ -37,6 +36,7 @@ import { TipoPatronEntity } from '../tipo-patron.entity';
     MatSelectModule,
   ],
   templateUrl: './crear-patron.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './crear-patron.component.scss',
 })
 /**
@@ -44,24 +44,24 @@ import { TipoPatronEntity } from '../tipo-patron.entity';
  * Permite seleccionar compañía, supervisor y administrar permisos/restricciones.
  */
 export class CrearPatronComponent {
-dependenciasPatronList: any;
-retirar() {
-throw new Error('Method not implemented.');
-}
-asignar() {
-throw new Error('Method not implemented.');
-}
-dependenciasWorkflow: any;
-tiposPatronList: any;
-descripcionPatronN: any;
-nombrePatronN: any;
-dependenciasWorkflowList: any;
-asignarDependencias() {
-throw new Error('Method not implemented.');
-}
-retirarDependencias() {
-throw new Error('Method not implemented.');
-}
+  dependenciasPatronList: any;
+  retirar() {
+    throw new Error('Method not implemented.');
+  }
+  asignar() {
+    throw new Error('Method not implemented.');
+  }
+  dependenciasWorkflow: any;
+  tiposPatronList: any;
+  descripcionPatronN: any;
+  nombrePatronN: any;
+  dependenciasWorkflowList: any;
+  asignarDependencias() {
+    throw new Error('Method not implemented.');
+  }
+  retirarDependencias() {
+    throw new Error('Method not implemented.');
+  }
   public workflowActual: string = '';
   public uc?: PatronComponent;
   public loggedUser?: LoginEntity;
@@ -74,7 +74,7 @@ throw new Error('Method not implemented.');
   public supervisorObjectN?: UserEntity;
   public attributesN: string[] = [];
   public patron: any;
-dependenciasPatron: any;
+  dependenciasPatron: any;
 
   public constructor(
     private patronService: PatronService,
@@ -90,13 +90,12 @@ dependenciasPatron: any;
     this.uc = this.patronComponentInstanceService.getInstance();
   }
 
-  
   /**
    * Inicializa el formulario, carga listas y detecta modo de edición.
    */
 
   public async ngOnInit(): Promise<void> {
-    this.workflowActual = this.cookieService.get("workflowActual");
+    this.workflowActual = this.cookieService.get('workflowActual');
     const id = this.route.snapshot.paramMap.get('id');
     console.log('Modo Edición Habilitado. Id Patron:', id);
     if (id) {
@@ -127,7 +126,9 @@ dependenciasPatron: any;
         this.descripcionN = patron.descripcion ?? '';
         this.urlServicioWebN = patron.cadenaRepresentacion ?? '';
         this.tipoPatronN = patron.tipo ?? '';
-        this.tipoPatronObjectN = this.uc?.tipos.find(t => t.name === patron.tipo);
+        this.tipoPatronObjectN = this.uc?.tipos.find(
+          (t) => t.name === patron.tipo,
+        );
         this.attributesN = patron.attributes ?? [];
       }
     } catch (e) {
@@ -137,7 +138,7 @@ dependenciasPatron: any;
           e,
         );
       }
-    } 
+    }
   }
 
   /**
@@ -172,27 +173,23 @@ dependenciasPatron: any;
    */
   public create() {
     let patron: PatronEntity = {
-        nombreWorkflow: this.workflowActual,
-        nombre: this.nombreN,
-        tipo: this.tipoPatronN,
-        cadenaRepresentacion: this.urlServicioWebN,
-        descripcion: this.descripcionN,
-        attributes: [],
-    }
-    this.patronService
-    .createPatron(patron)
-    .subscribe({
+      nombreWorkflow: this.workflowActual,
+      nombre: this.nombreN,
+      tipo: this.tipoPatronN,
+      cadenaRepresentacion: this.urlServicioWebN,
+      descripcion: this.descripcionN,
+      attributes: [],
+    };
+    this.patronService.createPatron(patron).subscribe({
       next: (response) => {
         if (response && response.respuesta) {
-            if (this.uc) {
-              this.uc.mensaje = Constants.MSG_HERRAMIENTA_CREACION_EXITOSA;
-            }
-            this.patronIdEdit = this.nombreN; /** Verificar que atributa va aca */
-            this.router.navigate([
-              `/main-page/Gateway/create/${this.nombreN}`,
-            ]);
+          if (this.uc) {
+            this.uc.mensaje = Constants.MSG_HERRAMIENTA_CREACION_EXITOSA;
           }
-        },
+          this.patronIdEdit = this.nombreN; /** Verificar que atributa va aca */
+          this.router.navigate([`/main-page/Gateway/create/${this.nombreN}`]);
+        }
+      },
       error: (e) => {
         if (this.uc) {
           this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
@@ -223,9 +220,7 @@ dependenciasPatron: any;
             if (this.uc) {
               this.uc.mensaje = Constants.MSG_HERRAMIENTA_EDICION_EXITOSA;
             }
-            this.router.navigate([
-               `/main-page/Gateway/edit/${this.nombreN}`
-            ]);
+            this.router.navigate([`/main-page/Gateway/edit/${this.nombreN}`]);
           }
         },
         error: (e) => {
@@ -237,8 +232,7 @@ dependenciasPatron: any;
           }
         },
       });
-    }
-  
+  }
 
   /**
    * Elimina la patron actual.
@@ -249,7 +243,7 @@ dependenciasPatron: any;
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
-            if(this.uc) {
+            if (this.uc) {
               this.uc.buscarPatrones(true);
               this.uc.mensaje = Constants.MSG_HERRAMIENTA_ELIMINACION_EXITOSA;
             }
@@ -278,12 +272,13 @@ dependenciasPatron: any;
     this.router.navigate(['/main-page/Patrones']);
   }
 
-
   /**
    * Compara tipos de patron en el selector.
    */
-  public compareTiposPatron(s1: TipoPatronEntity, s2: TipoPatronEntity): boolean {
+  public compareTiposPatron(
+    s1: TipoPatronEntity,
+    s2: TipoPatronEntity,
+  ): boolean {
     return s1.name === s2.name;
   }
-
 }

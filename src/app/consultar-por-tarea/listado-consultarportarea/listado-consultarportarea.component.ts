@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ConsultarPorTareaComponent } from '../consultarportarea.component';
 import { FiltrosBusquedaConsultarPorTareaComponent } from '../filtros-busqueda-consultarportarea/filtros-busqueda-consultarportarea.component';
 import { MatTableModule } from '@angular/material/table';
@@ -8,23 +8,13 @@ import { ConsultarPorTareaEntity } from '../consultarportarea.entity';
   selector: 'ibpm-listado-consultarportarea',
   imports: [MatTableModule, FiltrosBusquedaConsultarPorTareaComponent],
   templateUrl: './listado-consultarportarea.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-consultarportarea.component.scss',
 })
 /**
  * Listado de consultarportarea con navegación a la edición y utilidades de presentación.
  */
 export class ListadoConsultarPorTareaComponent {
-tareas: any;
-mostrarResultados: any;
-ejecutarTarea(_t14: any) {
-throw new Error('Method not implemented.');
-}
-verExpedienteTarea(_t14: any) {
-throw new Error('Method not implemented.');
-}
-verDetalle(_t14: any) {
-throw new Error('Method not implemented.');
-}
   // 🔹 Variables de paginación
   public currentPage: number = 1;
   public numberOfPages: number = 1;
@@ -42,17 +32,21 @@ throw new Error('Method not implemented.');
   /**
    * Navega a la pantalla de edición de la tarea seleccionada.
    */
-  public goToEditarConsultarPorTarea(consultarportarea: ConsultarPorTareaEntity) {
+  public goToEditarConsultarPorTarea(
+    consultarportarea: ConsultarPorTareaEntity,
+  ) {
     this.parent.router.navigate([
       `/main-page/consultarportarea/editarConsultarPorTarea/${consultarportarea.nombre}`,
     ]);
   }
 
-   /**
+  /**
    * Obtiene el nombre legible de la herramienta a partir del identificador.
    */
   public getConsultarPorTareaName(consultarportareaName: any) {
-    const consultarportarea = this.parent.consultarportarea.find((c) => c.nombre === consultarportareaName);
+    const consultarportarea = this.parent.consultarportarea.find(
+      (c) => c.nombre === consultarportareaName,
+    );
     return consultarportarea ? consultarportarea.nombre : '';
   }
 
@@ -82,10 +76,9 @@ throw new Error('Method not implemented.');
 
   seleccionarTodos = false;
 
-seleccionarTodosRegistros(): void {
-  this.parent.consultarportarea.forEach((item: any) => {
-    item.seleccionado = this.seleccionarTodos;
-  });
+  seleccionarTodosRegistros(): void {
+    this.parent.consultarportarea.forEach((item: any) => {
+      item.seleccionado = this.seleccionarTodos;
+    });
+  }
 }
-}
-

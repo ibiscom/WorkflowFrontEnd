@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ListarTareaComponent } from '../listar-tareas.component';
 import { ListarTareaService } from '../listar-tareas.service';
@@ -7,28 +7,29 @@ import { Constants } from '../../utils/constants';
 import { MessageUtil } from '../../utils/message.util';
 import { ListarTareaFilterEntity } from '../listar-tareas-filter.entity';
 import { EstadoListarTareaEntity } from '../estado-listar-tareas.entity';
-import { MatIcon } from "@angular/material/icon";
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   standalone: true,
   selector: 'ibpm-filtros-busqueda-listartarea',
   imports: [FormsModule, MatIcon],
   templateUrl: './filtros-busqueda-listar-tareas.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './filtros-busqueda-listar-tareas.component.scss',
 })
 export class FiltrosBusquedaListarTareaComponent {
-nombreWorkFlowPadreN: any;
-numero: any;
-idInstanciaWorkflowPadreF: any;
-idInstanciaWorkflowPadreN: any;
-fechaAsignacionN: any;
-fechaDesdeN: any;
-fechaHastaN: any;
-idNegocioN: any;
-tareasList: any;
-search() {
-throw new Error('Method not implemented.');
-}
+  nombreWorkFlowPadreN: any;
+  numero: any;
+  idInstanciaWorkflowPadreF: any;
+  idInstanciaWorkflowPadreN: any;
+  fechaAsignacionN: any;
+  fechaDesdeN: any;
+  fechaHastaN: any;
+  idNegocioN: any;
+  tareasList: any;
+  search() {
+    throw new Error('Method not implemented.');
+  }
   public nombreWorkFlowB: string = '';
   public nombreLargoWorkFlowB: string = '';
 
@@ -48,7 +49,6 @@ throw new Error('Method not implemented.');
 
   ngOnInit(): void {
     this.loggedUser = this.uc?.loggedUser;
-
   }
 
   // Ejecuta búsqueda
@@ -62,32 +62,28 @@ throw new Error('Method not implemented.');
       responsable: this.loggedUser?.user_name || '',
     } as ListarTareaFilterEntity;
 
-    this.uc?.buscarListarTareas(
-     1, filtros
-    );
+    this.uc?.buscarListarTareas(1, filtros);
   }
 
   public searchListarTarea(
     listartareaName: string,
     nombreLargo: string,
-    generateReport: boolean
+    generateReport: boolean,
   ): void {
     console.log(
       'Filtros recibidos:',
       listartareaName,
       nombreLargo,
       generateReport,
-      this.estadoObjectN
+      this.estadoObjectN,
     );
-    }
+  }
 
-    // Tu lógica actual aquí
+  // Tu lógica actual aquí
 
-public mostrarFiltros = false;
+  public mostrarFiltros = false;
 
-public toggleFiltros(): void {
-  this.mostrarFiltros = !this.mostrarFiltros;
-}
-
-  
+  public toggleFiltros(): void {
+    this.mostrarFiltros = !this.mostrarFiltros;
+  }
 }

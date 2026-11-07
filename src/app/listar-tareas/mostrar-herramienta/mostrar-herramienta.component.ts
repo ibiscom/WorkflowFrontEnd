@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ActivatedRoute } from '@angular/router';
 import { VisualizadorHerramientaComponent } from '../visualizador-herramienta/visualizador-herramienta.component';
@@ -12,6 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
   standalone: true,
   imports: [MatTabsModule, VisualizadorHerramientaComponent],
   templateUrl: './mostrar-herramienta.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './mostrar-herramienta.component.scss',
 })
 export class MostrarHerramientaComponent {
@@ -30,7 +31,7 @@ export class MostrarHerramientaComponent {
     numeroTarea: '',
     nombreTarea: '',
     instanciaProceso: '',
-    estadoObjeto: ''
+    estadoObjeto: '',
   };
 
   // =====================================
@@ -44,7 +45,7 @@ export class MostrarHerramientaComponent {
     asunto: '',
     instancia: '',
     compania: '',
-    documentoRadicar: ''
+    documentoRadicar: '',
   };
 
   // =====================================
@@ -55,8 +56,8 @@ export class MostrarHerramientaComponent {
     {
       cargado: 'NO',
       obligatorio: 'NO',
-      tipoDocumento: 'Documento ajustado'
-    }
+      tipoDocumento: 'Documento ajustado',
+    },
   ];
 
   // =====================================
@@ -73,8 +74,8 @@ export class MostrarHerramientaComponent {
       tarea: 'Revisión',
       instanciaTarea: '1',
       fecha: '2026-06-25',
-      version: '1'
-    }
+      version: '1',
+    },
   ];
 
   // =====================================
@@ -82,12 +83,15 @@ export class MostrarHerramientaComponent {
   // =====================================
   public infoHerramienta: any = {};
   public infoHerramientaCargada: boolean = false;
-    
 
   // =====================================
   // ACCIONES
   // =====================================
-  constructor(private route: ActivatedRoute, private listarTareasService: ListarTareaService, private cookieService: CookieService) {
+  constructor(
+    private route: ActivatedRoute,
+    private listarTareasService: ListarTareaService,
+    private cookieService: CookieService,
+  ) {
     this.responsableUsuario = this.cookieService.get('userName');
   }
 
@@ -109,10 +113,10 @@ export class MostrarHerramientaComponent {
     console.log('Ver documento', doc);
   }
 
- public consultarTarea() {
-   //TODO: Implementar la lógica para consultar la información de la tarea y del proceso usando los identificadores recibidos.
-   
-   this.invocarHerramienta();
+  public consultarTarea() {
+    //TODO: Implementar la lógica para consultar la información de la tarea y del proceso usando los identificadores recibidos.
+
+    this.invocarHerramienta();
   }
 
   public invocarHerramienta() {
@@ -121,34 +125,37 @@ export class MostrarHerramientaComponent {
     //  completar este componente para que traiga del listar tareas el nombre del workflow para invcarlo.
     //para prueba integracion, usar el proceso de Proyectar Documento inicialmente
     let listarTareaFiltro1 = {
-      idInstanciaWorkflow: this.identificadorWorkflow, 
+      idInstanciaWorkflow: this.identificadorWorkflow,
       numero: this.identificadorTarea,
-      responsable: this.responsableUsuario || ''
+      responsable: this.responsableUsuario || '',
     } as ListarTareasEntity;
 
     this.listarTareasService?.CargarListarTarea(listarTareaFiltro1).subscribe({
       next: (response) => {
-        if(response && response.respuesta) {
+        if (response && response.respuesta) {
           const tareaData = response.respuesta;
           console.log('Respuesta del servicio CargarListarTarea:', response);
-          if(tareaData) {
+          if (tareaData) {
             this.infoHerramienta = tareaData;
             this.infoHerramientaCargada = true;
-            console.log('Información de la herramienta cargada:', this.infoHerramienta);
-          }
-          else {
+            console.log(
+              'Información de la herramienta cargada:',
+              this.infoHerramienta,
+            );
+          } else {
             this.infoHerramientaCargada = false;
-            console.error('No se encontró información de la tarea con el identificador proporcionado.');
+            console.error(
+              'No se encontró información de la tarea con el identificador proporcionado.',
+            );
           }
         }
       },
       error: (err) => {
         console.error('Error al invocar CargarListarTarea:', err);
-      }
+      },
     });
 
-
-  /*
+    /*
 
 
     this.infoHerramienta = {
@@ -172,9 +179,4 @@ export class MostrarHerramientaComponent {
     };
     this.infoHerramientaCargada = true;*/
   }
-
-  
-
- }
-
-
+}

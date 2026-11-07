@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ConsultarPorObjetoComponent } from '../consultarporobjeto.component';
 import { FiltrosBusquedaConsultarPorObjetoComponent } from '../filtros-busqueda-consultarporobjeto/filtros-busqueda-consultarporobjeto.component';
 import { MatTableModule } from '@angular/material/table';
@@ -8,23 +8,24 @@ import { ConsultarPorObjetoEntity } from '../consultarporobjeto.entity';
   selector: 'ibpm-listado-consultarporobjeto',
   imports: [MatTableModule, FiltrosBusquedaConsultarPorObjetoComponent],
   templateUrl: './listado-consultarporobjeto.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-consultarporobjeto.component.scss',
 })
 /**
  * Listado de consultarporobjeto con navegación a la edición y utilidades de presentación.
  */
 export class ListadoConsultarPorObjetoComponent {
-tareas: any;
-mostrarResultados: any;
-ejecutarTarea(_t14: any) {
-throw new Error('Method not implemented.');
-}
-verExpedienteTarea(_t14: any) {
-throw new Error('Method not implemented.');
-}
-verDetalle(_t14: any) {
-throw new Error('Method not implemented.');
-}
+  tareas: any;
+  mostrarResultados: any;
+  ejecutarTarea(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
+  verExpedienteTarea(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
+  verDetalle(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
   // 🔹 Variables de paginación
   public currentPage: number = 1;
   public numberOfPages: number = 1;
@@ -42,17 +43,21 @@ throw new Error('Method not implemented.');
   /**
    * Navega a la pantalla de edición de la tarea seleccionada.
    */
-  public goToEditarConsultarPorObjeto(consultarporobjeto: ConsultarPorObjetoEntity) {
+  public goToEditarConsultarPorObjeto(
+    consultarporobjeto: ConsultarPorObjetoEntity,
+  ) {
     this.parent.router.navigate([
       `/main-page/consultarporobjeto/editarConsultarPorObjeto/${consultarporobjeto.nombre}`,
     ]);
   }
 
-   /**
+  /**
    * Obtiene el nombre legible de la herramienta a partir del identificador.
    */
   public getConsultarPorObjetoName(consultarporobjetoName: any) {
-    const consultarporobjeto = this.parent.consultarporobjeto.find((c) => c.nombre === consultarporobjetoName);
+    const consultarporobjeto = this.parent.consultarporobjeto.find(
+      (c) => c.nombre === consultarporobjetoName,
+    );
     return consultarporobjeto ? consultarporobjeto.nombre : '';
   }
 
@@ -82,10 +87,9 @@ throw new Error('Method not implemented.');
 
   seleccionarTodos = false;
 
-seleccionarTodosRegistros(): void {
-  this.parent.consultarporobjeto.forEach((item: any) => {
-    item.seleccionado = this.seleccionarTodos;
-  });
+  seleccionarTodosRegistros(): void {
+    this.parent.consultarporobjeto.forEach((item: any) => {
+      item.seleccionado = this.seleccionarTodos;
+    });
+  }
 }
-}
-

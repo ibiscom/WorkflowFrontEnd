@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AlarmaComponent } from '../alarmas.component';
 import { MatTableModule } from '@angular/material/table';
 import { AlarmaEntity } from '../alarmas.entity';
@@ -9,6 +9,7 @@ import { CrearAlarmaComponent } from '../crear-alarmas/crear-alarmas.component';
   standalone: true,
   imports: [MatTableModule, CrearAlarmaComponent],
   templateUrl: './listado-alarmas.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./listado-alarmas.component.scss'],
 })
 /**
@@ -26,11 +27,10 @@ export class ListadoAlarmasComponent {
     'Descripcion',
   ];
 
-  constructor(public parent: AlarmaComponent) {
-  }
+  constructor(public parent: AlarmaComponent) {}
 
   /**
-   * Navega a la pantalla de edición del atributo de objeto workflow seleccionado.
+   * Navega a la pantalla de edición de la alarma.
    */
   public goToEditarAlarma(alarma: AlarmaEntity) {
     this.parent.router.navigate([
@@ -38,7 +38,7 @@ export class ListadoAlarmasComponent {
     ]);
   }
 
-   // 🔹 Ir a página anterior
+  // 🔹 Ir a página anterior
   public previousPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
@@ -52,7 +52,5 @@ export class ListadoAlarmasComponent {
       this.currentPage++;
       this.parent.buscarAlarma(); // ajusta si tu método se llama diferente
     }
-
-}
-
+  }
 }

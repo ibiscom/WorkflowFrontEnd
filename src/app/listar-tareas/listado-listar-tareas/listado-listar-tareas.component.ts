@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ListarTareaComponent } from '../listar-tareas.component';
 import { FiltrosBusquedaListarTareaComponent } from '../filtros-busqueda-listar-tareas/filtros-busqueda-listar-tareas.component';
 import { MatTableModule } from '@angular/material/table';
@@ -9,13 +9,13 @@ import { ListarTareasEntity } from '../listar-tareas.entity';
   selector: 'ibpm-listado-listar-tarea',
   imports: [MatTableModule, FiltrosBusquedaListarTareaComponent],
   templateUrl: './listado-listar-tareas.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-listar-tareas.component.scss',
 })
 /**
  * Listado de listartareas con navegación a la edición y utilidades de presentación.
  */
 export class ListadoListarTareaComponent {
-
   // 🔹 Variables de paginación
   public currentPage: number = 1;
   public numberOfPages: number = 1;
@@ -43,7 +43,9 @@ export class ListadoListarTareaComponent {
    * Obtiene el nombre legible del listartarea a partir del identificador.
    */
   public getListarTareaName(listartareaName: any) {
-    const listartarea = this.parent.listartareas.find((c) => c.nombre === listartareaName);
+    const listartarea = this.parent.listartareas.find(
+      (c) => c.nombre === listartareaName,
+    );
     return listartarea ? listartarea.nombreLargo : '';
   }
 
@@ -64,6 +66,8 @@ export class ListadoListarTareaComponent {
   }
 
   public abrirVentana(tarea: ListarTareasEntity) {
-    this.parent.router.navigate([`/main-page/listarTareas/mostrarHerramienta/${tarea.idInstanciaWorkflow}/${tarea.numero}`]);
+    this.parent.router.navigate([
+      `/main-page/listarTareas/mostrarHerramienta/${tarea.idInstanciaWorkflow}/${tarea.numero}`,
+    ]);
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ObjetowComponent } from '../objetow.component';
 import { CrearObjetowComponent } from '../crear-objetow/crear-objetow.component';
 import { MatTableModule } from '@angular/material/table';
@@ -9,6 +9,7 @@ import { AtributoObjetowEntity } from '../atributo-objetow.entity';
   selector: 'ibpm-listado-objetow',
   imports: [MatTableModule, CrearObjetowComponent],
   templateUrl: './listado-atributos-objetow.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-atributos-objetow.component.scss',
 })
 /**
@@ -26,8 +27,7 @@ export class ListadoAtributosObjetowComponent {
     'Descripcion',
   ];
 
-  constructor(public parent: ObjetowComponent) {
-  }
+  constructor(public parent: ObjetowComponent) {}
 
   /**
    * Navega a la pantalla de edición del atributo de objeto workflow seleccionado.
@@ -38,7 +38,7 @@ export class ListadoAtributosObjetowComponent {
     ]);
   }
 
-   // 🔹 Ir a página anterior
+  // 🔹 Ir a página anterior
   public previousPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
@@ -54,4 +54,3 @@ export class ListadoAtributosObjetowComponent {
     }
   }
 }
-

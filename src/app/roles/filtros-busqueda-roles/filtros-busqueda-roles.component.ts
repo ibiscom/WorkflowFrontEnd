@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RolesComponent } from '../roles.component';
 import { RolesService } from '../roles.service';
@@ -8,6 +8,7 @@ import { LoginEntity } from '../../login/login.entity';
   selector: 'ibpm-filtros-busqueda-roles',
   imports: [FormsModule],
   templateUrl: './filtros-busqueda-roles.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './filtros-busqueda-roles.component.scss',
 })
 export class FiltrosBusquedaRolesComponent {
@@ -39,7 +40,7 @@ export class FiltrosBusquedaRolesComponent {
     // Si luego viene de servicio, aquí se reemplaza
     this.companiesList = [
       { id: 1, largeName: 'Activo' },
-      { id: 2, largeName: 'Inactivo' }
+      { id: 2, largeName: 'Inactivo' },
     ];
   }
 
@@ -53,24 +54,20 @@ export class FiltrosBusquedaRolesComponent {
   public search(): void {
     const generateReportBool = this.generateReportF === 'true';
 
-    this.searchRoles(
-      this.rolesNameF,
-      this.supervisorF,
-      generateReportBool
-    );
+    this.searchRoles(this.rolesNameF, this.supervisorF, generateReportBool);
   }
 
   public searchRoles(
     rolesName: string,
     supervisor: string,
-    generateReport: boolean
+    generateReport: boolean,
   ): void {
     console.log(
       'Filtros recibidos:',
       rolesName,
       supervisor,
       generateReport,
-      this.companyObjectN
+      this.companyObjectN,
     );
 
     // Tu lógica actual aquí

@@ -1,4 +1,9 @@
-import { Component, inject, Input } from '@angular/core';
+import {
+  Component,
+  inject,
+  Input,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -42,6 +47,7 @@ import { MatTimepickerModule } from '@angular/material/timepicker';
     { provide: MAT_DATE_LOCALE, useValue: environment.dateLocale },
   ],
   templateUrl: './seleccion-log.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './seleccion-log.component.scss',
 })
 /**
@@ -135,8 +141,16 @@ export class SeleccionLogComponent {
   }
 
   // --- Métodos de carga originales (los dejo sin cambios) ---
-  private getActionsList() { /* ... */ }
-  private getUserAccountsList() { /* ... */ }
-  private getAuthorizationActionsList() { /* ... */ }
-  private getAvailableLogs() { /* ... */ }
+  private getActionsList() {
+    /* ... */
+  }
+  private getUserAccountsList() {
+    /* ... */
+  }
+  private getAuthorizationActionsList() {
+    /* ... */
+  }
+  private getAvailableLogs() {
+    /* ... */
+  }
 }

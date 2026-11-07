@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { PerfilesComponent } from '../perfiles.component';
 import { LoginEntity } from '../../login/login.entity';
@@ -34,6 +34,7 @@ import { UserSearchFilterEntity } from '../../entities/users/user-search-filter.
     MatSelectModule,
   ],
   templateUrl: './crear-perfil.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './crear-perfil.component.scss',
 })
 /**

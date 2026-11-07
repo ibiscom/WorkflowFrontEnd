@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../login/login.service';
 import { OperacionesService } from './operaciones.service';
@@ -18,6 +18,7 @@ import { NuevaOperacionComponent } from './nueva-operacion/nueva-operacion.compo
   selector: 'fs-operaciones',
   imports: [FormsModule, MatCardModule, RouterModule, NuevaOperacionComponent],
   templateUrl: './operaciones.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './operaciones.component.scss',
 })
 /**

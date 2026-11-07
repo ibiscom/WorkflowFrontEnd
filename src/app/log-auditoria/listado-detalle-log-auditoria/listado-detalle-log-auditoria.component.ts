@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { EntityLogEntity } from '../../entities/entities/entity-log.entity';
 import { LogAuditoriaService } from '../log-auditoria.service';
 import { MessageUtil } from '../../utils/message.util';
@@ -15,6 +15,7 @@ import { firstValueFrom } from 'rxjs';
   selector: 'app-listado-detalle-log-auditoria',
   imports: [SeccionVerDetalleLaComponent, MatTableModule],
   templateUrl: './listado-detalle-log-auditoria.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-detalle-log-auditoria.component.scss',
 })
 /**

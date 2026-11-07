@@ -11,7 +11,7 @@
 
   <!-- BODY -->
   <div class="tabla-body">
-   @let atributos = parent.objetoW?.attributes;
+    @let atributos = $safeNavigationMigration(parent.objetoW?.attributes);
     <!-- COLUMNA: NOMBRE -->
     <div class="tabla-columna">
       <div class="tabla-col-header">
@@ -79,9 +79,7 @@
         </ng-container>
       }
     </div>
-
   </div>
-
 
   <!-- FOOTER
   <div class="tabla-footer">
@@ -98,4 +96,3 @@
     </div>
   </div>-->
 </div>
-

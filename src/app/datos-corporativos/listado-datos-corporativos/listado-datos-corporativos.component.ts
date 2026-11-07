@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { DatosCorporativosComponent } from '../datos-corporativos.component';
 
@@ -6,13 +6,13 @@ import { DatosCorporativosComponent } from '../datos-corporativos.component';
   selector: 'fs-listado-datos-corporativos',
   imports: [MatTableModule],
   templateUrl: './listado-datos-corporativos.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-datos-corporativos.component.scss',
 })
 /**
  * Tabla de datos corporativos con paginación y navegación a edición.
  */
 export class ListadoDatosCorporativosComponent {
-  
   public parent = inject(DatosCorporativosComponent);
 
   public currentPage: number = 1;

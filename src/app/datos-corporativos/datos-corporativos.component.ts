@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { DatosCorporativosComponentInstanceService } from './datos-corporativos-component-instance.service';
@@ -13,6 +13,7 @@ import { CorporateDataEntity } from '../entities/corporate-data/corporate-data.e
   selector: 'fs-datos-corporativos',
   imports: [MatCardModule, RouterModule],
   templateUrl: './datos-corporativos.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './datos-corporativos.component.scss',
 })
 /**

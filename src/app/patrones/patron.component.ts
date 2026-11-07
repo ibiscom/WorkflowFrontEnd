@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -18,6 +18,7 @@ import { TipoPatronEntity } from './tipo-patron.entity';
   selector: 'ibpm-patron',
   imports: [MatCardModule, RouterModule, AccionesPatronComponent],
   templateUrl: './patron.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './patron.component.scss',
 })
 export class PatronComponent {
@@ -38,42 +39,39 @@ export class PatronComponent {
   ngOnInit(): void {
     this.patronComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-    if(this.hayWorkflowActual()) {
+    if (this.hayWorkflowActual()) {
       this.obtenerTipos();
       this.buscarPatrones();
     }
   }
 
   public hayWorkflowActual(): boolean {
-    this.workflowActual = this.cookieService.get("workflowActual");
-    if (this.workflowActual === '') { 
+    this.workflowActual = this.cookieService.get('workflowActual');
+    if (this.workflowActual === '') {
       this.mensaje = Constants.ERR_WORKFLOW_NO_SELECCIONADO;
       return false;
     }
     return true;
   }
 
+  public buscarPatrones(noLimpiar?: boolean): void {
+    this.patronService.getPatrones(this.workflowActual).subscribe({
+      next: (response) => {
+        this.patrones = response.respuesta;
+        if (!noLimpiar) {
+          this.mensaje = '';
+        }
+      },
+      error: (err) => {
+        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          String(Constants.ERR_OBTENIENDO_PATRONES),
+          err,
+        );
+      },
+    });
+  }
 
- public  buscarPatrones(noLimpiar?:boolean): void {
-     this.patronService
-       .getPatrones(this.workflowActual)
-       .subscribe({
-         next: (response) => {
-           this.patrones = response.respuesta;          
-           if(!noLimpiar) {
-             this.mensaje = '';
-           }
-         },
-         error: (err) => {
-           this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-             String(Constants.ERR_OBTENIENDO_PATRONES),
-             err,
-           );
-         },
-       });
-   }
-
-   /**
+  /**
     * REVISIÓN CARLOS!!!
     
    public buscarPatrons(filtros?: PatronsFilterEntity): void {
@@ -93,21 +91,17 @@ export class PatronComponent {
          });
      }
 */
-    public obtenerTipos(): void {
-    this.patronService
-      .getTypes()
-      .subscribe({
-        next: (response) => {
-          this.tipos = response.respuesta;
-        },
-        error: (err) => {
-          this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-            Constants.ERR_OBTENIENDO_TIPOS_HERR,
-            err,
-          );
-        },
-      });
-
+  public obtenerTipos(): void {
+    this.patronService.getTypes().subscribe({
+      next: (response) => {
+        this.tipos = response.respuesta;
+      },
+      error: (err) => {
+        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          Constants.ERR_OBTENIENDO_TIPOS_HERR,
+          err,
+        );
+      },
+    });
   }
 }
-

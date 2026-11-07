@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { OperacionesComponent } from '../operaciones.component';
 
 import { FormsModule } from '@angular/forms';
@@ -28,6 +28,7 @@ import { OperationEntity } from '../../entities/operations/operation.entity';
     MatRadioModule,
   ],
   templateUrl: './nueva-operacion.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './nueva-operacion.component.scss',
 })
 /**

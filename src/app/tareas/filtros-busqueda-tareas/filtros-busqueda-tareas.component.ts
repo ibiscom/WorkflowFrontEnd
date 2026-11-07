@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TareasComponent } from '../tareas.component';
 import { TareasService } from '../tareas.service';
@@ -8,6 +8,7 @@ import { LoginEntity } from '../../login/login.entity';
   selector: 'ibpm-filtros-busqueda-tareas',
   imports: [FormsModule],
   templateUrl: './filtros-busqueda-tareas.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './filtros-busqueda-tareas.component.scss',
 })
 export class FiltrosBusquedaTareasComponent {
@@ -40,7 +41,7 @@ export class FiltrosBusquedaTareasComponent {
     // Si luego viene de servicio, aquí se reemplaza
     this.companiesList = [
       { id: 1, largeName: 'Activo' },
-      { id: 2, largeName: 'Inactivo' }
+      { id: 2, largeName: 'Inactivo' },
     ];
   }
 
@@ -54,27 +55,22 @@ export class FiltrosBusquedaTareasComponent {
   public search(): void {
     const generateReportBool = this.generateReportF === 'true';
 
-    this.searchTareas(
-      this.tareasNameF,
-      this.supervisorF,
-      generateReportBool
-    );
+    this.searchTareas(this.tareasNameF, this.supervisorF, generateReportBool);
   }
 
   public searchTareas(
     tareasName: string,
     supervisor: string,
-    generateReport: boolean
+    generateReport: boolean,
   ): void {
     console.log(
       'Filtros recibidos:',
       tareasName,
       supervisor,
       generateReport,
-      this.companyObjectN
+      this.companyObjectN,
     );
 
     // Tu lógica actual aquí
   }
 }
-

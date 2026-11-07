@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -16,6 +16,7 @@ import { EstadoWorkflowEntity } from './estado-workflow.entity';
   selector: 'ibpm-workflow',
   imports: [MatCardModule, RouterModule, AccionesWorkflowComponent],
   templateUrl: './workflow.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './workflow.component.scss',
 })
 export class WorkflowComponent {
@@ -39,36 +40,31 @@ export class WorkflowComponent {
   }
 
   public buscarWorkflows(filtros?: WorkflowFilterEntity): void {
-    this.workflowService
-      .getWorkflows(filtros || {})
-      .subscribe({
-        next: (response) => {
-          this.workflows = response.respuesta;
-          this.mensaje = '';
-        },
-        error: (err) => {
-          this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-            Constants.ERR_OBTENIENDO_WORKFLOWS,
-            err,
-          );
-        },
-      });
+    this.workflowService.getWorkflows(filtros || {}).subscribe({
+      next: (response) => {
+        this.workflows = response.respuesta;
+        this.mensaje = '';
+      },
+      error: (err) => {
+        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          Constants.ERR_OBTENIENDO_WORKFLOWS,
+          err,
+        );
+      },
+    });
   }
 
   public obtenerEstados(): void {
-    this.workflowService
-      .getStatus()
-      .subscribe({
-        next: (response) => {
-          this.estados = response.respuesta;
-        },
-        error: (err) => {
-          this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-            Constants.ERR_OBTENIENDO_ESTADOS_WORKFLOW,
-            err,
-          );
-        },
-      });
-
+    this.workflowService.getStatus().subscribe({
+      next: (response) => {
+        this.estados = response.respuesta;
+      },
+      error: (err) => {
+        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          Constants.ERR_OBTENIENDO_ESTADOS_WORKFLOW,
+          err,
+        );
+      },
+    });
   }
 }

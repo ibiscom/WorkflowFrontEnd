@@ -19,9 +19,11 @@
         <div class="campo-lista-filtro">
           <select [(ngModel)]="groupF">
             <option value="">Seleccione grupo</option>
-            <option *ngFor="let group of groupsList" [value]="group.name">
-              {{ group.name }}
-            </option>
+            @for (group of groupsList; track group) {
+              <option [value]="group.name">
+                {{ group.name }}
+              </option>
+            }
           </select>
         </div>
 
@@ -29,9 +31,11 @@
         <div class="campo-lista-filtro">
           <select [(ngModel)]="docTypeF">
             <option value="">Seleccione tipo documento</option>
-            <option *ngFor="let tipo of documentTypesList" [value]="tipo.name">
-              {{ tipo.name }}
-            </option>
+            @for (tipo of documentTypesList; track tipo) {
+              <option [value]="tipo.name">
+                {{ tipo.name }}
+              </option>
+            }
           </select>
         </div>
 
@@ -69,9 +73,11 @@
         <div class="campo-lista-filtro">
           <select [(ngModel)]="statusF">
             <option value="">Seleccione estado</option>
-            <option *ngFor="let estado of statusesList" [value]="estado.name">
-              {{ estado.name }}
-            </option>
+            @for (estado of statusesList; track estado) {
+              <option [value]="estado.name">
+                {{ estado.name }}
+              </option>
+            }
           </select>
         </div>
 
@@ -79,9 +85,11 @@
         <div class="campo-lista-filtro">
           <select [(ngModel)]="areaF">
             <option value="">Seleccione área</option>
-            <option *ngFor="let area of areasList" [value]="area.name">
-              {{ area.name }}
-            </option>
+            @for (area of areasList; track area) {
+              <option [value]="area.name">
+                {{ area.name }}
+              </option>
+            }
           </select>
         </div>
       </div>
@@ -92,12 +100,11 @@
         <div class="campo-lista-filtro">
           <select id="company" [(ngModel)]="companyF">
             <option value="">Seleccione una compañia</option>
-            <option
-              *ngFor="let company of companiesList"
-              [value]="company.largeName"
-            >
-              {{ company.largeName }}
-            </option>
+            @for (company of companiesList; track company) {
+              <option [value]="company.largeName">
+                {{ company.largeName }}
+              </option>
+            }
           </select>
         </div>
 

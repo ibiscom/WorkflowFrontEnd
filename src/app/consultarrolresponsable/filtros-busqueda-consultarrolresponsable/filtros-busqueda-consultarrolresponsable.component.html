@@ -1,0 +1,98 @@
+<div class="cont-filtro">
+  <div class="usuarios-container">
+
+    <div class="filtros-container">
+
+      <!-- TÍTULO -->
+      <div class="filtros-titulo">
+        Información de búsqueda
+      </div>
+
+      <!-- ========================= -->
+      <!-- FILA 1: RADIO BUTTONS -->
+      <!-- ========================= -->
+      <div class="fila-filtros">
+
+        <div class="campo-radio">
+
+          <label class="titulo-radio">
+            ¿Conoce la cuenta de usuario del responsable?
+          </label>
+
+          <div class="radio-opciones">
+
+            <label class="radio-opcion">
+              <input
+                type="radio"
+                name="conoceUsuario"
+                value="si"
+              />
+              <span>Sí</span>
+            </label>
+
+            <label class="radio-opcion">
+              <input
+                type="radio"
+                name="conoceUsuario"
+                value="no"
+              />
+              <span>No</span>
+            </label>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ========================= -->
+      <!-- FILA 2: RESPONSABLE + BOTÓN -->
+      <!-- ========================= -->
+      <div class="fila-responsable">
+
+        <!-- NOMBRE DEL RESPONSABLE -->
+        <div class="campo-lista">
+
+          <label>Nombre del responsable</label>
+
+          <select
+            [(ngModel)]="responsableSeleccionado">
+
+            <option value="">
+              Seleccione una opción
+            </option>
+
+            @for (responsable of responsablesList; track responsable) {
+              <option [ngValue]="responsable">
+                {{ responsable.largeName }}
+              </option>
+            }
+
+          </select>
+
+        </div>
+
+        <!-- BOTÓN -->
+        <button
+          class="btn-figma"
+          (click)="consultarRoles()">
+
+          <span class="btn-icon">
+            <img
+              src="assets/img/search.svg"
+              alt="Consultar roles"
+            />
+          </span>
+
+          <span class="label">
+            Consultar roles
+          </span>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

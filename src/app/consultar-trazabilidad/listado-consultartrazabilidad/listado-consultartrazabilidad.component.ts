@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ConsultarTrazabilidadComponent } from '../consultartrazabilidad.component';
 import { FiltrosBusquedaConsultarTrazabilidadComponent } from '../filtros-busqueda-consultartrazabilidad/filtros-busqueda-consultartrazabilidad.component';
 import { MatTableModule } from '@angular/material/table';
@@ -8,25 +8,26 @@ import { ConsultarTrazabilidadEntity } from '../consultartrazabilidad.entity';
   selector: 'ibpm-listado-consultartrazabilidad',
   imports: [MatTableModule, FiltrosBusquedaConsultarTrazabilidadComponent],
   templateUrl: './listado-consultartrazabilidad.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-consultartrazabilidad.component.scss',
 })
 /**
  * Listado de consultartrazabilidad con navegación a la edición y utilidades de presentación.
  */
 export class ListadoConsultarTrazabilidadComponent {
-tareas: any;
-mostrarResultados: any;
-mostrarInformacionProceso: any;
-informacionProceso: any;
-ejecutarTarea(_t14: any) {
-throw new Error('Method not implemented.');
-}
-verExpedienteTarea(_t14: any) {
-throw new Error('Method not implemented.');
-}
-verDetalle(_t14: any) {
-throw new Error('Method not implemented.');
-}
+  tareas: any;
+  mostrarResultados: any;
+  mostrarInformacionProceso: any;
+  informacionProceso: any;
+  ejecutarTarea(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
+  verExpedienteTarea(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
+  verDetalle(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
   // 🔹 Variables de paginación
   public currentPage: number = 1;
   public numberOfPages: number = 1;
@@ -44,17 +45,21 @@ throw new Error('Method not implemented.');
   /**
    * Navega a la pantalla de edición de la tarea seleccionada.
    */
-  public goToEditarConsultarTrazabilidad(consultartrazabilidad: ConsultarTrazabilidadEntity) {
+  public goToEditarConsultarTrazabilidad(
+    consultartrazabilidad: ConsultarTrazabilidadEntity,
+  ) {
     this.parent.router.navigate([
       `/main-page/consultartrazabilidad/editarConsultarTrazabilidad/${consultartrazabilidad.nombre}`,
     ]);
   }
 
-   /**
+  /**
    * Obtiene el nombre legible de la herramienta a partir del identificador.
    */
   public getConsultarTrazabilidadName(consultartrazabilidadName: any) {
-    const consultartrazabilidad = this.parent.consultartrazabilidad.find((c) => c.nombre === consultartrazabilidadName);
+    const consultartrazabilidad = this.parent.consultartrazabilidad.find(
+      (c) => c.nombre === consultartrazabilidadName,
+    );
     return consultartrazabilidad ? consultartrazabilidad.nombre : '';
   }
 
@@ -84,10 +89,9 @@ throw new Error('Method not implemented.');
 
   seleccionarTodos = false;
 
-seleccionarTodosRegistros(): void {
-  this.parent.consultartrazabilidad.forEach((item: any) => {
-    item.seleccionado = this.seleccionarTodos;
-  });
+  seleccionarTodosRegistros(): void {
+    this.parent.consultartrazabilidad.forEach((item: any) => {
+      item.seleccionado = this.seleccionarTodos;
+    });
+  }
 }
-}
-

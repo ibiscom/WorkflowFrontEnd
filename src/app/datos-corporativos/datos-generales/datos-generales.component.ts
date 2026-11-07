@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -29,6 +29,7 @@ import { MessageUtil } from '../../utils/message.util';
     MatSelectModule,
   ],
   templateUrl: './datos-generales.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './datos-generales.component.scss',
 })
 /**

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { WorkflowComponent } from '../workflow.component';
 import { FiltrosBusquedaWorkflowComponent } from '../filtros-busqueda-workflow/filtros-busqueda-workflow.component';
 import { MatTableModule } from '@angular/material/table';
@@ -8,6 +8,7 @@ import { WorkflowEntity } from '../workflow.entity';
   selector: 'ibpm-listado-workflow',
   imports: [MatTableModule, FiltrosBusquedaWorkflowComponent],
   templateUrl: './listado-workflow.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-workflow.component.scss',
 })
 /**
@@ -41,7 +42,9 @@ export class ListadoWorkflowComponent {
    * Obtiene el nombre legible del workflow a partir del identificador.
    */
   public getWorkflowName(workflowName: any) {
-    const workflow = this.parent.workflows.find((c) => c.nombre === workflowName);
+    const workflow = this.parent.workflows.find(
+      (c) => c.nombre === workflowName,
+    );
     return workflow ? workflow.nombreLargo : '';
   }
 

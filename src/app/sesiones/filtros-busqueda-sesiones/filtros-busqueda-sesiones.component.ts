@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SesionesComponent } from '../sesiones.component';
 import { LoginService } from '../../login/login.service';
@@ -10,6 +10,7 @@ import { GetSessionsEntity } from '../../entities/sessions/get-sessions.entity';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './filtros-busqueda-sesiones.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './filtros-busqueda-sesiones.component.scss',
 })
 export class FiltrosBusquedaSesionesComponent {

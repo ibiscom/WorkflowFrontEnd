@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { OperacionesComponent } from '../operaciones.component';
-import { NuevaOperacionComponent } from "../nueva-operacion/nueva-operacion.component";
-
+import { NuevaOperacionComponent } from '../nueva-operacion/nueva-operacion.component';
 
 @Component({
   selector: 'fs-listado-operaciones',
   templateUrl: './listado-operaciones.component.html',
   styleUrl: './listado-operaciones.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [NuevaOperacionComponent],
 })
 export class ListadoOperacionesComponent {

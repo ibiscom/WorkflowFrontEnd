@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -18,6 +18,7 @@ import { AccionesFestivoComponent } from './acciones-festivo/acciones-festivo.co
   selector: 'ibpm-festivo',
   imports: [MatCardModule, RouterModule, AccionesFestivoComponent],
   templateUrl: './festivo.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './festivo.component.scss',
 })
 export class FestivoComponent {
@@ -35,8 +36,8 @@ export class FestivoComponent {
   ) {}
 
   ngOnInit(): void {
-    console.log ('Entre a festivo component base')
+    console.log('Entre a festivo component base');
     this.festivoComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-     }
+  }
 }

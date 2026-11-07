@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -19,11 +19,11 @@ import { TareaDependenciaEntity } from './tarea-dependencia.entity';
 import { PrimitivaDependenciaEntity } from './primitiva-dependencia.entity';
 import { EstadoDependenciaEntity } from './estado-dependencia.entity';
 
-
 @Component({
   selector: 'ibpm-dependencia',
   imports: [MatCardModule, RouterModule, AccionesDependenciaComponent],
   templateUrl: './dependencia.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './dependencia.component.scss',
 })
 export class DependenciaComponent {
@@ -52,21 +52,18 @@ export class DependenciaComponent {
     console.log('ENTRO ngOnInit');
     this.dependenciaComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-   console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
-    if(this.hayWorkflowActual()) {
+    console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
+    if (this.hayWorkflowActual()) {
       console.log('SI hay workflow → voy a buscar');
-        this.buscarDependencias();
-        
+      this.buscarDependencias();
+    } else {
+      console.log('NO hay workflow');
     }
-    else {
-    console.log('NO hay workflow');
-         }
+  }
 
-      }
-  
-   public hayWorkflowActual(): boolean {
-    this.workflowActual = this.cookieService.get("workflowActual");
-    if (this.workflowActual === '') { 
+  public hayWorkflowActual(): boolean {
+    this.workflowActual = this.cookieService.get('workflowActual');
+    if (this.workflowActual === '') {
       this.mensaje = Constants.ERR_WORKFLOW_NO_SELECCIONADO;
       return false;
     }
@@ -91,41 +88,36 @@ export class DependenciaComponent {
        });
    }
 */
- public buscarDependencias(filtros?: DependenciaFilterEntity): void {
-  console.log("FILTROS RECIBIDOS EN PADRE:", filtros);
+  public buscarDependencias(filtros?: DependenciaFilterEntity): void {
+    console.log('FILTROS RECIBIDOS EN PADRE:', filtros);
     const workflowActual = this.cookieService.get('workflowActual');
     const body: DependenciaFilterEntity = {
-    nombreWorkflow: workflowActual,
-    nombre: filtros?.nombre ?? '',
-    nombreTareaCabeza: filtros?.nombreTareaCabeza ?? '',
-    nombreTareaCola: filtros?.nombreTareaCola ?? '',
-    estado: filtros?.estado ?? '',
-    primitiva: filtros?.primitiva ?? '',
-    expresion: filtros?.expresion ?? '',
-    descripcion: filtros?.descripcion ?? ''
-  };
- console.log("BODY FINAL:", body);
+      nombreWorkflow: workflowActual,
+      nombre: filtros?.nombre ?? '',
+      nombreTareaCabeza: filtros?.nombreTareaCabeza ?? '',
+      nombreTareaCola: filtros?.nombreTareaCola ?? '',
+      estado: filtros?.estado ?? '',
+      primitiva: filtros?.primitiva ?? '',
+      expresion: filtros?.expresion ?? '',
+      descripcion: filtros?.descripcion ?? '',
+    };
+    console.log('BODY FINAL:', body);
     console.log('BODY ENVIADO AL BACKEND:', body);
 
-    this.dependenciaService
-      .getDependencies(body)
-      .subscribe({
-        next: (response) => {
-          this.dependencia = response.respuesta;
-          this.mensaje = '';
-        },
-        error: (err) => {
-          this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-            Constants.ERR_OBTENIENDO_DEPENDENCIAS,
-            err,
-          );
-        },
-      });
+    this.dependenciaService.getDependencies(body).subscribe({
+      next: (response) => {
+        this.dependencia = response.respuesta;
+        this.mensaje = '';
+      },
+      error: (err) => {
+        this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+          Constants.ERR_OBTENIENDO_DEPENDENCIAS,
+          err,
+        );
+      },
+    });
   }
 }
-
-
-
 
 /**
     public obtenerEstado(): void {
@@ -146,4 +138,3 @@ export class DependenciaComponent {
 
   }
       */
-

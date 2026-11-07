@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ActividadRealizadaPorTareaComponent } from '../actividadrealizadaportarea.component';
 import { FiltrosBusquedaActividadRealizadaPorTareaComponent } from '../filtros-busqueda-actividadrealizadaportarea/filtros-busqueda-actividadrealizadaportarea.component';
 import { MatTableModule } from '@angular/material/table';
@@ -8,32 +8,33 @@ import { ActividadRealizadaPorTareaEntity } from '../actividadrealizadaportarea.
   selector: 'ibpm-listado-actividadrealizadaportarea',
   imports: [MatTableModule, FiltrosBusquedaActividadRealizadaPorTareaComponent],
   templateUrl: './listado-actividadrealizadaportarea.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-actividadrealizadaportarea.component.scss',
 })
 /**
  * Listado de actividadrealizadaportarea con navegación a la edición y utilidades de presentación.
  */
 export class ListadoActividadRealizadaPorTareaComponent {
-tareas: any;
-mostrarResultados: any;
-fechaReporte: any;
-fechaGeneracion: any;
-nombreProcesoReporte: any;
-columnasReporte: any;
-datosReporte: any;
-nombreTareaReporte: any;
-fechaInicial: any;
-fechaFinal: any;
-tareaSeleccionado: any;
-ejecutarTarea(_t14: any) {
-throw new Error('Method not implemented.');
-}
-verExpedienteTarea(_t14: any) {
-throw new Error('Method not implemented.');
-}
-verDetalle(_t14: any) {
-throw new Error('Method not implemented.');
-}
+  tareas: any;
+  mostrarResultados: any;
+  fechaReporte: any;
+  fechaGeneracion: any;
+  nombreProcesoReporte: any;
+  columnasReporte: any;
+  datosReporte: any;
+  nombreTareaReporte: any;
+  fechaInicial: any;
+  fechaFinal: any;
+  tareaSeleccionado: any;
+  ejecutarTarea(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
+  verExpedienteTarea(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
+  verDetalle(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
   // 🔹 Variables de paginación
   public currentPage: number = 1;
   public numberOfPages: number = 1;
@@ -51,17 +52,24 @@ throw new Error('Method not implemented.');
   /**
    * Navega a la pantalla de edición de la tarea seleccionada.
    */
-  public goToEditarActividadRealizadaPorTarea(actividadrealizadaportarea: ActividadRealizadaPorTareaEntity) {
+  public goToEditarActividadRealizadaPorTarea(
+    actividadrealizadaportarea: ActividadRealizadaPorTareaEntity,
+  ) {
     this.parent.router.navigate([
       `/main-page/actividadrealizadaportarea/editarActividadRealizadaPorTarea/${actividadrealizadaportarea.nombre}`,
     ]);
   }
 
-   /**
+  /**
    * Obtiene el nombre legible de la herramienta a partir del identificador.
    */
-  public getActividadRealizadaPorTareaName(actividadrealizadaportareaName: any) {
-    const actividadrealizadaportarea = this.parent.actividadrealizadaportarea.find((c: { nombre: any; }) => c.nombre === actividadrealizadaportareaName);
+  public getActividadRealizadaPorTareaName(
+    actividadrealizadaportareaName: any,
+  ) {
+    const actividadrealizadaportarea =
+      this.parent.actividadrealizadaportarea.find(
+        (c: { nombre: any }) => c.nombre === actividadrealizadaportareaName,
+      );
     return actividadrealizadaportarea ? actividadrealizadaportarea.nombre : '';
   }
 
@@ -91,10 +99,9 @@ throw new Error('Method not implemented.');
 
   seleccionarTodos = false;
 
-seleccionarTodosRegistros(): void {
-  this.parent.actividadrealizadaportarea.forEach((item: any) => {
-    item.seleccionado = this.seleccionarTodos;
-  });
+  seleccionarTodosRegistros(): void {
+    this.parent.actividadrealizadaportarea.forEach((item: any) => {
+      item.seleccionado = this.seleccionarTodos;
+    });
+  }
 }
-}
-

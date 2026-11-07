@@ -1,21 +1,20 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { UsuariosComponent } from '../usuarios.component';
 import { FiltrosBusquedaUsuariosComponent } from '../filtros-busqueda-usuarios/filtros-busqueda-usuarios.component';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'fs-listado-usuarios',
   imports: [
-    CommonModule,
     MatTableModule,
     FiltrosBusquedaUsuariosComponent,
     MatCheckboxModule,
   ],
   templateUrl: './listado-usuarios.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-usuarios.component.scss',
 })
 /**

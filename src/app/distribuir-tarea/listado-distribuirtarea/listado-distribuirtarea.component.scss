@@ -1,0 +1,275 @@
+/* =======================================
+   CONTENEDOR PRINCIPAL
+======================================= */
+
+.tabla-card {
+  width: 100%;
+  max-width: 100%;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0px 1px 15.4px 6px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =======================================
+   HEADER
+======================================= */
+
+.tabla-header-container {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.tabla-titulo {
+  color: #1b1b1b;
+  font-family: Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: .5px;
+}
+
+/* =======================================
+   BODY TABLA
+======================================= */
+
+.tabla-body {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+}
+
+.tabla-body::after{
+  content:"";
+  flex:1;
+}
+
+/* =======================================
+   COLUMNAS
+======================================= */
+
+.tabla-columna {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border-left: .5px solid #DCDCDC;
+  border-right: .5px solid #DCDCDC;
+  border-top: 1px solid #DCDCDC;
+  background: #FFF;
+  flex: 1 1 0;
+}
+
+/* Selección */
+.tabla-columna:nth-child(1) {
+  flex: 0 0 140px;
+}
+
+/* Instancia */
+.tabla-columna:nth-child(2) {
+  flex: 1.3;
+}
+
+/* Identificador */
+.tabla-columna:nth-child(3) {
+  flex: 1.4;
+}
+
+/* Identificador 1 */
+.tabla-columna:nth-child(4) {
+  flex: 1.4;
+}
+
+/* Id tarea */
+.tabla-columna:nth-child(5) {
+  flex: 1.1;
+}
+
+/* Nombre tarea */
+.tabla-columna:nth-child(6) {
+  flex: 2.2;
+}
+
+/* Estado */
+.tabla-columna:nth-child(7) {
+  flex: 1.4;
+}
+
+/* Fecha */
+.tabla-columna:nth-child(8) {
+  flex: 1.6;
+}
+
+/* Días */
+.tabla-columna:nth-child(9) {
+  flex: 1.1;
+}
+
+/* Responsable */
+.tabla-columna:nth-child(10) {
+  flex: 1.8;
+}
+
+/* =======================================
+   HEADER COLUMNAS
+======================================= */
+
+.tabla-col-header {
+  height: 56px;
+  min-height: 56px;
+
+  padding: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #FAFAFA;
+
+  border-bottom: 1px solid #DCDCDC;
+}
+
+.tabla-col-header div {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  text-align: center;
+
+  font-family: Roboto, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+
+  color: #757575;
+
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* =======================================
+   CELDAS
+======================================= */
+
+.tabla-celda {
+  height: 40px;
+  min-height: 40px;
+
+  padding: 4px 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #FFF;
+
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,.12);
+}
+
+.tabla-celda:hover {
+  background: rgba(103,80,164,.04);
+}
+
+.tabla-celda div {
+  width: 100%;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  text-align: center;
+
+  font-family: Roboto, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: .25px;
+
+  color: rgba(0,0,0,.87);
+}
+
+/* =======================================
+   CHECKBOX
+======================================= */
+
+.check-tabla {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #6750A4;
+  flex-shrink: 0;
+}
+
+/* =======================================
+   FOOTER
+======================================= */
+
+.tabla-footer {
+  height: 58px;
+  padding: 0 16px;
+  background: #FFF;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 24px;
+}
+
+.tabla-footer-text {
+  font-family: Roboto, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: .4px;
+
+  color: rgba(0,0,0,.87);
+}
+
+/* =======================================
+   PAGINADOR
+======================================= */
+
+.paginador-boton {
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+.paginador-boton.active {
+  color: rgba(0,0,0,.54);
+}
+
+.paginador-boton span {
+  font-family: "Material Icons";
+  font-size: 24px;
+  line-height: 24px;
+}
+
+/* =======================================
+   RESPONSIVE
+======================================= */
+
+@media (max-width: 1200px) {
+
+  .tabla-body {
+    overflow-x: auto;
+  }
+
+  .tabla-columna:first-child {
+    min-width: 120px;
+  }
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { LoginEntity } from '../../login/login.entity';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -22,9 +22,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { MetodoAsignacionPrimeraTareaEntity } from '../metodoasignacion-primeratarea.entity';
 import { SerieEventoInicioEntity } from '../serie-eventoinicio.entity';
 import { TipoDocumentoEventoInicioEntity } from '../tipodocumento-eventoinicio.entity';
-import { BrowserModule } from "@angular/platform-browser";
+import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
-import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HerramientaEventoInicioEntity } from '../herramienta-eventoinicio.entity';
 import { DocumentModelEntity } from '../document-model.entity';
 
@@ -39,9 +39,10 @@ import { DocumentModelEntity } from '../document-model.entity';
     MatIconModule,
     MatSelectModule,
     CommonModule,
-    MatSlideToggleModule
-],
+    MatSlideToggleModule,
+  ],
   templateUrl: './crear-eventoinicio.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './crear-eventoinicio.component.scss',
 })
 /**
@@ -53,14 +54,14 @@ export class CrearEventoInicioComponent {
   public herramientaN?: HerramientaEventoInicioEntity;
   public metodoAsignacionN?: MetodoAsignacionPrimeraTareaEntity;
   public nombreMetodoAsignacionB: boolean = false;
-  public nombreMetodoAsignacionN: string = 'No'
+  public nombreMetodoAsignacionN: string = 'No';
   public herramientasList: HerramientaEventoInicioEntity[] = [];
   public nombreEventoInicioN: string = '';
   public nombreLargoEventoInicioN: string = '';
   public descripcionEventoInicioN: string = '';
   public nombreHerramientaN: string = '';
   public modeloCarpetaN?: string;
-   public uc?: EventoInicioComponent;
+  public uc?: EventoInicioComponent;
   public loggedUser?: LoginEntity;
   public eventoInicioIdEdit?: string;
   public workflowActual: string = '';
@@ -68,13 +69,13 @@ export class CrearEventoInicioComponent {
   public idSerieN: string = '';
   public seriesList: SerieEventoInicioEntity[] = [];
   public tiposDocumentoList: TipoDocumentoEventoInicioEntity[] = [];
-  public tiposDocumentoAsignadosEventoInicioList: TipoDocumentoEventoInicioEntity[] = [];
+  public tiposDocumentoAsignadosEventoInicioList: TipoDocumentoEventoInicioEntity[] =
+    [];
   public tiposDocumentoAgregarList: TipoDocumentoEventoInicioEntity[] = [];
   public modelosDocumentoEventoInicioE: DocumentModelEntity[] = [];
   public nombreLargoN: string = '';
   public descripcionN: string = '';
   public editarDocProcesoN: any = false;
-  
 
   public constructor(
     private eventoInicioService: EventoInicioService,
@@ -95,7 +96,7 @@ export class CrearEventoInicioComponent {
     if (this.uc) {
       this.uc.mensaje = '';
     }
-    this.workflowActual = this.cookieService.get("workflowActual");
+    this.workflowActual = this.cookieService.get('workflowActual');
     const id = this.route.snapshot.paramMap.get('id');
     console.log('Edit Mode On. Group Id:', id);
     await this.getHerramientasEventoInicioList();
@@ -104,18 +105,21 @@ export class CrearEventoInicioComponent {
     if (id) {
       this.eventoInicioIdEdit = id;
       await this.fillEditFields();
-
     } else {
       this.eventoInicioIdEdit = undefined;
     }
   }
-  
-  
+
   /**
    * Llena los campos del formulario con la información de la tarea en edición.
    */
   public async fillEditFields(): Promise<void> {
-    console.log('fillEditFields', this.workflowActual ?? '', this.eventoInicioIdEdit ?? '', this.loggedUser?.user_name ?? '');
+    console.log(
+      'fillEditFields',
+      this.workflowActual ?? '',
+      this.eventoInicioIdEdit ?? '',
+      this.loggedUser?.user_name ?? '',
+    );
     try {
       const response = await firstValueFrom(
         this.eventoInicioService.getEventoInicio(
@@ -131,17 +135,25 @@ export class CrearEventoInicioComponent {
         this.modeloCarpetaN = eventoInicio.modeloCarpeta ?? '';
         this.descripcionEventoInicioN = eventoInicio.descripcion ?? '';
         this.nombreHerramientaN = eventoInicio.herramienta ?? '';
-        this.herramientaN = this.herramientasList.find(h => h.code === this.nombreHerramientaN) ?? undefined;
-        this.nombreMetodoAsignacionN = eventoInicio.usuarioIniciaTarea ? 'Si' : 'No';
+        this.herramientaN =
+          this.herramientasList.find(
+            (h) => h.code === this.nombreHerramientaN,
+          ) ?? undefined;
+        this.nombreMetodoAsignacionN = eventoInicio.usuarioIniciaTarea
+          ? 'Si'
+          : 'No';
         this.nombreMetodoAsignacionB = eventoInicio.usuarioIniciaTarea ?? false;
-        this.metodoAsignacionN = this.metodosAsignacionList.find(m => m.code === this.nombreMetodoAsignacionN) ?? undefined;
+        this.metodoAsignacionN =
+          this.metodosAsignacionList.find(
+            (m) => m.code === this.nombreMetodoAsignacionN,
+          ) ?? undefined;
         this.idSerieN = eventoInicio.docModels?.[0]?.idSerie ?? '';
-        this.serieN = this.seriesList.find(s => s.code === this.idSerieN) ?? undefined;
+        this.serieN =
+          this.seriesList.find((s) => s.code === this.idSerieN) ?? undefined;
         this.modelosDocumentoEventoInicioE = eventoInicio.docModels ?? [];
         await this.getTiposDocumentoListBySerie();
         await this.diligenciarTiposDocumentoAsignadosEventoInicio();
         await this.diligenciarTiposDocumentoAsignar();
-
       }
     } catch (e) {
       if (this.uc) {
@@ -153,9 +165,6 @@ export class CrearEventoInicioComponent {
     }
   }
 
-
-
-
   /**
    * Consulta las herramientas de evento de inicio.
    */
@@ -164,15 +173,15 @@ export class CrearEventoInicioComponent {
     console.log('getHerramientasEventoInicioList', this.workflowActual ?? '');
     try {
       const response = await firstValueFrom(
-        this.eventoInicioService
-        .getHerramientas(this.workflowActual ?? ''));
+        this.eventoInicioService.getHerramientas(this.workflowActual ?? ''),
+      );
 
-        console.log('getHerramientasEventoInicioList', response);
+      console.log('getHerramientasEventoInicioList', response);
 
-        if (response && response.respuesta) {
-          const ops = response.respuesta as HerramientaEventoInicioEntity[];
-            this.herramientasList.push(...ops);
-        }
+      if (response && response.respuesta) {
+        const ops = response.respuesta as HerramientaEventoInicioEntity[];
+        this.herramientasList.push(...ops);
+      }
     } catch (error: any) {
       if (this.uc) {
         this.uc.mensaje =
@@ -186,7 +195,6 @@ export class CrearEventoInicioComponent {
     }
   }
 
-  
   /**
    * Consulta los métodos de asignación de la primera tarea.
    */
@@ -195,13 +203,13 @@ export class CrearEventoInicioComponent {
     console.log('getMetodosAsignacionList');
     try {
       const response = await firstValueFrom(
-        this.eventoInicioService
-        .getMetodosAsignacion());
+        this.eventoInicioService.getMetodosAsignacion(),
+      );
 
-        if (response && response.respuesta) {
-          const ops = response.respuesta as MetodoAsignacionPrimeraTareaEntity[];
-            this.metodosAsignacionList.push(...ops);
-        }
+      if (response && response.respuesta) {
+        const ops = response.respuesta as MetodoAsignacionPrimeraTareaEntity[];
+        this.metodosAsignacionList.push(...ops);
+      }
     } catch (error: any) {
       if (this.uc) {
         this.uc.mensaje =
@@ -223,13 +231,15 @@ export class CrearEventoInicioComponent {
     console.log('getSeriesList', this.loggedUser?.user_name ?? '');
     try {
       const response = await firstValueFrom(
-        this.eventoInicioService        
-          .getSeriesEventoInicio(this.loggedUser?.user_name ?? ''));
+        this.eventoInicioService.getSeriesEventoInicio(
+          this.loggedUser?.user_name ?? '',
+        ),
+      );
 
-        if (response && response.respuesta) {
-          const ops = response.respuesta as SerieEventoInicioEntity[];
-          this.seriesList.push(...ops);
-        }
+      if (response && response.respuesta) {
+        const ops = response.respuesta as SerieEventoInicioEntity[];
+        this.seriesList.push(...ops);
+      }
     } catch (error: any) {
       if (this.uc) {
         this.uc.mensaje =
@@ -253,11 +263,14 @@ export class CrearEventoInicioComponent {
    * Indica si está en modo edición.
    */
   public editMode(): boolean {
-    return this.eventoInicioIdEdit !== undefined && this.eventoInicioIdEdit !== '';
+    return (
+      this.eventoInicioIdEdit !== undefined && this.eventoInicioIdEdit !== ''
+    );
   }
 
   private buildEventoInicioPayload(): EventoInicioEntity {
-    const metodoCode = this.metodoAsignacionN?.code ?? this.nombreMetodoAsignacionN;
+    const metodoCode =
+      this.metodoAsignacionN?.code ?? this.nombreMetodoAsignacionN;
     return {
       nombreWorkflow: this.workflowActual,
       usuario: this.loggedUser?.user_name ?? '',
@@ -271,25 +284,28 @@ export class CrearEventoInicioComponent {
     };
   }
 
-   /**
-    * Guarda los cambios, creando o editando el evento de inicio según corresponda.
+  /**
+   * Guarda los cambios, creando o editando el evento de inicio según corresponda.
    */
   public save() {
     if (!this.workflowActual) {
       if (this.uc) {
-        this.uc.mensaje = 'Debe seleccionar un workflow antes de guardar el evento de inicio.';
+        this.uc.mensaje =
+          'Debe seleccionar un workflow antes de guardar el evento de inicio.';
       }
       return;
     }
     if (!this.loggedUser?.user_name) {
       if (this.uc) {
-        this.uc.mensaje = 'No se encontró el usuario en sesión. Vuelva a iniciar sesión.';
+        this.uc.mensaje =
+          'No se encontró el usuario en sesión. Vuelva a iniciar sesión.';
       }
       return;
     }
     if (!this.nombreEventoInicioN || !this.nombreLargoEventoInicioN) {
       if (this.uc) {
-        this.uc.mensaje = 'El nombre y el nombre largo del evento de inicio son obligatorios.';
+        this.uc.mensaje =
+          'El nombre y el nombre largo del evento de inicio son obligatorios.';
       }
       return;
     }
@@ -354,21 +370,20 @@ export class CrearEventoInicioComponent {
           }
         },
       });
-
-    
   }
 
- 
   /**
    * Elimina la tarea actual.
    */
   public delete() {
     this.eventoInicioService
-      .deleteEventoInicio( this.eventoInicioIdEdit ?? '')
+      .deleteEventoInicio(this.eventoInicioIdEdit ?? '')
       .subscribe({
         next: (response) => {
           if (response && response.respuesta) {
-            this.router.navigate(['/main-page/eventoinicio/listadoEventoInicio']);
+            this.router.navigate([
+              '/main-page/eventoinicio/listadoEventoInicio',
+            ]);
           }
         },
         error: (e) => {
@@ -392,20 +407,19 @@ export class CrearEventoInicioComponent {
     this.router.navigate(['/main-page/eventoinicio/listadoEventoInicio']);
   }
 
-
   public onMetodoAsignacionChange($event: any) {
-    let metodoAsignacionSeleccionado = $event as MetodoAsignacionPrimeraTareaEntity;
+    let metodoAsignacionSeleccionado =
+      $event as MetodoAsignacionPrimeraTareaEntity;
     this.metodoAsignacionN = metodoAsignacionSeleccionado;
     this.nombreMetodoAsignacionN = metodoAsignacionSeleccionado.code ?? '';
     this.nombreMetodoAsignacionB = this.nombreMetodoAsignacionN === 'Si';
   }
 
-    public onHerramientaChange($event: any) {
+  public onHerramientaChange($event: any) {
     let herramientaSeleccionada = $event as HerramientaEventoInicioEntity;
     this.herramientaN = herramientaSeleccionada;
     this.nombreHerramientaN = herramientaSeleccionada?.code ?? '';
-  } 
-
+  }
 
   public async onSerieChange($event: any) {
     let serieSeleccionada = $event as SerieEventoInicioEntity;
@@ -414,49 +428,51 @@ export class CrearEventoInicioComponent {
     await this.getTiposDocumentoListBySerie();
     this.diligenciarTiposDocumentoAsignadosEventoInicio();
     this.diligenciarTiposDocumentoAsignar();
-
-  }     
+  }
 
   public diligenciarTiposDocumentoAsignar() {
     this.tiposDocumentoAgregarList = [];
-    if(this.tiposDocumentoList.length > 0 ) {
-        this.tiposDocumentoList.forEach(tipoDoc => {
-          if (!this.tiposDocumentoAsignadosEventoInicioList.some(asignado => asignado.code === tipoDoc.code)) {
-            this.tiposDocumentoAgregarList.push(tipoDoc);
-          }
-        });
-   } 
+    if (this.tiposDocumentoList.length > 0) {
+      this.tiposDocumentoList.forEach((tipoDoc) => {
+        if (
+          !this.tiposDocumentoAsignadosEventoInicioList.some(
+            (asignado) => asignado.code === tipoDoc.code,
+          )
+        ) {
+          this.tiposDocumentoAgregarList.push(tipoDoc);
+        }
+      });
+    }
   }
 
   public diligenciarTiposDocumentoAsignadosEventoInicio() {
     this.tiposDocumentoAsignadosEventoInicioList = [];
-    if(this.editMode()) {
-      this.modelosDocumentoEventoInicioE.forEach(modeloDoc => {
-        if(modeloDoc.idSerie === this.idSerieN) {
+    if (this.editMode()) {
+      this.modelosDocumentoEventoInicioE.forEach((modeloDoc) => {
+        if (modeloDoc.idSerie === this.idSerieN) {
           const tipoDocAsignado: TipoDocumentoEventoInicioEntity = {
             code: modeloDoc.tipoDocumento ?? '',
             name: modeloDoc.tipoDocumento ?? '',
             obligatorio: modeloDoc.obligatoryTypeDocInTask ?? false,
             visible: true,
-            selected: false
+            selected: false,
           };
           this.tiposDocumentoAsignadosEventoInicioList.push(tipoDocAsignado);
         }
-     });
+      });
     }
   }
 
   public async getTiposDocumentoListBySerie() {
-   this.tiposDocumentoList = [];
+    this.tiposDocumentoList = [];
     try {
       const response = await firstValueFrom(
-        this.eventoInicioService
-          .getTiposDocumentoBySerie(this.idSerieN ?? '')
+        this.eventoInicioService.getTiposDocumentoBySerie(this.idSerieN ?? ''),
       );
-        if (response && response.respuesta) {
-          const ops = response.respuesta as TipoDocumentoEventoInicioEntity[];
-          this.tiposDocumentoList.push(...ops);
-        }
+      if (response && response.respuesta) {
+        const ops = response.respuesta as TipoDocumentoEventoInicioEntity[];
+        this.tiposDocumentoList.push(...ops);
+      }
     } catch (error: any) {
       if (this.uc) {
         this.uc.mensaje =
@@ -480,36 +496,59 @@ export class CrearEventoInicioComponent {
       );*/
     }
   }
-  
+
   public retirar() {
-    this.tiposDocumentoAgregarList.push(...this.tiposDocumentoAsignadosEventoInicioList.some(tipo => tipo.visible) ? this.tiposDocumentoAsignadosEventoInicioList.filter(tipo => tipo.visible) : []);
-    this.tiposDocumentoAsignadosEventoInicioList = this.tiposDocumentoAsignadosEventoInicioList.filter(tipo => !tipo.visible);
-    this.tiposDocumentoAgregarList.forEach(tipo => { tipo.visible = false; });
+    this.tiposDocumentoAgregarList.push(
+      ...(this.tiposDocumentoAsignadosEventoInicioList.some(
+        (tipo) => tipo.visible,
+      )
+        ? this.tiposDocumentoAsignadosEventoInicioList.filter(
+            (tipo) => tipo.visible,
+          )
+        : []),
+    );
+    this.tiposDocumentoAsignadosEventoInicioList =
+      this.tiposDocumentoAsignadosEventoInicioList.filter(
+        (tipo) => !tipo.visible,
+      );
+    this.tiposDocumentoAgregarList.forEach((tipo) => {
+      tipo.visible = false;
+    });
   }
 
   public asignar() {
-    this.tiposDocumentoAsignadosEventoInicioList.push(...this.tiposDocumentoAgregarList.some(tipo => tipo.selected) ? this.tiposDocumentoAgregarList.filter(tipo => tipo.selected) : []);
-    this.tiposDocumentoAgregarList = this.tiposDocumentoAgregarList.filter(tipo => !tipo.selected);
-    this.tiposDocumentoAsignadosEventoInicioList.forEach(tipo => { tipo.selected = false; });
+    this.tiposDocumentoAsignadosEventoInicioList.push(
+      ...(this.tiposDocumentoAgregarList.some((tipo) => tipo.selected)
+        ? this.tiposDocumentoAgregarList.filter((tipo) => tipo.selected)
+        : []),
+    );
+    this.tiposDocumentoAgregarList = this.tiposDocumentoAgregarList.filter(
+      (tipo) => !tipo.selected,
+    );
+    this.tiposDocumentoAsignadosEventoInicioList.forEach((tipo) => {
+      tipo.selected = false;
+    });
   }
 
-  public toggleObligatorio(tipoDocEventoInicio: TipoDocumentoEventoInicioEntity) {
+  public toggleObligatorio(
+    tipoDocEventoInicio: TipoDocumentoEventoInicioEntity,
+  ) {
     tipoDocEventoInicio.obligatorio = !tipoDocEventoInicio.obligatorio;
   }
 
   public mapearModelosDocumentoEventoInicio(): DocumentModelEntity[] {
-    if(this.tiposDocumentoAsignadosEventoInicioList.length === 0) {
+    if (this.tiposDocumentoAsignadosEventoInicioList.length === 0) {
       return [];
     }
-    return this.tiposDocumentoAsignadosEventoInicioList.map(tipoDoc => {
+    return this.tiposDocumentoAsignadosEventoInicioList.map((tipoDoc) => {
       const modelo: DocumentModelEntity = {
         tipoDocumento: tipoDoc.code,
         idSerie: this.serieN?.code ?? '',
         nombreSerie: this.serieN?.name ?? '',
         obligatoryTypeDocInTask: tipoDoc.obligatorio ?? false,
-        editableTypeDocInTask: this.editarDocProcesoN
+        editableTypeDocInTask: this.editarDocProcesoN,
       };
       return modelo;
     });
-}
+  }
 }

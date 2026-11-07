@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { IndicadorDeTareaComponent } from '../indicadordetarea.component';
 import { FiltrosBusquedaIndicadorDeTareaComponent } from '../filtros-busqueda-indicadordetarea/filtros-busqueda-indicadordetarea.component';
 import { MatTableModule } from '@angular/material/table';
@@ -8,23 +8,24 @@ import { IndicadorDeTareaEntity } from '../indicadordetarea.entity';
   selector: 'ibpm-listado-indicadordetarea',
   imports: [MatTableModule, FiltrosBusquedaIndicadorDeTareaComponent],
   templateUrl: './listado-indicadordetarea.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-indicadordetarea.component.scss',
 })
 /**
  * Listado de indicadordetarea con navegación a la edición y utilidades de presentación.
  */
 export class ListadoIndicadorDeTareaComponent {
-tareas: any;
-mostrarResultados: any;
-ejecutarTarea(_t14: any) {
-throw new Error('Method not implemented.');
-}
-verExpedienteTarea(_t14: any) {
-throw new Error('Method not implemented.');
-}
-verDetalle(_t14: any) {
-throw new Error('Method not implemented.');
-}
+  tareas: any;
+  mostrarResultados: any;
+  ejecutarTarea(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
+  verExpedienteTarea(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
+  verDetalle(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
   // 🔹 Variables de paginación
   public currentPage: number = 1;
   public numberOfPages: number = 1;
@@ -48,11 +49,13 @@ throw new Error('Method not implemented.');
     ]);
   }
 
-   /**
+  /**
    * Obtiene el nombre legible de la herramienta a partir del identificador.
    */
   public getIndicadorDeTareaName(indicadordetareaName: any) {
-    const indicadordetarea = this.parent.indicadordetarea.find((c) => c.nombre === indicadordetareaName);
+    const indicadordetarea = this.parent.indicadordetarea.find(
+      (c) => c.nombre === indicadordetareaName,
+    );
     return indicadordetarea ? indicadordetarea.nombre : '';
   }
 
@@ -82,10 +85,9 @@ throw new Error('Method not implemented.');
 
   seleccionarTodos = false;
 
-seleccionarTodosRegistros(): void {
-  this.parent.indicadordetarea.forEach((item: any) => {
-    item.seleccionado = this.seleccionarTodos;
-  });
+  seleccionarTodosRegistros(): void {
+    this.parent.indicadordetarea.forEach((item: any) => {
+      item.seleccionado = this.seleccionarTodos;
+    });
+  }
 }
-}
-

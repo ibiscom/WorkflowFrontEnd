@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { PatronComponent } from '../patron.component';
 import { PatronService } from '../patron.service';
@@ -8,6 +8,7 @@ import { LoginEntity } from '../../login/login.entity';
   selector: 'ibpm-filtros-busqueda-patron',
   imports: [FormsModule],
   templateUrl: './filtros-busqueda-patron.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './filtros-busqueda-patron.component.scss',
 })
 export class FiltrosBusquedaPatronComponent {
@@ -40,7 +41,7 @@ export class FiltrosBusquedaPatronComponent {
     // Si luego viene de servicio, aquí se reemplaza
     this.companiesList = [
       { id: 1, largeName: 'Activo' },
-      { id: 2, largeName: 'Inactivo' }
+      { id: 2, largeName: 'Inactivo' },
     ];
   }
 
@@ -54,27 +55,22 @@ export class FiltrosBusquedaPatronComponent {
   public search(): void {
     const generateReportBool = this.generateReportF === 'true';
 
-    this.searchPatron(
-      this.patronNameF,
-      this.supervisorF,
-      generateReportBool
-    );
+    this.searchPatron(this.patronNameF, this.supervisorF, generateReportBool);
   }
 
   public searchPatron(
     patronName: string,
     supervisor: string,
-    generateReport: boolean
+    generateReport: boolean,
   ): void {
     console.log(
       'Filtros recibidos:',
       patronName,
       supervisor,
       generateReport,
-      this.companyObjectN
+      this.companyObjectN,
     );
 
     // Tu lógica actual aquí
   }
 }
-

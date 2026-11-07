@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { Router, RouterModule } from '@angular/router';
 import { LoginService } from '../login/login.service';
@@ -17,8 +17,9 @@ import { ActividadRealizadaPorResponsableEntity } from './actividadrealizadaporr
 
 @Component({
   selector: 'ibpm-actividadrealizadaporresponsable',
-  imports: [MatCardModule, RouterModule,],
+  imports: [MatCardModule, RouterModule],
   templateUrl: './actividadrealizadaporresponsable.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './actividadrealizadaporresponsable.component.scss',
 })
 export class ActividadRealizadaPorResponsableComponent {
@@ -28,12 +29,11 @@ export class ActividadRealizadaPorResponsableComponent {
   public mensaje: string = '';
   public workflowActual: string = '';
   actividadrealizadaporresponsable: any;
- 
 
   constructor(
     private actividadrealizadaporresponsableService: ActividadRealizadaPorResponsableService,
     private companiasService: CompaniasService,
-    private indicadordetareaComponentInstanceService: ActividadRealizadaPorResponsableComponentInstanceService ,
+    private indicadordetareaComponentInstanceService: ActividadRealizadaPorResponsableComponentInstanceService,
     private loginService: LoginService,
     public router: Router,
     private cookieService: CookieService,
@@ -43,55 +43,53 @@ export class ActividadRealizadaPorResponsableComponent {
     console.log('ENTRO ngOnInit');
     this.indicadordetareaComponentInstanceService.setInstance(this);
     this.loggedUser = this.loginService.getLoggedUser();
-   console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
-    if(this.hayWorkflowActual()) {
+    console.log('WORKFLOW COOKIE:', this.cookieService.get('workflowActual'));
+    if (this.hayWorkflowActual()) {
       console.log('SI hay workflow → voy a buscar');
-        this.buscarActividadRealizadaPorResponsable();
+      this.buscarActividadRealizadaPorResponsable();
+    } else {
+      console.log('NO hay workflow');
     }
-    else {
-    console.log('NO hay workflow');
-         }
+  }
 
-      }
-
-    public hayWorkflowActual(): boolean {
-    this.workflowActual = this.cookieService.get("workflowActual");
-    if (this.workflowActual === '') { 
+  public hayWorkflowActual(): boolean {
+    this.workflowActual = this.cookieService.get('workflowActual');
+    if (this.workflowActual === '') {
       this.mensaje = Constants.ERR_WORKFLOW_NO_SELECCIONADO;
       return false;
     }
     return true;
   }
 
-   public buscarActividadRealizadaPorResponsable(filtros?: ActividadRealizadaPorResponsableFilterEntity): void {
-    console.log("FILTROS RECIBIDOS EN PADRE:", filtros);
-      const workflowActual = this.cookieService.get('workflowActual');
-      const body: ActividadRealizadaPorResponsableFilterEntity = {
+  public buscarActividadRealizadaPorResponsable(
+    filtros?: ActividadRealizadaPorResponsableFilterEntity,
+  ): void {
+    console.log('FILTROS RECIBIDOS EN PADRE:', filtros);
+    const workflowActual = this.cookieService.get('workflowActual');
+    const body: ActividadRealizadaPorResponsableFilterEntity = {
       nombreWorkflow: workflowActual,
       nombre: filtros?.nombre ?? '',
       estado: filtros?.estado ?? '',
       primitiva: filtros?.primitiva ?? '',
       expresion: filtros?.expresion ?? '',
-      descripcion: filtros?.descripcion ?? ''
+      descripcion: filtros?.descripcion ?? '',
     };
-   console.log("BODY FINAL:", body);
-      console.log('BODY ENVIADO AL BACKEND:', body);
-  
-      this.actividadrealizadaporresponsableService
-        .getActividadesRealizadasPorResponsable(body)
-        .subscribe({
-          next: (response) => {
-            this.indicadordetarea = response.respuesta;
-            this.mensaje = '';
-          },
-          error: (err) => {
-            this.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_OBTENIENDO_TAREAS,
-              err,
-            );
-          },
-        });
-    }
+    console.log('BODY FINAL:', body);
+    console.log('BODY ENVIADO AL BACKEND:', body);
 
+    this.actividadrealizadaporresponsableService
+      .getActividadesRealizadasPorResponsable(body)
+      .subscribe({
+        next: (response) => {
+          this.indicadordetarea = response.respuesta;
+          this.mensaje = '';
+        },
+        error: (err) => {
+          this.mensaje = MessageUtil.buildErrorMessageFsResponse(
+            Constants.ERR_OBTENIENDO_TAREAS,
+            err,
+          );
+        },
+      });
+  }
 }
-

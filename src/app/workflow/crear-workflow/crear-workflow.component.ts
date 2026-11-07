@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { WorkflowComponent } from '../workflow.component';
 import { LoginEntity } from '../../login/login.entity';
@@ -34,11 +34,12 @@ import { CookieService } from 'ngx-cookie-service';
     MatSelectModule,
   ],
   templateUrl: './crear-workflow.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './crear-workflow.component.scss',
 })
 /**
  * Componente para la creación y edición de workflows.
- * 
+ *
  */
 export class CrearWorkflowComponent {
   public uc?: WorkflowComponent;
@@ -89,9 +90,8 @@ export class CrearWorkflowComponent {
     }
   }
 
-
   public async seleccionarWorkflowActual() {
-    this.cookieService.set('workflowActual', this.workflowIdEdit ?? '', 1)
+    this.cookieService.set('workflowActual', this.workflowIdEdit ?? '', 1);
   }
 
   /**
@@ -105,12 +105,9 @@ export class CrearWorkflowComponent {
    * Llena los campos del formulario con la información del workflow en edición.
    */
   public async llenarCamposEdicion(): Promise<void> {
-    
     try {
       const response = await firstValueFrom(
-        this.workflowService.getWorkflow(
-          this.workflowIdEdit ?? '',
-        ),
+        this.workflowService.getWorkflow(this.workflowIdEdit ?? ''),
       );
       if (response?.respuesta) {
         const workflow = response.respuesta as WorkflowEntity;
@@ -133,7 +130,6 @@ export class CrearWorkflowComponent {
         );
       }
     }
-      
   }
 
   /**
@@ -146,7 +142,7 @@ export class CrearWorkflowComponent {
   /**
    * Maneja el cambio de compañía seleccionada.
    */
-  public onEstadoChange(event:any): void {
+  public onEstadoChange(event: any): void {
     console.log('Estado seleccionado:', event);
     this.estadoObjectN = event as EstadoWorkflowEntity;
     this.estadoN = event?.name ?? '';
@@ -168,34 +164,32 @@ export class CrearWorkflowComponent {
    */
   public create() {
     let workflow: WorkflowEntity = {
-       nombre: this.nombreN,
-        nombreLargo: this.nombreLargoN,
-        descripcion: this.descripcionN,
-        estado: this.estadoN,
-    }
-    this.workflowService
-      .createWorkflow(workflow)
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
-            if (this.uc) {
-              this.uc.mensaje = '';
-            }
-            this.workflowIdEdit = this.nombreN;
-            this.router.navigate([
-              `/main-page/workflow/editarWorkflow?id=${this.nombreN}`,
-            ]);
-          }
-        },
-        error: (e) => {
+      nombre: this.nombreN,
+      nombreLargo: this.nombreLargoN,
+      descripcion: this.descripcionN,
+      estado: this.estadoN,
+    };
+    this.workflowService.createWorkflow(workflow).subscribe({
+      next: (response) => {
+        if (response && response.respuesta) {
           if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_WORKFLOW_CREAR,
-              e,
-            );
+            this.uc.mensaje = '';
           }
-        },
-      });
+          this.workflowIdEdit = this.nombreN;
+          this.router.navigate([
+            `/main-page/workflow/editarWorkflow?id=${this.nombreN}`,
+          ]);
+        }
+      },
+      error: (e) => {
+        if (this.uc) {
+          this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
+            Constants.ERR_WORKFLOW_CREAR,
+            e,
+          );
+        }
+      },
+    });
   }
 
   /**
@@ -203,54 +197,50 @@ export class CrearWorkflowComponent {
    */
   public edit() {
     let workflow: WorkflowEntity = {
-       nombre: this.nombreN,
-        nombreLargo: this.nombreLargoN,
-        descripcion: this.descripcionN,
-        estado: this.estadoN,
-    }
-    this.workflowService
-      .editWorkflow(workflow)
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
-            this.router.navigate([
-              `/main-page/workflows/editarWorkflow?id=${this.nombreN}`,
-            ]);
-          }
-        },
-        error: (e) => {
-          if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_WORKFLOW_EDITAR,
-              e,
-            );
-          }
-        },
-      });
+      nombre: this.nombreN,
+      nombreLargo: this.nombreLargoN,
+      descripcion: this.descripcionN,
+      estado: this.estadoN,
+    };
+    this.workflowService.editWorkflow(workflow).subscribe({
+      next: (response) => {
+        if (response && response.respuesta) {
+          this.router.navigate([
+            `/main-page/workflows/editarWorkflow?id=${this.nombreN}`,
+          ]);
+        }
+      },
+      error: (e) => {
+        if (this.uc) {
+          this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
+            Constants.ERR_WORKFLOW_EDITAR,
+            e,
+          );
+        }
+      },
+    });
   }
 
   /**
    * Elimina el workflow actual.
    */
   public delete() {
-    this.workflowService
-      .deleteWorkflow(this.workflowIdEdit ?? '')
-      .subscribe({
-        next: (response) => {
-          if (response && response.respuesta) {
-            this.uc!.mensaje = '';
-            this.router.navigate(['/main-page/workflow']);
-          }
-        },
-        error: (e) => {
-          if (this.uc) {
-            this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
-              Constants.ERR_WORKFLOW_ELIMINAR,
-              e,
-            );
-          }
-        },
-      });
+    this.workflowService.deleteWorkflow(this.workflowIdEdit ?? '').subscribe({
+      next: (response) => {
+        if (response && response.respuesta) {
+          this.uc!.mensaje = '';
+          this.router.navigate(['/main-page/workflow']);
+        }
+      },
+      error: (e) => {
+        if (this.uc) {
+          this.uc.mensaje = MessageUtil.buildErrorMessageFsResponse(
+            Constants.ERR_WORKFLOW_ELIMINAR,
+            e,
+          );
+        }
+      },
+    });
   }
 
   /**
@@ -266,7 +256,10 @@ export class CrearWorkflowComponent {
   /**
    * Compara estados en el selector.
    */
-  public compararEstados(c1: EstadoWorkflowEntity, c2: EstadoWorkflowEntity): boolean {
+  public compararEstados(
+    c1: EstadoWorkflowEntity,
+    c2: EstadoWorkflowEntity,
+  ): boolean {
     return c1.name === c2.name && c1.code === c2.code;
   }
 }

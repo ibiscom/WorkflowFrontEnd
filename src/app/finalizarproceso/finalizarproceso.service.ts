@@ -25,7 +25,39 @@ export class FinalizarprocesoService {
 
   
      /**
-       * Obtiene el listado de dependencias según los filtros proporcionados.
+       * Obtiene el listado de procesos según los filtros proporcionados.
+       * @param filtros Los filtros para la búsqueda de procesos.
+       * @returns 
+       */
+  
+     
+      public getConsultarproceso(filtros: FinalizarprocesoFilterEntity): Observable<FsResponseEntity<any>> {
+          let ip: string = this.cookieService.get('ip');
+          return this.http.post<FsResponseEntity<any>>(
+            environment.workflowApiUrl +
+              `/workflow/getWorkflowsName`, filtros
+          );
+      }
+        
+
+          /**
+       * Obtiene el listado de procesos instanciados según los filtros proporcionados.
+       * @param filtros Los filtros para la búsqueda de procesos instanciados.
+       * @returns 
+       */
+  
+     
+      public getProcesosInstanciados(filtros: FinalizarprocesoFilterEntity): Observable<FsResponseEntity<any>> {
+          let ip: string = this.cookieService.get('ip');
+          return this.http.post<FsResponseEntity<any>>(
+            environment.workflowApiUrl +
+              `/workflowEngine/getWorkflowsEngine`, filtros
+          );
+      }
+    
+
+          /**
+       * Permite finalizar procesos finalizados
        * @param filtros Los filtros para la búsqueda de dependencias.
        * @returns 
        */
@@ -35,23 +67,20 @@ export class FinalizarprocesoService {
           let ip: string = this.cookieService.get('ip');
           return this.http.post<FsResponseEntity<any>>(
             environment.workflowApiUrl +
-              `/workflowEngine/getWorkflowsEngine`, filtros
+              `/workflowEngine/end`, filtros
           );
       }
-        
-    
     
       /**
-       * Elimina un tarea, dado su identificador
-       * @param tareaName Nombre del tarea a eliminar
+       * Elimina un proceso
+       * @param tareaName Nombre del proceso a eliminar
        * @returns 
        */
       public deleteFinalizarproceso(tareaName: string): Observable<FsResponseEntity<any>> {
           let ip: string = this.cookieService.get('ip');
           return this.http.delete<FsResponseEntity<any>>(
             environment.workflowApiUrl +
-              `/workflowEngine/end${tareaName}`);
+              `/workflowEngine/endWorkflow/${tareaName}`);
       }
-    
 }
     

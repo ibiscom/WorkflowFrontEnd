@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -19,6 +19,7 @@ import { Router } from '@angular/router';
     MatButtonModule,
   ],
   templateUrl: './acciones-objetow.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './acciones-objetow.component.scss',
 })
 /**
@@ -32,7 +33,8 @@ export class AccionesObjetowComponent {
    * Navega a la pantalla de creación de objeto workflow.
    */
   public irACrearObjetow() {
-    this.router.navigate([`/main-page/objetosWorkflow/crearAtributoObjetoWorkflow`]);
+    this.router.navigate([
+      `/main-page/objetosWorkflow/crearAtributoObjetoWorkflow`,
+    ]);
   }
 }
-

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { EntidadesComponent } from '../entidades.component';
 import { FiltrosBusquedaEntidadesComponent } from '../filtros-busqueda-entidades/filtros-busqueda-entidades.component';
 import { MatTableModule } from '@angular/material/table';
@@ -6,7 +6,8 @@ import { EntidadEntity } from '../entidad.entity';
 
 @Component({
   selector: 'ibpm-listado-entidad',
-   templateUrl: './listado-entidades.component.html',
+  templateUrl: './listado-entidades.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-entidades.component.scss',
 })
 /**
@@ -16,10 +17,7 @@ export class ListadoEntidadesComponent {
   // 🔹 Variables de paginación
   public currentPage: number = 1;
   public numberOfPages: number = 1;
-  public displayedColumns: string[] = [
-    'Nombre',
-    'Descripción',
-    'listaGrupos'  ];
+  public displayedColumns: string[] = ['Nombre', 'Descripción', 'listaGrupos'];
 
   constructor(public parent: EntidadesComponent) {}
 
@@ -27,19 +25,19 @@ export class ListadoEntidadesComponent {
    * Navega a la pantalla de edición del grupo seleccionado.
    */
   public goToEditarEntidad(entidad: EntidadEntity) {
-  this.parent.router.navigate([
-    'main-page',
-    'entidades',
-    'editarEntidad',
-    entidad.nombre,
-  ]);
-}
+    this.parent.router.navigate([
+      'main-page',
+      'entidades',
+      'editarEntidad',
+      entidad.nombre,
+    ]);
+  }
 
   /**
    * Obtiene el nombre legible de la Entidad a partir del identificador.
    */
   public getEntityName(EntidadName: any) {
-    const Entidad = this.parent.entidades.find((c) => c.nombre ===EntidadName);
+    const Entidad = this.parent.entidades.find((c) => c.nombre === EntidadName);
     return Entidad ? Entidad.nombre : '';
   }
 

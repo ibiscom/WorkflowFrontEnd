@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { PatronComponent } from '../patron.component';
 import { FiltrosBusquedaPatronComponent } from '../filtros-busqueda-patron/filtros-busqueda-patron.component';
 import { MatTableModule } from '@angular/material/table';
@@ -8,6 +8,7 @@ import { PatronEntity } from '../patron.entity';
   selector: 'ibpm-listado-patron',
   imports: [MatTableModule, FiltrosBusquedaPatronComponent],
   templateUrl: './listado-patron.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-patron.component.scss',
 })
 /**
@@ -65,4 +66,3 @@ export class ListadoPatronComponent {
   }
     */
 }
-

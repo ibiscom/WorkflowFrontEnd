@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ConsultarPorFlujoComponent } from '../consultarporflujo.component';
 import { FiltrosBusquedaConsultarPorFlujoComponent } from '../filtros-busqueda-consultarporflujo/filtros-busqueda-consultarporflujo.component';
 import { MatTableModule } from '@angular/material/table';
@@ -8,23 +8,24 @@ import { ConsultarPorFlujoEntity } from '../consultarporflujo.entity';
   selector: 'ibpm-listado-consultarporflujo',
   imports: [MatTableModule, FiltrosBusquedaConsultarPorFlujoComponent],
   templateUrl: './listado-consultarporflujo.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-consultarporflujo.component.scss',
 })
 /**
  * Listado de consultarporflujo con navegación a la edición y utilidades de presentación.
  */
 export class ListadoConsultarPorFlujoComponent {
-tareas: any;
-mostrarResultados: any;
-ejecutarTarea(_t14: any) {
-throw new Error('Method not implemented.');
-}
-verExpedienteTarea(_t14: any) {
-throw new Error('Method not implemented.');
-}
-verDetalle(_t14: any) {
-throw new Error('Method not implemented.');
-}
+  tareas: any;
+  mostrarResultados: any;
+  ejecutarTarea(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
+  verExpedienteTarea(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
+  verDetalle(_t14: any) {
+    throw new Error('Method not implemented.');
+  }
   // 🔹 Variables de paginación
   public currentPage: number = 1;
   public numberOfPages: number = 1;
@@ -42,17 +43,21 @@ throw new Error('Method not implemented.');
   /**
    * Navega a la pantalla de edición de la tarea seleccionada.
    */
-  public goToEditarConsultarPorFlujo(consultarporflujo: ConsultarPorFlujoEntity) {
+  public goToEditarConsultarPorFlujo(
+    consultarporflujo: ConsultarPorFlujoEntity,
+  ) {
     this.parent.router.navigate([
       `/main-page/consultarporflujo/editarConsultarPorFlujo/${consultarporflujo.nombre}`,
     ]);
   }
 
-   /**
+  /**
    * Obtiene el nombre legible de la herramienta a partir del identificador.
    */
   public getConsultarPorFlujoName(consultarporflujoName: any) {
-    const consultarporflujo = this.parent.consultarporflujo.find((c) => c.nombre === consultarporflujoName);
+    const consultarporflujo = this.parent.consultarporflujo.find(
+      (c) => c.nombre === consultarporflujoName,
+    );
     return consultarporflujo ? consultarporflujo.nombre : '';
   }
 
@@ -82,10 +87,9 @@ throw new Error('Method not implemented.');
 
   seleccionarTodos = false;
 
-seleccionarTodosRegistros(): void {
-  this.parent.consultarporflujo.forEach((item: any) => {
-    item.seleccionado = this.seleccionarTodos;
-  });
+  seleccionarTodosRegistros(): void {
+    this.parent.consultarporflujo.forEach((item: any) => {
+      item.seleccionado = this.seleccionarTodos;
+    });
+  }
 }
-}
-

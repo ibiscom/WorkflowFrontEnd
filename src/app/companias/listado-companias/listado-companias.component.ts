@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { CompaniasComponent } from '../companias.component';
 
@@ -6,6 +6,7 @@ import { CompaniasComponent } from '../companias.component';
   selector: 'app-listado-companias',
   imports: [MatTableModule],
   templateUrl: './listado-companias.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './listado-companias.component.scss',
 })
 /**

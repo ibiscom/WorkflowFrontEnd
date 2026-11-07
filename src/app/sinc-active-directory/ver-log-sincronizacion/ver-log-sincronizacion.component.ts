@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { SincActiveDirectoryComponent } from '../sinc-active-directory.component';
 import { InicioSincronizacionComponent } from '../inicio-sincronizacion/inicio-sincronizacion.component';
 
@@ -6,6 +6,7 @@ import { InicioSincronizacionComponent } from '../inicio-sincronizacion/inicio-s
   selector: 'app-ver-log-sincronizacion',
   imports: [InicioSincronizacionComponent],
   templateUrl: './ver-log-sincronizacion.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './ver-log-sincronizacion.component.scss',
 })
 /**

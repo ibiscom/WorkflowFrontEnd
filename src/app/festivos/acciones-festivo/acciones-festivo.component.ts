@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -18,6 +18,7 @@ import { FestivoService } from '../festivo.service';
     MatButtonModule,
   ],
   templateUrl: './acciones-festivo.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './acciones-festivo.component.scss',
 })
 /**
@@ -68,7 +69,10 @@ export class AccionesFestivoComponent {
     this.mesSeleccionado = now.getMonth();
     this.anioSeleccionado = now.getFullYear();
     // Rango razonable para seleccionar.
-    this.anios = Array.from({ length: 11 }, (_, i) => this.anioSeleccionado - 5 + i);
+    this.anios = Array.from(
+      { length: 11 },
+      (_, i) => this.anioSeleccionado - 5 + i,
+    );
   }
 
   ngOnInit(): void {
@@ -122,7 +126,8 @@ export class AccionesFestivoComponent {
       } else {
         const desc = this.descripcionNueva.trim();
         if (!desc) {
-          if (this.uc) this.uc.mensaje = 'Ingrese una descripción para nuevos festivos.';
+          if (this.uc)
+            this.uc.mensaje = 'Ingrese una descripción para nuevos festivos.';
           return;
         }
         this.pendingAdds.set(key, desc);
@@ -162,10 +167,12 @@ export class AccionesFestivoComponent {
     }
 
     this.isLoading = true;
-    const addHolidaysDTO = [...this.pendingAdds.entries()].map(([key, descripcion]) => ({
-      fecha: this.keyToIsoLocalMidday(key),
-      descripcion,
-    }));
+    const addHolidaysDTO = [...this.pendingAdds.entries()].map(
+      ([key, descripcion]) => ({
+        fecha: this.keyToIsoLocalMidday(key),
+        descripcion,
+      }),
+    );
 
     const removeHolidaysDTO = [...this.pendingRemoves.entries()].map(
       ([key, descripcion]) => ({
@@ -183,16 +190,21 @@ export class AccionesFestivoComponent {
             this.pendingAdds.clear();
             this.pendingRemoves.clear();
             this.loadHolidaysForSelectedMonth();
-            if (this.uc) this.uc.mensaje = 'Cambios de festivos guardados correctamente.';
+            if (this.uc)
+              this.uc.mensaje = 'Cambios de festivos guardados correctamente.';
           } else {
-            if (this.uc) this.uc.mensaje = response?.mensaje ?? 'No se pudo guardar los festivos.';
+            if (this.uc)
+              this.uc.mensaje =
+                response?.mensaje ?? 'No se pudo guardar los festivos.';
           }
         },
         error: (err) => {
           this.isLoading = false;
           if (this.uc)
             this.uc.mensaje =
-              err?.error?.mensaje ?? err?.message ?? 'Error guardando los festivos.';
+              err?.error?.mensaje ??
+              err?.message ??
+              'Error guardando los festivos.';
         },
       });
   }
@@ -204,11 +216,7 @@ export class AccionesFestivoComponent {
     this.isLoading = true;
     this.serverHolidays.clear();
 
-    const fechaBase = new Date(
-      this.anioSeleccionado,
-      this.mesSeleccionado,
-      1,
-    );
+    const fechaBase = new Date(this.anioSeleccionado, this.mesSeleccionado, 1);
 
     this.festivoService.getHolidays(fechaBase).subscribe({
       next: (response) => {
